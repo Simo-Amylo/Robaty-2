@@ -1,7 +1,22 @@
-/* =====================================================
-   ROBATY — LUXURY CHAT UI
-   STRUCTURE ONLY — NO JAVASCRIPT — NO ANIMATION
-===================================================== */
+/* =========================================================
+   ROBATY CHAT — VISUAL STRUCTURE v2.0
+
+   THEME:
+   ROYAL MOROCCAN GOLD / BLACK
+
+   IMPORTANT:
+   - NO JAVASCRIPT
+   - NO ANIMATION
+   - NO KEYFRAMES
+   - NO TRANSITIONS
+
+   Motion will be added separately later.
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -9,390 +24,1597 @@
     padding: 0;
 }
 
-html, body {
+
+html,
+body {
     width: 100%;
     min-height: 100%;
 }
 
+
 body {
-    background: radial-gradient(circle at 50% 10%, #302a24 0%, #151311 38%, #080807 100%);
-    color: #f5ead7;
-    font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 20%,
+            #211a10 0%,
+            #0d0c0a 42%,
+            #050505 100%
+        );
+
+    color: #f4e5c4;
+
+    font-family:
+        "Cairo",
+        system-ui,
+        sans-serif;
+
     overflow-x: hidden;
 }
 
-/* ===================== APP ===================== */
-.robaty-app {
+
+/* =========================================================
+   APP
+========================================================= */
+
+.rob​aty-app {
+
     width: 100%;
     min-height: 100vh;
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
 }
 
-/* ===================== TOP BAR ===================== */
-.top-bar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 58px;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.app-header {
+
+    width: 100%;
+    height: 74px;
+
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 18px;
-    background: linear-gradient(180deg, rgba(18,17,15,0.98), rgba(18,17,15,0.90));
-    border-bottom: 1px solid rgba(201,157,73,0.25);
-    z-index: 20;
+
+    padding:
+        0 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #12110f,
+            #0a0a09
+        );
+
+    border-bottom:
+        2px solid rgba(190, 142, 58, 0.65);
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.55);
+
+    z-index: 10;
 }
 
-.top-bar-title {
+
+.header-brand {
+
     position: absolute;
+
     left: 50%;
     transform: translateX(-50%);
-    color: #e7c477;
-    font-size: 17px;
+
+    color: #e5bd69;
+
+    font-size: 18px;
     font-weight: 600;
+
     letter-spacing: 0.3px;
 }
 
-.icon-button {
-    width: 38px;
-    height: 38px;
+
+.header-button {
+
+    width: 44px;
+    height: 44px;
+
     border-radius: 50%;
-    border: 1px solid rgba(215,170,82,0.55);
-    background: linear-gradient(145deg, #29241e, #100f0d);
-    color: #d9b66e;
+
+    border:
+        1px solid rgba(213, 166, 76, 0.65);
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #2d261b,
+            #0d0c0a 75%
+        );
+
+    color: #e9c777;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    font-family: inherit;
+
     cursor: pointer;
-    font-size: 20px;
 }
 
-.back-button {
-    font-family: Arial, sans-serif;
-    font-size: 28px;
+
+.settings-icon {
+
+    font-size: 23px;
+
     line-height: 1;
+}
+
+
+.back-button span {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 32px;
+
+    line-height: 1;
+
     transform: rotate(180deg);
 }
 
-.settings-button { font-size: 18px; }
 
-/* ===================== LUXURY FRAME ===================== */
+/* =========================================================
+   ROBATY HOUSE
+========================================================= */
+
+.rob​aty-house {
+
+    width: min(100%, 470px);
+
+    padding:
+        12px 8px 18px;
+
+}
+
+
+/* =========================================================
+   LUXURY FRAME
+========================================================= */
+
 .luxury-frame {
+
     position: relative;
-    width: min(100%, 440px);
-    min-height: calc(100vh - 40px);
-    margin-top: 58px;
-    padding: 24px 18px 20px;
-    background: linear-gradient(145deg, #15130f, #0b0b0a 50%, #17130e);
-    border: 2px solid #a77a31;
-    border-radius: 28px;
+
+    width: 100%;
+
+    min-height:
+        calc(100vh - 94px);
+
+    padding:
+        12px;
+
+    border-radius: 27px;
+
+
+    /* Outer metal */
+
+    border:
+        2px solid #9e702b;
+
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #17130d,
+            #080807 45%,
+            #19130b 100%
+        );
+
+
     box-shadow:
-        0 0 0 1px rgba(245,204,119,0.30),
-        inset 0 0 0 1px rgba(245,204,119,0.16),
-        0 20px 60px rgba(0,0,0,0.60);
+
+        0 0 0 1px
+            rgba(244, 198, 105, 0.28),
+
+        0 0 0 4px
+            rgba(72, 47, 19, 0.75),
+
+        inset 0 0 0 1px
+            rgba(245, 204, 117, 0.42),
+
+        inset 0 0 35px
+            rgba(188, 132, 40, 0.08),
+
+        0 18px 55px
+            rgba(0,0,0,0.65);
+
     overflow: hidden;
 }
 
-.luxury-frame::before {
-    content: "";
-    position: absolute;
-    inset: 7px;
-    border: 1px solid rgba(222,177,91,0.48);
-    border-radius: 22px;
-    pointer-events: none;
-}
 
-.luxury-frame::after {
-    content: "";
-    position: absolute;
-    inset: 10px;
-    background-image: linear-gradient(45deg,
-        transparent 46%, rgba(190,143,62,0.035) 47%,
-        rgba(190,143,62,0.035) 53%, transparent 54%);
-    background-size: 24px 24px;
-    opacity: 0.45;
-    pointer-events: none;
-}
+/* =========================================================
+   DEEP INNER FRAME
+========================================================= */
 
-/* ===================== CORNER ORNAMENTS ===================== */
-.corner {
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    border-color: #bd9147;
-    border-style: solid;
-    opacity: 0.75;
-    z-index: 2;
-}
-.corner-top-right { top: 13px; right: 13px; border-width: 2px 2px 0 0; border-radius: 0 15px 0 0; }
-.corner-top-left { top: 13px; left: 13px; border-width: 2px 0 0 2px; border-radius: 15px 0 0 0; }
-.corner-bottom-right { bottom: 13px; right: 13px; border-width: 0 2px 2px 0; border-radius: 0 0 15px 0; }
-.corner-bottom-left { bottom: 13px; left: 13px; border-width: 0 0 2px 2px; border-radius: 0 0 0 15px; }
+.frame-inner {
 
-/* ===================== PROFILE ===================== */
-.profile-section {
     position: relative;
+
+    width: 100%;
+    min-height:
+        calc(100vh - 120px);
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(205, 158, 72, 0.68);
+
+    background:
+
+        /* Deep Moroccan geometry */
+
+        repeating-linear-gradient(
+            45deg,
+            rgba(214, 171, 87, 0.025) 0,
+            rgba(214, 171, 87, 0.025) 2px,
+            transparent 2px,
+            transparent 18px
+        ),
+
+        #090908;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   INNER GOLD LINES
+========================================================= */
+
+.frame-inner::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border:
+        1px solid rgba(187, 137, 51, 0.38);
+
+    border-radius: 16px;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+.frame-inner::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 13px;
+
+    border:
+        1px solid rgba(244, 196, 91, 0.13);
+
+    border-radius: 13px;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   CORNER ORNAMENTS
+========================================================= */
+
+.frame-corner {
+
+    position: absolute;
+
+    width: 56px;
+    height: 56px;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+.frame-corner::before,
+.frame-corner::after {
+
+    content: "";
+
+    position: absolute;
+
+    border-color:
+        rgba(216, 170, 78, 0.85);
+
+    border-style: solid;
+}
+
+
+/* Top-left */
+
+.frame-corner-tl {
+
+    top: 12px;
+    left: 12px;
+}
+
+
+.frame-corner-tl::before {
+
+    width: 37px;
+    height: 37px;
+
+    top: 0;
+    left: 0;
+
+    border-width:
+        2px 0 0 2px;
+
+    border-radius:
+        18px 0 0 0;
+}
+
+
+.frame-corner-tl::after {
+
+    width: 21px;
+    height: 21px;
+
+    top: 8px;
+    left: 8px;
+
+    border-width:
+        1px 0 0 1px;
+
+    transform: rotate(45deg);
+}
+
+
+/* Top-right */
+
+.frame-corner-tr {
+
+    top: 12px;
+    right: 12px;
+}
+
+
+.frame-corner-tr::before {
+
+    width: 37px;
+    height: 37px;
+
+    top: 0;
+    right: 0;
+
+    border-width:
+        2px 2px 0 0;
+
+    border-radius:
+        0 18px 0 0;
+}
+
+
+.frame-corner-tr::after {
+
+    width: 21px;
+    height: 21px;
+
+    top: 8px;
+    right: 8px;
+
+    border-width:
+        1px 1px 0 0;
+
+    transform: rotate(45deg);
+}
+
+
+/* Bottom-left */
+
+.frame-corner-bl {
+
+    bottom: 12px;
+    left: 12px;
+}
+
+
+.frame-corner-bl::before {
+
+    width: 37px;
+    height: 37px;
+
+    bottom: 0;
+    left: 0;
+
+    border-width:
+        0 0 2px 2px;
+
+    border-radius:
+        0 0 0 18px;
+}
+
+
+/* Bottom-right */
+
+.frame-corner-br {
+
+    bottom: 12px;
+    right: 12px;
+}
+
+
+.frame-corner-br::before {
+
+    width: 37px;
+    height: 37px;
+
+    bottom: 0;
+    right: 0;
+
+    border-width:
+        0 2px 2px 0;
+
+    border-radius:
+        0 0 18px 0;
+}
+
+
+/* =========================================================
+   SIDE MOROCCAN ORNAMENTS
+========================================================= */
+
+.side-ornament {
+
+    position: absolute;
+
+    top: 175px;
+
+    width: 50px;
+    height: 210px;
+
+    z-index: 2;
+
+    opacity: 0.65;
+
+    pointer-events: none;
+}
+
+
+/* left */
+
+.side-ornament-left {
+    left: 2px;
+}
+
+
+/* right */
+
+.side-ornament-right {
+    right: 2px;
+}
+
+
+/* Main geometric diamond */
+
+.side-ornament::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 38px;
+    height: 38px;
+
+    top: 75px;
+    left: 5px;
+
+    border:
+        1px solid rgba(201, 153, 68, 0.72);
+
+    transform:
+        rotate(45deg);
+
+    box-shadow:
+        0 0 0 7px
+        rgba(194, 145, 56, 0.08);
+}
+
+
+/* inner diamond */
+
+.side-ornament::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    top: 83px;
+    left: 13px;
+
+    border:
+        1px solid rgba(220, 177, 87, 0.55);
+
+    transform:
+        rotate(45deg);
+}
+
+
+/* ornamental points */
+
+.side-ornament span {
+
+    position: absolute;
+
+    left: 21px;
+
+    width: 7px;
+    height: 7px;
+
+    border:
+        1px solid rgba(214, 168, 77, 0.65);
+
+    transform:
+        rotate(45deg);
+}
+
+
+.side-ornament span:nth-child(1) {
+    top: 47px;
+}
+
+
+.side-ornament span:nth-child(2) {
+    top: 103px;
+}
+
+
+.side-ornament span:nth-child(3) {
+    top: 159px;
+}
+
+
+/* =========================================================
+   PROFILE AREA
+========================================================= */
+
+.profile-area {
+
+    position: relative;
+
     z-index: 5;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 4px;
+
+    padding:
+        40px 18px 8px;
 }
 
-/* ===================== PORTRAIT ===================== */
-.portrait-wrapper {
+
+/* =========================================================
+   PORTRAIT
+========================================================= */
+
+.portrait-stage {
+
     position: relative;
-    width: 210px;
-    height: 210px;
+
+    width: 245px;
+    height: 245px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.robaty-portrait {
-    width: 190px;
-    height: 190px;
+
+/* Portrait gold ring */
+
+.portrait-gold-ring {
+
+    width: 225px;
+    height: 225px;
+
+    padding: 3px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffe09a,
+            #b77d27 32%,
+            #f2c66b 55%,
+            #8c5e20 80%,
+            #e4b95d
+        );
+
+    box-shadow:
+
+        0 0 0 2px
+            rgba(201, 153, 66, 0.22),
+
+        0 0 20px
+            rgba(216, 158, 55, 0.18),
+
+        0 12px 30px
+            rgba(0,0,0,0.60);
+}
+
+
+.rob​aty-portrait {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
     object-fit: cover;
+
     border-radius: 50%;
+
+    border:
+        2px solid #0a0907;
 }
 
-/* ===================== PRESENCE INDICATOR (Static) ===================== */
+
+/* =========================================================
+   PRESENCE INDICATOR
+========================================================= */
+
 .presence-indicator {
+
     position: absolute;
+
     right: 5px;
-    bottom: 13px;
-    width: 32px;
-    height: 32px;
+    bottom: 26px;
+
+    width: 43px;
+    height: 43px;
+
     border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #183d31;
-    border: 3px solid #48b987;
-    box-shadow: 0 0 12px rgba(72,185,135,0.42);
-    z-index: 4;
+
+    background:
+        #174233;
+
+    border:
+        4px solid #42c997;
+
+    box-shadow:
+        0 0 16px
+        rgba(66, 201, 151, 0.40);
 }
+
+
+/* Official dark center */
 
 .presence-core {
-    width: 13px;
-    height: 13px;
+
+    width: 19px;
+    height: 19px;
+
     border-radius: 50%;
-    background: #07100d;
-    border: 1px solid rgba(95,214,163,0.30);
+
+    background:
+        #06100c;
+
+    border:
+        1px solid
+        rgba(104, 225, 179, 0.30);
 }
 
-/* ===================== NAME ===================== */
-.robaty-name {
-    margin-top: 3px;
-    color: #f2d08a;
-    font-size: 25px;
+
+/* =========================================================
+   ROBATY NAME
+========================================================= */
+
+.rob​aty-name {
+
+    margin-top: 0;
+
+    color: #f4d17e;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 30px;
+
     line-height: 1.2;
+
     font-weight: 700;
-    letter-spacing: 0.4px;
+
+    letter-spacing: 0.3px;
 }
 
-/* ===================== STATUS ===================== */
-.robaty-status {
+
+/* =========================================================
+   MOTTO
+========================================================= */
+
+.rob​aty-motto {
+
+    margin-top: 5px;
+
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 4px;
-    color: #d9c5a3;
-    font-size: 14px;
+
+    gap: 10px;
+
+    color: #d8c09a;
+
+    font-size: 16px;
+
     font-weight: 500;
 }
 
-.morocco-symbol { color: #cba052; font-size: 14px; }
 
-/* ===================== DAILY PHOTOS BUTTON ===================== */
-.daily-photos-button {
-    position: relative;
-    margin-top: 13px;
-    min-width: 190px;
-    padding: 10px 17px;
+.motto-decoration {
+
+    color: #d8a94d;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PHOTOS BUTTON
+========================================================= */
+
+.photos-button {
+
+    margin-top: 15px;
+
+    min-width: 205px;
+
+    height: 49px;
+
+    padding:
+        0 16px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 10px;
-    border-radius: 14px;
-    border: 1px solid rgba(213,166,79,0.72);
-    background: linear-gradient(135deg, #3a2b18, #18130c);
-    color: #f1d08b;
+
+    border-radius: 25px;
+
+    border:
+        1px solid #b88835;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #4a351a,
+            #21180d
+        );
+
+    color: #f1d087;
+
     font-family: inherit;
-    font-size: 13px;
+
+    font-size: 14px;
+
     font-weight: 600;
+
+    box-shadow:
+
+        inset 0 0 15px
+        rgba(225, 176, 78, 0.10),
+
+        0 5px 16px
+        rgba(0,0,0,0.35);
+
     cursor: pointer;
-    box-shadow: inset 0 0 12px rgba(206,157,66,0.12), 0 5px 20px rgba(0,0,0,0.30);
 }
 
-.button-icon { color: #e3bb68; font-size: 13px; }
-.button-arrow { font-family: Arial, sans-serif; font-size: 18px; transform: rotate(180deg); }
 
-/* ===================== CHAT SECTION ===================== */
-.chat-section {
+.photos-icon {
+
+    font-size: 18px;
+}
+
+
+.photos-arrow {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   CHAT AREA
+========================================================= */
+
+.chat-area {
+
     position: relative;
+
     z-index: 5;
-    margin-top: 20px;
-    padding: 0 3px;
-    height: 330px;
+
+    height: 410px;
+
+    margin:
+        18px 16px 0;
+
+    padding:
+        10px 7px;
+
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(195,148,67,0.65) transparent;
+
+    border:
+        1px solid rgba(176, 127, 44, 0.55);
+
+    border-radius: 23px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(16, 13, 9, 0.95),
+            rgba(7, 7, 6, 0.98)
+        );
+
+    box-shadow:
+
+        inset 0 0 25px
+        rgba(183, 131, 44, 0.045);
 }
 
-.chat-section::-webkit-scrollbar { width: 4px; }
-.chat-section::-webkit-scrollbar-track { background: transparent; }
-.chat-section::-webkit-scrollbar-thumb { background: rgba(195,148,67,0.55); border-radius: 20px; }
 
-/* ===================== CHAT MESSAGES ===================== */
+/* scrollbar */
+
+.chat-area::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+.chat-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.chat-area::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(191, 143, 57, 0.55);
+
+    border-radius: 20px;
+}
+
+
 .chat-messages {
+
     display: flex;
+
     flex-direction: column;
-    gap: 10px;
-    padding: 4px 7px 14px;
+
+    gap: 13px;
+
+    padding:
+        4px 6px 12px;
 }
 
-.message-row { display: flex; width: 100%; }
-.robaty-message { justify-content: flex-start; }
-.user-message { justify-content: flex-end; }
 
-/* ===================== MESSAGE BUBBLE ===================== */
+/* =========================================================
+   MESSAGE ROW
+========================================================= */
+
+.message-row {
+
+    width: 100%;
+
+    display: flex;
+}
+
+
+.robaty-row {
+
+    justify-content: flex-start;
+}
+
+
+.user-row {
+
+    justify-content: flex-end;
+}
+
+
+/* =========================================================
+   MESSAGE BUBBLES
+========================================================= */
+
 .message-bubble {
-    max-width: 78%;
-    padding: 10px 13px;
-    border-radius: 17px;
+
     position: relative;
+
+    max-width: 79%;
+
+    padding:
+        10px 14px;
+
+    border-radius: 17px;
+
+    font-size: 13px;
+
+    line-height: 1.65;
 }
 
-.message-bubble p { font-size: 13.5px; line-height: 1.65; font-weight: 400; }
+
+.message-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+}
+
 
 .message-bubble time {
+
     display: block;
-    margin-top: 4px;
+
+    margin-top: 3px;
+
+    color:
+        rgba(234, 211, 170, 0.50);
+
     font-family: Arial, sans-serif;
+
     font-size: 9px;
-    opacity: 0.55;
+
     direction: ltr;
+
     text-align: left;
 }
 
-.robaty-message .message-bubble {
-    background: linear-gradient(135deg, #29231b, #17130e);
-    border: 1px solid rgba(193,146,64,0.45);
-    color: #eee0c7;
-    border-bottom-right-radius: 5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+
+/* Robaty bubble */
+
+.robaty-bubble {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #191510,
+            #0e0c09
+        );
+
+    border:
+        1px solid
+        rgba(191, 143, 54, 0.55);
+
+    color:
+        #eee0c7;
+
+    border-bottom-right-radius:
+        5px;
+
+    box-shadow:
+        inset 0 0 12px
+        rgba(195, 143, 48, 0.035);
 }
 
-.user-message .message-bubble {
-    background: linear-gradient(135deg, #513d27, #322517);
-    border: 1px solid rgba(218,171,84,0.50);
-    color: #f3dfbb;
-    border-bottom-left-radius: 5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+
+/* User bubble */
+
+.user-bubble {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #604523,
+            #3b2a17
+        );
+
+    border:
+        1px solid
+        rgba(218, 169, 81, 0.58);
+
+    color:
+        #f5e0b9;
+
+    border-bottom-left-radius:
+        5px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(0,0,0,0.20);
 }
 
-/* ===================== COMPOSER ===================== */
-.composer-section {
+
+/* =========================================================
+   COMPOSER AREA
+========================================================= */
+
+.composer-area {
+
     position: relative;
-    z-index: 8;
-    margin-top: 8px;
-    padding: 11px;
-    border: 1px solid rgba(192,146,67,0.65);
+
+    z-index: 6;
+
+    margin:
+        14px 14px 18px;
+
+    padding:
+        9px;
+
     border-radius: 22px;
-    background: linear-gradient(145deg, #211a12, #0e0d0b);
-    box-shadow: inset 0 0 20px rgba(193,145,62,0.08), 0 10px 30px rgba(0,0,0,0.30);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #21170c,
+            #0b0a08 55%,
+            #1b130a
+        );
+
+    border:
+        1px solid
+        rgba(197, 149, 57, 0.72);
+
+    box-shadow:
+
+        inset 0 0 25px
+        rgba(213, 164, 68, 0.08),
+
+        0 8px 24px
+        rgba(0,0,0,0.45);
 }
 
-/* ===================== TEXT INPUT ===================== */
-.message-input-panel {
+
+/* =========================================================
+   INPUT SHELL
+========================================================= */
+
+.message-input-shell {
+
+    position: relative;
+
     width: 100%;
-    min-height: 72px;
+
+    min-height: 65px;
+
     display: flex;
-    align-items: flex-start;
-    padding: 12px 14px;
-    border: 1px solid rgba(202,158,80,0.38);
-    border-radius: 16px;
-    background: rgba(8,8,7,0.78);
+    align-items: center;
+
+    padding:
+        7px 19px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid
+        rgba(213, 164, 74, 0.75);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #100d08,
+            #070706
+        );
+
+    box-shadow:
+
+        inset 0 0 18px
+        rgba(213, 164, 74, 0.06);
 }
+
+
+/* tiny Moroccan details */
+
+.message-input-shell::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    right: 8px;
+    top: 5px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(218, 171, 78, 0.38),
+            transparent
+        );
+}
+
 
 .message-input {
+
     width: 100%;
-    min-height: 48px;
+
+    min-height: 42px;
+
+    padding:
+        5px 20px;
+
     resize: none;
+
     border: none;
+
     outline: none;
+
     background: transparent;
-    color: #f3e5cd;
+
+    color: #f4e4c5;
+
     font-family: inherit;
+
     font-size: 14px;
-    line-height: 1.7;
+
+    line-height: 1.65;
+
+    text-align: right;
+
     direction: rtl;
 }
 
-.message-input::placeholder { color: rgba(222,203,170,0.48); }
 
-/* ===================== THREE CONTROL BUTTONS ===================== */
-.composer-controls {
-    width: 70%;
-    min-height: 68px;
-    margin: 11px auto 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
+.message-input::placeholder {
+
+    color:
+        rgba(218, 193, 151, 0.52);
 }
+
+
+/* input ornaments */
+
+.input-side-decoration {
+
+    position: absolute;
+
+    color:
+        rgba(221, 173, 75, 0.75);
+
+    font-size: 12px;
+}
+
+
+.input-decoration-left {
+    left: 8px;
+}
+
+
+.input-decoration-right {
+    right: 8px;
+}
+
+
+/* =========================================================
+   COMPOSER PANEL
+========================================================= */
+
+.composer-panel {
+
+    width: 100%;
+
+    min-height: 78px;
+
+    margin-top: 9px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 5px;
+
+    padding:
+        3px;
+
+    border-radius: 19px;
+
+    border:
+        1px solid
+        rgba(188, 139, 48, 0.52);
+
+    background:
+        rgba(8, 7, 5, 0.70);
+}
+
+
+/* =========================================================
+   COMPOSER BUTTON
+========================================================= */
 
 .composer-button {
-    min-width: 0;
-    min-height: 68px;
-    border-radius: 15px;
-    border: 1px solid rgba(210,166,82,0.65);
-    background: linear-gradient(145deg, #49351c, #1c150d);
-    color: #ebc778;
+
+    position: relative;
+
+    min-height: 70px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid
+        rgba(207, 158, 66, 0.58);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #3f2d17,
+            #171008
+        );
+
+    color:
+        #eac477;
+
     font-family: inherit;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 4px;
+
     cursor: pointer;
-    box-shadow: inset 0 0 14px rgba(226,177,83,0.12), 0 5px 15px rgba(0,0,0,0.25);
+
+    overflow: hidden;
 }
 
-.composer-button-icon { font-family: Arial, sans-serif; font-size: 21px; line-height: 1; color: #edc96f; }
-.composer-button-label { font-size: 10px; color: rgba(242,217,173,0.80); }
+
+/* Inner golden line */
+
+.composer-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(229, 184, 91, 0.17);
+
+    pointer-events: none;
+}
+
+
+/* Moroccan diamond at top */
+
+.composer-button::after {
+
+    content: "◆";
+
+    position: absolute;
+
+    top: 4px;
+
+    color:
+        rgba(220, 169, 74, 0.60);
+
+    font-size: 5px;
+}
+
+
+/* =========================================================
+   BUTTON ICON
+========================================================= */
+
+.composer-icon {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    color:
+        #efc86f;
+}
+
+
+.composer-label {
+
+    font-size: 10px;
+
+    line-height: 1.2;
+
+    color:
+        rgba(244, 216, 169, 0.88);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SEND BUTTON
+========================================================= */
 
 .send-button {
-    background: linear-gradient(145deg, #6b4a20, #2b1e0f);
-    border-color: rgba(236,194,105,0.82);
-    box-shadow: inset 0 0 18px rgba(239,194,99,0.17), 0 0 16px rgba(207,157,62,0.13);
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #5d411b 0%,
+            #33220f 45%,
+            #170e07 100%
+        );
+
+    border-color:
+        rgba(237, 190, 94, 0.90);
+
+    box-shadow:
+
+        inset 0 0 18px
+        rgba(238, 191, 94, 0.16),
+
+        0 0 13px
+        rgba(209, 155, 54, 0.10);
 }
 
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 520px) {
-    .robaty-app { padding: 0; }
-    .luxury-frame {
-        width: 100%;
-        min-height: 100vh;
-        margin-top: 58px;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
+
+.send-button::before {
+
+    inset: 3px;
+
+    border:
+        1px solid
+        rgba(238, 192, 98, 0.38);
+
+    border-radius: 13px;
+}
+
+
+.send-icon {
+
+    font-size: 27px;
+
+    transform:
+        rotate(180deg);
+}
+
+
+.send-ornament {
+
+    position: absolute;
+
+    top: 50%;
+
+    color:
+        rgba(236, 191, 98, 0.65);
+
+    font-size: 8px;
+}
+
+
+.send-ornament:first-child {
+    left: 7px;
+}
+
+
+.send-ornament:last-child {
+    right: 7px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .app-header {
+        height: 66px;
     }
-    .luxury-frame::before { border-radius: 0; }
-    .portrait-wrapper { width: 200px; height: 200px; }
-    .robaty-portrait { width: 182px; height: 182px; }
-    .chat-section { height: 335px; }
-    .composer-controls { width: 70%; }
+
+
+    .rob​aty-house {
+
+        width: 100%;
+
+        padding:
+            8px 4px 12px;
+    }
+
+
+    .luxury-frame {
+
+        min-height:
+            calc(100vh - 78px);
+
+        border-radius: 22px;
+
+        padding: 9px;
+    }
+
+
+    .frame-inner {
+
+        min-height:
+            calc(100vh - 98px);
+
+        border-radius: 17px;
+    }
+
+
+    .profile-area {
+
+        padding-top:
+            31px;
+    }
+
+
+    .portrait-stage {
+
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .portrait-gold-ring {
+
+        width: 205px;
+        height: 205px;
+    }
+
+
+    .presence-indicator {
+
+        width: 40px;
+        height: 40px;
+
+        right: 2px;
+        bottom: 22px;
+    }
+
+
+    .presence-core {
+
+        width: 17px;
+        height: 17px;
+    }
+
+
+    .rob​aty-name {
+
+        font-size: 28px;
+    }
+
+
+    .rob​aty-motto {
+
+        font-size: 15px;
+    }
+
+
+    .chat-area {
+
+        height: 395px;
+
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+
+    .message-bubble {
+
+        max-width: 82%;
+
+        font-size: 12.5px;
+    }
+
+
+    .composer-area {
+
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+    .composer-label {
+
+        font-size: 9px;
+    }
+
+
+    .composer-icon {
+
+        font-size: 23px;
+    }
+
 }
 
-@media (max-width: 360px) {
-    .luxury-frame { padding-left: 13px; padding-right: 13px; }
-    .portrait-wrapper { width: 185px; height: 185px; }
-    .robaty-portrait { width: 168px; height: 168px; }
-    .message-bubble { max-width: 84%; }
-    .composer-controls { width: 78%; }
-    .composer-button { min-height: 64px; }
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .portrait-stage {
+
+        width: 200px;
+        height: 200px;
+    }
+
+
+    .portrait-gold-ring {
+
+        width: 187px;
+        height: 187px;
+    }
+
+
+    .presence-indicator {
+
+        right: 0;
+        bottom: 18px;
+    }
+
+
+    .rob​aty-name {
+
+        font-size: 26px;
+    }
+
+
+    .chat-area {
+
+        height: 370px;
+    }
+
+
+    .composer-button {
+
+        min-height: 66px;
+    }
+
+
+    .composer-label {
+
+        font-size: 8px;
+    }
+
 }
