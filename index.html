@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <title>ROBATY — Chat</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="robaty-app">
+
+        <!-- =========================================
+             TOP BAR
+        ========================================== -->
+        <header class="top-bar">
+            <button class="icon-button back-button" aria-label="رجوع">‹</button>
+            <div class="top-bar-title">Robaty</div>
+            <button class="icon-button settings-button" aria-label="الإعدادات">⚙</button>
+        </header>
+
+        <!-- =========================================
+             GOLD DECORATIVE FRAME
+        ========================================== -->
+        <div class="luxury-frame">
+
+            <span class="corner corner-top-right"></span>
+            <span class="corner corner-top-left"></span>
+            <span class="corner corner-bottom-right"></span>
+            <span class="corner corner-bottom-left"></span>
+
+            <!-- =====================================
+                 ROBATY PROFILE AREA
+            ====================================== -->
+            <section class="profile-section">
+
+                <div class="portrait-wrapper">
+                    <!-- Portrait -->
+                    <img class="robaty-portrait" src="robaty-profile.jpg" alt="Robaty">
+
+                    <!--
+                        Presence Indicator
+                        المرحلة الأولى: الشكل فقط. الحركة ستضاف لاحقًا.
+                    -->
+                    <span class="presence-indicator" aria-label="Robaty متصلة">
+                        <span class="presence-core"></span>
+                    </span>
+                </div>
+
+                <h1 class="robaty-name">Robaty</h1>
+
+                <div class="robaty-status">
+                    <span class="status-text">مغربية و أفتخر</span>
+                    <span class="morocco-symbol">✦</span>
+                </div>
+
+                <!-- Profile / Photos CTA -->
+                <button class="daily-photos-button">
+                    <span class="button-icon">✦</span>
+                    <span>شوفي تصاوري ليوم</span>
+                    <span class="button-arrow">‹</span>
+                </button>
+
+            </section>
+
+            <!-- =====================================
+                 CHAT AREA
+            ====================================== -->
+            <section class="chat-section" aria-label="المحادثة">
+                <div class="chat-messages">
+
+                    <!-- Robaty message -->
+                    <article class="message-row robaty-message">
+                        <div class="message-bubble">
+                            <p>سلام حبيبتي 👑<br>شخبارك اليوم؟</p>
+                            <time>21:16</time>
+                        </div>
+                    </article>
+
+                    <!-- User message -->
+                    <article class="message-row user-message">
+                        <div class="message-bubble">
+                            <p>أنا بخير الحمد لله ❤️</p>
+                            <time>21:16</time>
+                        </div>
+                    </article>
+
+                    <!-- Robaty message -->
+                    <article class="message-row robaty-message">
+                        <div class="message-bubble">
+                            <p>هذا من لطفك 🌸<br>فرحتيني بزاف.</p>
+                            <time>21:17</time>
+                        </div>
+                    </article>
+
+                    <!-- User message -->
+                    <article class="message-row user-message">
+                        <div class="message-bubble">
+                            <p>دائما كتخلي عندي طاقة زوينة ✨</p>
+                            <time>21:17</time>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- =====================================
+                 MESSAGE COMPOSER
+            ====================================== -->
+            <section class="composer-section">
+
+                <div class="message-input-panel">
+                    <textarea class="message-input" placeholder="اكتبي رسالتك لـ Robaty هنا..." rows="1"></textarea>
+                </div>
+
+                <div class="composer-controls">
+                    <button class="composer-button gallery-button" aria-label="إرسال الصور">
+                        <span class="composer-button-icon">▧</span>
+                        <span class="composer-button-label">الصور</span>
+                    </button>
+
+                    <button class="composer-button voice-button" aria-label="تسجيل صوتي">
+                        <span class="composer-button-icon">♫</span>
+                        <span class="composer-button-label">تسجيل</span>
+                    </button>
+
+                    <button class="composer-button send-button" aria-label="إرسال">
+                        <span class="composer-button-icon">➤</span>
+                        <span class="composer-button-label">إرسال</span>
+                    </button>
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
