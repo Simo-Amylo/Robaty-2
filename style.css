@@ -1,574 +1,258 @@
-/* =========================================================
-   ROBATY CHAT — VISUAL STRUCTURE v2.0
-   THEME: ROYAL MOROCCAN GOLD / BLACK
-   NO JAVASCRIPT — NO ANIMATION — NO KEYFRAMES — NO TRANSITIONS
-========================================================= */
+/* ==========================================================================
+   Luxury Gold Moroccan Theme - المحدث بالتعديلات المطلوبة
+   ========================================================================== */
+:root {
+    --bg-black: #050302;
+    --gold-bright: #e5b35c;
+    --gold-glow: #ffaa33;
+    --gold-dark: #6e4a1b;
+    --gold-border: rgba(229, 179, 92, 0.45);
+    --gold-box-glow: rgba(229, 179, 92, 0.25);
+    --bubble-bg: #110c08;
+    --text-gold-light: #f7e8cf;
+    --font-family: 'Cairo', sans-serif;
+}
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-html, body {
-    width: 100%;
-    min-height: 100%;
+    font-family: var(--font-family);
 }
 
 body {
-    background: radial-gradient(ellipse at 50% 20%, #211a10 0%, #0d0c0a 42%, #050505 100%);
-    color: #f4e5c4;
-    font-family: "Cairo", system-ui, sans-serif;
-    overflow-x: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* ===================== APP ===================== */
-.robaty-app {
+/* الإطار الرئيسي للهاتف */
+.app-container {
     width: 100%;
-    min-height: 100vh;
+    max-width: 414px;
+    height: 100vh;
+    max-height: 896px;
+    background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
+    border: 2px solid var(--gold-bright);
+    border-radius: 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-/* ===================== HEADER ===================== */
-.app-header {
-    width: 100%;
-    height: 74px;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    background: linear-gradient(180deg, #12110f, #0a0a09);
-    border-bottom: 2px solid rgba(190, 142, 58, 0.65);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.55);
-    z-index: 10;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(229, 179, 92, 0.3);
 }
 
-.header-brand {
+/* الزخارف الأندلسية في الزوايا */
+.corner-ornament {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #e5bd69;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--gold-border);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+/* الشريط العلوي بدون توقيت */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 0px; /* تقليل الهامش السفلي لرفع المحتوى */
+    z-index: 2;
 }
 
-.header-button {
-    width: 44px;
-    height: 44px;
+.ornate-btn {
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 1px solid rgba(213, 166, 76, 0.65);
-    background: radial-gradient(circle at 35% 30%, #2d261b, #0d0c0a 75%);
-    color: #e9c777;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: inherit;
+    background: rgba(30, 20, 10, 0.8);
+    border: 1px solid var(--gold-bright);
+    color: var(--gold-bright);
+    box-shadow: 0 0 10px var(--gold-box-glow);
     cursor: pointer;
 }
 
-.settings-icon { font-size: 23px; line-height: 1; }
-
-.back-button span {
-    font-family: Arial, sans-serif;
-    font-size: 32px;
-    line-height: 1;
-    transform: rotate(180deg);
-}
-
-/* ===================== ROBATY HOUSE ===================== */
-.robaty-house {
-    width: min(100%, 470px);
-    padding: 12px 8px 18px;
-}
-
-/* ===================== LUXURY FRAME ===================== */
-.luxury-frame {
-    position: relative;
-    width: 100%;
-    min-height: calc(100vh - 94px);
-    padding: 12px;
-    border-radius: 27px;
-    border: 2px solid #9e702b;
-    background: linear-gradient(145deg, #17130d, #080807 45%, #19130b 100%);
-    box-shadow:
-        0 0 0 1px rgba(244, 198, 105, 0.28),
-        0 0 0 4px rgba(72, 47, 19, 0.75),
-        inset 0 0 0 1px rgba(245, 204, 117, 0.42),
-        inset 0 0 35px rgba(188, 132, 40, 0.08),
-        0 18px 55px rgba(0,0,0,0.65);
-    overflow: hidden;
-}
-
-/* ===================== DEEP INNER FRAME ===================== */
-.frame-inner {
-    position: relative;
-    width: 100%;
-    min-height: calc(100vh - 120px);
-    border-radius: 20px;
-    border: 1px solid rgba(205, 158, 72, 0.68);
-    background:
-        repeating-linear-gradient(45deg,
-            rgba(214, 171, 87, 0.025) 0,
-            rgba(214, 171, 87, 0.025) 2px,
-            transparent 2px,
-            transparent 18px),
-        #090908;
-    overflow: hidden;
-}
-
-.frame-inner::before {
-    content: "";
-    position: absolute;
-    inset: 7px;
-    border: 1px solid rgba(187, 137, 51, 0.38);
-    border-radius: 16px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.frame-inner::after {
-    content: "";
-    position: absolute;
-    inset: 13px;
-    border: 1px solid rgba(244, 196, 91, 0.13);
-    border-radius: 13px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* ===================== CORNER ORNAMENTS ===================== */
-.frame-corner {
-    position: absolute;
-    width: 56px;
-    height: 56px;
-    z-index: 4;
-    pointer-events: none;
-}
-
-.frame-corner::before, .frame-corner::after {
-    content: "";
-    position: absolute;
-    border-color: rgba(216, 170, 78, 0.85);
-    border-style: solid;
-}
-
-.frame-corner-tl { top: 12px; left: 12px; }
-.frame-corner-tl::before { width: 37px; height: 37px; top: 0; left: 0; border-width: 2px 0 0 2px; border-radius: 18px 0 0 0; }
-.frame-corner-tl::after { width: 21px; height: 21px; top: 8px; left: 8px; border-width: 1px 0 0 1px; transform: rotate(45deg); }
-
-.frame-corner-tr { top: 12px; right: 12px; }
-.frame-corner-tr::before { width: 37px; height: 37px; top: 0; right: 0; border-width: 2px 2px 0 0; border-radius: 0 18px 0 0; }
-.frame-corner-tr::after { width: 21px; height: 21px; top: 8px; right: 8px; border-width: 1px 1px 0 0; transform: rotate(45deg); }
-
-.frame-corner-bl { bottom: 12px; left: 12px; }
-.frame-corner-bl::before { width: 37px; height: 37px; bottom: 0; left: 0; border-width: 0 0 2px 2px; border-radius: 0 0 0 18px; }
-
-.frame-corner-br { bottom: 12px; right: 12px; }
-.frame-corner-br::before { width: 37px; height: 37px; bottom: 0; right: 0; border-width: 0 2px 2px 0; border-radius: 0 0 18px 0; }
-
-/* ===================== SIDE MOROCCAN ORNAMENTS ===================== */
-.side-ornament {
-    position: absolute;
-    top: 175px;
-    width: 50px;
-    height: 210px;
-    z-index: 2;
-    opacity: 0.65;
-    pointer-events: none;
-}
-
-.side-ornament-left { left: 2px; }
-.side-ornament-right { right: 2px; }
-
-.side-ornament::before {
-    content: "";
-    position: absolute;
-    width: 38px;
-    height: 38px;
-    top: 75px;
-    left: 5px;
-    border: 1px solid rgba(201, 153, 68, 0.72);
-    transform: rotate(45deg);
-    box-shadow: 0 0 0 7px rgba(194, 145, 56, 0.08);
-}
-
-.side-ornament::after {
-    content: "";
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    top: 83px;
-    left: 13px;
-    border: 1px solid rgba(220, 177, 87, 0.55);
-    transform: rotate(45deg);
-}
-
-.side-ornament span {
-    position: absolute;
-    left: 21px;
-    width: 7px;
-    height: 7px;
-    border: 1px solid rgba(214, 168, 77, 0.65);
-    transform: rotate(45deg);
-}
-
-.side-ornament span:nth-child(1) { top: 47px; }
-.side-ornament span:nth-child(2) { top: 103px; }
-.side-ornament span:nth-child(3) { top: 159px; }
-
-/* ===================== PROFILE AREA ===================== */
-.profile-area {
-    position: relative;
-    z-index: 5;
+/* قسم الصورة الشخصية والهيدر (تم رفعه للأعلى) */
+.profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 18px 8px;
+    padding: 0px 20px 10px; /* تم الضغط إلى الأعلى */
+    margin-top: -10px; /* رفع المكونات للأعلى قليلاً */
+    z-index: 2;
 }
 
-/* ===================== PORTRAIT ===================== */
-.portrait-stage {
+/* تكبير الصورة الشخصية إلى 140% */
+.avatar-container {
     position: relative;
-    width: 245px;
-    height: 245px;
+    width: 220px; /* زيادة المساحة لتستوعب الحجم الجديد */
+    height: 220px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-/*
-   ملاحظة: أصلاً هاد الطبقة كانت غادي تصنع حلقة ذهبية بـCSS (gradient border).
-   لكن بما أن صور الحالات الـ12 عندنا فيهم حلقة ذهبية مدمجة فيهم بالفعل،
-   خليناها غير كإطار دائري للقص (بلا حلقة إضافية) — تفادياً لتكرار الحلقة.
-   إيلا عندك يوماً نسخة "نظيفة" من الصور (بلا حلقة)، رجع حط الحلقة هنا.
-*/
-.portrait-gold-ring {
-    width: 225px;
-    height: 225px;
+.glowing-ring {
+    width: 189px; /* تكبير الحجم إلى 140% من الحجم الأصلي (135px * 1.40) */
+    height: 189px;
     border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.60);
+    padding: 4px;
+    background: linear-gradient(135deg, #ffc875, #805018);
+    box-shadow: 0 0 35px rgba(255, 170, 51, 0.55);
 }
 
-.robaty-portrait {
-    display: block;
+.avatar-img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
-    border-radius: 50%;
 }
 
-/* ===================== PRESENCE INDICATOR ===================== */
-.presence-indicator {
-    position: absolute;
-    right: 5px;
-    bottom: 26px;
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
+.identity-info {
+    text-align: center;
+    margin-top: 2px;
+}
+
+.bot-name {
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.divider-line {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: #174233;
-    border: 4px solid #42c997;
-    box-shadow: 0 0 16px rgba(66, 201, 151, 0.40);
+    gap: 8px;
+    margin-top: 1px;
 }
 
-.presence-core {
-    width: 19px;
-    height: 19px;
-    border-radius: 50%;
-    background: #06100c;
-    border: 1px solid rgba(104, 225, 179, 0.30);
-}
-
-/* ===================== ROBATY NAME ===================== */
-.robaty-name {
-    margin-top: 0;
-    color: #f4d17e;
-    font-family: "Cairo", sans-serif;
-    font-size: 30px;
-    line-height: 1.2;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-}
-
-/* ===================== MOTTO ===================== */
-.robaty-motto {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #d8c09a;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.motto-decoration { color: #d8a94d; font-size: 13px; }
-
-/* ===================== PHOTOS BUTTON ===================== */
-.photos-button {
-    margin-top: 15px;
-    min-width: 205px;
-    height: 49px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 25px;
-    border: 1px solid #b88835;
-    background: linear-gradient(145deg, #4a351a, #21180d);
-    color: #f1d087;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: inset 0 0 15px rgba(225, 176, 78, 0.10), 0 5px 16px rgba(0,0,0,0.35);
-    cursor: pointer;
-}
-
-.photos-icon { font-size: 18px; }
-.photos-arrow { font-family: Arial, sans-serif; font-size: 20px; transform: rotate(180deg); }
-
-/* ===================== CHAT AREA ===================== */
-.chat-area {
-    position: relative;
-    z-index: 5;
-    height: 410px;
-    margin: 18px 16px 0;
-    padding: 10px 7px;
-    overflow-y: auto;
-    border: 1px solid rgba(176, 127, 44, 0.55);
-    border-radius: 23px;
-    background: linear-gradient(145deg, rgba(16, 13, 9, 0.95), rgba(7, 7, 6, 0.98));
-    box-shadow: inset 0 0 25px rgba(183, 131, 44, 0.045);
-}
-
-.chat-area::-webkit-scrollbar { width: 4px; }
-.chat-area::-webkit-scrollbar-track { background: transparent; }
-.chat-area::-webkit-scrollbar-thumb { background: rgba(191, 143, 57, 0.55); border-radius: 20px; }
-
-.chat-messages {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    padding: 4px 6px 12px;
-}
-
-/* ===================== MESSAGE ROW ===================== */
-.message-row { width: 100%; display: flex; }
-.robaty-row { justify-content: flex-start; }
-.user-row { justify-content: flex-end; }
-
-/* ===================== MESSAGE BUBBLES ===================== */
-.message-bubble {
-    position: relative;
-    max-width: 79%;
-    padding: 10px 14px;
-    border-radius: 17px;
-    font-size: 13px;
-    line-height: 1.65;
-}
-
-.message-content { display: flex; flex-direction: column; gap: 1px; }
-
-.message-bubble time {
-    display: block;
-    margin-top: 3px;
-    color: rgba(234, 211, 170, 0.50);
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    direction: ltr;
-    text-align: left;
-}
-
-.robaty-bubble {
-    background: linear-gradient(145deg, #191510, #0e0c09);
-    border: 1px solid rgba(191, 143, 54, 0.55);
-    color: #eee0c7;
-    border-bottom-right-radius: 5px;
-    box-shadow: inset 0 0 12px rgba(195, 143, 48, 0.035);
-}
-
-.user-bubble {
-    background: linear-gradient(145deg, #604523, #3b2a17);
-    border: 1px solid rgba(218, 169, 81, 0.58);
-    color: #f5e0b9;
-    border-bottom-left-radius: 5px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.20);
-}
-
-/* ===================== COMPOSER AREA ===================== */
-.composer-area {
-    position: relative;
-    z-index: 6;
-    margin: 14px 14px 18px;
-    padding: 9px;
-    border-radius: 22px;
-    background: linear-gradient(145deg, #21170c, #0b0a08 55%, #1b130a);
-    border: 1px solid rgba(197, 149, 57, 0.72);
-    box-shadow: inset 0 0 25px rgba(213, 164, 68, 0.08), 0 8px 24px rgba(0,0,0,0.45);
-}
-
-/* ===================== INPUT SHELL ===================== */
-.message-input-shell {
-    position: relative;
-    width: 100%;
-    min-height: 65px;
-    display: flex;
-    align-items: center;
-    padding: 7px 19px;
-    border-radius: 18px;
-    border: 1px solid rgba(213, 164, 74, 0.75);
-    background: linear-gradient(145deg, #100d08, #070706);
-    box-shadow: inset 0 0 18px rgba(213, 164, 74, 0.06);
-}
-
-.message-input-shell::before {
-    content: "";
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    top: 5px;
+.line {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(218, 171, 78, 0.38), transparent);
+    width: 25px;
+    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
 }
 
-.message-input {
-    width: 100%;
-    min-height: 42px;
-    padding: 5px 20px;
-    resize: none;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #f4e4c5;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.65;
-    text-align: right;
-    direction: rtl;
+.tagline {
+    color: var(--gold-bright);
+    font-size: 13px;
 }
 
-.message-input::placeholder { color: rgba(218, 193, 151, 0.52); }
-
-.input-side-decoration {
-    position: absolute;
-    color: rgba(221, 173, 75, 0.75);
+.gold-pill-btn {
+    margin-top: 8px;
+    background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
+    border: 1px solid var(--gold-bright);
+    color: var(--text-gold-light);
+    padding: 7px 22px;
+    border-radius: 20px;
     font-size: 12px;
+    box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
+    cursor: pointer;
 }
 
-.input-decoration-left { left: 8px; }
-.input-decoration-right { right: 8px; }
+/* المحادثة والفقاعات */
+.chat-area {
+    flex: 1;
+    padding: 10px 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2;
+}
 
-/* ===================== COMPOSER PANEL ===================== */
-.composer-panel {
+.message { display: flex; flex-direction: column; max-width: 85%; }
+.user-msg { align-self: flex-start; }
+.bot-msg { align-self: flex-end; width: 100%; }
+
+.bubble-gold-border {
+    background: rgba(25, 16, 9, 0.95);
+    border: 1px solid var(--gold-bright);
+    border-radius: 15px 15px 15px 2px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text-gold-light);
+    box-shadow: 0 0 10px rgba(229, 179, 92, 0.15);
+}
+
+.bubble-dark-gold {
+    background: rgba(15, 10, 6, 0.95);
+    border: 1px solid var(--gold-border);
+    border-radius: 15px 2px 15px 15px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #e0e0e0;
+    line-height: 1.6;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+.msg-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.mini-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-bright);
+}
+
+.bot-label { font-size: 11px; color: var(--gold-bright); font-weight: bold; }
+.msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
+
+/* التحكم السفلي المزخرف */
+.bottom-controls {
+    padding: 10px 15px 15px;
+    background: linear-gradient(0deg, #050302 80%, transparent 100%);
+    z-index: 2;
+}
+
+.gold-input {
     width: 100%;
-    min-height: 78px;
-    margin-top: 9px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    padding: 3px;
-    border-radius: 19px;
-    border: 1px solid rgba(188, 139, 48, 0.52);
-    background: rgba(8, 7, 5, 0.70);
+    background: rgba(18, 11, 6, 0.95);
+    border: 1px solid var(--gold-bright);
+    border-radius: 25px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(229,179,92,0.15);
 }
 
-/* ===================== COMPOSER BUTTON ===================== */
-.composer-button {
-    position: relative;
-    min-height: 70px;
-    border-radius: 16px;
-    border: 1px solid rgba(207, 158, 66, 0.58);
-    background: linear-gradient(145deg, #3f2d17, #171008);
-    color: #eac477;
-    font-family: inherit;
+.ornate-action-bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.ornate-action-btn {
+    flex: 1;
+    background: linear-gradient(180deg, #24180b 0%, #0d0804 100%);
+    border: 1px solid var(--gold-bright);
+    border-radius: 20px;
+    padding: 8px 5px;
+    color: var(--text-gold-light);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 4px;
+    font-size: 10px;
     cursor: pointer;
-    overflow: hidden;
+    box-shadow: 0 0 10px rgba(229,179,92,0.15);
 }
 
-.composer-button::before {
-    content: "";
-    position: absolute;
-    inset: 4px;
-    border-radius: 12px;
-    border: 1px solid rgba(229, 184, 91, 0.17);
-    pointer-events: none;
-}
-
-.composer-button::after {
-    content: "◆";
-    position: absolute;
-    top: 4px;
-    color: rgba(220, 169, 74, 0.60);
-    font-size: 5px;
-}
-
-.composer-icon { font-family: Arial, sans-serif; font-size: 25px; line-height: 1; color: #efc86f; }
-.composer-label { font-size: 10px; line-height: 1.2; color: rgba(244, 216, 169, 0.88); white-space: nowrap; }
-
-/* ===================== SEND BUTTON ===================== */
-.send-button {
-    background: radial-gradient(circle at center, #5d411b 0%, #33220f 45%, #170e07 100%);
-    border-color: rgba(237, 190, 94, 0.90);
-    box-shadow: inset 0 0 18px rgba(238, 191, 94, 0.16), 0 0 13px rgba(209, 155, 54, 0.10);
-}
-
-.send-button::before {
-    inset: 3px;
-    border: 1px solid rgba(238, 192, 98, 0.38);
-    border-radius: 13px;
-}
-
-.send-icon { font-size: 27px; transform: rotate(180deg); }
-
-.send-ornament {
-    position: absolute;
-    top: 50%;
-    color: rgba(236, 191, 98, 0.65);
-    font-size: 8px;
-}
-
-.send-ornament:first-child { left: 7px; }
-.send-ornament:last-child { right: 7px; }
-
-/* ===================== MOBILE ===================== */
-@media (max-width: 480px) {
-    .app-header { height: 66px; }
-    .robaty-house { width: 100%; padding: 8px 4px 12px; }
-    .luxury-frame { min-height: calc(100vh - 78px); border-radius: 22px; padding: 9px; }
-    .frame-inner { min-height: calc(100vh - 98px); border-radius: 17px; }
-    .profile-area { padding-top: 31px; }
-    .portrait-stage { width: 220px; height: 220px; }
-    .portrait-gold-ring { width: 205px; height: 205px; }
-    .presence-indicator { width: 40px; height: 40px; right: 2px; bottom: 22px; }
-    .presence-core { width: 17px; height: 17px; }
-    .robaty-name { font-size: 28px; }
-    .robaty-motto { font-size: 15px; }
-    .chat-area { height: 395px; margin-left: 11px; margin-right: 11px; }
-    .message-bubble { max-width: 82%; font-size: 12.5px; }
-    .composer-area { margin-left: 10px; margin-right: 10px; }
-    .composer-label { font-size: 9px; }
-    .composer-icon { font-size: 23px; }
-}
-
-/* ===================== VERY SMALL SCREENS ===================== */
-@media (max-width: 350px) {
-    .portrait-stage { width: 200px; height: 200px; }
-    .portrait-gold-ring { width: 187px; height: 187px; }
-    .presence-indicator { right: 0; bottom: 18px; }
-    .robaty-name { font-size: 26px; }
-    .chat-area { height: 370px; }
-    .composer-button { min-height: 66px; }
-    .composer-label { font-size: 8px; }
+.send-highlight {
+    background: linear-gradient(135deg, #e5b35c 0%, #7c4c12 100%);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(229, 179, 92, 0.4);
 }
