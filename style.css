@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Luxury Gold Moroccan Theme - المحدث بالتعديلات المطلوبة
+   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والمسافات
    ========================================================================== */
 :root {
     --bg-black: #050302;
@@ -59,13 +59,13 @@ body {
 .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
 .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
-/* الشريط العلوي بدون توقيت */
+/* الشريط العلوي */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px 0px; /* تقليل الهامش السفلي لرفع المحتوى */
-    z-index: 2;
+    padding: 15px 20px 0px;
+    z-index: 3;
 }
 
 .ornate-btn {
@@ -79,33 +79,33 @@ body {
     cursor: pointer;
 }
 
-/* قسم الصورة الشخصية والهيدر (تم رفعه للأعلى) */
+/* قسم الصورة الشخصية المرفوع للأعلى بالكامل */
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px 20px 10px; /* تم الضغط إلى الأعلى */
-    margin-top: -10px; /* رفع المكونات للأعلى قليلاً */
+    padding: 0 20px 5px;
+    margin-top: -28px; /* رفع الصورة للوصول إلى مستوى الأزرار العلوية */
     z-index: 2;
 }
 
-/* تكبير الصورة الشخصية إلى 140% */
+/* تكبير الصورة بنسبة 120% إضافية مع تقليل الهوامش */
 .avatar-container {
     position: relative;
-    width: 220px; /* زيادة المساحة لتستوعب الحجم الجديد */
-    height: 220px;
+    width: 230px;
+    height: 230px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .glowing-ring {
-    width: 189px; /* تكبير الحجم إلى 140% من الحجم الأصلي (135px * 1.40) */
-    height: 189px;
+    width: 226px; /* زيادة حجم الصورة بنسبة 1.20x (من 189px إلى 226px) */
+    height: 226px;
     border-radius: 50%;
     padding: 4px;
     background: linear-gradient(135deg, #ffc875, #805018);
-    box-shadow: 0 0 35px rgba(255, 170, 51, 0.55);
+    box-shadow: 0 0 40px rgba(255, 170, 51, 0.6);
 }
 
 .avatar-img {
@@ -115,27 +115,34 @@ body {
     object-fit: cover;
 }
 
+/* الهوية مع ضغط المسافات تماماً كالصورة */
 .identity-info {
     text-align: center;
-    margin-top: 2px;
+    margin-top: -6px; /* تقريب اسم Robaty من الحد الأسفل للصورة */
 }
 
 .bot-name {
     font-size: 22px;
     color: #fff;
     font-weight: bold;
+    line-height: 1.1;
+}
+
+.cyan-signal {
+    font-size: 14px;
 }
 
 .divider-line {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 1px;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 2px;
 }
 
 .line {
     height: 1px;
-    width: 25px;
+    width: 20px;
     background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
 }
 
@@ -145,11 +152,11 @@ body {
 }
 
 .gold-pill-btn {
-    margin-top: 8px;
+    margin-top: 6px; /* مسافة قريبة ومركزة للزر */
     background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
     border: 1px solid var(--gold-bright);
     color: var(--text-gold-light);
-    padding: 7px 22px;
+    padding: 6px 20px;
     border-radius: 20px;
     font-size: 12px;
     box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
@@ -163,7 +170,7 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     z-index: 2;
 }
 
@@ -209,7 +216,7 @@ body {
 .bot-label { font-size: 11px; color: var(--gold-bright); font-weight: bold; }
 .msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
 
-/* التحكم السفلي المزخرف */
+/* التحكم السفلي */
 .bottom-controls {
     padding: 10px 15px 15px;
     background: linear-gradient(0deg, #050302 80%, transparent 100%);
