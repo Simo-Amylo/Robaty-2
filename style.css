@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والمسافات
+   Luxury Gold Moroccan Theme - التعديلات الشاملة والأبعاد 160%
    ========================================================================== */
 :root {
     --bg-black: #050302;
@@ -26,86 +26,87 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px 0;
 }
 
-/* الإطار الرئيسي للهاتف */
+/* تكبير إطار الشاشة الرئيسي بنسبة 1.60% (160%) */
 .app-container {
     width: 100%;
-    max-width: 414px;
-    height: 100vh;
-    max-height: 896px;
+    max-width: 662px; /* 414px * 1.60 */
+    height: 95vh;
+    max-height: 1433px; /* 896px * 1.60 */
     background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
-    border: 2px solid var(--gold-bright);
-    border-radius: 40px;
+    border: 3px solid var(--gold-bright);
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(229, 179, 92, 0.3);
+    box-shadow: 0 0 45px rgba(229, 179, 92, 0.35);
 }
 
 /* الزخارف الأندلسية في الزوايا */
 .corner-ornament {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border: 1px solid var(--gold-border);
     pointer-events: none;
     z-index: 1;
     opacity: 0.5;
 }
-.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+.top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+.top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+.bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; }
 
 /* الشريط العلوي */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px 0px;
+    padding: 20px 25px 0px;
     z-index: 3;
 }
 
 .ornate-btn {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: rgba(30, 20, 10, 0.8);
     border: 1px solid var(--gold-bright);
     color: var(--gold-bright);
-    box-shadow: 0 0 10px var(--gold-box-glow);
+    font-size: 16px;
+    box-shadow: 0 0 12px var(--gold-box-glow);
     cursor: pointer;
 }
 
-/* قسم الصورة الشخصية المرفوع للأعلى بالكامل */
+/* قسم الصورة والهوية */
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px 5px;
-    margin-top: -28px; /* رفع الصورة للوصول إلى مستوى الأزرار العلوية */
+    padding: 0 20px 10px;
+    margin-top: -35px;
     z-index: 2;
 }
 
-/* تكبير الصورة بنسبة 120% إضافية مع تقليل الهوامش */
 .avatar-container {
     position: relative;
-    width: 230px;
-    height: 230px;
+    width: 250px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .glowing-ring {
-    width: 226px; /* زيادة حجم الصورة بنسبة 1.20x (من 189px إلى 226px) */
-    height: 226px;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
-    padding: 4px;
+    padding: 5px;
     background: linear-gradient(135deg, #ffc875, #805018);
-    box-shadow: 0 0 40px rgba(255, 170, 51, 0.6);
+    box-shadow: 0 0 45px rgba(255, 170, 51, 0.65);
 }
 
 .avatar-img {
@@ -115,62 +116,78 @@ body {
     object-fit: cover;
 }
 
-/* الهوية مع ضغط المسافات تماماً كالصورة */
+/* تنسيق الهوية تماماً كالنموذج الأصلي */
 .identity-info {
     text-align: center;
-    margin-top: -6px; /* تقريب اسم Robaty من الحد الأسفل للصورة */
+    margin-top: -8px;
 }
 
 .bot-name {
-    font-size: 22px;
+    font-size: 26px;
     color: #fff;
     font-weight: bold;
-    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    direction: ltr; /* للحفاظ على اسم Robaty يساراً والأيقونة يميناً بالنسبة للكود ويساراً في العرض */
 }
 
-.cyan-signal {
-    font-size: 14px;
+.green-glow-pulse {
+    font-size: 18px;
+    filter: drop-shadow(0 0 8px #00ff66);
 }
 
 .divider-line {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    margin-top: 2px;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.gold-diamond {
+    color: var(--gold-bright);
+    font-size: 10px;
 }
 
 .line {
     height: 1px;
-    width: 20px;
+    width: 30px;
     background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
 }
 
 .tagline {
-    color: var(--gold-bright);
-    font-size: 13px;
-}
-
-.gold-pill-btn {
-    margin-top: 6px; /* مسافة قريبة ومركزة للزر */
-    background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
-    border: 1px solid var(--gold-bright);
     color: var(--text-gold-light);
-    padding: 6px 20px;
-    border-radius: 20px;
-    font-size: 12px;
-    box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
-    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-/* المحادثة والفقاعات */
+/* زر "شوفي تصاوري ليوم" بنفس نمط النموذج */
+.gold-pill-btn {
+    margin-top: 10px;
+    background: linear-gradient(180deg, rgba(43, 29, 14, 0.9) 0%, rgba(18, 11, 4, 0.9) 100%);
+    border: 1.5px solid var(--gold-bright);
+    color: var(--text-gold-light);
+    padding: 8px 28px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(229, 179, 92, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* منطقة المحادثة */
 .chat-area {
     flex: 1;
-    padding: 10px 15px;
+    padding: 15px 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     z-index: 2;
 }
 
@@ -181,45 +198,45 @@ body {
 .bubble-gold-border {
     background: rgba(25, 16, 9, 0.95);
     border: 1px solid var(--gold-bright);
-    border-radius: 15px 15px 15px 2px;
-    padding: 8px 14px;
-    font-size: 12px;
+    border-radius: 18px 18px 18px 2px;
+    padding: 10px 16px;
+    font-size: 14px;
     color: var(--text-gold-light);
-    box-shadow: 0 0 10px rgba(229, 179, 92, 0.15);
+    box-shadow: 0 0 12px rgba(229, 179, 92, 0.15);
 }
 
 .bubble-dark-gold {
     background: rgba(15, 10, 6, 0.95);
     border: 1px solid var(--gold-border);
-    border-radius: 15px 2px 15px 15px;
-    padding: 10px 14px;
-    font-size: 12px;
+    border-radius: 18px 2px 18px 18px;
+    padding: 12px 16px;
+    font-size: 14px;
     color: #e0e0e0;
     line-height: 1.6;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.6);
 }
 
 .msg-header {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
+    gap: 8px;
+    margin-bottom: 5px;
 }
 
 .mini-avatar {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     border: 1px solid var(--gold-bright);
 }
 
-.bot-label { font-size: 11px; color: var(--gold-bright); font-weight: bold; }
-.msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
+.bot-label { font-size: 12px; color: var(--gold-bright); font-weight: bold; }
+.msg-time { font-size: 11px; color: #8c7860; margin-top: 4px; }
 
-/* التحكم السفلي */
+/* عناصر التحكم السفلي */
 .bottom-controls {
-    padding: 10px 15px 15px;
-    background: linear-gradient(0deg, #050302 80%, transparent 100%);
+    padding: 12px 20px 20px;
+    background: linear-gradient(0deg, #050302 85%, transparent 100%);
     z-index: 2;
 }
 
@@ -227,39 +244,39 @@ body {
     width: 100%;
     background: rgba(18, 11, 6, 0.95);
     border: 1px solid var(--gold-bright);
-    border-radius: 25px;
-    padding: 10px 18px;
+    border-radius: 30px;
+    padding: 14px 22px;
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     outline: none;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(229,179,92,0.15);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 12px rgba(229,179,92,0.15);
 }
 
 .ornate-action-bar {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 14px;
 }
 
 .ornate-action-btn {
     flex: 1;
     background: linear-gradient(180deg, #24180b 0%, #0d0804 100%);
     border: 1px solid var(--gold-bright);
-    border-radius: 20px;
-    padding: 8px 5px;
+    border-radius: 25px;
+    padding: 10px 8px;
     color: var(--text-gold-light);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    font-size: 10px;
+    gap: 6px;
+    font-size: 12px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(229,179,92,0.15);
+    box-shadow: 0 0 12px rgba(229,179,92,0.15);
 }
 
 .send-highlight {
     background: linear-gradient(135deg, #e5b35c 0%, #7c4c12 100%);
     color: #fff;
-    box-shadow: 0 0 15px rgba(229, 179, 92, 0.4);
+    box-shadow: 0 0 18px rgba(229, 179, 92, 0.4);
 }
