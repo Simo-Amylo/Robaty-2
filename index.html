@@ -11,17 +11,13 @@
 <body>
 
     <div class="app-container">
-        <!-- الزخارف الجانبية -->
-        <div class="corner-ornament bottom-left"></div>
-        <div class="corner-ornament bottom-right"></div>
-
-        <!-- شريط الأزرار العلوي -->
+        <!-- الأزرار العلوية ثابتة في مكانها الصحيح -->
         <header class="top-bar">
             <button class="ornate-btn"><i class="fa-solid fa-gear"></i></button>
             <button class="ornate-btn"><i class="fa-solid fa-arrow-right"></i></button>
         </header>
 
-        <!-- الهيدر والبروفايل المعتمد -->
+        <!-- الجزء العلوي للبروفايل -->
         <section class="profile-section">
             <div class="avatar-container">
                 <div class="glowing-ring">
@@ -46,7 +42,7 @@
             </button>
         </section>
 
-        <!-- ساحة المحادثة -->
+        <!-- ساحة المحادثة تنزل بشكل طبيعي تحت البروفايل -->
         <main class="chat-area">
             <div class="message bot-msg">
                 <div class="msg-header">
@@ -78,16 +74,16 @@
             </div>
         </main>
 
-        <!-- الشريط السفلي المدمج (لزيادة مساحة المحادثة) -->
+        <!-- الشريط السفلي المدمج للحفاظ على مساحة أكبر للمحادثة -->
         <footer class="bottom-controls">
             <div class="input-wrapper">
                 <input type="text" placeholder="اكتبي رسالتك لـ Robaty هنا..." class="gold-input">
             </div>
 
             <div class="ornate-action-bar">
-                <button class="ornate-action-btn send-highlight">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>إرسال</span>
+                <button class="ornate-action-btn">
+                    <i class="fa-regular fa-image"></i>
+                    <span>إرسال الصور</span>
                 </button>
 
                 <button class="ornate-action-btn">
@@ -95,9 +91,9 @@
                     <span>تسجيل صوتي</span>
                 </button>
 
-                <button class="ornate-action-btn">
-                    <i class="fa-regular fa-image"></i>
-                    <span>إرسال الصور</span>
+                <button class="ornate-action-btn send-highlight">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>إرسال</span>
                 </button>
             </div>
         </footer>
