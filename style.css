@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والمسافات
+   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والإطار
    ========================================================================== */
 :root {
     --bg-black: #050302;
@@ -28,36 +28,21 @@ body {
     min-height: 100vh;
 }
 
-/* الإطار الرئيسي للهاتف */
+/* الإطار الرئيسي للهاتف (مستوحى بدقة من الشاشة المرفقة) */
 .app-container {
     width: 100%;
     max-width: 414px;
     height: 100vh;
     max-height: 896px;
     background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
-    border: 2px solid var(--gold-bright);
+    border: 1.5px solid #d4a359; /* إطار ذهبي ناعم ونظيف كما في الصورة */
     border-radius: 40px;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(229, 179, 92, 0.3);
+    box-shadow: 0 0 15px rgba(212, 163, 89, 0.15);
 }
-
-/* الزخارف الأندلسية في الزوايا */
-.corner-ornament {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    border: 1px solid var(--gold-border);
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.5;
-}
-.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
 /* الشريط العلوي */
 .top-bar {
@@ -79,17 +64,16 @@ body {
     cursor: pointer;
 }
 
-/* قسم الصورة الشخصية المرفوع للأعلى بالكامل */
+/* قسم الصورة الشخصية */
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 20px 5px;
-    margin-top: -28px; /* رفع الصورة للوصول إلى مستوى الأزرار العلوية */
+    margin-top: -28px;
     z-index: 2;
 }
 
-/* تكبير الصورة بنسبة 120% إضافية مع تقليل الهوامش */
 .avatar-container {
     position: relative;
     width: 230px;
@@ -100,7 +84,7 @@ body {
 }
 
 .glowing-ring {
-    width: 226px; /* زيادة حجم الصورة بنسبة 1.20x (من 189px إلى 226px) */
+    width: 226px;
     height: 226px;
     border-radius: 50%;
     padding: 4px;
@@ -115,10 +99,10 @@ body {
     object-fit: cover;
 }
 
-/* الهوية مع ضغط المسافات تماماً كالصورة */
+/* الهوية */
 .identity-info {
     text-align: center;
-    margin-top: -6px; /* تقريب اسم Robaty من الحد الأسفل للصورة */
+    margin-top: -6px;
 }
 
 .bot-name {
@@ -152,7 +136,7 @@ body {
 }
 
 .gold-pill-btn {
-    margin-top: 6px; /* مسافة قريبة ومركزة للزر */
+    margin-top: 6px;
     background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
     border: 1px solid var(--gold-bright);
     color: var(--text-gold-light);
