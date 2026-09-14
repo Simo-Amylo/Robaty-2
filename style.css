@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Luxury Gold Moroccan Theme - التحديث الملكي بالنقوش الموريسكية
+   Luxury Gold Moroccan Theme - التحديث النهائي للنقوش والزوايا
    ========================================================================== */
 :root {
     --bg-black: #050302;
@@ -29,9 +29,8 @@ body {
 }
 
 /* ==========================================================================
-   إطار الشاشة المصمم بطريقة إطار صورة Robaty
+   إطار الشاشة المزدوج
    ========================================================================== */
-/* 1. الإطار الذهبي الخارجي الأول */
 .avatar-style-outer-frame,
 .outer-gold-frame {
     width: 100%;
@@ -46,7 +45,6 @@ body {
     display: flex;
 }
 
-/* 2. الفاصل الغامق + الإطار الذهبي الداخلي */
 .avatar-style-inner-frame {
     width: 100%;
     height: 100%;
@@ -57,7 +55,6 @@ body {
     display: flex;
 }
 
-/* الإطار الرئيسي للهاتف مع الإضاءة الدافئة (Lantern Glow) */
 .app-container {
     width: 100%;
     height: 100%;
@@ -75,57 +72,55 @@ body {
 }
 
 /* ==========================================================================
-   1️⃣ الزخارف الهندسية الأندلسية في الزوايا (Pure CSS)
+   1️⃣ الزخارف الأندلسية الدقيقة في زوايا الحاوية (متموضعة خلف الأزرار)
    ========================================================================== */
 .corner-ornament {
     position: absolute;
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
     pointer-events: none;
-    z-index: 10;
-    opacity: 0.85;
+    z-index: 1; /* تبقى تحت الأزرار لتجنب التداخل */
+    opacity: 0.6;
 }
 
 .top-left {
-    top: 12px; left: 12px;
-    border-top: 2px solid var(--gold-bright);
-    border-left: 2px solid var(--gold-bright);
-    border-top-left-radius: 12px;
-    box-shadow: -2px -2px 8px rgba(229, 179, 92, 0.4);
+    top: 6px; left: 6px;
+    border-top: 1.5px solid var(--gold-bright);
+    border-left: 1.5px solid var(--gold-bright);
+    border-top-left-radius: 20px;
 }
 
 .top-right {
-    top: 12px; right: 12px;
-    border-top: 2px solid var(--gold-bright);
-    border-right: 2px solid var(--gold-bright);
-    border-top-right-radius: 12px;
-    box-shadow: 2px -2px 8px rgba(229, 179, 92, 0.4);
+    top: 6px; right: 6px;
+    border-top: 1.5px solid var(--gold-bright);
+    border-right: 1.5px solid var(--gold-bright);
+    border-top-right-radius: 20px;
 }
 
 .bottom-left {
-    bottom: 12px; left: 12px;
-    border-bottom: 2px solid var(--gold-bright);
-    border-left: 2px solid var(--gold-bright);
-    border-bottom-left-radius: 12px;
-    box-shadow: -2px 2px 8px rgba(229, 179, 92, 0.4);
+    bottom: 6px; left: 6px;
+    border-bottom: 1.5px solid var(--gold-bright);
+    border-left: 1.5px solid var(--gold-bright);
+    border-bottom-left-radius: 20px;
 }
 
 .bottom-right {
-    bottom: 12px; right: 12px;
-    border-bottom: 2px solid var(--gold-bright);
-    border-right: 2px solid var(--gold-bright);
-    border-bottom-right-radius: 12px;
-    box-shadow: 2px 2px 8px rgba(229, 179, 92, 0.4);
+    bottom: 6px; right: 6px;
+    border-bottom: 1.5px solid var(--gold-bright);
+    border-right: 1.5px solid var(--gold-bright);
+    border-bottom-right-radius: 20px;
 }
 
-/* النقش الداخلي المتشابك لكل زاوية */
 .corner-ornament::after {
-    content: '';
+    content: '✦';
     position: absolute;
-    top: 4px; left: 4px; right: 4px; bottom: 4px;
-    border: 1px dashed var(--gold-bright);
-    border-radius: 6px;
+    font-size: 8px;
+    color: var(--gold-bright);
 }
+.top-left::after { top: 2px; left: 3px; }
+.top-right::after { top: 2px; right: 3px; }
+.bottom-left::after { bottom: 2px; left: 3px; }
+.bottom-right::after { bottom: 2px; right: 3px; }
 
 /* ==========================================================================
    عناصر الشاشة العلوية والملف الشخصي
@@ -142,7 +137,7 @@ body {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(30, 20, 10, 0.8);
+    background: rgba(30, 20, 10, 0.85);
     border: 1px solid var(--gold-bright);
     color: var(--gold-bright);
     box-shadow: 0 0 10px var(--gold-box-glow);
@@ -286,7 +281,7 @@ body {
 .msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
 
 /* ==========================================================================
-   2️⃣ منطقة الإدخال والشريط السفلي (شريط السفيفة الذهبي الواضح)
+   2️⃣ منطقة الإدخال وشريط السفيفة الذهبي
    ========================================================================== */
 .bottom-controls {
     padding: 8px 15px 15px;
@@ -295,18 +290,17 @@ body {
     position: relative;
 }
 
-/* شريط السفيفة الذهبي فوق منطقة الإدخال */
 .bottom-controls::before {
     content: "❖  ⬥  ❖  ⬥  ❖  ⬥  ❖";
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--gold-bright);
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 6px;
-    opacity: 0.9;
+    opacity: 0.85;
     margin-bottom: 8px;
-    text-shadow: 0 0 8px rgba(229, 179, 92, 0.6);
+    text-shadow: 0 0 8px rgba(229, 179, 92, 0.5);
 }
 
 .gold-input {
