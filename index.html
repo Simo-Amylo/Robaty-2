@@ -1,103 +1,318 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robaty Companion UI</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body>
+/* ==========================================================================
+   Robaty Companion UI - Micro Precision Tweaks
+   ========================================================================== */
+:root {
+    --bg-black: #050302;
+    --gold-bright: #e5b35c;
+    --gold-glow: #ffaa33;
+    --gold-dark: #6e4a1b;
+    --gold-border: rgba(229, 179, 92, 0.45);
+    --gold-box-glow: rgba(229, 179, 92, 0.25);
+    --bubble-bg: #110c08;
+    --text-gold-light: #f7e8cf;
+    --font-family: 'Cairo', sans-serif;
+}
 
-    <div class="app-container">
-        <!-- الأزرار العلوية ثابتة في مكانها الصحيح -->
-        <header class="top-bar">
-            <button class="ornate-btn"><i class="fa-solid fa-gear"></i></button>
-            <button class="ornate-btn"><i class="fa-solid fa-arrow-right"></i></button>
-        </header>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+}
 
-        <!-- الجزء العلوي للبروفايل -->
-        <section class="profile-section">
-            <div class="avatar-container">
-                <div class="glowing-ring">
-                    <img src="avatar.jpg" alt="Robaty" class="avatar-img">
-                </div>
-            </div>
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px 0;
+}
 
-            <div class="identity-info">
-                <h1 class="bot-name">
-                    <span class="live-signal">((🔴))</span> Robaty
-                </h1>
-                
-                <div class="divider-line">
-                    <span class="line"></span>
-                    <p class="tagline">مغربية و أفتخر 🇲🇦</p>
-                    <span class="line"></span>
-                </div>
-            </div>
+/* إطار الشاشة الرئيسي */
+.app-container {
+    width: 100%;
+    max-width: 662px;
+    height: 96vh;
+    max-height: 1433px;
+    background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
+    border: 3px solid var(--gold-bright);
+    border-radius: 48px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 45px rgba(229, 179, 92, 0.35);
+}
 
-            <button class="gold-pill-btn">
-                <i class="fa-regular fa-image"></i> شوفي تصاوري ليوم
-            </button>
-        </section>
+/* الزخارف الأندلسية في الزوايا السفلية */
+.corner-ornament {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 1px solid var(--gold-border);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+.bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+.bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; }
 
-        <!-- ساحة المحادثة تنزل بشكل طبيعي تحت البروفايل -->
-        <main class="chat-area">
-            <div class="message bot-msg">
-                <div class="msg-header">
-                    <span class="msg-time">21:16</span>
-                    <span class="online-dot">🟢</span>
-                    <span class="bot-label">Robaty</span>
-                    <img src="avatar.jpg" class="mini-avatar" alt="Robaty">
-                </div>
-                <div class="bubble-dark-gold">
-                    هادي كفرحتني، بزاف الحمد لله اللي راكي بخير، طاقة إيجابية للجمعة المباركة، كاين شي حاجة تقدر تعاونك بها اليوم باش تكملي نهارك ببهجة؟
-                </div>
-            </div>
+/* الشريط العلوي */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px 0px;
+    z-index: 3;
+}
 
-            <div class="message user-msg">
-                <div class="bubble-gold-border">هذا من لطفك</div>
-                <span class="msg-time">21:17</span>
-            </div>
+.ornate-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(30, 20, 10, 0.8);
+    border: 1px solid var(--gold-bright);
+    color: var(--gold-bright);
+    font-size: 15px;
+    box-shadow: 0 0 12px var(--gold-box-glow);
+    cursor: pointer;
+}
 
-            <div class="message bot-msg">
-                <div class="msg-header">
-                    <span class="msg-time">21:17</span>
-                    <span class="online-dot">🟢</span>
-                    <span class="bot-label">Robaty</span>
-                    <img src="avatar.jpg" class="mini-avatar" alt="Robaty">
-                </div>
-                <div class="bubble-dark-gold">
-                    هذا من توفقك الرفيع، كوني أكيدة أني هنا باش نسمع ليك ونشاركك أي موضوع، كيوماك، سواء كان على الثقافة المغربية، الموضة، أو أي حاجة تانية.
-                </div>
-            </div>
-        </main>
+/* قسم البروفايل */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 0px;
+    margin-top: -30px;
+    z-index: 2;
+}
 
-        <!-- الشريط السفلي المدمج للحفاظ على مساحة أكبر للمحادثة -->
-        <footer class="bottom-controls">
-            <div class="input-wrapper">
-                <input type="text" placeholder="اكتبي رسالتك لـ Robaty هنا..." class="gold-input">
-            </div>
+/* 1. التكبير بنسبة 15% باتجاه الأسفل والحفاظ على الهامش العلوي */
+.avatar-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: top center; /* تثبيت أعلى الدائرة والتمدد نحو الأسفل */
+}
 
-            <div class="ornate-action-bar">
-                <button class="ornate-action-btn">
-                    <i class="fa-regular fa-image"></i>
-                    <span>إرسال الصور</span>
-                </button>
+.glowing-ring {
+    width: 192px;
+    height: 192px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #ffc875, #805018);
+    box-shadow: 0 0 32px rgba(255, 170, 51, 0.55);
+}
 
-                <button class="ornate-action-btn">
-                    <i class="fa-solid fa-microphone"></i>
-                    <span>تسجيل صوتي</span>
-                </button>
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-                <button class="ornate-action-btn send-highlight">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>إرسال</span>
-                </button>
-            </div>
-        </footer>
-    </div>
+/* تقريب اسم Robaty للأسفل من عبارة "مغربية وأفتخر" */
+.identity-info {
+    text-align: center;
+    margin-top: 4px; /* تنزيل الاسم قليلاً */
+}
 
-</body>
-</html>
+.bot-name {
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    direction: ltr;
+    margin-bottom: -2px; /* إلغاء الفراغ بين الاسم والوصف */
+}
+
+.green-glow-pulse {
+    font-size: 16px;
+    filter: drop-shadow(0 0 8px #00ff66);
+}
+
+.divider-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.moroccan-star {
+    color: var(--gold-bright);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.line {
+    height: 1px;
+    width: 25px;
+    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+}
+
+.tagline {
+    color: var(--text-gold-light);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.gold-pill-btn {
+    margin-top: 6px;
+    background: linear-gradient(180deg, rgba(43, 29, 14, 0.9) 0%, rgba(18, 11, 4, 0.9) 100%);
+    border: 1.5px solid var(--gold-bright);
+    color: var(--text-gold-light);
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(229, 179, 92, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   منطقة المحادثة (تستفيد من الارتفاع المكتسب)
+   ========================================================================== */
+.chat-area {
+    flex: 1; /* كسب المساحة المفرغة تلقائياً */
+    padding: 10px 22px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+}
+
+.user-msg {
+    align-self: flex-start;
+}
+
+.bot-msg {
+    align-self: flex-end;
+    width: 100%;
+}
+
+.bubble-gold-border {
+    background: rgba(25, 16, 9, 0.95);
+    border: 1px solid var(--gold-bright);
+    border-radius: 16px 16px 16px 2px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--text-gold-light);
+    box-shadow: 0 0 10px rgba(229, 179, 92, 0.15);
+}
+
+.bubble-dark-gold {
+    background: rgba(15, 10, 6, 0.95);
+    border: 1px solid var(--gold-border);
+    border-radius: 16px 2px 16px 16px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: #e8e8e8;
+    line-height: 1.6;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+}
+
+.msg-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.mini-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-bright);
+}
+
+.bot-label {
+    font-size: 12px;
+    color: var(--gold-bright);
+    font-weight: bold;
+}
+
+.msg-time {
+    font-size: 10px;
+    color: #8c7860;
+    margin-top: 3px;
+}
+
+/* ==========================================================================
+   التحكم السفلي (تقليص الارتفاع إلى 70%)
+   ========================================================================== */
+.bottom-controls {
+    padding: 8px 22px 14px;
+    background: linear-gradient(0deg, #050302 85%, transparent 100%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.input-wrapper {
+    width: 100%;
+}
+
+.gold-input {
+    width: 100%;
+    background: rgba(18, 11, 6, 0.95);
+    border: 1px solid var(--gold-bright);
+    border-radius: 25px;
+    padding: 10px 18px; /* تقليل بسيط في ارتفاع الإدخال */
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(229,179,92,0.12);
+    text-align: right;
+}
+
+.ornate-action-bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+/* 2. تقليل ارتفاع الأزرار السفلية (ردها 70% من سمكها السابق) */
+.ornate-action-btn {
+    flex: 1;
+    background: linear-gradient(180deg, #24180b 0%, #0d0804 100%);
+    border: 1px solid var(--gold-bright);
+    border-radius: 18px;
+    padding: 5px 4px; /* تقليص الحشوة العمودية لخفض الارتفاع */
+    color: var(--text-gold-light);
+    display: flex;
+    flex-direction: row; /* ترتيب الأيقونة مع النص أفقياً لإنقاص الارتفاع */
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    height: 38px; /* تحديد ارتفاع محدد وأنيق 38px بدلاً من 52px */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(229,179,92,0.12);
+}
+
+.send-highlight {
+    background: linear-gradient(135deg, #e5b35c 0%, #7c4c12 100%);
+    color: #fff;
+    box-shadow: 0 0 14px rgba(229, 179, 92, 0.35);
+}
