@@ -4,408 +4,360 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0,
+                   maximum-scale=1.0,
+                   user-scalable=no">
 
-    <title>ROBATY — Chat</title>
+    <title>Robaty — Chat</title>
 
-    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Arabic font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <!-- Arabic Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 
 
 <body>
 
-    <div class="app-container">
+<div class="app-shell">
+
+    <!-- =====================================================
+         OUTER LUXURY FRAME
+    ====================================================== -->
+
+    <div class="frame-line frame-line-outer"></div>
+    <div class="frame-line frame-line-inner"></div>
+
+    <!-- Moroccan decorative corners -->
+    <div class="moroccan-corner corner-tl"></div>
+    <div class="moroccan-corner corner-tr"></div>
+    <div class="moroccan-corner corner-bl"></div>
+    <div class="moroccan-corner corner-br"></div>
 
 
-        <!-- =====================================================
-             MOROCCAN DECORATIVE FRAME
-             ===================================================== -->
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
 
-        <div class="corner-ornament top-left"></div>
-        <div class="corner-ornament top-right"></div>
+    <header class="top-bar">
 
-        <div class="corner-ornament middle-left"></div>
-        <div class="corner-ornament middle-right"></div>
+        <!-- Back -->
+        <button class="top-control back-button"
+                aria-label="رجوع">
 
-        <div class="corner-ornament bottom-left"></div>
-        <div class="corner-ornament bottom-right"></div>
+            <i class="fa-solid fa-arrow-left"></i>
 
-
-        <!-- =====================================================
-             TOP BAR
-             RTL:
-             Settings = right
-             Back = left
-             ===================================================== -->
-
-        <header class="top-bar">
-
-            <!-- Settings -->
-            <button
-                class="ornate-btn settings-btn"
-                type="button"
-                aria-label="الإعدادات"
-            >
-                <i class="fa-solid fa-gear"></i>
-            </button>
+        </button>
 
 
-            <!-- Back -->
-            <button
-                class="ornate-btn back-btn"
-                type="button"
-                aria-label="رجوع"
-            >
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
+        <!-- Settings -->
+        <button class="top-control settings-button"
+                aria-label="الإعدادات">
 
-        </header>
+            <i class="fa-solid fa-gear"></i>
+
+        </button>
+
+    </header>
 
 
 
-        <!-- =====================================================
-             ROBATY PROFILE / HEADER
-             ===================================================== -->
+    <!-- =====================================================
+         ROBATY PROFILE
+    ====================================================== -->
 
-        <section class="profile-section">
-
-
-            <!-- Profile image -->
-            <div class="avatar-container">
-
-                <!-- Moroccan mandala behind avatar -->
-                <div class="zellige-mandala"></div>
+    <section class="profile-section">
 
 
-                <!-- Golden image ring -->
-                <div class="glowing-ring">
+        <!-- Avatar -->
+        <div class="avatar-stage">
+
+            <div class="avatar-halo"></div>
+
+            <div class="avatar-ring">
+
+                <img
+                    src="rob​aty-profile.jpg"
+                    alt="Robaty"
+                    class="rob​aty-avatar"
+                >
+
+            </div>
+
+
+            <!-- Official Presence Indicator -->
+            <div class="presence-indicator"
+                 aria-label="Robaty متصلة">
+
+                <div class="presence-core"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Identity -->
+
+        <div class="identity">
+
+            <h1 class="rob​aty-name">
+                Robaty
+            </h1>
+
+
+            <div class="identity-divider">
+
+                <span class="divider-line"></span>
+
+                <span class="tagline">
+                    🇲🇦 مغربية و أفتخر
+                </span>
+
+                <span class="divider-line"></span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Daily photos -->
+
+        <button class="daily-photos-button">
+
+            <i class="fa-regular fa-image"></i>
+
+            <span>
+                شوفي تصاوري ليوم
+            </span>
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAT AREA
+    ====================================================== -->
+
+    <main class="chat-area">
+
+
+        <!-- User message -->
+
+        <div class="message-row user-row">
+
+            <div class="user-message">
+
+                <span class="message-text">
+                    هذا من لطفك 🌸
+                </span>
+
+                <span class="message-time">
+                    21:17
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Robaty message -->
+
+        <div class="message-row rob​aty-row">
+
+            <div class="message-meta">
+
+                <span class="message-time">
+                    21:16
+                </span>
+
+                <div class="mini-profile">
 
                     <img
-                        src="./robaty-profile.jpg"
+                        src="rob​aty-profile.jpg"
                         alt="Robaty"
-                        class="avatar-img"
                     >
 
                 </div>
 
-
-                <!-- =================================================
-                     OFFICIAL ROBATY PRESENCE INDICATOR
-
-                     Green outer circle
-                     Dark center
-
-                     NO sound waves
-                     NO animation yet
-
-                     Later:
-                     dark center = breathing element
-                     subtle glow = pulse
-                     ================================================= -->
-
-                <div
-                    class="presence-indicator"
-                    aria-label="Robaty متصلة"
-                >
-                    <span class="presence-core"></span>
-                </div>
-
-            </div>
-
-
-
-            <!-- =====================================================
-                 ROBATY IDENTITY
-                 ===================================================== -->
-
-            <div class="identity-info">
-
-                <h1 class="bot-name">
+                <span class="mini-name">
                     Robaty
-                </h1>
+                </span>
 
+                <span class="mini-presence">
 
-                <div class="divider-line">
+                    <span></span>
 
-                    <span class="line"></span>
-
-                    <p class="tagline">
-                        🇲🇦 مغربية و أفتخر
-                    </p>
-
-                    <span class="line"></span>
-
-                </div>
+                </span>
 
             </div>
 
 
+            <div class="rob​aty-message">
 
-            <!-- =====================================================
-                 PROFILE / MOMENTS BUTTON
-                 ===================================================== -->
+                هادي كفرحتني، بزاف الحمد لله اللي راكي بخير،
+                طاقة إيجابية للجمعة المباركة.
+                كاين شي حاجة تقدر تعاونك بها اليوم باش تكملي نهارك بهجة؟
 
-            <button
-                class="gold-pill-btn"
-                type="button"
+            </div>
+
+        </div>
+
+
+
+        <!-- User message -->
+
+        <div class="message-row user-row">
+
+            <div class="user-message">
+
+                <span class="message-text">
+                    هذا من لطفك 🌸
+                </span>
+
+                <span class="message-time">
+                    21:17
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Robaty message -->
+
+        <div class="message-row rob​aty-row">
+
+            <div class="message-meta">
+
+                <span class="message-time">
+                    21:17
+                </span>
+
+                <div class="mini-profile">
+
+                    <img
+                        src="rob​aty-profile.jpg"
+                        alt="Robaty"
+                    >
+
+                </div>
+
+                <span class="mini-name">
+                    Robaty
+                </span>
+
+                <span class="mini-presence">
+
+                    <span></span>
+
+                </span>
+
+            </div>
+
+
+            <div class="rob​aty-message">
+
+                هذا من توفقك الرفيع، كوني أكيدة أني هنا باش
+                نسمع ليك ونشاركك أي موضوع، كيوماك،
+                سواء كان على الثقافة المغربية، الموضة،
+                أو أي حاجة تانية.
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         COMPOSER
+    ====================================================== -->
+
+    <footer class="composer">
+
+
+        <!-- Text field -->
+
+        <div class="input-panel">
+
+            <input
+                type="text"
+                class="message-input"
+                placeholder="اكتبي رسالتك لـ Robaty هنا..."
+                autocomplete="off"
             >
+
+        </div>
+
+
+
+        <!-- Action buttons -->
+
+        <div class="action-panel">
+
+
+            <!-- Images -->
+
+            <button class="action-button">
 
                 <i class="fa-regular fa-image"></i>
 
                 <span>
-                    شوفي تصاوري ليوم
+                    إرسال الصور
                 </span>
 
             </button>
 
-        </section>
 
 
+            <!-- Voice -->
 
-        <!-- =====================================================
-             CHAT AREA
-             ===================================================== -->
+            <button class="action-button">
 
-        <main class="chat-area">
+                <i class="fa-solid fa-microphone"></i>
 
+                <span>
+                    تسجيل صوتي
+                </span>
 
-            <!-- ================= USER MESSAGE ================= -->
+            </button>
 
-            <div class="message user-msg">
 
-                <div class="bubble-gold-border">
 
-                    سلام حبيبتي 👑
-                    <br>
-                    شخبارك اليوم؟
+            <!-- Send -->
 
-                    <span class="msg-time">
-                        21:16
-                    </span>
+            <button class="action-button send-button">
 
-                </div>
+                <i class="fa-solid fa-paper-plane"></i>
 
-            </div>
+                <span>
+                    إرسال
+                </span>
 
+            </button>
 
 
-            <!-- ================= ROBATY MESSAGE ================= -->
+        </div>
 
-            <div class="message bot-msg">
+    </footer>
 
-                <div class="msg-header">
+</div>
 
-                    <img
-                        src="./robaty-profile.jpg"
-                        class="mini-avatar"
-                        alt="Robaty"
-                    >
-
-                    <span class="bot-label">
-                        Robaty
-                    </span>
-
-                    <!-- Small official presence -->
-                    <span class="mini-presence">
-                        <span></span>
-                    </span>
-
-                    <span class="msg-time header-time">
-                        21:16
-                    </span>
-
-                </div>
-
-
-                <div class="bubble-dark-gold">
-
-                    هادي كفرحتني، بزاف الحمد لله اللي راكي بخير،
-                    طاقة إيجابية للجمعة المباركة.
-                    كاين شي حاجة تقدر تعاونك بها اليوم باش تكملي نهارك ببهجة؟
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ================= USER MESSAGE ================= -->
-
-            <div class="message user-msg">
-
-                <div class="bubble-gold-border">
-
-                    هذا من لطفك 🌸
-                    <br>
-                    فرحتيني بزاف.
-
-                    <span class="msg-time">
-                        21:17
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ================= ROBATY MESSAGE ================= -->
-
-            <div class="message bot-msg">
-
-                <div class="msg-header">
-
-                    <img
-                        src="./robaty-profile.jpg"
-                        class="mini-avatar"
-                        alt="Robaty"
-                    >
-
-                    <span class="bot-label">
-                        Robaty
-                    </span>
-
-                    <span class="mini-presence">
-                        <span></span>
-                    </span>
-
-                    <span class="msg-time header-time">
-                        21:17
-                    </span>
-
-                </div>
-
-
-                <div class="bubble-dark-gold">
-
-                    هذا من توفقك الرفيع، كوني أكيدة أني هنا
-                    باش نسمع ليك ونشاركك أي موضوع،
-                    كيوماك، سواء كان على الثقافة المغربية،
-                    الموضة، أو أي حاجة تانية.
-
-                </div>
-
-            </div>
-
-
-        </main>
-
-
-
-        <!-- =====================================================
-             BOTTOM COMPOSER
-             ===================================================== -->
-
-        <footer class="bottom-controls">
-
-
-            <!-- =================================================
-                 SINGLE COMPOSER PANEL
-                 ================================================= -->
-
-            <div class="composer-panel">
-
-
-                <!-- Writing area -->
-
-                <div class="input-wrapper">
-
-                    <input
-                        type="text"
-                        class="gold-input"
-                        placeholder="اكتبي رسالتك لـ Robaty هنا..."
-                        aria-label="اكتبي رسالتك لـ Robaty"
-                    >
-
-                </div>
-
-
-
-                <!-- =================================================
-                     THREE ACTION BUTTONS
-
-                     width = approximately 70%
-                     of composer panel
-                     ================================================= -->
-
-                <div class="ornate-action-bar">
-
-
-                    <!-- SEND -->
-                    <button
-                        class="ornate-action-btn send-highlight"
-                        type="button"
-                        aria-label="إرسال"
-                    >
-
-                        <i class="fa-solid fa-paper-plane"></i>
-
-                        <span>
-                            إرسال
-                        </span>
-
-                    </button>
-
-
-
-                    <!-- VOICE -->
-                    <button
-                        class="ornate-action-btn"
-                        type="button"
-                        aria-label="تسجيل صوتي"
-                    >
-
-                        <i class="fa-solid fa-microphone"></i>
-
-                        <span>
-                            تسجيل صوتي
-                        </span>
-
-                    </button>
-
-
-
-                    <!-- IMAGE -->
-                    <button
-                        class="ornate-action-btn"
-                        type="button"
-                        aria-label="إرسال الصور"
-                    >
-
-                        <i class="fa-regular fa-image"></i>
-
-                        <span>
-                            إرسال الصور
-                        </span>
-
-                    </button>
-
-
-                </div>
-
-            </div>
-
-        </footer>
-
-
-    </div>
 
 </body>
-
 </html>
