@@ -1,1346 +1,290 @@
-/* ==========================================================
-   ROBATY
-   V3 — GOLD / BLACK MOROCCAN LUXURY CHAT
-   STATIC VISUAL FOUNDATION
-   NO JAVASCRIPT
-   NO ANIMATION
-   ========================================================== */
-
-
-/* ==========================================================
-   VARIABLES
-   ========================================================== */
-
+/* ==========================================================================
+   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والمسافات
+   ========================================================================== */
 :root {
-
-    --black-0: #020202;
-    --black-1: #050403;
-    --black-2: #0b0805;
-    --black-3: #120d08;
-
-    --gold-1: #fff0b0;
-    --gold-2: #f5cf72;
-    --gold-3: #dca944;
-    --gold-4: #9b681d;
-    --gold-5: #5a3910;
-
-    --gold-border: rgba(226, 171, 69, 0.72);
-
-    --gold-glow:
-        rgba(231, 174, 67, 0.32);
-
-    --text-main: #f7eee0;
-    --text-soft: #d6c6ae;
-
-    --green:
-        #35f29b;
-
-    --green-dark:
-        #0b6e48;
-
-    --message-bg:
-        rgba(8, 6, 4, 0.92);
-
-    --user-bg:
-        rgba(76, 50, 23, 0.55);
-
-    --font:
-        'Cairo',
-        sans-serif;
+    --bg-black: #050302;
+    --gold-bright: #e5b35c;
+    --gold-glow: #ffaa33;
+    --gold-dark: #6e4a1b;
+    --gold-border: rgba(229, 179, 92, 0.45);
+    --gold-box-glow: rgba(229, 179, 92, 0.25);
+    --bubble-bg: #110c08;
+    --text-gold-light: #f7e8cf;
+    --font-family: 'Cairo', sans-serif;
 }
-
-
-/* ==========================================================
-   RESET
-   ========================================================== */
 
 * {
-
     box-sizing: border-box;
-
     margin: 0;
-
     padding: 0;
-
-    font-family: var(--font);
-
-    -webkit-tap-highlight-color: transparent;
+    font-family: var(--font-family);
 }
 
-
-html,
 body {
-
-    width: 100%;
-
-    height: 100%;
-
-    background:
-        #000;
-
-    overflow: hidden;
-}
-
-
-body {
-
+    background-color: #000;
     display: flex;
-
     justify-content: center;
-
     align-items: center;
+    min-height: 100vh;
 }
 
-
-/* ==========================================================
-   MAIN APP
-   ========================================================== */
-
-.app-shell {
-
-    position: relative;
-
+/* ==========================================================================
+   إطار الشاشة المصمم تماماً بروح وطريقة إطار صورة Robaty الدائري
+   ========================================================================== */
+/* 1. الإطار الذهبي الخارجي الأول */
+.avatar-style-outer-frame {
     width: 100%;
-
     max-width: 430px;
-
     height: 100vh;
-
-    max-height: 930px;
-
-    overflow: hidden;
-
+    max-height: 912px;
+    padding: 3px;
+    border: 1.5px solid var(--gold-bright);
+    border-radius: 46px;
+    background: #000;
+    /* توهج سفلي مقتبس من الإطار السفلي لصورة Robaty */
+    box-shadow: 0 10px 30px rgba(229, 179, 92, 0.25);
     display: flex;
-
-    flex-direction: column;
-
-    color: var(--text-main);
-
-    background:
-
-        radial-gradient(
-            circle at 50% 18%,
-            rgba(112, 68, 18, 0.23),
-            transparent 32%
-        ),
-
-        radial-gradient(
-            circle at 50% 70%,
-            rgba(74, 42, 10, 0.12),
-            transparent 42%
-        ),
-
-        linear-gradient(
-            135deg,
-            #080604,
-            #020202 55%,
-            #080604
-        );
-
-    border-radius: 34px;
-
-    box-shadow:
-
-        0 0 0 1px rgba(255, 220, 130, 0.25),
-
-        0 0 35px rgba(224, 165, 58, 0.22),
-
-        inset 0 0 45px rgba(0, 0, 0, 0.9);
 }
 
-
-/* ==========================================================
-   LUXURY OUTER FRAME
-   ========================================================== */
-
-.frame-line {
-
-    position: absolute;
-
-    pointer-events: none;
-
-    z-index: 20;
-
-    border-radius: 34px;
-}
-
-
-.frame-line-outer {
-
-    inset: 4px;
-
-    border:
-        2px solid
-        rgba(225, 174, 75, 0.86);
-
-    box-shadow:
-
-        0 0 10px
-        rgba(255, 190, 65, 0.35),
-
-        inset 0 0 8px
-        rgba(255, 205, 95, 0.22);
-}
-
-
-.frame-line-inner {
-
-    inset: 10px;
-
-    border:
-        1px solid
-        rgba(143, 92, 28, 0.75);
-
-    border-radius: 28px;
-
-    box-shadow:
-
-        inset 0 0 14px
-        rgba(194, 133, 35, 0.12);
-}
-
-
-/* ==========================================================
-   MOROCCAN CORNERS
-   ========================================================== */
-
-.moroccan-corner {
-
-    position: absolute;
-
-    width: 64px;
-
-    height: 64px;
-
-    z-index: 21;
-
-    pointer-events: none;
-
-    opacity: 0.65;
-}
-
-
-/* geometric corner construction */
-
-.moroccan-corner::before,
-.moroccan-corner::after {
-
-    content: "";
-
-    position: absolute;
-
-    border:
-        1px solid
-        rgba(218, 165, 60, 0.65);
-}
-
-
-/* outer shape */
-
-.moroccan-corner::before {
-
-    width: 42px;
-
-    height: 42px;
-
-    transform:
-        rotate(45deg);
-
-}
-
-
-/* inner detail */
-
-.moroccan-corner::after {
-
-    width: 25px;
-
-    height: 25px;
-
-    transform:
-        rotate(45deg);
-
-}
-
-
-/* positions */
-
-.corner-tl {
-
-    top: 28px;
-
-    left: 20px;
-}
-
-
-.corner-tr {
-
-    top: 28px;
-
-    right: 20px;
-}
-
-
-.corner-bl {
-
-    bottom: 28px;
-
-    left: 20px;
-}
-
-
-.corner-br {
-
-    bottom: 28px;
-
-    right: 20px;
-}
-
-
-.corner-tl::before,
-.corner-tl::after {
-
-    top: 0;
-
-    left: 0;
-}
-
-
-.corner-tr::before,
-.corner-tr::after {
-
-    top: 0;
-
-    right: 0;
-}
-
-
-.corner-bl::before,
-.corner-bl::after {
-
-    bottom: 0;
-
-    left: 0;
-}
-
-
-.corner-br::before,
-.corner-br::after {
-
-    bottom: 0;
-
-    right: 0;
-}
-
-
-/* ==========================================================
-   TOP BAR
-   ========================================================== */
-
-.top-bar {
-
-    flex: 0 0 auto;
-
-    position: relative;
-
-    z-index: 30;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding:
-        18px 34px 4px;
-}
-
-
-/* ==========================================================
-   TOP BUTTONS
-   ========================================================== */
-
-.top-control {
-
-    width: 54px;
-
-    height: 54px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(220, 169, 68, 0.62);
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(66, 43, 18, 0.55),
-            rgba(10, 7, 4, 0.92)
-        );
-
-    color:
-        var(--gold-2);
-
-    font-size: 21px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    box-shadow:
-
-        0 0 12px
-        rgba(223, 166, 54, 0.18),
-
-        inset 0 0 8px
-        rgba(255, 197, 81, 0.08);
-}
-
-
-/* ==========================================================
-   PROFILE
-   ========================================================== */
-
-.profile-section {
-
-    flex: 0 0 auto;
-
-    position: relative;
-
-    z-index: 10;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    padding:
-        0 18px 3px;
-
-    margin-top: -3px;
-}
-
-
-/* ==========================================================
-   AVATAR
-   ========================================================== */
-
-.avatar-stage {
-
-    position: relative;
-
-    width: 250px;
-
-    height: 250px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-
-/* subtle halo */
-
-.avatar-halo {
-
-    position: absolute;
-
-    width: 242px;
-
-    height: 242px;
-
-    border-radius: 50%;
-
-    box-shadow:
-
-        0 0 28px
-        rgba(235, 174, 66, 0.25),
-
-        0 0 65px
-        rgba(179, 113, 25, 0.13);
-}
-
-
-/* golden frame */
-
-.avatar-ring {
-
-    position: relative;
-
-    width: 236px;
-
-    height: 236px;
-
-    padding: 5px;
-
-    border-radius: 50%;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #fff1ae 0%,
-            #e8b75c 20%,
-            #8a5516 50%,
-            #f3c86e 78%,
-            #70410e 100%
-        );
-
-    box-shadow:
-
-        0 0 18px
-        rgba(246, 186, 70, 0.5),
-
-        0 0 42px
-        rgba(195, 126, 25, 0.24);
-}
-
-
-.rob​aty-avatar {
-
+/* 2. الفاصل الغامق + الإطار الذهبي الداخلي (Double Ring Effect) */
+.avatar-style-inner-frame {
     width: 100%;
-
     height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-
-    border-radius: 50%;
-
-    border:
-        2px solid
-        #080604;
-}
-
-
-/* ==========================================================
-   OFFICIAL PRESENCE INDICATOR
-   ========================================================== */
-
-.presence-indicator {
-
-    position: absolute;
-
-    right: 0;
-
-    bottom: 18px;
-
-    width: 62px;
-
-    height: 62px;
-
-    border-radius: 50%;
-
-    background:
-        var(--green);
-
-    border:
-        5px solid
-        #090805;
-
-    box-shadow:
-
-        0 0 0 2px
-        rgba(54, 240, 154, 0.75),
-
-        0 0 20px
-        rgba(52, 242, 154, 0.62);
-}
-
-
-/* black center */
-
-.presence-core {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    width: 31px;
-
-    height: 31px;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        #07120e;
-
-    box-shadow:
-        inset 0 0 8px
-        rgba(0, 0, 0, 0.9);
-}
-
-
-/* ==========================================================
-   IDENTITY
-   ========================================================== */
-
-.identity {
-
-    text-align: center;
-
-    margin-top: -2px;
-}
-
-
-.rob​aty-name {
-
-    font-size: 29px;
-
-    line-height: 1.05;
-
-    font-weight: 700;
-
-    color: #fff;
-
-    letter-spacing: 0.2px;
-
-    text-shadow:
-        0 2px 10px rgba(0,0,0,0.8);
-}
-
-
-/* divider */
-
-.identity-divider {
-
+    padding: 4px;
+    background: #060402; /* الفاصل الغامق بين الإطارين */
+    border: 1.5px solid rgba(229, 179, 92, 0.7);
+    border-radius: 43px;
     display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 9px;
-
-    margin-top: 4px;
 }
 
+/* الإطار الرئيسي للهاتف المحتفظ بكافة تفاصيله الأصلية */
+.app-container {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
+    border-radius: 39px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* الزخارف الأندلسية في الزوايا */
+.corner-ornament {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--gold-border);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+/* الشريط العلوي */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px 0px;
+    z-index: 3;
+}
+
+.ornate-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(30, 20, 10, 0.8);
+    border: 1px solid var(--gold-bright);
+    color: var(--gold-bright);
+    box-shadow: 0 0 10px var(--gold-box-glow);
+    cursor: pointer;
+}
+
+/* قسم الصورة الشخصية المرفوع للأعلى بالكامل */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 5px;
+    margin-top: -28px;
+    z-index: 2;
+}
+
+/* تكبير الصورة بنسبة 120% إضافية مع تقليل الهوامش */
+.avatar-container {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glowing-ring {
+    width: 226px;
+    height: 226px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #ffc875, #805018);
+    box-shadow: 0 0 40px rgba(255, 170, 51, 0.6);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* الهوية مع ضغط المسافات تماماً كالصورة */
+.identity-info {
+    text-align: center;
+    margin-top: -6px;
+}
+
+.bot-name {
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.cyan-signal {
+    font-size: 14px;
+}
 
 .divider-line {
-
-    width: 24px;
-
-    height: 1px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--gold-3),
-            transparent
-        );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 2px;
 }
 
+.line {
+    height: 1px;
+    width: 20px;
+    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+}
 
 .tagline {
-
-    font-size: 15px;
-
-    color:
-        var(--gold-2);
-
-    white-space: nowrap;
-
-    text-shadow:
-        0 0 8px
-        rgba(224, 168, 61, 0.18);
+    color: var(--gold-bright);
+    font-size: 13px;
 }
 
-
-/* ==========================================================
-   DAILY PHOTOS
-   ========================================================== */
-
-.daily-photos-button {
-
-    margin-top: 7px;
-
-    min-width: 220px;
-
-    height: 44px;
-
-    padding:
-        0 22px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 9px;
-
-    border-radius: 23px;
-
-    border:
-        1px solid
-        var(--gold-3);
-
-    color:
-        var(--gold-1);
-
-    background:
-
-        linear-gradient(
-            180deg,
-            rgba(73, 47, 19, 0.58),
-            rgba(19, 12, 6, 0.92)
-        );
-
-    box-shadow:
-
-        0 0 13px
-        rgba(221, 163, 48, 0.14),
-
-        inset 0 0 10px
-        rgba(240, 184, 73, 0.08);
-
-    font-size: 14px;
+.gold-pill-btn {
+    margin-top: 6px;
+    background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
+    border: 1px solid var(--gold-bright);
+    color: var(--text-gold-light);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
+    cursor: pointer;
 }
 
-
-.daily-photos-button i {
-
-    font-size: 16px;
-}
-
-
-/* ==========================================================
-   CHAT AREA
-   ========================================================== */
-
+/* المحادثة والفقاعات */
 .chat-area {
-
-    flex: 1 1 auto;
-
-    min-height: 0;
-
-    position: relative;
-
-    z-index: 5;
-
+    flex: 1;
+    padding: 10px 15px;
     overflow-y: auto;
-
-    padding:
-        13px 27px 10px;
-
     display: flex;
-
     flex-direction: column;
-
-    gap: 15px;
-
-    scrollbar-width: none;
+    gap: 10px;
+    z-index: 2;
 }
 
-
-.chat-area::-webkit-scrollbar {
-
-    display: none;
-}
-
-
-/* ==========================================================
-   MESSAGE ROWS
-   ========================================================== */
-
-.message-row {
-
-    display: flex;
-
-    width: 100%;
-}
-
-
-.user-row {
-
-    justify-content: flex-start;
-}
-
-
-.rob​aty-row {
-
-    justify-content: flex-end;
-
-    flex-direction: column;
-
-    align-items: flex-end;
-}
-
-
-/* ==========================================================
-   USER MESSAGE
-   ========================================================== */
-
-.user-message {
-
-    max-width: 73%;
-
-    padding:
-        10px 15px 7px;
-
-    border-radius:
-        16px 16px 3px 16px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(84, 55, 24, 0.72),
-            rgba(33, 21, 11, 0.95)
-        );
-
-    border:
-        1px solid
-        rgba(211, 157, 55, 0.55);
-
-    box-shadow:
-
-        0 4px 14px
-        rgba(0,0,0,0.35);
-}
-
-
-.message-text {
-
-    display: block;
-
-    color:
-        var(--text-main);
-
-    font-size: 14px;
-
-    line-height: 1.65;
-}
-
-
-.message-time {
-
-    display: block;
-
-    color:
-        #927c60;
-
-    font-size: 9px;
-
-    line-height: 1;
-
-    margin-top: 3px;
-}
-
-
-/* ==========================================================
-   ROBATY MESSAGE HEADER
-   ========================================================== */
-
-.message-meta {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    margin-bottom: 5px;
-
-    direction: ltr;
-}
-
-
-.mini-profile {
-
-    width: 30px;
-
-    height: 30px;
-
-    border-radius: 50%;
-
-    padding: 1px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f0c46d,
-            #754710
-        );
-}
-
-
-.mini-profile img {
-
-    width: 100%;
-
-    height: 100%;
-
-    display: block;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-}
-
-
-.mini-name {
-
+.message { display: flex; flex-direction: column; max-width: 85%; }
+.user-msg { align-self: flex-start; }
+.bot-msg { align-self: flex-end; width: 100%; }
+
+.bubble-gold-border {
+    background: rgba(25, 16, 9, 0.95);
+    border: 1px solid var(--gold-bright);
+    border-radius: 15px 15px 15px 2px;
+    padding: 8px 14px;
     font-size: 12px;
-
-    font-weight: 700;
-
-    color:
-        var(--gold-2);
+    color: var(--text-gold-light);
+    box-shadow: 0 0 10px rgba(229, 179, 92, 0.15);
 }
 
+.bubble-dark-gold {
+    background: rgba(15, 10, 6, 0.95);
+    border: 1px solid var(--gold-border);
+    border-radius: 15px 2px 15px 15px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #e0e0e0;
+    line-height: 1.6;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
 
-.mini-presence {
-
-    width: 12px;
-
-    height: 12px;
-
+.msg-header {
     display: flex;
-
-    justify-content: center;
-
     align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
 
+.mini-avatar {
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-
-    background:
-        var(--green);
-
-    box-shadow:
-        0 0 8px
-        rgba(52, 242, 154, 0.55);
+    border: 1px solid var(--gold-bright);
 }
 
+.bot-label { font-size: 11px; color: var(--gold-bright); font-weight: bold; }
+.msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
 
-.mini-presence span {
-
-    width: 6px;
-
-    height: 6px;
-
-    border-radius: 50%;
-
-    background:
-        #07120e;
+/* التحكم السفلي */
+.bottom-controls {
+    padding: 10px 15px 15px;
+    background: linear-gradient(0deg, #050302 80%, transparent 100%);
+    z-index: 2;
 }
 
-
-/* ==========================================================
-   ROBATY MESSAGE
-   ========================================================== */
-
-.rob​aty-message {
-
+.gold-input {
     width: 100%;
-
-    padding:
-        12px 17px;
-
-    border-radius:
-        17px 3px 17px 17px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(13, 10, 7, 0.97),
-            rgba(5, 4, 3, 0.98)
-        );
-
-    border:
-        1px solid
-        rgba(188, 132, 38, 0.52);
-
-    color:
-        #eee7dc;
-
-    font-size: 14px;
-
-    line-height: 1.75;
-
-    text-align: right;
-
-    box-shadow:
-
-        0 5px 20px
-        rgba(0,0,0,0.45),
-
-        inset 0 0 14px
-        rgba(185, 127, 32, 0.035);
-}
-
-
-/* ==========================================================
-   COMPOSER
-   ========================================================== */
-
-.composer {
-
-    position: relative;
-
-    z-index: 15;
-
-    flex: 0 0 auto;
-
-    padding:
-        8px 27px 20px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(4, 3, 2, 0.72) 20%,
-            rgba(4, 3, 2, 0.98)
-        );
-}
-
-
-/* ==========================================================
-   INPUT PANEL
-   ========================================================== */
-
-.input-panel {
-
-    width: 100%;
-
-    height: 58px;
-
-    padding: 3px;
-
-    border-radius: 29px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(239, 190, 91, 0.9),
-            rgba(111, 69, 20, 0.65),
-            rgba(239, 190, 91, 0.65)
-        );
-
-    box-shadow:
-
-        0 0 14px
-        rgba(221, 162, 51, 0.18);
-}
-
-
-.message-input {
-
-    width: 100%;
-
-    height: 100%;
-
-    border: none;
-
+    background: rgba(18, 11, 6, 0.95);
+    border: 1px solid var(--gold-bright);
+    border-radius: 25px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 12px;
     outline: none;
-
-    border-radius: 26px;
-
-    padding:
-        0 22px;
-
-    direction: rtl;
-
-    text-align: right;
-
-    color:
-        var(--text-main);
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #120c06,
-            #080503
-        );
-
-    font-size: 14px;
-
-    box-shadow:
-        inset 0 0 14px
-        rgba(0,0,0,0.85);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(229,179,92,0.15);
 }
 
-
-.message-input::placeholder {
-
-    color:
-        #927d64;
-
-    opacity: 1;
-}
-
-
-/* ==========================================================
-   ACTION PANEL
-   ========================================================== */
-
-.action-panel {
-
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 6px;
-
-    margin-top: 8px;
-}
-
-
-/* ==========================================================
-   ACTION BUTTONS
-   ========================================================== */
-
-.action-button {
-
-    min-width: 0;
-
-    height: 82px;
-
-    border-radius: 23px;
-
-    border:
-        1px solid
-        rgba(219, 166, 62, 0.75);
-
-    background:
-
-        linear-gradient(
-            180deg,
-            rgba(43, 28, 12, 0.95),
-            rgba(10, 7, 4, 0.98)
-        );
-
-    color:
-        var(--gold-1);
-
+.ornate-action-bar {
     display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+}
 
+.ornate-action-btn {
+    flex: 1;
+    background: linear-gradient(180deg, #24180b 0%, #0d0804 100%);
+    border: 1px solid var(--gold-bright);
+    border-radius: 20px;
+    padding: 8px 5px;
+    color: var(--text-gold-light);
+    display: flex;
     flex-direction: column;
-
-    justify-content: center;
-
     align-items: center;
-
-    gap: 6px;
-
-    box-shadow:
-
-        0 0 10px
-        rgba(223, 165, 52, 0.12),
-
-        inset 0 0 10px
-        rgba(230, 173, 61, 0.05);
+    gap: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(229,179,92,0.15);
 }
 
-
-/* icons */
-
-.action-button i {
-
-    font-size: 24px;
-
-    color:
-        var(--gold-1);
-
-    text-shadow:
-        0 0 8px
-        rgba(255, 209, 112, 0.25);
-}
-
-
-/* labels */
-
-.action-button span {
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    color:
-        var(--text-soft);
-
-    white-space: nowrap;
-}
-
-
-/* ==========================================================
-   SEND BUTTON
-   ========================================================== */
-
-.send-button {
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #f4ce78 0%,
-            #e4b451 36%,
-            #a96d1d 100%
-        );
-
-    border:
-        1px solid
-        #ffe09a;
-
-    color:
-        #fff;
-
-    box-shadow:
-
-        0 0 18px
-        rgba(241, 188, 76, 0.42),
-
-        inset 0 0 15px
-        rgba(255, 239, 177, 0.25);
-}
-
-
-.send-button i {
-
-    color:
-        #fff;
-
-    font-size: 26px;
-
-    filter:
-        drop-shadow(
-            0 2px 5px
-            rgba(74, 43, 8, 0.45)
-        );
-}
-
-
-.send-button span {
-
-    color:
-        #fffaf0;
-
-    font-weight: 700;
-}
-
-
-/* ==========================================================
-   SMALL MOBILE SCREENS
-   ========================================================== */
-
-@media (max-width: 380px) {
-
-    .top-bar {
-
-        padding-left: 25px;
-
-        padding-right: 25px;
-    }
-
-
-    .top-control {
-
-        width: 48px;
-
-        height: 48px;
-    }
-
-
-    .avatar-stage {
-
-        width: 220px;
-
-        height: 220px;
-    }
-
-
-    .avatar-ring {
-
-        width: 210px;
-
-        height: 210px;
-    }
-
-
-    .avatar-halo {
-
-        width: 218px;
-
-        height: 218px;
-    }
-
-
-    .presence-indicator {
-
-        width: 56px;
-
-        height: 56px;
-
-        bottom: 15px;
-    }
-
-
-    .presence-core {
-
-        width: 27px;
-
-        height: 27px;
-    }
-
-
-    .rob​aty-name {
-
-        font-size: 26px;
-    }
-
-
-    .chat-area {
-
-        padding-left: 20px;
-
-        padding-right: 20px;
-    }
-
-
-    .composer {
-
-        padding-left: 20px;
-
-        padding-right: 20px;
-    }
-
-
-    .action-button {
-
-        height: 74px;
-    }
-
-
-    .action-button i {
-
-        font-size: 21px;
-    }
-
-
-    .action-button span {
-
-        font-size: 10px;
-    }
+.send-highlight {
+    background: linear-gradient(135deg, #e5b35c 0%, #7c4c12 100%);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(229, 179, 92, 0.4);
 }
