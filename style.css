@@ -1,14 +1,12 @@
 /* ==========================================================================
-   Robaty Companion UI - Micro Precision Tweaks
+   Robaty Companion UI - Exact Match Header Polish
    ========================================================================== */
 :root {
     --bg-black: #050302;
     --gold-bright: #e5b35c;
     --gold-glow: #ffaa33;
-    --gold-dark: #6e4a1b;
     --gold-border: rgba(229, 179, 92, 0.45);
     --gold-box-glow: rgba(229, 179, 92, 0.25);
-    --bubble-bg: #110c08;
     --text-gold-light: #f7e8cf;
     --font-family: 'Cairo', sans-serif;
 }
@@ -45,7 +43,7 @@ body {
     box-shadow: 0 0 45px rgba(229, 179, 92, 0.35);
 }
 
-/* الزخارف الأندلسية في الزوايا السفلية */
+/* الزخارف الجانبية السفلية */
 .corner-ornament {
     position: absolute;
     width: 70px;
@@ -53,7 +51,7 @@ body {
     border: 1px solid var(--gold-border);
     pointer-events: none;
     z-index: 1;
-    opacity: 0.4;
+    opacity: 0.35;
 }
 .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; }
 .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; }
@@ -63,50 +61,51 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 25px 0px;
+    padding: 20px 25px 0px;
     z-index: 3;
 }
 
 .ornate-btn {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background: rgba(30, 20, 10, 0.8);
+    background: rgba(20, 12, 6, 0.7);
     border: 1px solid var(--gold-bright);
     color: var(--gold-bright);
-    font-size: 15px;
-    box-shadow: 0 0 12px var(--gold-box-glow);
+    font-size: 16px;
+    box-shadow: 0 0 10px var(--gold-box-glow);
     cursor: pointer;
 }
 
-/* قسم البروفايل */
+/* ==========================================================================
+   قسم الهيدر والبروفايل (تطابق 100% مع الصورة المطلوب تنفيذها)
+   ========================================================================== */
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px 0px;
-    margin-top: -30px;
+    padding: 0 20px;
+    margin-top: -15px;
     z-index: 2;
 }
 
-/* 1. التكبير بنسبة 15% باتجاه الأسفل والحفاظ على الهامش العلوي */
+/* حجم الصورة والإطار الفخم بالضبط */
 .avatar-container {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 235px;
+    height: 235px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform-origin: top center; /* تثبيت أعلى الدائرة والتمدد نحو الأسفل */
 }
 
 .glowing-ring {
-    width: 192px;
-    height: 192px;
+    width: 228px;
+    height: 228px;
     border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(135deg, #ffc875, #805018);
-    box-shadow: 0 0 32px rgba(255, 170, 51, 0.55);
+    padding: 5px;
+    background: linear-gradient(145deg, #fce0a6 0%, #b37a28 60%, #4a2d08 100%);
+    box-shadow: 0 0 40px rgba(229, 179, 92, 0.45);
 }
 
 .avatar-img {
@@ -116,76 +115,75 @@ body {
     object-fit: cover;
 }
 
-/* تقريب اسم Robaty للأسفل من عبارة "مغربية وأفتخر" */
+/* ضبط النصوص واسم Robaty والألوان بالضبط */
 .identity-info {
     text-align: center;
-    margin-top: 4px; /* تنزيل الاسم قليلاً */
+    margin-top: 8px;
 }
 
 .bot-name {
-    font-size: 22px;
-    color: #fff;
-    font-weight: bold;
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     direction: ltr;
-    margin-bottom: -2px; /* إلغاء الفراغ بين الاسم والوصف */
+    letter-spacing: 0.5px;
 }
 
-.green-glow-pulse {
+.live-signal {
     font-size: 16px;
-    filter: drop-shadow(0 0 8px #00ff66);
+    letter-spacing: -2px;
+    filter: drop-shadow(0 0 6px rgba(255, 50, 50, 0.8));
 }
 
 .divider-line {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-}
-
-.moroccan-star {
-    color: var(--gold-bright);
-    font-size: 12px;
-    line-height: 1;
+    gap: 12px;
+    margin-top: 4px;
 }
 
 .line {
     height: 1px;
-    width: 25px;
-    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    width: 35px;
+    background: linear-gradient(90deg, transparent, rgba(229, 179, 92, 0.6), transparent);
 }
 
+/* تفتيح لون "مغربية و أفتخر" حسب الطلب */
 .tagline {
-    color: var(--text-gold-light);
-    font-size: 13px;
+    color: #f0d8a8; /* لون ذهبي ناعم ومفتوح جداً وواضح */
+    font-size: 14.5px;
     font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 8px rgba(240, 216, 168, 0.3);
 }
 
 .gold-pill-btn {
-    margin-top: 6px;
-    background: linear-gradient(180deg, rgba(43, 29, 14, 0.9) 0%, rgba(18, 11, 4, 0.9) 100%);
-    border: 1.5px solid var(--gold-bright);
+    margin-top: 12px;
+    background: linear-gradient(180deg, rgba(35, 23, 11, 0.85) 0%, rgba(12, 7, 3, 0.85) 100%);
+    border: 1.2px solid var(--gold-bright);
     color: var(--text-gold-light);
-    padding: 5px 20px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 7px 26px;
+    border-radius: 22px;
+    font-size: 13px;
     font-weight: 600;
-    box-shadow: 0 0 12px rgba(229, 179, 92, 0.25);
+    box-shadow: 0 0 15px rgba(229, 179, 92, 0.2);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 /* ==========================================================================
-   منطقة المحادثة (تستفيد من الارتفاع المكتسب)
+   منطقة المحادثة والأزرار السفلية
    ========================================================================== */
 .chat-area {
-    flex: 1; /* كسب المساحة المفرغة تلقائياً */
-    padding: 10px 22px;
+    flex: 1;
+    padding: 15px 22px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -215,7 +213,6 @@ body {
     padding: 10px 16px;
     font-size: 13px;
     color: var(--text-gold-light);
-    box-shadow: 0 0 10px rgba(229, 179, 92, 0.15);
 }
 
 .bubble-dark-gold {
@@ -226,7 +223,6 @@ body {
     font-size: 13.5px;
     color: #e8e8e8;
     line-height: 1.6;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
 }
 
 .msg-header {
@@ -255,9 +251,6 @@ body {
     margin-top: 3px;
 }
 
-/* ==========================================================================
-   التحكم السفلي (تقليص الارتفاع إلى 70%)
-   ========================================================================== */
 .bottom-controls {
     padding: 8px 22px 14px;
     background: linear-gradient(0deg, #050302 85%, transparent 100%);
@@ -268,20 +261,15 @@ body {
     width: 100%;
 }
 
-.input-wrapper {
-    width: 100%;
-}
-
 .gold-input {
     width: 100%;
     background: rgba(18, 11, 6, 0.95);
     border: 1px solid var(--gold-bright);
     border-radius: 25px;
-    padding: 10px 18px; /* تقليل بسيط في ارتفاع الإدخال */
+    padding: 10px 18px;
     color: #fff;
     font-size: 13px;
     outline: none;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(229,179,92,0.12);
     text-align: right;
 }
 
@@ -292,27 +280,24 @@ body {
     width: 100%;
 }
 
-/* 2. تقليل ارتفاع الأزرار السفلية (ردها 70% من سمكها السابق) */
 .ornate-action-btn {
     flex: 1;
     background: linear-gradient(180deg, #24180b 0%, #0d0804 100%);
     border: 1px solid var(--gold-bright);
     border-radius: 18px;
-    padding: 5px 4px; /* تقليص الحشوة العمودية لخفض الارتفاع */
+    padding: 5px 4px;
     color: var(--text-gold-light);
     display: flex;
-    flex-direction: row; /* ترتيب الأيقونة مع النص أفقياً لإنقاص الارتفاع */
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 6px;
     font-size: 11px;
-    height: 38px; /* تحديد ارتفاع محدد وأنيق 38px بدلاً من 52px */
+    height: 38px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(229,179,92,0.12);
 }
 
 .send-highlight {
     background: linear-gradient(135deg, #e5b35c 0%, #7c4c12 100%);
     color: #fff;
-    box-shadow: 0 0 14px rgba(229, 179, 92, 0.35);
 }
