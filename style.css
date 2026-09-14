@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والمسافات
+   Luxury Gold Moroccan Theme - التحديث الملكي بالنقوش الموريسكية
    ========================================================================== */
 :root {
     --bg-black: #050302;
@@ -28,50 +28,92 @@ body {
     min-height: 100vh;
 }
 
-/* الإطار الذهبي الخارجي اللامع المضاف حديثاً */
+/* ==========================================================================
+   إطار الشاشة المصمم بطريقة إطار صورة Robaty
+   ========================================================================== */
+/* 1. الإطار الذهبي الخارجي الأول */
+.avatar-style-outer-frame,
 .outer-gold-frame {
     width: 100%;
-    max-width: 426px;
+    max-width: 430px;
     height: 100vh;
-    max-height: 908px;
-    padding: 6px;
-    border: 2px solid var(--gold-bright);
+    max-height: 912px;
+    padding: 3px;
+    border: 1.5px solid var(--gold-bright);
     border-radius: 46px;
     background: #000;
-    box-shadow: 0 0 25px rgba(229, 179, 92, 0.4), inset 0 0 15px rgba(229, 179, 92, 0.2);
+    box-shadow: 0 10px 30px rgba(229, 179, 92, 0.25);
     display: flex;
 }
 
-/* الإطار الرئيسي للهاتف */
+/* 2. الفاصل الغامق + الإطار الذهبي الداخلي */
+.avatar-style-inner-frame {
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    background: #060402;
+    border: 1.5px solid rgba(229, 179, 92, 0.7);
+    border-radius: 43px;
+    display: flex;
+}
+
+/* الإطار الرئيسي للهاتف مع الإضاءة الدافئة (Lantern Glow) */
 .app-container {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
-    border: 1.5px solid var(--gold-bright);
-    border-radius: 40px;
+    background: 
+        radial-gradient(circle at 10% 15%, rgba(229, 179, 92, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 15%, rgba(229, 179, 92, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 0%, rgba(255, 170, 51, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(229, 179, 92, 0.1) 0%, transparent 40%),
+        #030201;
+    border-radius: 39px;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(229, 179, 92, 0.3);
 }
 
-/* الزخارف الأندلسية في الزوايا */
+/* ==========================================================================
+   1️⃣ الزخارف الأندلسية الموريسكية الفخمة في الزوايا (SVG)
+   ========================================================================== */
 .corner-ornament {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    border: 1px solid var(--gold-border);
+    width: 75px;
+    height: 75px;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.5;
+    opacity: 0.65;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
-.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
-/* الشريط العلوي */
+.top-left {
+    top: 8px; left: 8px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+}
+
+.top-right {
+    top: 8px; right: 8px;
+    transform: scaleX(-1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+}
+
+.bottom-left {
+    bottom: 8px; left: 8px;
+    transform: scaleY(-1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+}
+
+.bottom-right {
+    bottom: 8px; right: 8px;
+    transform: scale(-1, -1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+}
+
+/* ==========================================================================
+   عناصر الشاشة العلوية والملف الشخصي
+   ========================================================================== */
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -91,17 +133,15 @@ body {
     cursor: pointer;
 }
 
-/* قسم الصورة الشخصية المرفوع للأعلى بالكامل */
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 20px 5px;
-    margin-top: -28px; /* رفع الصورة للوصول إلى مستوى الأزرار العلوية */
+    margin-top: -28px;
     z-index: 2;
 }
 
-/* تكبير الصورة بنسبة 120% إضافية مع تقليل الهوامش */
 .avatar-container {
     position: relative;
     width: 230px;
@@ -112,7 +152,7 @@ body {
 }
 
 .glowing-ring {
-    width: 226px; /* زيادة حجم الصورة بنسبة 1.20x (من 189px إلى 226px) */
+    width: 226px;
     height: 226px;
     border-radius: 50%;
     padding: 4px;
@@ -127,10 +167,9 @@ body {
     object-fit: cover;
 }
 
-/* الهوية مع ضغط المسافات تماماً كالصورة */
 .identity-info {
     text-align: center;
-    margin-top: -6px; /* تقريب اسم Robaty من الحد الأسفل للصورة */
+    margin-top: -6px;
 }
 
 .bot-name {
@@ -164,7 +203,7 @@ body {
 }
 
 .gold-pill-btn {
-    margin-top: 6px; /* مسافة قريبة ومركزة للزر */
+    margin-top: 6px;
     background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
     border: 1px solid var(--gold-bright);
     color: var(--text-gold-light);
@@ -175,7 +214,9 @@ body {
     cursor: pointer;
 }
 
-/* المحادثة والفقاعات */
+/* ==========================================================================
+   منطقة المحادثة والفقاعات
+   ========================================================================== */
 .chat-area {
     flex: 1;
     padding: 10px 15px;
@@ -228,11 +269,26 @@ body {
 .bot-label { font-size: 11px; color: var(--gold-bright); font-weight: bold; }
 .msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
 
-/* التحكم السفلي */
+/* ==========================================================================
+   2️⃣ منطقة الإدخال والشريط السفلي (مع لمسة خط السفيفة النقشية)
+   ========================================================================== */
 .bottom-controls {
-    padding: 10px 15px 15px;
-    background: linear-gradient(0deg, #050302 80%, transparent 100%);
+    padding: 8px 15px 15px;
+    background: linear-gradient(0deg, #050302 85%, transparent 100%);
     z-index: 2;
+    position: relative;
+}
+
+/* فاصل زخرفي ناعم يشبه النقش التقليدي فوق الإدخال */
+.bottom-controls::before {
+    content: "❖ ─── ❖ ─── ❖";
+    display: block;
+    text-align: center;
+    color: var(--gold-bright);
+    font-size: 8px;
+    letter-spacing: 4px;
+    opacity: 0.45;
+    margin-bottom: 6px;
 }
 
 .gold-input {
