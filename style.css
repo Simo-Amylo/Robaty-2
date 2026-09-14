@@ -75,40 +75,56 @@ body {
 }
 
 /* ==========================================================================
-   1️⃣ الزخارف الأندلسية الموريسكية الفخمة في الزوايا (SVG)
+   1️⃣ الزخارف الهندسية الأندلسية في الزوايا (Pure CSS)
    ========================================================================== */
 .corner-ornament {
     position: absolute;
-    width: 75px;
-    height: 75px;
+    width: 35px;
+    height: 35px;
     pointer-events: none;
-    z-index: 1;
-    opacity: 0.65;
-    background-repeat: no-repeat;
-    background-size: contain;
+    z-index: 10;
+    opacity: 0.85;
 }
 
 .top-left {
-    top: 8px; left: 8px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+    top: 12px; left: 12px;
+    border-top: 2px solid var(--gold-bright);
+    border-left: 2px solid var(--gold-bright);
+    border-top-left-radius: 12px;
+    box-shadow: -2px -2px 8px rgba(229, 179, 92, 0.4);
 }
 
 .top-right {
-    top: 8px; right: 8px;
-    transform: scaleX(-1);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+    top: 12px; right: 12px;
+    border-top: 2px solid var(--gold-bright);
+    border-right: 2px solid var(--gold-bright);
+    border-top-right-radius: 12px;
+    box-shadow: 2px -2px 8px rgba(229, 179, 92, 0.4);
 }
 
 .bottom-left {
-    bottom: 8px; left: 8px;
-    transform: scaleY(-1);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+    bottom: 12px; left: 12px;
+    border-bottom: 2px solid var(--gold-bright);
+    border-left: 2px solid var(--gold-bright);
+    border-bottom-left-radius: 12px;
+    box-shadow: -2px 2px 8px rgba(229, 179, 92, 0.4);
 }
 
 .bottom-right {
-    bottom: 8px; right: 8px;
-    transform: scale(-1, -1);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23e5b35c"><path d="M0,0 v50 c15,0 25,-10 25,-25 c15,0 25,-10 25,-25 h-50 z M10,10 h30 c-5,10 -15,20 -30,20 v-20 z"/><circle cx="15" cy="15" r="3"/><circle cx="35" cy="35" r="2"/></svg>');
+    bottom: 12px; right: 12px;
+    border-bottom: 2px solid var(--gold-bright);
+    border-right: 2px solid var(--gold-bright);
+    border-bottom-right-radius: 12px;
+    box-shadow: 2px 2px 8px rgba(229, 179, 92, 0.4);
+}
+
+/* النقش الداخلي المتشابك لكل زاوية */
+.corner-ornament::after {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: 4px; bottom: 4px;
+    border: 1px dashed var(--gold-bright);
+    border-radius: 6px;
 }
 
 /* ==========================================================================
@@ -270,7 +286,7 @@ body {
 .msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
 
 /* ==========================================================================
-   2️⃣ منطقة الإدخال والشريط السفلي (مع لمسة خط السفيفة النقشية)
+   2️⃣ منطقة الإدخال والشريط السفلي (شريط السفيفة الذهبي الواضح)
    ========================================================================== */
 .bottom-controls {
     padding: 8px 15px 15px;
@@ -279,16 +295,18 @@ body {
     position: relative;
 }
 
-/* فاصل زخرفي ناعم يشبه النقش التقليدي فوق الإدخال */
+/* شريط السفيفة الذهبي فوق منطقة الإدخال */
 .bottom-controls::before {
-    content: "❖ ─── ❖ ─── ❖";
-    display: block;
-    text-align: center;
+    content: "❖  ⬥  ❖  ⬥  ❖  ⬥  ❖";
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--gold-bright);
-    font-size: 8px;
-    letter-spacing: 4px;
-    opacity: 0.45;
-    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 6px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px rgba(229, 179, 92, 0.6);
 }
 
 .gold-input {
