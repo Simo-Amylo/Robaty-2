@@ -1,15 +1,14 @@
 /* ==========================================================================
-   Luxury Gold Moroccan Theme - التحديث الدقيق للقياسات والإطار
+   Luxury Gold Moroccan Theme - إطار ذهبي مزدوج ناعم وطبق الأصل
    ========================================================================== */
 :root {
     --bg-black: #050302;
-    --gold-bright: #e5b35c;
-    --gold-glow: #ffaa33;
-    --gold-dark: #6e4a1b;
-    --gold-border: rgba(229, 179, 92, 0.45);
-    --gold-box-glow: rgba(229, 179, 92, 0.25);
+    --gold-bright: #d4a359;
+    --gold-glow: #e6b366;
+    --gold-dark: #4a3418;
+    --gold-border: rgba(212, 163, 89, 0.4);
     --bubble-bg: #110c08;
-    --text-gold-light: #f7e8cf;
+    --text-gold-light: #f5e4c8;
     --font-family: 'Cairo', sans-serif;
 }
 
@@ -28,20 +27,31 @@ body {
     min-height: 100vh;
 }
 
-/* الإطار الرئيسي للهاتف (مستوحى بدقة من الشاشة المرفقة) */
+/* الإطار الخارجي الأول (حسب الصورة المرفقة) */
+.outer-screen-frame {
+    width: 100%;
+    max-width: 420px;
+    height: 100vh;
+    max-height: 900px;
+    padding: 6px; /* الفاصل بين الإطار الخارجي والداخلي */
+    border: 1.8px solid var(--gold-bright);
+    border-radius: 42px;
+    background: #030201;
+    box-shadow: 0 0 20px rgba(212, 163, 89, 0.2);
+    display: flex;
+}
+
+/* الإطار الداخلي للتطبيق */
 .app-container {
     width: 100%;
-    max-width: 414px;
-    height: 100vh;
-    max-height: 896px;
-    background: radial-gradient(circle at center, #180f08 0%, #030201 100%);
-    border: 1.5px solid #d4a359; /* إطار ذهبي ناعم ونظيف كما في الصورة */
-    border-radius: 40px;
+    height: 100%;
+    background: radial-gradient(circle at center, #160d07 0%, #030201 100%);
+    border: 1px solid rgba(212, 163, 89, 0.35);
+    border-radius: 36px;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(212, 163, 89, 0.15);
 }
 
 /* الشريط العلوي */
@@ -49,47 +59,50 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px 0px;
+    padding: 16px 20px 0px;
     z-index: 3;
 }
 
 .ornate-btn {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    background: rgba(30, 20, 10, 0.8);
-    border: 1px solid var(--gold-bright);
+    background: rgba(20, 13, 7, 0.9);
+    border: 1px solid var(--gold-border);
     color: var(--gold-bright);
-    box-shadow: 0 0 10px var(--gold-box-glow);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
 }
 
-/* قسم الصورة الشخصية */
+/* قسم الملف الشخصي */
 .profile-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 20px 5px;
-    margin-top: -28px;
+    margin-top: -24px;
     z-index: 2;
 }
 
 .avatar-container {
     position: relative;
-    width: 230px;
-    height: 230px;
+    width: 210px;
+    height: 210px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .glowing-ring {
-    width: 226px;
-    height: 226px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(135deg, #ffc875, #805018);
-    box-shadow: 0 0 40px rgba(255, 170, 51, 0.6);
+    padding: 3px;
+    background: linear-gradient(135deg, #d4a359, #543916);
+    box-shadow: 0 0 25px rgba(212, 163, 89, 0.3);
 }
 
 .avatar-img {
@@ -99,20 +112,18 @@ body {
     object-fit: cover;
 }
 
-/* الهوية */
 .identity-info {
     text-align: center;
-    margin-top: -6px;
+    margin-top: 2px;
 }
 
 .bot-name {
     font-size: 22px;
     color: #fff;
-    font-weight: bold;
-    line-height: 1.1;
+    font-weight: 700;
 }
 
-.cyan-signal {
+.green-dot {
     font-size: 14px;
 }
 
@@ -120,14 +131,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     margin-top: 2px;
+}
+
+.dot-ornament {
+    color: var(--gold-bright);
+    font-size: 10px;
+    opacity: 0.7;
 }
 
 .line {
     height: 1px;
-    width: 20px;
-    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    width: 30px;
+    background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
 }
 
 .tagline {
@@ -136,56 +153,54 @@ body {
 }
 
 .gold-pill-btn {
-    margin-top: 6px;
-    background: linear-gradient(180deg, #2b1d0e 0%, #120b04 100%);
-    border: 1px solid var(--gold-bright);
+    margin-top: 8px;
+    background: rgba(20, 13, 7, 0.9);
+    border: 1px solid var(--gold-border);
     color: var(--text-gold-light);
-    padding: 6px 20px;
+    padding: 6px 22px;
     border-radius: 20px;
     font-size: 12px;
-    box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
     cursor: pointer;
 }
 
 /* المحادثة والفقاعات */
 .chat-area {
     flex: 1;
-    padding: 10px 15px;
+    padding: 10px 16px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     z-index: 2;
 }
 
-.message { display: flex; flex-direction: column; max-width: 85%; }
+.message { display: flex; flex-direction: column; max-width: 88%; }
 .user-msg { align-self: flex-start; }
 .bot-msg { align-self: flex-end; width: 100%; }
 
 .bubble-gold-border {
-    background: rgba(25, 16, 9, 0.95);
-    border: 1px solid var(--gold-bright);
-    border-radius: 15px 15px 15px 2px;
-    padding: 8px 14px;
+    background: rgba(20, 13, 7, 0.95);
+    border: 1px solid var(--gold-border);
+    border-radius: 16px 16px 16px 3px;
+    padding: 10px 16px;
     font-size: 12px;
     color: var(--text-gold-light);
-    box-shadow: 0 0 10px rgba(229, 179, 92, 0.15);
 }
 
 .bubble-dark-gold {
     background: rgba(15, 10, 6, 0.95);
-    border: 1px solid var(--gold-border);
-    border-radius: 15px 2px 15px 15px;
-    padding: 10px 14px;
+    border: 1px solid rgba(212, 163, 89, 0.25);
+    border-radius: 16px 3px 16px 16px;
+    padding: 12px 16px;
     font-size: 12px;
-    color: #e0e0e0;
+    color: #e2e2e2;
     line-height: 1.6;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
 }
 
 .msg-header {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 6px;
     margin-bottom: 4px;
 }
@@ -197,26 +212,26 @@ body {
     border: 1px solid var(--gold-bright);
 }
 
-.bot-label { font-size: 11px; color: var(--gold-bright); font-weight: bold; }
-.msg-time { font-size: 10px; color: #8c7860; margin-top: 3px; }
+.bot-label { font-size: 11px; color: var(--gold-bright); font-weight: 600; }
+.msg-time { font-size: 10px; color: #7a6854; }
 
-/* التحكم السفلي */
+/* عناصر الإدخال والأزرار السفلية */
 .bottom-controls {
-    padding: 10px 15px 15px;
-    background: linear-gradient(0deg, #050302 80%, transparent 100%);
+    padding: 10px 16px 16px;
+    background: linear-gradient(0deg, #030201 80%, transparent 100%);
     z-index: 2;
 }
 
 .gold-input {
     width: 100%;
     background: rgba(18, 11, 6, 0.95);
-    border: 1px solid var(--gold-bright);
+    border: 1px solid var(--gold-border);
     border-radius: 25px;
-    padding: 10px 18px;
+    padding: 11px 20px;
     color: #fff;
     font-size: 12px;
     outline: none;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 10px rgba(229,179,92,0.15);
+    text-align: right;
 }
 
 .ornate-action-bar {
@@ -228,22 +243,22 @@ body {
 
 .ornate-action-btn {
     flex: 1;
-    background: linear-gradient(180deg, #24180b 0%, #0d0804 100%);
-    border: 1px solid var(--gold-bright);
-    border-radius: 20px;
-    padding: 8px 5px;
+    background: rgba(20, 13, 7, 0.9);
+    border: 1px solid var(--gold-border);
+    border-radius: 22px;
+    padding: 9px 5px;
     color: var(--text-gold-light);
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
-    gap: 4px;
-    font-size: 10px;
+    justify-content: center;
+    gap: 6px;
+    font-size: 11px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(229,179,92,0.15);
 }
 
 .send-highlight {
-    background: linear-gradient(135deg, #e5b35c 0%, #7c4c12 100%);
+    background: linear-gradient(135deg, #d4a359 0%, #7c521a 100%);
     color: #fff;
-    box-shadow: 0 0 15px rgba(229, 179, 92, 0.4);
+    border: none;
 }
