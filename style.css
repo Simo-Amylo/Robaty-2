@@ -1,44 +1,81 @@
 /* ==========================================================================
    ROBATY — Luxury Gold Moroccan Theme
-   BASELINE + LAYER 01 + LAYER 02
+
+   BASELINE
+   + LAYER 01 — Presence Indicator
+   + LAYER 02 — Portrait Micro-Life
+   + LAYER 03 — Message Presence
+
    ROBATY LIVING PRESENCE™
    ========================================================================== */
 
+
 :root {
+
     --bg-black: #050302;
+
     --gold-bright: #e5b35c;
+
     --gold-glow: #ffaa33;
+
     --gold-dark: #6e4a1b;
+
     --gold-border: rgba(229, 179, 92, 0.45);
+
     --gold-box-glow: rgba(229, 179, 92, 0.25);
+
     --bubble-bg: #110c08;
+
     --text-gold-light: #f7e8cf;
+
     --font-family: 'Cairo', sans-serif;
 }
 
+
 * {
+
     box-sizing: border-box;
+
     margin: 0;
+
     padding: 0;
+
     font-family: var(--font-family);
 }
 
+
 body {
+
     background-color: #000;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     min-height: 100vh;
 }
 
+
+/* ==========================================================================
+   OUTER FRAME
+   ========================================================================== */
+
 .outer-gold-frame {
+
     width: 100%;
+
     max-width: 426px;
+
     height: 100vh;
+
     max-height: 908px;
+
     padding: 6px;
 
     border: 2px solid var(--gold-bright);
+
     border-radius: 46px;
 
     background: #000;
@@ -50,8 +87,11 @@ body {
     display: flex;
 }
 
+
 .app-container {
+
     width: 100%;
+
     height: 100%;
 
     background:
@@ -62,22 +102,32 @@ body {
         );
 
     border: 1.5px solid var(--gold-bright);
+
     border-radius: 40px;
 
     display: flex;
+
     flex-direction: column;
 
     position: relative;
+
     overflow: hidden;
 
     box-shadow:
         0 0 30px rgba(229, 179, 92, 0.3);
 }
 
+
+/* ==========================================================================
+   CORNER ORNAMENTS
+   ========================================================================== */
+
 .corner-ornament {
+
     position: absolute;
 
     width: 60px;
+
     height: 60px;
 
     border: 1px solid var(--gold-border);
@@ -89,41 +139,65 @@ body {
     opacity: 0.5;
 }
 
+
 .top-left {
+
     top: 10px;
+
     left: 10px;
 
     border-right: none;
+
     border-bottom: none;
 }
+
 
 .top-right {
+
     top: 10px;
+
     right: 10px;
 
     border-left: none;
+
     border-bottom: none;
 }
 
+
 .bottom-left {
+
     bottom: 10px;
+
     left: 10px;
 
     border-right: none;
+
     border-top: none;
 }
 
+
 .bottom-right {
+
     bottom: 10px;
+
     right: 10px;
 
     border-left: none;
+
     border-top: none;
 }
 
+
+/* ==========================================================================
+   TOP BAR
+   ========================================================================== */
+
 .top-bar {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     padding: 15px 20px 0;
@@ -131,8 +205,11 @@ body {
     z-index: 3;
 }
 
+
 .ornate-btn {
+
     width: 36px;
+
     height: 36px;
 
     border-radius: 50%;
@@ -149,9 +226,17 @@ body {
     cursor: pointer;
 }
 
+
+/* ==========================================================================
+   PROFILE
+   ========================================================================== */
+
 .profile-section {
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     padding: 0 20px 5px;
@@ -161,25 +246,31 @@ body {
     z-index: 2;
 }
 
+
 .avatar-container {
+
     position: relative;
 
     width: 230px;
+
     height: 230px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 }
 
+
 /* ==========================================================================
    LAYER 02 — PORTRAIT MICRO-LIFE
-   الحركة بطيئة جدًا ومتعمدة.
-   لا تغيير في حجم الصورة أو الـMaster Reference.
    ========================================================================== */
 
 .glowing-ring {
+
     width: 226px;
+
     height: 226px;
 
     border-radius: 50%;
@@ -203,8 +294,11 @@ body {
         ease-in-out;
 }
 
+
 .avatar-img {
+
     width: 100%;
+
     height: 100%;
 
     border-radius: 50%;
@@ -220,42 +314,47 @@ body {
         ease-in-out;
 }
 
-/*
-   الطبقة الخارجية تتنفس ببطء شديد.
-   الهدف: إحساس بالحياة، وليس Animation واضح.
-*/
 
 @keyframes robaty-portrait-breath {
 
     0% {
+
         transform: scale(1);
 
         box-shadow:
             0 0 34px rgba(255, 170, 51, 0.48);
     }
 
+
     25% {
+
         transform: scale(1.004);
 
         box-shadow:
             0 0 38px rgba(255, 170, 51, 0.53);
     }
 
+
     50% {
+
         transform: scale(1.009);
 
         box-shadow:
             0 0 46px rgba(255, 170, 51, 0.68);
     }
 
+
     75% {
+
         transform: scale(1.004);
 
         box-shadow:
             0 0 38px rgba(255, 170, 51, 0.53);
     }
 
+
     100% {
+
         transform: scale(1);
 
         box-shadow:
@@ -263,14 +362,11 @@ body {
     }
 }
 
-/*
-   حركة داخلية شبه غير محسوسة للصورة نفسها.
-   لا يتم تغيير الشكل أو القص أو الحجم.
-*/
 
 @keyframes robaty-portrait-life {
 
     0% {
+
         transform: scale(1);
 
         filter:
@@ -278,7 +374,9 @@ body {
             saturate(1);
     }
 
+
     25% {
+
         transform: scale(1.002);
 
         filter:
@@ -286,7 +384,9 @@ body {
             saturate(1.004);
     }
 
+
     50% {
+
         transform: scale(1.004);
 
         filter:
@@ -294,7 +394,9 @@ body {
             saturate(1.008);
     }
 
+
     75% {
+
         transform: scale(1.002);
 
         filter:
@@ -302,7 +404,9 @@ body {
             saturate(1.004);
     }
 
+
     100% {
+
         transform: scale(1);
 
         filter:
@@ -311,14 +415,49 @@ body {
     }
 }
 
+
+/* ==========================================================================
+   IDENTITY
+   ========================================================================== */
+
+.identity-info {
+
+    text-align: center;
+
+    margin-top: -6px;
+}
+
+
+.bot-name {
+
+    font-size: 22px;
+
+    color: #fff;
+
+    font-weight: bold;
+
+    line-height: 1.1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
 /* ==========================================================================
    LAYER 01 — PRESENCE INDICATOR
    ========================================================================== */
 
 .neon-target-ring {
+
     display: inline-block;
 
     width: 18px;
+
     height: 18px;
 
     border-radius: 50%;
@@ -338,14 +477,19 @@ body {
         ease-in-out;
 }
 
+
 .neon-target-ring::after {
+
     content: '';
 
     position: absolute;
 
     top: -4px;
+
     left: -4px;
+
     right: -4px;
+
     bottom: -4px;
 
     border-radius: 50%;
@@ -361,9 +505,11 @@ body {
         ease-in-out;
 }
 
+
 @keyframes robaty-presence-breath {
 
     0% {
+
         transform: scale(1);
 
         box-shadow:
@@ -374,7 +520,9 @@ body {
         opacity: 0.96;
     }
 
+
     25% {
+
         transform: scale(1.018);
 
         box-shadow:
@@ -385,7 +533,9 @@ body {
         opacity: 0.98;
     }
 
+
     50% {
+
         transform: scale(1.055);
 
         box-shadow:
@@ -396,7 +546,9 @@ body {
         opacity: 1;
     }
 
+
     75% {
+
         transform: scale(1.018);
 
         box-shadow:
@@ -407,7 +559,9 @@ body {
         opacity: 0.98;
     }
 
+
     100% {
+
         transform: scale(1);
 
         box-shadow:
@@ -419,64 +573,44 @@ body {
     }
 }
 
+
 @keyframes robaty-presence-aura {
 
     0% {
+
         transform: scale(1);
 
         opacity: 0.48;
     }
 
+
     50% {
+
         transform: scale(1.22);
 
         opacity: 0.78;
     }
 
+
     100% {
+
         transform: scale(1);
 
         opacity: 0.48;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
 
-    .neon-target-ring,
-    .neon-target-ring::after,
-    .glowing-ring,
-    .avatar-img {
-        animation: none;
-    }
-}
-
-.identity-info {
-    text-align: center;
-
-    margin-top: -6px;
-}
-
-.bot-name {
-    font-size: 22px;
-
-    color: #fff;
-
-    font-weight: bold;
-
-    line-height: 1.1;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-}
+/* ==========================================================================
+   DIVIDER + TAGLINE
+   ========================================================================== */
 
 .divider-line {
+
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 6px;
@@ -484,7 +618,9 @@ body {
     margin-top: 2px;
 }
 
+
 .line {
+
     height: 1px;
 
     width: 20px;
@@ -498,13 +634,21 @@ body {
         );
 }
 
+
 .tagline {
+
     color: var(--gold-bright);
 
     font-size: 13px;
 }
 
+
+/* ==========================================================================
+   MOMENT BUTTON
+   ========================================================================== */
+
 .gold-pill-btn {
+
     margin-top: 6px;
 
     background:
@@ -530,7 +674,13 @@ body {
     cursor: pointer;
 }
 
+
+/* ==========================================================================
+   CHAT AREA
+   ========================================================================== */
+
 .chat-area {
+
     flex: 1;
 
     padding: 10px 15px;
@@ -538,6 +688,7 @@ body {
     overflow-y: auto;
 
     display: flex;
+
     flex-direction: column;
 
     gap: 10px;
@@ -545,24 +696,100 @@ body {
     z-index: 2;
 }
 
+
 .message {
+
     display: flex;
+
     flex-direction: column;
 
     max-width: 85%;
 }
 
+
 .user-msg {
+
     align-self: flex-start;
 }
 
+
 .bot-msg {
+
     align-self: flex-end;
 
     width: 100%;
 }
 
+
+/* ==========================================================================
+   LAYER 03 — MESSAGE PRESENCE
+
+   رسائل Robaty تدخل بهدوء:
+   opacity + translateY صغير جدًا.
+
+   لا توجد bounce.
+   لا توجد zoom.
+   لا توجد حركة مبالغ فيها.
+   ========================================================================== */
+
+.bot-msg {
+
+    animation:
+        robaty-message-arrival
+        0.85s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+}
+
+
+.bot-msg:nth-of-type(2) {
+
+    animation-delay: 0.12s;
+}
+
+
+.bot-msg:nth-of-type(4) {
+
+    animation-delay: 0.26s;
+}
+
+
+@keyframes robaty-message-arrival {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(7px);
+    }
+
+
+    55% {
+
+        opacity: 0.75;
+
+        transform:
+            translateY(2px);
+    }
+
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* ==========================================================================
+   USER MESSAGE
+   ========================================================================== */
+
 .bubble-gold-border {
+
     background: rgba(25, 16, 9, 0.95);
 
     border: 1px solid var(--gold-bright);
@@ -579,7 +806,13 @@ body {
         0 0 10px rgba(229, 179, 92, 0.15);
 }
 
+
+/* ==========================================================================
+   ROBATY MESSAGE
+   ========================================================================== */
+
 .bubble-dark-gold {
+
     background: rgba(15, 10, 6, 0.95);
 
     border: 1px solid var(--gold-border);
@@ -598,7 +831,13 @@ body {
         0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
+
+/* ==========================================================================
+   MESSAGE HEADER
+   ========================================================================== */
+
 .msg-header {
+
     display: flex;
 
     align-items: center;
@@ -608,8 +847,11 @@ body {
     margin-bottom: 4px;
 }
 
+
 .mini-avatar {
+
     width: 22px;
+
     height: 22px;
 
     border-radius: 50%;
@@ -619,7 +861,9 @@ body {
     object-fit: cover;
 }
 
+
 .bot-label {
+
     font-size: 11px;
 
     color: var(--gold-bright);
@@ -627,7 +871,9 @@ body {
     font-weight: bold;
 }
 
+
 .msg-time {
+
     font-size: 10px;
 
     color: #8c7860;
@@ -635,7 +881,13 @@ body {
     margin-top: 3px;
 }
 
+
+/* ==========================================================================
+   BOTTOM CONTROLS
+   ========================================================================== */
+
 .bottom-controls {
+
     padding: 10px 15px 15px;
 
     background:
@@ -648,7 +900,9 @@ body {
     z-index: 2;
 }
 
+
 .gold-input {
+
     width: 100%;
 
     background: rgba(18, 11, 6, 0.95);
@@ -670,7 +924,13 @@ body {
         0 0 10px rgba(229, 179, 92, 0.15);
 }
 
+
+/* ==========================================================================
+   ACTION BAR
+   ========================================================================== */
+
 .ornate-action-bar {
+
     display: flex;
 
     justify-content: space-between;
@@ -680,7 +940,9 @@ body {
     margin-top: 10px;
 }
 
+
 .ornate-action-btn {
+
     flex: 1;
 
     background:
@@ -714,7 +976,9 @@ body {
         0 0 10px rgba(229, 179, 92, 0.15);
 }
 
+
 .send-highlight {
+
     background:
         linear-gradient(
             135deg,
@@ -726,4 +990,21 @@ body {
 
     box-shadow:
         0 0 15px rgba(229, 179, 92, 0.4);
+}
+
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .neon-target-ring,
+    .neon-target-ring::after,
+    .glowing-ring,
+    .avatar-img,
+    .bot-msg {
+
+        animation: none;
+    }
 }
