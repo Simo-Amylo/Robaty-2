@@ -5,6 +5,7 @@
    + LAYER 01 — Presence Indicator
    + LAYER 02 — Portrait Micro-Life
    + LAYER 03 — Message Presence
+   + LAYER 04 — Golden Ambient Glow
 
    ROBATY LIVING PRESENCE™
    ========================================================================== */
@@ -85,8 +86,172 @@ body {
         inset 0 0 15px rgba(229, 179, 92, 0.2);
 
     display: flex;
+
+    position: relative;
+
+    overflow: hidden;
 }
 
+
+/* ==========================================================================
+   LAYER 04 — GOLDEN AMBIENT GLOW
+   ==========================================================================
+
+   لمعة صغيرة جدًا تتحرك فوق جزء من الإطار فقط.
+
+   لا نغيّر:
+   - سماكة الإطار
+   - شكله
+   - لونه الأساسي
+   - حجمه
+
+   اللمعة نفسها هي التي تتحرك.
+   ========================================================================== */
+
+.golden-ambient-glow {
+
+    position: absolute;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 210, 120, 0.25) 20%,
+            rgba(255, 238, 180, 1) 50%,
+            rgba(255, 190, 75, 0.55) 75%,
+            transparent 100%
+        );
+
+    box-shadow:
+        0 0 7px rgba(255, 190, 75, 0.8),
+        0 0 16px rgba(255, 170, 51, 0.45);
+
+    filter:
+        blur(0.15px);
+}
+
+
+/*
+ * اللمعة الأفقية
+ */
+
+.golden-glow-top,
+.golden-glow-bottom {
+
+    width: 58px;
+
+    height: 2.5px;
+}
+
+
+/*
+ * اللمعة العمودية
+ */
+
+.golden-glow-left,
+.golden-glow-right {
+
+    width: 2.5px;
+
+    height: 58px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(255, 210, 120, 0.25) 20%,
+            rgba(255, 238, 180, 1) 50%,
+            rgba(255, 190, 75, 0.55) 75%,
+            transparent 100%
+        );
+}
+
+
+/*
+ * تشغيل اللمعة.
+ *
+ * 1.5 ثانية تقريبًا هي زمن الحدث.
+ */
+
+.golden-glow-active {
+
+    animation:
+        golden-ambient-sweep
+        1.5s
+        cubic-bezier(
+            0.22,
+            0.61,
+            0.36,
+            1
+        )
+        forwards;
+}
+
+
+@keyframes golden-ambient-sweep {
+
+    0% {
+
+        opacity: 0;
+
+        filter:
+            brightness(0.8)
+            blur(0.4px);
+    }
+
+
+    18% {
+
+        opacity: 0.75;
+
+        filter:
+            brightness(1.15)
+            blur(0.15px);
+    }
+
+
+    50% {
+
+        opacity: 1;
+
+        filter:
+            brightness(1.35)
+            blur(0);
+    }
+
+
+    78% {
+
+        opacity: 0.65;
+
+        filter:
+            brightness(1.05)
+            blur(0.2px);
+    }
+
+
+    100% {
+
+        opacity: 0;
+
+        filter:
+            brightness(0.8)
+            blur(0.4px);
+    }
+}
+
+
+/* ==========================================================================
+   APP CONTAINER
+   ========================================================================== */
 
 .app-container {
 
@@ -723,13 +888,6 @@ body {
 
 /* ==========================================================================
    LAYER 03 — MESSAGE PRESENCE
-
-   رسائل Robaty تدخل بهدوء:
-   opacity + translateY صغير جدًا.
-
-   لا توجد bounce.
-   لا توجد zoom.
-   لا توجد حركة مبالغ فيها.
    ========================================================================== */
 
 .bot-msg {
@@ -737,7 +895,12 @@ body {
     animation:
         robaty-message-arrival
         0.85s
-        cubic-bezier(0.22, 1, 0.36, 1)
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
         both;
 }
 
@@ -1003,7 +1166,8 @@ body {
     .neon-target-ring::after,
     .glowing-ring,
     .avatar-img,
-    .bot-msg {
+    .bot-msg,
+    .golden-ambient-glow {
 
         animation: none;
     }
