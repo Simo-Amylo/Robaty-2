@@ -1,1175 +1,939 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robaty — مغربية و أفتخر</title>
 
-    <title>Robaty - Moroccan Luxury UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
-        rel="stylesheet"
-    >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="outer-gold-frame">
+  <div class="outer-gold-frame">
 
-    <!-- ==============================================================
-         GOLDEN FRAME GLINT
-         تبقى اللمعة الخفيفة على الإطار فقط
-         ============================================================== -->
-
-    <div
-        class="golden-ambient-glow"
-        aria-hidden="true"
-    ></div>
-
+    <!-- Golden Ambient Glint — frame only -->
+    <div class="golden-ambient-glow"></div>
 
     <div class="app-container">
 
-        <div class="corner-ornament top-left"></div>
-        <div class="corner-ornament top-right"></div>
-        <div class="corner-ornament bottom-left"></div>
-        <div class="corner-ornament bottom-right"></div>
-
-
-        <!-- ==========================================================
-             TOP BAR
-             ========================================================== -->
-
-        <header class="top-bar">
-
-            <button class="ornate-btn">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-
-            <button class="ornate-btn">
-                <i class="fa-solid fa-gear"></i>
-            </button>
-
-        </header>
-
-
-        <!-- ==========================================================
-             ROBATY PROFILE
-             ========================================================== -->
-
-        <section class="profile-section">
-
-            <div class="avatar-container">
-
-                <div class="zellige-mandala"></div>
-
-                <div class="glowing-ring">
-
-                    <img
-                        src="robaty-profile.jpg"
-                        alt="Robaty"
-                        class="avatar-img"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="identity-info">
-
-                <h1 class="bot-name">
-
-                    <span class="neon-target-ring"></span>
-
-                    Robaty
-
-                </h1>
-
-
-                <div class="divider-line">
-
-                    <span class="line"></span>
-
-                    <p class="tagline">
-                        🇲🇦 مغربية و أفتخر
-                    </p>
-
-                    <span class="line"></span>
-
-                </div>
-
-            </div>
-
-
-            <button class="gold-pill-btn">
-
-                <i class="fa-regular fa-image"></i>
-
-                شوفي تصاوري ليوم
-
-            </button>
-
-        </section>
-
-
-        <!-- ==========================================================
-             CHAT AREA
-             ========================================================== -->
-
-        <main class="chat-area" id="chatArea">
-
-            <!-- USER MESSAGE -->
-
-            <div class="message user-msg">
-
-                <div class="bubble-gold-border">
-                    هذا من لطفك
-                </div>
-
-                <span class="msg-time">
-                    21:16
-                </span>
-
-            </div>
-
-
-            <!-- ROBATY MESSAGE -->
-
-            <div class="message bot-msg">
-
-                <div class="msg-header">
-
-                    <img
-                        src="robaty-profile.jpg"
-                        class="mini-avatar"
-                        alt="Robaty"
-                    >
-
-                    <span class="bot-label">
-                        Robaty 🟢
-                    </span>
-
-                    <span class="msg-time">
-                        21:16
-                    </span>
-
-                </div>
-
-                <div class="bubble-dark-gold">
-
-                    هادي كفرحتني، بزاف الحمد لله اللي راكي بخير، طاقة إيجابية للجمعة المباركة. كاين شي حاجة تقدر تعاونك بها اليوم باش تكملي نهارك ببهجة؟
-
-                </div>
-
-            </div>
-
-
-            <!-- USER MESSAGE -->
-
-            <div class="message user-msg">
-
-                <div class="bubble-gold-border">
-                    هذا من لطفك
-                </div>
-
-                <span class="msg-time">
-                    21:17
-                </span>
-
-            </div>
-
-
-            <!-- ROBATY MESSAGE -->
-
-            <div class="message bot-msg">
-
-                <div class="msg-header">
-
-                    <img
-                        src="robaty-profile.jpg"
-                        class="mini-avatar"
-                        alt="Robaty"
-                    >
-
-                    <span class="bot-label">
-                        Robaty 🟢
-                    </span>
-
-                    <span class="msg-time">
-                        21:17
-                    </span>
-
-                </div>
-
-                <div class="bubble-dark-gold">
-
-                    هذا من توفقك الرفيع، كوني أكيدة أني هنا باش نسمع ليك ونشاركك أي موضوع، كيوماك، سواء كان على الثقافة المغربية، الموضة، أو أي حاجة تانية.
-
-                </div>
-
-            </div>
-
-        </main>
-
-
-        <!-- ==========================================================
-             BOTTOM CONTROLS
-             ========================================================== -->
-
-        <footer class="bottom-controls">
-
-            <div class="input-wrapper">
-
-                <!-- IMAGE THUMBNAIL -->
-                <div
-                    class="image-preview"
-                    id="imagePreview"
-                    aria-hidden="true"
-                >
-
-                    <img
-                        id="previewImage"
-                        src=""
-                        alt="الصورة المختارة"
-                    >
-
-                    <button
-                        type="button"
-                        class="remove-image-btn"
-                        id="removeImageBtn"
-                        aria-label="حذف الصورة"
-                    >
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-
-                </div>
-
-
-                <input
-                    type="text"
-                    placeholder="اكتبي رسالتك لـ Robaty هنا..."
-                    class="gold-input"
-                    id="messageInput"
-                    autocomplete="off"
-                >
-
-            </div>
-
-
-            <div class="ornate-action-bar">
-
-                <!-- SEND -->
-
-                <button
-                    type="button"
-                    class="ornate-action-btn send-highlight"
-                    id="sendButton"
-                >
-
-                    <i class="fa-solid fa-paper-plane"></i>
-
-                    <span>
-                        إرسال
-                    </span>
-
-                </button>
-
-
-                <!-- RECORD -->
-
-                <button
-                    type="button"
-                    class="ornate-action-btn record-btn"
-                    id="recordButton"
-                >
-
-                    <i class="fa-solid fa-microphone"></i>
-
-                    <span id="recordLabel">
-                        تسجيل صوتي
-                    </span>
-
-                </button>
-
-
-                <!-- IMAGE -->
-
-                <button
-                    type="button"
-                    class="ornate-action-btn image-btn"
-                    id="imageButton"
-                >
-
-                    <i class="fa-regular fa-image"></i>
-
-                    <span>
-                        إرسال الصور
-                    </span>
-
-                </button>
-
-            </div>
-
-
-            <!-- HIDDEN IMAGE PICKER -->
-
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                hidden
-            >
-
-        </footer>
+      <!-- TOP BAR -->
+      <div class="top-bar">
+
+        <button class="ornate-button" id="settingsBtn" aria-label="الإعدادات">
+          ⚙
+        </button>
+
+        <button class="ornate-button" id="backBtn" aria-label="رجوع">
+          ←
+        </button>
+
+      </div>
+
+      <!-- PROFILE -->
+      <div class="profile-section">
+
+        <div class="glowing-ring">
+          <img
+            src="robaty-profile.jpg"
+            alt="Robaty"
+            class="avatar-img"
+          >
+        </div>
+
+        <div class="profile-info">
+
+          <div class="name-row">
+
+            <span class="robaty-name">
+              Robaty
+            </span>
+
+            <!-- Official Presence Indicator -->
+            <span
+              class="neon-target-ring"
+              id="presenceIndicator"
+              aria-label="Robaty presence"
+            ></span>
+
+          </div>
+
+          <div class="tagline">
+            🇲🇦 مغربية و أفتخر
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- MOMENTS BUTTON -->
+      <button class="moment-button" id="momentButton">
+        شوفي تصاوري ليوم
+      </button>
+
+      <!-- CHAT -->
+      <main class="chat-area" id="chatArea">
+
+        <div class="message bot-msg">
+          سلام 👋 أنا Robaty 🇲🇦
+          <br>
+          كيف دايرة اليوم؟
+        </div>
+
+      </main>
+
+      <!-- IMAGE PREVIEW -->
+      <div
+        class="image-preview-container"
+        id="imagePreviewContainer"
+        hidden
+      >
+        <div class="image-preview-wrapper">
+
+          <img
+            id="imagePreview"
+            src=""
+            alt="الصورة المختارة"
+          >
+
+          <button
+            class="remove-image-btn"
+            id="removeImageBtn"
+            aria-label="حذف الصورة"
+          >
+            ×
+          </button>
+
+        </div>
+      </div>
+
+      <!-- BOTTOM COMPOSER -->
+      <div class="bottom-section">
+
+        <div class="input-row">
+
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="كتبي لروباتي..."
+            autocomplete="off"
+          >
+
+          <!-- SEND -->
+          <button
+            class="action-button send-button"
+            id="sendButton"
+            aria-label="إرسال"
+          >
+            <span>➤</span>
+          </button>
+
+          <!-- RECORD -->
+          <button
+            class="action-button record-button"
+            id="recordButton"
+            aria-label="تسجيل صوتي"
+          >
+            <span>🎙</span>
+          </button>
+
+          <!-- IMAGE -->
+          <button
+            class="action-button image-button"
+            id="imageButton"
+            aria-label="إرسال الصور"
+          >
+            <span>🖼</span>
+          </button>
+
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            hidden
+          >
+
+        </div>
+
+        <div
+          class="recording-status"
+          id="recordingStatus"
+          aria-live="polite"
+        ></div>
+
+      </div>
 
     </div>
+  </div>
 
-</div>
+
+  <script>
+
+    /* =========================================================
+       ROBATY — PRESENCE SYSTEM
+       IDLE → LISTENING → PROCESSING → SPEAKING → IDLE
+    ========================================================= */
+
+    const presenceIndicator =
+      document.getElementById("presenceIndicator");
+
+    let currentPresenceState = "idle";
+
+    function setPresenceState(state) {
+
+      const states = [
+        "presence-listening",
+        "presence-processing",
+        "presence-speaking"
+      ];
+
+      presenceIndicator.classList.remove(...states);
+
+      currentPresenceState = state;
+
+      if (state !== "idle") {
+        presenceIndicator.classList.add(
+          `presence-${state}`
+        );
+      }
+    }
 
 
-<script>
+    /* Public API for future Robaty AI / TTS connection */
 
-/* ==========================================================================
-   ROBATY — INTERACTION LAYER
-   ========================================================================== */
+    window.RobatyPresence = {
 
-(() => {
+      idle() {
+        setPresenceState("idle");
+      },
+
+      listening() {
+        setPresenceState("listening");
+      },
+
+      processing() {
+        setPresenceState("processing");
+      },
+
+      speaking() {
+        setPresenceState("speaking");
+      }
+
+    };
+
+
+    /* =========================================================
+       CHAT
+    ========================================================= */
 
     const chatArea =
-        document.getElementById('chatArea');
+      document.getElementById("chatArea");
 
     const messageInput =
-        document.getElementById('messageInput');
+      document.getElementById("messageInput");
 
     const sendButton =
-        document.getElementById('sendButton');
-
-    const recordButton =
-        document.getElementById('recordButton');
-
-    const recordLabel =
-        document.getElementById('recordLabel');
-
-    const imageButton =
-        document.getElementById('imageButton');
-
-    const imageInput =
-        document.getElementById('imageInput');
-
-    const imagePreview =
-        document.getElementById('imagePreview');
-
-    const previewImage =
-        document.getElementById('previewImage');
-
-    const removeImageBtn =
-        document.getElementById('removeImageBtn');
+      document.getElementById("sendButton");
 
 
-    /* ==============================================================
-       HELPERS
-       ============================================================== */
+    function addUserMessage(text) {
 
-    function getCurrentTime() {
+      if (!text.trim()) return;
 
-        const now = new Date();
+      const message =
+        document.createElement("div");
 
-        return now.toLocaleTimeString(
-            'ar-MA',
-            {
-                hour: '2-digit',
-                minute: '2-digit'
-            }
-        );
+      message.className = "message user-msg";
 
+      message.textContent = text;
+
+      chatArea.appendChild(message);
+
+      chatArea.scrollTop =
+        chatArea.scrollHeight;
     }
 
 
-    function scrollChatToBottom() {
+    function addBotMessage(text) {
 
-        chatArea.scrollTo({
-            top: chatArea.scrollHeight,
-            behavior: 'smooth'
-        });
+      const message =
+        document.createElement("div");
 
+      message.className = "message bot-msg";
+
+      message.innerHTML = text;
+
+      chatArea.appendChild(message);
+
+      chatArea.scrollTop =
+        chatArea.scrollHeight;
     }
 
-
-    function buttonPress(button) {
-
-        button.classList.remove('button-pressed');
-
-        void button.offsetWidth;
-
-        button.classList.add('button-pressed');
-
-    }
-
-
-    /* ==============================================================
-       SEND MESSAGE
-       ضغط خفيف → توهج ذهبي → دخول الرسالة
-       ============================================================== */
 
     function sendMessage() {
 
-        const text =
-            messageInput.value.trim();
+      const text =
+        messageInput.value.trim();
 
+      if (!text) return;
 
-        /*
-         * لا نرسل إذا لا توجد رسالة
-         * ولا توجد صورة.
-         */
+      addUserMessage(text);
 
-        if (
-            !text &&
-            !imageInput.files.length
-        ) {
+      messageInput.value = "";
 
-            messageInput.focus();
+      /*
+        Processing demo.
+        Later this timeout will be replaced by
+        the real AI response lifecycle.
+      */
 
-            return;
+      setPresenceState("processing");
 
-        }
+      setTimeout(() => {
 
+        addBotMessage(
+          "أنا معاك 👑✨"
+        );
 
-        buttonPress(sendButton);
+        setPresenceState("idle");
 
-
-        const message =
-            document.createElement('div');
-
-        message.className =
-            'message user-msg new-user-message';
-
-
-        /*
-         * إذا كانت هناك صورة
-         */
-
-        if (imageInput.files.length) {
-
-            const file =
-                imageInput.files[0];
-
-            const imageUrl =
-                URL.createObjectURL(file);
-
-
-            const imageBubble =
-                document.createElement('div');
-
-            imageBubble.className =
-                'bubble-image-message';
-
-
-            const image =
-                document.createElement('img');
-
-            image.src =
-                imageUrl;
-
-            image.alt =
-                'الصورة المرسلة';
-
-
-            imageBubble.appendChild(image);
-
-            message.appendChild(
-                imageBubble
-            );
-
-        }
-
-
-        /*
-         * إذا كانت هناك كتابة
-         */
-
-        if (text) {
-
-            const bubble =
-                document.createElement('div');
-
-            bubble.className =
-                'bubble-gold-border';
-
-            bubble.textContent =
-                text;
-
-            message.appendChild(
-                bubble
-            );
-
-        }
-
-
-        const time =
-            document.createElement('span');
-
-        time.className =
-            'msg-time';
-
-        time.textContent =
-            getCurrentTime();
-
-
-        message.appendChild(time);
-
-        chatArea.appendChild(message);
-
-
-        /*
-         * تنظيف الإدخال
-         */
-
-        messageInput.value = '';
-
-        clearImagePreview();
-
-
-        /*
-         * إعطاء الرسالة لحظة دخول هادئة
-         */
-
-        requestAnimationFrame(() => {
-
-            message.classList.add(
-                'message-enter-active'
-            );
-
-            scrollChatToBottom();
-
-        });
-
+      }, 1200);
     }
 
 
     sendButton.addEventListener(
-        'click',
-        sendMessage
+      "click",
+      sendMessage
     );
 
-
-    /*
-     * Enter لإرسال الرسالة
-     */
 
     messageInput.addEventListener(
-        'keydown',
-        (event) => {
+      "keydown",
+      (event) => {
 
-            if (
-                event.key === 'Enter' &&
-                !event.shiftKey
-            ) {
-
-                event.preventDefault();
-
-                sendMessage();
-
-            }
-
+        if (event.key === "Enter") {
+          event.preventDefault();
+          sendMessage();
         }
+
+      }
     );
 
 
-    /* ==============================================================
-       RECORDING
-       ضغط مطوّل → RECORDING
-       رفع الإصبع → STOP
-       ============================================================== */
+    /* =========================================================
+       RECORDING + LISTENING PRESENCE
+    ========================================================= */
 
-    let isRecording = false;
+    const recordButton =
+      document.getElementById("recordButton");
+
+    const recordingStatus =
+      document.getElementById("recordingStatus");
 
     let mediaRecorder = null;
-
     let recordedChunks = [];
+
+    let microphoneStream = null;
+
+    let audioContext = null;
+    let analyser = null;
+    let animationFrame = null;
+
+
+    async function startVoiceAnalysis(stream) {
+
+      try {
+
+        audioContext =
+          new (
+            window.AudioContext ||
+            window.webkitAudioContext
+          )();
+
+        const source =
+          audioContext.createMediaStreamSource(
+            stream
+          );
+
+        analyser =
+          audioContext.createAnalyser();
+
+        analyser.fftSize = 256;
+
+        analyser.smoothingTimeConstant = 0.82;
+
+        source.connect(analyser);
+
+        const data =
+          new Uint8Array(
+            analyser.fftSize
+          );
+
+
+        function analyseVoice() {
+
+          if (!analyser) return;
+
+          analyser.getByteTimeDomainData(data);
+
+          let sum = 0;
+
+          for (let i = 0; i < data.length; i++) {
+
+            const normalized =
+              (data[i] - 128) / 128;
+
+            sum +=
+              normalized * normalized;
+          }
+
+          const rms =
+            Math.sqrt(
+              sum / data.length
+            );
+
+
+          /*
+            Convert microphone level to a subtle
+            0 → 1 range.
+
+            The maximum is deliberately capped
+            so the indicator never becomes annoying.
+          */
+
+          let voiceLevel =
+            Math.min(
+              1,
+              Math.max(
+                0,
+                (rms - 0.015) / 0.16
+              )
+            );
+
+
+          voiceLevel =
+            Math.min(
+              0.68,
+              voiceLevel
+            );
+
+
+          presenceIndicator.style.setProperty(
+            "--voice-level",
+            voiceLevel.toFixed(3)
+          );
+
+
+          animationFrame =
+            requestAnimationFrame(
+              analyseVoice
+            );
+        }
+
+
+        analyseVoice();
+
+      } catch (error) {
+
+        console.warn(
+          "Robaty voice analysis unavailable:",
+          error
+        );
+
+      }
+    }
+
+
+    function stopVoiceAnalysis() {
+
+      if (animationFrame) {
+
+        cancelAnimationFrame(
+          animationFrame
+        );
+
+        animationFrame = null;
+      }
+
+      if (audioContext) {
+
+        audioContext.close()
+          .catch(() => {});
+
+        audioContext = null;
+      }
+
+      analyser = null;
+
+      presenceIndicator.style.setProperty(
+        "--voice-level",
+        "0"
+      );
+    }
 
 
     async function startRecording() {
 
-        if (isRecording) {
-            return;
-        }
+      try {
+
+        recordedChunks = [];
+
+        microphoneStream =
+          await navigator.mediaDevices.getUserMedia({
+            audio: true
+          });
+
+
+        mediaRecorder =
+          new MediaRecorder(
+            microphoneStream
+          );
+
+
+        mediaRecorder.ondataavailable =
+          (event) => {
+
+            if (
+              event.data &&
+              event.data.size > 0
+            ) {
+
+              recordedChunks.push(
+                event.data
+              );
+
+            }
+
+          };
+
+
+        mediaRecorder.onstop =
+          () => {
+
+            const audioBlob =
+              new Blob(
+                recordedChunks,
+                {
+                  type: "audio/webm"
+                }
+              );
+
+            const audioURL =
+              URL.createObjectURL(
+                audioBlob
+              );
+
+
+            const audioElement =
+              document.createElement("audio");
+
+            audioElement.controls = true;
+
+            audioElement.src =
+              audioURL;
+
+            audioElement.className =
+              "recorded-audio";
+
+
+            const message =
+              document.createElement("div");
+
+            message.className =
+              "message user-msg audio-msg";
+
+            message.appendChild(
+              audioElement
+            );
+
+            chatArea.appendChild(
+              message
+            );
+
+            chatArea.scrollTop =
+              chatArea.scrollHeight;
+
+          };
+
+
+        mediaRecorder.start();
+
+        recordButton.classList.add(
+          "recording-active"
+        );
+
+        recordingStatus.textContent =
+          "Robaty كتسمعك... 🎙";
 
 
         /*
-         * محاولة استخدام الميكروفون الحقيقي.
-         */
+          Same microphone stream is used
+          for recording + Presence analysis.
+        */
 
-        try {
+        setPresenceState(
+          "listening"
+        );
 
-            const stream =
-                await navigator.mediaDevices.getUserMedia({
-                    audio: true
-                });
-
-
-            recordedChunks = [];
-
-
-            mediaRecorder =
-                new MediaRecorder(stream);
-
-
-            mediaRecorder.ondataavailable =
-                (event) => {
-
-                    if (event.data.size > 0) {
-
-                        recordedChunks.push(
-                            event.data
-                        );
-
-                    }
-
-                };
-
-
-            mediaRecorder.onstop =
-                () => {
-
-                    stream
-                        .getTracks()
-                        .forEach(
-                            track => track.stop()
-                        );
-
-
-                    finishRecording();
-
-                };
-
-
-            mediaRecorder.start();
-
-        }
-
-        catch (error) {
-
-            /*
-             * حتى إذا رفضت المستخدمة
-             * صلاحية الميكروفون، تبقى الحالة
-             * البصرية واضحة.
-             */
-
-            mediaRecorder = null;
-
-        }
-
-
-        isRecording = true;
-
-
-        recordButton.classList.add(
-            'recording-active'
+        await startVoiceAnalysis(
+          microphoneStream
         );
 
 
-        recordLabel.textContent =
-            'RECORDING';
+      } catch (error) {
 
+        console.warn(error);
 
-        recordButton.setAttribute(
-            'aria-label',
-            'جاري التسجيل'
-        );
+        recordingStatus.textContent =
+          "الميكروفون ما قدرش يتفتح.";
+
+        setPresenceState("idle");
+
+      }
 
     }
 
 
     function stopRecording() {
 
-        if (!isRecording) {
-            return;
-        }
+      if (
+        mediaRecorder &&
+        mediaRecorder.state !== "inactive"
+      ) {
+
+        mediaRecorder.stop();
+
+      }
 
 
-        isRecording = false;
+      if (microphoneStream) {
+
+        microphoneStream
+          .getTracks()
+          .forEach(
+            track => track.stop()
+          );
+
+        microphoneStream = null;
+
+      }
 
 
-        recordButton.classList.remove(
-            'recording-active'
-        );
+      stopVoiceAnalysis();
 
+      recordButton.classList.remove(
+        "recording-active"
+      );
 
-        recordLabel.textContent =
-            'تسجيل صوتي';
+      recordingStatus.textContent = "";
 
-
-        recordButton.setAttribute(
-            'aria-label',
-            'تسجيل صوتي'
-        );
-
-
-        if (
-            mediaRecorder &&
-            mediaRecorder.state !== 'inactive'
-        ) {
-
-            mediaRecorder.stop();
-
-        }
-
-        else {
-
-            finishRecording();
-
-        }
-
-    }
-
-
-    function finishRecording() {
-
-        /*
-         * إذا كان هناك تسجيل حقيقي،
-         * نحضّر Blob صوتي.
-         */
-
-        if (recordedChunks.length) {
-
-            const audioBlob =
-                new Blob(
-                    recordedChunks,
-                    {
-                        type:
-                            mediaRecorder?.mimeType ||
-                            'audio/webm'
-                    }
-                );
-
-
-            /*
-             * في هذه المرحلة التجريبية
-             * نعرض التسجيل داخل المحادثة.
-             */
-
-            const audioUrl =
-                URL.createObjectURL(
-                    audioBlob
-                );
-
-
-            const message =
-                document.createElement('div');
-
-            message.className =
-                'message user-msg new-user-message';
-
-
-            const audioBubble =
-                document.createElement('div');
-
-            audioBubble.className =
-                'audio-message-bubble';
-
-
-            const audio =
-                document.createElement('audio');
-
-            audio.controls = true;
-
-            audio.src =
-                audioUrl;
-
-
-            audioBubble.appendChild(
-                audio
-            );
-
-
-            message.appendChild(
-                audioBubble
-            );
-
-
-            const time =
-                document.createElement('span');
-
-            time.className =
-                'msg-time';
-
-            time.textContent =
-                getCurrentTime();
-
-
-            message.appendChild(time);
-
-            chatArea.appendChild(
-                message
-            );
-
-
-            requestAnimationFrame(() => {
-
-                message.classList.add(
-                    'message-enter-active'
-                );
-
-                scrollChatToBottom();
-
-            });
-
-
-            recordedChunks = [];
-
-        }
-
+      setPresenceState(
+        "idle"
+      );
     }
 
 
     /*
-     * Pointer Events تعمل على الهاتف
-     * والماوس معًا.
-     */
+      Hold to record
+    */
 
     recordButton.addEventListener(
-        'pointerdown',
-        async (event) => {
+      "pointerdown",
+      async (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            recordButton.setPointerCapture(
-                event.pointerId
-            );
+        await startRecording();
 
-            await startRecording();
-
-        }
+      }
     );
 
 
     recordButton.addEventListener(
-        'pointerup',
-        (event) => {
+      "pointerup",
+      (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            stopRecording();
+        stopRecording();
 
-        }
+      }
     );
 
 
     recordButton.addEventListener(
-        'pointercancel',
-        () => {
+      "pointercancel",
+      () => {
 
-            stopRecording();
+        stopRecording();
 
-        }
+      }
     );
 
 
     recordButton.addEventListener(
-        'lostpointercapture',
-        () => {
+      "pointerleave",
+      (event) => {
 
-            if (isRecording) {
+        /*
+          Only stop when the pointer
+          leaves while the button is active.
+        */
 
-                stopRecording();
+        if (
+          event.buttons > 0
+        ) {
 
-            }
+          stopRecording();
 
         }
+
+      }
     );
 
 
-    /* ==============================================================
+    /* =========================================================
        IMAGE PICKER
-       ضغط → توهج → اختيار صورة
-       ============================================================== */
+    ========================================================= */
+
+    const imageButton =
+      document.getElementById("imageButton");
+
+    const imageInput =
+      document.getElementById("imageInput");
+
+    const imagePreviewContainer =
+      document.getElementById(
+        "imagePreviewContainer"
+      );
+
+    const imagePreview =
+      document.getElementById(
+        "imagePreview"
+      );
+
+    const removeImageBtn =
+      document.getElementById(
+        "removeImageBtn"
+      );
+
 
     imageButton.addEventListener(
-        'click',
-        () => {
+      "click",
+      () => {
 
-            buttonPress(imageButton);
+        imageInput.click();
 
-            imageInput.click();
-
-        }
+      }
     );
 
 
     imageInput.addEventListener(
-        'change',
-        () => {
+      "change",
+      () => {
 
-            const file =
-                imageInput.files[0];
+        const file =
+          imageInput.files[0];
 
+        if (!file) return;
 
-            if (!file) {
-                return;
-            }
+        const objectURL =
+          URL.createObjectURL(
+            file
+          );
 
+        imagePreview.src =
+          objectURL;
 
-            const imageUrl =
-                URL.createObjectURL(file);
+        imagePreviewContainer.hidden =
+          false;
 
-
-            previewImage.src =
-                imageUrl;
-
-
-            imagePreview.classList.add(
-                'image-preview-visible'
-            );
-
-
-            imagePreview.setAttribute(
-                'aria-hidden',
-                'false'
-            );
-
-
-            messageInput.focus();
-
-        }
+      }
     );
-
-
-    /* ==============================================================
-       REMOVE IMAGE
-       ============================================================== */
-
-    function clearImagePreview() {
-
-        imageInput.value = '';
-
-        previewImage.src = '';
-
-        imagePreview.classList.remove(
-            'image-preview-visible'
-        );
-
-        imagePreview.setAttribute(
-            'aria-hidden',
-            'true'
-        );
-
-    }
 
 
     removeImageBtn.addEventListener(
-        'click',
-        clearImagePreview
+      "click",
+      () => {
+
+        imagePreview.src = "";
+
+        imageInput.value = "";
+
+        imagePreviewContainer.hidden =
+          true;
+
+      }
     );
 
 
-    /* ==============================================================
+    /* =========================================================
+       MOMENTS BUTTON
+    ========================================================= */
+
+    const momentButton =
+      document.getElementById(
+        "momentButton"
+      );
+
+    momentButton.addEventListener(
+      "click",
+      () => {
+
+        /*
+          Moments screen will be connected later.
+        */
+
+        momentButton.classList.add(
+          "button-clicked"
+        );
+
+        setTimeout(() => {
+
+          momentButton.classList.remove(
+            "button-clicked"
+          );
+
+        }, 220);
+
+      }
+    );
+
+
+    /* =========================================================
+       TOP BUTTONS
+    ========================================================= */
+
+    document
+      .getElementById("settingsBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          const button =
+            document.getElementById(
+              "settingsBtn"
+            );
+
+          button.classList.add(
+            "button-clicked"
+          );
+
+          setTimeout(() => {
+
+            button.classList.remove(
+              "button-clicked"
+            );
+
+          }, 220);
+
+        }
+      );
+
+
+    document
+      .getElementById("backBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          const button =
+            document.getElementById(
+              "backBtn"
+            );
+
+          button.classList.add(
+            "button-clicked"
+          );
+
+          setTimeout(() => {
+
+            button.classList.remove(
+              "button-clicked"
+            );
+
+          }, 220);
+
+        }
+      );
+
+
+    /* =========================================================
        GOLDEN FRAME GLINT
-       اللمعة تبقى على الإطار فقط
-       ============================================================== */
+       Very subtle — frame only
+    ========================================================= */
 
-    const glow =
-        document.querySelector(
-            '.golden-ambient-glow'
+    const goldenGlow =
+      document.querySelector(
+        ".golden-ambient-glow"
+      );
+
+
+    function triggerGoldenGlint() {
+
+      if (!goldenGlow) return;
+
+      const positions = [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ];
+
+      const position =
+        positions[
+          Math.floor(
+            Math.random() *
+            positions.length
+          )
+        ];
+
+
+      goldenGlow.className =
+        `golden-ambient-glow ${position}`;
+
+
+      goldenGlow.classList.add(
+        "active"
+      );
+
+
+      setTimeout(() => {
+
+        goldenGlow.classList.remove(
+          "active"
         );
 
-    const frame =
-        document.querySelector(
-            '.outer-gold-frame'
-        );
+      }, 1500);
 
 
-    if (glow && frame) {
-
-        let glowTimer;
-
-
-        function randomBetween(min, max) {
-
-            return Math.random() *
-                (max - min) +
-                min;
-
-        }
-
-
-        function prepareGlow() {
-
-            const sides = [
-                'top',
-                'right',
-                'bottom',
-                'left'
-            ];
-
-
-            const side =
-                sides[
-                    Math.floor(
-                        Math.random() *
-                        sides.length
-                    )
-                ];
-
-
-            const frameWidth =
-                frame.clientWidth;
-
-            const frameHeight =
-                frame.clientHeight;
-
-
-            const horizontalPosition =
-                randomBetween(
-                    25,
-                    Math.max(
-                        25,
-                        frameWidth - 83
-                    )
-                );
-
-
-            const verticalPosition =
-                randomBetween(
-                    25,
-                    Math.max(
-                        25,
-                        frameHeight - 83
-                    )
-                );
-
-
-            glow.className =
-                'golden-ambient-glow ' +
-                'golden-glow-' +
-                side;
-
-
-            glow.style.left = '';
-            glow.style.right = '';
-            glow.style.top = '';
-            glow.style.bottom = '';
-
-
-            if (side === 'top') {
-
-                glow.style.left =
-                    horizontalPosition + 'px';
-
-                glow.style.top =
-                    '0px';
-
-            }
-
-
-            if (side === 'bottom') {
-
-                glow.style.left =
-                    horizontalPosition + 'px';
-
-                glow.style.bottom =
-                    '0px';
-
-            }
-
-
-            if (side === 'left') {
-
-                glow.style.left =
-                    '0px';
-
-                glow.style.top =
-                    verticalPosition + 'px';
-
-            }
-
-
-            if (side === 'right') {
-
-                glow.style.right =
-                    '0px';
-
-                glow.style.top =
-                    verticalPosition + 'px';
-
-            }
-
-
-            glow.classList.remove(
-                'golden-glow-active'
-            );
-
-
-            void glow.offsetWidth;
-
-
-            glow.classList.add(
-                'golden-glow-active'
-            );
-
-        }
-
-
-        function scheduleNextGlow() {
-
-            const silence =
-                randomBetween(
-                    7000,
-                    15000
-                );
-
-
-            glowTimer =
-                setTimeout(() => {
-
-                    prepareGlow();
-
-                    scheduleNextGlow();
-
-                }, silence);
-
-        }
-
-
-        glowTimer =
-            setTimeout(() => {
-
-                prepareGlow();
-
-                scheduleNextGlow();
-
-            }, randomBetween(
-                5000,
-                11000
-            ));
-
-
-        const reducedMotion =
-            window.matchMedia(
-                '(prefers-reduced-motion: reduce)'
-            );
-
-
-        if (reducedMotion.matches) {
-
-            clearTimeout(glowTimer);
-
-            glow.style.display =
-                'none';
-
-        }
+      scheduleGoldenGlint();
 
     }
 
-})();
 
-</script>
+    function scheduleGoldenGlint() {
+
+      const delay =
+        14000 +
+        Math.random() * 18000;
+
+      setTimeout(
+        triggerGoldenGlint,
+        delay
+      );
+
+    }
+
+
+    scheduleGoldenGlint();
+
+
+  </script>
 
 </body>
 </html>
