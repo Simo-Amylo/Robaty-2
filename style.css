@@ -1,1224 +1,1252 @@
-/* ==========================================================================
-   ROBATY — Luxury Gold Moroccan Theme
-
-   BASELINE
-   + LAYER 01 — Presence Indicator
-   + LAYER 02 — Portrait Micro-Life
-   + LAYER 03 — Message Presence
-   + LAYER 04 — Golden Ambient Glow
-
-   ROBATY LIVING PRESENCE™
-   ========================================================================== */
-
-
-:root {
-
-    --bg-black: #050302;
-
-    --gold-bright: #e5b35c;
-
-    --gold-glow: #ffaa33;
-
-    --gold-dark: #6e4a1b;
-
-    --gold-border: rgba(229, 179, 92, 0.45);
-
-    --gold-box-glow: rgba(229, 179, 92, 0.25);
-
-    --bubble-bg: #110c08;
-
-    --text-gold-light: #f7e8cf;
-
-    --font-family: 'Cairo', sans-serif;
-}
-
+/* ============================================================
+   ROBATY
+   OFFICIAL GOLD / BLACK CHAT BASELINE
+   ============================================================ */
 
 * {
-
-    box-sizing: border-box;
-
-    margin: 0;
-
-    padding: 0;
-
-    font-family: var(--font-family);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
 
 body {
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(116, 76, 25, 0.18),
+      transparent 35%
+    ),
+    #050403;
 
-    background-color: #000;
+  color: #f4ead5;
 
-    display: flex;
+  font-family:
+    "Noto Sans Arabic",
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
-    justify-content: center;
-
-    align-items: center;
-
-    min-height: 100vh;
+  overflow: hidden;
 }
 
 
-/* ==========================================================================
-   OUTER FRAME
-   ========================================================================== */
+/* ============================================================
+   OUTER GOLD FRAME
+   ============================================================ */
 
 .outer-gold-frame {
 
-    width: 100%;
+  position: relative;
 
-    max-width: 426px;
+  width: 100%;
+  max-width: 426px;
 
-    height: 100vh;
+  height: 100vh;
+  max-height: 908px;
 
-    max-height: 908px;
+  margin: 0 auto;
 
-    padding: 6px;
+  padding: 6px;
 
-    border: 2px solid var(--gold-bright);
+  border: 2px solid rgba(201, 153, 60, 0.95);
 
-    border-radius: 46px;
+  border-radius: 46px;
 
-    background: #000;
+  background:
+    linear-gradient(
+      145deg,
+      #f1c96b 0%,
+      #8f641e 18%,
+      #e0af4e 38%,
+      #6e4714 62%,
+      #d4a443 82%,
+      #765019 100%
+    );
 
-    box-shadow:
-        0 0 25px rgba(229, 179, 92, 0.4),
-        inset 0 0 15px rgba(229, 179, 92, 0.2);
+  box-shadow:
+    0 0 8px rgba(218, 167, 67, 0.35),
+    0 0 22px rgba(173, 116, 30, 0.15);
 
-    display: flex;
-
-    position: relative;
-
-    overflow: hidden;
+  overflow: hidden;
 }
 
 
-/* ==========================================================================
-   LAYER 04 — GOLDEN AMBIENT GLOW
-   ==========================================================================
+/* ============================================================
+   LAYER 04
+   GOLDEN AMBIENT MOVING GLOW
+   ============================================================ */
 
-   اللمعة الآن:
-   - أوضح بصريًا
-   - أكثر سطوعًا
-   - أعرض قليلًا
-   - لها Core أبيض/ذهبي واضح
-   - هالتها أقوى
-   - لا تغيّر الإطار الأساسي
-   ========================================================================== */
+/*
+  هذا الـSVG يغطي الإطار فقط.
+  لا يوجد أي عنصر glow في وسط الشاشة.
+*/
 
-.golden-ambient-glow {
+.ambient-glow-svg {
 
-    position: absolute;
+  position: absolute;
 
-    z-index: 20;
+  inset: 0;
 
-    pointer-events: none;
+  width: 100%;
+  height: 100%;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  overflow: visible;
+
+  --glow-start: 0;
+  --glow-end: -145;
+}
+
+
+/*
+  المسار الأساسي.
+*/
+
+.ambient-glow-path {
+
+  fill: none;
+
+  stroke-linecap: round;
+
+  vector-effect: non-scaling-stroke;
+
+  stroke-dasharray: 75 925;
+
+  stroke-dashoffset: var(--glow-start);
+
+  opacity: 0;
+}
+
+
+/*
+  الهالة الخارجية.
+*/
+
+.ambient-glow-halo {
+
+  stroke: rgba(255, 202, 74, 0.95);
+
+  stroke-width: 8px;
+
+  filter: url(#goldGlowBlur);
+
+}
+
+
+/*
+  القلب المضيء.
+
+  أبيض/ذهبي في الوسط حتى يكون واضحًا،
+  بدون أن يتحول إلى ضوء قوي مزعج.
+*/
+
+.ambient-glow-core {
+
+  stroke: url(#goldGlowGradient);
+
+  stroke-width: 3.2px;
+
+  filter:
+    drop-shadow(
+      0 0 2px rgba(255, 247, 208, 0.95)
+    )
+    drop-shadow(
+      0 0 7px rgba(255, 199, 65, 0.75)
+    );
+
+}
+
+
+/*
+  الحركة الحقيقية.
+
+  الضوء:
+  يظهر
+  يتحرك
+  ثم يختفي.
+*/
+
+.ambient-glow-active {
+
+  animation:
+    golden-frame-sweep 1.5s
+    cubic-bezier(0.25, 0.65, 0.35, 1)
+    forwards;
+
+}
+
+
+@keyframes golden-frame-sweep {
+
+  0% {
+
+    stroke-dashoffset:
+      var(--glow-start);
 
     opacity: 0;
 
-    border-radius: 999px;
+  }
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(255, 184, 65, 0.35) 18%,
-            rgba(255, 224, 137, 0.95) 38%,
-            rgba(255, 250, 215, 1) 50%,
-            rgba(255, 211, 105, 0.95) 62%,
-            rgba(255, 170, 45, 0.40) 82%,
-            transparent 100%
-        );
+  10% {
 
-    box-shadow:
-        0 0 8px rgba(255, 194, 71, 1),
-        0 0 18px rgba(255, 175, 45, 0.85),
-        0 0 32px rgba(255, 160, 35, 0.45);
+    stroke-dashoffset:
+      calc(
+        var(--glow-start) -
+        ((var(--glow-start) - var(--glow-end)) * 0.08)
+      );
 
-    filter:
-        blur(0);
+    opacity: 0.9;
+
+  }
+
+  22% {
+
+    opacity: 1;
+
+  }
+
+  72% {
+
+    stroke-dashoffset:
+      calc(
+        var(--glow-start) -
+        ((var(--glow-start) - var(--glow-end)) * 0.78)
+      );
+
+    opacity: 1;
+
+  }
+
+  88% {
+
+    opacity: 0.55;
+
+  }
+
+  100% {
+
+    stroke-dashoffset:
+      var(--glow-end);
+
+    opacity: 0;
+
+  }
+
 }
 
 
-/* ==========================================================================
-   HORIZONTAL GLOW
-   ========================================================================== */
-
-.golden-glow-top,
-.golden-glow-bottom {
-
-    width: 76px;
-
-    height: 4px;
-}
-
-
-/* ==========================================================================
-   VERTICAL GLOW
-   ========================================================================== */
-
-.golden-glow-left,
-.golden-glow-right {
-
-    width: 4px;
-
-    height: 76px;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(255, 184, 65, 0.35) 18%,
-            rgba(255, 224, 137, 0.95) 38%,
-            rgba(255, 250, 215, 1) 50%,
-            rgba(255, 211, 105, 0.95) 62%,
-            rgba(255, 170, 45, 0.40) 82%,
-            transparent 100%
-        );
-}
-
-
-/* ==========================================================================
-   GLOW ANIMATION
-   ========================================================================== */
-
-.golden-glow-active {
-
-    animation:
-        golden-ambient-sweep
-        1.5s
-        cubic-bezier(
-            0.22,
-            0.61,
-            0.36,
-            1
-        )
-        forwards;
-}
-
-
-@keyframes golden-ambient-sweep {
-
-    0% {
-
-        opacity: 0;
-
-        transform: scale(0.75);
-
-        filter:
-            brightness(0.8)
-            blur(0.6px);
-
-        box-shadow:
-            0 0 5px rgba(255, 190, 60, 0.3),
-            0 0 10px rgba(255, 170, 45, 0.15);
-    }
-
-
-    15% {
-
-        opacity: 0.82;
-
-        transform: scale(0.92);
-
-        filter:
-            brightness(1.25)
-            blur(0.2px);
-
-        box-shadow:
-            0 0 9px rgba(255, 205, 100, 0.95),
-            0 0 20px rgba(255, 175, 45, 0.7),
-            0 0 30px rgba(255, 160, 35, 0.35);
-    }
-
-
-    38% {
-
-        opacity: 1;
-
-        transform: scale(1);
-
-        filter:
-            brightness(1.5)
-            blur(0);
-
-        box-shadow:
-            0 0 11px rgba(255, 225, 135, 1),
-            0 0 24px rgba(255, 190, 60, 0.95),
-            0 0 38px rgba(255, 160, 35, 0.55);
-    }
-
-
-    55% {
-
-        opacity: 1;
-
-        transform: scale(1.02);
-
-        filter:
-            brightness(1.6)
-            blur(0);
-
-        box-shadow:
-            0 0 13px rgba(255, 235, 165, 1),
-            0 0 28px rgba(255, 195, 65, 1),
-            0 0 42px rgba(255, 160, 35, 0.65);
-    }
-
-
-    78% {
-
-        opacity: 0.72;
-
-        transform: scale(0.94);
-
-        filter:
-            brightness(1.2)
-            blur(0.15px);
-
-        box-shadow:
-            0 0 9px rgba(255, 205, 100, 0.8),
-            0 0 20px rgba(255, 175, 45, 0.55);
-    }
-
-
-    100% {
-
-        opacity: 0;
-
-        transform: scale(0.75);
-
-        filter:
-            brightness(0.8)
-            blur(0.6px);
-
-        box-shadow:
-            0 0 5px rgba(255, 190, 60, 0.2),
-            0 0 10px rgba(255, 170, 45, 0.1);
-    }
-}
-
-
-/* ==========================================================================
+/* ============================================================
    APP CONTAINER
-   ========================================================================== */
+   ============================================================ */
 
 .app-container {
 
-    width: 100%;
+  position: relative;
 
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #180f08 0%,
-            #030201 100%
-        );
+  border-radius: 40px;
 
-    border: 1.5px solid var(--gold-bright);
+  overflow: hidden;
 
-    border-radius: 40px;
+  background:
 
-    display: flex;
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(115, 76, 30, 0.15),
+      transparent 32%
+    ),
 
-    flex-direction: column;
+    linear-gradient(
+      180deg,
+      #0d0906 0%,
+      #090706 52%,
+      #050403 100%
+    );
 
-    position: relative;
+  display: flex;
 
-    overflow: hidden;
+  flex-direction: column;
 
-    box-shadow:
-        0 0 30px rgba(229, 179, 92, 0.3);
+  z-index: 5;
 }
 
 
-/* ==========================================================================
-   CORNER ORNAMENTS
-   ========================================================================== */
-
-.corner-ornament {
-
-    position: absolute;
-
-    width: 60px;
-
-    height: 60px;
-
-    border: 1px solid var(--gold-border);
-
-    pointer-events: none;
-
-    z-index: 1;
-
-    opacity: 0.5;
-}
-
-
-.top-left {
-
-    top: 10px;
-
-    left: 10px;
-
-    border-right: none;
-
-    border-bottom: none;
-}
-
-
-.top-right {
-
-    top: 10px;
-
-    right: 10px;
-
-    border-left: none;
-
-    border-bottom: none;
-}
-
-
-.bottom-left {
-
-    bottom: 10px;
-
-    left: 10px;
-
-    border-right: none;
-
-    border-top: none;
-}
-
-
-.bottom-right {
-
-    bottom: 10px;
-
-    right: 10px;
-
-    border-left: none;
-
-    border-top: none;
-}
-
-
-/* ==========================================================================
+/* ============================================================
    TOP BAR
-   ========================================================================== */
+   ============================================================ */
 
 .top-bar {
 
-    display: flex;
+  width: 100%;
 
-    justify-content: space-between;
+  padding:
+    18px
+    17px
+    5px;
 
-    align-items: center;
+  display: flex;
 
-    padding: 15px 20px 0;
+  align-items: center;
 
-    z-index: 3;
+  justify-content: space-between;
+
+  direction: ltr;
+
+  flex-shrink: 0;
+
 }
 
 
-.ornate-btn {
+.top-icon-button {
 
-    width: 36px;
+  width: 38px;
+  height: 38px;
 
-    height: 36px;
+  border-radius: 50%;
 
-    border-radius: 50%;
+  border: 1px solid
+    rgba(213, 165, 73, 0.78);
 
-    background: rgba(30, 20, 10, 0.8);
+  background:
+    radial-gradient(
+      circle,
+      rgba(70, 45, 14, 0.95),
+      rgba(13, 9, 5, 0.95)
+    );
 
-    border: 1px solid var(--gold-bright);
+  color: #e9c76d;
 
-    color: var(--gold-bright);
+  display: flex;
 
-    box-shadow:
-        0 0 10px var(--gold-box-glow);
+  align-items: center;
 
-    cursor: pointer;
+  justify-content: center;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 8px rgba(231, 181, 70, 0.08),
+    0 0 8px rgba(213, 165, 73, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 
-/* ==========================================================================
-   PROFILE
-   ========================================================================== */
+.top-icon-button:hover {
+
+  transform: scale(1.04);
+
+  box-shadow:
+    inset 0 0 10px rgba(231, 181, 70, 0.12),
+    0 0 12px rgba(213, 165, 73, 0.14);
+}
+
+
+.arrow-icon {
+
+  font-size: 23px;
+
+  line-height: 1;
+
+}
+
+
+.settings-icon {
+
+  font-size: 18px;
+
+  line-height: 1;
+
+}
+
+
+/* ============================================================
+   PROFILE SECTION
+   ============================================================ */
 
 .profile-section {
 
-    display: flex;
+  display: flex;
 
-    flex-direction: column;
+  flex-direction: column;
 
-    align-items: center;
+  align-items: center;
 
-    padding: 0 20px 5px;
+  flex-shrink: 0;
 
-    margin-top: -28px;
+  padding-top: 3px;
 
-    z-index: 2;
 }
 
 
-.avatar-container {
+/* ============================================================
+   PORTRAIT FRAME
+   ============================================================ */
 
-    position: relative;
+.profile-frame {
 
-    width: 230px;
+  position: relative;
 
-    height: 230px;
+  width: 158px;
+  height: 158px;
 
-    display: flex;
+  display: flex;
 
-    justify-content: center;
+  align-items: center;
 
-    align-items: center;
+  justify-content: center;
+
 }
 
-
-/* ==========================================================================
-   LAYER 02 — PORTRAIT MICRO-LIFE
-   ========================================================================== */
 
 .glowing-ring {
 
-    width: 226px;
+  position: relative;
 
-    height: 226px;
+  width: 146px;
+  height: 146px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    padding: 4px;
+  padding: 4px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ffc875,
-            #805018
-        );
+  background:
+    linear-gradient(
+      135deg,
+      #f0c968,
+      #8c601e,
+      #e4b653,
+      #7a5018,
+      #efc968
+    );
 
-    box-shadow:
-        0 0 40px rgba(255, 170, 51, 0.6);
+  box-shadow:
+    0 0 10px rgba(223, 175, 71, 0.30),
+    0 0 26px rgba(223, 175, 71, 0.10);
 
-    animation:
-        robaty-portrait-breath
-        8.8s
-        infinite
-        ease-in-out;
+  animation:
+    portrait-ring-life
+    8.8s ease-in-out infinite;
 }
 
 
 .avatar-img {
 
-    width: 100%;
+  width: 100%;
+  height: 100%;
 
-    height: 100%;
+  display: block;
 
-    border-radius: 50%;
+  object-fit: cover;
 
-    object-fit: cover;
+  object-position: center;
 
-    display: block;
+  border-radius: 50%;
 
-    animation:
-        robaty-portrait-life
-        8.8s
-        infinite
-        ease-in-out;
+  border: 3px solid #090706;
+
+  animation:
+    portrait-micro-life
+    8.8s ease-in-out infinite;
+
 }
 
 
-@keyframes robaty-portrait-breath {
+@keyframes portrait-ring-life {
 
-    0% {
+  0%,
+  100% {
 
-        transform: scale(1);
+    transform: scale(1);
 
-        box-shadow:
-            0 0 34px rgba(255, 170, 51, 0.48);
-    }
+    box-shadow:
+      0 0 10px rgba(223, 175, 71, 0.30),
+      0 0 26px rgba(223, 175, 71, 0.10);
 
+  }
 
-    25% {
+  50% {
 
-        transform: scale(1.004);
+    transform: scale(1.008);
 
-        box-shadow:
-            0 0 38px rgba(255, 170, 51, 0.53);
-    }
+    box-shadow:
+      0 0 13px rgba(223, 175, 71, 0.38),
+      0 0 30px rgba(223, 175, 71, 0.14);
 
+  }
 
-    50% {
-
-        transform: scale(1.009);
-
-        box-shadow:
-            0 0 46px rgba(255, 170, 51, 0.68);
-    }
-
-
-    75% {
-
-        transform: scale(1.004);
-
-        box-shadow:
-            0 0 38px rgba(255, 170, 51, 0.53);
-    }
-
-
-    100% {
-
-        transform: scale(1);
-
-        box-shadow:
-            0 0 34px rgba(255, 170, 51, 0.48);
-    }
 }
 
 
-@keyframes robaty-portrait-life {
+@keyframes portrait-micro-life {
 
-    0% {
+  0%,
+  100% {
 
-        transform: scale(1);
+    transform: scale(1);
 
-        filter:
-            brightness(1)
-            saturate(1);
-    }
+  }
 
+  50% {
 
-    25% {
+    transform: scale(1.004);
 
-        transform: scale(1.002);
+  }
 
-        filter:
-            brightness(1.008)
-            saturate(1.004);
-    }
-
-
-    50% {
-
-        transform: scale(1.004);
-
-        filter:
-            brightness(1.018)
-            saturate(1.008);
-    }
-
-
-    75% {
-
-        transform: scale(1.002);
-
-        filter:
-            brightness(1.008)
-            saturate(1.004);
-    }
-
-
-    100% {
-
-        transform: scale(1);
-
-        filter:
-            brightness(1)
-            saturate(1);
-    }
 }
 
 
-/* ==========================================================================
-   IDENTITY
-   ========================================================================== */
+/* ============================================================
+   ROBATY NAME
+   ============================================================ */
 
-.identity-info {
+.rob​​aty-name-row {
 
-    text-align: center;
+  display: flex;
 
-    margin-top: -6px;
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 1px;
+
 }
 
 
-.bot-name {
+.rob​​aty-name-row h1 {
 
-    font-size: 22px;
+  font-size: 25px;
 
-    color: #fff;
+  font-weight: 600;
 
-    font-weight: bold;
+  letter-spacing: 0.2px;
 
-    line-height: 1.1;
+  color: #f6ead1;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
 }
 
 
-/* ==========================================================================
-   LAYER 01 — PRESENCE INDICATOR
-   ========================================================================== */
+/* ============================================================
+   LAYER 01
+   OFFICIAL PRESENCE INDICATOR
+   ============================================================ */
 
 .neon-target-ring {
 
-    display: inline-block;
+  position: relative;
 
-    width: 18px;
+  width: 18px;
+  height: 18px;
 
-    height: 18px;
+  flex: 0 0 18px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    background-color: #000;
+  background: #050706;
 
-    border: 3.5px solid #23f287;
+  border:
+    3.5px solid
+    #23f287;
 
-    outline: 2px solid #000;
+  outline:
+    2px solid
+    #020302;
 
-    position: relative;
+  box-shadow:
+    0 0 4px rgba(35, 242, 135, 0.28);
 
-    animation:
-        robaty-presence-breath
-        6.5s
-        infinite
-        ease-in-out;
+  animation:
+    presence-breath
+    6.5s ease-in-out infinite;
+
 }
 
+
+/*
+  الهالة الخفيفة حول Presence Indicator.
+*/
 
 .neon-target-ring::after {
 
-    content: '';
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    top: -4px;
+  inset: -4px;
 
-    left: -4px;
+  border-radius: 50%;
 
-    right: -4px;
+  border:
+    1.2px solid
+    rgba(35, 242, 135, 0.65);
 
-    bottom: -4px;
+  opacity: 0.48;
 
-    border-radius: 50%;
+  animation:
+    presence-aura
+    6.5s ease-in-out infinite;
 
-    border: 1.2px solid rgba(35, 242, 135, 0.65);
-
-    pointer-events: none;
-
-    animation:
-        robaty-presence-aura
-        6.5s
-        infinite
-        ease-in-out;
 }
 
 
-@keyframes robaty-presence-breath {
+@keyframes presence-breath {
 
-    0% {
+  0%,
+  100% {
 
-        transform: scale(1);
-
-        box-shadow:
-            0 0 10px rgba(35, 242, 135, 0.78),
-            0 0 4px rgba(35, 242, 135, 0.55),
-            inset 0 0 5px rgba(35, 242, 135, 0.58);
-
-        opacity: 0.96;
-    }
-
-
-    25% {
-
-        transform: scale(1.018);
-
-        box-shadow:
-            0 0 12px rgba(35, 242, 135, 0.84),
-            0 0 5px rgba(35, 242, 135, 0.60),
-            inset 0 0 6px rgba(35, 242, 135, 0.65);
-
-        opacity: 0.98;
-    }
-
-
-    50% {
-
-        transform: scale(1.055);
-
-        box-shadow:
-            0 0 18px rgba(35, 242, 135, 1),
-            0 0 8px rgba(35, 242, 135, 0.75),
-            inset 0 0 8px rgba(35, 242, 135, 0.78);
-
-        opacity: 1;
-    }
-
-
-    75% {
-
-        transform: scale(1.018);
-
-        box-shadow:
-            0 0 12px rgba(35, 242, 135, 0.84),
-            0 0 5px rgba(35, 242, 135, 0.60),
-            inset 0 0 6px rgba(35, 242, 135, 0.65);
-
-        opacity: 0.98;
-    }
-
-
-    100% {
-
-        transform: scale(1);
-
-        box-shadow:
-            0 0 10px rgba(35, 242, 135, 0.78),
-            0 0 4px rgba(35, 242, 135, 0.55),
-            inset 0 0 5px rgba(35, 242, 135, 0.58);
-
-        opacity: 0.96;
-    }
-}
-
-
-@keyframes robaty-presence-aura {
-
-    0% {
-
-        transform: scale(1);
-
-        opacity: 0.48;
-    }
-
-
-    50% {
-
-        transform: scale(1.22);
-
-        opacity: 0.78;
-    }
-
-
-    100% {
-
-        transform: scale(1);
-
-        opacity: 0.48;
-    }
-}
-
-
-/* ==========================================================================
-   DIVIDER + TAGLINE
-   ========================================================================== */
-
-.divider-line {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 6px;
-
-    margin-top: 2px;
-}
-
-
-.line {
-
-    height: 1px;
-
-    width: 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--gold-bright),
-            transparent
-        );
-}
-
-
-.tagline {
-
-    color: var(--gold-bright);
-
-    font-size: 13px;
-}
-
-
-/* ==========================================================================
-   MOMENT BUTTON
-   ========================================================================== */
-
-.gold-pill-btn {
-
-    margin-top: 6px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #2b1d0e 0%,
-            #120b04 100%
-        );
-
-    border: 1px solid var(--gold-bright);
-
-    color: var(--text-gold-light);
-
-    padding: 6px 20px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
+    transform: scale(1);
 
     box-shadow:
-        0 0 12px rgba(229, 179, 92, 0.2);
+      0 0 4px rgba(35, 242, 135, 0.28);
 
-    cursor: pointer;
+  }
+
+  50% {
+
+    transform: scale(1.055);
+
+    box-shadow:
+      0 0 7px rgba(35, 242, 135, 0.48),
+      0 0 13px rgba(35, 242, 135, 0.18);
+
+  }
+
 }
 
 
-/* ==========================================================================
+@keyframes presence-aura {
+
+  0%,
+  100% {
+
+    transform: scale(1);
+
+    opacity: 0.48;
+
+  }
+
+  50% {
+
+    transform: scale(1.22);
+
+    opacity: 0.78;
+
+  }
+
+}
+
+
+/* ============================================================
+   PROFILE DIVIDER
+   ============================================================ */
+
+.profile-divider {
+
+  width: 76px;
+
+  height: 1px;
+
+  margin-top: 8px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(213, 165, 73, 0.75),
+      transparent
+    );
+
+}
+
+
+.rob​​aty-tagline {
+
+  margin-top: 6px;
+
+  color: #d7bd7e;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+}
+
+
+/* ============================================================
+   MOMENTS BUTTON
+   ============================================================ */
+
+.moments-button {
+
+  margin-top: 10px;
+
+  height: 38px;
+
+  min-width: 190px;
+
+  padding:
+    0 17px;
+
+  border-radius: 20px;
+
+  border:
+    1px solid
+    rgba(218, 173, 75, 0.85);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(103, 67, 22, 0.62),
+      rgba(45, 28, 10, 0.76)
+    );
+
+  color: #e7c66e;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  box-shadow:
+    inset 0 0 10px rgba(221, 172, 67, 0.07),
+    0 0 8px rgba(221, 172, 67, 0.08);
+
+}
+
+
+.moments-icon {
+
+  font-size: 15px;
+
+}
+
+
+/* ============================================================
    CHAT AREA
-   ========================================================================== */
+   ============================================================ */
 
 .chat-area {
 
-    flex: 1;
+  flex: 1;
 
-    padding: 10px 15px;
+  min-height: 0;
 
-    overflow-y: auto;
+  overflow-y: auto;
 
-    display: flex;
+  padding:
+    15px
+    13px
+    12px;
 
-    flex-direction: column;
+  scrollbar-width: thin;
 
-    gap: 10px;
-
-    z-index: 2;
+  scrollbar-color:
+    rgba(190, 142, 53, 0.35)
+    transparent;
 }
 
 
-.message {
+.chat-area::-webkit-scrollbar {
 
-    display: flex;
+  width: 4px;
 
-    flex-direction: column;
-
-    max-width: 85%;
 }
 
+
+.chat-area::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+
+.chat-area::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(190, 142, 53, 0.35);
+
+  border-radius: 10px;
+
+}
+
+
+/* ============================================================
+   MESSAGE ROWS
+   ============================================================ */
+
+.message-row {
+
+  width: 100%;
+
+  display: flex;
+
+  margin-bottom: 13px;
+
+}
+
+
+.user-row {
+
+  justify-content: flex-start;
+
+}
+
+
+.robaty-row {
+
+  justify-content: flex-end;
+
+  align-items: flex-start;
+
+  gap: 7px;
+
+  direction: ltr;
+
+}
+
+
+/* ============================================================
+   USER MESSAGE
+   ============================================================ */
 
 .user-msg {
 
-    align-self: flex-start;
+  max-width: 76%;
+
+  direction: rtl;
+
+  padding:
+    10px
+    13px;
+
+  border-radius:
+    17px
+    17px
+    6px
+    17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(91, 61, 21, 0.88),
+      rgba(45, 29, 11, 0.96)
+    );
+
+  border:
+    1px solid
+    rgba(205, 157, 64, 0.65);
+
+  color: #f0dfb9;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
 }
 
 
-.bot-msg {
+.message-meta {
 
-    align-self: flex-end;
+  display: flex;
 
-    width: 100%;
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 5px;
+
+  margin-top: 4px;
+
+  direction: ltr;
+
+  font-size: 9px;
+
+  color: rgba(222, 193, 132, 0.62);
+
 }
 
 
-/* ==========================================================================
-   LAYER 03 — MESSAGE PRESENCE
-   ========================================================================== */
+.checks {
 
-.bot-msg {
+  color: #dcb75c;
 
-    animation:
-        robaty-message-arrival
-        0.85s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        )
-        both;
 }
 
 
-.bot-msg:nth-of-type(2) {
-
-    animation-delay: 0.12s;
-}
-
-
-.bot-msg:nth-of-type(4) {
-
-    animation-delay: 0.26s;
-}
-
-
-@keyframes robaty-message-arrival {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translateY(7px);
-    }
-
-
-    55% {
-
-        opacity: 0.75;
-
-        transform:
-            translateY(2px);
-    }
-
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-/* ==========================================================================
-   USER MESSAGE
-   ========================================================================== */
-
-.bubble-gold-border {
-
-    background: rgba(25, 16, 9, 0.95);
-
-    border: 1px solid var(--gold-bright);
-
-    border-radius: 15px 15px 15px 2px;
-
-    padding: 8px 14px;
-
-    font-size: 12px;
-
-    color: var(--text-gold-light);
-
-    box-shadow:
-        0 0 10px rgba(229, 179, 92, 0.15);
-}
-
-
-/* ==========================================================================
+/* ============================================================
    ROBATY MESSAGE
-   ========================================================================== */
+   ============================================================ */
 
-.bubble-dark-gold {
+.message-avatar {
 
-    background: rgba(15, 10, 6, 0.95);
+  width: 30px;
+  height: 30px;
 
-    border: 1px solid var(--gold-border);
+  border-radius: 50%;
 
-    border-radius: 15px 2px 15px 15px;
+  object-fit: cover;
 
-    padding: 10px 14px;
+  border:
+    1px solid
+    rgba(210, 162, 68, 0.65);
 
-    font-size: 12px;
+  flex-shrink: 0;
 
-    color: #e0e0e0;
-
-    line-height: 1.6;
-
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 
-/* ==========================================================================
-   MESSAGE HEADER
-   ========================================================================== */
+.rob​​aty-message-wrapper {
 
-.msg-header {
+  max-width: 80%;
 
-    display: flex;
+  direction: rtl;
 
-    align-items: center;
-
-    gap: 6px;
-
-    margin-bottom: 4px;
 }
 
 
-.mini-avatar {
+.message-header {
 
-    width: 22px;
+  display: flex;
 
-    height: 22px;
+  align-items: center;
 
-    border-radius: 50%;
+  gap: 5px;
 
-    border: 1px solid var(--gold-bright);
+  padding:
+    0 4px
+    3px;
 
-    object-fit: cover;
 }
 
 
-.bot-label {
+.message-name {
 
-    font-size: 11px;
+  font-size: 10px;
 
-    color: var(--gold-bright);
+  color: #e0bd69;
 
-    font-weight: bold;
 }
 
 
-.msg-time {
+.mini-presence {
 
-    font-size: 10px;
+  width: 6px;
+  height: 6px;
 
-    color: #8c7860;
+  border-radius: 50%;
 
-    margin-top: 3px;
+  background: #23f287;
+
+  box-shadow:
+    0 0 5px rgba(35, 242, 135, 0.5);
+
 }
 
 
-/* ==========================================================================
-   BOTTOM CONTROLS
-   ========================================================================== */
+.message-time {
 
-.bottom-controls {
+  margin-right: auto;
 
-    padding: 10px 15px 15px;
+  font-size: 8px;
 
-    background:
-        linear-gradient(
-            0deg,
-            #050302 80%,
-            transparent 100%
-        );
+  color: rgba(214, 187, 130, 0.48);
 
-    z-index: 2;
 }
 
 
-.gold-input {
+.rob​​aty-msg {
 
-    width: 100%;
+  padding:
+    10px
+    12px;
 
-    background: rgba(18, 11, 6, 0.95);
+  border-radius:
+    17px
+    17px
+    17px
+    6px;
 
-    border: 1px solid var(--gold-bright);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(32, 23, 14, 0.97),
+      rgba(17, 12, 8, 0.98)
+    );
 
-    border-radius: 25px;
+  border:
+    1px solid
+    rgba(190, 143, 55, 0.50);
 
-    padding: 10px 18px;
+  color: #eee0c3;
 
-    color: #fff;
+  font-size: 12.5px;
 
-    font-size: 12px;
+  line-height: 1.8;
 
-    outline: none;
-
-    box-shadow:
-        inset 0 0 8px rgba(0, 0, 0, 0.8),
-        0 0 10px rgba(229, 179, 92, 0.15);
 }
 
 
-/* ==========================================================================
-   ACTION BAR
-   ========================================================================== */
+/* ============================================================
+   LAYER 03 — MESSAGE PRESENCE
+   ============================================================ */
 
-.ornate-action-bar {
+.bot-msg {
 
-    display: flex;
+  animation:
+    message-arrival
+    0.85s
+    ease-out
+    both;
 
-    justify-content: space-between;
-
-    gap: 8px;
-
-    margin-top: 10px;
 }
 
 
-.ornate-action-btn {
+@keyframes message-arrival {
 
-    flex: 1;
+  from {
 
-    background:
-        linear-gradient(
-            180deg,
-            #24180b 0%,
-            #0d0804 100%
-        );
+    opacity: 0;
 
-    border: 1px solid var(--gold-bright);
+    transform:
+      translateY(5px);
 
-    border-radius: 20px;
+  }
 
-    padding: 8px 5px;
+  to {
 
-    color: var(--text-gold-light);
+    opacity: 1;
 
-    display: flex;
+    transform:
+      translateY(0);
 
-    flex-direction: column;
+  }
 
-    align-items: center;
-
-    gap: 4px;
-
-    font-size: 10px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 10px rgba(229, 179, 92, 0.15);
 }
 
 
-.send-highlight {
+/* ============================================================
+   COMPOSER
+   ============================================================ */
 
-    background:
-        linear-gradient(
-            135deg,
-            #e5b35c 0%,
-            #7c4c12 100%
-        );
+.composer {
 
-    color: #fff;
+  width: 100%;
 
-    box-shadow:
-        0 0 15px rgba(229, 179, 92, 0.4);
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding:
+    8px
+    10px
+    11px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 6, 4, 0.35),
+      rgba(5, 4, 3, 0.98)
+    );
+
+  border-top:
+    1px solid
+    rgba(160, 117, 42, 0.18);
+
+  flex-shrink: 0;
+
 }
 
 
-/* ==========================================================================
-   ACCESSIBILITY
-   ========================================================================== */
+.input-wrapper {
 
-@media (prefers-reduced-motion: reduce) {
+  flex: 1;
 
-    .neon-target-ring,
-    .neon-target-ring::after,
-    .glowing-ring,
-    .avatar-img,
-    .bot-msg,
-    .golden-ambient-glow {
+  min-width: 0;
 
-        animation: none;
-    }
+}
+
+
+.input-wrapper input {
+
+  width: 100%;
+
+  height: 42px;
+
+  padding:
+    0 14px;
+
+  border-radius: 21px;
+
+  border:
+    1px solid
+    rgba(186, 139, 48, 0.48);
+
+  outline: none;
+
+  background:
+    rgba(23, 16, 9, 0.92);
+
+  color: #f0dfbd;
+
+  font-family: inherit;
+
+  font-size: 11.5px;
+
+  direction: rtl;
+
+}
+
+
+.input-wrapper input::placeholder {
+
+  color:
+    rgba(210, 181, 125, 0.55);
+
+}
+
+
+.composer-button {
+
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(198, 151, 58, 0.62);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(76, 48, 15, 0.90),
+      rgba(19, 12, 6, 0.98)
+    );
+
+  color: #dfbd69;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+}
+
+
+.send-button {
+
+  font-size: 17px;
+
+}
+
+
+.voice-button {
+
+  font-size: 15px;
+
+}
+
+
+.image-button {
+
+  font-size: 16px;
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .neon-target-ring,
+  .neon-target-ring::after,
+  .glowing-ring,
+  .avatar-img,
+  .bot-msg,
+  .ambient-glow-active {
+
+    animation: none !important;
+
+  }
+
+}
+
+
+/* ============================================================
+   SMALL SCREENS
+   ============================================================ */
+
+@media (max-height: 720px) {
+
+  .top-bar {
+
+    padding-top: 10px;
+
+  }
+
+  .profile-frame {
+
+    width: 132px;
+    height: 132px;
+
+  }
+
+  .glowing-ring {
+
+    width: 122px;
+    height: 122px;
+
+  }
+
+  .moments-button {
+
+    margin-top: 7px;
+
+    height: 34px;
+
+  }
+
+  .chat-area {
+
+    padding-top: 10px;
+
+  }
+
 }
