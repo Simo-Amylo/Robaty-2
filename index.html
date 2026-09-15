@@ -282,13 +282,13 @@
                 </div>
 
 
-                <input
-                    type="text"
+                <textarea
                     placeholder="اكتبي رسالتك لـ Robaty هنا..."
                     class="gold-input"
                     id="messageInput"
                     autocomplete="off"
-                >
+                    rows="1"
+                ></textarea>
 
             </div>
 
@@ -519,6 +519,30 @@
 
 
     /* ==============================================================
+       INPUT AUTO GROW
+       يبدأ بسطر واحد ويكبر مع الأسطر الجديدة
+       ============================================================== */
+
+    function autoGrowMessageInput() {
+
+        messageInput.style.height = 'auto';
+
+        messageInput.style.height =
+            Math.min(
+                messageInput.scrollHeight,
+                120
+            ) + 'px';
+
+    }
+
+
+    messageInput.addEventListener(
+        'input',
+        autoGrowMessageInput
+    );
+
+
+    /* ==============================================================
        SEND MESSAGE
        ============================================================== */
 
@@ -648,6 +672,8 @@
 
         messageInput.value = '';
 
+        messageInput.style.height = 'auto';
+
         clearImagePreview();
 
 
@@ -699,21 +725,25 @@
 
 
     /* ==============================================================
-       ENTER TO SEND
+       ENTER = سطر جديد
+       الإرسال أصبح من زر إرسال فقط
        ============================================================== */
 
     messageInput.addEventListener(
         'keydown',
         (event) => {
 
-            if (
-                event.key === 'Enter' &&
-                !event.shiftKey
-            ) {
+            if (event.key === 'Enter') {
 
-                event.preventDefault();
+                /*
+                 * لا نمنع Enter.
+                 * يسمح للـtextarea بالنزول إلى سطر جديد.
+                 */
 
-                sendMessage();
+                setTimeout(
+                    autoGrowMessageInput,
+                    0
+                );
 
             }
 
