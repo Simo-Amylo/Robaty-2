@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Robaty - Moroccan Luxury UI</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
     <link
         rel="stylesheet"
@@ -17,6 +25,7 @@
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
         rel="stylesheet"
     >
+
 </head>
 
 <body>
@@ -25,7 +34,7 @@
 
     <!-- ==============================================================
          GOLDEN FRAME GLINT
-         تبقى اللمعة الخفيفة على الإطار فقط
+         اللمعة الخفيفة تظهر على الإطار الخارجي فقط
          ============================================================== -->
 
     <div
@@ -48,11 +57,20 @@
 
         <header class="top-bar">
 
-            <button class="ornate-btn">
+            <button
+                type="button"
+                class="ornate-btn"
+                aria-label="رجوع"
+            >
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
 
-            <button class="ornate-btn">
+
+            <button
+                type="button"
+                class="ornate-btn"
+                aria-label="الإعدادات"
+            >
                 <i class="fa-solid fa-gear"></i>
             </button>
 
@@ -89,7 +107,6 @@
                     <span
                         class="neon-target-ring"
                         id="presenceIndicator"
-                        aria-label="Robaty presence"
                     ></span>
 
                     Robaty
@@ -109,16 +126,19 @@
 
                 </div>
 
-
-                <button class="gold-pill-btn">
-
-                    <i class="fa-regular fa-image"></i>
-
-                    شوفي تصاوري ليوم
-
-                </button>
-
             </div>
+
+
+            <button
+                type="button"
+                class="gold-pill-btn"
+            >
+
+                <i class="fa-regular fa-image"></i>
+
+                شوفي تصاوري ليوم
+
+            </button>
 
         </section>
 
@@ -127,7 +147,10 @@
              CHAT AREA
              ========================================================== -->
 
-        <main class="chat-area" id="chatArea">
+        <main
+            class="chat-area"
+            id="chatArea"
+        >
 
             <!-- USER MESSAGE -->
 
@@ -251,7 +274,9 @@
                         id="removeImageBtn"
                         aria-label="حذف الصورة"
                     >
+
                         <i class="fa-solid fa-xmark"></i>
+
                     </button>
 
                 </div>
@@ -382,18 +407,19 @@
 
 
     /* ==============================================================
-       PRESENCE SYSTEM
-
-       IDLE
-       LISTENING
-       PROCESSING
-       SPEAKING
+       PRESENCE STATE
+       IDLE → LISTENING → PROCESSING → SPEAKING → IDLE
        ============================================================== */
 
     let currentPresenceState = 'idle';
 
 
     function setPresenceState(state) {
+
+        if (!presenceIndicator) {
+            return;
+        }
+
 
         const states = [
             'presence-listening',
@@ -407,88 +433,42 @@
         );
 
 
-        currentPresenceState =
-            state;
-
-
-        /*
-         * عندما نخرج من Listening
-         * نرجع مستوى الصوت إلى الصفر.
-         */
-
-        if (state !== 'listening') {
-
-            presenceIndicator.style.setProperty(
-                '--voice-level',
-                '0'
-            );
-
-        }
-
-
         if (state !== 'idle') {
 
             presenceIndicator.classList.add(
-                'presence-' + state
+                `presence-${state}`
             );
 
         }
+
+
+        currentPresenceState = state;
 
     }
 
 
     /*
-     * API جاهز للربط لاحقًا مع AI و TTS.
+     * API داخلية للمراحل القادمة من ROBATY.
      *
-     * مثال:
-     *
-     * RobatyPresence.processing();
-     * RobatyPresence.speaking();
-     * RobatyPresence.idle();
+     * يمكن لاحقًا للـAI أو نظام الصوت استدعاؤها.
      */
 
     window.RobatyPresence = {
 
-        idle() {
-
-            setPresenceState(
-                'idle'
-            );
-
+        idle: () => {
+            setPresenceState('idle');
         },
 
-
-        listening() {
-
-            setPresenceState(
-                'listening'
-            );
-
+        listening: () => {
+            setPresenceState('listening');
         },
 
-
-        processing() {
-
-            setPresenceState(
-                'processing'
-            );
-
+        processing: () => {
+            setPresenceState('processing');
         },
 
-
-        speaking() {
-
-            setPresenceState(
-                'speaking'
-            );
-
-        },
-
-
-        getState() {
-
-            return currentPresenceState;
-
+        speaking: () => {
+            setPresenceState('speaking');
         }
 
     };
@@ -500,9 +480,7 @@
 
     function getCurrentTime() {
 
-        const now =
-            new Date();
-
+        const now = new Date();
 
         return now.toLocaleTimeString(
             'ar-MA',
@@ -531,9 +509,7 @@
             'button-pressed'
         );
 
-
         void button.offsetWidth;
-
 
         button.classList.add(
             'button-pressed'
@@ -544,13 +520,6 @@
 
     /* ==============================================================
        SEND MESSAGE
-
-       الرسالة تدخل →
-       Processing لفترة قصيرة →
-       Idle
-
-       لاحقًا سيتم ربط Processing الحقيقي
-       بوقت استجابة الـAI.
        ============================================================== */
 
     function sendMessage() {
@@ -571,28 +540,35 @@
         }
 
 
-        buttonPress(
-            sendButton
-        );
+        buttonPress(sendButton);
+
+
+        /*
+         * عند إرسال السؤال:
+         * Robaty تدخل Processing مؤقتًا.
+         *
+         * لاحقًا عندما يصبح الـAI الحقيقي مرتبطًا،
+         * سيتم استبدال هذا الـtimeout بالحالة الحقيقية.
+         */
+
+        setPresenceState('processing');
 
 
         const message =
             document.createElement('div');
 
-
         message.className =
             'message user-msg new-user-message';
 
 
-        /*
-         * IMAGE
-         */
+        /* ==========================================================
+           IMAGE
+           ========================================================== */
 
         if (imageInput.files.length) {
 
             const file =
                 imageInput.files[0];
-
 
             const imageUrl =
                 URL.createObjectURL(file);
@@ -601,7 +577,6 @@
             const imageBubble =
                 document.createElement('div');
 
-
             imageBubble.className =
                 'bubble-image-message';
 
@@ -609,10 +584,8 @@
             const image =
                 document.createElement('img');
 
-
             image.src =
                 imageUrl;
-
 
             image.alt =
                 'الصورة المرسلة';
@@ -630,19 +603,17 @@
         }
 
 
-        /*
-         * TEXT
-         */
+        /* ==========================================================
+           TEXT
+           ========================================================== */
 
         if (text) {
 
             const bubble =
                 document.createElement('div');
 
-
             bubble.className =
                 'bubble-gold-border';
-
 
             bubble.textContent =
                 text;
@@ -658,10 +629,8 @@
         const time =
             document.createElement('span');
 
-
         time.className =
             'msg-time';
-
 
         time.textContent =
             getCurrentTime();
@@ -677,18 +646,10 @@
         );
 
 
-        /*
-         * تنظيف الإدخال
-         */
-
         messageInput.value = '';
 
         clearImagePreview();
 
-
-        /*
-         * دخول الرسالة
-         */
 
         requestAnimationFrame(() => {
 
@@ -696,43 +657,37 @@
                 'message-enter-active'
             );
 
-
             scrollChatToBottom();
 
         });
 
 
         /*
-         * ROBATY PROCESSING
-         *
-         * هذه مجرد مرحلة تجريبية
-         * إلى أن نربط الـAI الحقيقي.
+         * Demo فقط.
+         * عندما يصبح الرد الحقيقي جاهزًا،
+         * سيتم التحكم بالحالة من الـAI.
          */
 
-        setPresenceState(
-            'processing'
+        window.clearTimeout(
+            window.__robatyProcessingTimer
         );
 
 
-        setTimeout(() => {
+        window.__robatyProcessingTimer =
+            window.setTimeout(() => {
 
-            /*
-             * لا نضيف رسالة وهمية.
-             * فقط نرجع إلى Idle.
-             */
+                if (
+                    currentPresenceState ===
+                    'processing'
+                ) {
 
-            if (
-                currentPresenceState ===
-                'processing'
-            ) {
+                    setPresenceState(
+                        'idle'
+                    );
 
-                setPresenceState(
-                    'idle'
-                );
+                }
 
-            }
-
-        }, 1200);
+            }, 1400);
 
     }
 
@@ -743,9 +698,9 @@
     );
 
 
-    /*
-     * Enter لإرسال الرسالة
-     */
+    /* ==============================================================
+       ENTER TO SEND
+       ============================================================== */
 
     messageInput.addEventListener(
         'keydown',
@@ -767,8 +722,16 @@
 
 
     /* ==============================================================
-       REAL MICROPHONE ANALYSIS
+       MICROPHONE / LISTENING
        ============================================================== */
+
+    let isRecording = false;
+
+    let mediaRecorder = null;
+
+    let recordedChunks = [];
+
+    let currentAudioStream = null;
 
     let audioContext = null;
 
@@ -776,47 +739,48 @@
 
     let microphoneSource = null;
 
-    let analyserAnimationFrame = null;
+    let voiceAnimationFrame = null;
 
 
-    function startVoiceAnalysis(
+    async function startVoiceAnalysis(
         stream
     ) {
 
         try {
 
-            const AudioContext =
-                window.AudioContext ||
-                window.webkitAudioContext;
-
-
-            if (!AudioContext) {
+            if (
+                !window.AudioContext &&
+                !window.webkitAudioContext
+            ) {
 
                 return;
 
             }
 
 
+            const AudioContextClass =
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+
             audioContext =
-                new AudioContext();
-
-
-            microphoneSource =
-                audioContext.createMediaStreamSource(
-                    stream
-                );
+                new AudioContextClass();
 
 
             analyser =
                 audioContext.createAnalyser();
 
 
-            analyser.fftSize =
-                256;
-
+            analyser.fftSize = 256;
 
             analyser.smoothingTimeConstant =
                 0.82;
+
+
+            microphoneSource =
+                audioContext.createMediaStreamSource(
+                    stream
+                );
 
 
             microphoneSource.connect(
@@ -832,7 +796,10 @@
 
             function analyseVoice() {
 
-                if (!analyser) {
+                if (
+                    !analyser ||
+                    !isRecording
+                ) {
 
                     return;
 
@@ -844,8 +811,7 @@
                 );
 
 
-                let sum =
-                    0;
+                let sum = 0;
 
 
                 for (
@@ -854,16 +820,12 @@
                     i++
                 ) {
 
-                    const normalized =
-                        (
-                            dataArray[i] -
-                            128
-                        ) / 128;
+                    const value =
+                        (dataArray[i] - 128) /
+                        128;
 
 
-                    sum +=
-                        normalized *
-                        normalized;
+                    sum += value * value;
 
                 }
 
@@ -876,60 +838,41 @@
 
 
                 /*
-                 * تحويل الصوت إلى مستوى
-                 * ناعم ومحدود.
-                 *
-                 * 0 = لا صوت
-                 * 0.68 = الحد الأقصى
+                 * نحول الصوت إلى مستوى 0 → 1
+                 * مع سقف هادئ حتى لا تصبح الحركة مزعجة.
                  */
 
-                let voiceLevel =
-                    Math.max(
-                        0,
-                        Math.min(
-                            1,
-                            (rms - 0.012) /
-                            0.14
+                const voiceLevel =
+                    Math.min(
+                        1,
+                        Math.max(
+                            0,
+                            (rms - 0.015) / 0.18
                         )
                     );
 
 
-                voiceLevel =
-                    Math.min(
-                        0.68,
-                        voiceLevel
+                presenceIndicator.style
+                    .setProperty(
+                        '--voice-level',
+                        voiceLevel.toFixed(3)
                     );
 
 
-                /*
-                 * Smooth
-                 * حتى لا تهتز الدائرة.
-                 */
-
-                const oldLevel =
-                    parseFloat(
-                        presenceIndicator.style
-                            .getPropertyValue(
-                                '--voice-level'
-                            )
-                    ) || 0;
-
-
-                const smoothLevel =
-                    oldLevel * 0.72 +
-                    voiceLevel * 0.28;
-
-
-                presenceIndicator.style.setProperty(
-                    '--voice-level',
-                    smoothLevel.toFixed(3)
-                );
-
-
-                analyserAnimationFrame =
+                voiceAnimationFrame =
                     requestAnimationFrame(
                         analyseVoice
                     );
+
+            }
+
+
+            if (
+                audioContext.state ===
+                'suspended'
+            ) {
+
+                await audioContext.resume();
 
             }
 
@@ -940,10 +883,16 @@
 
         catch (error) {
 
-            console.warn(
-                'Robaty audio analysis unavailable:',
-                error
-            );
+            /*
+             * إذا لم يتوفر تحليل الصوت،
+             * يبقى Listening بصريًا.
+             */
+
+            presenceIndicator.style
+                .setProperty(
+                    '--voice-level',
+                    '0'
+                );
 
         }
 
@@ -952,24 +901,18 @@
 
     function stopVoiceAnalysis() {
 
-        if (
-            analyserAnimationFrame
-        ) {
+        if (voiceAnimationFrame) {
 
             cancelAnimationFrame(
-                analyserAnimationFrame
+                voiceAnimationFrame
             );
 
-
-            analyserAnimationFrame =
-                null;
+            voiceAnimationFrame = null;
 
         }
 
 
-        if (
-            microphoneSource
-        ) {
+        if (microphoneSource) {
 
             try {
 
@@ -979,8 +922,7 @@
 
             catch (error) {}
 
-            microphoneSource =
-                null;
+            microphoneSource = null;
 
         }
 
@@ -995,82 +937,60 @@
 
             catch (error) {}
 
-            analyser =
-                null;
+            analyser = null;
 
         }
 
 
         if (audioContext) {
 
-            audioContext
-                .close()
-                .catch(
-                    () => {}
-                );
+            try {
 
+                audioContext.close();
 
-            audioContext =
-                null;
+            }
+
+            catch (error) {}
+
+            audioContext = null;
 
         }
 
 
-        presenceIndicator.style.setProperty(
-            '--voice-level',
-            '0'
-        );
+        presenceIndicator.style
+            .setProperty(
+                '--voice-level',
+                '0'
+            );
 
     }
-
-
-    /* ==============================================================
-       RECORDING
-       ضغط مطوّل → RECORDING + LISTENING
-       رفع الإصبع → STOP → IDLE
-       ============================================================== */
-
-    let isRecording =
-        false;
-
-    let mediaRecorder =
-        null;
-
-    let recordedChunks =
-        [];
-
-    let microphoneStream =
-        null;
 
 
     async function startRecording() {
 
         if (isRecording) {
-
             return;
-
         }
 
 
-        /*
-         * أولًا نحاول الحصول على الميكروفون الحقيقي.
-         */
-
         try {
 
-            microphoneStream =
-                await navigator.mediaDevices.getUserMedia({
-                    audio: true
-                });
+            const stream =
+                await navigator.mediaDevices
+                    .getUserMedia({
+                        audio: true
+                    });
+
+
+            currentAudioStream =
+                stream;
 
 
             recordedChunks = [];
 
 
             mediaRecorder =
-                new MediaRecorder(
-                    microphoneStream
-                );
+                new MediaRecorder(stream);
 
 
             mediaRecorder.ondataavailable =
@@ -1101,44 +1021,45 @@
             mediaRecorder.start();
 
 
+            isRecording = true;
+
+
             /*
-             * نفس Stream:
-             *
-             * التسجيل
-             * +
-             * تحليل الصوت
+             * تبدأ Listening الحقيقي
+             * بمجرد بدء كلام المستخدمة.
              */
 
-            startVoiceAnalysis(
-                microphoneStream
+            setPresenceState(
+                'listening'
+            );
+
+
+            await startVoiceAnalysis(
+                stream
             );
 
         }
 
         catch (error) {
 
+            mediaRecorder = null;
+
+            currentAudioStream = null;
+
+            isRecording = true;
+
+
             /*
-             * إذا رفضت المستخدمة
-             * الميكروفون، لا نكسر الواجهة.
+             * حتى إذا لم تمنح المستخدمة
+             * صلاحية الميكروفون،
+             * تبقى حالة Listening واضحة.
              */
 
-            console.warn(
-                'Microphone permission:',
-                error
+            setPresenceState(
+                'listening'
             );
 
-
-            microphoneStream =
-                null;
-
-            mediaRecorder =
-                null;
-
         }
-
-
-        isRecording =
-            true;
 
 
         recordButton.classList.add(
@@ -1155,29 +1076,20 @@
             'جاري التسجيل'
         );
 
-
-        /*
-         * ROBATY كتسمعك
-         */
-
-        setPresenceState(
-            'listening'
-        );
-
     }
 
 
     function stopRecording() {
 
         if (!isRecording) {
-
             return;
-
         }
 
 
-        isRecording =
-            false;
+        isRecording = false;
+
+
+        stopVoiceAnalysis();
 
 
         recordButton.classList.remove(
@@ -1195,13 +1107,9 @@
         );
 
 
-        stopVoiceAnalysis();
-
-
         if (
             mediaRecorder &&
-            mediaRecorder.state !==
-            'inactive'
+            mediaRecorder.state !== 'inactive'
         ) {
 
             mediaRecorder.stop();
@@ -1214,39 +1122,29 @@
 
         }
 
+    }
 
-        if (microphoneStream) {
 
-            microphoneStream
+    function finishRecording() {
+
+        if (
+            currentAudioStream
+        ) {
+
+            currentAudioStream
                 .getTracks()
                 .forEach(
                     track => track.stop()
                 );
 
-
-            microphoneStream =
-                null;
+            currentAudioStream = null;
 
         }
 
 
         /*
-         * بعد ما تسالي المستخدمة الكلام،
-         * نرجعو حاليًا إلى Idle.
-         *
-         * لاحقًا:
-         * Listening → Processing
-         * مباشرة بعد إرسال الصوت للـAI.
+         * تسجيل حقيقي
          */
-
-        setPresenceState(
-            'idle'
-        );
-
-    }
-
-
-    function finishRecording() {
 
         if (
             recordedChunks.length
@@ -1270,34 +1168,23 @@
 
 
             const message =
-                document.createElement(
-                    'div'
-                );
-
+                document.createElement('div');
 
             message.className =
                 'message user-msg new-user-message';
 
 
             const audioBubble =
-                document.createElement(
-                    'div'
-                );
-
+                document.createElement('div');
 
             audioBubble.className =
                 'audio-message-bubble';
 
 
             const audio =
-                document.createElement(
-                    'audio'
-                );
+                document.createElement('audio');
 
-
-            audio.controls =
-                true;
-
+            audio.controls = true;
 
             audio.src =
                 audioUrl;
@@ -1314,14 +1201,10 @@
 
 
             const time =
-                document.createElement(
-                    'span'
-                );
-
+                document.createElement('span');
 
             time.className =
                 'msg-time';
-
 
             time.textContent =
                 getCurrentTime();
@@ -1343,22 +1226,55 @@
                     'message-enter-active'
                 );
 
-
                 scrollChatToBottom();
 
             });
 
 
-            recordedChunks =
-                [];
+            recordedChunks = [];
 
         }
+
+
+        mediaRecorder = null;
+
+
+        /*
+         * بعد انتهاء كلام المستخدمة:
+         * Processing مؤقتًا.
+         */
+
+        setPresenceState(
+            'processing'
+        );
+
+
+        window.clearTimeout(
+            window.__robatyVoiceProcessingTimer
+        );
+
+
+        window.__robatyVoiceProcessingTimer =
+            window.setTimeout(() => {
+
+                if (
+                    currentPresenceState ===
+                    'processing'
+                ) {
+
+                    setPresenceState(
+                        'idle'
+                    );
+
+                }
+
+            }, 1400);
 
     }
 
 
     /* ==============================================================
-       RECORD BUTTON — POINTER EVENTS
+       POINTER EVENTS
        ============================================================== */
 
     recordButton.addEventListener(
@@ -1433,7 +1349,6 @@
                 imageButton
             );
 
-
             imageInput.click();
 
         }
@@ -1449,16 +1364,12 @@
 
 
             if (!file) {
-
                 return;
-
             }
 
 
             const imageUrl =
-                URL.createObjectURL(
-                    file
-                );
+                URL.createObjectURL(file);
 
 
             previewImage.src =
@@ -1488,18 +1399,13 @@
 
     function clearImagePreview() {
 
-        imageInput.value =
-            '';
+        imageInput.value = '';
 
-
-        previewImage.src =
-            '';
-
+        previewImage.src = '';
 
         imagePreview.classList.remove(
             'image-preview-visible'
         );
-
 
         imagePreview.setAttribute(
             'aria-hidden',
@@ -1517,7 +1423,7 @@
 
     /* ==============================================================
        GOLDEN FRAME GLINT
-       اللمعة تبقى على الإطار فقط
+       الإطار فقط — لا يوجد Glow في وسط الشاشة
        ============================================================== */
 
     const glow =
@@ -1546,10 +1452,7 @@
         ) {
 
             return Math.random() *
-                (
-                    max -
-                    min
-                ) +
+                (max - min) +
                 min;
 
         }
@@ -1608,30 +1511,16 @@
                 side;
 
 
-            glow.style.left =
-                '';
+            glow.style.left = '';
+            glow.style.right = '';
+            glow.style.top = '';
+            glow.style.bottom = '';
 
 
-            glow.style.right =
-                '';
-
-
-            glow.style.top =
-                '';
-
-
-            glow.style.bottom =
-                '';
-
-
-            if (
-                side === 'top'
-            ) {
+            if (side === 'top') {
 
                 glow.style.left =
-                    horizontalPosition +
-                    'px';
-
+                    horizontalPosition + 'px';
 
                 glow.style.top =
                     '0px';
@@ -1639,14 +1528,10 @@
             }
 
 
-            if (
-                side === 'bottom'
-            ) {
+            if (side === 'bottom') {
 
                 glow.style.left =
-                    horizontalPosition +
-                    'px';
-
+                    horizontalPosition + 'px';
 
                 glow.style.bottom =
                     '0px';
@@ -1654,32 +1539,24 @@
             }
 
 
-            if (
-                side === 'left'
-            ) {
+            if (side === 'left') {
 
                 glow.style.left =
                     '0px';
 
-
                 glow.style.top =
-                    verticalPosition +
-                    'px';
+                    verticalPosition + 'px';
 
             }
 
 
-            if (
-                side === 'right'
-            ) {
+            if (side === 'right') {
 
                 glow.style.right =
                     '0px';
 
-
                 glow.style.top =
-                    verticalPosition +
-                    'px';
+                    verticalPosition + 'px';
 
             }
 
@@ -1752,7 +1629,6 @@
             clearTimeout(
                 glowTimer
             );
-
 
             glow.style.display =
                 'none';
