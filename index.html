@@ -1,514 +1,598 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080604">
-  <title>Robaty — مغربية و أفتخر</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+    <title>Robaty - Moroccan Luxury UI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
-  <div class="outer-gold-frame">
+    <div class="outer-gold-frame">
 
-    <!-- =====================================================
-         LAYER 04 — GOLDEN AMBIENT MOVING GLOW
-         الضوء يتحرك فوق مسار الإطار فقط
-    ====================================================== -->
-    <svg
-      class="ambient-glow-svg"
-      aria-hidden="true"
-      preserveAspectRatio="none"
-    >
-      <defs>
+        <!-- ==============================================================
+             LAYER 04 — GOLDEN AMBIENT GLOW
+             يتحرك فوق محيط الإطار فقط
+             ============================================================== -->
 
-        <linearGradient
-          id="goldGlowGradient"
-          x1="0%"
-          y1="0%"
-          x2="100%"
-          y2="0%"
+        <svg
+            class="golden-frame-glow"
+            viewBox="0 0 426 908"
+            preserveAspectRatio="none"
+            aria-hidden="true"
         >
-          <stop offset="0%" stop-color="rgba(255,255,255,0)" />
-          <stop offset="35%" stop-color="rgba(255,226,145,0.85)" />
-          <stop offset="50%" stop-color="#fff8d7" />
-          <stop offset="65%" stop-color="rgba(255,214,105,0.9)" />
-          <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-        </linearGradient>
 
-        <filter
-          id="goldGlowBlur"
-          x="-100%"
-          y="-100%"
-          width="300%"
-          height="300%"
-        >
-          <feGaussianBlur stdDeviation="3.5" />
-        </filter>
+            <!-- الهالة الناعمة -->
+            <rect
+                class="golden-frame-glow-halo"
+                x="3"
+                y="3"
+                width="420"
+                height="902"
+                rx="43"
+                ry="43"
+                pathLength="1000"
+            ></rect>
 
-      </defs>
+            <!-- النواة الذهبية -->
+            <rect
+                class="golden-frame-glow-core"
+                x="3"
+                y="3"
+                width="420"
+                height="902"
+                rx="43"
+                ry="43"
+                pathLength="1000"
+            ></rect>
 
-      <!-- الهالة -->
-      <rect
-        class="ambient-glow-path ambient-glow-halo"
-        x="2"
-        y="2"
-        width="96"
-        height="96"
-        rx="8"
-        ry="8"
-        pathLength="1000"
-      />
-
-      <!-- القلب المضيء -->
-      <rect
-        class="ambient-glow-path ambient-glow-core"
-        x="2"
-        y="2"
-        width="96"
-        height="96"
-        rx="8"
-        ry="8"
-        pathLength="1000"
-      />
-
-    </svg>
+        </svg>
 
 
-    <!-- =====================================================
-         MAIN APP
-    ====================================================== -->
+        <div class="app-container">
 
-    <main class="app-container">
-
-      <!-- TOP CONTROLS -->
-      <header class="top-bar">
-
-        <button
-          class="top-icon-button"
-          type="button"
-          aria-label="رجوع"
-        >
-          <span class="arrow-icon">←</span>
-        </button>
-
-        <button
-          class="top-icon-button"
-          type="button"
-          aria-label="الإعدادات"
-        >
-          <span class="settings-icon">⚙</span>
-        </button>
-
-      </header>
+            <div class="corner-ornament top-left"></div>
+            <div class="corner-ornament top-right"></div>
+            <div class="corner-ornament bottom-left"></div>
+            <div class="corner-ornament bottom-right"></div>
 
 
-      <!-- =================================================
-           ROBATY PROFILE
-      ================================================== -->
+            <!-- TOP BAR -->
 
-      <section class="profile-section">
+            <header class="top-bar">
 
-        <div class="profile-frame">
+                <button class="ornate-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
 
-          <div class="glowing-ring">
+                <button class="ornate-btn">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
 
-            <img
-              src="robat​y-profile.jpg"
-              alt="Robaty"
-              class="avatar-img"
-              onerror="this.onerror=null;this.src='robaty-profile.jpg';"
-            >
+            </header>
 
-          </div>
+
+            <!-- ROBATY PROFILE -->
+
+            <section class="profile-section">
+
+                <div class="avatar-container">
+
+                    <div class="zellige-mandala"></div>
+
+                    <div class="glowing-ring">
+
+                        <img
+                            src="robaty-profile.jpg"
+                            alt="Robaty"
+                            class="avatar-img"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="identity-info">
+
+                    <h1 class="bot-name">
+
+                        <span class="neon-target-ring"></span>
+
+                        Robaty
+
+                    </h1>
+
+
+                    <div class="divider-line">
+
+                        <span class="line"></span>
+
+                        <p class="tagline">
+                            🇲🇦 مغربية و أفتخر
+                        </p>
+
+                        <span class="line"></span>
+
+                    </div>
+
+                </div>
+
+
+                <button class="gold-pill-btn">
+
+                    <i class="fa-regular fa-image"></i>
+
+                    شوفي تصاوري ليوم
+
+                </button>
+
+            </section>
+
+
+            <!-- CHAT -->
+
+            <main class="chat-area">
+
+                <div class="message user-msg">
+
+                    <div class="bubble-gold-border">
+                        هذا من لطفك
+                    </div>
+
+                    <span class="msg-time">
+                        21:16
+                    </span>
+
+                </div>
+
+
+                <div class="message bot-msg">
+
+                    <div class="msg-header">
+
+                        <img
+                            src="robaty-profile.jpg"
+                            class="mini-avatar"
+                            alt="Robaty"
+                        >
+
+                        <span class="bot-label">
+                            Robaty 🟢
+                        </span>
+
+                        <span class="msg-time">
+                            21:16
+                        </span>
+
+                    </div>
+
+                    <div class="bubble-dark-gold">
+
+                        هادي كفرحتني، بزاف الحمد لله اللي راكي بخير، طاقة إيجابية للجمعة المباركة. كاين شي حاجة تقدر تعاونك بها اليوم باش تكملي نهارك ببهجة؟
+
+                    </div>
+
+                </div>
+
+
+                <div class="message user-msg">
+
+                    <div class="bubble-gold-border">
+                        هذا من لطفك
+                    </div>
+
+                    <span class="msg-time">
+                        21:17
+                    </span>
+
+                </div>
+
+
+                <div class="message bot-msg">
+
+                    <div class="msg-header">
+
+                        <img
+                            src="robaty-profile.jpg"
+                            class="mini-avatar"
+                            alt="Robaty"
+                        >
+
+                        <span class="bot-label">
+                            Robaty 🟢
+                        </span>
+
+                        <span class="msg-time">
+                            21:17
+                        </span>
+
+                    </div>
+
+                    <div class="bubble-dark-gold">
+
+                        هذا من توفقك الرفيع، كوني أكيدة أني هنا باش نسمع ليك ونشاركك أي موضوع، كيوماك، سواء كان على الثقافة المغربية، الموضة، أو أي حاجة تانية.
+
+                    </div>
+
+                </div>
+
+            </main>
+
+
+            <!-- BOTTOM CONTROLS -->
+
+            <footer class="bottom-controls">
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        placeholder="اكتبي رسالتك لـ Robaty هنا..."
+                        class="gold-input"
+                    >
+
+                </div>
+
+
+                <div class="ornate-action-bar">
+
+                    <button class="ornate-action-btn send-highlight">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        <span>
+                            إرسال
+                        </span>
+
+                    </button>
+
+
+                    <button class="ornate-action-btn">
+
+                        <i class="fa-solid fa-microphone"></i>
+
+                        <span>
+                            تسجيل صوتي
+                        </span>
+
+                    </button>
+
+
+                    <button class="ornate-action-btn">
+
+                        <i class="fa-regular fa-image"></i>
+
+                        <span>
+                            إرسال الصور
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </footer>
 
         </div>
 
+    </div>
 
-        <div class="rob​​aty-name-row">
 
-          <h1>Robaty</h1>
+    <!-- ==============================================================
+         GOLDEN FRAME GLOW ENGINE
+         ============================================================== -->
 
-          <!-- LAYER 01 — PRESENCE INDICATOR -->
-          <span
-            class="neon-target-ring"
-            aria-label="Robaty متصلة"
-          ></span>
+    <script>
 
-        </div>
+        (() => {
 
+            const svg =
+                document.querySelector(
+                    '.golden-frame-glow'
+                );
 
-        <div class="profile-divider"></div>
+            const halo =
+                document.querySelector(
+                    '.golden-frame-glow-halo'
+                );
 
+            const core =
+                document.querySelector(
+                    '.golden-frame-glow-core'
+                );
 
-        <div class="rob​​aty-tagline">
-          🇲🇦 مغربية و أفتخر
-        </div>
 
+            if (!svg || !halo || !core) {
+                return;
+            }
 
-        <button
-          class="moments-button"
-          type="button"
-        >
-          <span class="moments-icon">▧</span>
-          <span>شوفي تصاوير ليوم</span>
-        </button>
 
-      </section>
+            const reducedMotion =
+                window.matchMedia(
+                    '(prefers-reduced-motion: reduce)'
+                );
 
 
-      <!-- =================================================
-           CHAT
-      ================================================== -->
+            if (reducedMotion.matches) {
 
-      <section class="chat-area">
+                svg.style.display = 'none';
 
-        <!-- USER MESSAGE -->
+                return;
 
-        <div class="message-row user-row">
+            }
 
-          <div class="user-msg bot-msg">
-            هذا من لطفك
 
-            <div class="message-meta">
-              <span>21:16</span>
-              <span class="checks">✓✓</span>
-            </div>
-          </div>
+            const GLOW_DURATION = 1500;
 
-        </div>
 
+            function randomBetween(min, max) {
 
-        <!-- ROBATY MESSAGE -->
+                return Math.random() * (max - min) + min;
 
-        <div class="message-row robaty-row">
+            }
 
-          <img
-            src="robaty-profile.jpg"
-            alt=""
-            class="message-avatar"
-            onerror="this.onerror=null;this.src='robaty-profile.jpg';"
-          >
 
-          <div class="rob​​aty-message-wrapper">
+            function runGoldenSweep() {
 
-            <div class="message-header">
+                /*
+                 * كل مرة نختار نقطة بداية مختلفة
+                 * على محيط الإطار.
+                 */
 
-              <span class="message-name">
-                Robaty
-              </span>
+                const start =
+                    randomBetween(
+                        0,
+                        1000
+                    );
 
-              <span
-                class="mini-presence"
-                aria-hidden="true"
-              ></span>
 
-              <span class="message-time">
-                21:16
-              </span>
+                /*
+                 * اتجاه عشوائي:
+                 * 50% مع عقارب الساعة
+                 * 50% عكسها
+                 */
 
-            </div>
+                const direction =
+                    Math.random() > 0.5
+                        ? 1
+                        : -1;
 
-            <div class="rob​​aty-msg bot-msg">
 
-              هادي كفرحتني، بزاف الحمد لله اللي راكي بخير،
-              طاقة إيجابية للجمعة المباركة.
-              كاين شي حاجة تقدر تعاونك بها اليوم باش تكملي نهارك ببهجة؟
+                /*
+                 * اللمعة قصيرة مقارنة
+                 * بمحيط الإطار الكامل.
+                 */
 
-            </div>
+                const visibleLength = 68;
 
-          </div>
 
-        </div>
+                const startOffset =
+                    direction === 1
+                        ? -start
+                        : start;
 
 
-        <!-- USER MESSAGE -->
+                const endOffset =
+                    direction === 1
+                        ? -(start + 1000)
+                        : start + 1000;
+
+
+                /*
+                 * نواة الضوء.
+                 */
+
+                core.style.strokeDasharray =
+                    `${visibleLength} ${1000 - visibleLength}`;
+
+
+                /*
+                 * الهالة أكبر قليلًا
+                 * من النواة.
+                 */
+
+                halo.style.strokeDasharray =
+                    `${visibleLength + 14} ${1000 - visibleLength - 14}`;
+
+
+                core.style.strokeDashoffset =
+                    startOffset;
+
+                halo.style.strokeDashoffset =
+                    startOffset;
+
+
+                /*
+                 * إلغاء أي Animation سابقة.
+                 */
+
+                core.getAnimations().forEach(
+                    animation => animation.cancel()
+                );
+
+                halo.getAnimations().forEach(
+                    animation => animation.cancel()
+                );
+
+
+                /*
+                 * بداية هادئة.
+                 */
+
+                core.style.opacity = '0';
+
+                halo.style.opacity = '0';
+
+
+                /*
+                 * تشغيل الحركة.
+                 */
+
+                requestAnimationFrame(() => {
+
+                    const coreAnimation =
+                        core.animate(
+                            [
+                                {
+                                    strokeDashoffset:
+                                        startOffset,
+                                    opacity: 0
+                                },
+                                {
+                                    strokeDashoffset:
+                                        startOffset +
+                                        (
+                                            endOffset -
+                                            startOffset
+                                        ) * 0.12,
+                                    opacity: 1
+                                },
+                                {
+                                    strokeDashoffset:
+                                        startOffset +
+                                        (
+                                            endOffset -
+                                            startOffset
+                                        ) * 0.78,
+                                    opacity: 1
+                                },
+                                {
+                                    strokeDashoffset:
+                                        endOffset,
+                                    opacity: 0
+                                }
+                            ],
+                            {
+                                duration:
+                                    GLOW_DURATION,
+
+                                easing:
+                                    'cubic-bezier(0.22, 0.61, 0.36, 1)',
+
+                                fill: 'forwards'
+                            }
+                        );
 
-        <div class="message-row user-row">
 
-          <div class="user-msg bot-msg">
-            هذا من لطفك
+                    const haloAnimation =
+                        halo.animate(
+                            [
+                                {
+                                    strokeDashoffset:
+                                        startOffset,
+                                    opacity: 0
+                                },
+                                {
+                                    strokeDashoffset:
+                                        startOffset +
+                                        (
+                                            endOffset -
+                                            startOffset
+                                        ) * 0.15,
+                                    opacity: 0.55
+                                },
+                                {
+                                    strokeDashoffset:
+                                        startOffset +
+                                        (
+                                            endOffset -
+                                            startOffset
+                                        ) * 0.75,
+                                    opacity: 0.55
+                                },
+                                {
+                                    strokeDashoffset:
+                                        endOffset,
+                                    opacity: 0
+                                }
+                            ],
+                            {
+                                duration:
+                                    GLOW_DURATION,
 
-            <div class="message-meta">
-              <span>21:17</span>
-              <span class="checks">✓✓</span>
-            </div>
+                                easing:
+                                    'cubic-bezier(0.22, 0.61, 0.36, 1)',
 
-          </div>
+                                fill: 'forwards'
+                            }
+                        );
 
-        </div>
 
+                    /*
+                     * بعد انتهاء الحركة:
+                     * نضمن اختفاء اللمعة بالكامل.
+                     */
 
-        <!-- ROBATY MESSAGE -->
+                    Promise.all([
+                        coreAnimation.finished,
+                        haloAnimation.finished
+                    ]).then(() => {
 
-        <div class="message-row robaty-row">
+                        core.style.opacity = '0';
 
-          <img
-            src="robaty-profile.jpg"
-            alt=""
-            class="message-avatar"
-            onerror="this.onerror=null;this.src='robaty-profile.jpg';"
-          >
+                        halo.style.opacity = '0';
 
-          <div class="rob​​aty-message-wrapper">
+                    }).catch(() => {});
 
-            <div class="message-header">
+                });
 
-              <span class="message-name">
-                Robaty
-              </span>
+            }
 
-              <span
-                class="mini-presence"
-                aria-hidden="true"
-              ></span>
 
-              <span class="message-time">
-                21:17
-              </span>
+            function scheduleNextSweep() {
 
-            </div>
+                /*
+                 * سكون طويل وطبيعي:
+                 * من 10 إلى 20 ثانية.
+                 */
 
-            <div class="rob​​aty-msg bot-msg">
+                const silence =
+                    randomBetween(
+                        10000,
+                        20000
+                    );
 
-              هذا من توفقك الرفيع، كوني أكيدة أني هنا باش
-              نسمع ليك ونشاركك أي موضوع، كيفما كان،
-              سواء كان على الثقافة المغربية، الموضة،
-              أو أي حاجة تانية.
 
-            </div>
+                setTimeout(() => {
 
-          </div>
+                    runGoldenSweep();
 
-        </div>
+                    scheduleNextSweep();
 
-      </section>
+                }, silence);
 
+            }
 
-      <!-- =================================================
-           COMPOSER
-      ================================================== -->
 
-      <footer class="composer">
+            /*
+             * أول لمعة بعد هدوء أولي.
+             */
 
-        <div class="input-wrapper">
+            setTimeout(() => {
 
-          <input
-            type="text"
-            placeholder="اكتبي رسالتك لـ Robaty هنا..."
-            aria-label="اكتبي رسالتك"
-          >
+                runGoldenSweep();
 
-        </div>
+                scheduleNextSweep();
 
+            }, randomBetween(7000, 12000));
 
-        <button
-          class="composer-button send-button"
-          type="button"
-          aria-label="إرسال"
-        >
-          ➤
-        </button>
 
+        })();
 
-        <button
-          class="composer-button voice-button"
-          type="button"
-          aria-label="تسجيل صوتي"
-        >
-          🎙
-        </button>
-
-
-        <button
-          class="composer-button image-button"
-          type="button"
-          aria-label="إرسال الصور"
-        >
-          ▧
-        </button>
-
-      </footer>
-
-    </main>
-
-  </div>
-
-
-  <!-- =====================================================
-       ROBATY LIVING PRESENCE — MOTION CONTROLLER
-  ====================================================== -->
-
-  <script>
-
-    /*
-      ========================================================
-      LAYER 04
-      GOLDEN AMBIENT MOVING GLOW
-      ========================================================
-
-      الفكرة:
-      الضوء لا يتم وضعه في مكان عشوائي ثم يكبر ويختفي.
-
-      بدل ذلك:
-      - لدينا مسار SVG مطابق للإطار.
-      - نضع جزءًا مضيئًا قصيرًا فوق المسار.
-      - هذا الجزء يتحرك فعليًا على الإطار.
-      - ثم يختفي.
-      - بعد فترة سكون يظهر من مكان مختلف.
-    */
-
-    (() => {
-
-      const svg = document.querySelector(".ambient-glow-svg");
-
-      const halo = document.querySelector(".ambient-glow-halo");
-
-      const core = document.querySelector(".ambient-glow-core");
-
-      if (!svg || !halo || !core) {
-        return;
-      }
-
-
-      /*
-        طول الجزء المضيء.
-
-        1000 = محيط المسار الافتراضي.
-        75 = طول اللمعة.
-      */
-
-      const GLOW_LENGTH = 75;
-
-      /*
-        مقدار الحركة في كل ظهور.
-        كلما زاد الرقم، تحرك الضوء مسافة أكبر.
-      */
-
-      const TRAVEL_DISTANCE = 145;
-
-
-      function prepareGlow() {
-
-        halo.style.strokeDasharray =
-          `${GLOW_LENGTH} ${1000 - GLOW_LENGTH}`;
-
-        core.style.strokeDasharray =
-          `${GLOW_LENGTH} ${1000 - GLOW_LENGTH}`;
-
-      }
-
-
-      function showGlow() {
-
-        if (
-          window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-          ).matches
-        ) {
-          return;
-        }
-
-
-        /*
-          اختيار مكان بداية عشوائي على الإطار.
-
-          لأن المسار مغلق:
-          0 → 1000
-
-          لذلك الضوء يمكن أن يبدأ من أي جزء
-          من الإطار، وليس وسط الشاشة.
-        */
-
-        const start =
-          Math.floor(Math.random() * 1000);
-
-
-        /*
-          اختيار اتجاه الحركة.
-        */
-
-        const direction =
-          Math.random() > 0.5 ? 1 : -1;
-
-
-        const end =
-          start - (TRAVEL_DISTANCE * direction);
-
-
-        /*
-          نمرر القيم إلى CSS.
-        */
-
-        svg.style.setProperty(
-          "--glow-start",
-          start
-        );
-
-        svg.style.setProperty(
-          "--glow-end",
-          end
-        );
-
-
-        /*
-          إعادة تشغيل animation من البداية.
-        */
-
-        halo.classList.remove("ambient-glow-active");
-
-        core.classList.remove("ambient-glow-active");
-
-
-        /*
-          Force reflow
-          حتى يمكن تشغيل الحركة من جديد.
-        */
-
-        void svg.offsetWidth;
-
-
-        halo.classList.add("ambient-glow-active");
-
-        core.classList.add("ambient-glow-active");
-
-
-        /*
-          بعد انتهاء الحركة:
-          ننتظر مدة عشوائية قبل الظهور القادم.
-        */
-
-        const silence =
-          9000 +
-          Math.random() * 11000;
-
-
-        window.setTimeout(
-          showGlow,
-          silence
-        );
-
-      }
-
-
-      prepareGlow();
-
-
-      /*
-        أول ظهور بعد فترة قصيرة،
-        وليس فور فتح الشاشة حتى لا يبدو كأنه Animation دائم.
-      */
-
-      window.setTimeout(
-        showGlow,
-        4500
-      );
-
-    })();
-
-  </script>
+    </script>
 
 </body>
 </html>
