@@ -5,9 +5,8 @@
    + LAYER 01 — Presence Indicator
    + LAYER 02 — Portrait Micro-Life
    + LAYER 03 — Message Presence
-   + LAYER 04 — Golden Ambient Glow
-
-   ROBATY LIVING PRESENCE™
+   + INTERACTION LAYER — Buttons
+   + GOLDEN FRAME GLINT
    ========================================================================== */
 
 
@@ -94,97 +93,136 @@ body {
 
 
 /* ==========================================================================
-   LAYER 04 — GOLDEN AMBIENT GLOW
+   GOLDEN FRAME GLINT
    ==========================================================================
 
-   اللمعة هنا ليست نقطة ثابتة.
-
-   هي Sweep حقيقي:
-   - يتحرك فوق محيط الإطار.
-   - لا يدخل إلى وسط الشاشة.
-   - لا يغيّر أبعاد الإطار.
-   - لا يلمس محتوى التطبيق.
+   اللمعة هنا محصورة في شريط صغير جدًا على حافة الإطار.
+   لا توجد أي نقطة ضوئية في وسط الشاشة.
    ========================================================================== */
 
-.golden-frame-glow {
+.golden-ambient-glow {
 
     position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
 
     z-index: 20;
 
     pointer-events: none;
 
-    overflow: visible;
-}
-
-
-/* ==========================================================================
-   GOLDEN GLOW — HALO
-   ========================================================================== */
-
-.golden-frame-glow-halo {
-
-    fill: none;
-
-    stroke:
-        rgba(255, 184, 65, 0.65);
-
-    stroke-width: 5;
-
-    stroke-linecap: round;
-
-    stroke-linejoin: round;
-
     opacity: 0;
 
-    filter:
-        blur(3px);
+    border-radius: 999px;
 
-    vector-effect: non-scaling-stroke;
-
-    pointer-events: none;
-}
-
-
-/* ==========================================================================
-   GOLDEN GLOW — CORE
-   ========================================================================== */
-
-.golden-frame-glow-core {
-
-    fill: none;
-
-    stroke:
-        rgba(255, 246, 210, 1);
-
-    stroke-width: 2.8;
-
-    stroke-linecap: round;
-
-    stroke-linejoin: round;
-
-    opacity: 0;
-
-    filter:
-        drop-shadow(
-            0 0 3px rgba(255, 245, 190, 1)
-        )
-        drop-shadow(
-            0 0 8px rgba(255, 194, 65, 0.95)
-        )
-        drop-shadow(
-            0 0 16px rgba(255, 160, 35, 0.65)
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 210, 120, 0.18) 20%,
+            rgba(255, 238, 180, 0.78) 50%,
+            rgba(255, 190, 75, 0.35) 75%,
+            transparent 100%
         );
 
-    vector-effect: non-scaling-stroke;
+    box-shadow:
+        0 0 4px rgba(255, 190, 75, 0.48);
 
-    pointer-events: none;
+    filter:
+        blur(0.1px);
+}
+
+
+.golden-glow-top,
+.golden-glow-bottom {
+
+    width: 58px;
+
+    height: 2px;
+}
+
+
+.golden-glow-left,
+.golden-glow-right {
+
+    width: 2px;
+
+    height: 58px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(255, 210, 120, 0.18) 20%,
+            rgba(255, 238, 180, 0.78) 50%,
+            rgba(255, 190, 75, 0.35) 75%,
+            transparent 100%
+        );
+}
+
+
+.golden-glow-active {
+
+    animation:
+        golden-ambient-sweep
+        1.5s
+        cubic-bezier(
+            0.22,
+            0.61,
+            0.36,
+            1
+        )
+        forwards;
+}
+
+
+@keyframes golden-ambient-sweep {
+
+    0% {
+
+        opacity: 0;
+
+        filter:
+            brightness(0.8)
+            blur(0.3px);
+    }
+
+
+    18% {
+
+        opacity: 0.58;
+
+        filter:
+            brightness(1.08)
+            blur(0.1px);
+    }
+
+
+    50% {
+
+        opacity: 0.82;
+
+        filter:
+            brightness(1.18)
+            blur(0);
+    }
+
+
+    78% {
+
+        opacity: 0.45;
+
+        filter:
+            brightness(1)
+            blur(0.15px);
+    }
+
+
+    100% {
+
+        opacity: 0;
+
+        filter:
+            brightness(0.8)
+            blur(0.3px);
+    }
 }
 
 
@@ -1003,6 +1041,14 @@ body {
 }
 
 
+.input-wrapper {
+
+    position: relative;
+
+    width: 100%;
+}
+
+
 .gold-input {
 
     width: 100%;
@@ -1076,8 +1122,21 @@ body {
 
     box-shadow:
         0 0 10px rgba(229, 179, 92, 0.15);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 120ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
 }
 
+
+/* ==========================================================================
+   SEND BUTTON
+   ========================================================================== */
 
 .send-highlight {
 
@@ -1095,6 +1154,400 @@ body {
 }
 
 
+/*
+ * ضغط صغير جدًا.
+ */
+
+.button-pressed {
+
+    transform: scale(0.965);
+
+    box-shadow:
+        0 0 18px rgba(229, 179, 92, 0.55),
+        inset 0 0 10px rgba(255, 235, 180, 0.20);
+}
+
+
+/*
+ * التوهج الصغير فقط.
+ */
+
+.button-pressed::after {
+
+    content: '';
+
+    position: absolute;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.4);
+
+    background:
+        rgba(255, 225, 160, 0.32);
+
+    box-shadow:
+        0 0 12px rgba(255, 210, 120, 0.5);
+
+    pointer-events: none;
+
+    animation:
+        button-soft-glow
+        320ms
+        ease-out
+        forwards;
+}
+
+
+@keyframes button-soft-glow {
+
+    0% {
+
+        opacity: 0.85;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.4);
+    }
+
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.25);
+    }
+}
+
+
+/* ==========================================================================
+   RECORDING BUTTON
+   ========================================================================== */
+
+.record-btn.recording-active {
+
+    border-color: rgba(255, 220, 160, 0.95);
+
+    box-shadow:
+        0 0 12px rgba(229, 179, 92, 0.32);
+
+    animation:
+        recording-breath
+        1.8s
+        infinite
+        ease-in-out;
+}
+
+
+.record-btn.recording-active i {
+
+    animation:
+        microphone-soft-pulse
+        1.8s
+        infinite
+        ease-in-out;
+}
+
+
+@keyframes recording-breath {
+
+    0% {
+
+        transform: scale(1);
+
+        box-shadow:
+            0 0 8px rgba(229, 179, 92, 0.18);
+    }
+
+
+    50% {
+
+        transform: scale(1.018);
+
+        box-shadow:
+            0 0 15px rgba(229, 179, 92, 0.38);
+    }
+
+
+    100% {
+
+        transform: scale(1);
+
+        box-shadow:
+            0 0 8px rgba(229, 179, 92, 0.18);
+    }
+}
+
+
+@keyframes microphone-soft-pulse {
+
+    0% {
+
+        opacity: 0.78;
+    }
+
+
+    50% {
+
+        opacity: 1;
+    }
+
+
+    100% {
+
+        opacity: 0.78;
+    }
+}
+
+
+/* ==========================================================================
+   IMAGE BUTTON
+   ========================================================================== */
+
+.image-btn.button-pressed {
+
+    box-shadow:
+        0 0 17px rgba(229, 179, 92, 0.42);
+}
+
+
+/* ==========================================================================
+   IMAGE PREVIEW
+   ========================================================================== */
+
+.image-preview {
+
+    position: absolute;
+
+    right: 10px;
+
+    bottom: 7px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--gold-bright);
+
+    background: #090604;
+
+    opacity: 0;
+
+    transform:
+        translateY(5px)
+        scale(0.94);
+
+    pointer-events: none;
+
+    transition:
+        opacity 180ms ease,
+        transform 220ms ease;
+
+    z-index: 3;
+
+    box-shadow:
+        0 0 10px rgba(229, 179, 92, 0.25);
+}
+
+
+.image-preview-visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+}
+
+
+.image-preview img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.remove-image-btn {
+
+    position: absolute;
+
+    top: 2px;
+
+    left: 2px;
+
+    width: 16px;
+
+    height: 16px;
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.75);
+
+    color: #fff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 8px;
+
+    cursor: pointer;
+}
+
+
+/*
+ * عندما توجد صورة، نترك مساحة لها
+ * بدون تغيير ارتفاع خانة الإدخال.
+ */
+
+.image-preview-visible ~ .gold-input {
+
+    padding-right: 60px;
+}
+
+
+/* ==========================================================================
+   NEW MESSAGE ARRIVAL
+   ========================================================================== */
+
+.new-user-message {
+
+    opacity: 0;
+
+    transform:
+        translateY(6px)
+        scale(0.985);
+}
+
+
+.message-enter-active {
+
+    animation:
+        user-message-arrival
+        300ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        forwards;
+}
+
+
+@keyframes user-message-arrival {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(6px)
+            scale(0.985);
+    }
+
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==========================================================================
+   IMAGE MESSAGE
+   ========================================================================== */
+
+.bubble-image-message {
+
+    width: 150px;
+
+    height: 150px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--gold-bright);
+
+    background: #0c0804;
+
+    box-shadow:
+        0 0 10px rgba(229, 179, 92, 0.15);
+}
+
+
+.bubble-image-message img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* ==========================================================================
+   AUDIO MESSAGE
+   ========================================================================== */
+
+.audio-message-bubble {
+
+    background: rgba(18, 11, 6, 0.95);
+
+    border: 1px solid var(--gold-bright);
+
+    border-radius: 15px 15px 15px 2px;
+
+    padding: 7px;
+
+    box-shadow:
+        0 0 10px rgba(229, 179, 92, 0.15);
+}
+
+
+.audio-message-bubble audio {
+
+    width: 190px;
+
+    max-width: 100%;
+
+    height: 34px;
+}
+
+
 /* ==========================================================================
    ACCESSIBILITY
    ========================================================================== */
@@ -1106,8 +1559,13 @@ body {
     .glowing-ring,
     .avatar-img,
     .bot-msg,
-    .golden-frame-glow {
+    .golden-ambient-glow,
+    .record-btn.recording-active,
+    .record-btn.recording-active i,
+    .message-enter-active,
+    .button-pressed::after {
 
         animation: none;
     }
+
 }
