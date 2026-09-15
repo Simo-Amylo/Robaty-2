@@ -32,10 +32,7 @@
 
 <div class="outer-gold-frame">
 
-    <!-- ==============================================================
-         GOLDEN FRAME GLINT
-         اللمعة الخفيفة تظهر على الإطار الخارجي فقط
-         ============================================================== -->
+    <!-- GOLDEN FRAME GLINT -->
 
     <div
         class="golden-ambient-glow"
@@ -51,9 +48,7 @@
         <div class="corner-ornament bottom-right"></div>
 
 
-        <!-- ==========================================================
-             TOP BAR
-             ========================================================== -->
+        <!-- TOP BAR -->
 
         <header class="top-bar">
 
@@ -77,9 +72,7 @@
         </header>
 
 
-        <!-- ==========================================================
-             ROBATY PROFILE
-             ========================================================== -->
+        <!-- ROBATY PROFILE -->
 
         <section class="profile-section">
 
@@ -143,9 +136,7 @@
         </section>
 
 
-        <!-- ==========================================================
-             CHAT AREA
-             ========================================================== -->
+        <!-- CHAT AREA -->
 
         <main
             class="chat-area"
@@ -246,9 +237,7 @@
         </main>
 
 
-        <!-- ==========================================================
-             BOTTOM CONTROLS
-             ========================================================== -->
+        <!-- BOTTOM CONTROLS -->
 
         <footer class="bottom-controls">
 
@@ -281,6 +270,8 @@
 
                 </div>
 
+
+                <!-- MESSAGE INPUT -->
 
                 <textarea
                     placeholder="اكتبي رسالتك لـ Robaty هنا..."
@@ -366,10 +357,6 @@
 
 <script>
 
-/* ==========================================================================
-   ROBATY — INTERACTION + LIVING PRESENCE
-   ========================================================================== */
-
 (() => {
 
     const chatArea =
@@ -408,7 +395,6 @@
 
     /* ==============================================================
        PRESENCE STATE
-       IDLE → LISTENING → PROCESSING → SPEAKING → IDLE
        ============================================================== */
 
     let currentPresenceState = 'idle';
@@ -446,12 +432,6 @@
 
     }
 
-
-    /*
-     * API داخلية للمراحل القادمة من ROBATY.
-     *
-     * يمكن لاحقًا للـAI أو نظام الصوت استدعاؤها.
-     */
 
     window.RobatyPresence = {
 
@@ -520,18 +500,29 @@
 
     /* ==============================================================
        INPUT AUTO GROW
-       يبدأ بسطر واحد ويكبر مع الأسطر الجديدة
+       يبدأ بسطر واحد ويكبر مع الكتابة
+       Enter = سطر جديد
        ============================================================== */
 
     function autoGrowMessageInput() {
 
         messageInput.style.height = 'auto';
 
-        messageInput.style.height =
+        const maxHeight = 140;
+
+        const newHeight =
             Math.min(
                 messageInput.scrollHeight,
-                120
-            ) + 'px';
+                maxHeight
+            );
+
+        messageInput.style.height =
+            newHeight + 'px';
+
+        messageInput.style.overflowY =
+            messageInput.scrollHeight > maxHeight
+                ? 'auto'
+                : 'hidden';
 
     }
 
@@ -540,6 +531,9 @@
         'input',
         autoGrowMessageInput
     );
+
+
+    autoGrowMessageInput();
 
 
     /* ==============================================================
@@ -566,14 +560,6 @@
 
         buttonPress(sendButton);
 
-
-        /*
-         * عند إرسال السؤال:
-         * Robaty تدخل Processing مؤقتًا.
-         *
-         * لاحقًا عندما يصبح الـAI الحقيقي مرتبطًا،
-         * سيتم استبدال هذا الـtimeout بالحالة الحقيقية.
-         */
 
         setPresenceState('processing');
 
@@ -672,7 +658,7 @@
 
         messageInput.value = '';
 
-        messageInput.style.height = 'auto';
+        autoGrowMessageInput();
 
         clearImagePreview();
 
@@ -687,12 +673,6 @@
 
         });
 
-
-        /*
-         * Demo فقط.
-         * عندما يصبح الرد الحقيقي جاهزًا،
-         * سيتم التحكم بالحالة من الـAI.
-         */
 
         window.clearTimeout(
             window.__robatyProcessingTimer
@@ -725,8 +705,9 @@
 
 
     /* ==============================================================
-       ENTER = سطر جديد
-       الإرسال أصبح من زر إرسال فقط
+       ENTER
+       Enter = سطر جديد
+       لا يوجد إرسال بواسطة Enter
        ============================================================== */
 
     messageInput.addEventListener(
@@ -734,11 +715,6 @@
         (event) => {
 
             if (event.key === 'Enter') {
-
-                /*
-                 * لا نمنع Enter.
-                 * يسمح للـtextarea بالنزول إلى سطر جديد.
-                 */
 
                 setTimeout(
                     autoGrowMessageInput,
@@ -772,9 +748,7 @@
     let voiceAnimationFrame = null;
 
 
-    async function startVoiceAnalysis(
-        stream
-    ) {
+    async function startVoiceAnalysis(stream) {
 
         try {
 
@@ -867,11 +841,6 @@
                     );
 
 
-                /*
-                 * نحول الصوت إلى مستوى 0 → 1
-                 * مع سقف هادئ حتى لا تصبح الحركة مزعجة.
-                 */
-
                 const voiceLevel =
                     Math.min(
                         1,
@@ -913,11 +882,6 @@
 
         catch (error) {
 
-            /*
-             * إذا لم يتوفر تحليل الصوت،
-             * يبقى Listening بصريًا.
-             */
-
             presenceIndicator.style
                 .setProperty(
                     '--voice-level',
@@ -945,11 +909,8 @@
         if (microphoneSource) {
 
             try {
-
                 microphoneSource.disconnect();
-
             }
-
             catch (error) {}
 
             microphoneSource = null;
@@ -960,11 +921,8 @@
         if (analyser) {
 
             try {
-
                 analyser.disconnect();
-
             }
-
             catch (error) {}
 
             analyser = null;
@@ -975,11 +933,8 @@
         if (audioContext) {
 
             try {
-
                 audioContext.close();
-
             }
-
             catch (error) {}
 
             audioContext = null;
@@ -1054,11 +1009,6 @@
             isRecording = true;
 
 
-            /*
-             * تبدأ Listening الحقيقي
-             * بمجرد بدء كلام المستخدمة.
-             */
-
             setPresenceState(
                 'listening'
             );
@@ -1077,13 +1027,6 @@
             currentAudioStream = null;
 
             isRecording = true;
-
-
-            /*
-             * حتى إذا لم تمنح المستخدمة
-             * صلاحية الميكروفون،
-             * تبقى حالة Listening واضحة.
-             */
 
             setPresenceState(
                 'listening'
@@ -1157,9 +1100,7 @@
 
     function finishRecording() {
 
-        if (
-            currentAudioStream
-        ) {
+        if (currentAudioStream) {
 
             currentAudioStream
                 .getTracks()
@@ -1171,10 +1112,6 @@
 
         }
 
-
-        /*
-         * تسجيل حقيقي
-         */
 
         if (
             recordedChunks.length
@@ -1268,11 +1205,6 @@
 
         mediaRecorder = null;
 
-
-        /*
-         * بعد انتهاء كلام المستخدمة:
-         * Processing مؤقتًا.
-         */
 
         setPresenceState(
             'processing'
@@ -1453,7 +1385,6 @@
 
     /* ==============================================================
        GOLDEN FRAME GLINT
-       الإطار فقط — لا يوجد Glow في وسط الشاشة
        ============================================================== */
 
     const glow =
@@ -1476,10 +1407,7 @@
         let glowTimer;
 
 
-        function randomBetween(
-            min,
-            max
-        ) {
+        function randomBetween(min, max) {
 
             return Math.random() *
                 (max - min) +
@@ -1509,7 +1437,6 @@
 
             const frameWidth =
                 frame.clientWidth;
-
 
             const frameHeight =
                 frame.clientHeight;
