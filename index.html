@@ -23,6 +23,17 @@
 
     <div class="outer-gold-frame">
 
+        <!-- ==============================================================
+             LAYER 04 — GOLDEN AMBIENT GLOW
+             لمعة ذهبية عابرة على جزء من الإطار
+             ============================================================== -->
+
+        <div
+            class="golden-ambient-glow"
+            aria-hidden="true"
+        ></div>
+
+
         <div class="app-container">
 
             <div class="corner-ornament top-left"></div>
@@ -267,6 +278,221 @@
         </div>
 
     </div>
+
+
+    <!-- ==============================================================
+         LAYER 04 — GOLDEN AMBIENT GLOW ENGINE
+         ============================================================== -->
+
+    <script>
+
+        (() => {
+
+            const glow = document.querySelector(
+                '.golden-ambient-glow'
+            );
+
+            const frame = document.querySelector(
+                '.outer-gold-frame'
+            );
+
+
+            if (!glow || !frame) {
+                return;
+            }
+
+
+            let glowTimer;
+
+
+            function randomBetween(min, max) {
+
+                return Math.random() * (max - min) + min;
+
+            }
+
+
+            function prepareGlow() {
+
+                const sides = [
+                    'top',
+                    'right',
+                    'bottom',
+                    'left'
+                ];
+
+
+                const side =
+                    sides[
+                        Math.floor(
+                            Math.random() * sides.length
+                        )
+                    ];
+
+
+                const frameWidth =
+                    frame.clientWidth;
+
+                const frameHeight =
+                    frame.clientHeight;
+
+
+                /*
+                 * نترك مساحة صغيرة قرب الزوايا
+                 * حتى تبقى اللمعة على المسار الجميل
+                 * للإطار المستدير.
+                 */
+
+                const horizontalPosition =
+                    randomBetween(
+                        10,
+                        Math.max(10, frameWidth - 80)
+                    );
+
+
+                const verticalPosition =
+                    randomBetween(
+                        10,
+                        Math.max(10, frameHeight - 80)
+                    );
+
+
+                glow.className =
+                    'golden-ambient-glow ' +
+                    'golden-glow-' +
+                    side;
+
+
+                /*
+                 * تحديد مكان اللمعة بشكل شبه عشوائي.
+                 */
+
+                if (side === 'top') {
+
+                    glow.style.left =
+                        horizontalPosition + 'px';
+
+                    glow.style.top =
+                        '1px';
+
+                }
+
+
+                if (side === 'bottom') {
+
+                    glow.style.left =
+                        horizontalPosition + 'px';
+
+                    glow.style.bottom =
+                        '1px';
+
+                }
+
+
+                if (side === 'left') {
+
+                    glow.style.left =
+                        '1px';
+
+                    glow.style.top =
+                        verticalPosition + 'px';
+
+                }
+
+
+                if (side === 'right') {
+
+                    glow.style.right =
+                        '1px';
+
+                    glow.style.top =
+                        verticalPosition + 'px';
+
+                }
+
+
+                /*
+                 * إعادة تشغيل Animation
+                 * بدون تغيير مدة اللمعة.
+                 */
+
+                glow.classList.remove(
+                    'golden-glow-active'
+                );
+
+
+                void glow.offsetWidth;
+
+
+                glow.classList.add(
+                    'golden-glow-active'
+                );
+
+            }
+
+
+            function scheduleNextGlow() {
+
+                /*
+                 * سكون طويل وشبه عشوائي:
+                 * تقريبًا من 7 إلى 15 ثانية.
+                 */
+
+                const silence =
+                    randomBetween(
+                        7000,
+                        15000
+                    );
+
+
+                glowTimer =
+                    setTimeout(() => {
+
+                        prepareGlow();
+
+                        scheduleNextGlow();
+
+                    }, silence);
+
+            }
+
+
+            /*
+             * أول لمعة لا تظهر مباشرة عند فتح الشاشة.
+             * نعطي المستخدمة وقتًا طبيعيًا قبل أول حدث.
+             */
+
+            glowTimer =
+                setTimeout(() => {
+
+                    prepareGlow();
+
+                    scheduleNextGlow();
+
+                }, randomBetween(5000, 11000));
+
+
+            /*
+             * احترام إعدادات تقليل الحركة.
+             */
+
+            const reducedMotion =
+                window.matchMedia(
+                    '(prefers-reduced-motion: reduce)'
+                );
+
+
+            if (reducedMotion.matches) {
+
+                clearTimeout(glowTimer);
+
+                glow.style.display = 'none';
+
+            }
+
+        })();
+
+    </script>
 
 </body>
 </html>
