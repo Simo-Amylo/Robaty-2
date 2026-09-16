@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Robaty - Moroccan Luxury UI</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<div class="outer-gold-frame">
+
+    <!-- GOLDEN FRAME GLINT -->
+
+    <div
+        class="golden-ambient-glow"
+        aria-hidden="true"
+    ></div>
+
+
+    <div class="app-container">
+
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+
+
+        <!-- TOP BAR -->
+
+        <header class="top-bar">
+
+            <button
+                type="button"
+                class="ornate-btn"
+                aria-label="رجوع"
+            >
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+
+            <button
+                type="button"
+                class="ornate-btn"
+                id="settingsButton"
+                aria-label="الإعدادات"
+            >
+                <i class="fa-solid fa-gear"></i>
+            </button>
+
+        </header>
+
+
+        <!-- ROBATY PROFILE -->
+
+        <section class="profile-section">
+
+            <div class="avatar-container">
+
+                <div class="zellige-mandala"></div>
+
+                <div class="glowing-ring">
+
+                    <img
+                        src="robaty-profile.jpg"
+                        alt="Robaty"
+                        class="avatar-img"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="identity-info">
+
+                <h1 class="bot-name">
+
+                    <span
+                        class="neon-target-ring"
+                        id="presenceIndicator"
+                    ></span>
+
+                    Robaty
+
+                </h1>
+
+
+                <div class="divider-line">
+
+                    <span class="line"></span>
+
+                    <p class="tagline">
+                        🇲🇦 مغربية و أفتخر
+                    </p>
+
+                    <span class="line"></span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="gold-pill-btn"
+            >
+
+                <i class="fa-regular fa-image"></i>
+
+                شوفي تصاوري ليوم
+
+            </button>
+
+        </section>
+
+
+        <!-- CHAT AREA -->
+
+        <main
+            class="chat-area"
+            id="chatArea"
+        >
+
+            <!-- الرسائل كتتزاد هنا ديناميكياً من app.js -->
+
+        </main>
+
+
+        <!-- BOTTOM CONTROLS -->
+
+        <footer class="bottom-controls">
+
+            <div class="input-wrapper">
+
+                <!-- IMAGE THUMBNAIL -->
+
+                <div
+                    class="image-preview"
+                    id="imagePreview"
+                    aria-hidden="true"
+                >
+
+                    <img
+                        id="previewImage"
+                        src=""
+                        alt="الصورة المختارة"
+                    >
+
+                    <button
+                        type="button"
+                        class="remove-image-btn"
+                        id="removeImageBtn"
+                        aria-label="حذف الصورة"
+                    >
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- MESSAGE INPUT -->
+
+                <textarea
+                    placeholder="اكتبي رسالتك لـ Robaty هنا..."
+                    class="gold-input"
+                    id="messageInput"
+                    autocomplete="off"
+                    rows="1"
+                ></textarea>
+
+            </div>
+
+
+            <div class="ornate-action-bar">
+
+                <!-- SEND -->
+
+                <button
+                    type="button"
+                    class="ornate-action-btn send-highlight"
+                    id="sendButton"
+                >
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    <span>
+                        إرسال
+                    </span>
+
+                </button>
+
+
+                <!-- RECORD -->
+
+                <button
+                    type="button"
+                    class="ornate-action-btn record-btn"
+                    id="recordButton"
+                >
+
+                    <i class="fa-solid fa-microphone"></i>
+
+                    <span id="recordLabel">
+                        تسجيل صوتي
+                    </span>
+
+                </button>
+
+
+                <!-- IMAGE -->
+
+                <button
+                    type="button"
+                    class="ornate-action-btn image-btn"
+                    id="imageButton"
+                >
+
+                    <i class="fa-regular fa-image"></i>
+
+                    <span>
+                        إرسال الصور
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- HIDDEN IMAGE PICKER -->
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            >
+
+        </footer>
+
+
+        <!-- API KEY MODAL -->
+
+        <div
+            class="api-key-modal-overlay"
+            id="apiKeyModal"
+            aria-hidden="true"
+        >
+
+            <div class="api-key-modal-box">
+
+                <h2>🔑 مفتاح Gemini API</h2>
+
+                <p>
+                    باش تخدمي Robaty، خاصك تدخلي مفتاح Gemini API ديالك
+                    (تقدري تجيبيه مجاناً من Google AI Studio).
+                </p>
+
+                <input
+                    type="password"
+                    id="apiKeyInput"
+                    class="gold-input"
+                    placeholder="الصقي المفتاح هنا..."
+                    autocomplete="off"
+                    style="margin-bottom:12px; width:100%;"
+                >
+
+                <button
+                    type="button"
+                    class="gold-pill-btn"
+                    id="saveApiKeyBtn"
+                    style="width:100%; justify-content:center; display:flex;"
+                >
+                    حفظ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
