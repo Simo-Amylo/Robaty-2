@@ -459,7 +459,38 @@ body {
 }
 
 
+.avatar-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    animation:
+        robaty-portrait-life
+        8.8s
+        infinite
+        ease-in-out;
+}
+
+
+/* ==========================================================================
+   LAYER 04 — PORTRAIT STATE CROSSFADE
+   12 حالة عاطفية: صورتين متراكبتين، الأنيميشن ديال "الحياة"
+   على .avatar-inner (الحاوية) ماشي على الصورة، باش التبديل بين
+   الحالات يبقى سلس بلا ما نمسو كود الأنيميشن.
+   ========================================================================== */
+
 .avatar-img {
+
+    position: absolute;
+
+    inset: 0;
 
     width: 100%;
 
@@ -471,11 +502,17 @@ body {
 
     display: block;
 
-    animation:
-        robaty-portrait-life
-        8.8s
-        infinite
+    opacity: 0;
+
+    transition:
+        opacity 700ms
         ease-in-out;
+}
+
+
+.avatar-img.is-active {
+
+    opacity: 1;
 }
 
 
@@ -2125,7 +2162,7 @@ body {
     .neon-target-ring,
     .neon-target-ring::after,
     .glowing-ring,
-    .avatar-img,
+    .avatar-inner,
     .bot-msg,
     .golden-ambient-glow,
     .record-btn.recording-active,

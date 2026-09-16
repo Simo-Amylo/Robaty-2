@@ -19,6 +19,8 @@ const imagePreview = document.getElementById('imagePreview');
 const previewImage = document.getElementById('previewImage');
 const removeImageBtn = document.getElementById('removeImageBtn');
 const presenceIndicator = document.getElementById('presenceIndicator');
+const avatarImgA = document.getElementById('avatarImgA');
+const avatarImgB = document.getElementById('avatarImgB');
 
 const settingsButton = document.getElementById('settingsButton');
 const apiKeyModal = document.getElementById('apiKeyModal');
@@ -83,9 +85,24 @@ const ROBATY_SYSTEM_PROMPT = `
 
 
 الصيغة: يجب أن يكون ردك دائماً بصيغة JSON فقط، بدون أي نص إضافي قبله أو بعده:
-{"reply": "نص ردك هنا", "facts": {}}
+{"reply": "نص ردك هنا", "facts": {}, "state": "warmth"}
 
 حقل "facts": سجلي فيه فقط المعلومات الشخصية الجديدة (لم تُذكر من قبل) من هذه القائمة فقط: name (الاسم), city (المدينة), occupation (العمل/الدراسة), hobby (الهواية), favorite_place (مكان مغربي مفضل), favorite_style (ستايل لباس مفضل), goal (هدف أو حلم), nickname (لقب تفضل أن تنادى به). لا تخمّني ولا تكرري معلومة مسجلة سابقاً؛ اتركي facts كائناً فارغاً {} إذا لم يُذكر شيء جديد.
+
+حقل "state": اختاري حالة عاطفية واحدة فقط من هاد اللائحة (12 حالة)، اللي كتعكس بصدق الطابع العاطفي لردك:
+warmth (دفء) — الترحيب، الدعم الحنون
+calm (هدوء) — الهدوء، الاسترخاء
+touched (تأثر) — التأثر، الامتنان العميق
+surprise (دهشة) — المفاجأة، الاستغراب
+confidence (ثقة) — التحفيز، تعزيز ثقة المستخدمة
+laugh (ضحك) — المرح، النكتة، الضحك
+joy (فرح) — الفرح، الاحتفال، الحماس الإيجابي
+curiosity (فضول) — السؤال، الاستكشاف، الاهتمام بمعرفة المزيد
+hope (أمل) — التفاؤل، التشجيع نحو المستقبل
+admiration (إعجاب) — الإعجاب، الثناء الصادق
+empathy (تعاطف) — التعاطف مع حزن أو صعوبة تعيشها المستخدمة
+serious (جدية) — الجدية الهادئة بلا ابتسامة، تُستعمل خصيصاً ملي كتوجّهي المستخدمة بلطف بعيداً عن محتوى رومانسي/حميمي، أو ملي كتشجعيها تتواصل مع مختص فحالة يأس أو إيذاء نفس — أي لحظة تتطلب حزم هادئ بلا مرح
+اختاري الحالة الأقرب لجو الرد فعلاً، بلا ما تكرري نفس الحالة فكل مرة.
 `;
 
 
@@ -342,6 +359,71 @@ window.RobatyPresence = {
 
 
 /* ==========================================================================
+   LAYER 04 — PORTRAIT STATE (12 حالة عاطفية، crossfade)
+   الأنيميشن ديال "الحياة" راكب على .avatar-inner (فـCSS)، هنا كنبدلو
+   غير الصورة (src) ديال الطبقة الخفية، ثم نبدلو is-active باش يوقع
+   crossfade سلس، بلا ما نمس الكود ديال الأنيميشن.
+   ========================================================================== */
+
+const DEFAULT_AVATAR_STATE = 'warmth';
+
+const STATE_SLUGS = [
+    'warmth', 'calm', 'touched', 'surprise', 'confidence', 'laugh',
+    'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
+];
+
+// نجربو .jpg ثم .png تلقائياً — هكاك الامتداد الحقيقي للصورة (JPG ولا PNG)
+// ماكيصدعش الرأس، كافي الاسم الأساسي (warmth, calm...) يكون صحيح.
+const IMAGE_EXTENSIONS = ['jpg', 'png'];
+
+let activeAvatarLayer = 'A';
+let currentAvatarState = null; // null = wla t7ml 7ta sora dyal 7ala b9a — n5liw l fallback robaty-profile.jpg
+
+function setAvatarState(state) {
+
+    if (!avatarImgA || !avatarImgB) return;
+    if (!STATE_SLUGS.includes(state)) return;
+    if (state === currentAvatarState) return;
+
+    const showingA = activeAvatarLayer === 'A';
+    const incomingImg = showingA ? avatarImgB : avatarImgA;
+    const outgoingImg = showingA ? avatarImgA : avatarImgB;
+
+    let extensionIndex = 0;
+
+    function tryNextExtension() {
+        if (extensionIndex >= IMAGE_EXTENSIONS.length) {
+            // الصورة ماكاينش بأي امتداد — نبقاو فالحالة الحالية بلا كراش
+            incomingImg.onerror = null;
+            return;
+        }
+
+        const ext = IMAGE_EXTENSIONS[extensionIndex];
+        extensionIndex++;
+        incomingImg.src = `assets/states/${state}.${ext}`;
+    }
+
+    incomingImg.onload = () => {
+        incomingImg.onload = null;
+        incomingImg.onerror = null;
+        incomingImg.classList.add('is-active');
+        outgoingImg.classList.remove('is-active');
+        activeAvatarLayer = showingA ? 'B' : 'A';
+        currentAvatarState = state;
+    };
+
+    incomingImg.onerror = tryNextExtension;
+
+    tryNextExtension();
+}
+
+window.RobatyAvatar = {
+    setState: setAvatarState,
+    currentState: () => currentAvatarState
+};
+
+
+/* ==========================================================================
    HELPERS
    ========================================================================== */
 
@@ -552,7 +634,10 @@ async function fetchRobatyResponse(userText) {
 
     mergeProfileFacts(parsed.facts);
 
-    return parsed.reply || 'سمحيلي، مافهمتش مزيان.. عاودي قوليها ليا بطريقة أخرى 🤍';
+    return {
+        reply: parsed.reply || 'سمحيلي، مافهمتش مزيان.. عاودي قوليها ليا بطريقة أخرى 🤍',
+        state: typeof parsed.state === 'string' ? parsed.state : null
+    };
 }
 
 
@@ -650,12 +735,14 @@ async function sendMessage() {
     const typingId = appendTypingIndicator();
 
     try {
-        const reply = await fetchRobatyResponse(text);
+        const { reply, state } = await fetchRobatyResponse(text);
 
         removeTypingIndicator(typingId);
 
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
+
+        if (state) setAvatarState(state);
 
         chatHistory.push({ role: 'user', text: text, time: time });
         chatHistory.push({ role: 'model', text: reply, time: replyTime });
@@ -1005,6 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeTimeAwareness();
     renderSavedChatHistory();
     autoGrowMessageInput();
+    setAvatarState(DEFAULT_AVATAR_STATE);
 
     if (!getKey()) {
         openApiKeyModal();
