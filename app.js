@@ -400,7 +400,7 @@ function setAvatarState(state) {
 
         const ext = IMAGE_EXTENSIONS[extensionIndex];
         extensionIndex++;
-        incomingImg.src = `assets/states/${state}.${ext}`;
+        incomingImg.src = `${state}.${ext}`;
     }
 
     incomingImg.onload = () => {
