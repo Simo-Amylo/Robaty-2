@@ -214,8 +214,8 @@ body {
 
 .caption-text {
     margin-bottom: 4px;
-    direction: ltr;
-    text-align: left;
+    direction: rtl;
+    text-align: right;
 }
 
 .caption-link {
@@ -237,7 +237,7 @@ body {
     gap: 6px;
     color: var(--text-subtle);
     font-size: 10.5px;
-    direction: ltr;
+    direction: rtl;
 }
 
 .translate-btn {
