@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robaty - Moments</title>
+    <link rel="stylesheet" href="moments.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="outer-gold-frame">
+        <div class="app-container">
+
+            <!-- زر الرجوع للشات -->
+            <a href="index.html" class="back-btn-floating" aria-label="رجوع للشات">
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <!-- 1. Banner إعلاني دائم في الأعلى -->
+            <div class="ad-banner">
+                <span class="ad-tag">إعلان</span>
+                <p class="ad-text">📢 اكتشف عروض Robaty الخاصة اليوم!</p>
+            </div>
+
+            <!-- محتوى شاشة اللحظات -->
+            <div class="moments-scroll-area">
+                <article class="post-card">
+
+                    <!-- 2. هيدر المنشور (البروفايل والاسم) -->
+                    <header class="post-header">
+                        <div class="user-profile-info">
+                            <div class="avatar-wrapper">
+                                <img src="robaty-profile.jpg" alt="Robaty" class="profile-avatar">
+                            </div>
+                            <div class="user-details">
+                                <span class="username">robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></span>
+                            </div>
+                        </div>
+                        <button class="menu-dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
+                    </header>
+
+                    <!-- 3. صورة المنشور الرئيسية -->
+                    <div class="post-image-container">
+                        <img src="post-image.jpg" alt="Robaty Moment" class="post-main-img">
+                    </div>
+
+                    <!-- 4. شريط الأزرار التفاعلية -->
+                    <div class="post-actions-bar">
+                        <div class="left-actions">
+                            <button class="action-item"><i class="fa-regular fa-heart"></i><span>20</span></button>
+                            <button class="action-item"><i class="fa-regular fa-comment"></i><span>4</span></button>
+                            <button class="action-item"><i class="fa-solid fa-retweet"></i><span>2</span></button>
+                            <button class="action-item"><i class="fa-regular fa-paper-plane"></i><span>2</span></button>
+                        </div>
+                        <button class="action-item bookmark-btn"><i class="fa-regular fa-bookmark"></i></button>
+                    </div>
+
+                    <!-- 5. منطقة النص والشرح أسفل المنشور -->
+                    <div class="post-caption-section">
+                        <p class="caption-text">
+                            <strong class="caption-username">robaty_ai</strong>
+                            ✈️ Share your memories from Morocco 🇲🇦
+                        </p>
+                        <a href="https://www.iam.ma/en/e-sim" target="_blank" class="caption-link">
+                            👉 https://www.iam.ma/en/e-sim <span class="more-text">moins</span>
+                        </a>
+                        <div class="post-meta">
+                            <span class="post-date">11 août</span>
+                            <span class="meta-dot">•</span>
+                            <button class="translate-btn">Voir la traduction</button>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
