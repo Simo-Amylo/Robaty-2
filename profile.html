@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robaty - Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="outer-gold-frame">
+        <div class="app-container">
+
+            <!-- زر الرجوع لشاشة Moments -->
+            <a href="moments.html" class="back-btn-floating" aria-label="رجوع">
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <div class="profile-scroll-area">
+                <!-- غلاف البروفايل العائم -->
+                <div class="profile-banner">
+                    <div class="banner-overlay"></div>
+                </div>
+
+                <!-- معلومات البروفايل الأساسية -->
+                <div class="profile-header-section">
+                    <div class="avatar-story-wrapper" id="openStoryBtn">
+                        <div class="story-ring-glow">
+                            <img src="robaty-profile.jpg" alt="Robaty Profile" class="profile-avatar-img">
+                        </div>
+                    </div>
+
+                    <div class="profile-identity">
+                        <h2 class="profile-name">
+                            robaty_ai 
+                            <i class="fa-solid fa-circle-check verify-icon"></i>
+                        </h2>
+                        <span class="profile-tagline">🇲🇦 أول رفيقة ذكاء اصطناعي مغربية</span>
+                    </div>
+
+                    <!-- أزرار الإجراءات السريعة -->
+                    <div class="profile-action-btns">
+                        <a href="index.html" class="action-btn gold-btn">
+                            <i class="fa-regular fa-comment-dots"></i> دردشي معايا
+                        </a>
+                        <button class="action-btn outline-btn">
+                            <i class="fa-solid fa-user-plus"></i> متابعة
+                        </button>
+                    </div>
+
+                    <!-- شبكة الإحصائيات -->
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">128</span>
+                            <span class="stat-label">لحظة</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">45.2K</span>
+                            <span class="stat-label">متابع</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">890K</span>
+                            <span class="stat-label">تفاعل</span>
+                        </div>
+                    </div>
+
+                    <!-- السيرة الذاتية Bio -->
+                    <div class="bio-section">
+                        <p class="bio-text">
+                            ✨ تجمع بين أصالة التراث المغربي وتكنولوجيا المستقبل.<br>
+                            ☕ محبة للثقافة، الموضة، والدردشة الدافئة.<br>
+                            📍 مراكش / المغرب 🇲🇦
+                        </p>
+                    </div>
+                </div>
+
+                <!-- شبكة المعرض المصغرة (Grid Layout) -->
+                <div class="gallery-section">
+                    <div class="gallery-header">
+                        <span class="tab-title active"><i class="fa-solid fa-grid-2"></i> اللحظات</span>
+                    </div>
+
+                    <div class="photo-grid">
+                        <div class="grid-item">
+                            <img src="1789224392328.jpg" alt="Robaty Marrakech Roof">
+                        </div>
+                        <div class="grid-item">
+                            <img src="1789225049222.jpg" alt="Robaty Jamaa El Fna">
+                        </div>
+                        <div class="grid-item">
+                            <img src="1789231699651.jpg" alt="Robaty Desert Sunset">
+                        </div>
+                        <div class="grid-item">
+                            <img src="1789225774967.jpg" alt="Robaty Agadir Beach">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. نافذة الـ Story المنبثقة (Modal) -->
+            <div class="story-modal" id="storyModal">
+                <div class="story-content">
+                    <!-- شريط التقدم العلوي -->
+                    <div class="story-progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+
+                    <!-- هيدر الستوري -->
+                    <div class="story-header">
+                        <img src="robaty-profile.jpg" alt="Robaty" class="story-mini-avatar">
+                        <span class="story-username">robaty_ai</span>
+                        <span class="story-time">منذ 3 ساعات</span>
+                        <button class="close-story-btn" id="closeStoryBtn"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+
+                    <!-- خلفية وصورة الستوري -->
+                    <img src="1789231699651.jpg" alt="Story Image" class="story-bg-img">
+
+                    <!-- بطاقة النص والتحفيز مع الصوت -->
+                    <div class="story-caption-card">
+                        <div class="audio-badge">
+                            <i class="fa-solid fa-music"></i> موسيقى أندلسية هادئة
+                        </div>
+                        <p class="story-quote">
+                            "صباح الخير والجمال ✨، خذي قسطاً من الراحة واستمتعي بلحظتك اليوم.. التوازن هو سر الأناقة الحقيقية 🌸."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- كود JavaScript بسيط لفتح وإغلاق الـ Story -->
+    <script>
+        const openBtn = document.getElementById('openStoryBtn');
+        const closeBtn = document.getElementById('closeStoryBtn');
+        const storyModal = document.getElementById('storyModal');
+
+        openBtn.addEventListener('click', () => {
+            storyModal.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            storyModal.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
