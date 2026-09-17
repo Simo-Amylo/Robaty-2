@@ -330,6 +330,20 @@ function saveChatHistory() {
     } catch (e) {}
 }
 
+// ⚠️ للاختبار فقط — كتمسح المحادثة، الـfacts، والذاكرة السردية، وكتعاود تحميل الصفحة.
+// ماشي مربوطة بزر فالواجهة (باش ماتوقعش بالصدفة عند مستخدمة حقيقية) — تخدم من الـconsole: clearRobatyMemory()
+window.clearRobatyMemory = function () {
+    const ok = confirm('واش متأكدة؟ غادي تتمسح المحادثة، الحقائق المحفوظة عليك، والذاكرة السردية، وهاد الشي ماغاديش يترجع.');
+    if (!ok) return;
+
+    localStorage.removeItem('robaty_chat_history');
+    localStorage.removeItem(FACTS_STORAGE);
+    localStorage.removeItem(NARRATIVE_STORAGE);
+    localStorage.removeItem(LAST_VISIT_STORAGE);
+
+    location.reload();
+};
+
 
 /* ==========================================================================
    PRESENCE STATE
