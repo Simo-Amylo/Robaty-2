@@ -1220,18 +1220,13 @@ body {
 
     text-decoration: none;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(229, 179, 92, 0.22),
-            rgba(30, 20, 10, 0.75)
-        );
+    background: transparent;
 
     border:
-        1px solid
-        rgba(229, 179, 92, 0.6);
+        1.5px solid
+        #e5b35c;
 
-    color: #e5b35c;
+    color: #f4d068;
 
     padding:
         8px 18px;
@@ -1242,30 +1237,17 @@ body {
 
     font-weight: 600;
 
-    box-shadow:
-        0 4px 15px
-        rgba(229, 179, 92, 0.15);
+    box-shadow: none;
 
     cursor: pointer;
 
-    transition: all 0.3s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 
 .gold-pill-btn:hover {
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(229, 179, 92, 0.4),
-            rgba(50, 35, 15, 0.85)
-        );
-
-    box-shadow:
-        0 0 12px
-        rgba(229, 179, 92, 0.35);
-
-    transform: translateY(-1px);
+    background: rgba(229, 179, 92, 0.12);
 }
 
 
@@ -1607,24 +1589,18 @@ body {
 
     flex: 1;
 
-    background:
-        linear-gradient(
-            180deg,
-            #24180b 0%,
-            #0d0804 100%
-        );
+    background: transparent;
 
     border:
-        1px solid
-        var(--gold-bright);
+        1.5px solid
+        #e5b35c;
 
-    border-radius: 20px;
+    border-radius: 18px;
 
     padding:
         8px 5px;
 
-    color:
-        var(--text-gold-light);
+    color: #f4d068;
 
     display: flex;
 
@@ -1638,9 +1614,7 @@ body {
 
     cursor: pointer;
 
-    box-shadow:
-        0 0 10px
-        rgba(229, 179, 92, 0.15);
+    box-shadow: none;
 
     position: relative;
 
@@ -1657,16 +1631,17 @@ body {
    SEND BUTTON
    ========================================================================== */
 
+.send-highlight,
+.send-highlight span,
+.send-highlight i {
+
+    color: #ffffff;
+}
+
+
 .send-highlight {
 
-    background:
-        rgba(20, 15, 10, 0.6);
-
-    border-color:
-        rgba(229, 179, 92, 0.3);
-
-    color:
-        rgba(229, 179, 92, 0.5);
+    background: transparent;
 
     cursor: not-allowed;
 
@@ -1676,20 +1651,11 @@ body {
 
 .send-highlight.active {
 
-    background:
-        linear-gradient(
-            135deg,
-            #e5b35c 0%,
-            #7c4c12 100%
-        );
+    background: #e5b35c;
 
-    border-color: #ffd700;
+    border-color: #f4d068;
 
-    color: #fff;
-
-    box-shadow:
-        0 0 15px
-        rgba(229, 179, 92, 0.6);
+    color: #ffffff;
 
     cursor: pointer;
 
