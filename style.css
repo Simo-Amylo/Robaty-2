@@ -1161,16 +1161,29 @@ body {
 
     justify-content: center;
 
-    gap: 8px;
+    gap: 6px;
 
     margin-top: 2px;
 }
 
 
-.divider-line::before,
-.divider-line::after {
+.line {
 
-    content: '۞';
+    height: 1px;
+
+    width: 16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold-bright),
+            transparent
+        );
+}
+
+
+.tagline-star {
 
     color: var(--gold-bright);
 
@@ -1203,36 +1216,56 @@ body {
 
     align-items: center;
 
-    gap: 6px;
+    gap: 8px;
 
     text-decoration: none;
 
     background:
         linear-gradient(
-            180deg,
-            #2b1d0e 0%,
-            #120b04 100%
+            135deg,
+            rgba(229, 179, 92, 0.22),
+            rgba(30, 20, 10, 0.75)
         );
 
     border:
         1px solid
-        var(--gold-bright);
+        rgba(229, 179, 92, 0.6);
 
-    color:
-        var(--text-gold-light);
+    color: #e5b35c;
 
     padding:
-        6px 20px;
+        8px 18px;
 
     border-radius: 20px;
 
     font-size: 12px;
 
+    font-weight: 600;
+
     box-shadow:
-        0 0 12px
-        rgba(229, 179, 92, 0.2);
+        0 4px 15px
+        rgba(229, 179, 92, 0.15);
 
     cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.gold-pill-btn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(229, 179, 92, 0.4),
+            rgba(50, 35, 15, 0.85)
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(229, 179, 92, 0.35);
+
+    transform: translateY(-1px);
 }
 
 
@@ -1611,35 +1644,12 @@ body {
 
     position: relative;
 
+    overflow: hidden;
+
     transition:
         transform 120ms ease,
         box-shadow 180ms ease,
         border-color 180ms ease;
-}
-
-
-/* وصلة هندسية ناعمة تربط حواف الأزرار الثلاثة ببعضها */
-.ornate-action-bar .ornate-action-btn:not(:last-child)::after {
-
-    content: '❖';
-
-    position: absolute;
-
-    left: -8px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    font-size: 8px;
-
-    color: var(--gold-bright);
-
-    opacity: 0.5;
-
-    pointer-events: none;
-
-    z-index: 5;
 }
 
 
@@ -1650,17 +1660,40 @@ body {
 .send-highlight {
 
     background:
+        rgba(20, 15, 10, 0.6);
+
+    border-color:
+        rgba(229, 179, 92, 0.3);
+
+    color:
+        rgba(229, 179, 92, 0.5);
+
+    cursor: not-allowed;
+
+    transition: all 0.3s ease;
+}
+
+
+.send-highlight.active {
+
+    background:
         linear-gradient(
             135deg,
             #e5b35c 0%,
             #7c4c12 100%
         );
 
+    border-color: #ffd700;
+
     color: #fff;
 
     box-shadow:
         0 0 15px
-        rgba(229, 179, 92, 0.4);
+        rgba(229, 179, 92, 0.6);
+
+    cursor: pointer;
+
+    font-weight: bold;
 }
 
 

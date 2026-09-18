@@ -663,7 +663,7 @@ async function fetchRobatyResponse(userText) {
 
 
 /* ==========================================================================
-   INPUT AUTO GROW
+   INPUT AUTO GROW + إشعال زر الإرسال
    ========================================================================== */
 
 function autoGrowMessageInput() {
@@ -674,7 +674,17 @@ function autoGrowMessageInput() {
     messageInput.style.overflowY = messageInput.scrollHeight > maxHeight ? 'auto' : 'hidden';
 }
 
-messageInput.addEventListener('input', autoGrowMessageInput);
+// الزر كيشعل (يوصل .active) غير ملي كاين نص مكتوب أو صورة مختارة
+function updateSendButtonState() {
+    const hasText = messageInput.value.trim().length > 0;
+    const hasImage = imageInput.files.length > 0;
+    sendButton.classList.toggle('active', hasText || hasImage);
+}
+
+messageInput.addEventListener('input', () => {
+    autoGrowMessageInput();
+    updateSendButtonState();
+});
 
 messageInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
@@ -742,6 +752,7 @@ async function sendMessage() {
     messageInput.value = '';
     autoGrowMessageInput();
     clearImagePreview();
+    updateSendButtonState();
 
     requestAnimationFrame(() => {
         message.classList.add('message-enter-active');
@@ -1006,6 +1017,7 @@ imageInput.addEventListener('change', () => {
     imagePreview.setAttribute('aria-hidden', 'false');
 
     messageInput.focus();
+    updateSendButtonState();
 });
 
 function clearImagePreview() {
@@ -1015,7 +1027,10 @@ function clearImagePreview() {
     imagePreview.setAttribute('aria-hidden', 'true');
 }
 
-removeImageBtn.addEventListener('click', clearImagePreview);
+removeImageBtn.addEventListener('click', () => {
+    clearImagePreview();
+    updateSendButtonState();
+});
 
 
 /* ==========================================================================
