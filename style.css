@@ -1408,27 +1408,31 @@ body {
     position: relative;
 
     background:
-        rgba(15, 10, 6, 0.95);
+        rgba(25, 20, 15, 0.85);
 
     border:
         1px solid
-        var(--gold-border);
+        rgba(229, 179, 92, 0.35);
 
     border-radius:
         15px 2px 15px 15px;
 
     padding:
-        10px 14px;
+        12px 16px;
 
-    font-size: 14.4px;
+    font-size: 15.2px;
 
-    color: #e0e0e0;
+    color: #ffffff;
+
+    font-weight: 400;
 
     line-height: 1.6;
 
     box-shadow:
         0 4px 15px
-        rgba(0, 0, 0, 0.6);
+        rgba(0, 0, 0, 0.4),
+        inset 0 0 10px
+        rgba(229, 179, 92, 0.05);
 
     white-space: pre-wrap;
 
