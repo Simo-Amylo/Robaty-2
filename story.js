@@ -64,6 +64,29 @@ const storyResultEl = document.getElementById('storyResult');
 let currentStoryId = null;
 
 
+/* localStorage محمي: بعض المتصفحات (وضع خاص/تصفح خاص) كيمنعو الوصول ليه */
+
+function getSavedVote(storyId) {
+
+    try {
+        return localStorage.getItem(`robaty_poll_${storyId}`);
+    } catch (error) {
+        return null;
+    }
+
+}
+
+function saveVote(storyId, optionId) {
+
+    try {
+        localStorage.setItem(`robaty_poll_${storyId}`, optionId);
+    } catch (error) {
+        /* التصويت غادي يخدم فهاد الجلسة، غير ماغاديش يتحفظ */
+    }
+
+}
+
+
 /* فتح Story معينة بالـ id ديالها */
 
 function openStory(storyId) {
@@ -84,7 +107,7 @@ function openStory(storyId) {
     storyResultEl.textContent = '';
     storyOptionsEl.innerHTML = '';
 
-    const savedVote = localStorage.getItem(`robaty_poll_${storyId}`);
+    const savedVote = getSavedVote(storyId);
 
     story.options.forEach(([id, label]) => {
 
@@ -108,7 +131,7 @@ function openStory(storyId) {
             button.classList.add('selected');
             storyResultEl.textContent = story.result;
 
-            localStorage.setItem(`robaty_poll_${storyId}`, id);
+            saveVote(storyId, id);
 
         });
 
@@ -176,7 +199,9 @@ if (openStoryBtn) {
 
     openStoryBtn.addEventListener('click', () => {
 
-        openStory(storyOrder[0]);
+        if (storyOrder.length > 0) {
+            openStory(storyOrder[0]);
+        }
 
     });
 

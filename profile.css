@@ -92,6 +92,9 @@ body {
     position: relative;
 }
 .avatar-story-wrapper {
+    border: 0;
+    padding: 0;
+    background: transparent;
     cursor: pointer;
 }
 .story-ring-glow {
