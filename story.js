@@ -70,7 +70,10 @@ function openStory(storyId) {
 
     const story = storyData[storyId];
 
-    if (!story || !modal) return;
+    const elementsReady = modal && storyImageEl && storyTimeEl &&
+        storyKickerEl && storyQuestionEl && storyOptionsEl && storyResultEl;
+
+    if (!story || !elementsReady) return;
 
     currentStoryId = storyId;
 
@@ -191,13 +194,22 @@ if (closeStoryBtn) {
 }
 
 
-/* الضغط خارج البطاقة (الخلفية) */
+/* الضغط خارج بطاقة التفاعل (على الصورة أو المساحة الفارغة) */
+/* ملاحظة: .story-content كيغطي .story-backdrop بالكامل، فالضغطة
+   ما توصلش لـ backdrop أبدا — الحل: نستمعو للضغط مباشرة على
+   .story-content أو على صورة الـ Story نفسها */
 
-const storyBackdrop = document.querySelector('[data-close-story]');
+const storyContentEl = document.querySelector('.story-content');
 
-if (storyBackdrop) {
+if (storyContentEl && storyImageEl) {
 
-    storyBackdrop.addEventListener('click', closeStory);
+    storyContentEl.addEventListener('click', event => {
+
+        if (event.target === storyContentEl || event.target === storyImageEl) {
+            closeStory();
+        }
+
+    });
 
 }
 
