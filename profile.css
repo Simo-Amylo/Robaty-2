@@ -244,38 +244,42 @@ body {
     transform: scale(1.04);
 }
 /* ==========================================================================
-Story Modal Design
+Story Modal Design (موحّد مع moments.css)
 ========================================================================== */
 .story-modal {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #000;
+    inset: 0;
     z-index: 100;
     display: none;
-    flex-direction: column;
 }
 .story-modal.active {
-    display: flex;
+    display: block;
+}
+.story-backdrop {
+    position: absolute;
+    inset: 0;
+    background: #000;
 }
 .story-content {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
+    overflow: hidden;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 12px;
 }
 .story-progress-bar {
-    width: 100%;
     height: 3px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 4px;
     overflow: hidden;
-    z-index: 10;
+    z-index: 4;
 }
 .progress-fill {
-    width: 60%;
+    width: 100%;
     height: 100%;
     background: var(--gold-bright);
 }
@@ -284,13 +288,14 @@ Story Modal Design
     align-items: center;
     gap: 8px;
     margin-top: 8px;
-    z-index: 10;
+    z-index: 4;
 }
 .story-mini-avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     border: 1px solid var(--gold-bright);
+    object-fit: cover;
 }
 .story-username {
     color: #fff;
@@ -303,39 +308,96 @@ Story Modal Design
 }
 .close-story-btn {
     margin-right: auto;
-    background: none;
-    border: none;
+    border: 0;
+    background: transparent;
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
 }
 .story-bg-img {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     z-index: 1;
 }
+/* مناطق التنقل بين الـ Stories */
+.story-nav-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    z-index: 3;
+    cursor: pointer;
+}
+.story-nav-left {
+    left: 0;
+}
+.story-nav-right {
+    right: 0;
+}
+.story-content::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.22),
+        transparent 35%,
+        rgba(0, 0, 0, 0.72)
+    );
+    pointer-events: none;
+}
 .story-caption-card {
     position: relative;
-    z-index: 10;
-    background: rgba(10, 6, 3, 0.85);
+    z-index: 4;
+    margin-bottom: 8px;
+    padding: 14px;
+    background: rgba(10, 6, 3, 0.86);
     border: 1px solid var(--gold-bright);
-    border-radius: 16px;
-    padding: 12px 14px;
+    border-radius: 17px;
     backdrop-filter: blur(8px);
+}
+.story-kicker {
+    color: var(--gold-bright);
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.story-caption-card h3 {
+    color: #fff;
+    font-size: 14px;
     margin-bottom: 10px;
 }
-.audio-badge {
-    color: var(--gold-bright);
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 6px;
+.story-options {
+    display: grid;
+    gap: 8px;
 }
-.story-quote {
+.story-option {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: 18px;
+    border: 1px solid var(--gold-border);
+    background: rgba(0, 0, 0, 0.32);
     color: #fff;
-    font-size: 11.5px;
-    line-height: 1.5;
+    text-align: right;
+    cursor: pointer;
+    font-size: 11px;
 }
+.story-option.selected {
+    background: linear-gradient(
+        90deg,
+        rgba(229, 179, 92, 0.28),
+        rgba(229, 179, 92, 0.08)
+    );
+    border-color: var(--gold-bright);
+}
+.story-result {
+    color: #f5d28c;
+    font-size: 10px;
+    margin-top: 9px;
+    min-height: 16px;
+}
+

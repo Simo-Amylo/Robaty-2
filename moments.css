@@ -552,6 +552,30 @@ button {
 }
 
 
+/* مناطق التنقل بين الـ Stories */
+
+.story-nav-zone {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: 30%;
+
+    z-index: 3;
+
+    cursor: pointer;
+}
+
+.story-nav-left {
+    left: 0;
+}
+
+.story-nav-right {
+    right: 0;
+}
+
+
 .story-content::after {
     content: '';
 

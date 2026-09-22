@@ -103,8 +103,18 @@
         </div>
 
         <!-- نافذة الـ Story المنبثقة (Modal) -->
-        <div class="story-modal" id="storyModal">
-            <div class="story-content">
+        <div class="story-modal"
+             id="storyModal"
+             aria-hidden="true">
+
+            <div class="story-backdrop"
+                 data-close-story>
+            </div>
+
+            <section class="story-content"
+                     role="dialog"
+                     aria-modal="true"
+                     aria-label="Robaty Story">
 
                 <!-- شريط التقدم العلوي -->
                 <div class="story-progress-bar">
@@ -112,46 +122,47 @@
                 </div>
 
                 <!-- هيدر الستوري -->
-                <div class="story-header">
+                <header class="story-header">
                     <img src="robaty-profile.jpg" alt="Robaty" class="story-mini-avatar">
                     <span class="story-username">robaty_ai</span>
-                    <span class="story-time">منذ 3 ساعات</span>
-                    <button class="close-story-btn" id="closeStoryBtn"><i class="fa-solid fa-xmark"></i></button>
+                    <span class="story-time" id="storyTime">اليوم</span>
+                    <button class="close-story-btn" id="closeStoryBtn" aria-label="إغلاق">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </header>
+
+                <!-- صورة Story -->
+                <img id="storyImage"
+                     src="day01-chefchaouen-morning.jpg"
+                     alt="Robaty Story"
+                     class="story-bg-img">
+
+                <!-- مناطق التنقل بين الـ Stories -->
+                <div class="story-nav-zone story-nav-left"
+                     id="storyNavLeft"
+                     aria-label="الستوري السابقة">
                 </div>
 
-                <!-- خلفية وصورة الستوري -->
-                <img src="day01-essaouira-evening.jpg" alt="Story Image" class="story-bg-img">
+                <div class="story-nav-zone story-nav-right"
+                     id="storyNavRight"
+                     aria-label="الستوري التالية">
+                </div>
 
-                <!-- بطاقة النص والتحفيز مع الصوت -->
+                <!-- بطاقة التفاعل -->
                 <div class="story-caption-card">
-                    <div class="audio-badge">
-                        <i class="fa-solid fa-music"></i> موسيقى أندلسية هادئة
-                    </div>
-                    <p class="story-quote">
-                        "صباح الخير والجمال ✨، خذي قسطاً من الراحة واستمتعي بلحظتك اليوم.. التوازن هو سر الأناقة الحقيقية 🌸."
-                    </p>
+                    <div class="story-kicker" id="storyKicker">صوّتي مع Robaty ✨</div>
+                    <h3 id="storyQuestion">كيفاش تنسقي هاد الإطلالة؟</h3>
+                    <div class="story-options" id="storyOptions"></div>
+                    <p class="story-result" id="storyResult" aria-live="polite"></p>
                 </div>
 
-            </div>
+            </section>
         </div>
 
     </div>
 </div>
 
-<!-- كود JavaScript بسيط لفتح وإغلاق الـ Story -->
-<script>
-    const openBtn = document.getElementById('openStoryBtn');
-    const closeBtn = document.getElementById('closeStoryBtn');
-    const storyModal = document.getElementById('storyModal');
-
-    openBtn.addEventListener('click', () => {
-        storyModal.classList.add('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-        storyModal.classList.remove('active');
-    });
-</script>
+<script src="story.js"></script>
 
 </body>
 </html>
