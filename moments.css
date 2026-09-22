@@ -1,277 +1,676 @@
-/* ==========================================================================
-   Robaty Moments Screen - Luxury Dark Gold Theme
-   ========================================================================== */
 :root {
-    --bg-black: #000000;
-    --gold-bright: #e5b35c;
+    --gold: #e5b35c;
     --gold-border: rgba(229, 179, 92, 0.45);
-    --gold-glow: rgba(229, 179, 92, 0.25);
-    --text-light: #ffffff;
-    --text-subtle: #a8a8a8;
-    --font-family: 'Cairo', sans-serif;
+    --surface: #050302;
+    --muted: #a8a8a8;
+    --font: 'Cairo', sans-serif;
 }
+
+
+/* Reset */
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: var(--font-family);
+    font-family: var(--font);
 }
 
+
 body {
-    background-color: #000;
+    background: #000;
+    min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
+
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font: inherit;
+}
+
+
+/* الإطار الخارجي */
 
 .outer-gold-frame {
     width: 100%;
     max-width: 426px;
+
     height: 100vh;
     max-height: 908px;
+
     padding: 6px;
-    border: 2px solid var(--gold-bright);
+
+    border: 2px solid var(--gold);
     border-radius: 46px;
+
     background: #000;
+
     box-shadow: 0 0 25px rgba(229, 179, 92, 0.4);
+
     display: flex;
 }
+
+
+/* التطبيق */
 
 .app-container {
     width: 100%;
     height: 100%;
-    background: #050302;
-    border: 1.5px solid var(--gold-bright);
+
+    background: var(--surface);
+
+    border: 1.5px solid var(--gold);
     border-radius: 40px;
-    display: flex;
-    flex-direction: column;
+
     overflow: hidden;
     position: relative;
-}
 
-/* 1. البانر الإعلاني الدائم */
-.ad-banner {
-    background: linear-gradient(90deg, #1f140a 0%, #3b2711 50%, #1f140a 100%);
-    border-bottom: 1px solid var(--gold-bright);
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 10;
-}
-
-.ad-tag {
-    background: var(--gold-bright);
-    color: #000;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.ad-text {
-    color: #f7e8cf;
-    font-size: 11px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* منطقة التمرير للمنشورات */
-.moments-scroll-area {
-    flex: 1;
-    overflow-y: auto;
-}
-
-.post-card {
     display: flex;
     flex-direction: column;
-    background-color: #050302;
 }
 
-/* 2. هيدر البروفايل */
-.post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-}
 
-.user-profile-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: inherit;
-}
+/* زر الرجوع */
 
-.avatar-wrapper {
-    width: 38px;
-    height: 38px;
+.back-btn-floating {
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    z-index: 30;
+
+    width: 34px;
+    height: 34px;
+
     border-radius: 50%;
-    padding: 2px;
-    background: linear-gradient(135deg, #e5b35c, #ff4e50);
+
+    background: rgba(15, 10, 6, 0.88);
+
+    border: 1px solid var(--gold);
+
+    color: var(--gold);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     text-decoration: none;
+
+    font-size: 14px;
 }
 
-.profile-avatar {
+
+/* الإعلان */
+
+.ad-banner {
+    min-height: 38px;
+
+    padding: 8px 12px;
+
+    border-bottom: 1px solid var(--gold-border);
+
+    background: linear-gradient(
+        90deg,
+        #1b1007,
+        #3a2410,
+        #1b1007
+    );
+}
+
+
+.ad-tag {
+    color: var(--gold);
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: 20px;
+
+    padding: 1px 8px;
+
+    font-size: 9px;
+}
+
+
+/* منطقة التمرير */
+
+.moments-scroll-area {
+    flex: 1;
+
+    overflow-y: auto;
+
+    scroll-behavior: smooth;
+}
+
+
+/* المنشور */
+
+.post-card {
+    background: var(--surface);
+
+    border-bottom: 1px solid var(--gold-border);
+}
+
+
+/* Header المنشور */
+
+.post-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 14px;
+}
+
+
+.profile-head {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+/* صورة Robaty مع Story Ring */
+
+.story-avatar {
+    width: 43px;
+    height: 43px;
+
+    border: 0;
+    padding: 3px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #e5b35c,
+        #ff4e50,
+        #e5b35c
+    );
+
+    cursor: pointer;
+
+    box-shadow: 0 0 13px rgba(229, 179, 92, 0.22);
+}
+
+
+.story-avatar img {
     width: 100%;
     height: 100%;
+
     border-radius: 50%;
+
     object-fit: cover;
+
+    border: 2px solid #050302;
 }
 
-.username {
-    color: var(--text-light);
-    font-weight: 700;
-    font-size: 13px;
+
+.profile-meta {
     display: flex;
-    align-items: center;
-    gap: 4px;
-    direction: ltr;
-    text-decoration: none;
+
+    flex-direction: column;
+
+    gap: 0;
 }
+
+
+.username-line {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    direction: ltr;
+}
+
+
+.username,
+.caption-username {
+    color: #fff;
+
+    font-weight: 700;
+
+    font-size: 13px;
+}
+
 
 .verify-icon {
     color: #1d9bf0;
-    font-size: 12px;
+
+    font-size: 11px;
 }
 
-.menu-dots-btn {
-    background: none;
-    border: none;
-    color: var(--text-light);
-    font-size: 16px;
+
+.post-time {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+.icon-btn,
+.action-item {
+    border: 0;
+
+    background: transparent;
+
+    color: #fff;
+
     cursor: pointer;
 }
 
-/* 3. الصورة الرئيسية */
+
+.icon-btn {
+    font-size: 17px;
+
+    padding: 5px;
+}
+
+
+/* الصورة بنسبة 4:5 */
+
 .post-image-container {
     width: 100%;
-    max-height: 480px;
-    background-color: #000;
+
+    aspect-ratio: 4 / 5;
+
+    position: relative;
+
     overflow: hidden;
+
+    background: #000;
 }
+
 
 .post-main-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
     display: block;
+
+    object-fit: cover;
 }
 
-/* 4. شريط الأزرار التفاعلية */
+
+/* مكان الصورة */
+
+.location-pill {
+    position: absolute;
+
+    right: 12px;
+    bottom: 12px;
+
+    color: #fff;
+
+    background: rgba(8, 7, 5, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 18px;
+
+    padding: 5px 10px;
+
+    font-size: 10px;
+
+    backdrop-filter: blur(6px);
+}
+
+
+.location-pill i {
+    color: var(--gold);
+
+    margin-right: 4px;
+    margin-left: 0;
+}
+
+
+/* شريط التفاعل */
+
 .post-actions-bar {
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
-    padding: 10px 14px;
+    justify-content: space-between;
+
     direction: ltr;
+
+    padding: 10px 14px 6px;
 }
+
 
 .left-actions {
     display: flex;
+
     align-items: center;
-    gap: 16px;
+
+    gap: 15px;
 }
+
 
 .action-item {
-    background: none;
-    border: none;
-    color: var(--text-light);
-    font-size: 18px;
-    display: flex;
+    display: inline-flex;
+
     align-items: center;
+
     gap: 5px;
-    cursor: pointer;
+
+    font-size: 17px;
 }
+
 
 .action-item span {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-light);
+    font-size: 11px;
+
+    color: #ddd;
 }
 
-.bookmark-btn {
-    margin-left: auto;
-}
 
-/* 5. منطقة النص الوصفي */
+/* النص */
+
 .post-caption-section {
-    padding: 0 14px 14px 14px;
-    font-size: 12px;
-    color: var(--text-light);
-    line-height: 1.5;
+    padding: 0 14px 16px;
+
+    direction: rtl;
 }
+
 
 .caption-username {
-    font-weight: 700;
-    margin-right: 4px;
     direction: ltr;
-    display: inline-block;
-}
 
-.caption-text {
-    margin-bottom: 4px;
-    direction: rtl;
     text-align: right;
+
+    margin-bottom: 3px;
 }
 
-.caption-link {
-    color: #e5b35c;
-    text-decoration: none;
+
+.six-line-caption {
+    color: #fff;
+
+    font-size: 12px;
+
+    line-height: 1.75;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Story Modal */
+
+.story-modal {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+}
+
+
+.story-modal.active {
     display: block;
-    margin-bottom: 6px;
-    direction: ltr;
-    text-align: left;
 }
 
-.more-text {
-    color: var(--text-subtle);
+
+.story-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: #000;
 }
 
-.post-meta {
+
+.story-content {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    padding: 12px;
+
     display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-subtle);
-    font-size: 10.5px;
-    direction: rtl;
+
+    flex-direction: column;
+
+    justify-content: space-between;
 }
 
-.translate-btn {
-    background: none;
-    border: none;
-    color: var(--text-subtle);
-    font-size: 10.5px;
+
+/* Story Progress */
+
+.story-progress-bar {
+    height: 3px;
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.28);
+
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    z-index: 4;
+}
+
+
+.progress-fill {
+    width: 100%;
+    height: 100%;
+
+    background: var(--gold);
+}
+
+
+/* Story Header */
+
+.story-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 8px;
+
+    z-index: 4;
+}
+
+
+.story-mini-avatar {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--gold);
+
+    object-fit: cover;
+}
+
+
+.story-username {
+    color: #fff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.story-time {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+.close-story-btn {
+    margin-right: auto;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 20px;
+
     cursor: pointer;
 }
 
 
-/* ==========================================================================
-   زر الرجوع (عائم فوق الـ ad-banner، باش ترجع للشات)
-   ========================================================================== */
+/* صورة Story */
 
-.back-btn-floating {
+.story-bg-img {
     position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(15, 10, 6, 0.85);
-    border: 1px solid var(--gold-bright);
-    color: var(--gold-bright);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 1;
+}
+
+
+.story-content::after {
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.22),
+        transparent 35%,
+        rgba(0, 0, 0, 0.72)
+    );
+
+    pointer-events: none;
+}
+
+
+/* بطاقة Story */
+
+.story-caption-card {
+    position: relative;
+
+    z-index: 4;
+
+    margin-bottom: 8px;
+
+    padding: 14px;
+
+    background: rgba(10, 6, 3, 0.86);
+
+    border: 1px solid var(--gold);
+
+    border-radius: 17px;
+
+    backdrop-filter: blur(8px);
+}
+
+
+.story-kicker {
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+
+.story-caption-card h3 {
+    color: #fff;
+
     font-size: 14px;
-    z-index: 20;
-    box-shadow: 0 0 10px var(--gold-glow);
+
+    margin-bottom: 10px;
+}
+
+
+.story-options {
+    display: grid;
+
+    gap: 8px;
+}
+
+
+.story-option {
+    width: 100%;
+
+    padding: 9px 11px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--gold-border);
+
+    background: rgba(0, 0, 0, 0.32);
+
+    color: #fff;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+.story-option.selected {
+    background: linear-gradient(
+        90deg,
+        rgba(229, 179, 92, 0.28),
+        rgba(229, 179, 92, 0.08)
+    );
+
+    border-color: var(--gold);
+}
+
+
+.story-result {
+    color: #f5d28c;
+
+    font-size: 10px;
+
+    margin-top: 9px;
+
+    min-height: 16px;
+}
+
+
+/* الهواتف الصغيرة */
+
+@media (max-width: 360px) {
+
+    .left-actions {
+        gap: 10px;
+    }
+
+    .six-line-caption {
+        font-size: 11px;
+    }
+
 }

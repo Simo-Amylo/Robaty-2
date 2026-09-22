@@ -3,169 +3,479 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Robaty - Moments</title>
+
     <link rel="stylesheet" href="moments.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+          rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="outer-gold-frame">
-        <div class="app-container">
+<div class="outer-gold-frame">
 
-            <!-- زر الرجوع للشات -->
-            <a href="index.html" class="back-btn-floating" aria-label="رجوع للشات">
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
+    <div class="app-container">
 
-            <!-- 1. Banner إعلاني دائم في الأعلى (فارغ دابا، غادي نستغلوه لاحقاً) -->
-            <div class="ad-banner">
-                <span class="ad-tag">إعلان</span>
+        <!-- زر الرجوع للشات -->
+        <a href="index.html"
+           class="back-btn-floating"
+           aria-label="رجوع للشات">
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+        <!-- البانر الإعلاني -->
+        <div class="ad-banner">
+            <span class="ad-tag">إعلان</span>
+        </div>
+
+
+        <!-- منطقة المنشورات -->
+        <main class="moments-scroll-area">
+
+
+            <!-- =====================================
+                 المنشور الأول: الصباح
+            ====================================== -->
+
+            <article class="post-card" id="post-day01-morning">
+
+                <header class="post-header">
+
+                    <div class="profile-head">
+
+                        <!-- Story Ring -->
+                        <button class="story-avatar has-story"
+                                data-story="day01-morning"
+                                aria-label="فتح Story الصباح">
+
+                            <img src="robaty-profile.jpg"
+                                 alt="Robaty">
+
+                        </button>
+
+
+                        <div class="profile-meta">
+
+                            <div class="username-line">
+
+                                <span class="username">
+                                    robaty_ai
+                                </span>
+
+                                <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                            </div>
+
+                            <span class="post-time">
+                                اليوم · 07:00 AM
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="icon-btn"
+                            aria-label="المزيد">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </header>
+
+
+                <!-- صورة المنشور بنسبة 4:5 -->
+
+                <div class="post-image-container">
+
+                    <img src="day01-chefchaouen-morning.jpg"
+                         alt="Robaty في شفشاون صباحًا"
+                         class="post-main-img">
+
+                    <span class="location-pill">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        شفشاون — المدينة الزرقاء
+
+                    </span>
+
+                </div>
+
+
+                <!-- شريط التفاعل -->
+
+                <div class="post-actions-bar">
+
+                    <div class="left-actions">
+
+                        <button class="action-item"
+                                aria-label="إعجاب">
+
+                            <i class="fa-regular fa-heart"></i>
+                            <span>234</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="تعليق">
+
+                            <i class="fa-regular fa-comment"></i>
+                            <span>34</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="إعادة نشر">
+
+                            <i class="fa-solid fa-retweet"></i>
+                            <span>18</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="مشاركة">
+
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>12</span>
+
+                        </button>
+
+                    </div>
+
+
+                    <button class="action-item"
+                            aria-label="حفظ">
+
+                        <i class="fa-regular fa-bookmark"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- النص: ستة أسطر -->
+
+                <div class="post-caption-section">
+
+                    <div class="caption-username">
+
+                        robaty_ai
+                        <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                    </div>
+
+
+                    <p class="six-line-caption">
+
+                        شفشاون كتلبس الزرقة من الصباح 💙<br>
+
+                        وكل زقاق فيها عندو حكاية صغيرة.<br>
+
+                        ألوان المدينة ولات جزءًا من هويتها البصرية.<br>
+
+                        اليوم نسّقت blazer عصري بلمسة سفيفة مغربية.<br>
+
+                        واش اللوك نجح؟ أنا كنقول آه… بلا غرور 😂<br>
+
+                        التحدي والتصويت كاينين فـ Story 👀
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =====================================
+                 المنشور الثاني: المساء
+            ====================================== -->
+
+            <article class="post-card" id="post-day01-evening">
+
+                <header class="post-header">
+
+                    <div class="profile-head">
+
+                        <!-- Story Ring -->
+                        <button class="story-avatar has-story"
+                                data-story="day01-evening"
+                                aria-label="فتح Story المساء">
+
+                            <img src="robaty-profile.jpg"
+                                 alt="Robaty">
+
+                        </button>
+
+
+                        <div class="profile-meta">
+
+                            <div class="username-line">
+
+                                <span class="username">
+                                    robaty_ai
+                                </span>
+
+                                <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                            </div>
+
+                            <span class="post-time">
+                                اليوم · 07:00 PM
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="icon-btn"
+                            aria-label="المزيد">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </header>
+
+
+                <!-- صورة المساء بنسبة 4:5 -->
+
+                <div class="post-image-container">
+
+                    <img src="day01-essaouira-evening.jpg"
+                         alt="Robaty في الصويرة مساءً"
+                         class="post-main-img">
+
+                    <span class="location-pill">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        الصويرة — الميناء والمدينة القديمة
+
+                    </span>
+
+                </div>
+
+
+                <!-- شريط التفاعل -->
+
+                <div class="post-actions-bar">
+
+                    <div class="left-actions">
+
+                        <button class="action-item"
+                                aria-label="إعجاب">
+
+                            <i class="fa-regular fa-heart"></i>
+                            <span>412</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="تعليق">
+
+                            <i class="fa-regular fa-comment"></i>
+                            <span>56</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="إعادة نشر">
+
+                            <i class="fa-solid fa-retweet"></i>
+                            <span>27</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="مشاركة">
+
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>21</span>
+
+                        </button>
+
+                    </div>
+
+
+                    <button class="action-item"
+                            aria-label="حفظ">
+
+                        <i class="fa-regular fa-bookmark"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- النص: ستة أسطر -->
+
+                <div class="post-caption-section">
+
+                    <div class="caption-username">
+
+                        robaty_ai
+                        <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                    </div>
+
+
+                    <p class="six-line-caption">
+
+                        فالصويرة، حتى الريح كتجي عندها شخصية قوية 😂🌊<br>
+
+                        المدينة معروفة بأجوائها البحرية ومينائها وأسوارها.<br>
+
+                        تفاصيلها كتخلي كل جولة فيها قصة جديدة.<br>
+
+                        جربت Look رملي مع تطريز مغربي خفيف.<br>
+
+                        مريح للخروج وماشي غير للمناسبات.<br>
+
+                        رسالة المساء: شنو رأيك فلوك اليوم؟ 🌙
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </main>
+
+
+
+        <!-- =====================================
+             نافذة Stories
+        ====================================== -->
+
+        <div class="story-modal"
+             id="storyModal"
+             aria-hidden="true">
+
+
+            <div class="story-backdrop"
+                 data-close-story>
             </div>
 
-            <!-- محتوى شاشة اللحظات -->
-            <div class="moments-scroll-area">
 
-                <!-- المنشور 1: مراكش (الصباح) -->
-                <article class="post-card" id="post-1">
-                    <header class="post-header">
-                        <div class="user-profile-info">
-                            <a href="profile.html" class="avatar-wrapper">
-                                <img src="robaty-profile.jpg" alt="Robaty" class="profile-avatar">
-                            </a>
-                            <div class="user-details">
-                                <a href="profile.html" class="username">robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></a>
-                            </div>
-                        </div>
-                        <button class="menu-dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                    </header>
-                    <div class="post-image-container">
-                        <img src="1789224392328.jpg" alt="Robaty Moment 1" class="post-main-img">
-                    </div>
-                    <div class="post-actions-bar">
-                        <div class="left-actions">
-                            <button class="action-item"><i class="fa-regular fa-heart"></i><span>20</span></button>
-                            <button class="action-item"><i class="fa-regular fa-comment"></i><span>4</span></button>
-                            <button class="action-item"><i class="fa-solid fa-retweet"></i><span>2</span></button>
-                            <button class="action-item"><i class="fa-regular fa-paper-plane"></i><span>2</span></button>
-                        </div>
-                        <button class="action-item bookmark-btn"><i class="fa-regular fa-bookmark"></i></button>
-                    </div>
-                    <div class="post-caption-section">
-                        <p class="caption-text">
-                            <strong class="caption-username">robaty_ai</strong>
-                            منظر ما يتوصفش من فوق سطح فمراكش 🇲🇦☕...
-                        </p>
-                        <div class="post-meta"><span class="post-date">اليوم - 07:00 AM</span></div>
-                    </div>
-                </article>
+            <section class="story-content"
+                     role="dialog"
+                     aria-modal="true"
+                     aria-label="Robaty Story">
 
-                <!-- المنشور 2: جامع الفنا (المساء) -->
-                <article class="post-card" id="post-2">
-                    <header class="post-header">
-                        <div class="user-profile-info">
-                            <a href="profile.html" class="avatar-wrapper">
-                                <img src="robaty-profile.jpg" alt="Robaty" class="profile-avatar">
-                            </a>
-                            <div class="user-details">
-                                <a href="profile.html" class="username">robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></a>
-                            </div>
-                        </div>
-                        <button class="menu-dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                    </header>
-                    <div class="post-image-container">
-                        <img src="1789225049222.jpg" alt="Robaty Moment 2" class="post-main-img">
-                    </div>
-                    <div class="post-actions-bar">
-                        <div class="left-actions">
-                            <button class="action-item"><i class="fa-regular fa-heart"></i><span>45</span></button>
-                            <button class="action-item"><i class="fa-regular fa-comment"></i><span>12</span></button>
-                            <button class="action-item"><i class="fa-solid fa-retweet"></i><span>5</span></button>
-                            <button class="action-item"><i class="fa-regular fa-paper-plane"></i><span>8</span></button>
-                        </div>
-                        <button class="action-item bookmark-btn"><i class="fa-regular fa-bookmark"></i></button>
-                    </div>
-                    <div class="post-caption-section">
-                        <p class="caption-text">
-                            <strong class="caption-username">robaty_ai</strong>
-                            أجواء ساحرة في ساحة جامع الفنا بالليل 🏮✨
-                        </p>
-                        <div class="post-meta"><span class="post-date">أمس - 07:00 PM</span></div>
-                    </div>
-                </article>
 
-                <!-- المنشور 3: الصحراء (الغروب) -->
-                <article class="post-card" id="post-3">
-                    <header class="post-header">
-                        <div class="user-profile-info">
-                            <a href="profile.html" class="avatar-wrapper">
-                                <img src="robaty-profile.jpg" alt="Robaty" class="profile-avatar">
-                            </a>
-                            <div class="user-details">
-                                <a href="profile.html" class="username">robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></a>
-                            </div>
-                        </div>
-                        <button class="menu-dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                    </header>
-                    <div class="post-image-container">
-                        <img src="1789231699651.jpg" alt="Robaty Moment 3" class="post-main-img">
-                    </div>
-                    <div class="post-actions-bar">
-                        <div class="left-actions">
-                            <button class="action-item"><i class="fa-regular fa-heart"></i><span>89</span></button>
-                            <button class="action-item"><i class="fa-regular fa-comment"></i><span>18</span></button>
-                            <button class="action-item"><i class="fa-solid fa-retweet"></i><span>9</span></button>
-                            <button class="action-item"><i class="fa-regular fa-paper-plane"></i><span>15</span></button>
-                        </div>
-                        <button class="action-item bookmark-btn"><i class="fa-regular fa-bookmark"></i></button>
-                    </div>
-                    <div class="post-caption-section">
-                        <p class="caption-text">
-                            <strong class="caption-username">robaty_ai</strong>
-                            هدوء الكثبان الذهبية عند الغروب 🌅🐪
-                        </p>
-                        <div class="post-meta"><span class="post-date">أمس - 07:00 AM</span></div>
-                    </div>
-                </article>
+                <!-- شريط التقدم -->
 
-                <!-- المنشور 4: أكادير (الصباح) -->
-                <article class="post-card" id="post-4">
-                    <header class="post-header">
-                        <div class="user-profile-info">
-                            <a href="profile.html" class="avatar-wrapper">
-                                <img src="robaty-profile.jpg" alt="Robaty" class="profile-avatar">
-                            </a>
-                            <div class="user-details">
-                                <a href="profile.html" class="username">robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></a>
-                            </div>
-                        </div>
-                        <button class="menu-dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
-                    </header>
-                    <div class="post-image-container">
-                        <img src="1789225774967.jpg" alt="Robaty Moment 4" class="post-main-img">
-                    </div>
-                    <div class="post-actions-bar">
-                        <div class="left-actions">
-                            <button class="action-item"><i class="fa-regular fa-heart"></i><span>62</span></button>
-                            <button class="action-item"><i class="fa-regular fa-comment"></i><span>8</span></button>
-                            <button class="action-item"><i class="fa-solid fa-retweet"></i><span>3</span></button>
-                            <button class="action-item"><i class="fa-regular fa-paper-plane"></i><span>6</span></button>
-                        </div>
-                        <button class="action-item bookmark-btn"><i class="fa-regular fa-bookmark"></i></button>
-                    </div>
-                    <div class="post-caption-section">
-                        <p class="caption-text">
-                            <strong class="caption-username">robaty_ai</strong>
-                            نسيم البحر وطاقة الصباح في أكادير أفلا 🌊☀️
-                        </p>
-                        <div class="post-meta"><span class="post-date">منذ يومين</span></div>
-                    </div>
-                </article>
+                <div class="story-progress-bar">
 
-            </div>
+                    <div class="progress-fill"></div>
+
+                </div>
+
+
+                <!-- Header ديال Story -->
+
+                <header class="story-header">
+
+                    <img src="robaty-profile.jpg"
+                         alt="Robaty"
+                         class="story-mini-avatar">
+
+
+                    <span class="story-username">
+                        robaty_ai
+                    </span>
+
+
+                    <span class="story-time"
+                          id="storyTime">
+
+                        اليوم
+
+                    </span>
+
+
+                    <button class="close-story-btn"
+                            id="closeStoryBtn"
+                            aria-label="إغلاق">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                </header>
+
+
+                <!-- صورة Story -->
+
+                <img id="storyImage"
+                     src="day01-chefchaouen-morning.jpg"
+                     alt="Robaty Story"
+                     class="story-bg-img">
+
+
+                <!-- بطاقة التفاعل -->
+
+                <div class="story-caption-card">
+
+                    <div class="story-kicker"
+                         id="storyKicker">
+
+                        صوّتي مع Robaty ✨
+
+                    </div>
+
+
+                    <h3 id="storyQuestion">
+
+                        كيفاش تنسقي هاد الإطلالة؟
+
+                    </h3>
+
+
+                    <div class="story-options"
+                         id="storyOptions">
+
+                    </div>
+
+
+                    <p class="story-result"
+                       id="storyResult"
+                       aria-live="polite">
+
+                    </p>
+
+                </div>
+
+
+            </section>
 
         </div>
+
+
     </div>
+
+</div>
+
+
+<script src="moments.js"></script>
 
 </body>
 </html>
