@@ -33,7 +33,7 @@
     --text-gold-light: #f7e8cf;
 
     --font-family:
-        'Cairo', sans-serif;
+        'Cairo', 'Roboto', sans-serif;
 }
 
 
@@ -2212,6 +2212,93 @@ body {
     margin-bottom: 16px;
 
     opacity: 0.9;
+}
+
+
+/* ==========================================================================
+   SETTINGS SECTIONS (لغة + API key، جوا نفس المودال)
+   ========================================================================== */
+
+.settings-section {
+
+    margin-bottom: 18px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid var(--gold-border);
+
+    text-align: start;
+}
+
+
+.settings-section:last-child {
+
+    border-bottom: none;
+
+    padding-bottom: 0;
+
+    margin-bottom: 0;
+}
+
+
+.settings-section-title {
+
+    color: var(--gold-bright);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+
+.lang-options {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.lang-option {
+
+    flex: 1 1 calc(50% - 8px);
+
+    padding: 8px 10px;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--gold-border);
+
+    background: rgba(0, 0, 0, 0.3);
+
+    color: var(--text-gold-light);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-align: center;
+}
+
+
+.lang-option.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-bright) 0%,
+            var(--gold-dark) 100%
+        );
+
+    color: #050302;
+
+    border-color: var(--gold-bright);
 }
 
 

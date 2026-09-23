@@ -920,8 +920,8 @@ function stopRecording() {
     stopVoiceAnalysis();
 
     recordButton.classList.remove('recording-active');
-    recordLabel.textContent = 'تسجيل صوتي';
-    recordButton.setAttribute('aria-label', 'تسجيل صوتي');
+    recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('record_btn') : 'تسجيل صوتي';
+    recordButton.setAttribute('aria-label', window.RobatyI18n ? window.RobatyI18n.t('record_btn') : 'تسجيل صوتي');
 
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
         mediaRecorder.stop();

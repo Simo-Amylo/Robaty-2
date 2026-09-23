@@ -9,6 +9,19 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة (يمنع فلاش الاتجاه الغالط) -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <title>Robaty - Moroccan Luxury UI</title>
 
     <link
@@ -21,8 +34,9 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     >
 
+    <!-- Cairo: عربية/لاتينية. Roboto: زايدة كـ fallback باش تغطي السيريلية (الروسية) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet"
     >
 
@@ -56,6 +70,7 @@
                 type="button"
                 class="ornate-btn"
                 aria-label="رجوع"
+                data-i18n-aria="back_button_aria"
             >
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
@@ -69,6 +84,8 @@
                     id="resetMemoryButton"
                     aria-label="مسح الذاكرة (مؤقت، للاختبار)"
                     title="مسح الذاكرة (مؤقت، للاختبار)"
+                    data-i18n-aria="reset_memory_aria"
+                    data-i18n-title="reset_memory_aria"
                 >
                     <i class="fa-solid fa-trash"></i>
                 </button>
@@ -78,6 +95,7 @@
                     class="ornate-btn"
                     id="settingsButton"
                     aria-label="الإعدادات"
+                    data-i18n-aria="settings_aria"
                 >
                     <i class="fa-solid fa-gear"></i>
                 </button>
@@ -139,7 +157,7 @@
 
                     <span class="tagline-star">۞</span>
 
-                    <p class="tagline">
+                    <p class="tagline" data-i18n="tagline">
                         🇲🇦 مغربية و أفتخر
                     </p>
 
@@ -159,7 +177,7 @@
 
                 <i class="fa-regular fa-image"></i>
 
-                شوفي تصاوري ليوم
+                <span data-i18n="view_moments_btn">شوفي تصاوري ليوم</span>
 
             </a>
 
@@ -196,6 +214,7 @@
                         id="previewImage"
                         src=""
                         alt="الصورة المختارة"
+                        data-i18n-alt="selected_image_alt"
                     >
 
                     <button
@@ -203,6 +222,7 @@
                         class="remove-image-btn"
                         id="removeImageBtn"
                         aria-label="حذف الصورة"
+                        data-i18n-aria="remove_image_aria"
                     >
 
                         <i class="fa-solid fa-xmark"></i>
@@ -220,6 +240,7 @@
                     id="messageInput"
                     autocomplete="off"
                     rows="1"
+                    data-i18n-placeholder="message_placeholder"
                 ></textarea>
 
             </div>
@@ -237,7 +258,7 @@
 
                     <i class="fa-solid fa-paper-plane"></i>
 
-                    <span>
+                    <span data-i18n="send_btn">
                         إرسال
                     </span>
 
@@ -254,7 +275,7 @@
 
                     <i class="fa-solid fa-microphone"></i>
 
-                    <span id="recordLabel">
+                    <span id="recordLabel" data-i18n="record_btn">
                         تسجيل صوتي
                     </span>
 
@@ -271,7 +292,7 @@
 
                     <i class="fa-regular fa-image"></i>
 
-                    <span>
+                    <span data-i18n="send_image_btn">
                         إرسال الصور
                     </span>
 
@@ -292,7 +313,7 @@
         </footer>
 
 
-        <!-- API KEY MODAL -->
+        <!-- SETTINGS MODAL (لغة + مفتاح API) -->
 
         <div
             class="api-key-modal-overlay"
@@ -302,30 +323,42 @@
 
             <div class="api-key-modal-box">
 
-                <h2>🔑 مفتاح Gemini API</h2>
+                <h2 data-i18n="settings_title">⚙️ الإعدادات</h2>
 
-                <p>
-                    باش تخدمي Robaty، خاصك تدخلي مفتاح Gemini API ديالك
-                    (تقدري تجيبيه مجاناً من Google AI Studio).
-                </p>
+                <!-- قسم اللغة -->
+                <div class="settings-section">
+                    <p class="settings-section-title" data-i18n="language_section_title">🌐 اللغة</p>
+                    <div class="lang-options" id="languageOptions"></div>
+                </div>
 
-                <input
-                    type="password"
-                    id="apiKeyInput"
-                    class="gold-input"
-                    placeholder="الصقي المفتاح هنا..."
-                    autocomplete="off"
-                    style="margin-bottom:12px; width:100%;"
-                >
+                <!-- قسم مفتاح API -->
+                <div class="settings-section">
+                    <p class="settings-section-title" data-i18n="api_key_title">🔑 مفتاح Gemini API</p>
+                    <p data-i18n="api_key_desc">
+                        باش تخدمي Robaty، خاصك تدخلي مفتاح Gemini API ديالك
+                        (تقدري تجيبيه مجاناً من Google AI Studio).
+                    </p>
 
-                <button
-                    type="button"
-                    class="gold-pill-btn"
-                    id="saveApiKeyBtn"
-                    style="width:100%; justify-content:center; display:flex;"
-                >
-                    حفظ
-                </button>
+                    <input
+                        type="password"
+                        id="apiKeyInput"
+                        class="gold-input"
+                        placeholder="الصقي المفتاح هنا..."
+                        autocomplete="off"
+                        style="margin-bottom:12px; width:100%;"
+                        data-i18n-placeholder="api_key_placeholder"
+                    >
+
+                    <button
+                        type="button"
+                        class="gold-pill-btn"
+                        id="saveApiKeyBtn"
+                        style="width:100%; justify-content:center; display:flex;"
+                        data-i18n="save_btn"
+                    >
+                        حفظ
+                    </button>
+                </div>
 
             </div>
 
@@ -336,6 +369,7 @@
 </div>
 
 
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 
 </body>
