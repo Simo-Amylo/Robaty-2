@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <title>Robaty - Moments</title>
 
     <link rel="stylesheet" href="moments.css">
@@ -11,7 +24,8 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+    <!-- Cairo: عربية/لاتينية. Roboto: fallback للسيريلية (الروسية) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet">
 </head>
 
@@ -24,7 +38,8 @@
         <!-- زر الرجوع للشات -->
         <a href="index.html"
            class="back-btn-floating"
-           aria-label="رجوع للشات">
+           aria-label="رجوع للشات"
+           data-i18n-aria="back_to_chat_aria">
 
             <i class="fa-solid fa-arrow-right"></i>
 
@@ -32,7 +47,7 @@
 
         <!-- البانر الإعلاني -->
         <div class="ad-banner">
-            <span class="ad-tag">إعلان</span>
+            <span class="ad-tag" data-i18n="ad_tag">إعلان</span>
         </div>
 
 
@@ -53,7 +68,8 @@
                         <!-- Story Ring -->
                         <button class="story-avatar has-story"
                                 data-story="day01-morning"
-                                aria-label="فتح Story الصباح">
+                                aria-label="فتح Story الصباح"
+                                data-i18n-aria="story_morning_aria">
 
                             <img src="robaty-profile.jpg"
                                  alt="Robaty">
@@ -73,7 +89,7 @@
 
                             </div>
 
-                            <span class="post-time">
+                            <span class="post-time" data-i18n="day01_morning_time">
                                 اليوم · 07:00 AM
                             </span>
 
@@ -83,7 +99,8 @@
 
 
                     <button class="icon-btn"
-                            aria-label="المزيد">
+                            aria-label="المزيد"
+                            data-i18n-aria="more_aria">
 
                         <i class="fa-solid fa-ellipsis"></i>
 
@@ -104,7 +121,7 @@
 
                         <i class="fa-solid fa-location-dot"></i>
 
-                        شفشاون — المدينة الزرقاء
+                        <span data-i18n="day01_morning_location">شفشاون — المدينة الزرقاء</span>
 
                     </span>
 
@@ -118,7 +135,8 @@
                     <div class="left-actions">
 
                         <button class="action-item"
-                                aria-label="إعجاب">
+                                aria-label="إعجاب"
+                                data-i18n-aria="like_aria">
 
                             <i class="fa-regular fa-heart"></i>
                             <span>234</span>
@@ -127,7 +145,8 @@
 
 
                         <button class="action-item"
-                                aria-label="تعليق">
+                                aria-label="تعليق"
+                                data-i18n-aria="comment_aria">
 
                             <i class="fa-regular fa-comment"></i>
                             <span>34</span>
@@ -136,7 +155,8 @@
 
 
                         <button class="action-item"
-                                aria-label="إعادة نشر">
+                                aria-label="إعادة نشر"
+                                data-i18n-aria="repost_aria">
 
                             <i class="fa-solid fa-retweet"></i>
                             <span>18</span>
@@ -145,7 +165,8 @@
 
 
                         <button class="action-item"
-                                aria-label="مشاركة">
+                                aria-label="مشاركة"
+                                data-i18n-aria="share_aria">
 
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>12</span>
@@ -156,7 +177,8 @@
 
 
                     <button class="action-item"
-                            aria-label="حفظ">
+                            aria-label="حفظ"
+                            data-i18n-aria="save_post_aria">
 
                         <i class="fa-regular fa-bookmark"></i>
 
@@ -177,7 +199,7 @@
                     </div>
 
 
-                    <p class="six-line-caption">
+                    <p class="six-line-caption" data-i18n-html="day01_morning_caption">
 
                         شفشاون كتلبس الزرقة من الصباح 💙<br>
 
@@ -212,7 +234,8 @@
                         <!-- Story Ring -->
                         <button class="story-avatar has-story"
                                 data-story="day01-evening"
-                                aria-label="فتح Story المساء">
+                                aria-label="فتح Story المساء"
+                                data-i18n-aria="story_evening_aria">
 
                             <img src="robaty-profile.jpg"
                                  alt="Robaty">
@@ -232,7 +255,7 @@
 
                             </div>
 
-                            <span class="post-time">
+                            <span class="post-time" data-i18n="day01_evening_time">
                                 اليوم · 07:00 PM
                             </span>
 
@@ -242,7 +265,8 @@
 
 
                     <button class="icon-btn"
-                            aria-label="المزيد">
+                            aria-label="المزيد"
+                            data-i18n-aria="more_aria">
 
                         <i class="fa-solid fa-ellipsis"></i>
 
@@ -263,7 +287,7 @@
 
                         <i class="fa-solid fa-location-dot"></i>
 
-                        الصويرة — الميناء والمدينة القديمة
+                        <span data-i18n="day01_evening_location">الصويرة — الميناء والمدينة القديمة</span>
 
                     </span>
 
@@ -277,7 +301,8 @@
                     <div class="left-actions">
 
                         <button class="action-item"
-                                aria-label="إعجاب">
+                                aria-label="إعجاب"
+                                data-i18n-aria="like_aria">
 
                             <i class="fa-regular fa-heart"></i>
                             <span>412</span>
@@ -286,7 +311,8 @@
 
 
                         <button class="action-item"
-                                aria-label="تعليق">
+                                aria-label="تعليق"
+                                data-i18n-aria="comment_aria">
 
                             <i class="fa-regular fa-comment"></i>
                             <span>56</span>
@@ -295,7 +321,8 @@
 
 
                         <button class="action-item"
-                                aria-label="إعادة نشر">
+                                aria-label="إعادة نشر"
+                                data-i18n-aria="repost_aria">
 
                             <i class="fa-solid fa-retweet"></i>
                             <span>27</span>
@@ -304,7 +331,8 @@
 
 
                         <button class="action-item"
-                                aria-label="مشاركة">
+                                aria-label="مشاركة"
+                                data-i18n-aria="share_aria">
 
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>21</span>
@@ -315,7 +343,8 @@
 
 
                     <button class="action-item"
-                            aria-label="حفظ">
+                            aria-label="حفظ"
+                            data-i18n-aria="save_post_aria">
 
                         <i class="fa-regular fa-bookmark"></i>
 
@@ -336,7 +365,7 @@
                     </div>
 
 
-                    <p class="six-line-caption">
+                    <p class="six-line-caption" data-i18n-html="day01_evening_caption">
 
                         فالصويرة، حتى الريح كتجي عندها شخصية قوية 😂🌊<br>
 
@@ -414,7 +443,8 @@
 
                     <button class="close-story-btn"
                             id="closeStoryBtn"
-                            aria-label="إغلاق">
+                            aria-label="إغلاق"
+                            data-i18n-aria="close_story_aria">
 
                         <i class="fa-solid fa-xmark"></i>
 
@@ -435,12 +465,14 @@
 
                 <div class="story-nav-zone story-nav-left"
                      id="storyNavLeft"
-                     aria-label="الستوري السابقة">
+                     aria-label="الستوري السابقة"
+                     data-i18n-aria="prev_story_aria">
                 </div>
 
                 <div class="story-nav-zone story-nav-right"
                      id="storyNavRight"
-                     aria-label="الستوري التالية">
+                     aria-label="الستوري التالية"
+                     data-i18n-aria="next_story_aria">
                 </div>
 
 
@@ -488,6 +520,7 @@
 </div>
 
 
+<script src="i18n.js"></script>
 <script src="story.js"></script>
 
 </body>

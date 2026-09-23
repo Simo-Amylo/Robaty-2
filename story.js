@@ -8,47 +8,11 @@ const storyOrder = [
     'day01-evening'
 ];
 
-const storyData = {
-
-    'day01-morning': {
-
-        image: 'day01-chefchaouen-morning.jpg',
-
-        time: 'اليوم · 07:00 AM',
-
-        kicker: 'صوّتي مع Robaty ✨',
-
-        question: 'كيفاش تنسقي هاد الإطلالة؟',
-
-        options: [
-            ['white', 'A — مع سروال أبيض واسع 🤍'],
-            ['jeans', 'B — مع Jeans أزرق 👖']
-        ],
-
-        result: 'اختيار زوين! غادي نخليو النتيجة جزءًا من تجربة Robaty ✨'
-
-    },
-
-    'day01-evening': {
-
-        image: 'day01-essaouira-evening.jpg',
-
-        time: 'اليوم · 07:00 PM',
-
-        kicker: 'تحدي Robaty 👑',
-
-        question: 'فين غادي تدوزي هاد اللحظة؟',
-
-        options: [
-            ['sea', 'A — جلسة هادئة حدّ البحر 🌊'],
-            ['medina', 'B — جولة فالمدينة القديمة 🧿']
-        ],
-
-        result: 'اختيارك وصل لـ Robaty ✨'
-
-    }
-
-};
+/* storyData كيتبنى ديناميكيًا حسب اللغة الحالية (via i18n.js).
+   خاص i18n.js يتحط قبل story.js فـ HTML. */
+const storyData = window.RobatyI18n
+    ? window.RobatyI18n.getStoryData(window.RobatyI18n.getCurrentLang())
+    : {};
 
 
 /* عناصر Story — نفس الـ ids فـ moments.html و profile.html */

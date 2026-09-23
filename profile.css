@@ -8,7 +8,7 @@ Robaty Profile Screen - Luxury Gold Theme
     --gold-glow: rgba(229, 179, 92, 0.3);
     --text-light: #ffffff;
     --text-subtle: #a8a8a8;
-    --font-family: 'Cairo', sans-serif;
+    --font-family: 'Cairo', 'Roboto', sans-serif;
 }
 
 * {

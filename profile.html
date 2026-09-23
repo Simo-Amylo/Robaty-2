@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <title>Robaty - Profile</title>
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+
+    <!-- Cairo: عربية/لاتينية. Roboto: fallback للسيريلية (الروسية) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet">
 </head>
 <body>
@@ -16,7 +32,7 @@
     <div class="app-container">
 
         <!-- زر الرجوع لشاشة Moments -->
-        <a href="moments.html" class="back-btn-floating" aria-label="رجوع">
+        <a href="moments.html" class="back-btn-floating" aria-label="رجوع" data-i18n-aria="back_aria">
             <i class="fa-solid fa-arrow-right"></i>
         </a>
 
@@ -30,7 +46,7 @@
             <!-- معلومات البروفايل الأساسية -->
             <div class="profile-header-section">
 
-                <button type="button" class="avatar-story-wrapper" id="openStoryBtn" aria-label="فتح Story ديال Robaty">
+                <button type="button" class="avatar-story-wrapper" id="openStoryBtn" aria-label="فتح Story ديال Robaty" data-i18n-aria="open_story_aria">
                     <div class="story-ring-glow">
                         <img src="robaty-profile.jpg" alt="Robaty Profile" class="profile-avatar-img">
                     </div>
@@ -41,18 +57,18 @@
                         robaty_ai
                         <i class="fa-solid fa-circle-check verify-icon"></i>
                     </h2>
-                    <span class="profile-tagline">🇲🇦 أول رفيقة ذكاء اصطناعي مغربية</span>
+                    <span class="profile-tagline" data-i18n="profile_tagline">🇲🇦 أول رفيقة ذكاء اصطناعي مغربية</span>
                 </div>
 
                 <!-- أزرار الإجراءات السريعة -->
                 <div class="profile-action-btns">
                     <a href="index.html" class="action-btn gold-btn">
                         <i class="fa-regular fa-comment-dots"></i>
-                        دردشي معايا
+                        <span data-i18n="chat_with_me_btn">دردشي معايا</span>
                     </a>
                     <button class="action-btn outline-btn">
                         <i class="fa-solid fa-user-plus"></i>
-                        متابعة
+                        <span data-i18n="follow_btn">متابعة</span>
                     </button>
                 </div>
 
@@ -60,23 +76,23 @@
                 <div class="stats-container">
                     <div class="stat-item">
                         <span class="stat-number">128</span>
-                        <span class="stat-label">لحظة</span>
+                        <span class="stat-label" data-i18n="stat_moments">لحظة</span>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
                         <span class="stat-number">45.2K</span>
-                        <span class="stat-label">متابع</span>
+                        <span class="stat-label" data-i18n="stat_followers">متابع</span>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
                         <span class="stat-number">890K</span>
-                        <span class="stat-label">تفاعل</span>
+                        <span class="stat-label" data-i18n="stat_engagement">تفاعل</span>
                     </div>
                 </div>
 
                 <!-- السيرة الذاتية Bio -->
                 <div class="bio-section">
-                    <p class="bio-text">
+                    <p class="bio-text" data-i18n-html="profile_bio">
                         ✨ تجمع بين أصالة التراث المغربي وتكنولوجيا المستقبل.<br>
                         ☕ محبة للثقافة، الموضة، والدردشة الدافئة.<br>
                         📍 مراكش / المغرب 🇲🇦
@@ -87,15 +103,15 @@
             <!-- شبكة المعرض المصغرة (Grid Layout) -->
             <div class="gallery-section">
                 <div class="gallery-header">
-                    <span class="tab-title active"><i class="fa-solid fa-table-cells"></i> اللحظات</span>
+                    <span class="tab-title active"><i class="fa-solid fa-table-cells"></i> <span data-i18n="moments_tab">اللحظات</span></span>
                 </div>
 
                 <div class="photo-grid">
                     <a href="moments.html#post-day01-morning" class="grid-item">
-                        <img src="day01-chefchaouen-morning.jpg" alt="Robaty في شفشاون صباحًا">
+                        <img src="day01-chefchaouen-morning.jpg" alt="Robaty في شفشاون صباحًا" data-i18n-alt="day01_morning_location">
                     </a>
                     <a href="moments.html#post-day01-evening" class="grid-item">
-                        <img src="day01-essaouira-evening.jpg" alt="Robaty في الصويرة مساءً">
+                        <img src="day01-essaouira-evening.jpg" alt="Robaty في الصويرة مساءً" data-i18n-alt="day01_evening_location">
                     </a>
                 </div>
             </div>
@@ -126,7 +142,7 @@
                     <img src="robaty-profile.jpg" alt="Robaty" class="story-mini-avatar">
                     <span class="story-username">robaty_ai</span>
                     <span class="story-time" id="storyTime">اليوم</span>
-                    <button class="close-story-btn" id="closeStoryBtn" aria-label="إغلاق">
+                    <button class="close-story-btn" id="closeStoryBtn" aria-label="إغلاق" data-i18n-aria="close_story_aria">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </header>
@@ -140,12 +156,14 @@
                 <!-- مناطق التنقل بين الـ Stories -->
                 <div class="story-nav-zone story-nav-left"
                      id="storyNavLeft"
-                     aria-label="الستوري السابقة">
+                     aria-label="الستوري السابقة"
+                     data-i18n-aria="prev_story_aria">
                 </div>
 
                 <div class="story-nav-zone story-nav-right"
                      id="storyNavRight"
-                     aria-label="الستوري التالية">
+                     aria-label="الستوري التالية"
+                     data-i18n-aria="next_story_aria">
                 </div>
 
                 <!-- بطاقة التفاعل -->
@@ -162,6 +180,7 @@
     </div>
 </div>
 
+<script src="i18n.js"></script>
 <script src="story.js"></script>
 
 </body>
