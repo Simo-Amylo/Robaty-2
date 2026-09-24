@@ -808,6 +808,28 @@ let mediaRecorder = null;
 let recordedChunks = [];
 let currentAudioStream = null;
 let audioContext = null;
+
+/* ==========================================================================
+   تفريغ صوتي (Speech-to-Text) — مربوط باللغة المختارة فالإعدادات
+   ========================================================================== */
+
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const SPEECH_LANG_MAP = {
+    ar: 'ar-MA',
+    en: 'en-US',
+    fr: 'fr-FR',
+    es: 'es-ES',
+    ru: 'ru-RU'
+};
+
+function getSpeechLang() {
+    const lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
+    return SPEECH_LANG_MAP[lang] || 'ar-MA';
+}
+
+let speechRecognizer = null;
+let recognizedTranscript = '';
 let analyser = null;
 let microphoneSource = null;
 let voiceAnimationFrame = null;
@@ -882,6 +904,36 @@ function stopVoiceAnalysis() {
 async function startRecording() {
     if (isRecording) return;
 
+    recognizedTranscript = '';
+
+    if (SpeechRecognitionAPI) {
+        try {
+            speechRecognizer = new SpeechRecognitionAPI();
+            speechRecognizer.lang = getSpeechLang();
+            speechRecognizer.continuous = true;
+            speechRecognizer.interimResults = false;
+
+            speechRecognizer.onresult = (event) => {
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        recognizedTranscript += (recognizedTranscript ? ' ' : '') + event.results[i][0].transcript;
+                    }
+                }
+            };
+
+            speechRecognizer.onerror = () => {};
+
+            speechRecognizer.onend = () => {
+                finalizeVoiceInput();
+                speechRecognizer = null;
+            };
+
+            speechRecognizer.start();
+        } catch (error) {
+            speechRecognizer = null;
+        }
+    }
+
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         currentAudioStream = stream;
@@ -909,8 +961,8 @@ async function startRecording() {
     }
 
     recordButton.classList.add('recording-active');
-    recordLabel.textContent = 'RECORDING';
-    recordButton.setAttribute('aria-label', 'جاري التسجيل');
+    recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'RECORDING';
+    recordButton.setAttribute('aria-label', window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'جاري التسجيل');
 }
 
 function stopRecording() {
@@ -918,6 +970,10 @@ function stopRecording() {
 
     isRecording = false;
     stopVoiceAnalysis();
+
+    if (speechRecognizer) {
+        try { speechRecognizer.stop(); } catch (error) {}
+    }
 
     recordButton.classList.remove('recording-active');
     recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('record_btn') : 'تسجيل صوتي';
@@ -936,8 +992,39 @@ function finishRecording() {
         currentAudioStream = null;
     }
 
+    mediaRecorder = null;
+
+    setPresenceState('processing');
+
+    window.clearTimeout(window.__robatyVoiceProcessingTimer);
+    window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
+        if (currentPresenceState === 'processing') setPresenceState('idle');
+    }, 1400);
+
+    // إلا كان التعرف الصوتي شغال، كنتسناو onend ديالو (النتيجة النهائية) قبل ما نفينالايزيو
+    if (speechRecognizer) return;
+
+    finalizeVoiceInput();
+}
+
+function finalizeVoiceInput() {
+
+    const transcript = recognizedTranscript.trim();
+
+    /* تفريغ صوتي نجح: كنعاملوها بحال كتبت الرسالة وضغطات إرسال */
+    if (transcript) {
+        messageInput.value = transcript;
+        autoGrowMessageInput();
+        updateSendButtonState();
+        sendMessage();
+        recordedChunks = [];
+        return;
+    }
+
+    /* ماقدرناش نفهمو الصوت (أو المتصفح ماكيدعمش Speech Recognition):
+       رجوع للسلوك القديم — بابل صوتي قابل للتشغيل محليًا */
     if (recordedChunks.length) {
-        const audioBlob = new Blob(recordedChunks, { type: mediaRecorder?.mimeType || 'audio/webm' });
+        const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
         const audioUrl = URL.createObjectURL(audioBlob);
 
         const message = document.createElement('div');
@@ -967,16 +1054,6 @@ function finishRecording() {
 
         recordedChunks = [];
     }
-
-    mediaRecorder = null;
-
-    setPresenceState('processing');
-
-    window.clearTimeout(window.__robatyVoiceProcessingTimer);
-    window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
-        if (currentPresenceState === 'processing') setPresenceState('idle');
-    }, 1400);
-    // ⚠️ التسجيل الصوتي حالياً بصري فقط، ماكيتصيفطش لـGemini (تفريغ صوتي غادي يزاد لاحقاً)
 }
 
 recordButton.addEventListener('pointerdown', async (event) => {
