@@ -51,7 +51,9 @@ const ROBATY_SYSTEM_PROMPT = `
 
 إذا بدأت المستخدمة بالعربية الفصحى، اقتربي منها فصحى خفيفة مع الحفاظ على دفء شخصيتك.
 
-إذا كتبت بالفرنسية، جاوبي بالفرنسية الكاملة. إذا كتبت بالإنجليزية، جاوبي بالإنجليزية الكاملة.
+إذا كتبت بالفرنسية، جاوبي بالفرنسية الكاملة. إذا كتبت بالإنجليزية، جاوبي بالإنجليزية الكاملة. إذا كتبت بالإسبانية، جاوبي بالإسبانية الكاملة. إذا كتبت بالروسية، جاوبي بالروسية الكاملة.
+
+بشكل عام: جاوبي دائماً بنفس اللغة اللي كتبت بيها المستخدمة فآخر رسالة، مهما كانت اللغة، حتى لو ماكانتش مذكورة صراحة هنا.
 
 فكل الحالات، حافظي على روح Robaty المغربية فنبرة الرد، حتى ولو تبدلت اللغة.
 
@@ -598,6 +600,10 @@ async function fetchRobatyResponse(userText) {
 
     let fullInstruction = ROBATY_SYSTEM_PROMPT;
 
+    const appLangNames = { ar: 'العربية/الدارجة', en: 'الإنجليزية', fr: 'الفرنسية', es: 'الإسبانية', ru: 'الروسية' };
+    const appLang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
+    fullInstruction += `\n\n[لغة التطبيق المختارة فالإعدادات]: ${appLangNames[appLang] || 'العربية/الدارجة'}. اعتبري هاد اللغة هي الافتراضية إلا ماكانش فالرسالة الأخيرة ديال المستخدمة سياق واضح يدل على لغة أخرى.`;
+
     fullInstruction += `\n\n[سياق زمني]: الساعة الحالية: ${timeCtx.timeStr}، فترة اليوم: ${timeCtx.periode}، التاريخ: ${timeCtx.dateStr}. إذا سألتك المستخدمة عن الوقت أو التاريخ مباشرة، جاوبيها بدقة من هاد المعلومة. خلاف ذلك، استعمليها فقط لضبط نبرة ردك بشكل طبيعي (مثلاً تحية "صباح الخير" فالصباح)، بلا ما تذكريها صراحة.`;
 
     if (timeCtx.gapText) {
@@ -830,6 +836,7 @@ function getSpeechLang() {
 
 let speechRecognizer = null;
 let recognizedTranscript = '';
+let voiceInputFinalizing = false;
 let analyser = null;
 let microphoneSource = null;
 let voiceAnimationFrame = null;
@@ -905,6 +912,7 @@ async function startRecording() {
     if (isRecording) return;
 
     recognizedTranscript = '';
+    voiceInputFinalizing = false;
 
     if (SpeechRecognitionAPI) {
         try {
@@ -963,10 +971,18 @@ async function startRecording() {
     recordButton.classList.add('recording-active');
     recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'RECORDING';
     recordButton.setAttribute('aria-label', window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'جاري التسجيل');
+
+    // حماية إضافية: توقيف تلقائي بعد 45 ثانية إلا نسات المستخدمة الزر مفتوح
+    window.clearTimeout(window.__robatyMaxRecordTimer);
+    window.__robatyMaxRecordTimer = window.setTimeout(() => {
+        if (isRecording) stopRecording();
+    }, 45000);
 }
 
 function stopRecording() {
     if (!isRecording) return;
+
+    window.clearTimeout(window.__robatyMaxRecordTimer);
 
     isRecording = false;
     stopVoiceAnalysis();
@@ -996,11 +1012,6 @@ function finishRecording() {
 
     setPresenceState('processing');
 
-    window.clearTimeout(window.__robatyVoiceProcessingTimer);
-    window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
-        if (currentPresenceState === 'processing') setPresenceState('idle');
-    }, 1400);
-
     // إلا كان التعرف الصوتي شغال، كنتسناو onend ديالو (النتيجة النهائية) قبل ما نفينالايزيو
     if (speechRecognizer) return;
 
@@ -1009,7 +1020,11 @@ function finishRecording() {
 
 function finalizeVoiceInput() {
 
+    if (voiceInputFinalizing) return; // حماية: ماندوزوش finalize جوج مرات لنفس التسجيل
+    voiceInputFinalizing = true;
+
     const transcript = recognizedTranscript.trim();
+    recognizedTranscript = ''; // مسح فوري باش أي استدعاء زايد يلقاها فارغة
 
     /* تفريغ صوتي نجح: كنعاملوها بحال كتبت الرسالة وضغطات إرسال */
     if (transcript) {
@@ -1018,6 +1033,7 @@ function finalizeVoiceInput() {
         updateSendButtonState();
         sendMessage();
         recordedChunks = [];
+        voiceInputFinalizing = false;
         return;
     }
 
@@ -1054,23 +1070,28 @@ function finalizeVoiceInput() {
 
         recordedChunks = [];
     }
+
+    window.clearTimeout(window.__robatyVoiceProcessingTimer);
+    window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
+        if (currentPresenceState === 'processing') setPresenceState('idle');
+    }, 1400);
+
+    voiceInputFinalizing = false;
 }
 
-recordButton.addEventListener('pointerdown', async (event) => {
+/* tap-to-toggle: ضغطة تبدا التسجيل، ضغطة ثانية توقفو.
+   بدّلنا هاد النمط من "استمر فالضغط" (pointerdown/pointerup) حيت هاد الأخير
+   كان كيسبب تسجيل عالق ("stuck") على بعض الهواتف كي ما يتسجلش pointerup
+   بشكل موثوق (فقدان لمسة، pointer capture...)، وهو اللي كان سبب الإرسال المكرر. */
+
+recordButton.addEventListener('click', async (event) => {
     event.preventDefault();
-    try { recordButton.setPointerCapture(event.pointerId); } catch (error) {}
-    await startRecording();
-});
 
-recordButton.addEventListener('pointerup', (event) => {
-    event.preventDefault();
-    stopRecording();
-});
-
-recordButton.addEventListener('pointercancel', () => stopRecording());
-
-recordButton.addEventListener('lostpointercapture', () => {
-    if (isRecording) stopRecording();
+    if (isRecording) {
+        stopRecording();
+    } else {
+        await startRecording();
+    }
 });
 
 
