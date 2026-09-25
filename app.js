@@ -454,6 +454,42 @@ function getCurrentTime() {
     return new Date().toLocaleTimeString('ar-MA', { hour: '2-digit', minute: '2-digit' });
 }
 
+// كنصغرو الصورة (أقصى بعد 1024px) ونحولوها لـJPEG قبل ما نصيفطوها لـGemini —
+// كايقلل حجم الطلب وعدد الـtokens بلا ما يأثر بزاف على جودة الفهم ديال الموديل.
+function resizeImageToBase64(file, maxDim = 1024, quality = 0.85) {
+    return new Promise((resolve, reject) => {
+        const objectUrl = URL.createObjectURL(file);
+        const img = new Image();
+
+        img.onload = () => {
+            let { width, height } = img;
+
+            if (width > maxDim || height > maxDim) {
+                const scale = maxDim / Math.max(width, height);
+                width = Math.round(width * scale);
+                height = Math.round(height * scale);
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+
+            URL.revokeObjectURL(objectUrl);
+
+            const dataUrl = canvas.toDataURL('image/jpeg', quality);
+            resolve({ mimeType: 'image/jpeg', data: dataUrl.split(',')[1] });
+        };
+
+        img.onerror = (error) => {
+            URL.revokeObjectURL(objectUrl);
+            reject(error);
+        };
+
+        img.src = objectUrl;
+    });
+}
+
 function scrollChatToBottom() {
     chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
 }
@@ -593,7 +629,7 @@ function renderSavedChatHistory() {
    الاتصال الحقيقي بـ Gemini
    ========================================================================== */
 
-async function fetchRobatyResponse(userText) {
+async function fetchRobatyResponse(userText, imageData) {
     const apiKey = getKey();
     const timeCtx = getTimeContext();
     const profileFacts = getProfileFacts();
@@ -624,6 +660,15 @@ async function fetchRobatyResponse(userText) {
         parts: [{ text: turn.text }]
     }));
 
+    // نبنيو parts ديال رسالة المستخدمة الحالية: الصورة (إيلا كانت) + النص (إيلا كان)
+    const currentUserParts = [];
+    if (imageData) {
+        currentUserParts.push({ inlineData: { mimeType: imageData.mimeType, data: imageData.data } });
+    }
+    if (userText) {
+        currentUserParts.push({ text: userText });
+    }
+
     const res = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
         {
@@ -631,7 +676,7 @@ async function fetchRobatyResponse(userText) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 systemInstruction: { parts: [{ text: fullInstruction }] },
-                contents: [...recentHistory, { role: 'user', parts: [{ text: userText }] }],
+                contents: [...recentHistory, { role: 'user', parts: currentUserParts }],
                 generationConfig: { temperature: 0.9, maxOutputTokens: 500, responseMimeType: 'application/json' }
             })
         }
@@ -723,11 +768,14 @@ async function sendMessage() {
 
     /* -------------------- الرسالة (صورة + نص) -------------------- */
 
+    // كنحتافظو بمرجع الملف قبل clearImagePreview() اللي غادي يفرغ imageInput.files
+    const selectedImageFile = imageInput.files.length ? imageInput.files[0] : null;
+
     const message = document.createElement('div');
     message.className = 'message user-msg new-user-message';
 
-    if (imageInput.files.length) {
-        const file = imageInput.files[0];
+    if (selectedImageFile) {
+        const file = selectedImageFile;
         const imageUrl = URL.createObjectURL(file);
 
         const imageBubble = document.createElement('div');
@@ -766,14 +814,18 @@ async function sendMessage() {
     });
 
     /* -------------------- الرد ديال Robaty (Gemini) -------------------- */
-
-    if (!text) return; // الصورة لواحدها حالياً ماكتصيفطش لـGemini
+    // دابا كنصيفطو الطلب لـGemini حتى إيلا كانت صورة بلا نص (multimodal).
 
     setPresenceState('processing');
     const typingId = appendTypingIndicator();
 
     try {
-        const { reply, state } = await fetchRobatyResponse(text);
+        let imageData = null;
+        if (selectedImageFile) {
+            imageData = await resizeImageToBase64(selectedImageFile);
+        }
+
+        const { reply, state } = await fetchRobatyResponse(text, imageData);
 
         removeTypingIndicator(typingId);
 
@@ -782,7 +834,10 @@ async function sendMessage() {
 
         if (state) setAvatarState(state);
 
-        chatHistory.push({ role: 'user', text: text, time: time });
+        // ماكاينش نص (صورة وحدها): كنسجلو placeholder فالـchatHistory باش
+        // النص المصيفط لـGemini فالجولات الجايات (recentHistory) ما يبقاش فارغ.
+        const historyText = text || '📷 [صورة]';
+        chatHistory.push({ role: 'user', text: historyText, time: time });
         chatHistory.push({ role: 'model', text: reply, time: replyTime });
         if (chatHistory.length > 40) chatHistory = chatHistory.slice(-40);
         saveChatHistory();
