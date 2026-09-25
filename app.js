@@ -490,6 +490,16 @@ function resizeImageToBase64(file, maxDim = 1024, quality = 0.85) {
     });
 }
 
+// تحويل Blob (تسجيل صوتي) لـbase64 باش نصيفطوه لـGemini كـinlineData
+function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+}
+
 function scrollChatToBottom() {
     chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
 }
@@ -629,7 +639,7 @@ function renderSavedChatHistory() {
    الاتصال الحقيقي بـ Gemini
    ========================================================================== */
 
-async function fetchRobatyResponse(userText, imageData) {
+async function fetchRobatyResponse(userText, imageData, audioData) {
     const apiKey = getKey();
     const timeCtx = getTimeContext();
     const profileFacts = getProfileFacts();
@@ -660,10 +670,13 @@ async function fetchRobatyResponse(userText, imageData) {
         parts: [{ text: turn.text }]
     }));
 
-    // نبنيو parts ديال رسالة المستخدمة الحالية: الصورة (إيلا كانت) + النص (إيلا كان)
+    // نبنيو parts ديال رسالة المستخدمة الحالية: الصورة (إيلا كانت) + الصوت (إيلا كان) + النص (إيلا كان)
     const currentUserParts = [];
     if (imageData) {
         currentUserParts.push({ inlineData: { mimeType: imageData.mimeType, data: imageData.data } });
+    }
+    if (audioData) {
+        currentUserParts.push({ inlineData: { mimeType: audioData.mimeType, data: audioData.data } });
     }
     if (userText) {
         currentUserParts.push({ text: userText });
@@ -1122,8 +1135,10 @@ function finalizeVoiceInput() {
         return;
     }
 
-    /* ماقدرناش نفهمو الصوت (أو المتصفح ماكيدعمش Speech Recognition):
-       رجوع للسلوك القديم — بابل صوتي قابل للتشغيل محليًا */
+    /* ماقدرناش نفهمو الصوت عبر Speech Recognition ديال المتصفح (أو ماكيدعمهاش):
+       نبينو البابل الصوتي القابل للتشغيل محليا، ومنبعد نصيفطو التسجيل مباشرة
+       لـGemini (audio understanding) باش المستخدمة توصلها دايما رد — ماشي
+       تبقى الرسالة الصوتية معلقة بلا جواب. */
     if (recordedChunks.length) {
         const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
         const audioUrl = URL.createObjectURL(audioBlob);
@@ -1154,14 +1169,55 @@ function finalizeVoiceInput() {
         });
 
         recordedChunks = [];
+
+        sendVoiceOnlyMessage(audioBlob);
+    } else {
+        window.clearTimeout(window.__robatyVoiceProcessingTimer);
+        window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
+            if (currentPresenceState === 'processing') setPresenceState('idle');
+        }, 1400);
     }
 
-    window.clearTimeout(window.__robatyVoiceProcessingTimer);
-    window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
-        if (currentPresenceState === 'processing') setPresenceState('idle');
-    }, 1400);
-
     voiceInputFinalizing = false;
+}
+
+/* رسالة صوتية بلا نص متعرف عليه محليا: كتصيفط التسجيل الخام لـGemini
+   (audio understanding)، بحال sendMessage بصح بلا نص/صورة. */
+async function sendVoiceOnlyMessage(audioBlob) {
+    if (!getKey()) return; // نادرة: ماكاينش مفتاح، ماكاينش داعي نبينو modal هنا
+
+    setPresenceState('processing');
+    const typingId = appendTypingIndicator();
+
+    try {
+        const audioData = await blobToBase64(audioBlob);
+        const { reply, state } = await fetchRobatyResponse('', null, { mimeType: 'audio/webm', data: audioData });
+
+        removeTypingIndicator(typingId);
+
+        const replyTime = getCurrentTime();
+        appendBotMessage(reply, replyTime);
+
+        if (state) setAvatarState(state);
+
+        chatHistory.push({ role: 'user', text: '🎤 [رسالة صوتية]', time: getCurrentTime() });
+        chatHistory.push({ role: 'model', text: reply, time: replyTime });
+        if (chatHistory.length > 40) chatHistory = chatHistory.slice(-40);
+        saveChatHistory();
+
+        maybeUpdateNarrativeMemory();
+
+        setPresenceState('speaking');
+        setTimeout(() => {
+            if (currentPresenceState === 'speaking') setPresenceState('idle');
+        }, 1600);
+
+    } catch (error) {
+        removeTypingIndicator(typingId);
+        appendBotMessage('⚠️ ' + (error.message || 'مشكل غير معروف، جربي مرة أخرى.'), getCurrentTime());
+        setPresenceState('idle');
+        console.error(error);
+    }
 }
 
 /* tap-to-toggle: ضغطة تبدا التسجيل، ضغطة ثانية توقفو.
