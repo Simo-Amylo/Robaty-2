@@ -962,11 +962,30 @@ async function startRecording() {
         await startVoiceAnalysis(stream);
 
     } catch (error) {
+        // ماقدرناش نوصلو للميكروفون (رفض الصلاحية، أو ماكاينش دعم) —
+        // ماندوزوش isRecording لـ true، ونبينو خطأ واضح للمستخدمة بدل ما نبقاو
+        // فحالة "كنسجل" وهمية بلا أي تسجيل حقيقي.
         mediaRecorder = null;
         currentAudioStream = null;
-        isRecording = true;
-        setPresenceState('listening');
+        isRecording = false;
+        setPresenceState('idle');
+
+        // إيلا كان التعرف الصوتي (Speech Recognition) بدا خدام بنجاح من قبل،
+        // خاصنا نوقفوه، حيت ماكاينش تسجيل حقيقي يواكبو.
+        if (speechRecognizer) {
+            try { speechRecognizer.stop(); } catch (e) {}
+            speechRecognizer = null;
+        }
+
+        appendBotMessage(
+            '⚠️ ماقدرتش نوصل للميكروفون ديالك. تأكدي من صلاحية الميكروفون فإعدادات المتصفح وعاودي المحاولة.',
+            getCurrentTime()
+        );
     }
+
+    // هاد الجزء (تفعيل مظهر زر التسجيل + المؤقت الأقصى) خاصو يوقع
+    // غير إيلا التسجيل بدا فعلا بنجاح (isRecording === true).
+    if (!isRecording) return;
 
     recordButton.classList.add('recording-active');
     recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'RECORDING';
