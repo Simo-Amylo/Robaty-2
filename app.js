@@ -23,6 +23,7 @@ const avatarImgA = document.getElementById('avatarImgA');
 const avatarImgB = document.getElementById('avatarImgB');
 
 const settingsButton = document.getElementById('settingsButton');
+const backButton = document.getElementById('backButton');
 const resetMemoryButton = document.getElementById('resetMemoryButton');
 const apiKeyModal = document.getElementById('apiKeyModal');
 const apiKeyInput = document.getElementById('apiKeyInput');
@@ -142,6 +143,10 @@ function saveKey() {
 }
 
 settingsButton?.addEventListener('click', openApiKeyModal);
+
+backButton?.addEventListener('click', () => {
+    window.location.href = 'profile.html';
+});
 
 resetMemoryButton?.addEventListener('click', () => {
     if (typeof window.clearRobatyMemory === 'function') {
