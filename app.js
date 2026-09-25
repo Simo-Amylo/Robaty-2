@@ -704,8 +704,12 @@ async function fetchRobatyResponse(userText, imageData, audioData) {
 
     if (!res.ok) {
         const rawMsg = data?.error?.message || '';
+
         if (res.status === 429 || /quota/i.test(rawMsg)) {
             throw new Error('وصلتي للحد اليومي المجاني ديال المفتاح.');
+        }
+        if (res.status === 503 || /overload|unavailable|high demand/i.test(rawMsg)) {
+            throw new Error('راه عندها ضغط بزاف دابا (سيرفر Gemini مزحوم)، عاودي المحاولة من بعد شوية 🙏');
         }
         throw new Error(rawMsg || 'خطأ فالطلب');
     }
@@ -717,9 +721,16 @@ async function fetchRobatyResponse(userText, imageData, audioData) {
         parsed = JSON.parse(rawText);
     } catch (e) {
         const replyMatch = rawText.match(/"reply"\s*:\s*"((?:[^"\\]|\\.)*)"/);
-        parsed = replyMatch
-            ? { reply: replyMatch[1].replace(/\\n/g, '\n').replace(/\\"/g, '"'), facts: {} }
-            : { reply: rawText, facts: {} };
+
+        if (replyMatch) {
+            parsed = { reply: replyMatch[1].replace(/\\n/g, '\n').replace(/\\"/g, '"'), facts: {} };
+        } else {
+            // ماشي JSON صحيح وماشي فيه حتى شكل "reply" — الأرجح أن هادشي
+            // خطأ ديال سيرفر Gemini (بحال "high demand") رجع بـstatus 200
+            // بلا ما تصدق التوقع. ماخصناش نبينو هاد النص كأنه رد حقيقي
+            // ديال Robaty — نرميوه كـerror عوض ما نخدعو المستخدمة.
+            throw new Error('راه عندها ضغط بزاف دابا (سيرفر Gemini مزحوم)، عاودي المحاولة من بعد شوية 🙏');
+        }
     }
 
     mergeProfileFacts(parsed.facts);
