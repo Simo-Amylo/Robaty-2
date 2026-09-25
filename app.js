@@ -932,8 +932,19 @@ async function startRecording() {
             speechRecognizer.onerror = () => {};
 
             speechRecognizer.onend = () => {
-                finalizeVoiceInput();
+                // المتصفح كيقدر يوقف التعرف الصوتي من عندو (صمت طويل مثلاً)
+                // حتى مع continuous:true. إيلا وقع هادشي و isRecording مازال true
+                // (يعني ماشي توقيف يدوي بالزر)، خاصنا نديرو stopRecording() كامل
+                // باش الزر/الحالة يرجعو idle، عوض ما يبقى الزر مضوي 45 ثانية
+                // حتى يوصل الـ timer الأقصى.
+                const wasStillRecording = isRecording;
                 speechRecognizer = null;
+
+                if (wasStillRecording) {
+                    stopRecording();
+                } else {
+                    finalizeVoiceInput();
+                }
             };
 
             speechRecognizer.start();
