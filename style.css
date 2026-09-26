@@ -34,6 +34,48 @@
 
     --font-family:
         'Cairo', 'Roboto', sans-serif;
+
+    /* Dynamic UI Themes — قاعدة الخلفية (كتتبدل حسب الوقت) والتوهج
+       العاطفي (كيتبدل حسب حالة Robaty)، شوف data-time-theme/data-emotion */
+    --app-bg-base-start: #180f08;
+
+    --app-bg-base-end: #030201;
+
+    --accent-glow: rgba(229, 179, 92, 0.15);
+}
+
+
+/* ==========================================================================
+   DYNAMIC UI THEMES — الوقت (data-time-theme) والمشاعر (data-emotion)
+   مطبقين على <body>، كيبدلو غير المتغيرات فوق، والباقي (transition)
+   مضاف على .app-container و.glowing-ring باش يبان التبدل سلس.
+   ========================================================================== */
+
+body[data-time-theme="day"] {
+    --app-bg-base-start: #18222d;
+    --app-bg-base-end: #080d12;
+    --accent-glow: rgba(64, 156, 255, 0.12);
+}
+
+body[data-time-theme="night"] {
+    --app-bg-base-start: #170d19;
+    --app-bg-base-end: #070409;
+    --accent-glow: rgba(180, 100, 255, 0.15);
+}
+
+body[data-emotion="joy"],
+body[data-emotion="laugh"] {
+    --accent-glow: rgba(255, 195, 0, 0.25);
+}
+
+body[data-emotion="calm"],
+body[data-emotion="warmth"] {
+    --accent-glow: rgba(229, 179, 92, 0.18);
+}
+
+body[data-emotion="empathy"],
+body[data-emotion="touched"] {
+    --accent-glow: rgba(186, 104, 200, 0.22);
 }
 
 
@@ -252,8 +294,8 @@ body {
         ),
         radial-gradient(
             circle at center,
-            #180f08 0%,
-            #030201 100%
+            var(--app-bg-base-start) 0%,
+            var(--app-bg-base-end) 100%
         );
 
     background-size:
@@ -274,9 +316,15 @@ body {
 
     overflow: hidden;
 
+    transition:
+        background 1.2s ease,
+        box-shadow 0.8s ease;
+
     box-shadow:
         0 0 30px
-        rgba(229, 179, 92, 0.3);
+        rgba(229, 179, 92, 0.3),
+        inset 0 0 60px
+        var(--accent-glow);
 }
 
 
@@ -478,9 +526,13 @@ body {
             #805018
         );
 
+    transition: box-shadow 0.8s ease;
+
     box-shadow:
         0 0 40px
-        rgba(255, 170, 51, 0.6);
+        rgba(255, 170, 51, 0.6),
+        0 0 25px
+        var(--accent-glow);
 
     animation:
         robaty-portrait-breath

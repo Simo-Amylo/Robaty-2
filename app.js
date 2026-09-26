@@ -327,6 +327,24 @@ function getDynamicGreeting() {
 
 
 /* ==========================================================================
+   الثيم الديناميكي (Dynamic UI Themes) — data-time-theme + data-emotion
+   على <body>، الـCSS كتتكلف بالتلوين عبر CSS variables (شوف style.css)
+   ========================================================================== */
+
+function updateTimeBasedTheme() {
+    const hour = new Date().getHours();
+    // من 6 صباحا حتى 6 مساء كنعتبروه نهار
+    const isDayTime = hour >= 6 && hour < 18;
+    document.body.setAttribute('data-time-theme', isDayTime ? 'day' : 'night');
+}
+
+function applyEmotionalTheme(state) {
+    if (!state) return;
+    document.body.setAttribute('data-emotion', state);
+}
+
+
+/* ==========================================================================
    حالة المحادثة (localStorage)
    ========================================================================== */
 
@@ -644,7 +662,9 @@ function renderSavedChatHistory() {
    الاتصال الحقيقي بـ Gemini
    ========================================================================== */
 
-async function fetchRobatyResponse(userText, imageData, audioData) {
+const OVERLOAD_ERROR_MSG = 'راه عندها ضغط بزاف دابا (سيرفر Gemini مزحوم)، عاودي المحاولة من بعد شوية 🙏';
+
+async function requestGeminiOnce(userText, imageData, audioData) {
     const apiKey = getKey();
     const timeCtx = getTimeContext();
     const profileFacts = getProfileFacts();
@@ -709,7 +729,7 @@ async function fetchRobatyResponse(userText, imageData, audioData) {
             throw new Error('وصلتي للحد اليومي المجاني ديال المفتاح.');
         }
         if (res.status === 503 || /overload|unavailable|high demand/i.test(rawMsg)) {
-            throw new Error('راه عندها ضغط بزاف دابا (سيرفر Gemini مزحوم)، عاودي المحاولة من بعد شوية 🙏');
+            throw new Error(OVERLOAD_ERROR_MSG);
         }
         throw new Error(rawMsg || 'خطأ فالطلب');
     }
@@ -729,7 +749,7 @@ async function fetchRobatyResponse(userText, imageData, audioData) {
             // خطأ ديال سيرفر Gemini (بحال "high demand") رجع بـstatus 200
             // بلا ما تصدق التوقع. ماخصناش نبينو هاد النص كأنه رد حقيقي
             // ديال Robaty — نرميوه كـerror عوض ما نخدعو المستخدمة.
-            throw new Error('راه عندها ضغط بزاف دابا (سيرفر Gemini مزحوم)، عاودي المحاولة من بعد شوية 🙏');
+            throw new Error(OVERLOAD_ERROR_MSG);
         }
     }
 
@@ -739,6 +759,21 @@ async function fetchRobatyResponse(userText, imageData, audioData) {
         reply: parsed.reply || 'سمحيلي، مافهمتش مزيان.. عاودي قوليها ليا بطريقة أخرى 🤍',
         state: typeof parsed.state === 'string' ? parsed.state : null
     };
+}
+
+// wrapper مع retry تلقائي: نعاودو المحاولة مرة وحدة (بعد 2 ثواني) غير فحالة
+// ضغط/overload مؤقت ديال سيرفر Gemini — ماشي فحالة quota ولا أخطاء أخرى
+// حيت هادوك ماغاديش يتصلحو بمجرد الانتظار قصير.
+async function fetchRobatyResponse(userText, imageData, audioData) {
+    try {
+        return await requestGeminiOnce(userText, imageData, audioData);
+    } catch (error) {
+        if (error.message === OVERLOAD_ERROR_MSG) {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            return await requestGeminiOnce(userText, imageData, audioData);
+        }
+        throw error;
+    }
 }
 
 
@@ -861,7 +896,10 @@ async function sendMessage() {
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
 
-        if (state) setAvatarState(state);
+        if (state) {
+            setAvatarState(state);
+            applyEmotionalTheme(state);
+        }
 
         // ماكاينش نص (صورة وحدها): كنسجلو placeholder فالـchatHistory باش
         // النص المصيفط لـGemini فالجولات الجايات (recentHistory) ما يبقاش فارغ.
@@ -1214,7 +1252,10 @@ async function sendVoiceOnlyMessage(audioBlob) {
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
 
-        if (state) setAvatarState(state);
+        if (state) {
+            setAvatarState(state);
+            applyEmotionalTheme(state);
+        }
 
         chatHistory.push({ role: 'user', text: '🎤 [رسالة صوتية]', time: getCurrentTime() });
         chatHistory.push({ role: 'model', text: reply, time: replyTime });
@@ -1384,6 +1425,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSavedChatHistory();
     autoGrowMessageInput();
     setAvatarState(DEFAULT_AVATAR_STATE);
+
+    updateTimeBasedTheme();
+    setInterval(updateTimeBasedTheme, 15 * 60 * 1000);
 
     if (!getKey()) {
         openApiKeyModal();
