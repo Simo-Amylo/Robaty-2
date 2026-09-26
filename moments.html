@@ -523,5 +523,17 @@
 <script src="i18n.js"></script>
 <script src="story.js"></script>
 
+<script>
+    // زر "المزيد" فالهيدر: يبين/يخبي السطر الخامس والسادس من التعليق
+    document.querySelectorAll('.post-header .icon-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var card = btn.closest('.post-card');
+            if (card) {
+                card.classList.toggle('caption-expanded');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

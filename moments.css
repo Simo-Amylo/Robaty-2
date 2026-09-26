@@ -369,14 +369,14 @@ button {
 
     align-items: center;
 
-    gap: 4px;
+    gap: 6px;
 
-    font-size: 14px;
+    font-size: 20px;
 }
 
 
 .action-item span {
-    font-size: 10px;
+    font-size: 13px;
 
     color: #ddd;
 }
@@ -408,6 +408,17 @@ button {
     line-height: 1.75;
 
     overflow-wrap: anywhere;
+
+    max-height: 98px;
+
+    overflow: hidden;
+
+    transition: max-height 0.25s ease;
+}
+
+
+.post-card.caption-expanded .six-line-caption {
+    max-height: 500px;
 }
 
 
