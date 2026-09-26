@@ -422,6 +422,32 @@ button {
 }
 
 
+.caption-more-btn {
+    display: block;
+
+    margin-top: 4px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    text-align: right;
+}
+
+
+.post-card.caption-expanded .caption-more-btn {
+    display: none;
+}
+
+
 /* Story Modal */
 
 .story-modal {

@@ -215,6 +215,10 @@
 
                     </p>
 
+                    <button class="caption-more-btn" data-i18n="caption_more">
+                        ... المزيد
+                    </button>
+
                 </div>
 
             </article>
@@ -381,6 +385,10 @@
 
                     </p>
 
+                    <button class="caption-more-btn" data-i18n="caption_more">
+                        ... المزيد
+                    </button>
+
                 </div>
 
             </article>
@@ -524,8 +532,8 @@
 <script src="story.js"></script>
 
 <script>
-    // زر "المزيد" فالهيدر: يبين/يخبي السطر الخامس والسادس من التعليق
-    document.querySelectorAll('.post-header .icon-btn').forEach(function (btn) {
+    // زر "المزيد" (فالهيدر أو تحت النص): يبين/يخبي السطر الخامس والسادس من التعليق
+    document.querySelectorAll('.post-header .icon-btn, .caption-more-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
             var card = btn.closest('.post-card');
             if (card) {
