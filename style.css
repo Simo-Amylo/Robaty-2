@@ -51,30 +51,51 @@
    مضاف على .app-container و.glowing-ring باش يبان التبدل سلس.
    ========================================================================== */
 
+/* الافتراضي (دايما مفعل): تدرج خفيف فنفس عائلة البني/الذهبي —
+   نهار فاتح شوية، ليل داكن (بحال الأصل قبل هاد الميزة) */
 body[data-time-theme="day"] {
+    --app-bg-base-start: #241708;
+    --app-bg-base-end: #0b0602;
+    --accent-glow: rgba(229, 179, 92, 0.20);
+}
+
+body[data-time-theme="night"] {
+    --app-bg-base-start: #180f08;
+    --app-bg-base-end: #030201;
+    --accent-glow: rgba(229, 179, 92, 0.15);
+}
+
+/* أجواء ملونة (اختياري، مفعلة غير من الإعدادات عبر data-color-mode="vivid"
+   على body) — أزرق فالنهار، بنفسجي فالليل. specificity ديال جوج attributes
+   باش تغلب القواعد الافتراضية فوق بلا ما تعتمد على ترتيب السطور. */
+body[data-color-mode="vivid"][data-time-theme="day"] {
     --app-bg-base-start: #18222d;
     --app-bg-base-end: #080d12;
     --accent-glow: rgba(64, 156, 255, 0.12);
 }
 
-body[data-time-theme="night"] {
+body[data-color-mode="vivid"][data-time-theme="night"] {
     --app-bg-base-start: #170d19;
     --app-bg-base-end: #070409;
     --accent-glow: rgba(180, 100, 255, 0.15);
 }
 
-body[data-emotion="joy"],
-body[data-emotion="laugh"] {
+/* المشاعر: دايما مفعلة (فالافتراضي وفالـvivid بحال بعضياتهم) —
+   [data-time-theme] زايدة هنا (بلا قيمة محددة) غير باش نرفعو الـspecificity
+   لنفس المستوى ديال قواعد vivid فوق، ونضمنو أن التوهج العاطفي دايما
+   كيغلب، حتى ملي أجواء الألوان مفعلة. */
+body[data-time-theme][data-emotion="joy"],
+body[data-time-theme][data-emotion="laugh"] {
     --accent-glow: rgba(255, 195, 0, 0.25);
 }
 
-body[data-emotion="calm"],
-body[data-emotion="warmth"] {
+body[data-time-theme][data-emotion="calm"],
+body[data-time-theme][data-emotion="warmth"] {
     --accent-glow: rgba(229, 179, 92, 0.18);
 }
 
-body[data-emotion="empathy"],
-body[data-emotion="touched"] {
+body[data-time-theme][data-emotion="empathy"],
+body[data-time-theme][data-emotion="touched"] {
     --accent-glow: rgba(186, 104, 200, 0.22);
 }
 

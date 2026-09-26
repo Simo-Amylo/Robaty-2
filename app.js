@@ -28,6 +28,7 @@ const resetMemoryButton = document.getElementById('resetMemoryButton');
 const apiKeyModal = document.getElementById('apiKeyModal');
 const apiKeyInput = document.getElementById('apiKeyInput');
 const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+const vividThemeToggle = document.getElementById('vividThemeToggle');
 
 
 /* ==========================================================================
@@ -121,8 +122,28 @@ function getKey() {
     return localStorage.getItem(KEY_STORAGE) || '';
 }
 
+/* ==========================================================================
+   أجواء الألوان (Vivid Color Mode) — خيار فالإعدادات، معطل بالدفاع.
+   الافتراضي (معطل) = بني/ذهبي دايما. مفعل = أزرق فالنهار/بنفسجي فالليل.
+   ========================================================================== */
+
+const VIVID_THEME_STORAGE = 'robaty_vivid_theme';
+
+function isVividThemeEnabled() {
+    return localStorage.getItem(VIVID_THEME_STORAGE) === 'true';
+}
+
+function applyColorMode() {
+    if (isVividThemeEnabled()) {
+        document.body.setAttribute('data-color-mode', 'vivid');
+    } else {
+        document.body.removeAttribute('data-color-mode');
+    }
+}
+
 function openApiKeyModal() {
     apiKeyInput.value = getKey();
+    if (vividThemeToggle) vividThemeToggle.checked = isVividThemeEnabled();
     apiKeyModal.classList.add('active');
     apiKeyModal.setAttribute('aria-hidden', 'false');
 }
@@ -143,6 +164,11 @@ function saveKey() {
 }
 
 settingsButton?.addEventListener('click', openApiKeyModal);
+
+vividThemeToggle?.addEventListener('change', () => {
+    localStorage.setItem(VIVID_THEME_STORAGE, vividThemeToggle.checked ? 'true' : 'false');
+    applyColorMode();
+});
 
 backButton?.addEventListener('click', () => {
     window.location.href = 'profile.html';
@@ -1428,6 +1454,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTimeBasedTheme();
     setInterval(updateTimeBasedTheme, 15 * 60 * 1000);
+    applyColorMode();
 
     if (!getKey()) {
         openApiKeyModal();
