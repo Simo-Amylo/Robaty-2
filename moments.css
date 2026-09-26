@@ -193,10 +193,12 @@ button {
     border-radius: 50%;
 
     background: linear-gradient(
-        135deg,
-        #e5b35c,
-        #ff4e50,
-        #e5b35c
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
     );
 
     cursor: pointer;
@@ -367,14 +369,14 @@ button {
 
     align-items: center;
 
-    gap: 5px;
+    gap: 4px;
 
-    font-size: 17px;
+    font-size: 14px;
 }
 
 
 .action-item span {
-    font-size: 11px;
+    font-size: 10px;
 
     color: #ddd;
 }
@@ -401,7 +403,7 @@ button {
 .six-line-caption {
     color: #fff;
 
-    font-size: 12px;
+    font-size: 14px;
 
     line-height: 1.75;
 
@@ -696,7 +698,7 @@ button {
     }
 
     .six-line-caption {
-        font-size: 11px;
+        font-size: 13px;
     }
 
 }
