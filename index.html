@@ -24,6 +24,14 @@
 
     <title>Robaty - Moroccan Luxury UI</title>
 
+    <!-- PWA: manifest + لون الشريط -->
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <meta name="theme-color" content="#e5b35c">
+
     <link
         rel="stylesheet"
         href="style.css"
@@ -386,6 +394,12 @@
 
 <script src="i18n.js"></script>
 <script src="app.js"></script>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+    }
+</script>
 
 </body>
 </html>
