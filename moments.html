@@ -160,8 +160,7 @@
                         <button class="action-item"
                                 aria-label="إعادة نشر"
                                 data-i18n-aria="repost_aria"
-                                data-action="modal"
-                                data-modal-label="إعادة النشر">
+                                data-action="repost">
 
                             <i class="fa-solid fa-retweet"></i>
                             <span>18</span>
@@ -172,8 +171,7 @@
                         <button class="action-item"
                                 aria-label="مشاركة"
                                 data-i18n-aria="share_aria"
-                                data-action="modal"
-                                data-modal-label="مشاركة">
+                                data-action="share">
 
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>12</span>
@@ -338,8 +336,7 @@
                         <button class="action-item"
                                 aria-label="إعادة نشر"
                                 data-i18n-aria="repost_aria"
-                                data-action="modal"
-                                data-modal-label="إعادة النشر">
+                                data-action="repost">
 
                             <i class="fa-solid fa-retweet"></i>
                             <span>27</span>
@@ -350,8 +347,7 @@
                         <button class="action-item"
                                 aria-label="مشاركة"
                                 data-i18n-aria="share_aria"
-                                data-action="modal"
-                                data-modal-label="مشاركة">
+                                data-action="share">
 
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>21</span>
@@ -682,11 +678,14 @@
             });
         });
 
-        // أزرار تفتح نافذة فارغة: تعليق / إعادة نشر / مشاركة
+        // أزرار تفتح نافذة فارغة: تعليق فقط (نعمروه لاحقا بتعليقات المستخدمات)
         var simpleModal = document.getElementById('simpleModal');
         var simpleModalTitle = document.getElementById('simpleModalTitle');
+        var simpleModalBody = document.querySelector('.simple-modal-body');
+        var defaultModalBodyHTML = simpleModalBody.innerHTML;
 
         function openSimpleModal(label) {
+            simpleModalBody.innerHTML = defaultModalBodyHTML;
             simpleModalTitle.textContent = label || '';
             simpleModal.classList.add('active');
             simpleModal.setAttribute('aria-hidden', 'false');
@@ -711,6 +710,76 @@
         if (closeSimpleModalBtn) {
             closeSimpleModalBtn.addEventListener('click', closeSimpleModal);
         }
+
+
+        // مشاركة / إعادة نشر: كتحل شاشة المشاركة الأصلية د الهاتف (واتساب، إنستغرام، فيسبوك...)
+        // وإلا ماكانتش متوفرة (كمبيوتر مثلا)، كتبان نافذة بديلة (واتساب + نسخ الرابط)
+        var APP_DOWNLOAD_LINK = 'https://robaty.com'; // TODO: بدليه برابط التحميل الحقيقي
+
+        function buildShareData(postId, mode) {
+            var card = document.getElementById(postId);
+            var captionEl = card ? card.querySelector('.six-line-caption') : null;
+            var caption = captionEl
+                ? captionEl.textContent.trim().replace(/\s+/g, ' ')
+                : '';
+
+            var intro = (mode === 'repost')
+                ? 'شوفو هاد اللحظة ديال Robaty 👇'
+                : 'بغيت نشارك معاكم هاد اللحظة ديال Robaty ✨';
+
+            var postUrl = location.origin + location.pathname + '#' + postId;
+
+            return {
+                title: 'Robaty',
+                text: intro + '\n\n' + caption + '\n\n📲 حمّلو تطبيق Robaty: ' + APP_DOWNLOAD_LINK,
+                url: postUrl
+            };
+        }
+
+        function openShareFallback(data, mode) {
+            var waLink = 'https://wa.me/?text=' + encodeURIComponent(data.text + '\n' + data.url);
+
+            simpleModalTitle.textContent = (mode === 'repost') ? 'إعادة النشر' : 'مشاركة';
+
+            simpleModalBody.innerHTML =
+                '<div class="share-fallback">' +
+                    '<a class="share-fallback-btn" href="' + waLink + '" target="_blank" rel="noopener">' +
+                        '<i class="fa-brands fa-whatsapp"></i><span>واتساب</span>' +
+                    '</a>' +
+                    '<button class="share-fallback-btn" type="button" id="copyShareLinkBtn">' +
+                        '<i class="fa-solid fa-link"></i><span>نسخ الرابط</span>' +
+                    '</button>' +
+                '</div>';
+
+            var copyBtn = document.getElementById('copyShareLinkBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function () {
+                    var fullText = data.text + '\n' + data.url;
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(fullText).then(function () {
+                            copyBtn.querySelector('span').textContent = 'تم النسخ ✓';
+                        });
+                    }
+                });
+            }
+
+            simpleModal.classList.add('active');
+            simpleModal.setAttribute('aria-hidden', 'false');
+        }
+
+        document.querySelectorAll('.action-item[data-action="share"], .action-item[data-action="repost"]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var postId = btn.closest('.post-card').id;
+                var mode = btn.dataset.action; // 'share' أو 'repost'
+                var data = buildShareData(postId, mode);
+
+                if (navigator.share) {
+                    navigator.share(data).catch(function () {});
+                } else {
+                    openShareFallback(data, mode);
+                }
+            });
+        });
 
     })();
 </script>

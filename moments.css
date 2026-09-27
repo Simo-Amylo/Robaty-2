@@ -828,6 +828,51 @@ button {
 }
 
 
+.share-fallback {
+    display: grid;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+.share-fallback-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 14px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--gold-border);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #fff;
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.share-fallback-btn i {
+    font-size: 15px;
+}
+
+
+.share-fallback-btn .fa-whatsapp {
+    color: #25d366;
+}
+
+
 /* الهواتف الصغيرة */
 
 @media (max-width: 360px) {
