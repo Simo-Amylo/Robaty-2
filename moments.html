@@ -98,6 +98,17 @@
                     </div>
 
 
+                    <a class="app-download-banner"
+                       href="https://robaty.com"
+                       target="_blank"
+                       rel="noopener"
+                       data-i18n="download_now_btn">
+
+                        📲 حمّلي التطبيق الآن
+
+                    </a>
+
+
                     <button class="icon-btn"
                             aria-label="المزيد"
                             data-i18n-aria="more_aria">
@@ -272,6 +283,17 @@
                         </div>
 
                     </div>
+
+
+                    <a class="app-download-banner"
+                       href="https://robaty.com"
+                       target="_blank"
+                       rel="noopener"
+                       data-i18n="download_now_btn">
+
+                        📲 حمّلي التطبيق الآن
+
+                    </a>
 
 
                     <button class="icon-btn"
@@ -585,6 +607,20 @@
 <script src="story.js"></script>
 
 <script>
+    // إخفاء زر "حمّلي التطبيق الآن" عند المستخدمات اللي عندهم التطبيق مثبت من قبل
+    (function () {
+        var isInstalled =
+            (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+            window.navigator.standalone === true;
+
+        if (isInstalled) {
+            document.querySelectorAll('.app-download-banner').forEach(function (btn) {
+                btn.style.display = 'none';
+            });
+        }
+    })();
+
+
     // زر "المزيد" (فالهيدر أو تحت النص): يبين/يخبي السطر الخامس والسادس من التعليق
     document.querySelectorAll('.post-header .icon-btn, .caption-more-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -714,26 +750,21 @@
 
         // مشاركة / إعادة نشر: كتحل شاشة المشاركة الأصلية د الهاتف (واتساب، إنستغرام، فيسبوك...)
         // وإلا ماكانتش متوفرة (كمبيوتر مثلا)، كتبان نافذة بديلة (واتساب + نسخ الرابط)
-        var APP_DOWNLOAD_LINK = 'https://simo-amylo.github.io/Robaty-2/index.html';
-
-        // الطريقة السهلة (بحال Robaty 1): نص المنشور + رابط مباشر للتطبيق
-        // مؤجلة دابا فكرة صفحات share/ الخاصة بكل صورة (OG tags) لمرحلة لاحقة
+        var APP_DOWNLOAD_LINK = 'https://robaty.com';
 
         function buildShareData(postId, mode) {
-            var card = document.getElementById(postId);
-            var captionEl = card ? card.querySelector('.six-line-caption') : null;
-            var caption = captionEl
-                ? captionEl.textContent.trim().replace(/\s+/g, ' ')
-                : '';
-
             var intro = (mode === 'repost')
                 ? 'شوفو هاد اللحظة ديال Robaty 👇'
-                : 'بغيت نشارك معاكم هاد اللحظة ديال Robaty ✨';
+                : 'مرحبا بيك عند روباتي شوفي تصاوري ليوم';
+
+            var postUrl = location.origin
+                + location.pathname.replace(/moments\.html.*$/, '')
+                + 'moments.html#' + postId;
 
             return {
                 title: 'Robaty',
-                text: intro + '\n\n' + caption,
-                url: APP_DOWNLOAD_LINK
+                text: intro + '\n\nRobaty: ' + APP_DOWNLOAD_LINK,
+                url: postUrl
             };
         }
 
