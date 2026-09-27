@@ -1437,7 +1437,7 @@ removeImageBtn.addEventListener('click', () => {
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
     });
 }
 
