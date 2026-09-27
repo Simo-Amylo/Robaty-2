@@ -136,17 +136,20 @@
 
                         <button class="action-item"
                                 aria-label="إعجاب"
-                                data-i18n-aria="like_aria">
+                                data-i18n-aria="like_aria"
+                                data-action="like">
 
                             <i class="fa-regular fa-heart"></i>
-                            <span>234</span>
+                            <span data-base-count="234">234</span>
 
                         </button>
 
 
                         <button class="action-item"
                                 aria-label="تعليق"
-                                data-i18n-aria="comment_aria">
+                                data-i18n-aria="comment_aria"
+                                data-action="modal"
+                                data-modal-label="التعليقات">
 
                             <i class="fa-regular fa-comment"></i>
                             <span>34</span>
@@ -156,7 +159,9 @@
 
                         <button class="action-item"
                                 aria-label="إعادة نشر"
-                                data-i18n-aria="repost_aria">
+                                data-i18n-aria="repost_aria"
+                                data-action="modal"
+                                data-modal-label="إعادة النشر">
 
                             <i class="fa-solid fa-retweet"></i>
                             <span>18</span>
@@ -166,7 +171,9 @@
 
                         <button class="action-item"
                                 aria-label="مشاركة"
-                                data-i18n-aria="share_aria">
+                                data-i18n-aria="share_aria"
+                                data-action="modal"
+                                data-modal-label="مشاركة">
 
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>12</span>
@@ -178,7 +185,8 @@
 
                     <button class="action-item"
                             aria-label="حفظ"
-                            data-i18n-aria="save_post_aria">
+                            data-i18n-aria="save_post_aria"
+                            data-action="save">
 
                         <i class="fa-regular fa-bookmark"></i>
 
@@ -306,17 +314,20 @@
 
                         <button class="action-item"
                                 aria-label="إعجاب"
-                                data-i18n-aria="like_aria">
+                                data-i18n-aria="like_aria"
+                                data-action="like">
 
                             <i class="fa-regular fa-heart"></i>
-                            <span>412</span>
+                            <span data-base-count="412">412</span>
 
                         </button>
 
 
                         <button class="action-item"
                                 aria-label="تعليق"
-                                data-i18n-aria="comment_aria">
+                                data-i18n-aria="comment_aria"
+                                data-action="modal"
+                                data-modal-label="التعليقات">
 
                             <i class="fa-regular fa-comment"></i>
                             <span>56</span>
@@ -326,7 +337,9 @@
 
                         <button class="action-item"
                                 aria-label="إعادة نشر"
-                                data-i18n-aria="repost_aria">
+                                data-i18n-aria="repost_aria"
+                                data-action="modal"
+                                data-modal-label="إعادة النشر">
 
                             <i class="fa-solid fa-retweet"></i>
                             <span>27</span>
@@ -336,7 +349,9 @@
 
                         <button class="action-item"
                                 aria-label="مشاركة"
-                                data-i18n-aria="share_aria">
+                                data-i18n-aria="share_aria"
+                                data-action="modal"
+                                data-modal-label="مشاركة">
 
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>21</span>
@@ -348,7 +363,8 @@
 
                     <button class="action-item"
                             aria-label="حفظ"
-                            data-i18n-aria="save_post_aria">
+                            data-i18n-aria="save_post_aria"
+                            data-action="save">
 
                         <i class="fa-regular fa-bookmark"></i>
 
@@ -523,6 +539,47 @@
         </div>
 
 
+        <!-- =====================================
+             نافذة عامة فارغة: تعليق / إعادة نشر / مشاركة
+        ====================================== -->
+
+        <div class="simple-modal"
+             id="simpleModal"
+             aria-hidden="true">
+
+            <div class="simple-modal-backdrop"
+                 data-close-simple-modal>
+            </div>
+
+            <div class="simple-modal-content"
+                 role="dialog"
+                 aria-modal="true">
+
+                <div class="simple-modal-header">
+
+                    <span id="simpleModalTitle"></span>
+
+                    <button class="close-story-btn"
+                            id="closeSimpleModalBtn"
+                            aria-label="إغلاق">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="simple-modal-body">
+
+                    <p class="simple-modal-empty">قريبا... 🚧</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
 
 </div>
@@ -541,6 +598,121 @@
             }
         });
     });
+
+
+    // أزرار التفاعل: إعجاب + حفظ (محفوظين فـ localStorage) وتعليق/ريبوست/مشاركة (نافذة فارغة)
+    (function () {
+
+        var LIKE_KEY = 'robaty_likes';
+        var SAVE_KEY = 'robaty_saves';
+
+        function readState(key) {
+            try {
+                return JSON.parse(localStorage.getItem(key)) || {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function writeState(key, state) {
+            try {
+                localStorage.setItem(key, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        var likes = readState(LIKE_KEY);
+        var saves = readState(SAVE_KEY);
+
+        function applyLikeState(btn, liked) {
+            var icon = btn.querySelector('i');
+            var span = btn.querySelector('span');
+            var base = parseInt(span.dataset.baseCount, 10) || 0;
+
+            icon.classList.toggle('fa-regular', !liked);
+            icon.classList.toggle('fa-solid', liked);
+            btn.classList.toggle('liked', liked);
+
+            span.textContent = base + (liked ? 1 : 0);
+        }
+
+        function applySaveState(btn, saved) {
+            var icon = btn.querySelector('i');
+
+            icon.classList.toggle('fa-regular', !saved);
+            icon.classList.toggle('fa-solid', saved);
+            btn.classList.toggle('saved', saved);
+        }
+
+        // تطبيق الحالة المحفوظة عند فتح الصفحة
+        document.querySelectorAll('.action-item[data-action="like"]').forEach(function (btn) {
+            var postId = btn.closest('.post-card').id;
+            if (likes[postId]) {
+                applyLikeState(btn, true);
+            }
+        });
+
+        document.querySelectorAll('.action-item[data-action="save"]').forEach(function (btn) {
+            var postId = btn.closest('.post-card').id;
+            if (saves[postId]) {
+                applySaveState(btn, true);
+            }
+        });
+
+        // زر الإعجاب
+        document.querySelectorAll('.action-item[data-action="like"]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var postId = btn.closest('.post-card').id;
+                var liked = !likes[postId];
+
+                likes[postId] = liked;
+                writeState(LIKE_KEY, likes);
+                applyLikeState(btn, liked);
+            });
+        });
+
+        // زر الحفظ
+        document.querySelectorAll('.action-item[data-action="save"]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var postId = btn.closest('.post-card').id;
+                var saved = !saves[postId];
+
+                saves[postId] = saved;
+                writeState(SAVE_KEY, saves);
+                applySaveState(btn, saved);
+            });
+        });
+
+        // أزرار تفتح نافذة فارغة: تعليق / إعادة نشر / مشاركة
+        var simpleModal = document.getElementById('simpleModal');
+        var simpleModalTitle = document.getElementById('simpleModalTitle');
+
+        function openSimpleModal(label) {
+            simpleModalTitle.textContent = label || '';
+            simpleModal.classList.add('active');
+            simpleModal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeSimpleModal() {
+            simpleModal.classList.remove('active');
+            simpleModal.setAttribute('aria-hidden', 'true');
+        }
+
+        document.querySelectorAll('.action-item[data-action="modal"]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                openSimpleModal(btn.dataset.modalLabel);
+            });
+        });
+
+        document.querySelectorAll('[data-close-simple-modal]').forEach(function (el) {
+            el.addEventListener('click', closeSimpleModal);
+        });
+
+        var closeSimpleModalBtn = document.getElementById('closeSimpleModalBtn');
+        if (closeSimpleModalBtn) {
+            closeSimpleModalBtn.addEventListener('click', closeSimpleModal);
+        }
+
+    })();
 </script>
 
 </body>

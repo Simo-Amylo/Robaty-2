@@ -382,6 +382,16 @@ button {
 }
 
 
+.action-item.liked i {
+    color: #ff3040;
+}
+
+
+.action-item.saved i {
+    color: var(--gold);
+}
+
+
 /* النص */
 
 .post-caption-section {
@@ -723,6 +733,98 @@ button {
     margin-top: 9px;
 
     min-height: 16px;
+}
+
+
+/* نافذة عامة فارغة: تعليق / إعادة نشر / مشاركة */
+
+.simple-modal {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 110;
+
+    display: none;
+}
+
+
+.simple-modal.active {
+    display: block;
+}
+
+
+.simple-modal-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.62);
+}
+
+
+.simple-modal-content {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    max-height: 55%;
+
+    background: var(--surface);
+
+    border: 1px solid var(--gold);
+    border-bottom: none;
+
+    border-radius: 20px 20px 0 0;
+
+    padding: 14px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.simple-modal-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid var(--gold-border);
+
+    margin-bottom: 14px;
+
+    color: #fff;
+
+    font-weight: 700;
+
+    font-size: 14px;
+}
+
+
+.simple-modal-body {
+    flex: 1;
+
+    min-height: 120px;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.simple-modal-empty {
+    color: var(--muted);
+
+    font-size: 13px;
 }
 
 
