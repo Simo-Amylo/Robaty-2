@@ -617,6 +617,7 @@
 
 
     // فتح prompt التثبيت الأصلي ديال المتصفح (بحال Robaty 1)
+    // إلا ماجاش الـ prompt الأصلي، كنبينو تعليمة يدوية بدل ما نوديو مباشرة لـ robaty.com
     var deferredInstallPrompt = null;
 
     window.addEventListener('beforeinstallprompt', function (e) {
@@ -624,16 +625,36 @@
         deferredInstallPrompt = e;
     });
 
+    function showInstallInstructions() {
+        var modal = document.getElementById('simpleModal');
+        var title = document.getElementById('simpleModalTitle');
+        var body = modal.querySelector('.simple-modal-body');
+
+        title.textContent = '📲 تثبيت التطبيق';
+
+        body.innerHTML =
+            '<div style="text-align:right; font-size:13px; line-height:2.1; color:#eee; width:100%;">' +
+                '1. ضغطي <b style="color:#e5b35c;">⋮</b> (ثلاث نقط) فوق فشريط Chrome<br>' +
+                '2. اختاري <b style="color:#e5b35c;">"Install app"</b> أو <b style="color:#e5b35c;">"Add to Home screen"</b><br>' +
+                '3. أكدي التثبيت' +
+            '</div>';
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
     document.querySelectorAll('.app-download-banner').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
+            e.preventDefault();
+
             if (deferredInstallPrompt) {
-                e.preventDefault();
                 deferredInstallPrompt.prompt();
                 deferredInstallPrompt.userChoice.then(function () {
                     deferredInstallPrompt = null;
                 });
+            } else {
+                showInstallInstructions();
             }
-            // إلا ماكانش الـ prompt متوفر (مثلا تفعشات قبل)، الزر كيكمل بحاله لـ robaty.com كبديل
         });
     });
 
