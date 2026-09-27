@@ -714,25 +714,32 @@
 
         // مشاركة / إعادة نشر: كتحل شاشة المشاركة الأصلية د الهاتف (واتساب، إنستغرام، فيسبوك...)
         // وإلا ماكانتش متوفرة (كمبيوتر مثلا)، كتبان نافذة بديلة (واتساب + نسخ الرابط)
-        var APP_DOWNLOAD_LINK = 'https://robaty.com'; // TODO: بدليه برابط التحميل الحقيقي
+        var APP_DOWNLOAD_LINK = 'https://robaty.com';
+
+        // خارطة: post id → اسم صفحة المشاركة فمجلد share/
+        // (لازم نزيدو سطر هنا كل ما زدنا يوم/منشور جديد)
+        var SHARE_PAGE_SLUGS = {
+            'post-day01-morning': 'day01-morning',
+            'post-day01-evening': 'day01-evening'
+        };
 
         function buildShareData(postId, mode) {
-            var card = document.getElementById(postId);
-            var captionEl = card ? card.querySelector('.six-line-caption') : null;
-            var caption = captionEl
-                ? captionEl.textContent.trim().replace(/\s+/g, ' ')
-                : '';
-
             var intro = (mode === 'repost')
                 ? 'شوفو هاد اللحظة ديال Robaty 👇'
                 : 'بغيت نشارك معاكم هاد اللحظة ديال Robaty ✨';
 
-            var postUrl = location.origin + location.pathname + '#' + postId;
+            var slug = SHARE_PAGE_SLUGS[postId];
+
+            // رابط صفحة مشاركة ثابتة (بصورة + نص صحيحين فالمعاينة د واتساب/فيسبوك)
+            // إلا ماكانش السلوغ معروف، كنرجعو لصفحة moments.html العادية
+            var shareUrl = slug
+                ? (location.origin + location.pathname.replace(/moments\.html.*$/, '') + 'share/' + slug + '.html')
+                : (location.origin + location.pathname + '#' + postId);
 
             return {
                 title: 'Robaty',
-                text: intro + '\n\n' + caption + '\n\n📲 حمّلو تطبيق Robaty: ' + APP_DOWNLOAD_LINK,
-                url: postUrl
+                text: intro,
+                url: shareUrl
             };
         }
 
