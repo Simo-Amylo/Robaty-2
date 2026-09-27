@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تشخيص PWA — Robaty</title>
+<style>
+    body {
+        background: #14100c;
+        color: #fff;
+        font-family: monospace;
+        padding: 16px;
+        font-size: 13px;
+        line-height: 1.7;
+        direction: ltr;
+        text-align: left;
+    }
+    h2 {
+        color: #e5b35c;
+        font-size: 15px;
+        margin-top: 22px;
+        border-bottom: 1px solid #444;
+        padding-bottom: 4px;
+    }
+    .ok { color: #4caf50; }
+    .bad { color: #ff5555; }
+    pre {
+        background: #1e1712;
+        padding: 10px;
+        border-radius: 8px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+</style>
+</head>
+<body>
+
+<h1 style="color:#e5b35c;">🔍 تشخيص PWA — Robaty</h1>
+<div id="output">جاري الفحص...</div>
+
+<script>
+(async function () {
+    var out = document.getElementById('output');
+    var html = '';
+
+    function line(label, value, isOk) {
+        var cls = isOk === true ? 'ok' : (isOk === false ? 'bad' : '');
+        return '<div class="' + cls + '">' + label + ': ' + value + '</div>';
+    }
+
+    // 1) Service Worker registrations
+    html += '<h2>1) Service Worker Registrations</h2>';
+    if ('serviceWorker' in navigator) {
+        try {
+            var regs = await navigator.serviceWorker.getRegistrations();
+            if (regs.length === 0) {
+                html += line('النتيجة', 'ماكاين حتى تسجيل (0 registrations)', false);
+            } else {
+                regs.forEach(function (reg, i) {
+                    html += '<pre>#' + i + '\n' +
+                        'scope: ' + reg.scope + '\n' +
+                        'active: ' + (reg.active ? reg.active.scriptURL + ' (state: ' + reg.active.state + ')' : 'none') + '\n' +
+                        'waiting: ' + (reg.waiting ? reg.waiting.scriptURL : 'none') + '\n' +
+                        'installing: ' + (reg.installing ? reg.installing.scriptURL : 'none') +
+                        '</pre>';
+                });
+            }
+        } catch (e) {
+            html += line('خطأ', String(e), false);
+        }
+    } else {
+        html += line('الدعم', 'serviceWorker مش مدعوم فهاد المتصفح', false);
+    }
+
+    // 2) Manifest fetch
+    html += '<h2>2) manifest.json</h2>';
+    try {
+        var manRes = await fetch('manifest.json', { cache: 'no-store' });
+        if (manRes.ok) {
+            var manJson = await manRes.json();
+            html += line('الحالة', manRes.status + ' OK', true);
+            html += '<pre>' + JSON.stringify(manJson, null, 2) + '</pre>';
+        } else {
+            html += line('الحالة', manRes.status + ' — فشل', false);
+        }
+    } catch (e) {
+        html += line('خطأ', String(e), false);
+    }
+
+    // 3) Manifest link tag in this page
+    html += '<h2>3) رابط Manifest فهاد الصفحة</h2>';
+    var manifestLink = document.querySelector('link[rel="manifest"]');
+    html += line('موجود؟', manifestLink ? manifestLink.href : 'لا، ماكاينش', !!manifestLink);
+
+    // 4) Icons
+    html += '<h2>4) الأيقونات</h2>';
+    for (var iconName of ['icon-192.png', 'icon-512.png']) {
+        try {
+            var iconRes = await fetch(iconName, { cache: 'no-store', method: 'HEAD' });
+            html += line(iconName, iconRes.status + (iconRes.ok ? ' OK' : ' فشل'), iconRes.ok);
+        } catch (e) {
+            html += line(iconName, 'خطأ: ' + String(e), false);
+        }
+    }
+
+    // 5) Display mode / standalone
+    html += '<h2>5) وضعية العرض</h2>';
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+    html += line('standalone (مثبت)؟', isStandalone ? 'نعم' : 'لا', !isStandalone ? null : true);
+
+    // 6) beforeinstallprompt listener test
+    html += '<h2>6) beforeinstallprompt</h2>';
+    html += '<div id="bipStatus">كنستناو الحدث... (إلا بقات هاكذا 10 ثواني، معناها ماجاش)</div>';
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+        document.getElementById('bipStatus').innerHTML =
+            '<span class="ok">✓ الحدث تفعل! الصفحة قابلة للتثبيت تقنيا.</span>';
+    });
+
+    setTimeout(function () {
+        var el = document.getElementById('bipStatus');
+        if (el.textContent.indexOf('كنستناو') !== -1) {
+            el.innerHTML = '<span class="bad">✗ الحدث ماجاش من بعد 10 ثواني (بقات فالانتظار أو ماشي قابلة).</span>';
+        }
+    }, 10000);
+
+    // 7) Basic info
+    html += '<h2>7) معلومات عامة</h2>';
+    html += line('URL', location.href);
+    html += line('User Agent', navigator.userAgent);
+
+    out.innerHTML = html;
+})();
+</script>
+
+</body>
+</html>
