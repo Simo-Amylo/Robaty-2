@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- لازم باش الصفحة تقدر تفعّل prompt التثبيت الأصلي (بحال index.html) -->
+    <link rel="manifest" href="manifest.json">
+
     <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة -->
     <script>
         (function () {
@@ -607,6 +610,34 @@
 <script src="story.js"></script>
 
 <script>
+    // تسجيل الـ service worker (ضروري هو والـ manifest باش الصفحة تقدر تفعّل التثبيت)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+    }
+
+
+    // فتح prompt التثبيت الأصلي ديال المتصفح (بحال Robaty 1)
+    var deferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+    });
+
+    document.querySelectorAll('.app-download-banner').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            if (deferredInstallPrompt) {
+                e.preventDefault();
+                deferredInstallPrompt.prompt();
+                deferredInstallPrompt.userChoice.then(function () {
+                    deferredInstallPrompt = null;
+                });
+            }
+            // إلا ماكانش الـ prompt متوفر (مثلا تفعشات قبل)، الزر كيكمل بحاله لـ robaty.com كبديل
+        });
+    });
+
+
     // إخفاء زر "حمّلي التطبيق الآن" عند المستخدمات اللي عندهم التطبيق مثبت من قبل
     (function () {
         var isInstalled =
@@ -750,8 +781,6 @@
 
         // مشاركة / إعادة نشر: كتحل شاشة المشاركة الأصلية د الهاتف (واتساب، إنستغرام، فيسبوك...)
         // وإلا ماكانتش متوفرة (كمبيوتر مثلا)، كتبان نافذة بديلة (واتساب + نسخ الرابط)
-        var APP_DOWNLOAD_LINK = 'https://robaty.com';
-
         function buildShareData(postId, mode) {
             var intro = (mode === 'repost')
                 ? 'شوفو هاد اللحظة ديال Robaty 👇'
@@ -763,7 +792,7 @@
 
             return {
                 title: 'Robaty',
-                text: intro + '\n\nRobaty: ' + APP_DOWNLOAD_LINK,
+                text: intro + '\n\nRobaty:',
                 url: postUrl
             };
         }
