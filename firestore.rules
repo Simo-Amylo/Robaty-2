@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /comments/{commentId} {
+
+      // الجميع يقدر يقرا التعليقات (حتى بلا تسجيل دخول)
+      allow read: if true;
+
+      // غير المستخدمة المسجلة الدخول تقدر تزيد تعليق، وبشروط:
+      allow create:
+        if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() < 500
+        && request.resource.data.postId is string;
+
+      // ماكاين حتى تعديل ولا حذف من الواجهة (نديروه من Firebase Console غير)
+      allow update, delete: if false;
+    }
+  }
+}
