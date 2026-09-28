@@ -42,6 +42,10 @@
     --app-bg-base-end: #030201;
 
     --accent-glow: rgba(229, 179, 92, 0.15);
+
+    /* خلفية فقاعات Robaty — كتتبع نفس لون قاعدة الخلفية ديال الشاشة
+       (كتتبدل مع data-time-theme و data-color-mode بحال --app-bg-base-start) */
+    --bubble-bg-theme: rgba(24, 15, 8, 0.95);
 }
 
 
@@ -57,12 +61,14 @@ body[data-time-theme="day"] {
     --app-bg-base-start: #241708;
     --app-bg-base-end: #0b0602;
     --accent-glow: rgba(229, 179, 92, 0.20);
+    --bubble-bg-theme: rgba(36, 23, 8, 0.95);
 }
 
 body[data-time-theme="night"] {
     --app-bg-base-start: #180f08;
     --app-bg-base-end: #030201;
     --accent-glow: rgba(229, 179, 92, 0.15);
+    --bubble-bg-theme: rgba(24, 15, 8, 0.95);
 }
 
 /* أجواء ملونة (اختياري، مفعلة غير من الإعدادات عبر data-color-mode="vivid"
@@ -72,12 +78,14 @@ body[data-color-mode="vivid"][data-time-theme="day"] {
     --app-bg-base-start: #18222d;
     --app-bg-base-end: #080d12;
     --accent-glow: rgba(64, 156, 255, 0.12);
+    --bubble-bg-theme: rgba(24, 34, 45, 0.95);
 }
 
 body[data-color-mode="vivid"][data-time-theme="night"] {
     --app-bg-base-start: #170d19;
     --app-bg-base-end: #070409;
     --accent-glow: rgba(180, 100, 255, 0.15);
+    --bubble-bg-theme: rgba(23, 13, 25, 0.95);
 }
 
 /* المشاعر: دايما مفعلة (فالافتراضي وفالـvivid بحال بعضياتهم) —
@@ -1480,7 +1488,9 @@ body {
     position: relative;
 
     background:
-        rgba(25, 16, 9, 0.95);
+        var(--bubble-bg-theme);
+
+    transition: background 1.2s ease;
 
     border:
         1px solid
