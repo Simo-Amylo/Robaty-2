@@ -24,14 +24,6 @@
 
     <title>Robaty - Moroccan Luxury UI</title>
 
-    <!-- PWA: manifest + لون الشريط -->
-    <link
-        rel="manifest"
-        href="manifest.json?v=2"
-    >
-
-    <meta name="theme-color" content="#e5b35c">
-
     <link
         rel="stylesheet"
         href="style.css"
@@ -343,15 +335,11 @@
                 <!-- قسم أجواء الألوان -->
                 <div class="settings-section">
                     <p class="settings-section-title" data-i18n="color_mood_title">🎨 أجواء الألوان</p>
-                    <label
-                        for="vividThemeToggle"
-                        style="display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer;"
-                    >
-                        <span data-i18n="vivid_theme_label">
-                            أجواء ملونة (أزرق فالنهار، بنفسجي فالليل) — بدل البني/الذهبي الافتراضي
-                        </span>
-                        <input type="checkbox" id="vividThemeToggle">
-                    </label>
+                    <div class="color-options" id="colorModeOptions">
+                        <button type="button" class="color-option" data-color-value="default" data-i18n="color_default_label">🟤 الافتراضي (بني/ذهبي)</button>
+                        <button type="button" class="color-option" data-color-value="vivid" data-i18n="color_vivid_label">🔵 أزرق/بنفسجي</button>
+                        <button type="button" class="color-option" data-color-value="emerald" data-i18n="color_emerald_label">🟢 أخضر ملكي</button>
+                    </div>
                 </div>
 
                 <!-- قسم مفتاح API -->

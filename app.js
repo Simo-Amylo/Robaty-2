@@ -28,7 +28,7 @@ const resetMemoryButton = document.getElementById('resetMemoryButton');
 const apiKeyModal = document.getElementById('apiKeyModal');
 const apiKeyInput = document.getElementById('apiKeyInput');
 const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
-const vividThemeToggle = document.getElementById('vividThemeToggle');
+const colorModeOptions = document.getElementById('colorModeOptions');
 
 
 /* ==========================================================================
@@ -127,23 +127,33 @@ function getKey() {
    الافتراضي (معطل) = بني/ذهبي دايما. مفعل = أزرق فالنهار/بنفسجي فالليل.
    ========================================================================== */
 
-const VIVID_THEME_STORAGE = 'robaty_vivid_theme';
+const COLOR_MODE_STORAGE = 'robaty_color_mode';
+const VALID_COLOR_MODES = ['default', 'vivid', 'emerald'];
 
-function isVividThemeEnabled() {
-    return localStorage.getItem(VIVID_THEME_STORAGE) === 'true';
+function getColorMode() {
+    const saved = localStorage.getItem(COLOR_MODE_STORAGE);
+    return VALID_COLOR_MODES.includes(saved) ? saved : 'default';
 }
 
 function applyColorMode() {
-    if (isVividThemeEnabled()) {
-        document.body.setAttribute('data-color-mode', 'vivid');
-    } else {
+    const mode = getColorMode();
+    if (mode === 'default') {
         document.body.removeAttribute('data-color-mode');
+    } else {
+        document.body.setAttribute('data-color-mode', mode);
     }
+}
+
+function highlightActiveColorOption() {
+    const mode = getColorMode();
+    colorModeOptions?.querySelectorAll('.color-option').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.colorValue === mode);
+    });
 }
 
 function openApiKeyModal() {
     apiKeyInput.value = getKey();
-    if (vividThemeToggle) vividThemeToggle.checked = isVividThemeEnabled();
+    highlightActiveColorOption();
     apiKeyModal.classList.add('active');
     apiKeyModal.setAttribute('aria-hidden', 'false');
 }
@@ -165,9 +175,12 @@ function saveKey() {
 
 settingsButton?.addEventListener('click', openApiKeyModal);
 
-vividThemeToggle?.addEventListener('change', () => {
-    localStorage.setItem(VIVID_THEME_STORAGE, vividThemeToggle.checked ? 'true' : 'false');
-    applyColorMode();
+colorModeOptions?.querySelectorAll('.color-option').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        localStorage.setItem(COLOR_MODE_STORAGE, btn.dataset.colorValue);
+        applyColorMode();
+        highlightActiveColorOption();
+    });
 });
 
 backButton?.addEventListener('click', () => {
@@ -1437,7 +1450,7 @@ removeImageBtn.addEventListener('click', () => {
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
     });
 }
 
