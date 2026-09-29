@@ -136,18 +136,29 @@
 
         var listEl = document.getElementById('commentsList');
 
+        // ملاحظة: ماكاينش orderBy هنا عمدا — where + orderBy مع بعض كيحتاجو
+        // "composite index" فـ Firestore. كنديرو الترتيب هنا فـ JS عوض.
         unsubscribeComments = db.collection('comments')
             .where('postId', '==', postId)
-            .orderBy('createdAt', 'asc')
             .onSnapshot(function (snapshot) {
                 if (snapshot.empty) {
                     listEl.innerHTML = '<div class="comments-empty">مازال ماكاين تعليقات — كوني الأولى ✨</div>';
                     return;
                 }
 
-                var html = '';
+                var items = [];
                 snapshot.forEach(function (doc) {
-                    var c = doc.data();
+                    items.push(doc.data());
+                });
+
+                items.sort(function (a, b) {
+                    var ta = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
+                    var tb = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
+                    return ta - tb;
+                });
+
+                var html = '';
+                items.forEach(function (c) {
                     html +=
                         '<div class="comment-item">' +
                             '<img src="' + (c.authorPhoto || '') + '" alt="" class="comment-avatar">' +
@@ -161,7 +172,7 @@
                 listEl.innerHTML = html;
                 listEl.scrollTop = listEl.scrollHeight;
             }, function (err) {
-                listEl.innerHTML = '<div class="comments-empty">تعذر تحميل التعليقات</div>';
+                listEl.innerHTML = '<div class="comments-empty">تعذر تحميل التعليقات: ' + escapeHtml(err.message || err.code || '') + '</div>';
                 console.error(err);
             });
     }
@@ -197,7 +208,7 @@
         }).then(function () {
             input.value = '';
         }).catch(function (err) {
-            alert('تعذر إرسال التعليق، عاودي جربي');
+            alert('تعذر إرسال التعليق: ' + (err.message || err.code || 'خطأ غير معروف'));
             console.error(err);
         });
     }
