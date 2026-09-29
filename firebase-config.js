@@ -1,13 +1,12 @@
-// ⚠️ بدلي هاد القيم بالـ config الحقيقي اللي عطاتك Firebase (خطوة 6 فالتعليمات)
-// نسخي بالضبط من console.firebase.google.com → Project settings → Your apps
+// Config ديال مشروع Firebase "ROBATY" — تعبّى أوتوماتيكيا، ماخصكش تبدل فيه
 
 var firebaseConfig = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME.firebaseapp.com",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME.appspot.com",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME"
+  apiKey: "AIzaSyAZVY0ScLOX3x_ltTIuk3qRBZdbea2Apgk",
+  authDomain: "robaty-d29e9.firebaseapp.com",
+  projectId: "robaty-d29e9",
+  storageBucket: "robaty-d29e9.firebasestorage.app",
+  messagingSenderId: "988794244341",
+  appId: "1:988794244341:web:e10a847bd55ff29696c9bc"
 };
 
 firebase.initializeApp(firebaseConfig);
