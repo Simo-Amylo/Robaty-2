@@ -32,83 +32,81 @@
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all'"
     >
 
     <!-- Cairo: عربية/لاتينية. Roboto: زايدة كـ fallback باش تغطي السيريلية (الروسية) -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet"
+        media="print" onload="this.media='all'"
     >
 
     <style>
 /* === Splash === */
-  :root { --k: 1; } /* 1 = أول زيارة، 0.6 = زيارات متكررة */
-
   #splash {
     position: fixed; inset: 0; z-index: 9999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: #14100c;               /* طابق هذا اللون مع background_color في manifest */
+    background: #14100c;               /* نفس background_color في manifest */
     overflow: hidden;
     transition: opacity .35s ease, transform .35s ease;
   }
   #splash.leaving { opacity: 0; transform: scale(1.03); pointer-events: none; }
 
-  /* 0.3s — ضوء ذهبي خافت ينبض نبضة واحدة */
+  /* الهالة الذهبية (كما هي) */
   .splash-glow {
     position: absolute; width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(229,179,92,.30) 0%, rgba(229,179,92,.10) 45%, transparent 70%);
     opacity: 0;
-    animation: glow 1.6s ease-out calc(.3s * var(--k)) forwards;
   }
+  #splash.go .splash-glow { animation: glow 1.6s ease-out .3s forwards; }
   @keyframes glow {
     0%   { opacity: 0; transform: scale(.7); }
     60%  { opacity: 1; transform: scale(1.05); }
     100% { opacity: .75; transform: scale(1); }
   }
 
-  /* 0.6s — الصورة تظهر تدريجياً */
+  /* 0 → 1s : الصورة (234px = 130 + 80%) */
   .splash-logo {
-    position: relative; width: 130px; height: 130px; object-fit: cover;
-    border-radius: 50%;               /* الصورة نفسها فيها الإطار الذهبي */
+    position: relative; width: 234px; height: 234px; object-fit: cover;
+    border-radius: 50%;
     box-shadow: 0 0 36px rgba(229,150,60,.28);
     opacity: 0; transform: scale(.92);
-    animation: logoIn .7s cubic-bezier(.2,.7,.2,1) calc(.6s * var(--k)) forwards;
   }
+  #splash.go .splash-logo { animation: logoIn 1s cubic-bezier(.2,.7,.2,1) 0s forwards; }
   @keyframes logoIn { to { opacity: 1; transform: scale(1); } }
 
-  /* 0.9s — الاسم */
+  /* 1 → 2s : الاسم (41px = 34 + 20%) */
   .splash-name {
     position: relative; margin: 22px 0 0;
-    font: 600 34px/1.1 "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font: 600 41px/1.1 "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     letter-spacing: .04em; color: #f5ecdc; direction: ltr;
     opacity: 0; transform: translateY(6px);
-    animation: rise .6s ease calc(.9s * var(--k)) forwards;
   }
   .splash-name span { color: #e5b35c; }
+  #splash.go .splash-name { animation: rise 1s ease 1s forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
 
-  /* 1.1s — الجملة تُكشف من اليمين إلى اليسار (بدون كسر اتصال الحروف) */
+  /* 2 → 4s : الجملة (20.4px = 17 + 20%) */
   .splash-tagline {
-    position: relative; margin: 12px 0 0; display: flex; align-items: center; gap: 8px;
-    font: 400 17px/1.4 "Noto Naskh Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+    position: relative; margin: 12px 0 0; display: flex; align-items: center; gap: 10px;
+    font: 400 20.4px/1.4 "Noto Naskh Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
     color: #f5ecdc;
     clip-path: inset(0 0 0 100%);
-    animation: reveal .6s steps(14, end) calc(1.1s * var(--k)) forwards;
   }
-  html[dir="ltr"] .splash-tagline { clip-path: inset(0 100% 0 0); } /* اللغات LTR: الكشف من اليسار */
+  html[dir="ltr"] .splash-tagline { clip-path: inset(0 100% 0 0); }
+  #splash.go .splash-tagline { animation: reveal 2s steps(24, end) 2s forwards; }
   @keyframes reveal { to { clip-path: inset(0 0 0 0); } }
-  .splash-flag { width: 22px; height: 15px; border-radius: 2px; flex: none; }
+  .splash-flag { width: 26px; height: 18px; border-radius: 2px; flex: none; }
 
-  /* احترام تقليل الحركة */
   @media (prefers-reduced-motion: reduce) {
-    .splash-glow, .splash-logo, .splash-name, .splash-tagline {
+    #splash .splash-glow, #splash .splash-logo, #splash .splash-name, #splash .splash-tagline {
       animation: none; opacity: 1; transform: none; clip-path: none;
     }
-    html[dir="ltr"] .splash-tagline { clip-path: none; }
     #splash { transition: opacity .2s ease; }
     #splash.leaving { transform: none; }
   }
-  </style>
+</style>
 
 </head>
 
@@ -131,23 +129,32 @@
 (function () {
   var splash = document.getElementById('splash');
   if (!splash) return;
+  var started = false;
 
-  var seen = false;
-  try { seen = sessionStorage.getItem('robaty_splash_seen') === '1'; } catch (e) {}
-  var k = seen ? 0.6 : 1;
-  document.documentElement.style.setProperty('--k', k);
-
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var total = reduced ? 600 : Math.round(1900 * k);   // ~1.9s أول مرة، ~1.1s بعدها
-
-  setTimeout(function () {
+  function finish() {
     splash.classList.add('leaving');
     setTimeout(function () {
       splash.remove();
-      try { sessionStorage.setItem('robaty_splash_seen', '1'); } catch (e) {}
       document.dispatchEvent(new Event('splash:done'));
     }, 380);
-  }, total);
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // ننتظر إطارين ليكون السبلاش ظاهراً فعلاً قبل بدء الأنيميشن
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        splash.classList.add('go');
+        setTimeout(finish, reduced ? 600 : 4300);   // 1s صورة + 1s اسم + 2s جملة + لحظة
+      });
+    });
+  }
+
+  var img = splash.querySelector('.splash-logo');
+  if (img && img.decode) { img.decode().then(start, start); } else { start(); }
+  setTimeout(start, 1500);  // احتياط
 })();
 </script>
 
