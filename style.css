@@ -1332,20 +1332,20 @@ body {
 }
 
 
-/* Moments button pulse: 3 gold pulses, then a pause, repeating (8s cycle) */
+/* Moments button pulse: 2 gold pulses (1.8s each), then 6s pause (9.6s cycle) */
 @keyframes momentsPulse {
-    0%, 22.5%, 45%, 67.5%, 100% {
+    0%, 18.75%, 37.5%, 100% {
         box-shadow: 0 0 0 0 rgba(244, 208, 104, 0);
         border-color: #e5b35c;
     }
-    11%, 33.75%, 56.25% {
+    9.375%, 28.125% {
         box-shadow: 0 0 14px 3px rgba(244, 208, 104, 0.55);
         border-color: #f4d068;
     }
 }
 
 .gold-pill-btn.pulse {
-    animation: momentsPulse 8s ease-in-out infinite;
+    animation: momentsPulse 9.6s ease-in-out infinite;
 }
 
 .gold-pill-btn.pulse:hover {
