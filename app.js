@@ -353,15 +353,20 @@ function getTimeContext() {
     return { periode, dateStr, timeStr, gapText: sessionGapText, hour };
 }
 
+/* ترجمة الرسائل الديناميكية — كتقرا اللغة الحالية فلحظة الاستعمال، وإلا ماكانش i18n.js كترجع للعربية */
+function tr(key, fallback) {
+    return window.RobatyI18n ? window.RobatyI18n.t(key) : fallback;
+}
+
 function getDynamicGreeting() {
     const periode = getPeriodeFromHour(new Date().getHours());
-    const greetings = {
-        'الصباح': 'صباح الخير والأنوار! 🤍 كيف دايرة اليوم؟ راني هنا نسمع ليك ونرافقك فنهارك.',
-        'الظهيرة': 'مسا الخير! 🤍 كيف داير نهارك لحد دابا؟ راني هنا نسمع ليك.',
-        'المساء': 'مسا النور! 🤍 كيف كانت جورناتك؟ راني هنا نسمع ليك ونرافقك.',
-        'الليل': 'مساء الخير 🤍 مازال صاحية؟ راني هنا معاك إيلا بغيتي تهضري على شي حاجة.'
+    const keys = {
+        'الصباح': 'greeting_morning',
+        'الظهيرة': 'greeting_noon',
+        'المساء': 'greeting_evening',
+        'الليل': 'greeting_night'
     };
-    return greetings[periode] || greetings['الصباح'];
+    return tr(keys[periode] || 'greeting_morning', 'صباح الخير والأنوار! 🤍 كيف دايرة اليوم؟ راني هنا نسمع ليك ونرافقك فنهارك.');
 }
 
 
@@ -404,7 +409,7 @@ function saveChatHistory() {
 // ⚠️ للاختبار فقط — كتمسح المحادثة، الـfacts، والذاكرة السردية، وكتعاود تحميل الصفحة.
 // ماشي مربوطة بزر فالواجهة (باش ماتوقعش بالصدفة عند مستخدمة حقيقية) — تخدم من الـconsole: clearRobatyMemory()
 window.clearRobatyMemory = function () {
-    const ok = confirm('واش متأكدة؟ غادي تتمسح المحادثة، الحقائق المحفوظة عليك، والذاكرة السردية، وهاد الشي ماغاديش يترجع.');
+    const ok = confirm(tr('confirm_reset', 'واش متأكدة؟ غادي تتمسح المحادثة، الحقائق المحفوظة عليك، والذاكرة السردية، وهاد الشي ماغاديش يترجع.'));
     if (!ok) return;
 
     localStorage.removeItem('robaty_chat_history');
@@ -701,7 +706,11 @@ function renderSavedChatHistory() {
    الاتصال الحقيقي بـ Gemini
    ========================================================================== */
 
-const OVERLOAD_ERROR_MSG = 'راه عندها ضغط بزاف دابا (سيرفر Gemini مزحوم)، عاودي المحاولة من بعد شوية 🙏';
+function makeOverloadError() {
+    const err = new Error(tr('err_overload', 'راه عندها ضغط بزاف دابا، عاودي المحاولة من بعد شوية 🙏'));
+    err.isOverload = true;
+    return err;
+}
 
 async function requestGeminiOnce(userText, imageData, audioData) {
     const apiKey = getKey();
@@ -765,12 +774,14 @@ async function requestGeminiOnce(userText, imageData, audioData) {
         const rawMsg = data?.error?.message || '';
 
         if (res.status === 429 || /quota/i.test(rawMsg)) {
-            throw new Error('وصلتي للحد اليومي المجاني ديال المفتاح.');
+            throw new Error(tr('err_quota', 'وصلتي للحد اليومي المجاني ديال المفتاح.'));
         }
         if (res.status === 503 || /overload|unavailable|high demand/i.test(rawMsg)) {
-            throw new Error(OVERLOAD_ERROR_MSG);
+            throw makeOverloadError();
         }
-        throw new Error(rawMsg || 'خطأ فالطلب');
+        // الرسالة الخام ديال المزود كتبقى غير فالـconsole (ما كتبانش للمستخدمة)
+        console.error('API error:', rawMsg);
+        throw new Error(tr('err_request', 'خطأ فالطلب'));
     }
 
     const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
@@ -788,14 +799,14 @@ async function requestGeminiOnce(userText, imageData, audioData) {
             // خطأ ديال سيرفر Gemini (بحال "high demand") رجع بـstatus 200
             // بلا ما تصدق التوقع. ماخصناش نبينو هاد النص كأنه رد حقيقي
             // ديال Robaty — نرميوه كـerror عوض ما نخدعو المستخدمة.
-            throw new Error(OVERLOAD_ERROR_MSG);
+            throw makeOverloadError();
         }
     }
 
     mergeProfileFacts(parsed.facts);
 
     return {
-        reply: parsed.reply || 'سمحيلي، مافهمتش مزيان.. عاودي قوليها ليا بطريقة أخرى 🤍',
+        reply: parsed.reply || tr('reply_fallback', 'سمحيلي، مافهمتش مزيان.. عاودي قوليها ليا بطريقة أخرى 🤍'),
         state: typeof parsed.state === 'string' ? parsed.state : null
     };
 }
@@ -807,7 +818,7 @@ async function fetchRobatyResponse(userText, imageData, audioData) {
     try {
         return await requestGeminiOnce(userText, imageData, audioData);
     } catch (error) {
-        if (error.message === OVERLOAD_ERROR_MSG) {
+        if (error.isOverload) {
             await new Promise(resolve => setTimeout(resolve, 2000));
             return await requestGeminiOnce(userText, imageData, audioData);
         }
@@ -886,7 +897,7 @@ async function sendMessage() {
 
         const image = document.createElement('img');
         image.src = imageUrl;
-        image.alt = 'الصورة المرسلة';
+        image.alt = tr('sent_image_alt', 'الصورة المرسلة');
         imageBubble.appendChild(image);
 
         message.appendChild(imageBubble);
@@ -957,7 +968,7 @@ async function sendMessage() {
 
     } catch (error) {
         removeTypingIndicator(typingId);
-        appendBotMessage('⚠️ ' + (error.message || 'مشكل غير معروف، جربي مرة أخرى.'), getCurrentTime());
+        appendBotMessage('⚠️ ' + (error.message || tr('err_unknown', 'مشكل غير معروف، جربي مرة أخرى.')), getCurrentTime());
         setPresenceState('idle');
         console.error(error);
     }
@@ -1150,7 +1161,7 @@ async function startRecording() {
         }
 
         appendBotMessage(
-            '⚠️ ماقدرتش نوصل للميكروفون ديالك. تأكدي من صلاحية الميكروفون فإعدادات المتصفح وعاودي المحاولة.',
+            '⚠️ ' + tr('err_mic', 'ماقدرتش نوصل للميكروفون ديالك. تأكدي من صلاحية الميكروفون فإعدادات المتصفح وعاودي المحاولة.'),
             getCurrentTime()
         );
     }
@@ -1310,7 +1321,7 @@ async function sendVoiceOnlyMessage(audioBlob) {
 
     } catch (error) {
         removeTypingIndicator(typingId);
-        appendBotMessage('⚠️ ' + (error.message || 'مشكل غير معروف، جربي مرة أخرى.'), getCurrentTime());
+        appendBotMessage('⚠️ ' + (error.message || tr('err_unknown', 'مشكل غير معروف، جربي مرة أخرى.')), getCurrentTime());
         setPresenceState('idle');
         console.error(error);
     }

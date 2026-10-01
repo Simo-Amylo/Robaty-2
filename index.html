@@ -13,11 +13,20 @@
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem('robaty_lang');
-                if (saved) {
-                    document.documentElement.lang = saved;
-                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                var supported = ['ar', 'en', 'fr', 'es', 'ru'];
+                var saved = null;
+                try { saved = localStorage.getItem('robaty_lang'); } catch (e) {}
+                if (supported.indexOf(saved) === -1) {
+                    // أول زيارة: نكشفو لغة المتصفح (نفس منطق i18n.js) باش ما يبانش RTL غالط
+                    saved = 'ar';
+                    var langs = navigator.languages || [navigator.language || 'ar'];
+                    for (var i = 0; i < langs.length; i++) {
+                        var code = String(langs[i]).slice(0, 2).toLowerCase();
+                        if (supported.indexOf(code) !== -1) { saved = code; break; }
+                    }
                 }
+                document.documentElement.lang = saved;
+                document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
             } catch (e) {}
         })();
     </script>
@@ -459,10 +468,9 @@
 
                 <!-- قسم مفتاح API -->
                 <div class="settings-section">
-                    <p class="settings-section-title" data-i18n="api_key_title">🔑 مفتاح Gemini API</p>
+                    <p class="settings-section-title" data-i18n="api_key_title">🔑 مفتاح API</p>
                     <p data-i18n="api_key_desc">
-                        باش تخدمي Robaty، خاصك تدخلي مفتاح Gemini API ديالك
-                        (تقدري تجيبيه مجاناً من Google AI Studio).
+                        باش تخدمي Robaty، خاصك تدخلي مفتاح API ديالك.
                     </p>
 
                     <input

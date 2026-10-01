@@ -11,11 +11,19 @@
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem('robaty_lang');
-                if (saved) {
-                    document.documentElement.lang = saved;
-                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                var supported = ['ar', 'en', 'fr', 'es', 'ru'];
+                var saved = null;
+                try { saved = localStorage.getItem('robaty_lang'); } catch (e) {}
+                if (supported.indexOf(saved) === -1) {
+                    saved = 'ar';
+                    var langs = navigator.languages || [navigator.language || 'ar'];
+                    for (var i = 0; i < langs.length; i++) {
+                        var code = String(langs[i]).slice(0, 2).toLowerCase();
+                        if (supported.indexOf(code) !== -1) { saved = code; break; }
+                    }
                 }
+                document.documentElement.lang = saved;
+                document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
             } catch (e) {}
         })();
     </script>
@@ -580,7 +588,8 @@
 
                     <button class="close-story-btn"
                             id="closeSimpleModalBtn"
-                            aria-label="إغلاق">
+                            aria-label="إغلاق"
+                            data-i18n-aria="close_story_aria">
 
                         <i class="fa-solid fa-xmark"></i>
 
@@ -590,7 +599,7 @@
 
                 <div class="simple-modal-body">
 
-                    <p class="simple-modal-empty">قريبا... 🚧</p>
+                    <p class="simple-modal-empty" data-i18n="coming_soon">قريبا... 🚧</p>
 
                 </div>
 
@@ -615,6 +624,11 @@
 <script src="comments.js"></script>
 
 <script>
+    // ترجمة النصوص الديناميكية بلغة المستخدمة الحالية (وإلا العربية)
+    function momentsTr(key, fallback) {
+        return window.RobatyI18n ? window.RobatyI18n.t(key) : fallback;
+    }
+
     // تسجيل الـ service worker (ضروري هو والـ manifest باش الصفحة تقدر تفعّل التثبيت)
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').catch(function () {});
@@ -635,13 +649,13 @@
         var title = document.getElementById('simpleModalTitle');
         var body = modal.querySelector('.simple-modal-body');
 
-        title.textContent = '📲 تثبيت التطبيق';
+        title.textContent = momentsTr('install_title', '📲 تثبيت التطبيق');
 
         body.innerHTML =
-            '<div style="text-align:right; font-size:13px; line-height:2.1; color:#eee; width:100%;">' +
-                '1. ضغطي <b style="color:#e5b35c;">⋮</b> (ثلاث نقط) فوق فشريط Chrome<br>' +
-                '2. اختاري <b style="color:#e5b35c;">"Install app"</b> أو <b style="color:#e5b35c;">"Add to Home screen"</b><br>' +
-                '3. أكدي التثبيت' +
+            '<div style="text-align:start; font-size:13px; line-height:2.1; color:#eee; width:100%;">' +
+                '1. ' + momentsTr('install_step1', '') + '<br>' +
+                '2. ' + momentsTr('install_step2', '') + '<br>' +
+                '3. ' + momentsTr('install_step3', '') +
             '</div>';
 
         modal.classList.add('active');
@@ -809,8 +823,8 @@
         // وإلا ماكانتش متوفرة (كمبيوتر مثلا)، كتبان نافذة بديلة (واتساب + نسخ الرابط)
         function buildShareData(postId, mode) {
             var intro = (mode === 'repost')
-                ? 'شوفو هاد اللحظة ديال Robaty 👇'
-                : 'مرحبا بيك عند روباتي شوفي تصاوري ليوم';
+                ? momentsTr('share_intro_repost', 'شوفو هاد اللحظة ديال Robaty 👇')
+                : momentsTr('share_intro', 'مرحبا بيك عند روباتي شوفي تصاوري ليوم');
 
             var postUrl = location.origin
                 + location.pathname.replace(/moments\.html.*$/, '')
@@ -826,15 +840,15 @@
         function openShareFallback(data, mode) {
             var waLink = 'https://wa.me/?text=' + encodeURIComponent(data.text + '\n' + data.url);
 
-            simpleModalTitle.textContent = (mode === 'repost') ? 'إعادة النشر' : 'مشاركة';
+            simpleModalTitle.textContent = (mode === 'repost') ? momentsTr('repost_aria', 'إعادة نشر') : momentsTr('share_aria', 'مشاركة');
 
             simpleModalBody.innerHTML =
                 '<div class="share-fallback">' +
                     '<a class="share-fallback-btn" href="' + waLink + '" target="_blank" rel="noopener">' +
-                        '<i class="fa-brands fa-whatsapp"></i><span>واتساب</span>' +
+                        '<i class="fa-brands fa-whatsapp"></i><span>' + momentsTr('share_whatsapp', 'واتساب') + '</span>' +
                     '</a>' +
                     '<button class="share-fallback-btn" type="button" id="copyShareLinkBtn">' +
-                        '<i class="fa-solid fa-link"></i><span>نسخ الرابط</span>' +
+                        '<i class="fa-solid fa-link"></i><span>' + momentsTr('share_copy_link', 'نسخ الرابط') + '</span>' +
                     '</button>' +
                 '</div>';
 
@@ -844,7 +858,7 @@
                     var fullText = data.text + '\n' + data.url;
                     if (navigator.clipboard) {
                         navigator.clipboard.writeText(fullText).then(function () {
-                            copyBtn.querySelector('span').textContent = 'تم النسخ ✓';
+                            copyBtn.querySelector('span').textContent = momentsTr('share_copied', 'تم النسخ ✓');
                         });
                     }
                 });

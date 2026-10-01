@@ -8,11 +8,19 @@
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem('robaty_lang');
-                if (saved) {
-                    document.documentElement.lang = saved;
-                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                var supported = ['ar', 'en', 'fr', 'es', 'ru'];
+                var saved = null;
+                try { saved = localStorage.getItem('robaty_lang'); } catch (e) {}
+                if (supported.indexOf(saved) === -1) {
+                    saved = 'ar';
+                    var langs = navigator.languages || [navigator.language || 'ar'];
+                    for (var i = 0; i < langs.length; i++) {
+                        var code = String(langs[i]).slice(0, 2).toLowerCase();
+                        if (supported.indexOf(code) !== -1) { saved = code; break; }
+                    }
                 }
+                document.documentElement.lang = saved;
+                document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
             } catch (e) {}
         })();
     </script>
