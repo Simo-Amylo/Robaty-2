@@ -298,6 +298,7 @@
             <a
                 href="moments.html"
                 class="gold-pill-btn"
+                id="momentsBtn"
             >
 
                 <i class="fa-regular fa-image"></i>
@@ -503,6 +504,20 @@
 </div>
 
 
+<script>
+/* Moments button: gentle gold pulse until first tap */
+(function () {
+  var btn = document.getElementById('momentsBtn');
+  if (!btn) return;
+  var seen = false;
+  try { seen = !!localStorage.getItem('robatyMomentsSeen'); } catch (e) {}
+  if (!seen) btn.classList.add('pulse');
+  btn.addEventListener('click', function () {
+    btn.classList.remove('pulse');
+    try { localStorage.setItem('robatyMomentsSeen', '1'); } catch (e) {}
+  });
+})();
+</script>
 <script src="i18n.js"></script>
 <script src="app.js"></script>
 

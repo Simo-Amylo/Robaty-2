@@ -88,22 +88,6 @@ body[data-color-mode="vivid"][data-time-theme="night"] {
     --bubble-bg-theme: rgba(23, 13, 25, 0.95);
 }
 
-/* أخضر ملكي (emerald) — النهار باللون المضبوط اللي صيفطاتو المستخدمة
-   (#082b25)، والليل نسخة أغمق منو */
-body[data-color-mode="emerald"][data-time-theme="day"] {
-    --app-bg-base-start: #0f3d34;
-    --app-bg-base-end: #051c17;
-    --accent-glow: rgba(16, 122, 87, 0.18);
-    --bubble-bg-theme: rgba(8, 43, 37, 0.95);
-}
-
-body[data-color-mode="emerald"][data-time-theme="night"] {
-    --app-bg-base-start: #051c17;
-    --app-bg-base-end: #010604;
-    --accent-glow: rgba(8, 60, 45, 0.15);
-    --bubble-bg-theme: rgba(5, 20, 17, 0.95);
-}
-
 /* المشاعر: دايما مفعلة (فالافتراضي وفالـvivid بحال بعضياتهم) —
    [data-time-theme] زايدة هنا (بلا قيمة محددة) غير باش نرفعو الـspecificity
    لنفس المستوى ديال قواعد vivid فوق، ونضمنو أن التوهج العاطفي دايما
@@ -1348,6 +1332,31 @@ body {
 }
 
 
+/* Moments button pulse: 3 gold pulses, then a pause, repeating (8s cycle) */
+@keyframes momentsPulse {
+    0%, 22.5%, 45%, 67.5%, 100% {
+        box-shadow: 0 0 0 0 rgba(244, 208, 104, 0);
+        border-color: #e5b35c;
+    }
+    11%, 33.75%, 56.25% {
+        box-shadow: 0 0 14px 3px rgba(244, 208, 104, 0.55);
+        border-color: #f4d068;
+    }
+}
+
+.gold-pill-btn.pulse {
+    animation: momentsPulse 8s ease-in-out infinite;
+}
+
+.gold-pill-btn.pulse:hover {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gold-pill-btn.pulse { animation: none; }
+}
+
+
 /* ==========================================================================
    CHAT AREA
    ========================================================================== */
@@ -2387,57 +2396,6 @@ body {
 
 
 .lang-option.active {
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold-bright) 0%,
-            var(--gold-dark) 100%
-        );
-
-    color: #050302;
-
-    border-color: var(--gold-bright);
-}
-
-
-.color-options {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-}
-
-
-.color-option {
-
-    flex: 1 1 calc(33.333% - 6px);
-
-    padding: 8px 6px;
-
-    border-radius: 14px;
-
-    border: 1px solid var(--gold-border);
-
-    background: rgba(0, 0, 0, 0.3);
-
-    color: var(--text-gold-light);
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    text-align: center;
-
-    transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-
-.color-option.active {
 
     background:
         linear-gradient(
