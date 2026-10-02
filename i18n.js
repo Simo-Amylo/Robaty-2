@@ -4,7 +4,8 @@ Robaty — محرك اللغات الموحّد (i18n)
 خاصو يتحط فـ <head> أو قبل app.js فكل صفحة (index/moments/profile)
 ========================================================================== */
 
-const SUPPORTED_LANGS = ['ar', 'en', 'fr', 'es', 'ru'];
+// الترتيب = ترتيب الأزرار فالإعدادات (العربية فالزر الكبير الأخير)
+const SUPPORTED_LANGS = ['ru', 'en', 'fr', 'es', 'ar'];
 const RTL_LANGS = ['ar'];
 const LANG_STORAGE = 'robaty_lang';
 
