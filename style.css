@@ -2361,7 +2361,8 @@ body {
 }
 
 
-.lang-options {
+.lang-options,
+.color-options {
 
     display: flex;
 
@@ -2371,7 +2372,8 @@ body {
 }
 
 
-.lang-option {
+.lang-option,
+.color-option {
 
     flex: 1 1 calc(50% - 8px);
 
@@ -2392,10 +2394,13 @@ body {
     cursor: pointer;
 
     text-align: center;
+
+    font-family: inherit;
 }
 
 
-.lang-option.active {
+.lang-option.active,
+.color-option.active {
 
     background:
         linear-gradient(
