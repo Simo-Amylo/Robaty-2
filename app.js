@@ -416,6 +416,7 @@ window.clearRobatyMemory = function () {
     localStorage.removeItem(FACTS_STORAGE);
     localStorage.removeItem(NARRATIVE_STORAGE);
     localStorage.removeItem(LAST_VISIT_STORAGE);
+    localStorage.removeItem('robatyMomentsSeen'); // باش يعاود الوميض ديال زر Moments
 
     location.reload();
 };
