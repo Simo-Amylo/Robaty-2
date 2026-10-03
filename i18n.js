@@ -116,6 +116,7 @@ const translations = {
         stat_followers: 'متابع',
         stat_engagement: 'تفاعل',
         profile_bio: '✨ تجمع بين أصالة التراث المغربي وتكنولوجيا المستقبل.<br>☕ محبة للثقافة، الموضة، والدردشة الدافئة.<br>📍 مراكش / المغرب 🇲🇦',
+        story_kicker: 'سمعيني\nمزيان',
         moments_empty: 'قريبا... أول لحظة ديال Robaty 🌙',
         challenge_label: 'تحدي اليوم 👑',
         moments_tab: 'اللحظات'
@@ -216,6 +217,7 @@ const translations = {
         stat_followers: 'Followers',
         stat_engagement: 'Engagement',
         profile_bio: '✨ Blending the authenticity of Moroccan heritage with future technology.<br>☕ Loves culture, fashion, and warm conversation.<br>📍 Marrakech / Morocco 🇲🇦',
+        story_kicker: 'Hear me\nout',
         moments_empty: 'Coming soon… Robaty\u2019s first moment 🌙',
         challenge_label: 'Today\u2019s challenge 👑',
         moments_tab: 'Moments'
@@ -316,6 +318,7 @@ const translations = {
         stat_followers: 'Abonnés',
         stat_engagement: 'Interactions',
         profile_bio: '✨ Un mélange entre l\u2019authenticité du patrimoine marocain et la technologie du futur.<br>☕ Passionnée de culture, de mode et de conversations chaleureuses.<br>📍 Marrakech / Maroc 🇲🇦',
+        story_kicker: 'Écoute-moi\nbien',
         moments_empty: 'Bientôt… le premier moment de Robaty 🌙',
         challenge_label: 'Défi du jour 👑',
         moments_tab: 'Moments'
@@ -416,6 +419,7 @@ const translations = {
         stat_followers: 'Seguidores',
         stat_engagement: 'Interacción',
         profile_bio: '✨ Une la autenticidad del patrimonio marroquí con la tecnología del futuro.<br>☕ Amante de la cultura, la moda y las charlas cálidas.<br>📍 Marrakech / Marruecos 🇲🇦',
+        story_kicker: 'Escúchame\nbien',
         moments_empty: 'Pronto… el primer momento de Robaty 🌙',
         challenge_label: 'Reto del día 👑',
         moments_tab: 'Momentos'
@@ -516,6 +520,7 @@ const translations = {
         stat_followers: 'Подписчики',
         stat_engagement: 'Активность',
         profile_bio: '✨ Соединяет подлинность марокканского наследия с технологиями будущего.<br>☕ Любит культуру, моду и тёплые разговоры.<br>📍 Марракеш / Марокко 🇲🇦',
+        story_kicker: 'Слушай\nвнимательно',
         moments_empty: 'Скоро… первый момент Robaty 🌙',
         challenge_label: 'Вызов дня 👑',
         moments_tab: 'Моменты'

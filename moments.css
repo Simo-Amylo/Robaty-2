@@ -1582,3 +1582,120 @@ button {
 .comments-composer .comments-signin-btn {
     width: 100%;
 }
+
+
+/* ==========================================================================
+   Story: عبارة اليوم "سمعيني مزيان" (كتتكتب فـ 3 ثواني + إيموجي كيتحرك)
+   ========================================================================== */
+
+.story-kicker {
+    position: absolute;
+
+    top: 11%;
+    right: 6%;
+
+    width: 50%;
+
+    z-index: 3;
+
+    text-align: start;
+
+    pointer-events: none;
+}
+
+.story-kicker.kicker-left {
+    left: 6%;
+    right: auto;
+}
+
+.story-kicker.kicker-center {
+    left: 50%;
+    right: auto;
+
+    width: 84%;
+
+    text-align: center;
+
+    transform: translateX(-50%);
+}
+
+.kicker-line {
+    display: block;
+
+    min-height: 1.2em;
+
+    white-space: nowrap;
+
+    font-size: var(--kicker-size, 44px);
+    font-weight: 800;
+    line-height: 1.2;
+
+    color: #ffe3a3;
+
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        0 0 16px rgba(0, 0, 0, 0.4),
+        0 0 26px rgba(229, 179, 92, 0.55);
+}
+
+.kicker-line.typing > span:first-child::after {
+    content: '';
+
+    display: inline-block;
+
+    width: 3px;
+    height: 0.85em;
+
+    margin-inline-start: 4px;
+
+    vertical-align: -0.08em;
+
+    background: currentColor;
+
+    animation: kickerBlink 0.7s steps(1) infinite;
+}
+
+.kicker-emoji {
+    display: inline-block;
+
+    margin-inline-start: 8px;
+
+    font-size: 0.92em;
+
+    opacity: 0;
+
+    transform: scale(0.2) rotate(-25deg);
+
+    text-shadow: none;
+}
+
+.kicker-emoji.show {
+    animation:
+        kickerPop 0.55s cubic-bezier(0.2, 1.5, 0.4, 1) forwards,
+        kickerListen 1.8s ease-in-out 0.7s infinite;
+}
+
+@keyframes kickerBlink {
+    50% { opacity: 0; }
+}
+
+@keyframes kickerPop {
+    from { opacity: 0; transform: scale(0.2) rotate(-25deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes kickerListen {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    40%      { transform: scale(1.1) rotate(-12deg); }
+    70%      { transform: scale(1.04) rotate(6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kicker-emoji.show {
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+    }
+}

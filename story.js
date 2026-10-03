@@ -19,7 +19,10 @@ publishedPosts.forEach(post => {
     storyData[post.id] = {
         image: post.image,
         place: RM.t(post.place, storyLang),
-        text: RM.t(post.story, storyLang)
+        text: RM.t(post.story, storyLang),
+        kicker: post.kicker,           // اختياري: نص خاص بهاد اليوم (سطرين بـ \n) ولا false لإخفاء العبارة
+        kickerEmoji: post.kickerEmoji, // اختياري
+        kickerSide: post.kickerSide    // اختياري: 'right' (افتراضي) | 'left' | 'center'
     };
 });
 
@@ -32,6 +35,156 @@ const storyTimeEl = document.getElementById('storyTime');
 const storyTextEl = document.getElementById('storyText');
 
 let currentStoryId = null;
+
+
+/* ==========================================================================
+   عبارة اليوم: "سمعيني مزيان" كتتكتب حرف بحرف فـ 3 ثواني، وملي تكمل كيبان الإيموجي
+   ========================================================================== */
+
+const KICKER_DURATION = 3000;     // مدة الكتابة (مللي ثانية)
+const KICKER_START_DELAY = 250;   // وقفة صغيرة قبل ما تبدا
+const KICKER_MAX_SIZE = 46;       // أكبر حجم خط (px) — كيصغر وحدو إلا كانت العبارة طويلة
+const KICKER_MIN_SIZE = 24;
+const KICKER_EMOJI = '👂';
+
+const kickerEl = document.getElementById('storyKicker');
+const kickerT1 = document.getElementById('kickerT1');
+const kickerT2 = document.getElementById('kickerT2');
+const kickerEmojiEl = document.getElementById('kickerEmoji');
+
+let kickerRaf = null;
+let kickerTimer = null;
+let kickerToken = 0;
+
+function stopKicker() {
+
+    kickerToken++;
+
+    if (kickerRaf) cancelAnimationFrame(kickerRaf);
+    if (kickerTimer) clearTimeout(kickerTimer);
+
+    kickerRaf = null;
+    kickerTimer = null;
+
+    if (!kickerEl) return;
+
+    kickerT1.textContent = '';
+    kickerT2.textContent = '';
+
+    kickerEmojiEl.classList.remove('show');
+    kickerEmojiEl.textContent = '';
+
+    kickerT1.parentNode.classList.remove('typing');
+    kickerT2.parentNode.classList.remove('typing');
+
+}
+
+function playKicker(story) {
+
+    stopKicker();
+
+    if (!kickerEl) return;
+
+    /* النص: الخاص بالمنشور، وإلا الافتراضي المترجم */
+    if (story.kicker === false) return;
+
+    const raw = story.kicker
+        ? window.RobatyMoments.t(story.kicker, storyLang)
+        : (window.RobatyI18n ? window.RobatyI18n.t('story_kicker') : 'سمعيني\nمزيان');
+
+    const parts = String(raw).split('\n');
+
+    const line1 = Array.from(parts[0] || '');
+    const line2 = Array.from(parts.slice(1).join(' '));
+
+    const total = line1.length + line2.length;
+
+    if (!total) return;
+
+    /* موضع العبارة */
+    kickerEl.classList.toggle('kicker-left', story.kickerSide === 'left');
+    kickerEl.classList.toggle('kicker-center', story.kickerSide === 'center');
+
+    kickerEmojiEl.textContent = story.kickerEmoji || KICKER_EMOJI;
+
+    /* ملاءمة الحجم: كنكتبو النص كامل مؤقتا، كنقيسو، وكنصغرو إلا كان كيزيد على العرض */
+    kickerEl.style.setProperty('--kicker-size', KICKER_MAX_SIZE + 'px');
+    kickerT1.textContent = line1.join('');
+    kickerT2.textContent = line2.join('');
+
+    const available = kickerEl.clientWidth * 0.94;   // هامش أمان باش الإيموجي ما يلصقش فالحافة
+    const w1 = kickerT1.getBoundingClientRect().width;
+    const w2 = kickerT2.getBoundingClientRect().width + kickerEmojiEl.getBoundingClientRect().width + 10;
+    const widest = Math.max(w1, w2, 1);
+
+    const size = Math.max(KICKER_MIN_SIZE, Math.min(KICKER_MAX_SIZE, KICKER_MAX_SIZE * available / widest));
+
+    kickerEl.style.setProperty('--kicker-size', size.toFixed(1) + 'px');
+
+    kickerT1.textContent = '';
+    kickerT2.textContent = '';
+
+    const finish = () => {
+
+        kickerT1.textContent = line1.join('');
+        kickerT2.textContent = line2.join('');
+
+        kickerT1.parentNode.classList.remove('typing');
+        kickerT2.parentNode.classList.remove('typing');
+
+        kickerEmojiEl.classList.add('show');
+
+    };
+
+    /* المستخدمة اللي مفعلة "تقليل الحركة": كنبينو العبارة مباشرة */
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        finish();
+        return;
+    }
+
+    const token = kickerToken;
+
+    kickerTimer = setTimeout(() => {
+
+        const startTime = performance.now();
+        let shown = -1;
+
+        const tick = now => {
+
+            if (token !== kickerToken) return;
+
+            const progress = Math.min(1, (now - startTime) / KICKER_DURATION);
+            const count = Math.min(total, Math.ceil(progress * total));
+
+            if (count !== shown) {
+
+                shown = count;
+
+                const n1 = Math.min(count, line1.length);
+                const n2 = Math.max(0, count - line1.length);
+
+                kickerT1.textContent = line1.slice(0, n1).join('');
+                kickerT2.textContent = line2.slice(0, n2).join('');
+
+                kickerT1.parentNode.classList.toggle('typing', count < line1.length || (count === 0));
+                kickerT2.parentNode.classList.toggle('typing', count >= line1.length && count < total);
+
+            }
+
+            if (progress >= 1) {
+                finish();
+                return;
+            }
+
+            kickerRaf = requestAnimationFrame(tick);
+
+        };
+
+        kickerRaf = requestAnimationFrame(tick);
+
+    }, KICKER_START_DELAY);
+
+}
 
 
 /* فتح Story معينة بالـ id ديالها */
@@ -53,6 +206,8 @@ function openStory(storyId) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
 
+    playKicker(story);
+
 }
 
 
@@ -64,6 +219,8 @@ function closeStory() {
 
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
+
+    stopKicker();
 
     currentStoryId = null;
 
