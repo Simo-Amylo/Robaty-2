@@ -365,6 +365,7 @@
     auth.onAuthStateChanged(function (user) {
         currentUser = user;
         renderAuthUI();
+        renderList();
     });
 
     // ---------------------------------------------------------------
@@ -377,6 +378,8 @@
         var title = document.getElementById('simpleModalTitle');
 
         title.textContent = ct('comments_title', '💬 التعليقات');
+        var sheet = modal.querySelector('.simple-modal-content');
+        if (sheet) sheet.classList.add('comments-sheet');
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
 
@@ -390,12 +393,89 @@
             unsubscribeComments = null;
         }
         currentPostId = null;
+        lastItems = [];
+
+        var sheet = document.querySelector('#simpleModal .simple-modal-content');
+        if (sheet) sheet.classList.remove('comments-sheet');
     }
 
     // ---------------------------------------------------------------
-    // سؤال التحدي ديال اليوم (كيبان فوق التعليقات باش يحرك التفاعل)
+    // الأرقام الحقيقية (تعليقات / مشاركات / إعادة نشر) — collection: postStats
+    // كل وثيقة id ديالها = id المنشور، وفيها: comments, shares, reposts
     // ---------------------------------------------------------------
-    function challengeHTML() {
+    var statsCache = {};
+    var commentsSeen = {};
+
+    function setCountUI(postId, field, value) {
+        var card = document.getElementById(postId);
+        if (!card) return;
+        var el = card.querySelector('[data-stat="' + field + '"]');
+        if (el) el.textContent = value;
+    }
+
+    function applyStats(postId) {
+        var st = statsCache[postId] || {};
+        setCountUI(postId, 'comments', Math.max(Number(st.comments) || 0, commentsSeen[postId] || 0));
+        setCountUI(postId, 'shares', Number(st.shares) || 0);
+        setCountUI(postId, 'reposts', Number(st.reposts) || 0);
+    }
+
+    function bump(postId, field) {
+        var upd = {};
+        upd[field] = firebase.firestore.FieldValue.increment(1);
+
+        return db.collection('postStats').doc(postId).set(upd, { merge: true }).catch(function (err) {
+            console.warn('postStats', err);
+        });
+    }
+
+    window.RobatyCounters = { bump: bump };
+
+    function subscribeToStats() {
+        db.collection('postStats').onSnapshot(function (snap) {
+            snap.forEach(function (doc) {
+                statsCache[doc.id] = doc.data();
+                applyStats(doc.id);
+            });
+        }, function (err) {
+            console.warn('postStats', err);
+        });
+    }
+
+    // ---------------------------------------------------------------
+    // وقت نسبي: "الآن"، "قبل 5 د"، "4 j" ... حسب اللغة
+    // ---------------------------------------------------------------
+    function timeAgo(ms) {
+        var diff = Math.max(0, Math.round((Date.now() - (ms || Date.now())) / 1000));
+
+        try {
+            var lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
+            var rtf = new Intl.RelativeTimeFormat(lang === 'ar' ? 'ar-u-nu-latn' : lang, { numeric: 'auto', style: 'short' });
+
+            if (diff < 60) return rtf.format(0, 'second');
+            if (diff < 3600) return rtf.format(-Math.floor(diff / 60), 'minute');
+            if (diff < 86400) return rtf.format(-Math.floor(diff / 3600), 'hour');
+            if (diff < 604800) return rtf.format(-Math.floor(diff / 86400), 'day');
+            if (diff < 2592000) return rtf.format(-Math.floor(diff / 604800), 'week');
+            if (diff < 31536000) return rtf.format(-Math.floor(diff / 2592000), 'month');
+            return rtf.format(-Math.floor(diff / 31536000), 'year');
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function avatarHTML(photo, name) {
+        if (photo) {
+            return '<img src="' + escapeHtml(photo) + '" alt="" class="comment-avatar" referrerpolicy="no-referrer">';
+        }
+        var letter = String(name || '?').trim().charAt(0).toUpperCase() || '?';
+        return '<div class="comment-avatar comment-avatar-letter">' + escapeHtml(letter) + '</div>';
+    }
+
+    // ---------------------------------------------------------------
+    // سؤال التحدي: تعليق مثبّت من robaty_ai فوق كل التعليقات (بحال إنستغرام)
+    // ---------------------------------------------------------------
+    function pinnedHTML() {
         var RM = window.RobatyMoments;
         if (!RM || !currentPostId) return '';
 
@@ -404,63 +484,161 @@
 
         if (!question) return '';
 
-        return '<div class="comments-challenge">' +
-                   '<div class="comments-challenge-label">' + ct('challenge_label', 'تحدي اليوم 👑') + '</div>' +
-                   '<div class="comments-challenge-text">' + escapeHtml(question) + '</div>' +
+        return '<div class="comment-item pinned">' +
+                   '<img src="robaty-profile.jpg" alt="" class="comment-avatar">' +
+                   '<div class="comment-main">' +
+                       '<div class="comment-head">' +
+                           '<span class="comment-author">robaty_ai</span>' +
+                           '<i class="fa-solid fa-circle-check comment-verify"></i>' +
+                           '<span class="comment-time"><i class="fa-solid fa-thumbtack"></i> ' + escapeHtml(ct('challenge_label', 'تحدي اليوم 👑')) + '</span>' +
+                       '</div>' +
+                       '<div class="comment-text" dir="auto">' + escapeHtml(question) + '</div>' +
+                   '</div>' +
+               '</div>';
+    }
+
+    function commentHTML(c) {
+        var likedBy = c.likedBy || [];
+        var liked = !!(currentUser && likedBy.indexOf(currentUser.uid) !== -1);
+        var ms = c.createdAt && c.createdAt.toMillis ? c.createdAt.toMillis() : null;
+        var name = c.authorName || ct('comments_anonymous', 'مستخدمة');
+
+        return '<div class="comment-item">' +
+                   avatarHTML(c.authorPhoto, name) +
+                   '<div class="comment-main">' +
+                       '<div class="comment-head">' +
+                           '<span class="comment-author" dir="auto">' + escapeHtml(name) + '</span>' +
+                           '<span class="comment-time">' + escapeHtml(timeAgo(ms)) + '</span>' +
+                       '</div>' +
+                       '<div class="comment-text" dir="auto">' + escapeHtml(c.text) + '</div>' +
+                   '</div>' +
+                   '<button type="button" class="comment-like' + (liked ? ' liked' : '') + '" data-comment-id="' + escapeHtml(c.id) + '" aria-label="like">' +
+                       '<i class="' + (liked ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i>' +
+                       '<span>' + (likedBy.length || '') + '</span>' +
+                   '</button>' +
                '</div>';
     }
 
     // ---------------------------------------------------------------
-    // بناء واجهة النافذة (auth + لائحة + خانة الكتابة)
+    // رسم لائحة التعليقات (المثبّت + الأحدث أولا)
+    // ---------------------------------------------------------------
+    var lastItems = [];
+    var listLoaded = false;
+
+    function renderList() {
+        var listEl = document.getElementById('commentsList');
+        if (!listEl) return;
+
+        if (!listLoaded) return; // كنتسناو أول استجابة من Firestore
+
+        var keepScroll = listEl.scrollTop;
+
+        var html = pinnedHTML();
+
+        if (!lastItems.length) {
+            html += '<div class="comments-empty">' + ct('comments_empty', 'مازال ماكاين تعليقات — كوني الأولى ✨') + '</div>';
+        } else {
+            html += lastItems.map(commentHTML).join('');
+        }
+
+        listEl.innerHTML = html;
+        listEl.scrollTop = keepScroll;
+    }
+
+    function toggleCommentLike(commentId) {
+        if (!currentUser) {
+            signInWithGoogle();
+            return;
+        }
+
+        var item = lastItems.filter(function (c) { return c.id === commentId; })[0];
+        var liked = !!(item && item.likedBy && item.likedBy.indexOf(currentUser.uid) !== -1);
+        var FV = firebase.firestore.FieldValue;
+
+        db.collection('comments').doc(commentId).update({
+            likedBy: liked ? FV.arrayRemove(currentUser.uid) : FV.arrayUnion(currentUser.uid)
+        }).catch(function (err) {
+            console.warn('comment like', err);
+        });
+    }
+
+    // ---------------------------------------------------------------
+    // بناء واجهة النافذة (لائحة + خانة الكتابة)
     // ---------------------------------------------------------------
     function renderCommentsShell() {
         var body = document.querySelector('#simpleModal .simple-modal-body');
 
+        listLoaded = false;
+        lastItems = [];
+
         body.innerHTML =
             '<div class="comments-wrap">' +
-                challengeHTML() +
-                '<div id="commentsAuthBar" class="comments-auth-bar"></div>' +
                 '<div id="commentsList" class="comments-list"><div class="comments-loading">' + ct('comments_loading', 'كنحملو التعليقات...') + '</div></div>' +
-                '<div id="commentsInputBar" class="comments-input-bar"></div>' +
+                '<div id="commentsComposer" class="comments-composer"></div>' +
             '</div>';
+
+        document.getElementById('commentsList').addEventListener('click', function (e) {
+            var btn = e.target.closest ? e.target.closest('.comment-like') : null;
+            if (btn) toggleCommentLike(btn.getAttribute('data-comment-id'));
+        });
 
         renderAuthUI();
     }
 
-    function renderAuthUI() {
-        var authBar = document.getElementById('commentsAuthBar');
-        var inputBar = document.getElementById('commentsInputBar');
+    var QUICK_EMOJIS = ['❤️', '🙌', '🔥', '👏', '😢', '😍', '😮', '😂'];
 
-        if (!authBar || !inputBar) {
+    function renderAuthUI() {
+        var composer = document.getElementById('commentsComposer');
+
+        if (!composer) {
             return; // النافذة ماشي مفتوحة دابا
         }
 
-        if (currentUser) {
-            authBar.innerHTML =
-                '<div class="comments-user">' +
-                    '<img src="' + (currentUser.photoURL || '') + '" alt="" class="comments-user-avatar">' +
-                    '<span>' + escapeHtml(currentUser.displayName || ct('comments_anonymous', 'مستخدمة')) + '</span>' +
-                    '<button id="commentsSignOutBtn" class="comments-signout-btn">' + ct('comments_signout', 'خروج') + '</button>' +
-                '</div>';
-
-            document.getElementById('commentsSignOutBtn').addEventListener('click', signOutUser);
-
-            inputBar.innerHTML =
-                '<textarea id="commentInput" class="comment-input" placeholder="' + ct('comments_placeholder', 'اكتبي تعليق...') + '" rows="2"></textarea>' +
-                '<button id="commentSendBtn" class="comment-send-btn">' + ct('send_btn', 'إرسال') + '</button>';
-
-            document.getElementById('commentSendBtn').addEventListener('click', handleSubmitComment);
-
-        } else {
-            authBar.innerHTML =
+        if (!currentUser) {
+            composer.innerHTML =
                 '<button id="commentsSignInBtn" class="comments-signin-btn">' +
                     ct('comments_signin', 'سجلي الدخول بـ Google باش تكتبي تعليق') +
                 '</button>';
 
             document.getElementById('commentsSignInBtn').addEventListener('click', signInWithGoogle);
-
-            inputBar.innerHTML = '';
+            return;
         }
+
+        var name = currentUser.displayName || ct('comments_anonymous', 'مستخدمة');
+
+        composer.innerHTML =
+            '<div class="comments-quick">' +
+                QUICK_EMOJIS.map(function (e) { return '<button type="button" class="quick-emoji">' + e + '</button>'; }).join('') +
+            '</div>' +
+            '<div class="comments-inputrow">' +
+                avatarHTML(currentUser.photoURL, name) +
+                '<div class="comment-input-wrap">' +
+                    '<textarea id="commentInput" class="comment-input" dir="auto" rows="1" placeholder="' + escapeHtml(ct('comments_placeholder', 'اكتبي تعليق...')) + '"></textarea>' +
+                    '<button type="button" id="commentSendBtn" class="comment-send-btn">' + ct('send_btn', 'إرسال') + '</button>' +
+                '</div>' +
+            '</div>' +
+            '<div class="comments-userline">' + escapeHtml(name) + ' · <button type="button" id="commentsSignOutBtn">' + ct('comments_signout', 'خروج') + '</button></div>';
+
+        var input = document.getElementById('commentInput');
+        var sendBtn = document.getElementById('commentSendBtn');
+
+        function refreshInput() {
+            input.style.height = 'auto';
+            input.style.height = Math.min(input.scrollHeight, 90) + 'px';
+            sendBtn.classList.toggle('active', input.value.trim().length > 0);
+        }
+
+        input.addEventListener('input', refreshInput);
+        sendBtn.addEventListener('click', handleSubmitComment);
+        document.getElementById('commentsSignOutBtn').addEventListener('click', signOutUser);
+
+        composer.querySelectorAll('.quick-emoji').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                input.value += btn.textContent;
+                input.focus();
+                refreshInput();
+            });
+        });
     }
 
     // ---------------------------------------------------------------
@@ -471,45 +649,36 @@
             unsubscribeComments();
         }
 
-        var listEl = document.getElementById('commentsList');
-
         // ملاحظة: ماكاينش orderBy هنا عمدا — where + orderBy مع بعض كيحتاجو
         // "composite index" فـ Firestore. كنديرو الترتيب هنا فـ JS عوض.
         unsubscribeComments = db.collection('comments')
             .where('postId', '==', postId)
             .onSnapshot(function (snapshot) {
-                if (snapshot.empty) {
-                    listEl.innerHTML = '<div class="comments-empty">' + ct('comments_empty', 'مازال ماكاين تعليقات — كوني الأولى ✨') + '</div>';
-                    return;
-                }
-
                 var items = [];
+
                 snapshot.forEach(function (doc) {
-                    items.push(doc.data());
+                    var d = doc.data();
+                    d.id = doc.id;
+                    items.push(d);
                 });
 
-                items.sort(function (a, b) {
-                    var ta = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
-                    var tb = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
-                    return ta - tb;
-                });
+                // الأحدث أولا (تعليق لسا كيتكتب كيبقى فوق)
+                function ms(c) {
+                    return c.createdAt && c.createdAt.toMillis ? c.createdAt.toMillis() : Date.now();
+                }
+                items.sort(function (a, b) { return ms(b) - ms(a); });
 
-                var html = '';
-                items.forEach(function (c) {
-                    html +=
-                        '<div class="comment-item">' +
-                            '<img src="' + (c.authorPhoto || '') + '" alt="" class="comment-avatar">' +
-                            '<div class="comment-body">' +
-                                '<div class="comment-author">' + escapeHtml(c.authorName || ct('comments_anonymous', 'مستخدمة')) + '</div>' +
-                                '<div class="comment-text">' + escapeHtml(c.text) + '</div>' +
-                            '</div>' +
-                        '</div>';
-                });
+                lastItems = items;
+                listLoaded = true;
+                renderList();
 
-                listEl.innerHTML = html;
-                listEl.scrollTop = listEl.scrollHeight;
+                commentsSeen[postId] = items.length;
+                applyStats(postId);
             }, function (err) {
-                listEl.innerHTML = '<div class="comments-empty">' + ct('comments_load_error', 'تعذر تحميل التعليقات') + ': ' + escapeHtml(err.message || err.code || '') + '</div>';
+                var listEl = document.getElementById('commentsList');
+                if (listEl) {
+                    listEl.innerHTML = '<div class="comments-empty">' + ct('comments_load_error', 'تعذر تحميل التعليقات') + ': ' + escapeHtml(err.message || err.code || '') + '</div>';
+                }
                 console.error(err);
             });
     }
@@ -541,8 +710,10 @@
             return;
         }
 
+        var postIdAtSend = currentPostId;
+
         db.collection('comments').add({
-            postId: currentPostId,
+            postId: postIdAtSend,
             text: text,
             uid: currentUser.uid,
             authorName: currentUser.displayName || '',
@@ -550,6 +721,13 @@
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }).then(function () {
             input.value = '';
+            input.style.height = 'auto';
+
+            var sendBtn = document.getElementById('commentSendBtn');
+            if (sendBtn) sendBtn.classList.remove('active');
+
+            // العداد الحقيقي (إلا فشل ما كيأثرش على التعليق)
+            bump(postIdAtSend, 'comments');
         }).catch(function (err) {
             alert(ct('comments_send_error', 'تعذر إرسال التعليق') + ': ' + (err.message || err.code || ct('err_unknown', 'خطأ غير معروف')));
             console.error(err);
@@ -568,6 +746,8 @@
     // ربط أزرار "تعليق" فـ moments.html
     // ---------------------------------------------------------------
     document.addEventListener('DOMContentLoaded', function () {
+        subscribeToStats();
+
         document.querySelectorAll('.action-item[data-action="comments"]').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var postId = btn.closest('.post-card').id;

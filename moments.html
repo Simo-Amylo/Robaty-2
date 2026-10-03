@@ -28,6 +28,18 @@
         })();
     </script>
 
+    <script>
+        // ارتفاع الشاشة الحقيقي المرئي (100vh كيكون أكبر من الشاشة فبعض الهواتف)
+        (function () {
+            function setAppHeight() {
+                document.documentElement.style.setProperty('--app-h', window.innerHeight + 'px');
+            }
+            setAppHeight();
+            window.addEventListener('resize', setAppHeight);
+            window.addEventListener('orientationchange', setAppHeight);
+        })();
+    </script>
+
     <title>Robaty - Moments</title>
 
     <link rel="stylesheet" href="moments.css">
@@ -274,9 +286,9 @@
                 '<div class="post-actions-bar">' +
                     '<div class="left-actions">' +
                         '<button class="action-item" aria-label="إعجاب" data-i18n-aria="like_aria" data-action="like"><i class="fa-regular fa-heart"></i><span data-base-count="' + likes + '">' + likes + '</span></button>' +
-                        '<button class="action-item" aria-label="تعليق" data-i18n-aria="comment_aria" data-action="comments"><i class="fa-regular fa-comment"></i><span>' + (Number(st.comments) || 0) + '</span></button>' +
-                        '<button class="action-item" aria-label="إعادة نشر" data-i18n-aria="repost_aria" data-action="repost"><i class="fa-solid fa-retweet"></i><span>' + (Number(st.reposts) || 0) + '</span></button>' +
-                        '<button class="action-item" aria-label="مشاركة" data-i18n-aria="share_aria" data-action="share"><i class="fa-regular fa-paper-plane"></i><span>' + (Number(st.shares) || 0) + '</span></button>' +
+                        '<button class="action-item" aria-label="تعليق" data-i18n-aria="comment_aria" data-action="comments"><i class="fa-regular fa-comment"></i><span data-stat="comments">0</span></button>' +
+                        '<button class="action-item" aria-label="إعادة نشر" data-i18n-aria="repost_aria" data-action="repost"><i class="fa-solid fa-retweet"></i><span data-stat="reposts">0</span></button>' +
+                        '<button class="action-item" aria-label="مشاركة" data-i18n-aria="share_aria" data-action="share"><i class="fa-regular fa-paper-plane"></i><span data-stat="shares">0</span></button>' +
                     '</div>' +
                     '<button class="action-item" aria-label="حفظ" data-i18n-aria="save_post_aria" data-action="save"><i class="fa-regular fa-bookmark"></i></button>' +
                 '</div>' +
@@ -531,7 +543,7 @@
             };
         }
 
-        function openShareFallback(data, mode) {
+        function openShareFallback(data, mode, postId) {
             var waLink = 'https://wa.me/?text=' + encodeURIComponent(data.text + '\n' + data.url);
 
             simpleModalTitle.textContent = (mode === 'repost') ? momentsTr('repost_aria', 'إعادة نشر') : momentsTr('share_aria', 'مشاركة');
@@ -546,6 +558,13 @@
                     '</button>' +
                 '</div>';
 
+            var waBtn = simpleModalBody.querySelector('a.share-fallback-btn');
+            if (waBtn) {
+                waBtn.addEventListener('click', function () {
+                    countOnce(postId, mode);
+                });
+            }
+
             var copyBtn = document.getElementById('copyShareLinkBtn');
             if (copyBtn) {
                 copyBtn.addEventListener('click', function () {
@@ -553,6 +572,7 @@
                     if (navigator.clipboard) {
                         navigator.clipboard.writeText(fullText).then(function () {
                             copyBtn.querySelector('span').textContent = momentsTr('share_copied', 'تم النسخ ✓');
+                            countOnce(postId, mode);
                         });
                     }
                 });
@@ -562,6 +582,24 @@
             simpleModal.setAttribute('aria-hidden', 'false');
         }
 
+        // العداد الحقيقي: مرة وحدة لكل جهاز ولكل منشور، وفقط إلا تمّت المشاركة فعلا
+        var COUNTED_KEY = 'robaty_counted';
+
+        function countOnce(postId, mode) {
+            var field = (mode === 'repost') ? 'reposts' : 'shares';
+            var done = readState(COUNTED_KEY);
+            var key = postId + ':' + field;
+
+            if (done[key]) return;
+
+            done[key] = 1;
+            writeState(COUNTED_KEY, done);
+
+            if (window.RobatyCounters) {
+                window.RobatyCounters.bump(postId, field);
+            }
+        }
+
         document.querySelectorAll('.action-item[data-action="share"], .action-item[data-action="repost"]').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var postId = btn.closest('.post-card').id;
@@ -569,9 +607,11 @@
                 var data = buildShareData(postId, mode);
 
                 if (navigator.share) {
-                    navigator.share(data).catch(function () {});
+                    navigator.share(data).then(function () {
+                        countOnce(postId, mode);
+                    }).catch(function () {});
                 } else {
-                    openShareFallback(data, mode);
+                    openShareFallback(data, mode, postId);
                 }
             });
         });

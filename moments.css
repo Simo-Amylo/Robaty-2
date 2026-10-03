@@ -20,6 +20,7 @@
 body {
     background: #000;
     min-height: 100vh;
+    min-height: var(--app-h, 100vh);
 
     display: flex;
     justify-content: center;
@@ -44,6 +45,7 @@ button {
     max-width: 426px;
 
     height: 100vh;
+    height: var(--app-h, 100vh);
     max-height: 908px;
 
     padding: 6px;
@@ -439,8 +441,6 @@ button {
 
 .post-caption-section {
     padding: 0 14px 16px;
-
-    direction: rtl;
 }
 
 
@@ -1262,4 +1262,323 @@ button {
     color: rgba(255, 255, 255, 0.88);
 
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+
+/* اللغات من اليسار لليمين (الإنجليزية، الفرنسية، الإسبانية، الروسية) */
+
+:root[dir="ltr"] .caption-username,
+:root[dir="ltr"] .caption-more-btn {
+    text-align: left;
+}
+
+
+/* ==========================================================================
+   التعليقات على طريقة إنستغرام
+   ========================================================================== */
+
+.comments-sheet {
+    height: 84%;
+    max-height: none;
+
+    padding: 10px 0 0;
+
+    border-radius: 22px 22px 0 0;
+}
+
+.comments-sheet::before {
+    content: '';
+
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 4px;
+
+    margin: 0 auto 8px;
+
+    border-radius: 2px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.comments-sheet .simple-modal-header {
+    position: relative;
+
+    flex-shrink: 0;
+
+    justify-content: center;
+
+    margin: 0;
+    padding: 4px 14px 12px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comments-sheet .close-story-btn {
+    position: absolute;
+
+    top: 0;
+    inset-inline-start: 14px;
+}
+
+.comments-sheet .simple-modal-body {
+    align-items: stretch;
+    justify-content: flex-start;
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.comments-wrap {
+    gap: 0;
+}
+
+.comments-list {
+    flex: 1;
+
+    min-height: 0;
+    max-height: none;
+
+    padding: 14px;
+
+    gap: 18px;
+
+    overflow-y: auto;
+}
+
+.comment-item {
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+.comment-avatar {
+    width: 36px;
+    height: 36px;
+}
+
+.comment-avatar-letter {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #c2185b;
+
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.comment-main {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.comment-head {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 2px;
+}
+
+.comment-author {
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    margin-bottom: 0;
+}
+
+.comment-verify {
+    color: #3897f0;
+
+    font-size: 11px;
+}
+
+.comment-time {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.comment-item.pinned .comment-time {
+    color: var(--gold);
+
+    font-weight: 700;
+}
+
+.comment-text {
+    color: #f2f2f2;
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.comment-like {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+
+    gap: 2px;
+
+    min-width: 30px;
+
+    padding: 2px 4px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-size: 11.5px;
+
+    cursor: pointer;
+}
+
+.comment-like i {
+    font-size: 16px;
+}
+
+.comment-like.liked i {
+    color: #ff3040;
+}
+
+.comments-composer {
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding: 8px 14px 12px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: var(--surface);
+}
+
+.comments-quick {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.quick-emoji {
+    border: 0;
+
+    background: transparent;
+
+    font-size: 24px;
+    line-height: 1;
+
+    padding: 2px;
+
+    cursor: pointer;
+}
+
+.comments-inputrow {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.comments-inputrow .comment-avatar {
+    flex-shrink: 0;
+}
+
+.comment-input-wrap {
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    padding-inline: 14px 6px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.comment-input-wrap .comment-input {
+    flex: 1;
+
+    min-width: 0;
+    max-height: 90px;
+
+    padding: 9px 0;
+
+    border: 0;
+    border-radius: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    font-size: 14px;
+}
+
+.comment-input-wrap .comment-send-btn {
+    padding: 6px 10px;
+
+    border-radius: 16px;
+
+    background: transparent;
+
+    color: var(--gold);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    opacity: 0.35;
+
+    pointer-events: none;
+}
+
+.comment-input-wrap .comment-send-btn.active {
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.comments-userline {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+.comments-userline button {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+.comments-composer .comments-signin-btn {
+    width: 100%;
 }

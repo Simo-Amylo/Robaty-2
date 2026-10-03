@@ -34,8 +34,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet">
 
+    <script>
+        // ارتفاع الشاشة الحقيقي المرئي (100vh كيكون أكبر من الشاشة فبعض الهواتف)
+        (function () {
+            function setAppHeight() {
+                document.documentElement.style.setProperty('--app-h', window.innerHeight + 'px');
+            }
+            setAppHeight();
+            window.addEventListener('resize', setAppHeight);
+            window.addEventListener('orientationchange', setAppHeight);
+        })();
+    </script>
+
     <!-- نص الـ Story الجديد (profile.css ما فيهش هاد الأنماط) -->
     <style>
+        .outer-gold-frame {
+            height: 100vh;
+            height: var(--app-h, 100vh);
+        }
+
         .story-bg-img {
             transform: scale(1.22);
         }
