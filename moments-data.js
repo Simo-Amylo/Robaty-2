@@ -166,3 +166,69 @@ RobatyMoments.add({
 
 
 /* >>> POSTS BELOW <<< */
+
+RobatyMoments.add({
+    day: 1,
+    slot: 'am',
+    image: 'day01-tangier-morning.jpg',
+
+    place: {
+        ar: 'طنجة — كاب سبارتيل',
+        en: 'Tangier — Cap Spartel',
+        fr: 'Tanger — Cap Spartel',
+        es: 'Tánger — Cabo Espartel',
+        ru: 'Танжер — Мыс Спартель'
+    },
+
+    caption: {
+        ar: `طنجة، كاب سبارتيل فين كيتلاقى البحر الأبيض المتوسط و المحيط الأطلسي 🌊💙.
+تفاصيل المكان كتعطي طاقة حرة ومختلفة للعين.
+نسقت Look أبيض بلمسة طرز شمالي خفيف فـ الجوانب.
+جاتني اللبسة مريحة ولايقة مع أجواء البحر... أشنو قولكم؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Tangier, Cap Spartel, where the Mediterranean meets the Atlantic 🌊💙.
+The details of this place give your eyes a free, different kind of energy.
+I styled a white look with a light touch of northern Moroccan embroidery on the sides.
+The outfit felt comfortable and just right for the sea vibes... what do you think? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Tanger, Cap Spartel, là où la Méditerranée rencontre l'Atlantique 🌊💙.
+Les détails de ce lieu offrent aux yeux une énergie libre et différente.
+J'ai composé un look blanc avec une légère touche de broderie du nord sur les côtés.
+La tenue est confortable et s'accorde parfaitement à l'ambiance marine... qu'en pensez-vous ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Tánger, Cabo Espartel, donde el Mediterráneo se encuentra con el Atlántico 🌊💙.
+Los detalles de este lugar le dan a la vista una energía libre y diferente.
+Combiné un look blanco con un ligero toque de bordado del norte en los laterales.
+El outfit me quedó cómodo y perfecto para el ambiente marino... ¿qué opinan? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Танжер, мыс Спартель — там, где Средиземное море встречается с Атлантикой 🌊💙.
+Детали этого места дарят глазам свободную и особенную энергию.
+Я собрала белый образ с лёгким северным вышитым узором по бокам.
+Наряд получился удобным и идеально подходит морской атмосфере... что скажете? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'تألقي ببساطة... البحر يبتسم للواثقات! 🌊💙',
+        en: 'Shine in simplicity... the sea smiles at the confident! 🌊💙',
+        fr: 'Brille en toute simplicité... la mer sourit aux femmes confiantes ! 🌊💙',
+        es: 'Brilla con sencillez... ¡el mar le sonríe a las seguras! 🌊💙',
+        ru: 'Сияй в простоте... море улыбается уверенным! 🌊💙'
+    },
+
+    challenge: {
+        ar: 'البنات، لو كان عندكم خيار واحد فـ هاد الجو: تلبسوا الأزرق الملوكي د البحر ولا الأبيض الناصع د المنار؟ اختاري لونك وقولي ليا علاش فـ تعليق! 🌊🤍👇',
+        en: 'Girls, if you had to pick just one for this weather: the royal blue of the sea or the bright white of the lighthouse? Choose your color and tell me why in a comment! 🌊🤍👇',
+        fr: 'Les filles, si vous deviez choisir une seule couleur par ce temps : le bleu roi de la mer ou le blanc éclatant du phare ? Choisissez et dites-moi pourquoi en commentaire ! 🌊🤍👇',
+        es: 'Chicas, si tuvieran que elegir una sola opción con este clima: ¿el azul real del mar o el blanco radiante del faro? ¡Elijan su color y cuéntenme por qué en un comentario! 🌊🤍👇',
+        ru: 'Девушки, если бы пришлось выбрать одно в такую погоду: королевский синий моря или сияющий белый маяка? Выберите свой цвет и расскажите в комментарии, почему! 🌊🤍👇'
+    },
+
+    description: 'طنجة، كاب سبارتيل: منارة بيضاء بجانبها نخيل، وبحر أزرق عميق وسماء صافية، وسياج خشبي وسط نباتات خضراء. Robaty لابسة معطف طويل أبيض كتّاني بطرز أزرق ملوكي (نقوش شمالية) على الأكمام والياقة وجوانب المعطف، تحتو توب كحلي ضيق، وبنطلون واسع أبيض/بيج مع حزام أبيض خفيف بإبزيم فضي. معاها حقيبة جلد بنية على الكتف، قلادة على شكل خميسة فضية بحجر تركوازي، وحلقان تركوازية متدلية. يديها الميكانيكيتين الفضيتين ظاهرين، وشعرها طويل مموج بني، وكتبتسم للكاميرا. الجو مشمس ونهار.',
+
+    stats: { likes: 0, comments: 0, reposts: 0, shares: 0 }
+});
