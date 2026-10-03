@@ -393,6 +393,24 @@
     }
 
     // ---------------------------------------------------------------
+    // سؤال التحدي ديال اليوم (كيبان فوق التعليقات باش يحرك التفاعل)
+    // ---------------------------------------------------------------
+    function challengeHTML() {
+        var RM = window.RobatyMoments;
+        if (!RM || !currentPostId) return '';
+
+        var post = RM.getPost(currentPostId.replace(/^post-/, ''));
+        var question = post && post.challenge ? RM.t(post.challenge) : '';
+
+        if (!question) return '';
+
+        return '<div class="comments-challenge">' +
+                   '<div class="comments-challenge-label">' + ct('challenge_label', 'تحدي اليوم 👑') + '</div>' +
+                   '<div class="comments-challenge-text">' + escapeHtml(question) + '</div>' +
+               '</div>';
+    }
+
+    // ---------------------------------------------------------------
     // بناء واجهة النافذة (auth + لائحة + خانة الكتابة)
     // ---------------------------------------------------------------
     function renderCommentsShell() {
@@ -400,6 +418,7 @@
 
         body.innerHTML =
             '<div class="comments-wrap">' +
+                challengeHTML() +
                 '<div id="commentsAuthBar" class="comments-auth-bar"></div>' +
                 '<div id="commentsList" class="comments-list"><div class="comments-loading">' + ct('comments_loading', 'كنحملو التعليقات...') + '</div></div>' +
                 '<div id="commentsInputBar" class="comments-input-bar"></div>' +

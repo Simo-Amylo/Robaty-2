@@ -739,6 +739,12 @@ async function requestGeminiOnce(userText, imageData, audioData) {
         fullInstruction += `\n\n[ذاكرة سردية عن العلاقة معها]: ${narrativeMemory}\nاستعملي هاد السياق لخلق إحساس استمرارية طبيعي (بلا ما تلخصيه أو تعيديه حرفياً)، فقط إذا كان مناسباً لسياق الرد الحالي.`;
     }
 
+    // اللحظات المنشورة فـ Moments: Robaty كتعرف شنو لبسات وفين كانت فكل صورة
+    const momentsCtx = window.RobatyMoments ? window.RobatyMoments.getChatContext() : '';
+    if (momentsCtx) {
+        fullInstruction += `\n\n[اللحظات اللي نشرتيها فعلاً فـ Moments (الأحدث أولاً)]:\n${momentsCtx}\n\nهادي هي الصور اللي نشرتيها بنفسك، فإلا سألتك المستخدمة على لباسك، ألوانك، الإكسسوارات، المكان، ولا شي صورة معينة، جاوبيها بثقة وبشكل طبيعي كأنها لحظات عشتيها فعلاً، اعتماداً على هاد الوصف. ما تخترعيش تفاصيل ما كاينينش فيه (إلا ما كانتش التفصيلة مذكورة، قوليها بصراحة أنك ماشي متأكدة). وما تتكلميش على صور ماشي فهاد اللائحة، حيت ما نشرتيهاش بعد.`;
+    }
+
     const recentHistory = chatHistory.slice(-20).map(turn => ({
         role: turn.role === 'user' ? 'user' : 'model',
         parts: [{ text: turn.text }]

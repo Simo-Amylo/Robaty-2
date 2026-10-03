@@ -1,18 +1,27 @@
 /* ==========================================================================
 Robaty — نظام Story موحّد (مشترك بين moments.html و profile.html)
+المحتوى كله كيجي من moments-data.js (خاص يتحط قبل story.js فـ HTML).
+كل Story = صورة بملء الشاشة + جملة قصيرة مكتوبة فوقها من الأسفل.
 ========================================================================== */
 
-/* ترتيب الـ Stories ديال اليوم (خاص يتزاد فيه أي يوم جديد فالمستقبل) */
-const storyOrder = [
-    'day01-morning',
-    'day01-evening'
-];
+const RM = window.RobatyMoments;
 
-/* storyData كيتبنى ديناميكيًا حسب اللغة الحالية (via i18n.js).
-   خاص i18n.js يتحط قبل story.js فـ HTML. */
-const storyData = window.RobatyI18n
-    ? window.RobatyI18n.getStoryData(window.RobatyI18n.getCurrentLang())
-    : {};
+const storyLang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
+
+/* الـ Stories المتاحة دابا (الأحدث أولا) */
+const publishedPosts = RM ? RM.getPublished() : [];
+
+const storyOrder = publishedPosts.map(post => post.id);
+
+const storyData = {};
+
+publishedPosts.forEach(post => {
+    storyData[post.id] = {
+        image: post.image,
+        place: RM.t(post.place, storyLang),
+        text: RM.t(post.story, storyLang)
+    };
+});
 
 
 /* عناصر Story — نفس الـ ids فـ moments.html و profile.html */
@@ -20,35 +29,9 @@ const storyData = window.RobatyI18n
 const modal = document.getElementById('storyModal');
 const storyImageEl = document.getElementById('storyImage');
 const storyTimeEl = document.getElementById('storyTime');
-const storyKickerEl = document.getElementById('storyKicker');
-const storyQuestionEl = document.getElementById('storyQuestion');
-const storyOptionsEl = document.getElementById('storyOptions');
-const storyResultEl = document.getElementById('storyResult');
+const storyTextEl = document.getElementById('storyText');
 
 let currentStoryId = null;
-
-
-/* localStorage محمي: بعض المتصفحات (وضع خاص/تصفح خاص) كيمنعو الوصول ليه */
-
-function getSavedVote(storyId) {
-
-    try {
-        return localStorage.getItem(`robaty_poll_${storyId}`);
-    } catch (error) {
-        return null;
-    }
-
-}
-
-function saveVote(storyId, optionId) {
-
-    try {
-        localStorage.setItem(`robaty_poll_${storyId}`, optionId);
-    } catch (error) {
-        /* التصويت غادي يخدم فهاد الجلسة، غير ماغاديش يتحفظ */
-    }
-
-}
 
 
 /* فتح Story معينة بالـ id ديالها */
@@ -57,51 +40,15 @@ function openStory(storyId) {
 
     const story = storyData[storyId];
 
-    const elementsReady = modal && storyImageEl && storyTimeEl &&
-        storyKickerEl && storyQuestionEl && storyOptionsEl && storyResultEl;
+    const elementsReady = modal && storyImageEl && storyTimeEl && storyTextEl;
 
     if (!story || !elementsReady) return;
 
     currentStoryId = storyId;
 
     storyImageEl.src = story.image;
-    storyTimeEl.textContent = story.time;
-    storyKickerEl.textContent = story.kicker;
-    storyQuestionEl.textContent = story.question;
-    storyResultEl.textContent = '';
-    storyOptionsEl.innerHTML = '';
-
-    const savedVote = getSavedVote(storyId);
-
-    story.options.forEach(([id, label]) => {
-
-        const button = document.createElement('button');
-
-        button.className = 'story-option';
-        button.type = 'button';
-        button.textContent = label;
-
-        if (savedVote === id) {
-            button.classList.add('selected');
-            storyResultEl.textContent = story.result;
-        }
-
-        button.addEventListener('click', () => {
-
-            storyOptionsEl
-                .querySelectorAll('.story-option')
-                .forEach(item => item.classList.remove('selected'));
-
-            button.classList.add('selected');
-            storyResultEl.textContent = story.result;
-
-            saveVote(storyId, id);
-
-        });
-
-        storyOptionsEl.appendChild(button);
-
-    });
+    storyTimeEl.textContent = story.place;
+    storyTextEl.textContent = story.text;
 
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
@@ -123,7 +70,7 @@ function closeStory() {
 }
 
 
-/* التنقل بين الـ Stories (يمين/شمال) */
+/* التنقل بين الـ Stories (يمين = الأقدم، شمال = الأحدث) */
 
 function goToStory(direction) {
 
@@ -133,7 +80,15 @@ function goToStory(direction) {
 
     if (currentIndex === -1) return;
 
-    const nextIndex = (currentIndex + direction + storyOrder.length) % storyOrder.length;
+    const nextIndex = currentIndex + direction;
+
+    /* آخر Story: كنسدو (بحال إنستغرام). أول Story: كنبقاو فيها */
+    if (nextIndex >= storyOrder.length) {
+        closeStory();
+        return;
+    }
+
+    if (nextIndex < 0) return;
 
     openStory(storyOrder[nextIndex]);
 
@@ -155,7 +110,7 @@ document
     });
 
 
-/* ربط صورة البروفايل (فـ profile.html) — كتفتح أول Story ديال اليوم */
+/* ربط صورة البروفايل (فـ profile.html) — كتفتح آخر Story منشورة */
 
 const openStoryBtn = document.getElementById('openStoryBtn');
 
@@ -183,7 +138,7 @@ if (closeStoryBtn) {
 }
 
 
-/* الضغط خارج بطاقة التفاعل (على الصورة أو المساحة الفارغة) */
+/* الضغط خارج النص (على الصورة أو المساحة الفارغة) */
 /* ملاحظة: .story-content كيغطي .story-backdrop بالكامل، فالضغطة
    ما توصلش لـ backdrop أبدا — الحل: نستمعو للضغط مباشرة على
    .story-content أو على صورة الـ Story نفسها */

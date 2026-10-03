@@ -1152,3 +1152,114 @@ button {
     }
 
 }
+
+
+/* ==========================================================================
+   اللحظات الجديدة: المكان تحت الاسم، نص الـ Story، سؤال التحدي
+   ========================================================================== */
+
+/* اسم المكان تحت اسم الحساب (بدل "اليوم · 07:00 AM") */
+
+.post-time i {
+    color: var(--gold);
+
+    font-size: 9px;
+
+    margin-inline-end: 3px;
+}
+
+
+/* Story: جملة قصيرة مكتوبة على الصورة من الأسفل */
+
+.story-text-wrap {
+    position: relative;
+
+    z-index: 4;
+
+    margin-top: auto;
+    margin-bottom: 34px;
+
+    padding: 0 18px;
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+.story-text {
+    color: #fff;
+
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.55;
+
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 3px 16px rgba(0, 0, 0, 0.75);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* سؤال التحدي فوق التعليقات */
+
+.comments-challenge {
+    flex-shrink: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+
+    background: linear-gradient(
+        90deg,
+        rgba(229, 179, 92, 0.18),
+        rgba(229, 179, 92, 0.05)
+    );
+}
+
+.comments-challenge-label {
+    color: var(--gold);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+.comments-challenge-text {
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+
+/* ما كاينش منشورات بعد */
+
+.moments-empty {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    text-align: center;
+
+    padding: 60px 20px;
+}
+
+
+/* Story: تقريب خفيف للصورة باش تتخبا الشارات المطبوعة فالصورة (الوقت والمكان) وتبان الصورة ممتلئة */
+
+.story-bg-img {
+    transform: scale(1.22);
+}
+
+
+/* مكان الصورة فهيدر الـ Story: وضوح أكبر فوق الصور الفاتحة */
+
+.story-time {
+    color: rgba(255, 255, 255, 0.88);
+
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
