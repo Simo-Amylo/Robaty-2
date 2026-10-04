@@ -791,3 +791,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 4,
+    slot: 'pm',
+    image: 'day04-fes-evening.jpg',
+
+    place: {
+        ar: 'فاس — مدرسة العطارين',
+        en: 'Fez — Al-Attarine Madrasa',
+        fr: 'Fès — Médersa Al-Attarine',
+        es: 'Fez — Madraza Al Attarine',
+        ru: 'Фес — медресе Аль-Аттарин'
+    },
+
+    caption: {
+        ar: `فاس، مدرسة العطارين وجمال الزليج الفاسي فـ العشية 💙✨
+دقايق فـ هاد الفناء التاريخي كافية باش تبهرك بدقة الصنعة المغربية والنقش على الخشب والجبس.
+هدوء المكان فـ هاد الوقت كيعطي قيمة خاصة لكل التفاصيل.
+اليوم نسقت Look فخم بكيمونو مخملي بالبلو ملوكي وطرز ذهبي متناسق مع ألوان الزليج ✨
+جاني أنيق وراقي لمساء العاصمة العلمية.. شنو نظركم البنات فـ هاد التناسق؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Fez, Al-Attarine Madrasa and the beauty of Fassi zellige in the evening 💙✨
+A few minutes in this historic courtyard are enough to dazzle you with the precision of Moroccan craftsmanship and the carving in wood and plaster.
+The calm of the place at this hour gives special value to every detail.
+Today I styled a luxurious look with a royal-blue velvet kimono and gold embroidery that matches the colors of the zellige ✨
+It feels elegant and refined for an evening in the capital of knowledge... what do you think of this coordination, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Fès, la médersa Al-Attarine et la beauté du zellige fassi en soirée 💙✨
+Quelques minutes dans cette cour historique suffisent pour vous éblouir par la finesse de l’artisanat marocain et les sculptures sur bois et sur plâtre.
+Le calme du lieu à cette heure donne une valeur particulière à chaque détail.
+Aujourd’hui, j’ai composé un look somptueux avec un kimono en velours bleu roi et une broderie dorée assortie aux couleurs du zellige ✨
+Élégant et raffiné pour une soirée dans la capitale du savoir... que pensez-vous de cette harmonie, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Fez, la Madraza Al Attarine y la belleza del zellige fasí al atardecer 💙✨
+Unos minutos en este patio histórico bastan para deslumbrarte con la precisión de la artesanía marroquí y el tallado en madera y yeso.
+La calma del lugar a esta hora da un valor especial a cada detalle.
+Hoy combiné un look suntuoso con un quimono de terciopelo azul real y bordado dorado a juego con los colores del zellige ✨
+Se ve elegante y refinado para una tarde en la capital del saber... ¿qué opinan de la combinación, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Фес, медресе Аль-Аттарин и красота фесского зелиджа вечером 💙✨
+Нескольких минут в этом историческом дворе достаточно, чтобы поразить вас точностью марокканского мастерства и резьбой по дереву и гипсу.
+Тишина этого места в такой час придаёт особую ценность каждой детали.
+Сегодня я собрала роскошный образ: бархатное кимоно королевского синего цвета с золотой вышивкой в тон зелиджу ✨
+Элегантно и изысканно для вечера в столице знаний... как вам такое сочетание, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'اهتمامك بالتفاصيل الصغيرة هو اللي كيعطي لشخصيتك قيمة كبيرة! 💎✨',
+        en: 'Your attention to the little details is what gives your personality great value! 💎✨',
+        fr: 'C’est ton attention aux petits détails qui donne une grande valeur à ta personnalité ! 💎✨',
+        es: '¡Tu atención a los pequeños detalles es lo que le da un gran valor a tu personalidad! 💎✨',
+        ru: 'Твоё внимание к мелочам — вот что придаёт твоей личности большую ценность! 💎✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الإطلالات الفخمة د المساء: شكون كتعشق الأزرق الملوكي مع الذهبي؟ ولا كتفضلوا الخضر الملكي/الأحمر الجوهري؟ اختاري لونك المفضل فـ تعليق! 💙👑👇',
+        en: 'Girls, for luxurious evening looks: who loves royal blue with gold? Or do you prefer royal green or jewel red? Pick your favorite color in a comment! 💙👑👇',
+        fr: 'Les filles, pour les looks de soirée somptueux : qui adore le bleu roi avec l’or ? Ou préférez-vous le vert royal ou le rouge rubis ? Choisissez votre couleur préférée en commentaire ! 💙👑👇',
+        es: 'Chicas, para los looks de noche más suntuosos: ¿a quién le encanta el azul real con dorado? ¿O prefieren el verde real o el rojo rubí? ¡Elijan su color favorito en un comentario! 💙👑👇',
+        ru: 'Девушки, для роскошных вечерних образов: кто обожает королевский синий с золотым? Или вы предпочитаете королевский зелёный либо рубиново-красный? Выберите любимый цвет в комментарии! 💙👑👇'
+    },
+
+    description: 'فاس، فناء مدرسة العطارين فالمدينة القديمة وقت العشية/الغروب: فناء معماري أصيل بزليج فاسي أزرق وذهبي، نقش على الخشب والجبس، أقواس، نافورة رخامية، فوانيس مضيئة وإضاءة مسائية دافئة، وأرضية رخامية فسيفسائية لامعة. Robaty لابسة كيمونو/قفطان عصري من المخمل بالأزرق الملكي بطرز ذهبي (سفيفة وطرز النطع) على الحواف والأكمام، فوق توب حريري كريمي وبنطلون أبيض أنيق. قلادة خميسة فضية بأحجار زرقاء على رقبتها المعدنية، أقراط صغيرة متدلية زرقاء، أساور فضية فاسية (دملج) على معصميها الميكانيكيين، وحقيبة صغيرة مخملية زرقاء مطرزة بالذهب بشرّابة. كتبتسم وراسها مايل وشعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
