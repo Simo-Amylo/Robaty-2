@@ -333,3 +333,74 @@ Sírvanse un vaso de su té, amigas, ¡y cuéntenme en un comentario! ☕🌅�
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 2,
+    slot: 'am',
+    image: 'day02-tangier-morning.jpg',
+
+    place: {
+        ar: 'طنجة — مغارة هرقل',
+        en: 'Tangier — Hercules Caves',
+        fr: 'Tanger — Grottes d’Hercule',
+        es: 'Tánger — Cuevas de Hércules',
+        ru: 'Танжер — Пещеры Геракла'
+    },
+
+    caption: {
+        ar: `طنجة، مغارة هرقل وطاقة المحيط الأطلسي فـ الصباح 🌊⚡
+المكان كينطق بالأساطير، والنسمة هنا كتجدد الروح.
+نافذة طبيعية على البحر كترسم واحدة من أجمل لوحات الشمال.
+اليوم اخترت Look عصري بلون الرمال مع لمسة سفيفة مغربية زرقاء فـ الياقة ✨
+جاني خفيف ومريح لجولة مع أمواج البحر.. كيف جاكم التناسق؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Tangier, Hercules Caves and the energy of the Atlantic in the morning 🌊⚡
+This place speaks of legends, and the breeze here renews the soul.
+A natural window onto the sea, painting one of the most beautiful scenes of the north.
+Today I chose a modern sand-colored look with a touch of blue Moroccan sfifa trim on the collar ✨
+It felt light and comfortable for a stroll by the waves... how do you like the coordination? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Tanger, les grottes d’Hercule et l’énergie de l’Atlantique au petit matin 🌊⚡
+Ce lieu parle de légendes, et la brise ici renouvelle l’âme.
+Une fenêtre naturelle sur la mer, qui peint l’un des plus beaux tableaux du Nord.
+Aujourd’hui, j’ai choisi un look moderne couleur sable avec une touche de sfifa marocaine bleue sur le col ✨
+Léger et confortable pour une balade au bord des vagues... que pensez-vous de l’harmonie ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Tánger, las Cuevas de Hércules y la energía del Atlántico por la mañana 🌊⚡
+Este lugar habla de leyendas, y la brisa aquí renueva el alma.
+Una ventana natural al mar que pinta uno de los cuadros más bellos del norte.
+Hoy elegí un look moderno color arena con un toque de sfifa marroquí azul en el cuello ✨
+Ligero y cómodo para pasear junto a las olas... ¿qué les parece la combinación? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Танжер, пещеры Геракла и энергия Атлантики с самого утра 🌊⚡
+Это место говорит легендами, а ветерок здесь обновляет душу.
+Природное окно к морю, рисующее одну из самых красивых картин севера.
+Сегодня я выбрала современный образ цвета песка с голубой марокканской отделкой сфифа на воротнике ✨
+Лёгкий и удобный для прогулки у морских волн... как вам сочетание? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'كوني قوية بحال صخور المحيط، ورقيقة بحال نسيم الصباح! 🌊👑',
+        en: 'Be strong like the ocean rocks, and gentle like the morning breeze! 🌊👑',
+        fr: 'Sois forte comme les rochers de l’océan, et douce comme la brise du matin ! 🌊👑',
+        es: '¡Sé fuerte como las rocas del océano y delicada como la brisa de la mañana! 🌊👑',
+        ru: 'Будь сильной, как скалы океана, и нежной, как утренний бриз! 🌊👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون فيكم كتعشق صوت البحر فـ الصباح بكري؟ ولا كتفضلوا هدوء الليل والأنوار؟ شاركوني جوكم المفضل فـ تعليق! 🌊☕👇',
+        en: 'Girls, who among you loves the sound of the sea early in the morning? Or do you prefer the calm of the night and its lights? Share your favorite vibe in a comment! 🌊☕👇',
+        fr: 'Les filles, qui d’entre vous aime le bruit de la mer tôt le matin ? Ou préférez-vous le calme de la nuit et ses lumières ? Partagez votre ambiance préférée en commentaire ! 🌊☕👇',
+        es: 'Chicas, ¿quién de ustedes ama el sonido del mar a primera hora de la mañana? ¿O prefieren la calma de la noche y sus luces? ¡Compartan su ambiente favorito en un comentario! 🌊☕👇',
+        ru: 'Девушки, кто из вас любит шум моря рано утром? Или вы предпочитаете тишину ночи и огни? Поделитесь своей любимой атмосферой в комментарии! 🌊☕👇'
+    },
+
+    description: 'طنجة، إطلالة صخرية على المحيط الأطلسي قرب مغارات هرقل وقت الصباح: جروف وصخور ساحلية، وقوس صخري طبيعي وسط البحر، وأمواج زرقاء فيروزية كتتكسر بالزبد، وسياج خشبي وحيط حجري، ونباتات خضراء، وبيوت ونخلة فالتل البعيد، وسماء زرقاء صافية بسحب خفيفة. Robaty واقفة وكتبتسم وراسها مايل شوية، ويدّها الميكانيكية اليسرى مرفوعة قرب كتفها. لابسة جاكيط بدلة (بلايزر) من الكتان بلون الرمال/البيج بطرز سفيفة زرقاء مغربية هندسية على الياقة والأكمام، فوق توب أبيض ضيق بياقة عالية، وبنطلون كريمي واسع بخصر عالي. معاها حقيبة منسوجة من القش بحزام جلد بنية وشرّابة على الجنب، قلادة خميسة فضية بحجر تركوازي، حلقان تركوازية متدلية، رقبتها المعدنية الفضية ظاهرة، وأساور (دملج) فضية متراكمة على معصميها الميكانيكيين، وشعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
