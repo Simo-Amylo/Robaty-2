@@ -1699,3 +1699,10 @@ button {
         transform: none;
     }
 }
+
+
+/* الحفاظ على الأسطر فنص التعليق (سؤال التحدي فيه عدة أسطر) */
+
+.comment-text {
+    white-space: pre-line;
+}
