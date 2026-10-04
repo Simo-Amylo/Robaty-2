@@ -98,28 +98,131 @@ Robaty — ملف اللحظات (Moments) الموحّد
         return null;
     }
 
-    /* رقم اليوم والفترة بالعربية، مثلا "اليوم 3 — الصباح" (للدردشة فقط) */
+    /* ======================================================================
+       سياق اللحظات لـ Robaty فالدردشة
+       ما كنرسلوش كاع الأوصاف فكل رسالة (مع المئات غادي يثقل التطبيق).
+       كنرسلو فقط:
+         1) آخر RECENT_COUNT منشورات (كاملة)
+         2) المنشورات القديمة اللي كتشبه شنو سقساتها المستخدمة (مكان، لباس، لون، "اليوم 5"...)
+         3) لائحة قصيرة بالمدن اللي زارتها Robaty
+       النتيجة: حجم السياق تقريبا ثابت، سواء كاين 60 ولا 600 منشور.
+    ====================================================================== */
+
+    var RECENT_COUNT = 6;     // منشورات أخيرة كاملة
+    var FULL_EXTRAS = 4;      // أول هاد العدد كيتزادو معاهم النص/Story/التحدي
+    var MAX_MATCHES = 4;      // أقصى عدد منشورات قديمة مشابهة للسؤال
+
+    function norm(str) {
+        return String(str || '')
+            .toLowerCase()
+            .replace(/[\u064B-\u0652\u0640]/g, '')
+            .replace(/[أإآ]/g, 'ا')
+            .replace(/ى/g, 'ي')
+            .replace(/ة/g, 'ه');
+    }
+
+    function tokenize(str) {
+        var words = norm(str).split(/[^a-z0-9\u0600-\u06FF\u00C0-\u024F\u0400-\u04FF]+/);
+        var out = [];
+
+        words.forEach(function (w) {
+            if (w.length > 4 && w.indexOf('ال') === 0) w = w.slice(2);
+            if (w.length >= 3) out.push(w);
+        });
+
+        return out;
+    }
+
+    function postTokens(p) {
+        if (!p._tok) {
+            var hay = [t(p.place, 'ar'), t(p.place, 'en'), t(p.place, 'fr'), t(p.place, 'es'), t(p.description), t(p.caption, 'ar')].join(' ');
+            var set = {};
+            tokenize(hay).forEach(function (w) { set[w] = 1; });
+            p._tok = set;
+        }
+        return p._tok;
+    }
+
+    function cityOf(p) {
+        return t(p.place, 'ar').split('—')[0].trim();
+    }
+
     function slotLabelAr(post) {
         return 'اليوم ' + post.day + ' — ' + (post.slot === 'am' ? 'الصباح (7:00)' : 'المساء (19:00)');
     }
 
-    /* سياق اللحظات لـ Robaty فالدردشة: شنو لبسات وفين كانت فكل صورة منشورة */
-    function getChatContext() {
+    function postLine(p, withExtras) {
+        var line = '- ' + slotLabelAr(p) + ' | ' + t(p.place, 'ar') + ' | ' + p.description;
+
+        if (withExtras) {
+            line += '\n    النص اللي كتبتيه معها: ' + t(p.caption, 'ar').replace(/\n/g, ' ');
+            if (p.story) line += '\n    جملة الـ Story: ' + t(p.story, 'ar');
+            if (p.challenge) line += '\n    سؤال التحدي: ' + t(p.challenge, 'ar');
+        }
+
+        return line;
+    }
+
+    function getChatContext(userText) {
         var list = getPublished();
         if (!list.length) return '';
 
-        var lines = list.map(function (p, i) {
-            var line = '- ' + slotLabelAr(p) + ' | ' + t(p.place, 'ar') + ' | ' + p.description;
+        var recent = list.slice(0, RECENT_COUNT);
+        var older = list.slice(RECENT_COUNT);
+        var matches = [];
 
-            if (i < 4) {
-                line += '\n    النص اللي كتبتيه معها: ' + t(p.caption, 'ar').replace(/\n/g, ' ');
-                if (p.story) line += '\n    جملة الـ Story: ' + t(p.story, 'ar');
-                if (p.challenge) line += '\n    سؤال التحدي: ' + t(p.challenge, 'ar');
-            }
-            return line;
+        if (older.length && userText) {
+            var q = {};
+            tokenize(userText).forEach(function (w) { q[w] = 1; });
+
+            // "اليوم 5" / "jour 5" / "day 5" ...
+            var days = {};
+            String(userText).replace(/(?:يوم|jour|day|dia|día|день)\s*(\d{1,3})/gi, function (m, n) { days[Number(n)] = 1; return m; });
+
+            var total = list.length;
+            var df = {};
+
+            list.forEach(function (p) {
+                Object.keys(postTokens(p)).forEach(function (w) { df[w] = (df[w] || 0) + 1; });
+            });
+
+            matches = older.map(function (p) {
+                var score = 0;
+                var tok = postTokens(p);
+
+                Object.keys(q).forEach(function (w) {
+                    if (!tok[w]) return;
+                    if (total >= 8 && df[w] > total * 0.5) return;   // كلمات شائعة بزاف
+                    score += Math.log(1 + total / df[w]);
+                });
+
+                if (days[p.day]) score += 5;
+
+                return { post: p, score: score };
+            })
+            .filter(function (x) { return x.score > 0; })
+            .sort(function (a, b) { return b.score - a.score; })
+            .slice(0, MAX_MATCHES);
+        }
+
+        var out = ['آخر اللحظات اللي نشرتيها (الأحدث أولاً):'];
+
+        recent.forEach(function (p, i) { out.push(postLine(p, i < FULL_EXTRAS)); });
+
+        if (matches.length) {
+            out.push('\nلحظات أقدم ذات صلة بسؤال المستخدمة:');
+            matches.forEach(function (m) { out.push(postLine(m.post, false)); });
+        }
+
+        var cities = [];
+        list.forEach(function (p) {
+            var c = cityOf(p);
+            if (c && cities.indexOf(c) === -1) cities.push(c);
         });
 
-        return lines.join('\n');
+        out.push('\nالمدن اللي زرتيها لحد دابا: ' + cities.join('، ') + ' (عدد اللحظات المنشورة: ' + list.length + ')');
+
+        return out.join('\n');
     }
 
     window.RobatyMoments = {
@@ -472,6 +575,77 @@ El reto y la votación están en los comentarios 👀☝️`,
     },
 
     description: 'طنجة، زقاق من القصبة وقت الغروب/بداية الليل: حيوط بيضاء، باب أزرق كبير مسمّر وقوس بنقوش حديدية، لافتة "La Kasbah" بالعربية والفرنسية، فوانيس حديدية مضيئة بدفء، بوغنفيليا وردية-أرجوانية متسلقة، شرفات وأبواب زرقاء، وزقاق مرصوف بالحجارة نازل نحو البحر مع أضواء المدينة وسماء بنفسجية-وردية، وقنطرة مضيئة فآخر الزقاق، وأصيص أزرق. Robaty واقفة وكتبتسم وراسها مايل، لابسة كاب/قفطان مفتوح طويل من المخمل بالأخضر الملكي (الأخضر الغامق) بطرز النطع الذهبي على الحواف والأكمام، فوق توب كريمي (ساتان) وبنطلون واسع كريمي. بيدها الميكانيكية اليمنى (الفضية بتفاصيل ذهبية) كتحمل حقيبة صغيرة مزخرفة بأحجار خضراء وحمراء بسلسلة، وبيدها اليسرى قريبة من الشعر. قلادة خميسة فضية بأحجار خضراء/تركوازية، حلقان تركوازية متدلية، رقبتها المعدنية الفضية ظاهرة، أساور فضية على المعصمين، وشعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 3,
+    slot: 'am',
+    image: 'day03-meknes-morning.jpg',
+
+    place: {
+        ar: 'مكناس — صهريج السواني',
+        en: 'Meknes — Sahrij Swani',
+        fr: 'Meknès — Sahrij Swani',
+        es: 'Mequinez — Sahrij Swani',
+        ru: 'Мекнес — Сахридж Свани'
+    },
+
+    caption: {
+        ar: `مكناس، صهريج السواني وجمال صباح العاصمة الإسماعيلية 🚲🍂
+الهدوء فـ هاد المكان مع انعكاس الشمس على الما والإسوار كيرد الروح.
+جولة بالبيسيكليت بين هاد التاريخ العريق عندها طعم خاص جداً.
+اليوم اخترت Look خريفي بكنزة بالخضر الملكي وطرز فاسي تقليدي بيض فـ الرقبة والأكمام ✨
+كيجي دافئ ومريح للجولات الصباحية.. شنو رأيكم البنات فـ هاد الاستايل؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Meknes, Sahrij Swani and the beauty of a morning in Moulay Ismail’s capital 🚲🍂
+The calm of this place, with the sun reflecting on the water and the walls, restores the soul.
+A bike ride through this ancient history has a very special taste.
+Today I chose an autumn look: an emerald-green sweater with traditional white Fassi embroidery on the neck and sleeves ✨
+It feels warm and comfortable for morning rides... what do you think of this style, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Meknès, le Sahrij Swani et la beauté d’un matin dans la capitale de Moulay Ismaïl 🚲🍂
+Le calme de ce lieu, avec le soleil qui se reflète sur l’eau et les remparts, ressource l’âme.
+Une balade à vélo au cœur de cette histoire séculaire a une saveur très particulière.
+Aujourd’hui, j’ai choisi un look automnal : un pull vert émeraude avec une broderie fassie traditionnelle blanche au col et aux manches ✨
+Chaleureux et confortable pour les balades matinales... qu’en pensez-vous, les filles, de ce style ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Mequinez, Sahrij Swani y la belleza de una mañana en la capital de Mulay Ismail 🚲🍂
+La calma de este lugar, con el sol reflejado en el agua y en las murallas, reconforta el alma.
+Un paseo en bicicleta entre esta historia tan antigua tiene un sabor muy especial.
+Hoy elegí un look otoñal con un suéter verde esmeralda y bordado fasí tradicional blanco en el cuello y las mangas ✨
+Se siente cálido y cómodo para los paseos matutinos... ¿qué opinan, chicas, de este estilo? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Мекнес, Сахридж Свани и красота утра в столице Мулая Исмаила 🚲🍂
+Тишина этого места, солнце, отражающееся в воде и на стенах, возвращает душе силы.
+Велопрогулка среди этой древней истории имеет особый вкус.
+Сегодня я выбрала осенний образ: изумрудно-зелёный свитер с традиционной белой фесской вышивкой на вороте и рукавах ✨
+Тёплый и удобный для утренних прогулок... что скажете, девушки, об этом стиле? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'بساطتك وابتسامتك هما أجمل خطوة تبداي بيها نهارك! 🚲✨',
+        en: 'Your simplicity and your smile are the most beautiful way to start your day! 🚲✨',
+        fr: 'Ta simplicité et ton sourire sont la plus belle façon de commencer ta journée ! 🚲✨',
+        es: '¡Tu sencillez y tu sonrisa son la mejor manera de empezar el día! 🚲✨',
+        ru: 'Твоя простота и твоя улыбка — самое красивое начало дня! 🚲✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون كتعجبها دورة بالبيسيكليت فـ الصباح بكري فـ بلاصة تاريخية بحال هكا؟ ولا كتفضلوا المشي على الرجلين؟ شاركوني رياضة الصباح المفضلة عندكوم فـ تعليق! 🚲☕👇',
+        en: 'Girls, who loves a morning bike ride in a historic place like this? Or do you prefer walking? Share your favorite morning exercise in a comment! 🚲☕👇',
+        fr: 'Les filles, qui aime faire un tour à vélo tôt le matin dans un lieu historique comme celui-ci ? Ou préférez-vous la marche ? Partagez votre sport matinal préféré en commentaire ! 🚲☕👇',
+        es: 'Chicas, ¿a quién le encanta pasear en bici temprano por la mañana en un lugar histórico como este? ¿O prefieren caminar? ¡Compartan su ejercicio matutino favorito en un comentario! 🚲☕👇',
+        ru: 'Девушки, кто любит ранние утренние велопрогулки в таком историческом месте? Или вы предпочитаете ходить пешком? Поделитесь любимой утренней зарядкой в комментарии! 🚲☕👇'
+    },
+
+    description: 'مكناس، صهريج السواني: الصهريج المائي التاريخي بانعكاس الأسوار الذهبية فالما، أسوار وأقواس تاريخية، نخيل وأشجار سرو، شمس الصباح الدافئة وأوراق خريفية فالركن. Robaty لابسة كنزة صوفية بالأخضر الملكي (الزمردي) بطرز مغربي فاسي أبيض/فضي حول الرقبة والأكمام، وبنطلون أبيض واسع. قلادة خميسة فضية على رقبتها المعدنية، أساور (دملج) فضية على معصمها الميكانيكي، وحقيبة قماشية بنقوش مغربية على الكتف. معاها دراجة هوائية كلاسيكية خضراء غامقة (زيتية) بسلة قش مملوءة بزهور بيضاء، وكتبتسم وراسها مايل.',
 
     stats: { likes: 0 }
 });
