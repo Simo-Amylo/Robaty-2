@@ -720,3 +720,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 4,
+    slot: 'am',
+    image: 'day04-fes-morning.jpg',
+
+    place: {
+        ar: 'فاس — دار الدباغ شوارة',
+        en: 'Fez — Chouara Tannery',
+        fr: 'Fès — Tannerie Chouara',
+        es: 'Fez — Curtiduría Chouara',
+        ru: 'Фес — дубильни Шуара'
+    },
+
+    caption: {
+        ar: `فاس، دار الدباغ شوارة وعرق الحرفيين والألوان الأصيلة 🎨✨
+من هاد الشرفة المطلة على الأحواض، كتشوف فن الدباغة المغربية العريقة اللي باقي حي من قرون.
+ريحة الجلد، حركة الصنّاع، وألوان الدباغ الطبيعية كيعطيو للمكان هيبة وتاريخ خاص.
+اليوم اخترت Look أنيق كيمزج بين العصري والأصيل: جاكيت عنابي بجلد فاخر وطرز فاسي أبيض دقيق ✨
+كيجي فخم ولابق مع روح فاس العريقة.. شنو رأيكم فـ هاد التناسق البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Fez, Chouara Tannery, the craftsmen’s hard work and authentic colors 🎨✨
+From this terrace overlooking the vats, you see the art of ancient Moroccan tanning, still alive after centuries.
+The smell of leather, the movement of the artisans, and the natural dye colors give the place a special prestige and history.
+Today I chose an elegant look that blends modern and authentic: a burgundy jacket in fine leather with delicate white Fassi embroidery ✨
+It feels luxurious and fits the spirit of old Fez... what do you think of this coordination, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Fès, la tannerie Chouara, le labeur des artisans et les couleurs authentiques 🎨✨
+Depuis cette terrasse qui domine les cuves, on découvre l’art ancestral du tannage marocain, toujours vivant après des siècles.
+L’odeur du cuir, le geste des artisans et les couleurs naturelles des teintures donnent au lieu une prestance et une histoire uniques.
+Aujourd’hui, j’ai choisi un look élégant, entre moderne et authentique : une veste bordeaux en cuir raffiné avec une fine broderie fassie blanche ✨
+Un look luxueux, à l’image de l’esprit de la Fès authentique... que pensez-vous de cette harmonie, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Fez, las curtidurías de Chouara, el trabajo de los artesanos y los colores auténticos 🎨✨
+Desde esta terraza con vistas a las tinas, se ve el arte ancestral del curtido marroquí, que sigue vivo después de siglos.
+El olor del cuero, el trabajo de los artesanos y los colores naturales de los tintes le dan al lugar una prestancia y una historia especiales.
+Hoy elegí un look elegante que mezcla lo moderno y lo auténtico: una chaqueta burdeos de cuero fino con delicado bordado fasí blanco ✨
+Se ve lujoso y acorde con el espíritu de la Fez auténtica... ¿qué opinan de la combinación, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Фес, дубильни Шуара, труд ремесленников и подлинные краски 🎨✨
+С этой террасы над чанами видно древнее марокканское искусство дубления, которое живо и спустя века.
+Запах кожи, движения мастеров и природные цвета красителей придают месту особое величие и историю.
+Сегодня я выбрала элегантный образ, сочетающий современное и подлинное: бордовая куртка из роскошной кожи с тонкой белой фесской вышивкой ✨
+Выглядит роскошно и созвучно духу старого Феса... как вам такое сочетание, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'أصالتك هي اللي كتميزك... خلي دائماً لمستك الخاصة كتشع فـ كل مكان! 👑✨',
+        en: 'Your authenticity is what sets you apart... always let your own touch shine everywhere! 👑✨',
+        fr: 'C’est ton authenticité qui te distingue... laisse toujours ta touche personnelle rayonner partout ! 👑✨',
+        es: 'Tu autenticidad es lo que te distingue... ¡deja siempre que tu toque personal brille en todas partes! 👑✨',
+        ru: 'Твоя подлинность — то, что отличает тебя... пусть твоя особая нотка всегда сияет повсюду! 👑✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ المنتوجات الجلدية المغربية الأصيلة: شكون فايت ليها شرات بلغة فاسية ولا صاك د الجلد من فاس القديمة؟ وشنو اللون المفضل عندكم فـ الجلد؟ شاركوني ذوقكم فـ تعليق! 👜👞👇',
+        en: 'Girls, about authentic Moroccan leather goods: who has ever bought Fassi babouches or a leather bag from old Fez? And what is your favorite leather color? Share your taste in a comment! 👜👞👇',
+        fr: 'Les filles, parlons des articles en cuir marocain authentique : qui a déjà acheté des babouches fassies ou un sac en cuir dans la vieille ville de Fès ? Et quelle est votre couleur de cuir préférée ? Partagez vos goûts en commentaire ! 👜👞👇',
+        es: 'Chicas, hablemos de los productos de cuero marroquí auténtico: ¿quién ha comprado alguna vez babuchas fasíes o un bolso de cuero en la medina vieja de Fez? ¿Y cuál es su color de cuero favorito? ¡Compartan sus gustos en un comentario! 👜👞👇',
+        ru: 'Девушки, об аутентичных марокканских кожаных изделиях: кто когда-нибудь покупал фесские бабуши или кожаную сумку в старом Фесе? И какой ваш любимый цвет кожи? Поделитесь вкусом в комментарии! 👜👞👇'
+    },
+
+    description: 'فاس، دار الدباغ شوارة فالمدينة القديمة: إطلالة من شرفة عالية بحاجز حديدي مزخرف على أحواض الدباغة المستديرة بألوانها الطبيعية (أحمر، أصفر، بني)، حرفيون كيخدمو وجلود معلقة، وأسطح المدينة القديمة وصومعة مسجد وجبال بعيدة تحت شمس الصباح الصافية. Robaty لابسة جاكيت جلدي طويل بالعنابي (البرغندي) بطرز فاسي أبيض ناصع على الحواف والأكمام، فوق توب حريري رمادي بياقة عالية، وبنطلون كريمي واسع. قلادة خميسة فضية بأحجار عنابية على رقبتها المعدنية، أقراط طويلة متدلية بأحجار عنابية، أساور فضية فاسية (دملج) على معصميها الميكانيكيين، وحقيبة جلدية مطرزة بنقوش مغربية على الكتف. كتبتسم وراسها مايل وشعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
