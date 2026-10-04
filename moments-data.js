@@ -649,3 +649,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 3,
+    slot: 'pm',
+    image: 'day03-meknes-evening.jpg',
+
+    place: {
+        ar: 'مكناس — ساحة الهديم',
+        en: 'Meknes — El Hedim Square',
+        fr: 'Meknès — Place El Hedim',
+        es: 'Mequinez — Plaza El Hedim',
+        ru: 'Мекнес — площадь Эль-Хедим'
+    },
+
+    caption: {
+        ar: `مكناس، باب المنصور و ساحة الهديم فـ لحظات الغروب 🌅✨
+هاد الباب العظيم كيبهرك بتفاصيله وزليجه اللي كيحكي تاريخ الإسماعيلية.
+الساحة فـ العشية كتحيا بالناس والضوء الذهبي كيرسم أجواء دافئة وممتعة.
+اليوم اخترت Look كاجوال بهودي كريمي متناسق مع طرز ملون فـ الأكمام وسروال جينز بطرز مغربي خفيف ✨
+استايل مريح وعصري لقهوة أو كاس أتاي فـ الساحة.. كيف جاكم التنسيق البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Meknes, Bab Mansour and El Hedim Square at sunset 🌅✨
+This great gate dazzles you with its details and its zellige, which tell the story of Moulay Ismail’s era.
+In the evening the square comes alive with people, and the golden light paints a warm, lovely atmosphere.
+Today I chose a casual look: a matching cream hoodie with colorful embroidery on the sleeves and jeans with light Moroccan embroidery ✨
+A comfy, modern style for a coffee or a glass of tea on the square... how do you like the coordination, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Meknès, Bab Mansour et la place El Hedim au coucher du soleil 🌅✨
+Cette grande porte éblouit par ses détails et ses zelliges, qui racontent l’histoire de l’époque de Moulay Ismaïl.
+Le soir, la place s’anime de monde et la lumière dorée dessine une atmosphère chaleureuse et agréable.
+Aujourd’hui, j’ai choisi un look décontracté : un hoodie crème assorti, avec une broderie colorée sur les manches, et un jean à la légère broderie marocaine ✨
+Un style confortable et moderne pour un café ou un verre de thé sur la place... que pensez-vous de l’association, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Mequinez, Bab Mansur y la plaza El Hedim al atardecer 🌅✨
+Esta gran puerta te deslumbra con sus detalles y sus azulejos zellige, que cuentan la historia de la época de Mulay Ismail.
+Al caer la tarde la plaza cobra vida con la gente, y la luz dorada crea un ambiente cálido y agradable.
+Hoy elegí un look casual con una sudadera con capucha crema y bordados de colores en las mangas, y unos vaqueros con un ligero bordado marroquí ✨
+Un estilo cómodo y moderno para un café o un vaso de té en la plaza... ¿qué les parece la combinación, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Мекнес, ворота Баб-Мансур и площадь Эль-Хедим на закате 🌅✨
+Эти величественные ворота поражают деталями и зелиджем, рассказывающим историю эпохи Мулая Исмаила.
+Вечером площадь оживает от людей, а золотой свет создаёт тёплую и приятную атмосферу.
+Сегодня я выбрала повседневный образ: кремовое худи с яркой вышивкой на рукавах и джинсы с лёгкой марокканской вышивкой ✨
+Удобный и современный стиль для кофе или стакана чая на площади... как вам сочетание, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'جمالك فـ عفويتك وأناقتك فـ الراحة د البال اللي كتعيشيها! 🌅👑',
+        en: 'Your beauty lies in your spontaneity, and your elegance in the peace of mind you live by! 🌅👑',
+        fr: 'Ta beauté est dans ta spontanéité, et ton élégance dans la sérénité que tu vis ! 🌅👑',
+        es: '¡Tu belleza está en tu espontaneidad y tu elegancia en la paz mental que vives! 🌅👑',
+        ru: 'Твоя красота — в естественности, а элегантность — в душевном покое, которым ты живёшь! 🌅👑'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الجولات المسائية: شكون كتعجبها العفوية د الجينز والهودي الكاجوال؟ ولا كتفضلوا الجلابة أو الكيمونو التقليدي؟ اختاري الستايل المفضل عندك فـ تعليق! 👟✨👇',
+        en: 'Girls, for evening outings: who loves the easy spontaneity of jeans and a casual hoodie? Or do you prefer the traditional djellaba or kimono? Pick your favorite style in a comment! 👟✨👇',
+        fr: 'Les filles, pour les sorties du soir : qui aime la spontanéité du jean et du hoodie décontracté ? Ou préférez-vous la djellaba ou le kimono traditionnel ? Choisissez votre style préféré en commentaire ! 👟✨👇',
+        es: 'Chicas, para los paseos de la tarde: ¿a quién le gusta la espontaneidad de los vaqueros y la sudadera casual? ¿O prefieren la chilaba o el kimono tradicional? ¡Elijan su estilo favorito en un comentario! 👟✨👇',
+        ru: 'Девушки, для вечерних прогулок: кому нравится непринуждённость джинсов и повседневного худи? Или вы предпочитаете джеллабу либо традиционное кимоно? Выберите любимый стиль в комментарии! 👟✨👇'
+    },
+
+    description: 'مكناس، ساحة الهديم وباب المنصور وقت الغروب الذهبي: باب المنصور الضخم بزليجه ونقوشه العريقة، ساحة مرصوفة بالحجر مليئة بالمارة والفوانيس، وأشعة غروب دافئة كتنعكس على الأرض. Robaty لابسة هودي كاجوال كريمي بطرز مغربي ملون (أزرق، أحمر، أصفر، أخضر) على طول الأكمام، وسروال جينز أزرق واسع بخصر عالٍ بطرز زليج أزرق تقليدي على الجوانب. فيدها الميكانيكية كاس أتاي مغربي بالنعناع، وعلى رقبتها المعدنية قلادة خميسة ذهبية/فضية بأحجار فيروزية، أساور فضية فاسية على المعصمين، حلقان تركوازية كبيرة متدلية، وحقيبة جلدية مطعمة بزليج مغربي بحزام بني وشرّابة. كتبتسم وراسها مايل وشعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
