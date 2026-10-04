@@ -43,8 +43,8 @@ let currentStoryId = null;
 
 const KICKER_DURATION = 3000;     // مدة الكتابة (مللي ثانية)
 const KICKER_START_DELAY = 250;   // وقفة صغيرة قبل ما تبدا
-const KICKER_MAX_SIZE = 46;       // أكبر حجم خط (px) — كيصغر وحدو إلا كانت العبارة طويلة
-const KICKER_MIN_SIZE = 24;
+const KICKER_MAX_SIZE = 40;       // أكبر حجم خط (px) — كيصغر وحدو إلا كانت العبارة طويلة
+const KICKER_MIN_SIZE = 16;
 const KICKER_EMOJI = '👂';
 
 const kickerEl = document.getElementById('storyKicker');
@@ -85,6 +85,9 @@ function playKicker(story) {
 
     if (!kickerEl) return;
 
+    kickerT1.style.minWidth = '';
+    kickerT2.style.minWidth = '';
+
     /* النص: الخاص بالمنشور، وإلا الافتراضي المترجم */
     if (story.kicker === false) return;
 
@@ -120,6 +123,11 @@ function playKicker(story) {
     const size = Math.max(KICKER_MIN_SIZE, Math.min(KICKER_MAX_SIZE, KICKER_MAX_SIZE * available / widest));
 
     kickerEl.style.setProperty('--kicker-size', size.toFixed(1) + 'px');
+
+    /* كنثبتو عرض كل سطر (بالحجم النهائي) باش الكتابة تمشي داخل مساحتها بلا ما يتحرك السطر،
+       والسطرين كيبقاو ملصوقين بالحافة اليمنى فكل اللغات */
+    kickerT1.style.minWidth = Math.ceil(kickerT1.getBoundingClientRect().width) + 'px';
+    kickerT2.style.minWidth = Math.ceil(kickerT2.getBoundingClientRect().width) + 'px';
 
     kickerT1.textContent = '';
     kickerT2.textContent = '';

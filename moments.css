@@ -614,7 +614,7 @@ button {
 
 
 .close-story-btn {
-    margin-right: auto;
+    margin-inline-start: auto;
 
     border: 0;
 
@@ -1591,21 +1591,23 @@ button {
 .story-kicker {
     position: absolute;
 
-    top: 11%;
-    right: 6%;
+    top: 10%;
+    right: 4%;
 
-    width: 50%;
+    width: 46%;
 
     z-index: 3;
 
-    text-align: start;
+    text-align: right;
 
     pointer-events: none;
 }
 
 .story-kicker.kicker-left {
-    left: 6%;
+    left: 4%;
     right: auto;
+
+    text-align: left;
 }
 
 .story-kicker.kicker-center {
@@ -1617,6 +1619,12 @@ button {
     text-align: center;
 
     transform: translateX(-50%);
+}
+
+.kicker-line > span:first-child {
+    display: inline-block;
+
+    text-align: start;
 }
 
 .kicker-line {
@@ -1646,7 +1654,7 @@ button {
     width: 3px;
     height: 0.85em;
 
-    margin-inline-start: 4px;
+    margin-inline: 4px -7px;
 
     vertical-align: -0.08em;
 
@@ -1705,4 +1713,11 @@ button {
 
 .comment-text {
     white-space: pre-line;
+}
+
+/* زر الإغلاق باين حتى فوق السماء الفاتحة */
+
+.story-header .close-story-btn,
+.story-modal .close-story-btn {
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.75));
 }

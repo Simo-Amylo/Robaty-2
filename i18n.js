@@ -520,7 +520,7 @@ const translations = {
         stat_followers: 'Подписчики',
         stat_engagement: 'Активность',
         profile_bio: '✨ Соединяет подлинность марокканского наследия с технологиями будущего.<br>☕ Любит культуру, моду и тёплые разговоры.<br>📍 Марракеш / Марокко 🇲🇦',
-        story_kicker: 'Слушай\nвнимательно',
+        story_kicker: 'Слушай\nхорошо',
         moments_empty: 'Скоро… первый момент Robaty 🌙',
         challenge_label: 'Вызов дня 👑',
         moments_tab: 'Моменты'

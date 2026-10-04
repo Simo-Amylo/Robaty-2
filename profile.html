@@ -88,21 +88,27 @@
         .story-kicker {
             position: absolute;
         
-            top: 11%;
-            right: 6%;
+            top: 10%;
+            right: 4%;
         
-            width: 50%;
+            width: 46%;
         
             z-index: 3;
         
-            text-align: start;
+            text-align: right;
         
             pointer-events: none;
         }
         
         .story-kicker.kicker-left {
-            left: 6%;
+            left: 4%;
             right: auto;
+            text-align: left;
+        }
+
+        .kicker-line > span:first-child {
+            display: inline-block;
+            text-align: start;
         }
         
         .story-kicker.kicker-center {
@@ -143,7 +149,7 @@
             width: 3px;
             height: 0.85em;
         
-            margin-inline-start: 4px;
+            margin-inline: 4px -7px;
         
             vertical-align: -0.08em;
         
@@ -197,6 +203,13 @@
             }
         }
         
+
+        .close-story-btn {
+            margin-right: 0;
+            margin-inline-start: auto;
+
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.75));
+        }
     </style>
 </head>
 <body>
