@@ -404,3 +404,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 2,
+    slot: 'pm',
+    image: 'day02-tangier-evening.jpg',
+
+    place: {
+        ar: 'طنجة — القصبة',
+        en: 'Tangier — The Kasbah',
+        fr: 'Tanger — La Kasbah',
+        es: 'Tánger — La Kasbah',
+        ru: 'Танжер — Касба'
+    },
+
+    caption: {
+        ar: `طنجة، زقاق القصبة وأجواء المساء الساحرة 🌙✨
+بين الحيوط البيضاء والدروب القديمة كتحس بريحة التاريخ.
+أنوار الفوانيس فـ العشية كتعطي للمكان لمسة سينمائية دافئة.
+نسقت اليوم مع هاد الأجواء كاب مخملي بالخضر الملكي وطرز النطع الذهبي الأصيل.
+جاني أنيق وفي نفس الوقت معبر على أصالة المكان.. شنو رأيكم البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Tangier, a Kasbah alley and the enchanting atmosphere of the evening 🌙✨
+Between the white walls and the old lanes, you can feel the scent of history.
+The glow of the lanterns at dusk gives the place a warm, cinematic touch.
+For this atmosphere I paired a royal-green velvet cape with authentic gold-thread embroidery.
+It looks elegant and, at the same time, true to the spirit of the place... what do you think, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Tanger, une ruelle de la Kasbah et l’ambiance enchanteresse du soir 🌙✨
+Entre les murs blancs et les vieilles ruelles, on sent le parfum de l’histoire.
+La lumière des lanternes au crépuscule donne au lieu une touche cinématographique chaleureuse.
+Pour cette ambiance, j’ai associé une cape en velours vert royal ornée d’une authentique broderie au fil d’or.
+Élégante, et en même temps fidèle à l’authenticité du lieu... qu’en pensez-vous, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Tánger, un callejón de la Kasbah y el hechizo de la noche 🌙✨
+Entre las paredes blancas y las callejuelas antiguas se siente el aroma de la historia.
+La luz de los faroles al atardecer le da al lugar un toque cinematográfico y cálido.
+Para este ambiente combiné una capa de terciopelo verde real con auténtico bordado en hilo dorado.
+Elegante y, al mismo tiempo, fiel a la autenticidad del lugar... ¿qué opinan, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Танжер, переулок Касбы и волшебная вечерняя атмосфера 🌙✨
+Между белыми стенами и старыми улочками чувствуешь аромат истории.
+Свет фонарей на закате придаёт месту тёплый, кинематографичный оттенок.
+Для этой атмосферы я выбрала бархатную накидку королевского зелёного цвета с настоящей золотой вышивкой.
+Элегантно и в то же время передаёт подлинность места... что скажете, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'أناقتك الحقيقية كتشع لما تكوني واثقة من قيمتك وأصلك! 💎👑',
+        en: 'Your true elegance shines when you are confident in your worth and your roots! 💎👑',
+        fr: 'Ta véritable élégance rayonne quand tu es sûre de ta valeur et de tes origines ! 💎👑',
+        es: '¡Tu verdadera elegancia brilla cuando confías en tu valor y en tus raíces! 💎👑',
+        ru: 'Твоя настоящая элегантность сияет, когда ты уверена в своей ценности и своих корнях! 💎👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون فيكم كيعجبها تكتشف دروب القصبة بالليل وتصور الفوانيس؟ ولا كتفضلوا التسوق فـ الأسواق الشعبية؟ شاركوني ذوقكم فـ تعليق! 🏮🛍️👇',
+        en: 'Girls, who among you loves exploring the Kasbah lanes at night and photographing the lanterns? Or do you prefer shopping in the traditional markets? Share your taste in a comment! 🏮🛍️👇',
+        fr: 'Les filles, qui aime découvrir les ruelles de la Kasbah la nuit et photographier les lanternes ? Ou préférez-vous faire du shopping dans les souks ? Partagez vos goûts en commentaire ! 🏮🛍️👇',
+        es: 'Chicas, ¿a quién le gusta descubrir los callejones de la Kasbah de noche y fotografiar los faroles? ¿O prefieren ir de compras a los zocos? ¡Compartan sus gustos en un comentario! 🏮🛍️👇',
+        ru: 'Девушки, кто из вас любит открывать переулки Касбы ночью и фотографировать фонари? Или вы предпочитаете шопинг на традиционных рынках? Поделитесь вкусом в комментарии! 🏮🛍️👇'
+    },
+
+    description: 'طنجة، زقاق من القصبة وقت الغروب/بداية الليل: حيوط بيضاء، باب أزرق كبير مسمّر وقوس بنقوش حديدية، لافتة "La Kasbah" بالعربية والفرنسية، فوانيس حديدية مضيئة بدفء، بوغنفيليا وردية-أرجوانية متسلقة، شرفات وأبواب زرقاء، وزقاق مرصوف بالحجارة نازل نحو البحر مع أضواء المدينة وسماء بنفسجية-وردية، وقنطرة مضيئة فآخر الزقاق، وأصيص أزرق. Robaty واقفة وكتبتسم وراسها مايل، لابسة كاب/قفطان مفتوح طويل من المخمل بالأخضر الملكي (الأخضر الغامق) بطرز النطع الذهبي على الحواف والأكمام، فوق توب كريمي (ساتان) وبنطلون واسع كريمي. بيدها الميكانيكية اليمنى (الفضية بتفاصيل ذهبية) كتحمل حقيبة صغيرة مزخرفة بأحجار خضراء وحمراء بسلسلة، وبيدها اليسرى قريبة من الشعر. قلادة خميسة فضية بأحجار خضراء/تركوازية، حلقان تركوازية متدلية، رقبتها المعدنية الفضية ظاهرة، أساور فضية على المعصمين، وشعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
