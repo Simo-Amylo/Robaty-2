@@ -862,3 +862,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 5,
+    slot: 'am',
+    image: 'day05-casablanca-morning.jpg',
+
+    place: {
+        ar: 'الدار البيضاء — كورنيش عين الذئاب',
+        en: 'Casablanca — Ain Diab Corniche',
+        fr: 'Casablanca — Corniche d’Aïn Diab',
+        es: 'Casablanca — Corniche de Ain Diab',
+        ru: 'Касабланка — набережная Айн-Диаб'
+    },
+
+    caption: {
+        ar: `كازا، نسيم عين الذئاب وطاقة صباح الأحد 🌊☕☀️
+ما كاينش بحال دورة خفيفة على البحر فـ كازا بكري، كاس iced coffee فـ اليد والنسمة د المحيط كترد الروح!
+الدار البيضاء دائماً عندها هاد الفايب الشبابي العصري والحيوي اللي كيعطيك إيجابية للأسبوع كامل.
+اليوم بدلت الستايل كلياً: Look شبابي مريح بألوان الباستيل، جينز فاتح، كاسكيط، ولمسة مغربية خفيفة فـ الكيمونو ✨
+جاني لوك كاجوال ومريح للويكاند.. كيف جاكم هاد الستايل الجديد البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Casa, the Ain Diab breeze and Sunday-morning energy 🌊☕☀️
+Nothing beats a light stroll by the sea in Casa early in the morning, an iced coffee in hand and the ocean breeze reviving the soul!
+Casablanca always has this youthful, modern, lively vibe that gives you positivity for the whole week.
+Today I changed my style completely: a comfy youthful look in pastel colors, light jeans, a cap, and a light Moroccan touch in the kimono ✨
+It's a casual, comfortable weekend look... how do you like this new style, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Casa, la brise d’Aïn Diab et l’énergie d’un dimanche matin 🌊☕☀️
+Rien de tel qu’une petite balade au bord de la mer à Casa de bon matin, un iced coffee à la main et la brise de l’océan qui ressource l’âme !
+Casablanca a toujours cette vibe jeune, moderne et vivante qui donne de la positivité pour toute la semaine.
+Aujourd’hui, j’ai complètement changé de style : un look jeune et confortable aux couleurs pastel, jean clair, casquette, et une touche marocaine légère avec le kimono ✨
+Un look décontracté et confortable pour le week-end... comment trouvez-vous ce nouveau style, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Casa, la brisa de Ain Diab y la energía de una mañana de domingo 🌊☕☀️
+No hay nada como un paseo tranquilo junto al mar en Casa bien temprano, con un iced coffee en la mano y la brisa del océano que reconforta el alma.
+Casablanca siempre tiene ese rollo juvenil, moderno y vibrante que te da positividad para toda la semana.
+Hoy cambié de estilo por completo: un look juvenil y cómodo en colores pastel, vaqueros claros, gorra y un ligero toque marroquí en el quimono ✨
+Un look casual y cómodo para el fin de semana... ¿qué les parece este nuevo estilo, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Каза, бриз Айн-Диаб и энергия воскресного утра 🌊☕☀️
+Нет ничего лучше лёгкой прогулки у моря в Касе рано утром: айс-кофе в руке и океанский бриз, возвращающий душе силы!
+У Касабланки всегда есть этот молодой, современный и живой вайб, который заряжает позитивом на всю неделю.
+Сегодня я полностью сменила стиль: удобный молодёжный образ в пастельных тонах, светлые джинсы, кепка и лёгкий марокканский акцент в кимоно ✨
+Повседневный и удобный образ для выходных... как вам этот новый стиль, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'خدي نفس عميق، استمتعي بصباحك، وابداي نهارك بطاقة جديدة وابتسامة! 🌊☕✨',
+        en: 'Take a deep breath, enjoy your morning, and start your day with new energy and a smile! 🌊☕✨',
+        fr: 'Respire à fond, savoure ton matin et commence ta journée avec une énergie nouvelle et un sourire ! 🌊☕✨',
+        es: '¡Respira hondo, disfruta tu mañana y empieza el día con energía renovada y una sonrisa! 🌊☕✨',
+        ru: 'Сделай глубокий вдох, наслаждайся утром и начни день с новой энергией и улыбкой! 🌊☕✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الويكاند: شكون كتعشق الـ Street Style الكاجوال (جينز + كاسكيط + Iced Coffee) فـ البحر؟ ولا كتفضلوا القهوة التقليدية فـ بلاصة هادئة؟ شاركوني جوكم المفضل فـ تعليق! ☕🧢🌊👇',
+        en: 'Girls, for the weekend: who loves a casual street style (jeans + cap + iced coffee) by the sea? Or do you prefer traditional coffee in a quiet spot? Share your favorite vibe in a comment! ☕🧢🌊👇',
+        fr: 'Les filles, pour le week-end : qui adore le street style décontracté (jean + casquette + iced coffee) au bord de la mer ? Ou préférez-vous le café traditionnel dans un endroit calme ? Partagez votre ambiance préférée en commentaire ! ☕🧢🌊👇',
+        es: 'Chicas, para el fin de semana: ¿a quién le encanta el street style casual (vaqueros + gorra + iced coffee) junto al mar? ¿O prefieren el café tradicional en un lugar tranquilo? ¡Compartan su ambiente favorito en un comentario! ☕🧢🌊👇',
+        ru: 'Девушки, на выходных: кто обожает casual street style (джинсы + кепка + айс-кофе) у моря? Или вы предпочитаете традиционный кофе в тихом месте? Поделитесь любимой атмосферой в комментарии! ☕🧢🌊👇'
+    },
+
+    description: 'الدار البيضاء، كورنيش عين الذئاب صباح الأحد: ممشى رخامي حديث بنخيل ومظلات وكراسي مقاهي، سور أبيض بزجاج، شاطئ رملي وأمواج المحيط الأطلسي مع صومعة مسجد الحسن الثاني فالأفق، وسماء زرقاء صافية بشمس الصباح. Robaty ماشية وكتبتسم بستايل شبابي (Street Style): قميص كتان واسع أصفر باستيل مفتوح فوق كروب توب أبيض، سروال جينز أزرق فاتح واسع، وكيمونو أبيض خفيف بسفيفة مغربية زرقاء على الحواف، وسنيكرز بيضاء. كاسكيط بيج مطرزة بخميسة صغيرة ونظارات شمسية مرفوعة عليها، كاس iced coffee فيدها الميكانيكية، سلاسل فضية بخميسة على رقبتها المعدنية، أقراط فضية صغيرة، أساور فضية على المعصم، وقفة قش بحزام جلد بنية وشرّابة وخميسة صغيرة. شعرها بني طويل مسترسل تحت الكاسكيط.',
+
+    stats: { likes: 0 }
+});
