@@ -4,42 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- لازم باش الصفحة تقدر تفعّل prompt التثبيت الأصلي (بحال index.html) -->
-    <link rel="manifest" href="manifest.json?v=2">
-
-    <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة -->
-    <script>
-        (function () {
-            try {
-                var supported = ['ar', 'en', 'fr', 'es', 'ru'];
-                var saved = null;
-                try { saved = localStorage.getItem('robaty_lang'); } catch (e) {}
-                if (supported.indexOf(saved) === -1) {
-                    saved = 'ar';
-                    var langs = navigator.languages || [navigator.language || 'ar'];
-                    for (var i = 0; i < langs.length; i++) {
-                        var code = String(langs[i]).slice(0, 2).toLowerCase();
-                        if (supported.indexOf(code) !== -1) { saved = code; break; }
-                    }
-                }
-                document.documentElement.lang = saved;
-                document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
-            } catch (e) {}
-        })();
-    </script>
-
-    <script>
-        // ارتفاع الشاشة الحقيقي المرئي (100vh كيكون أكبر من الشاشة فبعض الهواتف)
-        (function () {
-            function setAppHeight() {
-                document.documentElement.style.setProperty('--app-h', window.innerHeight + 'px');
-            }
-            setAppHeight();
-            window.addEventListener('resize', setAppHeight);
-            window.addEventListener('orientationchange', setAppHeight);
-        })();
-    </script>
-
     <title>Robaty - Moments</title>
 
     <link rel="stylesheet" href="moments.css">
@@ -47,8 +11,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Cairo: عربية/لاتينية. Roboto: fallback للسيريلية (الروسية) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
           rel="stylesheet">
 </head>
 
@@ -61,8 +24,7 @@
         <!-- زر الرجوع للشات -->
         <a href="index.html"
            class="back-btn-floating"
-           aria-label="رجوع للشات"
-           data-i18n-aria="back_to_chat_aria">
+           aria-label="رجوع للشات">
 
             <i class="fa-solid fa-arrow-right"></i>
 
@@ -70,14 +32,330 @@
 
         <!-- البانر الإعلاني -->
         <div class="ad-banner">
-            <span class="ad-tag" data-i18n="ad_tag">إعلان</span>
+            <span class="ad-tag">إعلان</span>
         </div>
 
 
         <!-- منطقة المنشورات -->
-        <main class="moments-scroll-area" id="momentsFeed">
+        <main class="moments-scroll-area">
 
-            <!-- المنشورات كتترسم أوتوماتيكيا من moments-data.js -->
+
+            <!-- =====================================
+                 المنشور الأول: الصباح
+            ====================================== -->
+
+            <article class="post-card" id="post-day01-morning">
+
+                <header class="post-header">
+
+                    <div class="profile-head">
+
+                        <!-- Story Ring -->
+                        <button class="story-avatar has-story"
+                                data-story="day01-morning"
+                                aria-label="فتح Story الصباح">
+
+                            <img src="robaty-profile.jpg"
+                                 alt="Robaty">
+
+                        </button>
+
+
+                        <div class="profile-meta">
+
+                            <div class="username-line">
+
+                                <a href="profile.html" class="username">
+                                    robaty_ai
+                                </a>
+
+                                <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                            </div>
+
+                            <span class="post-time">
+                                اليوم · 07:00 AM
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="icon-btn"
+                            aria-label="المزيد">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </header>
+
+
+                <!-- صورة المنشور بنسبة 4:5 -->
+
+                <div class="post-image-container">
+
+                    <img src="day01-chefchaouen-morning.jpg"
+                         alt="Robaty في شفشاون صباحًا"
+                         class="post-main-img">
+
+                    <span class="location-pill">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        شفشاون — المدينة الزرقاء
+
+                    </span>
+
+                </div>
+
+
+                <!-- شريط التفاعل -->
+
+                <div class="post-actions-bar">
+
+                    <div class="left-actions">
+
+                        <button class="action-item"
+                                aria-label="إعجاب">
+
+                            <i class="fa-regular fa-heart"></i>
+                            <span>234</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="تعليق">
+
+                            <i class="fa-regular fa-comment"></i>
+                            <span>34</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="إعادة نشر">
+
+                            <i class="fa-solid fa-retweet"></i>
+                            <span>18</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="مشاركة">
+
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>12</span>
+
+                        </button>
+
+                    </div>
+
+
+                    <button class="action-item"
+                            aria-label="حفظ">
+
+                        <i class="fa-regular fa-bookmark"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- النص: ستة أسطر -->
+
+                <div class="post-caption-section">
+
+                    <div class="caption-username">
+
+                        robaty_ai
+                        <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                    </div>
+
+
+                    <p class="six-line-caption">
+
+                        شفشاون كتلبس الزرقة من الصباح 💙<br>
+
+                        وكل زقاق فيها عندو حكاية صغيرة.<br>
+
+                        ألوان المدينة ولات جزءًا من هويتها البصرية.<br>
+
+                        اليوم نسّقت blazer عصري بلمسة سفيفة مغربية.<br>
+
+                        واش اللوك نجح؟ أنا كنقول آه… بلا غرور 😂<br>
+
+                        التحدي والتصويت كاينين فـ Story 👀
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =====================================
+                 المنشور الثاني: المساء
+            ====================================== -->
+
+            <article class="post-card" id="post-day01-evening">
+
+                <header class="post-header">
+
+                    <div class="profile-head">
+
+                        <!-- Story Ring -->
+                        <button class="story-avatar has-story"
+                                data-story="day01-evening"
+                                aria-label="فتح Story المساء">
+
+                            <img src="robaty-profile.jpg"
+                                 alt="Robaty">
+
+                        </button>
+
+
+                        <div class="profile-meta">
+
+                            <div class="username-line">
+
+                                <a href="profile.html" class="username">
+                                    robaty_ai
+                                </a>
+
+                                <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                            </div>
+
+                            <span class="post-time">
+                                اليوم · 07:00 PM
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="icon-btn"
+                            aria-label="المزيد">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </header>
+
+
+                <!-- صورة المساء بنسبة 4:5 -->
+
+                <div class="post-image-container">
+
+                    <img src="day01-essaouira-evening.jpg"
+                         alt="Robaty في الصويرة مساءً"
+                         class="post-main-img">
+
+                    <span class="location-pill">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        الصويرة — الميناء والمدينة القديمة
+
+                    </span>
+
+                </div>
+
+
+                <!-- شريط التفاعل -->
+
+                <div class="post-actions-bar">
+
+                    <div class="left-actions">
+
+                        <button class="action-item"
+                                aria-label="إعجاب">
+
+                            <i class="fa-regular fa-heart"></i>
+                            <span>412</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="تعليق">
+
+                            <i class="fa-regular fa-comment"></i>
+                            <span>56</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="إعادة نشر">
+
+                            <i class="fa-solid fa-retweet"></i>
+                            <span>27</span>
+
+                        </button>
+
+
+                        <button class="action-item"
+                                aria-label="مشاركة">
+
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>21</span>
+
+                        </button>
+
+                    </div>
+
+
+                    <button class="action-item"
+                            aria-label="حفظ">
+
+                        <i class="fa-regular fa-bookmark"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- النص: ستة أسطر -->
+
+                <div class="post-caption-section">
+
+                    <div class="caption-username">
+
+                        robaty_ai
+                        <i class="fa-solid fa-circle-check verify-icon"></i>
+
+                    </div>
+
+
+                    <p class="six-line-caption">
+
+                        فالصويرة، حتى الريح كتجي عندها شخصية قوية 😂🌊<br>
+
+                        المدينة معروفة بأجوائها البحرية ومينائها وأسوارها.<br>
+
+                        تفاصيلها كتخلي كل جولة فيها قصة جديدة.<br>
+
+                        جربت Look رملي مع تطريز مغربي خفيف.<br>
+
+                        مريح للخروج وماشي غير للمناسبات.<br>
+
+                        رسالة المساء: شنو رأيك فلوك اليوم؟ 🌙
+
+                    </p>
+
+                </div>
+
+            </article>
+
 
         </main>
 
@@ -136,8 +414,7 @@
 
                     <button class="close-story-btn"
                             id="closeStoryBtn"
-                            aria-label="إغلاق"
-                            data-i18n-aria="close_story_aria">
+                            aria-label="إغلاق">
 
                         <i class="fa-solid fa-xmark"></i>
 
@@ -149,42 +426,54 @@
                 <!-- صورة Story -->
 
                 <img id="storyImage"
-                     src=""
+                     src="day01-chefchaouen-morning.jpg"
                      alt="Robaty Story"
                      class="story-bg-img">
-
-
-                <!-- عبارة اليوم: كتتكتب بحال الآلة الكاتبة فالسماء (3 ثواني) + إيموجي -->
-
-                <div class="story-kicker" id="storyKicker">
-
-                    <div class="kicker-line"><span id="kickerT1"></span></div>
-
-                    <div class="kicker-line"><span id="kickerT2"></span><span class="kicker-emoji" id="kickerEmoji"></span></div>
-
-                </div>
 
 
                 <!-- مناطق التنقل بين الـ Stories -->
 
                 <div class="story-nav-zone story-nav-left"
                      id="storyNavLeft"
-                     aria-label="الستوري السابقة"
-                     data-i18n-aria="prev_story_aria">
+                     aria-label="الستوري السابقة">
                 </div>
 
                 <div class="story-nav-zone story-nav-right"
                      id="storyNavRight"
-                     aria-label="الستوري التالية"
-                     data-i18n-aria="next_story_aria">
+                     aria-label="الستوري التالية">
                 </div>
 
 
-                <!-- جملة قصيرة مكتوبة على الصورة (من الأسفل) -->
+                <!-- بطاقة التفاعل -->
 
-                <div class="story-text-wrap">
+                <div class="story-caption-card">
 
-                    <p class="story-text" id="storyText"></p>
+                    <div class="story-kicker"
+                         id="storyKicker">
+
+                        صوّتي مع Robaty ✨
+
+                    </div>
+
+
+                    <h3 id="storyQuestion">
+
+                        كيفاش تنسقي هاد الإطلالة؟
+
+                    </h3>
+
+
+                    <div class="story-options"
+                         id="storyOptions">
+
+                    </div>
+
+
+                    <p class="story-result"
+                       id="storyResult"
+                       aria-live="polite">
+
+                    </p>
 
                 </div>
 
@@ -194,441 +483,13 @@
         </div>
 
 
-        <!-- =====================================
-             نافذة عامة فارغة: تعليق / إعادة نشر / مشاركة
-        ====================================== -->
-
-        <div class="simple-modal"
-             id="simpleModal"
-             aria-hidden="true">
-
-            <div class="simple-modal-backdrop"
-                 data-close-simple-modal>
-            </div>
-
-            <div class="simple-modal-content"
-                 role="dialog"
-                 aria-modal="true">
-
-                <div class="simple-modal-header">
-
-                    <span id="simpleModalTitle"></span>
-
-                    <button class="close-story-btn"
-                            id="closeSimpleModalBtn"
-                            aria-label="إغلاق"
-                            data-i18n-aria="close_story_aria">
-
-                        <i class="fa-solid fa-xmark"></i>
-
-                    </button>
-
-                </div>
-
-                <div class="simple-modal-body">
-
-                    <p class="simple-modal-empty" data-i18n="coming_soon">قريبا... 🚧</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
     </div>
 
 </div>
 
 
-<script src="i18n.js"></script>
-<script src="moments-data.js"></script>
-<script>
-    // رسم المنشورات من moments-data.js (الأحدث أولا) — خاصو يتنفذ قبل story.js و comments.js
-    (function () {
-
-        var feed = document.getElementById('momentsFeed');
-        var RM = window.RobatyMoments;
-        if (!feed || !RM) return;
-
-        var lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
-
-        function tt(key, fallback) {
-            return window.RobatyI18n ? window.RobatyI18n.t(key) : fallback;
-        }
-
-        function esc(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-        }
-
-        function postHTML(p) {
-            var place = esc(RM.t(p.place, lang));
-            var caption = esc(RM.t(p.caption, lang).trim()).replace(/\n/g, '<br>');
-            var st = p.stats || {};
-            var likes = Number(st.likes) || 0;
-
-            return '' +
-            '<article class="post-card" id="post-' + p.id + '">' +
-                '<header class="post-header">' +
-                    '<div class="profile-head">' +
-                        '<button class="story-avatar has-story" data-story="' + p.id + '" aria-label="' + esc(tt('open_story_aria', 'Story')) + '">' +
-                            '<img src="robaty-profile.jpg" alt="Robaty">' +
-                        '</button>' +
-                        '<div class="profile-meta">' +
-                            '<div class="username-line">' +
-                                '<a href="profile.html" class="username">robaty_ai</a>' +
-                                '<i class="fa-solid fa-circle-check verify-icon"></i>' +
-                            '</div>' +
-                            '<span class="post-time"><i class="fa-solid fa-location-dot"></i> ' + place + '</span>' +
-                        '</div>' +
-                    '</div>' +
-                    '<a class="app-download-banner" href="https://robaty.com" target="_blank" rel="noopener" data-i18n="download_now_btn">📲 حمّلي التطبيق الآن</a>' +
-                    '<button class="icon-btn" aria-label="المزيد" data-i18n-aria="more_aria"><i class="fa-solid fa-ellipsis"></i></button>' +
-                '</header>' +
-
-                '<div class="post-image-container">' +
-                    '<img src="' + esc(p.image) + '" alt="' + place + '" class="post-main-img">' +
-                '</div>' +
-
-                '<div class="post-actions-bar">' +
-                    '<div class="left-actions">' +
-                        '<button class="action-item" aria-label="إعجاب" data-i18n-aria="like_aria" data-action="like"><i class="fa-regular fa-heart"></i><span data-base-count="' + likes + '">' + likes + '</span></button>' +
-                        '<button class="action-item" aria-label="تعليق" data-i18n-aria="comment_aria" data-action="comments"><i class="fa-regular fa-comment"></i><span data-stat="comments">0</span></button>' +
-                        '<button class="action-item" aria-label="إعادة نشر" data-i18n-aria="repost_aria" data-action="repost"><i class="fa-solid fa-retweet"></i><span data-stat="reposts">0</span></button>' +
-                        '<button class="action-item" aria-label="مشاركة" data-i18n-aria="share_aria" data-action="share"><i class="fa-regular fa-paper-plane"></i><span data-stat="shares">0</span></button>' +
-                    '</div>' +
-                    '<button class="action-item" aria-label="حفظ" data-i18n-aria="save_post_aria" data-action="save"><i class="fa-regular fa-bookmark"></i></button>' +
-                '</div>' +
-
-                '<div class="post-caption-section">' +
-                    '<div class="caption-username">robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></div>' +
-                    '<p class="six-line-caption">' + caption + '</p>' +
-                    '<button class="caption-more-btn" data-i18n="caption_more">... المزيد</button>' +
-                '</div>' +
-            '</article>';
-        }
-
-        var list = RM.getPublished();
-
-        if (!list.length) {
-            feed.innerHTML = '<p class="moments-empty" data-i18n="moments_empty">قريبا... أول لحظة ديال Robaty 🌙</p>';
-            return;
-        }
-
-        feed.innerHTML = list.map(postHTML).join('');
-
-        // فتح منشور معين من رابط (مثلا من شبكة البروفايل): moments.html#post-day01-am
-        if (location.hash) {
-            setTimeout(function () {
-                var target = document.getElementById(location.hash.slice(1));
-                if (target) target.scrollIntoView();
-            }, 50);
-        }
-
-    })();
-</script>
 <script src="story.js"></script>
-
-<!-- Firebase: التعليقات المشتركة -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
-<script src="comments.js"></script>
-
-<script>
-    // ترجمة النصوص الديناميكية بلغة المستخدمة الحالية (وإلا العربية)
-    function momentsTr(key, fallback) {
-        return window.RobatyI18n ? window.RobatyI18n.t(key) : fallback;
-    }
-
-    // تسجيل الـ service worker (ضروري هو والـ manifest باش الصفحة تقدر تفعّل التثبيت)
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(function () {});
-    }
-
-
-    // فتح prompt التثبيت الأصلي ديال المتصفح (بحال Robaty 1)
-    // إلا ماجاش الـ prompt الأصلي، كنبينو تعليمة يدوية بدل ما نوديو مباشرة لـ robaty.com
-    var deferredInstallPrompt = null;
-
-    window.addEventListener('beforeinstallprompt', function (e) {
-        e.preventDefault();
-        deferredInstallPrompt = e;
-    });
-
-    function showInstallInstructions() {
-        var modal = document.getElementById('simpleModal');
-        var title = document.getElementById('simpleModalTitle');
-        var body = modal.querySelector('.simple-modal-body');
-
-        title.textContent = momentsTr('install_title', '📲 تثبيت التطبيق');
-
-        body.innerHTML =
-            '<div style="text-align:start; font-size:13px; line-height:2.1; color:#eee; width:100%;">' +
-                '1. ' + momentsTr('install_step1', '') + '<br>' +
-                '2. ' + momentsTr('install_step2', '') + '<br>' +
-                '3. ' + momentsTr('install_step3', '') +
-            '</div>';
-
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-    }
-
-    document.querySelectorAll('.app-download-banner').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            if (deferredInstallPrompt) {
-                deferredInstallPrompt.prompt();
-                deferredInstallPrompt.userChoice.then(function () {
-                    deferredInstallPrompt = null;
-                });
-            } else {
-                showInstallInstructions();
-            }
-        });
-    });
-
-
-    // إخفاء زر "حمّلي التطبيق الآن" عند المستخدمات اللي عندهم التطبيق مثبت من قبل
-    (function () {
-        var isInstalled =
-            (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
-            window.navigator.standalone === true;
-
-        if (isInstalled) {
-            document.querySelectorAll('.app-download-banner').forEach(function (btn) {
-                btn.style.display = 'none';
-            });
-        }
-    })();
-
-
-    // زر "المزيد" (فالهيدر أو تحت النص): يبين/يخبي السطر الخامس والسادس من التعليق
-    document.querySelectorAll('.post-header .icon-btn, .caption-more-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var card = btn.closest('.post-card');
-            if (card) {
-                card.classList.toggle('caption-expanded');
-            }
-        });
-    });
-
-
-    // أزرار التفاعل: إعجاب + حفظ (محفوظين فـ localStorage) وتعليق/ريبوست/مشاركة (نافذة فارغة)
-    (function () {
-
-        var LIKE_KEY = 'robaty_likes';
-        var SAVE_KEY = 'robaty_saves';
-
-        function readState(key) {
-            try {
-                return JSON.parse(localStorage.getItem(key)) || {};
-            } catch (e) {
-                return {};
-            }
-        }
-
-        function writeState(key, state) {
-            try {
-                localStorage.setItem(key, JSON.stringify(state));
-            } catch (e) {}
-        }
-
-        var likes = readState(LIKE_KEY);
-        var saves = readState(SAVE_KEY);
-
-        function applyLikeState(btn, liked) {
-            var icon = btn.querySelector('i');
-            var span = btn.querySelector('span');
-            var base = parseInt(span.dataset.baseCount, 10) || 0;
-
-            icon.classList.toggle('fa-regular', !liked);
-            icon.classList.toggle('fa-solid', liked);
-            btn.classList.toggle('liked', liked);
-
-            span.textContent = base + (liked ? 1 : 0);
-        }
-
-        function applySaveState(btn, saved) {
-            var icon = btn.querySelector('i');
-
-            icon.classList.toggle('fa-regular', !saved);
-            icon.classList.toggle('fa-solid', saved);
-            btn.classList.toggle('saved', saved);
-        }
-
-        // تطبيق الحالة المحفوظة عند فتح الصفحة
-        document.querySelectorAll('.action-item[data-action="like"]').forEach(function (btn) {
-            var postId = btn.closest('.post-card').id;
-            if (likes[postId]) {
-                applyLikeState(btn, true);
-            }
-        });
-
-        document.querySelectorAll('.action-item[data-action="save"]').forEach(function (btn) {
-            var postId = btn.closest('.post-card').id;
-            if (saves[postId]) {
-                applySaveState(btn, true);
-            }
-        });
-
-        // زر الإعجاب
-        document.querySelectorAll('.action-item[data-action="like"]').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var postId = btn.closest('.post-card').id;
-                var liked = !likes[postId];
-
-                likes[postId] = liked;
-                writeState(LIKE_KEY, likes);
-                applyLikeState(btn, liked);
-            });
-        });
-
-        // زر الحفظ
-        document.querySelectorAll('.action-item[data-action="save"]').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var postId = btn.closest('.post-card').id;
-                var saved = !saves[postId];
-
-                saves[postId] = saved;
-                writeState(SAVE_KEY, saves);
-                applySaveState(btn, saved);
-            });
-        });
-
-        // أزرار تفتح نافذة فارغة: تعليق فقط (نعمروه لاحقا بتعليقات المستخدمات)
-        var simpleModal = document.getElementById('simpleModal');
-        var simpleModalTitle = document.getElementById('simpleModalTitle');
-        var simpleModalBody = document.querySelector('.simple-modal-body');
-        var defaultModalBodyHTML = simpleModalBody.innerHTML;
-
-        function openSimpleModal(label) {
-            simpleModalBody.innerHTML = defaultModalBodyHTML;
-            simpleModalTitle.textContent = label || '';
-            simpleModal.classList.add('active');
-            simpleModal.setAttribute('aria-hidden', 'false');
-        }
-
-        function closeSimpleModal() {
-            simpleModal.classList.remove('active');
-            simpleModal.setAttribute('aria-hidden', 'true');
-        }
-
-        document.querySelectorAll('.action-item[data-action="modal"]').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                openSimpleModal(btn.dataset.modalLabel);
-            });
-        });
-
-        document.querySelectorAll('[data-close-simple-modal]').forEach(function (el) {
-            el.addEventListener('click', closeSimpleModal);
-        });
-
-        var closeSimpleModalBtn = document.getElementById('closeSimpleModalBtn');
-        if (closeSimpleModalBtn) {
-            closeSimpleModalBtn.addEventListener('click', closeSimpleModal);
-        }
-
-
-        // مشاركة / إعادة نشر: كتحل شاشة المشاركة الأصلية د الهاتف (واتساب، إنستغرام، فيسبوك...)
-        // وإلا ماكانتش متوفرة (كمبيوتر مثلا)، كتبان نافذة بديلة (واتساب + نسخ الرابط)
-        function buildShareData(postId, mode) {
-            var intro = (mode === 'repost')
-                ? momentsTr('share_intro_repost', 'شوفو هاد اللحظة ديال Robaty 👇')
-                : momentsTr('share_intro', 'مرحبا بيك عند روباتي شوفي تصاوري ليوم');
-
-            var postUrl = location.origin
-                + location.pathname.replace(/moments\.html.*$/, '')
-                + 'moments.html#' + postId;
-
-            return {
-                title: 'Robaty',
-                text: intro + '\n\nRobaty:',
-                url: postUrl
-            };
-        }
-
-        function openShareFallback(data, mode, postId) {
-            var waLink = 'https://wa.me/?text=' + encodeURIComponent(data.text + '\n' + data.url);
-
-            simpleModalTitle.textContent = (mode === 'repost') ? momentsTr('repost_aria', 'إعادة نشر') : momentsTr('share_aria', 'مشاركة');
-
-            simpleModalBody.innerHTML =
-                '<div class="share-fallback">' +
-                    '<a class="share-fallback-btn" href="' + waLink + '" target="_blank" rel="noopener">' +
-                        '<i class="fa-brands fa-whatsapp"></i><span>' + momentsTr('share_whatsapp', 'واتساب') + '</span>' +
-                    '</a>' +
-                    '<button class="share-fallback-btn" type="button" id="copyShareLinkBtn">' +
-                        '<i class="fa-solid fa-link"></i><span>' + momentsTr('share_copy_link', 'نسخ الرابط') + '</span>' +
-                    '</button>' +
-                '</div>';
-
-            var waBtn = simpleModalBody.querySelector('a.share-fallback-btn');
-            if (waBtn) {
-                waBtn.addEventListener('click', function () {
-                    countOnce(postId, mode);
-                });
-            }
-
-            var copyBtn = document.getElementById('copyShareLinkBtn');
-            if (copyBtn) {
-                copyBtn.addEventListener('click', function () {
-                    var fullText = data.text + '\n' + data.url;
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText(fullText).then(function () {
-                            copyBtn.querySelector('span').textContent = momentsTr('share_copied', 'تم النسخ ✓');
-                            countOnce(postId, mode);
-                        });
-                    }
-                });
-            }
-
-            simpleModal.classList.add('active');
-            simpleModal.setAttribute('aria-hidden', 'false');
-        }
-
-        // العداد الحقيقي: مرة وحدة لكل جهاز ولكل منشور، وفقط إلا تمّت المشاركة فعلا
-        var COUNTED_KEY = 'robaty_counted';
-
-        function countOnce(postId, mode) {
-            var field = (mode === 'repost') ? 'reposts' : 'shares';
-            var done = readState(COUNTED_KEY);
-            var key = postId + ':' + field;
-
-            if (done[key]) return;
-
-            done[key] = 1;
-            writeState(COUNTED_KEY, done);
-
-            if (window.RobatyCounters) {
-                window.RobatyCounters.bump(postId, field);
-            }
-        }
-
-        document.querySelectorAll('.action-item[data-action="share"], .action-item[data-action="repost"]').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var postId = btn.closest('.post-card').id;
-                var mode = btn.dataset.action; // 'share' أو 'repost'
-                var data = buildShareData(postId, mode);
-
-                if (navigator.share) {
-                    navigator.share(data).then(function () {
-                        countOnce(postId, mode);
-                    }).catch(function () {});
-                } else {
-                    openShareFallback(data, mode, postId);
-                }
-            });
-        });
-
-    })();
-</script>
+<script src="download-btn-fx.js"></script>
 
 </body>
 </html>

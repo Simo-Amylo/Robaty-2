@@ -328,7 +328,7 @@ button {
 
     -webkit-tap-highlight-color: transparent;
 
-    animation: banner-glow 3.6s ease-in-out infinite;
+    animation: banner-glow 4s ease-in-out infinite;
 }
 
 .app-download-banner:active {
@@ -336,20 +336,73 @@ button {
 }
 
 
+/* توهج أقوى وأوضح: يبلغ ذروته مع حركة الأيقونة ثم يهدأ */
 @keyframes banner-glow {
     0%, 100% {
-        box-shadow: 0 0 4px rgba(229, 179, 92, 0.25);
-        border-color: rgba(229, 179, 92, 0.7);
+        box-shadow:
+            0 0 6px rgba(229, 179, 92, 0.35),
+            inset 0 0 4px rgba(229, 179, 92, 0.10);
+        border-color: rgba(229, 179, 92, 0.75);
     }
 
-    50% {
-        box-shadow: 0 0 12px rgba(229, 179, 92, 0.65);
-        border-color: var(--gold);
+    20% {
+        box-shadow:
+            0 0 10px 1px rgba(255, 214, 130, 0.95),
+            0 0 26px 5px rgba(229, 179, 92, 0.70),
+            inset 0 0 12px rgba(229, 179, 92, 0.38);
+        border-color: #ffd98a;
+    }
+
+    55% {
+        box-shadow:
+            0 0 8px rgba(229, 179, 92, 0.55),
+            inset 0 0 6px rgba(229, 179, 92, 0.18);
+        border-color: rgba(229, 179, 92, 0.9);
     }
 }
 
+
+/* الأيقونة وحدها تتحرك مرتين خفيفتين كل 4 ثوان (النص يبقى ثابتا) */
+
+.app-download-icon {
+    display: inline-block;
+
+    transform-origin: 50% 60%;
+
+    animation: icon-wiggle 4s ease-in-out infinite;
+}
+
+@keyframes icon-wiggle {
+    0%        { transform: rotate(0deg) scale(1); }
+    3%        { transform: rotate(-16deg) scale(1.12); }
+    6%        { transform: rotate(16deg) scale(1.12); }
+    9%        { transform: rotate(0deg) scale(1); }
+    12%       { transform: rotate(-16deg) scale(1.12); }
+    15%       { transform: rotate(16deg) scale(1.12); }
+    18%, 100% { transform: rotate(0deg) scale(1); }
+}
+
+
+/* عند لمس الزر: كل الحركة تتوقف للأبد ويبقى توهج هادئ ثابت */
+
+html.dl-btn-calm .app-download-banner {
+    animation: none;
+
+    box-shadow:
+        0 0 7px rgba(229, 179, 92, 0.45),
+        inset 0 0 5px rgba(229, 179, 92, 0.12);
+
+    border-color: var(--gold);
+}
+
+html.dl-btn-calm .app-download-icon {
+    animation: none;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
-    .app-download-banner {
+    .app-download-banner,
+    .app-download-icon {
         animation: none;
     }
 }
