@@ -297,14 +297,26 @@ button {
 
     align-items: center;
     justify-content: center;
+    gap: 6px;
 
-    padding: 8px 10px;
+    min-height: 38px;
+
+    padding: 7px 12px;
 
     border-radius: 20px;
 
-    background: linear-gradient(135deg, var(--gold), #c99544);
+    /* خلفية داكنة بلمسة ذهبية خافتة تتماشى مع الهيدر */
+    background: linear-gradient(
+        135deg,
+        rgba(229, 179, 92, 0.16),
+        rgba(229, 179, 92, 0.05)
+    );
 
-    color: #1a1409;
+    /* حدود ذهبية بنفس سماكة إطار الصفحة */
+    border: 1.5px solid var(--gold);
+
+    /* نص أبيض دافئ واضح فوق الخلفية الداكنة */
+    color: #fff3cf;
 
     font-size: 12.5px;
 
@@ -314,17 +326,31 @@ button {
 
     white-space: nowrap;
 
-    animation: banner-glow 2.4s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+
+    animation: banner-glow 3.6s ease-in-out infinite;
+}
+
+.app-download-banner:active {
+    background: rgba(229, 179, 92, 0.28);
 }
 
 
 @keyframes banner-glow {
     0%, 100% {
-        box-shadow: 0 0 5px rgba(229, 179, 92, 0.35);
+        box-shadow: 0 0 4px rgba(229, 179, 92, 0.25);
+        border-color: rgba(229, 179, 92, 0.7);
     }
 
     50% {
-        box-shadow: 0 0 14px rgba(229, 179, 92, 0.9);
+        box-shadow: 0 0 12px rgba(229, 179, 92, 0.65);
+        border-color: var(--gold);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-download-banner {
+        animation: none;
     }
 }
 
