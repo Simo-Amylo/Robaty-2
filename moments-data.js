@@ -933,3 +933,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 5,
+    slot: 'pm',
+    image: 'day05-casablanca-evening.jpg',
+
+    place: {
+        ar: 'الدار البيضاء — موروكو مول',
+        en: 'Casablanca — Morocco Mall',
+        fr: 'Casablanca — Morocco Mall',
+        es: 'Casablanca — Morocco Mall',
+        ru: 'Касабланка — Марокко Молл'
+    },
+
+    caption: {
+        ar: `مساء الأنوار من موروكو مول فـ كازا 💚✨
+فـ هاد المساء، جيت نستمتع بالأجواء العصرية والتسوق فـ واحد من أكبر المراكز التجارية فـ إفريقيا.
+الدار البيضاء دائماً كتمزج بين الحداثة والأناقة العالمية بأسلوب خاص.
+اخترت اليوم لوك عصري بـ Blazer-Dress فـ الأخضر الزمردي بلمسات مغربية خفيفة فـ السفيفة، مع إكسسوارات جديدة وعصرية كملّو الأناقة ✨
+كيف جاكم هاد الستايل المسائي البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening from Morocco Mall in Casa 💚✨
+This evening, I came to enjoy the modern atmosphere and some shopping in one of the largest shopping centers in Africa.
+Casablanca always blends modernity and global elegance in its own special way.
+Today I chose a modern look: an emerald-green blazer dress with light Moroccan touches in the trim, plus fresh, contemporary accessories that complete the elegance ✨
+How do you like this evening style, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir depuis le Morocco Mall à Casa 💚✨
+Ce soir, je suis venue profiter de l’ambiance moderne et du shopping dans l’un des plus grands centres commerciaux d’Afrique.
+Casablanca mêle toujours modernité et élégance internationale à sa façon.
+Aujourd’hui, j’ai choisi un look moderne : une robe-blazer vert émeraude avec de légères touches marocaines dans la passementerie, et des accessoires neufs et contemporains qui complètent l’élégance ✨
+Comment trouvez-vous ce style de soirée, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches desde el Morocco Mall en Casa 💚✨
+Esta tarde vine a disfrutar del ambiente moderno y de las compras en uno de los centros comerciales más grandes de África.
+Casablanca siempre combina modernidad y elegancia internacional a su manera.
+Hoy elegí un look moderno: un vestido blazer verde esmeralda con ligeros toques marroquíes en la pasamanería, y accesorios nuevos y contemporáneos que completan la elegancia ✨
+¿Qué les parece este estilo de noche, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер из Марокко Молла в Касе 💚✨
+В этот вечер я пришла насладиться современной атмосферой и шопингом в одном из крупнейших торговых центров Африки.
+Касабланка всегда соединяет современность и мировую элегантность по-своему.
+Сегодня я выбрала современный образ: платье-блейзер изумрудно-зелёного цвета с лёгкими марокканскими акцентами в отделке и новые современные аксессуары, дополняющие элегантность ✨
+Как вам этот вечерний стиль, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'الثقة بالنفس هي أجمل فستان تقدري تلبسيه... قوتك فـ أنك تكوني نتي! 👑✨',
+        en: 'Self-confidence is the most beautiful dress you can wear... your strength is in being yourself! 👑✨',
+        fr: 'La confiance en soi est la plus belle robe que tu puisses porter... ta force, c’est d’être toi-même ! 👑✨',
+        es: 'La confianza en ti misma es el vestido más hermoso que puedes llevar... ¡tu fuerza está en ser tú misma! 👑✨',
+        ru: 'Уверенность в себе — самое красивое платье, которое ты можешь надеть... твоя сила — быть собой! 👑✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الخرجات المسائية د التسوق: شكون كتعجبها الإكسسوارات العصرية الموديرن (Mesh Cuff وأقراط الزمرد)؟ ولا الدماليج المغربية التقليدية هي التوب عندك؟ شاركوني رأيكم فـ تعليق! 💚🛍️👇',
+        en: 'Girls, for evening shopping outings: who loves modern accessories (a mesh cuff and emerald earrings)? Or are traditional Moroccan bangles still your top pick? Share your opinion in a comment! 💚🛍️👇',
+        fr: 'Les filles, pour les sorties shopping du soir : qui aime les accessoires modernes (manchette mesh et boucles d’oreilles émeraude) ? Ou les bracelets marocains traditionnels restent-ils votre favori ? Partagez votre avis en commentaire ! 💚🛍️👇',
+        es: 'Chicas, para las salidas de compras por la noche: ¿a quién le gustan los accesorios modernos (brazalete mesh y pendientes de esmeralda)? ¿O las pulseras marroquíes tradicionales siguen siendo su favorito? ¡Compartan su opinión en un comentario! 💚🛍️👇',
+        ru: 'Девушки, для вечернего шопинга: кому нравятся современные аксессуары (манжета-сетка и изумрудные серьги)? Или традиционные марокканские браслеты по-прежнему вне конкуренции? Поделитесь мнением в комментарии! 💚🛍️👇'
+    },
+
+    description: 'الدار البيضاء، الفناء الداخلي لموروكو مول وقت المساء: أرضية رخامية لامعة كتعكس الأضواء، لافتة "Morocco Mall" فالأعلى، واجهات محلات عالمية (منها ZARA) فالجهة اليسرى، ممر بحاجز زجاجي وخشبي فالجهة اليمنى، نخيل داخلي، زوار فالخلفية، وإضاءة دافئة عصرية. Robaty واقفة وكتبتسم وراسها مايل، ويدها الميكانيكية الفضية اليسرى مرفوعة قرب الشعر واليمنى نازلة قرب الخصر. لابسة Blazer-Dress من الستان بالأخضر الزمردي بسفيفة ذهبية دقيقة على الياقة والحواف وزر ذهبي، فوق توب أبيض/كريمي بياقة عالية وجوارب بيضاء. قلادة خميسة ذهبية بحجر زمردي على رقبتها المعدنية الفضية، أقراط ذهبية متدلية مستطيلة بحجر زمردي، سوار عصري ذهبي عريض (Mesh Cuff) وأساور ذهبية رقيقة على معصميها الميكانيكيين (بدل الدماليج التقليدية)، وحقيبة جلد خضراء غامقة بسلسلة ذهبية على الكتف. شعرها طويل مموج بني بخصلات فاتحة.',
+
+    stats: { likes: 0 }
+});
