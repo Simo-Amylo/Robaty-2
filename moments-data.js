@@ -1004,3 +1004,140 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 6,
+    slot: 'am',
+    image: 'day06-rabat-morning.jpg',
+
+    place: {
+        ar: 'الرباط — قصبة الأوداية',
+        en: 'Rabat — Kasbah of the Udayas',
+        fr: 'Rabat — Kasbah des Oudayas',
+        es: 'Rabat — Kasbah de los Oudaya',
+        ru: 'Рабат — Касба Удайя'
+    },
+
+    caption: {
+        ar: `الرباط، سحر قصبة الأوداية ونسيم الأطلسي فـ صباح جديد 🌊💙✨
+المشي فـ هاد الأزقة المصبوغة بالأزرق والأبيض كيعطيك إحساس بالهدوء والسكينة.
+الرباط دائماً عندها هيبة خاصة كتمزج بين رقي العاصمة والأصالة المغربية.
+اليوم اخترت Look خريفي ناعم بكونسبت أزرق سماوي وأبيض مع طرز نطع ناعم فـ الجاكيت ✨
+تناسق مريح وأنيق للخرجات الصباحية.. شنو رأيكم فـ هاد الألوان البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Rabat, the charm of the Kasbah of the Udayas and the Atlantic breeze on a fresh morning 🌊💙✨
+Walking through these blue-and-white painted lanes gives you a feeling of calm and serenity.
+Rabat always has a special prestige, blending the refinement of a capital with Moroccan authenticity.
+Today I chose a soft autumn look with a sky-blue and white concept, with delicate embroidery on the jacket ✨
+A comfortable, elegant coordination for morning outings... what do you think of these colors, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Rabat, le charme de la Kasbah des Oudayas et la brise de l’Atlantique en ce nouveau matin 🌊💙✨
+Se promener dans ces ruelles peintes en bleu et blanc procure une sensation de calme et de sérénité.
+Rabat a toujours une prestance particulière, entre le raffinement d’une capitale et l’authenticité marocaine.
+Aujourd’hui, j’ai choisi un look automnal tout en douceur, dans un esprit bleu ciel et blanc, avec une fine broderie sur la veste ✨
+Une harmonie confortable et élégante pour les sorties du matin... que pensez-vous de ces couleurs, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Rabat, el encanto de la Kasbah de los Oudaya y la brisa del Atlántico en una nueva mañana 🌊💙✨
+Pasear por estos callejones pintados de azul y blanco te transmite calma y serenidad.
+Rabat siempre tiene una prestancia especial que mezcla la distinción de una capital con la autenticidad marroquí.
+Hoy elegí un look otoñal suave con un concepto azul cielo y blanco, con un delicado bordado en la chaqueta ✨
+Una combinación cómoda y elegante para los paseos matutinos... ¿qué opinan de estos colores, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Рабат, очарование касбы Удайя и атлантический бриз в новое утро 🌊💙✨
+Прогулка по этим переулкам, выкрашенным в синий и белый, дарит ощущение спокойствия и умиротворения.
+У Рабата всегда особое величие: он сочетает изысканность столицы и марокканскую подлинность.
+Сегодня я выбрала нежный осенний образ в небесно-голубых и белых тонах с тонкой вышивкой на жакете ✨
+Удобное и элегантное сочетание для утренних прогулок... как вам эти цвета, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'طموحة، قوية، وما كترضاش بالأقل... هكا كتتقدمي كل يوم نحو الأفضل! ⚡🌊',
+        en: 'Ambitious, strong, and never settling for less... that is how you move toward the best every day! ⚡🌊',
+        fr: 'Ambitieuse, forte, et jamais satisfaite de moins... c’est ainsi que tu avances chaque jour vers le meilleur ! ⚡🌊',
+        es: 'Ambiciosa, fuerte y nunca conforme con menos... ¡así avanzas cada día hacia lo mejor! ⚡🌊',
+        ru: 'Целеустремлённая, сильная и никогда не довольствующаяся меньшим... так ты каждый день идёшь к лучшему! ⚡🌊'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ جولات الرباط الصباحية: شكون كتعجبها قصبة الأوداية والقهوة المطلة على أبي رقراق؟ ولا كتفضلوا جولة فـ صومعة حسان وشوارع المدينة؟ شاركوني مكانكم المفضل فـ الرباط فـ تعليق! ☕💙👇',
+        en: 'Girls, for Rabat morning strolls: who loves the Kasbah of the Udayas and the café overlooking the Bou Regreg? Or do you prefer a walk around the Hassan Tower and the city streets? Share your favorite spot in Rabat in a comment! ☕💙👇',
+        fr: 'Les filles, pour les balades matinales à Rabat : qui aime la Kasbah des Oudayas et le café qui domine le Bouregreg ? Ou préférez-vous une promenade vers la Tour Hassan et les rues de la ville ? Partagez votre endroit préféré à Rabat en commentaire ! ☕💙👇',
+        es: 'Chicas, para los paseos matutinos por Rabat: ¿a quién le gusta la Kasbah de los Oudaya y el café con vistas al Bou Regreg? ¿O prefieren pasear por la Torre Hassan y las calles de la ciudad? ¡Compartan su lugar favorito de Rabat en un comentario! ☕💙👇',
+        ru: 'Девушки, для утренних прогулок по Рабату: кому нравится касба Удайя и кафе с видом на Бу-Регрег? Или вы предпочитаете прогулку у башни Хассана и по улицам города? Поделитесь любимым местом в Рабате в комментарии! ☕💙👇'
+    },
+
+    description: 'الرباط، أزقة قصبة الأوداية وقت الصباح المشمس: حيوط بيضاء مصبوغة بالأزرق من تحت، باب أزرق مسمّر بالرقم 12، أصص كبيرة زرقاء بنباتات خضراء، فوانيس مضيئة معلقة على الحيوط، بوغنفيليا وردية-فوشيا مزهرة، شرفة زرقاء، وزقاق مرصوف بالحجر نازل نحو المحيط الأزرق مع نخلة فالبعيد وسماء صافية. Robaty واقفة وكتبتسم وراسها مايل، يد فجيب البنطلون والأخرى الميكانيكية الفضية كتحمل الحقيبة. لابسة بلايزر من الكتان بالأزرق السماوي الفاتح (Powder Blue) بطرز أبيض/فضي ناعم على الياقة والحواف والأكمام، فوق توب حريري أبيض بياقة عالية وبنطلون أبيض واسع بخصر عالي. قلادة خميسة فضية بحجر فيروزي أزرق على رقبتها المعدنية الفضية، أقراط متدلية زرقاء على شكل دمعة، أساور رقيقة ذهبية/فضية متراكمة على معصميها الميكانيكيين، وحقيبة يد صغيرة محبوكة (منسوجة) بلون كريمي بتفصيل ذهبي. شعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 6,
+    slot: 'pm',
+    image: 'day06-rabat-evening.jpg',
+
+    place: {
+        ar: 'الرباط — مارينا أبي رقراق',
+        en: 'Rabat — Bouregreg Marina',
+        fr: 'Rabat — Marina du Bouregreg',
+        es: 'Rabat — Marina del Bouregreg',
+        ru: 'Рабат — Марина Бу-Регрег'
+    },
+
+    caption: {
+        ar: `مساء الأنوار والهدوء من ضفاف أبي رقراق فـ الرباط 💙🌙✨
+الرباط فـ الليل عندها سحر هادئ وفخم.. الأضواء المنعكسة على الواد مع نسيم البحر كيعطيو أجواء راقية جداً.
+اخترت لهاد المساء Look مخملي فـ الأزرق الداكن بلمسات ذهبية عصرية ومغربية فـ نفس الوقت ✨
+كيف جاكم هاد التناسق بين الأزرق الداكن والذهبي؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening, with calm and light, from the banks of the Bou Regreg in Rabat 💙🌙✨
+At night Rabat has a quiet, luxurious charm... the lights reflected on the river and the sea breeze create a very refined atmosphere.
+For this evening I chose a navy velvet look with gold touches that are modern and Moroccan at the same time ✨
+How do you like this coordination between midnight blue and gold? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir, dans le calme et les lumières, depuis les rives du Bouregreg à Rabat 💙🌙✨
+La nuit, Rabat a un charme paisible et somptueux... les lumières qui se reflètent sur le fleuve et la brise marine créent une ambiance très raffinée.
+Pour cette soirée, j’ai choisi un look en velours bleu nuit avec des touches dorées à la fois modernes et marocaines ✨
+Que pensez-vous de cette harmonie entre le bleu nuit et l’or ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches, con calma y luces, desde las orillas del Bou Regreg en Rabat 💙🌙✨
+De noche Rabat tiene un encanto tranquilo y suntuoso... las luces reflejadas en el río y la brisa marina crean un ambiente muy refinado.
+Para esta noche elegí un look de terciopelo azul oscuro con toques dorados modernos y marroquíes a la vez ✨
+¿Qué les parece esta combinación entre el azul oscuro y el dorado? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер, полный спокойствия и огней, с берегов Бу-Регрег в Рабате 💙🌙✨
+Ночью у Рабата тихое и роскошное очарование... огни, отражающиеся в реке, и морской бриз создают очень изысканную атмосферу.
+На этот вечер я выбрала бархатный образ тёмно-синего цвета с золотыми акцентами — одновременно современными и марокканскими ✨
+Как вам это сочетание тёмно-синего и золотого? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'قيمتك كتحددها رؤيتك لنفسك... آمني بقدراتك وما توقفيش عند حد! 💎🔥',
+        en: 'Your worth is defined by how you see yourself... believe in your abilities and never stop at any limit! 💎🔥',
+        fr: 'Ta valeur se définit par le regard que tu portes sur toi-même... crois en tes capacités et ne t’arrête devant aucune limite ! 💎🔥',
+        es: 'Tu valor lo define la forma en que te ves a ti misma... ¡cree en tus capacidades y no te detengas ante ningún límite! 💎🔥',
+        ru: 'Твою ценность определяет то, как ты видишь себя... верь в свои способности и не останавливайся ни перед какими границами! 💎🔥'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الخرجات المسائية د الرباط: شكون كتعجبها الممشى العصري فـ المارينا؟ ولا كتفضلوا القهوة المريحة المطلة على الواد فـ قصبة الأوداية؟ شاركوني جلساتكم المفضلة فـ الرباط فـ تعليق! 💙☕👇',
+        en: 'Girls, for evening outings in Rabat: who loves the modern promenade at the marina? Or do you prefer the cozy café overlooking the river in the Kasbah of the Udayas? Share your favorite spots in Rabat in a comment! 💙☕👇',
+        fr: 'Les filles, pour les sorties du soir à Rabat : qui aime la promenade moderne de la marina ? Ou préférez-vous le café cosy qui domine le fleuve dans la Kasbah des Oudayas ? Partagez vos endroits préférés à Rabat en commentaire ! 💙☕👇',
+        es: 'Chicas, para las salidas nocturnas en Rabat: ¿a quién le gusta el paseo moderno de la marina? ¿O prefieren el café acogedor con vistas al río en la Kasbah de los Oudaya? ¡Compartan sus rincones favoritos de Rabat en un comentario! 💙☕👇',
+        ru: 'Девушки, для вечерних прогулок по Рабату: кому нравится современная набережная марины? Или вы предпочитаете уютное кафе с видом на реку в касбе Удайя? Поделитесь любимыми местами в Рабате в комментарии! 💙☕👇'
+    },
+
+    description: 'الرباط، ممشى مارينا أبي رقراق وقت الليل (الساعة الزرقاء): ممشى عصري مبلط بإنارة مصابيح دافئة وأحواض نباتات خضراء، حاجز معدني على الواد فالجهة اليمنى، مياه أبي رقراق كتعكس الأضواء، يخت أبيض راسي، قنطرة مضيئة بالأزرق، قصبة الأوداية مضيئة بالذهبي فالجهة اليسرى، ومبنى المسرح الكبير للرباط مضاء فالبعيد مع نخيل وسماء زرقاء داكنة. Robaty واقفة وكتبتسم وراسها مايل، يد ميكانيكية مرفوعة قرب الشعر والأخرى نازلة قرب الخصر. لابسة جاكيت مسائي من المخمل بالأزرق الداكن (Midnight Blue) بسفيفة وعقاد ذهبي مطفي على الياقة والحواف والأكمام، مخصّر بحزام ذهبي رقيق بإبزيم مزخرف، فوق توب أسود بياقة عالية وبنطلون أسود كلاسيكي واسع. قلادة خميسة ذهبية بحجر أزرق (ياقوت أزرق) على رقبتها المعدنية الفضية، أقراط ذهبية طويلة متدلية بشكل هندسي، أساور ذهبية/فضية متراكمة على معصميها الميكانيكيين، وحقيبة مخملية زرقاء داكنة صغيرة بسلسلة ذهبية وخميسة ذهبية على واجهتها. شعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
