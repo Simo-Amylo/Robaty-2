@@ -1000,7 +1000,7 @@ El reto y la votación están en los comentarios 👀☝️`,
         ru: 'Девушки, для вечернего шопинга: кому нравятся современные аксессуары (манжета-сетка и изумрудные серьги)? Или традиционные марокканские браслеты по-прежнему вне конкуренции? Поделитесь мнением в комментарии! 💚🛍️👇'
     },
 
-    description: 'الدار البيضاء، الفناء الداخلي لموروكو مول وقت المساء: أرضية رخامية لامعة كتعكس الأضواء، لافتة "Morocco Mall" فالأعلى، واجهات محلات عالمية (منها ZARA) فالجهة اليسرى، ممر بحاجز زجاجي وخشبي فالجهة اليمنى، نخيل داخلي، زوار فالخلفية، وإضاءة دافئة عصرية. Robaty واقفة وكتبتسم وراسها مايل، ويدها الميكانيكية الفضية اليسرى مرفوعة قرب الشعر واليمنى نازلة قرب الخصر. لابسة Blazer-Dress من الستان بالأخضر الزمردي بسفيفة ذهبية دقيقة على الياقة والحواف وزر ذهبي، فوق توب أبيض/كريمي بياقة عالية وجوارب بيضاء. قلادة خميسة ذهبية بحجر زمردي على رقبتها المعدنية الفضية، أقراط ذهبية متدلية مستطيلة بحجر زمردي، سوار عصري ذهبي عريض (Mesh Cuff) وأساور ذهبية رقيقة على معصميها الميكانيكيين (بدل الدماليج التقليدية)، وحقيبة جلد خضراء غامقة بسلسلة ذهبية على الكتف. شعرها طويل مموج بني بخصلات فاتحة.',
+    description: 'الدار البيضاء، الفناء الداخلي لموروكو مول وقت المساء: أرضية رخامية لامعة كتعكس الأضواء، لافتة "Morocco Mall" فالأعلى، واجهات محلات عالمية (منها ZARA) فالجهة اليسرى، ممر بحاجز زجاجي وخشبي فالجهة اليمنى، نخيل داخلي، زوار فالخلفية، وإضاءة دافئة عصرية. Robaty واقفة وكتبتسم وراسها مايل، ويدها الميكانيكية الفضية اليمنى مرفوعة قرب الشعر واليسرى نازلة قرب الخصر. لابسة Blazer-Dress من الستان بالأخضر الزمردي بسفيفة ذهبية دقيقة على الياقة والحواف وزر ذهبي، فوق توب أبيض/كريمي بياقة عالية وجوارب بيضاء. قلادة خميسة ذهبية بحجر زمردي على رقبتها المعدنية الفضية، أقراط ذهبية متدلية مستطيلة بحجر زمردي، سوار عصري ذهبي عريض (Mesh Cuff) وأساور ذهبية رقيقة على معصميها الميكانيكيين (بدل الدماليج التقليدية)، وحقيبة جلد خضراء غامقة بسلسلة ذهبية على الكتف. شعرها طويل مموج بني بخصلات فاتحة.',
 
     stats: { likes: 0 }
 });
@@ -1138,6 +1138,143 @@ El reto y la votación están en los comentarios 👀☝️`,
     },
 
     description: 'الرباط، ممشى مارينا أبي رقراق وقت الليل (الساعة الزرقاء): ممشى عصري مبلط بإنارة مصابيح دافئة وأحواض نباتات خضراء، حاجز معدني على الواد فالجهة اليمنى، مياه أبي رقراق كتعكس الأضواء، يخت أبيض راسي، قنطرة مضيئة بالأزرق، قصبة الأوداية مضيئة بالذهبي فالجهة اليسرى، ومبنى المسرح الكبير للرباط مضاء فالبعيد مع نخيل وسماء زرقاء داكنة. Robaty واقفة وكتبتسم وراسها مايل، يد ميكانيكية مرفوعة قرب الشعر والأخرى نازلة قرب الخصر. لابسة جاكيت مسائي من المخمل بالأزرق الداكن (Midnight Blue) بسفيفة وعقاد ذهبي مطفي على الياقة والحواف والأكمام، مخصّر بحزام ذهبي رقيق بإبزيم مزخرف، فوق توب أسود بياقة عالية وبنطلون أسود كلاسيكي واسع. قلادة خميسة ذهبية بحجر أزرق (ياقوت أزرق) على رقبتها المعدنية الفضية، أقراط ذهبية طويلة متدلية بشكل هندسي، أساور ذهبية/فضية متراكمة على معصميها الميكانيكيين، وحقيبة مخملية زرقاء داكنة صغيرة بسلسلة ذهبية وخميسة ذهبية على واجهتها. شعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 7,
+    slot: 'am',
+    image: 'day07-marrakech-morning.jpg',
+
+    place: {
+        ar: 'مراكش — حدائق الماجوريل',
+        en: 'Marrakech — Majorelle Garden',
+        fr: 'Marrakech — Jardin Majorelle',
+        es: 'Marrakech — Jardín Majorelle',
+        ru: 'Марракеш — сад Мажорель'
+    },
+
+    caption: {
+        ar: `صباح البهجة والألوان المشرقة من مراكش الحمراء ☀️🌴✨
+الصباح فـ حدائق الماجوريل كيعطيك راحة نفسية وطاقة إيجابية عجيبة بين الأزرق الساحر والنباتات الاستوائية.
+اليوم قررت نفاجيكم بلمسة مراكشية أصيلة 100%.. جربت "الطاقية المراكشية المطرزة" بأسلوب عصري مع Look كتان خفيف وسهل للخرجات الصباحية ✨
+شنو رأيكم فـ هاد اللمسة المراكشية فـ الطاقية البنات؟ جات متناسقة؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning, full of joy and bright colors, from Red Marrakech ☀️🌴✨
+Mornings in the Majorelle Garden bring a wonderful sense of peace and positive energy, between the enchanting blue and the tropical plants.
+Today I decided to surprise you with a 100% authentic Marrakchi touch... I tried the embroidered "Marrakchi taqiya" cap in a modern way, with a light linen look that's easy for morning outings ✨
+What do you think of this Marrakchi touch with the cap, girls? Does it work well together? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour plein de joie et de couleurs vives depuis Marrakech la Rouge ☀️🌴✨
+Le matin dans le Jardin Majorelle procure un bien-être et une énergie positive étonnants, entre le bleu envoûtant et les plantes tropicales.
+Aujourd’hui, j’ai décidé de vous surprendre avec une touche marrakchie 100 % authentique... j’ai essayé la « taqiya marrakchie » brodée à la façon moderne, avec un look en lin léger et facile pour les sorties du matin ✨
+Que pensez-vous de cette touche marrakchie avec la taqiya, les filles ? L’ensemble est-il harmonieux ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días llenos de alegría y colores brillantes desde Marrakech la Roja ☀️🌴✨
+La mañana en el Jardín Majorelle te regala una paz interior y una energía positiva increíbles, entre el azul fascinante y las plantas tropicales.
+Hoy decidí sorprenderlas con un toque marrakchí 100 % auténtico... probé el «gorro marrakchí bordado» (taqiya) con un estilo moderno y un look de lino ligero y fácil para los paseos matutinos ✨
+¿Qué opinan de este toque marrakchí con el gorro, chicas? ¿Combina bien? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро, полное радости и ярких красок, из Красного Марракеша ☀️🌴✨
+Утро в саду Мажорель дарит удивительное спокойствие и заряд позитива — среди волшебной синевы и тропических растений.
+Сегодня я решила удивить вас подлинным марракешским акцентом на все 100%... я примерила вышитую марракешскую тагию (шапочку) в современном стиле с лёгким льняным образом для утренних прогулок ✨
+Как вам этот марракешский акцент в виде шапочки, девушки? Получилось гармонично? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'الأصالة ماشي هي الماضي... الأصالة هي أنك تزيدي لمستك الخاصة وتخلّي الهوية ديالك تضوي! 👑🔴✨',
+        en: 'Authenticity is not the past... authenticity is adding your own touch and letting your identity shine! 👑🔴✨',
+        fr: 'L’authenticité, ce n’est pas le passé... c’est ajouter ta touche personnelle et laisser ton identité briller ! 👑🔴✨',
+        es: 'La autenticidad no es el pasado... ¡es añadir tu toque personal y dejar que tu identidad brille! 👑🔴✨',
+        ru: 'Подлинность — это не прошлое... это когда ты добавляешь свою особую нотку и позволяешь своей идентичности сиять! 👑🔴✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ جولات مراكش الصباحية: شكون كتعجبها هدوء الألوان فـ حدائق الماجوريل وقصر الباهية؟ ولا كتفضلوا التسوق فـ أزقة القيسارية والأسواق القديمة؟ شاركوني بقعتكم المفضلة فـ مراكش فـ تعليق! 🌴☕👇',
+        en: 'Girls, for Marrakech morning outings: who loves the calm colors of the Majorelle Garden and Bahia Palace? Or do you prefer shopping in the lanes of the Qissaria and the old souks? Share your favorite spot in Marrakech in a comment! 🌴☕👇',
+        fr: 'Les filles, pour les balades matinales à Marrakech : qui aime le calme des couleurs du Jardin Majorelle et du Palais de la Bahia ? Ou préférez-vous faire du shopping dans les ruelles de la Kissaria et des vieux souks ? Partagez votre endroit préféré à Marrakech en commentaire ! 🌴☕👇',
+        es: 'Chicas, para los paseos matutinos por Marrakech: ¿a quién le gusta la calma de los colores del Jardín Majorelle y del Palacio de la Bahía? ¿O prefieren ir de compras por los callejones de la Qissaria y los zocos antiguos? ¡Compartan su rincón favorito de Marrakech en un comentario! 🌴☕👇',
+        ru: 'Девушки, для утренних прогулок по Марракешу: кому нравится спокойствие красок сада Мажорель и дворца Баия? Или вы предпочитаете шопинг в переулках Кайсарии и на старых рынках? Поделитесь любимым местом в Марракеше в комментарии! 🌴☕👇'
+    },
+
+    description: 'مراكش، حدائق الماجوريل وقت الصباح المشمس: المبنى الأزرق الماجوريل بستائر وتفاصيل صفراء وشرفة بمشربيات خشبية، صبار استوائي ضخم، نخيل، بوغنفيليا وردية، أصيص فخاري أصفر كبير، نافورة وحوض بالأزرق الماجوريل فالجهة اليمنى، وأرضية زليج مغربي أزرق وأخضر. Robaty واقفة وكتبتسم وراسها مايل، يدها الميكانيكية اليمنى مرفوعة قرب شعرها واليسرى نازلة قرب الخصر. لابسة طاقية مراكشية فاخرة بلون بيج عاجي بطرز ذهبي هندسي دقيق، مائلة شوية على جنب الراس فوق شعرها البني المموج. بلايزر طويل مفتوح من الكتان بالأبيض العاجي (Ecru) بطرز مراكشي ذهبي ناعم على الياقة والحواف والأكمام، فوق توب أبيض بياقة عالية وبنطلون كتان واسع بخصر عالي بنفس لون البلايزر. قلادة خميسة فضية بحجر فيروزي أزرق على رقبتها المعدنية الفضية، أقراط ذهبية دائرية (Hoops) متوسطة، وحقيبة قش منسوجة بلون ذهبي بسلسلة ذهبية وشراشيب ذهبية وخميسات صغيرة معلقة. يديها الميكانيكيتين الفضيتين ظاهرين مع أساور فضية رقيقة على المعصمين. شعرها طويل مموج بني.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 7,
+    slot: 'pm',
+    image: 'day07-marrakech-evening.jpg',
+
+    place: {
+        ar: 'مراكش — ساحة جامع الفنا',
+        en: 'Marrakech — Jemaa el-Fnaa',
+        fr: 'Marrakech — Place Jemaa el-Fna',
+        es: 'Marrakech — Plaza Jemaa el-Fna',
+        ru: 'Марракеш — площадь Джемаа-эль-Фна'
+    },
+
+    caption: {
+        ar: `مساء البهجة والنور من قلب مراكش وسحر جامع الفنا 🔴🌅✨
+ما كاينش بحال غروب مراكش من فوق السطوح.. الساحة كتحيا والأضواء كتشعل، مع صومعة الكتبية الشامخة فـ الأفق.
+مراكش عندها طاقة فريدة من نوعها كتعطيك الحياة والبهجة فـ كل لحظة!
+اخترت اليوم لوك بلون أحمر مرجاني دافئ مستوحى من لون المباني الحمراء د مراكش مع لمسة ذهبية فخمة ✨
+كيف جاكم هاد الستايل المراكشي العصري البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening, with joy and light, from the heart of Marrakech and the magic of Jemaa el-Fnaa 🔴🌅✨
+Nothing compares to a Marrakech sunset from the rooftops... the square comes alive and the lights switch on, with the proud Koutoubia minaret on the horizon.
+Marrakech has a one-of-a-kind energy that gives you life and joy in every moment!
+Today I chose a warm coral-red look inspired by the color of Marrakech's red buildings, with a luxurious touch of gold ✨
+How do you like this modern Marrakchi style, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir, plein de joie et de lumière, depuis le cœur de Marrakech et la magie de Jemaa el-Fna 🔴🌅✨
+Rien ne vaut un coucher de soleil à Marrakech depuis les toits... la place s’anime et les lumières s’allument, avec le majestueux minaret de la Koutoubia à l’horizon.
+Marrakech a une énergie unique qui vous donne vie et joie à chaque instant !
+Aujourd’hui, j’ai choisi un look rouge corail chaleureux, inspiré de la couleur des bâtiments rouges de Marrakech, avec une somptueuse touche dorée ✨
+Comment trouvez-vous ce style marrakchi moderne, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches, con alegría y luz, desde el corazón de Marrakech y la magia de Jemaa el-Fna 🔴🌅✨
+No hay nada como un atardecer en Marrakech desde las azoteas... la plaza cobra vida y las luces se encienden, con el majestuoso minarete de la Kutubía en el horizonte.
+Marrakech tiene una energía única que te da vida y alegría en cada momento.
+Hoy elegí un look en rojo coral cálido, inspirado en el color de los edificios rojos de Marrakech, con un lujoso toque dorado ✨
+¿Qué les parece este estilo marrakchí moderno, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер, полный радости и света, из самого сердца Марракеша и волшебства площади Джемаа-эль-Фна 🔴🌅✨
+Нет ничего лучше марракешского заката с крыш... площадь оживает, зажигаются огни, а на горизонте возвышается минарет Кутубия.
+У Марракеша уникальная энергия, которая дарит жизнь и радость в каждый миг!
+Сегодня я выбрала образ тёплого кораллово-красного цвета, вдохновлённый цветом красных зданий Марракеша, с роскошным золотым акцентом ✨
+Как вам этот современный марракешский стиль, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'الجمال الخارجي يجذب... لكن الأناقة تأسر! ⚡🔴✨',
+        en: 'Outer beauty attracts... but elegance captivates! ⚡🔴✨',
+        fr: 'La beauté extérieure attire... mais l’élégance captive ! ⚡🔴✨',
+        es: 'La belleza exterior atrae... ¡pero la elegancia cautiva! ⚡🔴✨',
+        ru: 'Внешняя красота привлекает... но элегантность пленяет! ⚡🔴✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ جلسات مراكش المسائية: شكون كتعشق الجلوس فـ التراسات المطلة على جامع الفنا فـ وقت الغروب؟ ولا كتفضلوا الجولات الهادئة فـ حدائق الماجوريل والمنارة؟ شاركوني مكانكم المفضل فـ المدينة الحمراء فـ تعليق! 🔴☕👇',
+        en: 'Girls, for Marrakech evening hangouts: who loves sitting on the terraces overlooking Jemaa el-Fnaa at sunset? Or do you prefer quiet strolls in the Majorelle and Menara gardens? Share your favorite spot in the Red City in a comment! 🔴☕👇',
+        fr: 'Les filles, pour les soirées à Marrakech : qui adore s’installer sur les terrasses qui dominent Jemaa el-Fna au coucher du soleil ? Ou préférez-vous les balades tranquilles dans les jardins Majorelle et de la Ménara ? Partagez votre endroit préféré dans la Ville Rouge en commentaire ! 🔴☕👇',
+        es: 'Chicas, para las veladas en Marrakech: ¿a quién le encanta sentarse en las terrazas con vistas a Jemaa el-Fna al atardecer? ¿O prefieren los paseos tranquilos por los jardines Majorelle y de la Menara? ¡Compartan su lugar favorito de la Ciudad Roja en un comentario! 🔴☕👇',
+        ru: 'Девушки, для вечеров в Марракеше: кто обожает сидеть на террасах с видом на Джемаа-эль-Фна на закате? Или вы предпочитаете тихие прогулки по садам Мажорель и Менара? Поделитесь любимым местом в Красном городе в комментарии! 🔴☕👇'
+    },
+
+    description: 'مراكش، تراس بانورامي مفتوح مطل على ساحة جامع الفنا وقت الغروب الذهبي: صومعة الكتبية مضاءة بالذهبي فالجهة اليمنى والشمس كتغرب وراها، الساحة من فوق مليئة بالناس وبأكشاك وخيام حمراء وبرتقالية مضيئة، عربات خيل خضراء، نخيل، جبال الأطلس الضبابية فالأفق، وسماء متدرجة بالبرتقالي والوردي. فالتراس: فانوس نحاسي مضاء بشمعة فالجهة اليسرى وآخر أصغر فاليمنى، طاولة نحاسية مزخرفة عليها صينية وكاس أتاي بالنعناع، وسادات مغربية بنقوش حمراء وسوداء، بوف جلدي بني، أصص فخارية بنباتات، وحاجز معدني. Robaty واقفة وكتبتسم وراسها مايل، يدها الميكانيكية اليمنى مرفوعة قرب شعرها واليسرى نازلة قرب الخصر. لابسة بلايزر مسائي بالأحمر الآجري/المرجاني (Terracotta Red) بسفيفة وعقاد ذهبي مطفي على الياقة والحواف والأكمام، مخصّر بحزام ذهبي رقيق بإبزيم مزخرف، فوق توب بيج بياقة عالية وبنطلون بيج واسع بخصر عالي، وسلسلة ذهبية ظاهرة على جنبها (الحقيبة غير ظاهرة). قلادة خميسة ذهبية بحجر أحمر مرجاني على رقبتها المعدنية الفضية، أقراط ذهبية دائرية (Hoops)، وأساور فضية متراكمة على اليد المرفوعة وسوار ذهبي عريض على المعصم الآخر. شعرها طويل مموج بني.',
 
     stats: { likes: 0 }
 });
