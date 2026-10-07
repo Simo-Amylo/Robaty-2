@@ -328,7 +328,7 @@ button {
 
     -webkit-tap-highlight-color: transparent;
 
-    animation: banner-glow 4s ease-in-out infinite;
+    animation: banner-glow 6s ease-in-out infinite;
 }
 
 .app-download-banner:active {
@@ -336,50 +336,44 @@ button {
 }
 
 
-/* توهج أقوى وأوضح: يبلغ ذروته مع حركة الأيقونة ثم يهدأ */
+/* نبضتان ضوئيتان متتاليتان خلال 1.5 ثانية، تتكرران كل 6 ثوان (التوهج أخف بـ 30%) */
 @keyframes banner-glow {
-    0%, 100% {
+    0%, 12.5%, 25%, 100% {
         box-shadow:
-            0 0 6px rgba(229, 179, 92, 0.35),
-            inset 0 0 4px rgba(229, 179, 92, 0.10);
+            0 0 4px rgba(229, 179, 92, 0.25),
+            inset 0 0 3px rgba(229, 179, 92, 0.07);
         border-color: rgba(229, 179, 92, 0.75);
     }
 
-    20% {
+    6.25%, 18.75% {
         box-shadow:
-            0 0 10px 1px rgba(255, 214, 130, 0.95),
-            0 0 26px 5px rgba(229, 179, 92, 0.70),
-            inset 0 0 12px rgba(229, 179, 92, 0.38);
+            0 0 7px 1px rgba(255, 214, 130, 0.67),
+            0 0 18px 3.5px rgba(229, 179, 92, 0.49),
+            inset 0 0 8px rgba(229, 179, 92, 0.27);
         border-color: #ffd98a;
-    }
-
-    55% {
-        box-shadow:
-            0 0 8px rgba(229, 179, 92, 0.55),
-            inset 0 0 6px rgba(229, 179, 92, 0.18);
-        border-color: rgba(229, 179, 92, 0.9);
     }
 }
 
 
-/* الأيقونة وحدها تتحرك مرتين خفيفتين كل 4 ثوان (النص يبقى ثابتا) */
+/* الأيقونة وحدها تتحرك (النص يبقى ثابتا) */
 
 .app-download-icon {
     display: inline-block;
 
     transform-origin: 50% 60%;
 
-    animation: icon-wiggle 4s ease-in-out infinite;
+    animation: icon-wiggle 3s ease-in-out infinite;
 }
 
+/* حركتان خفيفتان (كل واحدة 0.43 ثانية)، تتكرران كل 3 ثوان */
 @keyframes icon-wiggle {
-    0%        { transform: rotate(0deg) scale(1); }
-    3%        { transform: rotate(-16deg) scale(1.12); }
-    6%        { transform: rotate(16deg) scale(1.12); }
-    9%        { transform: rotate(0deg) scale(1); }
-    12%       { transform: rotate(-16deg) scale(1.12); }
-    15%       { transform: rotate(16deg) scale(1.12); }
-    18%, 100% { transform: rotate(0deg) scale(1); }
+    0%         { transform: rotate(0deg) scale(1); }
+    4.8%       { transform: rotate(-16deg) scale(1.12); }
+    9.6%       { transform: rotate(16deg) scale(1.12); }
+    14.4%      { transform: rotate(0deg) scale(1); }
+    19.2%      { transform: rotate(-16deg) scale(1.12); }
+    24%        { transform: rotate(16deg) scale(1.12); }
+    28.8%, 100% { transform: rotate(0deg) scale(1); }
 }
 
 
