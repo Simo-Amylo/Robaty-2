@@ -1,6 +1,7 @@
 /* Robaty — تأثيرات زر "حمّلي التطبيق الآن"
    - يلفّ أيقونة 📲 في span خاص لتتحرك وحدها
-   - عند لمس الزر تتوقف كل الحركة للأبد (تُحفظ في localStorage) */
+   - عند لمس الزر تتوقف كل الحركة طوال الزيارة الحالية فقط (sessionStorage)
+     وتعود في الزيارة التالية */
 (function () {
     'use strict';
 
@@ -10,15 +11,18 @@
     var root = document.documentElement;
     var scheduled = false;
 
+    // تنظيف الحفظ القديم (كان دائما) حتى تعود الحركة عند من لمست الزر سابقا
+    try { localStorage.removeItem(KEY); } catch (e) {}
+
     try {
-        if (localStorage.getItem(KEY) === '1') {
+        if (sessionStorage.getItem(KEY) === '1') {
             root.classList.add('dl-btn-calm');
         }
     } catch (e) { /* التخزين غير متاح: نكمل بدونه */ }
 
     function calm() {
         root.classList.add('dl-btn-calm');
-        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+        try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
     }
 
     function wrapIcon(btn) {
