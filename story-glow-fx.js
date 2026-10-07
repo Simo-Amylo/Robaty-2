@@ -1,13 +1,13 @@
-/* Robaty — توهج دائرة الـ Story عند وجود منشور جديد
-   - المنشور الأحدث فقط (الأول في الصفحة) تتوهج دائرته إن لم تفتح المستخدمة ستوريه بعد
-   - عند الضغط على الدائرة والدخول للـ Story يتوقف التوهج لهذا المنشور (يُحفظ في localStorage
-     فلا يعود حتى بعد إغلاق التطبيق وفتحه)
-   - عند نشر صورة جديدة (7 صباحا / 7 مساء) يصير هي الأحدث فتتوهج دائرتها من جديد */
+/* Robaty — حالة دائرة الـ Story في كل منشور (بأسلوب إنستغرام)
+   - أحدث منشور لم تُشاهد ستوريه: توهج ينبض (is-new)
+   - منشورات أقدم لم تُشاهد ستوريها: توهج هادئ ثابت دون نبض (is-unseen)
+   - ستوري شوهدت: حلقة باهتة دون توهج (is-seen)
+   - الحالة تُحفظ في localStorage فلا تعود حتى بعد إغلاق التطبيق وفتحه
+   - عند نشر صورة جديدة (7 صباحا / 7 مساء) تصير هي الأحدث فتنبض دائرتها */
 (function () {
     'use strict';
 
     var KEY = 'robaty_story_seen';
-    var CLS = 'is-new';
     var feed = document.getElementById('momentsFeed');
     if (!feed) return;
 
@@ -19,13 +19,19 @@
         var seen = readSeen();
         seen[id] = 1;
 
-        // نحتفظ بآخر 60 معرّفا فقط حتى لا يكبر الحفظ
+        // نحتفظ بآخر 300 معرّف فقط حتى لا يكبر الحفظ
         var ids = Object.keys(seen);
-        if (ids.length > 60) {
-            ids.slice(0, ids.length - 60).forEach(function (k) { delete seen[k]; });
+        if (ids.length > 300) {
+            ids.slice(0, ids.length - 300).forEach(function (k) { delete seen[k]; });
         }
 
         try { localStorage.setItem(KEY, JSON.stringify(seen)); } catch (e) {}
+    }
+
+    function applyState(btn, state) {
+        btn.classList.toggle('is-new', state === 'new');
+        btn.classList.toggle('is-unseen', state === 'unseen');
+        btn.classList.toggle('is-seen', state === 'seen');
     }
 
     function refresh() {
@@ -34,10 +40,15 @@
 
         for (var i = 0; i < all.length; i++) {
             var btn = all[i];
-            // الأول فقط = الأحدث، ولم تُفتح ستوريه بعد
-            var isNewest = (i === 0);
             var id = btn.getAttribute('data-story');
-            btn.classList.toggle(CLS, isNewest && !seen[id]);
+
+            if (seen[id]) {
+                applyState(btn, 'seen');
+            } else if (i === 0) {
+                applyState(btn, 'new');      // الأحدث: ينبض
+            } else {
+                applyState(btn, 'unseen');   // الأقدم غير المشاهَد: توهج ثابت
+            }
         }
     }
 
@@ -47,7 +58,7 @@
         if (!btn) return;
 
         markSeen(btn.getAttribute('data-story'));
-        btn.classList.remove(CLS);
+        applyState(btn, 'seen');
     }, true);
 
     refresh();
