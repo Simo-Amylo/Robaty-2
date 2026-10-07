@@ -1807,14 +1807,14 @@ html.dl-btn-calm .app-download-icon {
 @keyframes story-new-glow {
     0%, 100% {
         box-shadow:
-            0 0 6px 1px rgba(255, 190, 90, 0.45),
-            0 0 14px 2px rgba(214, 41, 118, 0.25);
+            0 0 3px 0.5px rgba(255, 190, 90, 0.22),
+            0 0 7px 1px rgba(214, 41, 118, 0.12);
     }
 
     50% {
         box-shadow:
-            0 0 12px 3px rgba(255, 205, 110, 0.85),
-            0 0 26px 6px rgba(214, 41, 118, 0.45);
+            0 0 6px 1.5px rgba(255, 205, 110, 0.42),
+            0 0 13px 3px rgba(214, 41, 118, 0.22);
     }
 }
 
@@ -1823,7 +1823,7 @@ html.dl-btn-calm .app-download-icon {
         animation: none;
 
         box-shadow:
-            0 0 10px 2px rgba(255, 200, 100, 0.7),
-            0 0 20px 4px rgba(214, 41, 118, 0.35);
+            0 0 5px 1px rgba(255, 200, 100, 0.35),
+            0 0 10px 2px rgba(214, 41, 118, 0.18);
     }
 }
