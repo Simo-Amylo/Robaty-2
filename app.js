@@ -228,7 +228,13 @@ backButton?.addEventListener('click', markProfileHintSeen);
     try { seen = localStorage.getItem(PROFILE_HINT_KEY) === '1'; } catch (e) {}
     if (seen) return;
 
+    // 3 نبضات فكل زيارة، ونوقفو بعد 4 زيارات (إلا ما ضغطاتش قبل)
+    let visits = 0;
+    try { visits = Number(localStorage.getItem(PROFILE_HINT_KEY + 'Count')) || 0; } catch (e) {}
+    if (visits >= 4) return;
+
     const show = () => {
+        try { localStorage.setItem(PROFILE_HINT_KEY + 'Count', String(visits + 1)); } catch (e) {}
         document.querySelector('.avatar-container')?.classList.add('hint-pulse');
     };
 
@@ -471,6 +477,7 @@ window.clearRobatyMemory = function () {
     localStorage.removeItem(LAST_VISIT_STORAGE);
     localStorage.removeItem('robatyMomentsSeen'); // باش يعاود الوميض ديال زر Moments
     localStorage.removeItem('robatyProfileHintSeen'); // باش تعاود النبضة التعريفية ديال الصورة
+    localStorage.removeItem('robatyProfileHintSeenCount');
 
     location.reload();
 };

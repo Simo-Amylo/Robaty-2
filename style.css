@@ -2505,9 +2505,9 @@ body {
 
 
 /* ==========================================================================
-   نبضة تعريفية (مرة وحدة) حول صورة Robaty — كتتوقف من أول ضغطة
-   كتخدم غير على عنصر وهمي (::after) فوق الحاوية، ماشي على الصورة نفسها.
-   دورة 7 ثواني: نبضتين خفيفتين ثم راحة.
+   نبضة تعريفية خفيفة جدا حول صورة Robaty — كتتوقف من أول ضغطة
+   حلقة رقيقة وباهتة، 3 نبضات فقط فكل زيارة (ماشي أنيميشن دائم)،
+   كتخدم على عنصر وهمي (::after) ماشي على الصورة نفسها.
    ========================================================================== */
 
 .avatar-container.hint-pulse::after {
@@ -2518,21 +2518,17 @@ body {
     bottom: 0;
     left: 0;
     border-radius: 50%;
-    border: 2px solid rgba(244, 208, 104, 0.85);
-    box-shadow: 0 0 14px rgba(244, 208, 104, 0.45);
+    border: 1px solid rgba(244, 208, 104, 0.5);
     pointer-events: none;
     opacity: 0;
-    animation: robatyProfileHint 7s ease-out infinite;
+    animation: robatyProfileHint 5s ease-out 3;
 }
 
 @keyframes robatyProfileHint {
-    0%   { transform: scale(1);    opacity: 0; }
-    4%   { opacity: 0.8; }
-    22%  { transform: scale(1.16); opacity: 0; }
-    28%  { transform: scale(1);    opacity: 0; }
-    32%  { opacity: 0.8; }
-    50%  { transform: scale(1.16); opacity: 0; }
-    100% { transform: scale(1.16); opacity: 0; }
+    0%   { transform: scale(1.02); opacity: 0; }
+    10%  { opacity: 0.4; }
+    45%  { transform: scale(1.1);  opacity: 0; }
+    100% { transform: scale(1.1);  opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
