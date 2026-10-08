@@ -404,3 +404,41 @@ Story Modal Design (موحّد مع moments.css)
     min-height: 16px;
 }
 
+
+
+/* ==========================================================================
+   FIT-TO-SCREEN — الواجهة تناسب جميع الهواتف
+   كنثبّتو الصفحة على المساحة المرئية الحقيقية (position: fixed)
+   عوض vh/dvh، حيث بعض الهواتف كتحسب 100vh أكبر من الشاشة المرئية.
+   ========================================================================== */
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.outer-gold-frame {
+    height: 100%;
+    max-height: 908px;
+}
+
+@media (max-height: 700px) {
+    .outer-gold-frame {
+        padding: 4px;
+        border-radius: 34px;
+    }
+    .app-container {
+        border-radius: 30px;
+    }
+}
