@@ -13,20 +13,11 @@
     <script>
         (function () {
             try {
-                var supported = ['ar', 'en', 'fr', 'es', 'ru'];
-                var saved = null;
-                try { saved = localStorage.getItem('robaty_lang'); } catch (e) {}
-                if (supported.indexOf(saved) === -1) {
-                    // أول زيارة: نكشفو لغة المتصفح (نفس منطق i18n.js) باش ما يبانش RTL غالط
-                    saved = 'ar';
-                    var langs = navigator.languages || [navigator.language || 'ar'];
-                    for (var i = 0; i < langs.length; i++) {
-                        var code = String(langs[i]).slice(0, 2).toLowerCase();
-                        if (supported.indexOf(code) !== -1) { saved = code; break; }
-                    }
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
                 }
-                document.documentElement.lang = saved;
-                document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
             } catch (e) {}
         })();
     </script>
@@ -298,7 +289,6 @@
             <a
                 href="moments.html"
                 class="gold-pill-btn"
-                id="momentsBtn"
             >
 
                 <i class="fa-regular fa-image"></i>
@@ -461,7 +451,7 @@
                 <div class="settings-section">
                     <p class="settings-section-title" data-i18n="color_mood_title">🎨 أجواء الألوان</p>
                     <div class="color-options" id="colorModeOptions">
-                        <button type="button" class="color-option" data-color-value="default" data-i18n="color_default_label">🟤 بني/ذهبي</button>
+                        <button type="button" class="color-option" data-color-value="default" data-i18n="color_default_label">🟤 الافتراضي (بني/ذهبي)</button>
                         <button type="button" class="color-option" data-color-value="vivid" data-i18n="color_vivid_label">🔵 أزرق/بنفسجي</button>
                         <button type="button" class="color-option" data-color-value="emerald" data-i18n="color_emerald_label">🟢 أخضر ملكي</button>
                     </div>
@@ -469,9 +459,10 @@
 
                 <!-- قسم مفتاح API -->
                 <div class="settings-section">
-                    <p class="settings-section-title" data-i18n="api_key_title">🔑 مفتاح API</p>
+                    <p class="settings-section-title" data-i18n="api_key_title">🔑 مفتاح Gemini API</p>
                     <p data-i18n="api_key_desc">
-                        باش تخدمي Robaty، خاصك تدخلي مفتاح API ديالك.
+                        باش تخدمي Robaty، خاصك تدخلي مفتاح Gemini API ديالك
+                        (تقدري تجيبيه مجاناً من Google AI Studio).
                     </p>
 
                     <input
@@ -504,22 +495,9 @@
 </div>
 
 
-<script>
-/* Moments button: gentle gold pulse until first tap */
-(function () {
-  var btn = document.getElementById('momentsBtn');
-  if (!btn) return;
-  var seen = false;
-  try { seen = !!localStorage.getItem('robatyMomentsSeen'); } catch (e) {}
-  if (!seen) btn.classList.add('pulse');
-  btn.addEventListener('click', function () {
-    btn.classList.remove('pulse');
-    try { localStorage.setItem('robatyMomentsSeen', '1'); } catch (e) {}
-  });
-})();
-</script>
 <script src="i18n.js"></script>
 <script src="moments-data.js"></script>
+<script src="moments-button-glow.js"></script>
 <script src="app.js"></script>
 
 </body>
