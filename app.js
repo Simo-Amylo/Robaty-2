@@ -187,63 +187,85 @@ backButton?.addEventListener('click', () => {
     window.location.href = 'profile.html';
 });
 
-// الصورة الدائرية الكبيرة + اسم Robaty = اختصار لفتح صفحة البروفايل (نفس زر السهم)
+/* ==========================================================================
+   الصورة الدائرية + اسم Robaty في شاشة المحادثة
+   - الصورة: كتفتح آخر Story (فصفحة البروفايل، و"×" كترجع للبروفايل)
+   - الاسم: كيفتح صفحة البروفايل
+   - الحلقة النابضة حول الصورة = كاين Story جديد ما تشافش، وكتوقف
+     غير ملي المستخدمة تفتح آخر Story، وكترجع غير ملي يتنشر Story جديد
+   ========================================================================== */
+
+const STORY_SEEN_KEY = 'robaty_story_seen';   // نفس المفتاح اللي كيستعملو story-glow-fx.js
+
+function getLatestStoryId() {
+    try {
+        const list = window.RobatyMoments ? window.RobatyMoments.getPublished() : [];
+        return list && list.length ? list[0].id : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function refreshStoryRing() {
+    const avatar = document.querySelector('.avatar-container');
+    if (!avatar) return;
+
+    const latestId = getLatestStoryId();
+    let seen = {};
+    try { seen = JSON.parse(localStorage.getItem(STORY_SEEN_KEY)) || {}; } catch (e) {}
+
+    avatar.classList.toggle('hint-pulse', !!latestId && !seen[latestId]);
+}
+
+function openFromChat(target) {
+    window.location.href = target;
+}
+
 document.querySelectorAll('.avatar-container, .bot-name').forEach((el) => {
+    const isAvatar = el.classList.contains('avatar-container');
+
     el.classList.add('opens-profile');
     el.setAttribute('role', 'link');
     el.setAttribute('tabindex', '0');
-    el.setAttribute('aria-label', 'robaty_ai');
+    el.setAttribute('aria-label', isAvatar ? 'Story' : 'robaty_ai');
 
-    el.addEventListener('click', () => {
-        markProfileHintSeen();
-        window.location.href = 'profile.html';
-    });
+    const go = () => {
+        if (isAvatar && getLatestStoryId()) {
+            openFromChat('profile.html?story=latest');
+        } else {
+            openFromChat('profile.html');
+        }
+    };
+
+    el.addEventListener('click', go);
 
     el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            markProfileHintSeen();
-            window.location.href = 'profile.html';
+            go();
         }
     });
 });
 
-/* ==========================================================================
-   نبضة تعريفية خفيفة حول الصورة (مرة وحدة فقط):
-   كتبان للمستخدمة الجديدة باش تعرف أن الصورة كتفتح البروفايل،
-   وكتوقف نهائيا من أول ضغطة على الصورة / الاسم / زر السهم.
-   ========================================================================== */
-
-const PROFILE_HINT_KEY = 'robatyProfileHintSeen';
-
-function markProfileHintSeen() {
-    try { localStorage.setItem(PROFILE_HINT_KEY, '1'); } catch (e) {}
-    document.querySelector('.avatar-container')?.classList.remove('hint-pulse');
-}
-
-backButton?.addEventListener('click', markProfileHintSeen);
-
-(function startProfileHint() {
-    let seen = false;
-    try { seen = localStorage.getItem(PROFILE_HINT_KEY) === '1'; } catch (e) {}
-    if (seen) return;
-
-    // 3 نبضات فكل زيارة، ونوقفو بعد 4 زيارات (إلا ما ضغطاتش قبل)
-    let visits = 0;
-    try { visits = Number(localStorage.getItem(PROFILE_HINT_KEY + 'Count')) || 0; } catch (e) {}
-    if (visits >= 4) return;
-
-    const show = () => {
-        try { localStorage.setItem(PROFILE_HINT_KEY + 'Count', String(visits + 1)); } catch (e) {}
-        document.querySelector('.avatar-container')?.classList.add('hint-pulse');
+(function startStoryRing() {
+    const start = () => {
+        refreshStoryRing();
+        setInterval(refreshStoryRing, 60 * 1000);   // باش تبان وحدها فاش يتنشر Story جديد
     };
 
     // نستناو حتى يسالي السبلاش باش تبان النبضة الأولى
     if (document.getElementById('splash')) {
-        document.addEventListener('splash:done', show, { once: true });
+        document.addEventListener('splash:done', start, { once: true });
     } else {
-        show();
+        start();
     }
+
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) refreshStoryRing();
+    });
+
+    // فاش كترجع من البروفايل بزر الرجوع
+    window.addEventListener('pageshow', refreshStoryRing);
 })();
 
 resetMemoryButton?.addEventListener('click', () => {
@@ -476,8 +498,7 @@ window.clearRobatyMemory = function () {
     localStorage.removeItem(NARRATIVE_STORAGE);
     localStorage.removeItem(LAST_VISIT_STORAGE);
     localStorage.removeItem('robatyMomentsSeen'); // باش يعاود الوميض ديال زر Moments
-    localStorage.removeItem('robatyProfileHintSeen'); // باش تعاود النبضة التعريفية ديال الصورة
-    localStorage.removeItem('robatyProfileHintSeenCount');
+    localStorage.removeItem('robaty_story_seen'); // باش تعاود الحلقة النابضة حول الصورة
 
     location.reload();
 };

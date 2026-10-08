@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v5'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v6'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -59,7 +59,7 @@ self.addEventListener('fetch', function (event) {
       })
       .catch(function () {
         // ماكاينش أنترنت؟ نرجعو للنسخة المخزنة (offline fallback)
-        return caches.match(event.request);
+        return caches.match(event.request, { ignoreSearch: true });
       })
   );
 });

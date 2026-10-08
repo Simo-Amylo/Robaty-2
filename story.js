@@ -394,6 +394,29 @@ function playKicker(story) {
 }
 
 
+/* حفظ حالة "شوهدت" — نفس المفتاح والصيغة ديال story-glow-fx.js */
+
+function markLatestStorySeen(id) {
+
+    try {
+
+        const seen = JSON.parse(localStorage.getItem('robaty_story_seen')) || {};
+
+        seen[id] = 1;
+
+        const ids = Object.keys(seen);
+
+        if (ids.length > 300) {
+            ids.slice(0, ids.length - 300).forEach(k => { delete seen[k]; });
+        }
+
+        localStorage.setItem('robaty_story_seen', JSON.stringify(seen));
+
+    } catch (e) {}
+
+}
+
+
 /* فتح Story معينة بالـ id ديالها */
 
 function openStory(storyId) {
@@ -405,6 +428,9 @@ function openStory(storyId) {
     if (!story || !elementsReady) return;
 
     currentStoryId = storyId;
+
+    /* آخر Story انفتحات = شوهدت (كتوقف الحلقة النابضة حول صورة Robaty فشاشة المحادثة) */
+    if (storyId === storyOrder[0]) markLatestStorySeen(storyId);
 
     storyImageEl.src = story.image;
     storyTimeEl.textContent = story.place;
@@ -545,3 +571,33 @@ document.addEventListener('keydown', event => {
     }
 
 });
+
+
+/* فتح آخر Story مباشرة من رابط: profile.html?story=latest (كيجي من صورة Robaty فشاشة المحادثة)
+   — كنمسحو البارامتر من الرابط باش ما تعاودش تتفتح مع التحديث (refresh) */
+
+(function openStoryFromLink() {
+
+    try {
+
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('story') !== 'latest') return;
+
+        if (storyOrder.length > 0) {
+            openStory(storyOrder[0]);
+        }
+
+        params.delete('story');
+
+        const rest = params.toString();
+
+        window.history.replaceState(
+            null,
+            '',
+            window.location.pathname + (rest ? '?' + rest : '') + window.location.hash
+        );
+
+    } catch (e) {}
+
+})();
