@@ -88,21 +88,6 @@ body[data-color-mode="vivid"][data-time-theme="night"] {
     --bubble-bg-theme: rgba(23, 13, 25, 0.95);
 }
 
-/* أخضر ملكي (اختياري، data-color-mode="emerald") — نهار #082b25، ليل أغمق */
-body[data-color-mode="emerald"][data-time-theme="day"] {
-    --app-bg-base-start: #082b25;
-    --app-bg-base-end: #020d0b;
-    --accent-glow: rgba(229, 179, 92, 0.18);
-    --bubble-bg-theme: rgba(8, 43, 37, 0.95);
-}
-
-body[data-color-mode="emerald"][data-time-theme="night"] {
-    --app-bg-base-start: #04201b;
-    --app-bg-base-end: #010806;
-    --accent-glow: rgba(229, 179, 92, 0.14);
-    --bubble-bg-theme: rgba(4, 32, 27, 0.95);
-}
-
 /* المشاعر: دايما مفعلة (فالافتراضي وفالـvivid بحال بعضياتهم) —
    [data-time-theme] زايدة هنا (بلا قيمة محددة) غير باش نرفعو الـspecificity
    لنفس المستوى ديال قواعد vivid فوق، ونضمنو أن التوهج العاطفي دايما
@@ -2451,4 +2436,48 @@ body {
         animation: none;
     }
 
+}
+
+
+/* ==========================================================================
+   FIT-TO-SCREEN — الواجهة تناسب جميع الهواتف (بدون تمرير الصفحة كاملة)
+   100vh فـ Chrome الهاتف كتحسب حتى الجزء اللي تحت شريط العنوان،
+   وdvh كتحسب الارتفاع الحقيقي المرئي. (100vh احتياط للمتصفحات القديمة)
+   ========================================================================== */
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.outer-gold-frame {
+    height: 100vh;
+    height: 100dvh;
+    max-height: 908px;
+}
+
+/* الهواتف: الإطار ياخد كامل الشاشة بلا حد أقصى للارتفاع */
+@media (max-width: 480px) {
+    .outer-gold-frame {
+        max-height: 100vh;
+        max-height: 100dvh;
+    }
+}
+
+/* الهواتف القصيرة (شاشات صغيرة / وضع أفقي): نصغّرو شوية باش كلشي يبقى مرئي */
+@media (max-height: 700px) {
+    .outer-gold-frame {
+        padding: 4px;
+        border-radius: 34px;
+    }
+    .app-container {
+        border-radius: 30px;
+    }
 }
