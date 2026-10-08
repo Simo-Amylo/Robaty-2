@@ -1843,11 +1843,11 @@ html.dl-btn-calm .app-download-icon {
 .story-avatar.is-seen {
     background: linear-gradient(
         45deg,
-        rgba(254, 218, 117, 0.38),
-        rgba(250, 126, 30, 0.38),
-        rgba(214, 41, 118, 0.38),
-        rgba(150, 47, 191, 0.38),
-        rgba(79, 91, 213, 0.38)
+        rgba(254, 218, 117, 0.68),
+        rgba(250, 126, 30, 0.68),
+        rgba(214, 41, 118, 0.68),
+        rgba(150, 47, 191, 0.68),
+        rgba(79, 91, 213, 0.68)
     );
 
     box-shadow: none;
