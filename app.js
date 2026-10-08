@@ -195,16 +195,50 @@ document.querySelectorAll('.avatar-container, .bot-name').forEach((el) => {
     el.setAttribute('aria-label', 'robaty_ai');
 
     el.addEventListener('click', () => {
+        markProfileHintSeen();
         window.location.href = 'profile.html';
     });
 
     el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
+            markProfileHintSeen();
             window.location.href = 'profile.html';
         }
     });
 });
+
+/* ==========================================================================
+   نبضة تعريفية خفيفة حول الصورة (مرة وحدة فقط):
+   كتبان للمستخدمة الجديدة باش تعرف أن الصورة كتفتح البروفايل،
+   وكتوقف نهائيا من أول ضغطة على الصورة / الاسم / زر السهم.
+   ========================================================================== */
+
+const PROFILE_HINT_KEY = 'robatyProfileHintSeen';
+
+function markProfileHintSeen() {
+    try { localStorage.setItem(PROFILE_HINT_KEY, '1'); } catch (e) {}
+    document.querySelector('.avatar-container')?.classList.remove('hint-pulse');
+}
+
+backButton?.addEventListener('click', markProfileHintSeen);
+
+(function startProfileHint() {
+    let seen = false;
+    try { seen = localStorage.getItem(PROFILE_HINT_KEY) === '1'; } catch (e) {}
+    if (seen) return;
+
+    const show = () => {
+        document.querySelector('.avatar-container')?.classList.add('hint-pulse');
+    };
+
+    // نستناو حتى يسالي السبلاش باش تبان النبضة الأولى
+    if (document.getElementById('splash')) {
+        document.addEventListener('splash:done', show, { once: true });
+    } else {
+        show();
+    }
+})();
 
 resetMemoryButton?.addEventListener('click', () => {
     if (typeof window.clearRobatyMemory === 'function') {
@@ -436,6 +470,7 @@ window.clearRobatyMemory = function () {
     localStorage.removeItem(NARRATIVE_STORAGE);
     localStorage.removeItem(LAST_VISIT_STORAGE);
     localStorage.removeItem('robatyMomentsSeen'); // باش يعاود الوميض ديال زر Moments
+    localStorage.removeItem('robatyProfileHintSeen'); // باش تعاود النبضة التعريفية ديال الصورة
 
     location.reload();
 };
