@@ -187,6 +187,25 @@ backButton?.addEventListener('click', () => {
     window.location.href = 'profile.html';
 });
 
+// الصورة الدائرية الكبيرة + اسم Robaty = اختصار لفتح صفحة البروفايل (نفس زر السهم)
+document.querySelectorAll('.avatar-container, .bot-name').forEach((el) => {
+    el.classList.add('opens-profile');
+    el.setAttribute('role', 'link');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-label', 'robaty_ai');
+
+    el.addEventListener('click', () => {
+        window.location.href = 'profile.html';
+    });
+
+    el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.location.href = 'profile.html';
+        }
+    });
+});
+
 resetMemoryButton?.addEventListener('click', () => {
     if (typeof window.clearRobatyMemory === 'function') {
         window.clearRobatyMemory();

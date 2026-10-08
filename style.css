@@ -2476,3 +2476,29 @@ body {
         border-radius: 30px;
     }
 }
+
+
+/* ==========================================================================
+   الصورة الدائرية + اسم Robaty قابلين للضغط (يفتحو صفحة البروفايل)
+   ========================================================================== */
+
+.opens-profile {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.avatar-container.opens-profile:active .glowing-ring,
+.bot-name.opens-profile:active {
+    filter: brightness(1.15);
+}
+
+.opens-profile:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+.bot-name.opens-profile:focus-visible {
+    border-radius: 12px;
+}
