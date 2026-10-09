@@ -479,3 +479,136 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .story-ring-glow.hint-pulse::after { animation: none; }
 }
+
+
+/* ==========================================================================
+   الإحصائيات القابلة للضغط + زر "متابَعة" + الورقة السفلية
+   ========================================================================== */
+
+.stat-item {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    color: inherit;
+    flex: 1;
+    padding: 2px 0;
+    -webkit-tap-highlight-color: transparent;
+}
+.stat-item:active .stat-number {
+    transform: scale(0.92);
+}
+.stat-number {
+    transition: transform 0.15s ease;
+}
+
+.outline-btn.is-following {
+    background: rgba(229, 179, 92, 0.16);
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+}
+
+.stats-sheet {
+    position: absolute;
+    inset: 0;
+    z-index: 60;
+    display: none;
+}
+.stats-sheet.active {
+    display: block;
+}
+.stats-sheet-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    animation: statsFade 0.2s ease-out;
+}
+.stats-sheet-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 8px 20px 28px;
+    background: #0d0804;
+    border-top: 1.5px solid var(--gold-bright);
+    border-radius: 26px 26px 0 0;
+    box-shadow: 0 -8px 30px rgba(229, 179, 92, 0.22);
+    text-align: center;
+    animation: statsUp 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.stats-sheet-handle {
+    display: block;
+    width: 44px;
+    height: 5px;
+    margin: 4px auto 14px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    background: var(--gold-border);
+    cursor: pointer;
+}
+.stats-sheet-title {
+    color: var(--text-light);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.sheet-big {
+    color: var(--gold-bright);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.sheet-sub {
+    color: var(--text-subtle);
+    font-size: 11.5px;
+    margin-bottom: 14px;
+}
+.sheet-note {
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+.sheet-rows {
+    display: grid;
+    gap: 8px;
+    text-align: start;
+}
+.sheet-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: rgba(20, 14, 8, 0.7);
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+}
+.sheet-row-label {
+    color: var(--text-light);
+    font-size: 12.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.sheet-row-label i {
+    color: var(--gold-bright);
+    width: 16px;
+    text-align: center;
+}
+.sheet-row-value {
+    color: var(--gold-bright);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+@keyframes statsUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+@keyframes statsFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .stats-sheet-panel, .stats-sheet-backdrop { animation: none; }
+}
