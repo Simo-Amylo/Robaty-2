@@ -270,7 +270,6 @@
             var place = esc(RM.t(p.place, lang));
             var caption = esc(RM.t(p.caption, lang).trim()).replace(/\n/g, '<br>');
             var st = p.stats || {};
-            var likes = Number(st.likes) || 0;
 
             return '' +
             '<article class="post-card" id="post-' + p.id + '">' +
@@ -297,7 +296,7 @@
 
                 '<div class="post-actions-bar">' +
                     '<div class="left-actions">' +
-                        '<button class="action-item" aria-label="إعجاب" data-i18n-aria="like_aria" data-action="like"><i class="fa-regular fa-heart"></i><span data-base-count="' + likes + '">' + likes + '</span></button>' +
+                        '<button class="action-item" aria-label="إعجاب" data-i18n-aria="like_aria" data-action="like"><i class="fa-regular fa-heart"></i><span data-stat="likes">0</span></button>' +
                         '<button class="action-item" aria-label="تعليق" data-i18n-aria="comment_aria" data-action="comments"><i class="fa-regular fa-comment"></i><span data-stat="comments">0</span></button>' +
                         '<button class="action-item" aria-label="إعادة نشر" data-i18n-aria="repost_aria" data-action="repost"><i class="fa-solid fa-retweet"></i><span data-stat="reposts">0</span></button>' +
                         '<button class="action-item" aria-label="مشاركة" data-i18n-aria="share_aria" data-action="share"><i class="fa-regular fa-paper-plane"></i><span data-stat="shares">0</span></button>' +
@@ -428,7 +427,7 @@
     // أزرار التفاعل: إعجاب + حفظ (محفوظين فـ localStorage) وتعليق/ريبوست/مشاركة (نافذة فارغة)
     (function () {
 
-        var LIKE_KEY = 'robaty_likes';
+        var LIKE_KEY = 'robaty_likes_v2'; // مفتاح جديد: العداد الآن حقيقي (Firestore)
         var SAVE_KEY = 'robaty_saves';
 
         function readState(key) {
@@ -450,14 +449,35 @@
 
         function applyLikeState(btn, liked) {
             var icon = btn.querySelector('i');
-            var span = btn.querySelector('span');
-            var base = parseInt(span.dataset.baseCount, 10) || 0;
 
             icon.classList.toggle('fa-regular', !liked);
             icon.classList.toggle('fa-solid', liked);
             btn.classList.toggle('liked', liked);
+        }
 
-            span.textContent = base + (liked ? 1 : 0);
+        // ---------------------------------------------------------------
+        // عداد الإعجابات الحقيقي — postStats/{postId}.likes (+1 / -1)
+        // ---------------------------------------------------------------
+        var fdb = null;
+        try { fdb = firebase.firestore(); } catch (e) {}
+
+        function bumpLike(postId, delta) {
+            if (!fdb) return Promise.reject(new Error('no-firestore'));
+            return fdb.collection('postStats').doc(postId)
+                .set({ likes: firebase.firestore.FieldValue.increment(delta) }, { merge: true });
+        }
+
+        if (fdb) {
+            fdb.collection('postStats').onSnapshot(function (snap) {
+                snap.forEach(function (doc) {
+                    var card = document.getElementById(doc.id);
+                    if (!card) return;
+                    var el = card.querySelector('[data-stat="likes"]');
+                    if (el) el.textContent = Math.max(0, Number((doc.data() || {}).likes) || 0);
+                });
+            }, function (err) {
+                console.warn('likes', err);
+            });
         }
 
         function applySaveState(btn, saved) {
@@ -492,6 +512,14 @@
                 likes[postId] = liked;
                 writeState(LIKE_KEY, likes);
                 applyLikeState(btn, liked);
+
+                bumpLike(postId, liked ? 1 : -1).catch(function (err) {
+                    console.warn('like', err);
+                    // فشل الحفظ: نرجعو الزر للحالة السابقة
+                    likes[postId] = !liked;
+                    writeState(LIKE_KEY, likes);
+                    applyLikeState(btn, !liked);
+                });
             });
         });
 

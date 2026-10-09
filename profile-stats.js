@@ -17,37 +17,32 @@
     // ---------------------------------------------------------------
     var STR = {
         ar: {
-            following: 'متابَعة', followers_title: 'المتابِعات', followers_sub: 'متابِع/ة حقيقي',
-            followers_note: 'رقم حقيقي — كل متابعة من مستخدمة حقيقية 🤍',
-            engagement_title: 'التفاعل', engagement_sub: 'مجموع التفاعل الحقيقي',
+            following: 'متابَعة', followers_title: 'المتابِعات', followers_note: 'شكرا لكم على متابعتكم 🤍',
+            engagement_title: 'التفاعل', engagement_sub: 'مجموع التفاعلات',
             likes: 'الإعجابات', comments: 'التعليقات', shares: 'المشاركات', reposts: 'إعادة النشر',
             close: 'إغلاق', error: 'تعذر الاتصال، عاودي المحاولة'
         },
         en: {
-            following: 'Following', followers_title: 'Followers', followers_sub: 'real followers',
-            followers_note: 'A real number — every follow comes from a real user 🤍',
-            engagement_title: 'Engagement', engagement_sub: 'total real engagement',
+            following: 'Following', followers_title: 'Followers', followers_note: 'Thank you for following us 🤍',
+            engagement_title: 'Engagement', engagement_sub: 'Total interactions',
             likes: 'Likes', comments: 'Comments', shares: 'Shares', reposts: 'Reposts',
             close: 'Close', error: 'Connection failed, please try again'
         },
         fr: {
-            following: 'Abonnée', followers_title: 'Abonnés', followers_sub: 'abonnés réels',
-            followers_note: 'Un vrai chiffre — chaque abonnement vient d’une vraie utilisatrice 🤍',
-            engagement_title: 'Interactions', engagement_sub: 'total des interactions réelles',
+            following: 'Abonnée', followers_title: 'Abonnés', followers_note: 'Merci pour votre abonnement 🤍',
+            engagement_title: 'Interactions', engagement_sub: 'Total des interactions',
             likes: 'J’aime', comments: 'Commentaires', shares: 'Partages', reposts: 'Republications',
             close: 'Fermer', error: 'Connexion impossible, réessayez'
         },
         es: {
-            following: 'Siguiendo', followers_title: 'Seguidores', followers_sub: 'seguidores reales',
-            followers_note: 'Un número real: cada seguimiento viene de una usuaria real 🤍',
-            engagement_title: 'Interacciones', engagement_sub: 'total de interacciones reales',
+            following: 'Siguiendo', followers_title: 'Seguidores', followers_note: 'Gracias por seguirnos 🤍',
+            engagement_title: 'Interacciones', engagement_sub: 'Total de interacciones',
             likes: 'Me gusta', comments: 'Comentarios', shares: 'Compartidos', reposts: 'Reposts',
             close: 'Cerrar', error: 'Sin conexión, inténtalo de nuevo'
         },
         ru: {
-            following: 'Вы подписаны', followers_title: 'Подписчики', followers_sub: 'реальных подписчиков',
-            followers_note: 'Реальное число — каждая подписка от настоящей пользовательницы 🤍',
-            engagement_title: 'Активность', engagement_sub: 'всего реальной активности',
+            following: 'Вы подписаны', followers_title: 'Подписчики', followers_note: 'Спасибо, что подписались 🤍',
+            engagement_title: 'Активность', engagement_sub: 'Всего взаимодействий',
             likes: 'Лайки', comments: 'Комментарии', shares: 'Поделились', reposts: 'Репосты',
             close: 'Закрыть', error: 'Нет соединения, попробуйте ещё раз'
         }
@@ -109,7 +104,6 @@
             sheetTitle.textContent = s('followers_title');
             sheetBody.innerHTML =
                 '<div class="sheet-big">' + full(state.followers) + '</div>' +
-                '<div class="sheet-sub">' + s('followers_sub') + '</div>' +
                 '<p class="sheet-note">' + s('followers_note') + '</p>';
             return;
         }
@@ -117,7 +111,7 @@
         if (sheetKind === 'engagement') {
             sheetTitle.textContent = s('engagement_title');
             var rows = '';
-            if (state.hasLikes) rows += row('fa-solid fa-heart', s('likes'), state.eng.likes);
+            rows += row('fa-solid fa-heart', s('likes'), state.eng.likes);
             rows += row('fa-regular fa-comment', s('comments'), state.eng.comments);
             rows += row('fa-regular fa-paper-plane', s('shares'), state.eng.shares);
             rows += row('fa-solid fa-retweet', s('reposts'), state.eng.reposts);

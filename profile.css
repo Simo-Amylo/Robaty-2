@@ -612,3 +612,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .stats-sheet-panel, .stats-sheet-backdrop { animation: none; }
 }
+
+.sheet-big + .sheet-note {
+    margin-top: 10px;
+    font-size: 13.5px;
+}
