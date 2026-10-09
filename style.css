@@ -2550,3 +2550,198 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .avatar-container.hint-pulse::after { animation: none; }
 }
+
+
+/* ==========================================================================
+   ثيم فاتح 1 — كريمي/عاجي (data-color-mode="cream")
+   كيبدل المتغيرات + الألوان الثابتة (نصوص بيضاء، خلفيات سوداء) اللي كانت
+   كتخلي الكتابة ما كتبانش على خلفية فاتحة. ماكيتبدلش مع الوقت (نهار/ليل).
+   ========================================================================== */
+
+body[data-color-mode="cream"],
+body[data-color-mode="cream"][data-time-theme="day"],
+body[data-color-mode="cream"][data-time-theme="night"] {
+    --gold-bright: #c9a22f;
+    --gold-dark: #8a6a1c;
+    --gold-border: rgba(201, 162, 47, 0.60);
+    --gold-box-glow: rgba(201, 162, 47, 0.28);
+    --text-gold-light: #4a3b32;
+    --app-bg-base-start: #fffcf7;
+    --app-bg-base-end: #f3ead9;
+    --accent-glow: rgba(212, 175, 55, 0.10);
+    --bubble-bg-theme: rgba(243, 233, 210, 0.98);
+}
+
+/* إطار الصفحة */
+body[data-color-mode="cream"] {
+    background-color: #f5ecdc;
+}
+
+body[data-color-mode="cream"] .outer-gold-frame {
+    background: #fcf8f2;
+    box-shadow:
+        0 8px 28px rgba(201, 162, 47, 0.25),
+        inset 0 0 12px rgba(201, 162, 47, 0.15);
+}
+
+body[data-color-mode="cream"] .app-container {
+    box-shadow:
+        0 0 18px rgba(201, 162, 47, 0.22),
+        inset 0 0 40px var(--accent-glow);
+}
+
+/* الأزرار العلوية */
+body[data-color-mode="cream"] .ornate-btn {
+    background: #fcf8f2;
+    color: #4a3b32;
+    box-shadow: 0 2px 6px rgba(201, 162, 47, 0.2);
+}
+
+body[data-color-mode="cream"] .ornate-btn-danger {
+    color: #d84a4a;
+    border-color: #e57373;
+    box-shadow: 0 2px 6px rgba(229, 115, 115, 0.2);
+}
+
+/* الصورة والاسم */
+body[data-color-mode="cream"] .glowing-ring {
+    box-shadow:
+        0 0 26px rgba(201, 162, 47, 0.38),
+        0 0 18px var(--accent-glow);
+}
+
+body[data-color-mode="cream"] .bot-name {
+    color: #3e2723;
+}
+
+body[data-color-mode="cream"] .neon-target-ring {
+    outline-color: #fcf8f2;
+}
+
+body[data-color-mode="cream"] .tagline {
+    color: #6d5646;
+}
+
+body[data-color-mode="cream"] .tagline-star {
+    color: #b8902a;
+}
+
+/* زر "شوفي تصاوري ليوم" */
+body[data-color-mode="cream"] .gold-pill-btn {
+    background: linear-gradient(135deg, #fdfbf7 0%, #f4ebd0 100%);
+    border-color: #c9a22f;
+    color: #5d4037;
+}
+
+body[data-color-mode="cream"] .gold-pill-btn:hover {
+    background: #f4ebd0;
+}
+
+/* الفقاعات */
+body[data-color-mode="cream"] .bubble-dark-gold {
+    background: linear-gradient(145deg, #f3e9d2, #e6d5b8);
+    color: #3e2723;
+    box-shadow: 0 4px 12px rgba(201, 162, 47, 0.18);
+}
+
+body[data-color-mode="cream"] .bubble-gold-border {
+    background: #fffdf9;
+    color: #4a3b32;
+    box-shadow: 0 2px 8px rgba(201, 162, 47, 0.15);
+}
+
+body[data-color-mode="cream"] .audio-message-bubble {
+    background: #fffdf9;
+    box-shadow: 0 2px 8px rgba(201, 162, 47, 0.15);
+}
+
+body[data-color-mode="cream"] .bubble-image-message {
+    background: #efe5d2;
+    box-shadow: 0 2px 8px rgba(201, 162, 47, 0.15);
+}
+
+body[data-color-mode="cream"] .bot-label {
+    color: #7a5a14;
+}
+
+body[data-color-mode="cream"] .msg-time {
+    color: #a1887f;
+}
+
+/* منطقة الكتابة والأزرار السفلية */
+body[data-color-mode="cream"] .bottom-controls {
+    background: linear-gradient(0deg, #f3ead9 80%, transparent 100%);
+}
+
+body[data-color-mode="cream"] .gold-input {
+    background: #fffdf9;
+    color: #4a3b32;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.04),
+        0 0 8px rgba(201, 162, 47, 0.15);
+}
+
+body[data-color-mode="cream"] .gold-input::placeholder {
+    color: #bcaaa4;
+}
+
+body[data-color-mode="cream"] .image-preview {
+    background: #efe5d2;
+}
+
+body[data-color-mode="cream"] .ornate-action-btn {
+    background: #fdfbf7;
+    border-color: #c9a22f;
+    color: #5d4037;
+}
+
+body[data-color-mode="cream"] .send-highlight,
+body[data-color-mode="cream"] .send-highlight span,
+body[data-color-mode="cream"] .send-highlight i {
+    color: #a1887f;
+}
+
+body[data-color-mode="cream"] .send-highlight.active,
+body[data-color-mode="cream"] .send-highlight.active span,
+body[data-color-mode="cream"] .send-highlight.active i {
+    background: #b8902a;
+    border-color: #b8902a;
+    color: #ffffff;
+}
+
+body[data-color-mode="cream"] .send-highlight.active span,
+body[data-color-mode="cream"] .send-highlight.active i {
+    background: transparent;
+}
+
+/* نافذة الإعدادات */
+body[data-color-mode="cream"] .api-key-modal-overlay {
+    background: rgba(74, 59, 50, 0.55);
+}
+
+body[data-color-mode="cream"] .api-key-modal-box {
+    background: linear-gradient(180deg, #fffcf7 0%, #f3ead9 100%);
+    box-shadow: 0 8px 30px rgba(201, 162, 47, 0.3);
+}
+
+body[data-color-mode="cream"] .api-key-modal-box h2,
+body[data-color-mode="cream"] .settings-section-title {
+    color: #7a5a14;
+}
+
+body[data-color-mode="cream"] .api-key-modal-box p {
+    color: #4a3b32;
+}
+
+body[data-color-mode="cream"] .lang-option,
+body[data-color-mode="cream"] .color-option {
+    background: rgba(255, 255, 255, 0.65);
+    color: #4a3b32;
+}
+
+body[data-color-mode="cream"] .lang-option.active,
+body[data-color-mode="cream"] .color-option.active {
+    background: linear-gradient(135deg, #e5c35c 0%, #b8902a 100%);
+    color: #2e2118;
+    border-color: #c9a22f;
+}
