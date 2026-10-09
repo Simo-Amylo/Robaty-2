@@ -417,6 +417,28 @@ function markLatestStorySeen(id) {
 }
 
 
+/* الحلقة النابضة حول صورة البروفايل (فـ profile.html فقط):
+   كتنبض بلا توقف ما دام آخر Story ما تشافتش، وكتوقف ملي تتفتح،
+   وكترجع غير ملي يتنشر Story جديد (نفس منهجية صورة Robaty فشاشة المحادثة) */
+
+function refreshProfileRing() {
+
+    const btn = document.getElementById('openStoryBtn');
+
+    const ring = btn ? btn.querySelector('.story-ring-glow') : null;
+
+    if (!ring) return;
+
+    const latestId = storyOrder[0];
+
+    let seen = {};
+
+    try { seen = JSON.parse(localStorage.getItem('robaty_story_seen')) || {}; } catch (e) {}
+
+    ring.classList.toggle('hint-pulse', !!latestId && !seen[latestId]);
+
+}
+
 /* فتح Story معينة بالـ id ديالها */
 
 function openStory(storyId) {
@@ -430,7 +452,10 @@ function openStory(storyId) {
     currentStoryId = storyId;
 
     /* آخر Story انفتحات = شوهدت (كتوقف الحلقة النابضة حول صورة Robaty فشاشة المحادثة) */
-    if (storyId === storyOrder[0]) markLatestStorySeen(storyId);
+    if (storyId === storyOrder[0]) {
+        markLatestStorySeen(storyId);
+        refreshProfileRing();
+    }
 
     storyImageEl.src = story.image;
     storyTimeEl.textContent = story.place;
@@ -571,6 +596,20 @@ document.addEventListener('keydown', event => {
     }
 
 });
+
+
+/* تشغيل/تحديث الحلقة: عند فتح الصفحة، كل دقيقة (باش تبان وحدها فاش يتنشر Story جديد)،
+   عند الرجوع للتطبيق، وعند الرجوع للصفحة بزر الرجوع */
+
+refreshProfileRing();
+
+setInterval(refreshProfileRing, 60 * 1000);
+
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshProfileRing();
+});
+
+window.addEventListener('pageshow', refreshProfileRing);
 
 
 /* فتح آخر Story مباشرة من رابط: profile.html?story=latest (كيجي من صورة Robaty فشاشة المحادثة)
