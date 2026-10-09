@@ -88,6 +88,21 @@ body[data-color-mode="vivid"][data-time-theme="night"] {
     --bubble-bg-theme: rgba(23, 13, 25, 0.95);
 }
 
+/* أخضر ملكي (emerald) — نهار: #082b25، ليل: نسخة أغمق */
+body[data-color-mode="emerald"][data-time-theme="day"] {
+    --app-bg-base-start: #082b25;
+    --app-bg-base-end: #020d0b;
+    --accent-glow: rgba(229, 179, 92, 0.18);
+    --bubble-bg-theme: rgba(8, 43, 37, 0.95);
+}
+
+body[data-color-mode="emerald"][data-time-theme="night"] {
+    --app-bg-base-start: #051a16;
+    --app-bg-base-end: #010504;
+    --accent-glow: rgba(229, 179, 92, 0.15);
+    --bubble-bg-theme: rgba(5, 26, 22, 0.95);
+}
+
 /* المشاعر: دايما مفعلة (فالافتراضي وفالـvivid بحال بعضياتهم) —
    [data-time-theme] زايدة هنا (بلا قيمة محددة) غير باش نرفعو الـspecificity
    لنفس المستوى ديال قواعد vivid فوق، ونضمنو أن التوهج العاطفي دايما
