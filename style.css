@@ -2605,6 +2605,7 @@ body[data-color-mode="cream"] .ornate-btn-danger {
 
 /* الصورة والاسم */
 body[data-color-mode="cream"] .glowing-ring {
+    background: linear-gradient(135deg, #f0d98a, #b8902a);
     box-shadow:
         0 0 26px rgba(201, 162, 47, 0.38),
         0 0 18px var(--accent-glow);
@@ -2698,7 +2699,7 @@ body[data-color-mode="cream"] .ornate-action-btn {
 body[data-color-mode="cream"] .send-highlight,
 body[data-color-mode="cream"] .send-highlight span,
 body[data-color-mode="cream"] .send-highlight i {
-    color: #a1887f;
+    color: #7d6358;
 }
 
 body[data-color-mode="cream"] .send-highlight.active,
