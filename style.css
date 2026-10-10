@@ -3484,38 +3484,38 @@ body[data-color-mode="cream"] .avatar-container.hint-pulse::after {
 }
 
 
-/* ===== كريمي فاتح: لون رمال الصحراء/الشاطئ (#d2a56c) =====
+/* ===== كريمي فاتح: لون رمال الصحراء/الشاطئ بعد تخفيف 20% (#dbb789) =====
    إطار الصورة + التموجات حولها + الأزرار الأربعة + زرا الإعدادات والسهم.
    الإرسال: رملي عادي، ويغمق قليلا عند الكتابة. النص بني داكن لوضوح القراءة. */
 
 /* إطار الصورة + الهالة */
 body[data-color-mode="cream"] .glowing-ring {
-    background: linear-gradient(135deg, #e2bd8a 0%, #d2a56c 55%, #b98550 100%);
+    background: linear-gradient(135deg, #e8caa1 0%, #dbb789 55%, #c79d73 100%);
     box-shadow:
-        0 0 26px rgba(210, 165, 108, 0.50),
+        0 0 26px rgba(219, 183, 137, 0.50),
         0 0 18px var(--accent-glow);
 }
 
 /* التموجات (حلقة النبض) حول الصورة */
 body[data-color-mode="cream"] .avatar-container.hint-pulse::after {
-    border-color: #d2a56c;
+    border-color: #dbb789;
     box-shadow:
         0 0 0 2px rgba(255, 255, 255, 0.7),
-        0 0 20px 5px rgba(190, 139, 79, 0.55);
+        0 0 20px 5px rgba(203, 162, 114, 0.55);
 }
 
 /* الأزرار الأربعة */
 body[data-color-mode="cream"] .gold-pill-btn,
 body[data-color-mode="cream"] .ornate-action-btn {
-    background: #d2a56c;
-    border-color: #bf8a4e;
+    background: #dbb789;
+    border-color: #cca171;
     color: #2e1b14;
-    box-shadow: 0 3px 8px rgba(190, 139, 79, 0.30);
+    box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
 }
 
 body[data-color-mode="cream"] .gold-pill-btn:hover,
 body[data-color-mode="cream"] .ornate-action-btn:hover {
-    background: #c79a5c;
+    background: #d2ae7d;
 }
 
 body[data-color-mode="cream"] .gold-pill-btn span,
@@ -3529,10 +3529,10 @@ body[data-color-mode="cream"] .ornate-action-btn svg {
 
 /* زرا الإعدادات والسهم (زر المسح الأحمر لا يتغير) */
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) {
-    background: #d2a56c;
-    border-color: #bf8a4e;
+    background: #dbb789;
+    border-color: #cca171;
     color: #2e1b14;
-    box-shadow: 0 3px 8px rgba(190, 139, 79, 0.30);
+    box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
 }
 
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) i,
@@ -3551,8 +3551,8 @@ body[data-color-mode="cream"] .send-highlight i {
 body[data-color-mode="cream"] .send-highlight.active,
 body[data-color-mode="cream"] .send-highlight.active span,
 body[data-color-mode="cream"] .send-highlight.active i {
-    background: #b9824a;
-    border-color: #a67340;
+    background: #c79b6e;
+    border-color: #b88f66;
     color: #2e1b14;
 }
 
