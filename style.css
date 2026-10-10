@@ -3442,7 +3442,7 @@ body[data-color-mode="cream"] .glowing-ring {
 @keyframes creamMomentsPulse {
     0%, 18.75%, 37.5%, 100% {
         box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
-        border-color: #cca171;
+        border-color: #b5834d;
     }
     9.375%, 28.125% {
         box-shadow:
@@ -3508,7 +3508,7 @@ body[data-color-mode="cream"] .avatar-container.hint-pulse::after {
 body[data-color-mode="cream"] .gold-pill-btn,
 body[data-color-mode="cream"] .ornate-action-btn {
     background: #e2c5a1;
-    border-color: #cca171;
+    border-color: #b5834d;
     color: #2e1b14;
     box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
 }
@@ -3530,15 +3530,15 @@ body[data-color-mode="cream"] .ornate-action-btn svg {
 /* زرا الإعدادات والسهم (زر المسح الأحمر لا يتغير) */
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) {
     background: #e2c5a1;
-    border-color: #cca171;
-    color: #2e1b14;
+    border-color: #b5834d;
+    color: #3e2723;
     box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
 }
 
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) i,
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) svg,
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) span {
-    color: #2e1b14;
+    color: #3e2723;
 }
 
 /* الإرسال: رملي عادي، وأغمق قليلا عند الكتابة */
@@ -3552,7 +3552,7 @@ body[data-color-mode="cream"] .send-highlight.active,
 body[data-color-mode="cream"] .send-highlight.active span,
 body[data-color-mode="cream"] .send-highlight.active i {
     background: #d2af8b;
-    border-color: #b88f66;
+    border-color: #b5834d;
     color: #2e1b14;
 }
 
