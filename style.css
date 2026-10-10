@@ -3084,24 +3084,40 @@ body[data-color-mode="blush"] .tagline-star {
     color: #ffffff;
 }
 
-/* الأزرار اللامعة (توتي): المعرض + الإرسال المفعل + حفظ */
+/* الأزرار الأربعة (شوفي تصاوري ليوم + الثلاثة السفلية): وردي-أحمر مسطح، كبسولة، نص أبيض */
 body[data-color-mode="blush"] .gold-pill-btn,
+body[data-color-mode="blush"] .ornate-action-btn {
+    background: #e8175d;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-color: transparent !important;
+    border-radius: 999px;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(232, 23, 93, 0.30);
+}
+
+body[data-color-mode="blush"] .gold-pill-btn:hover,
+body[data-color-mode="blush"] .ornate-action-btn:hover {
+    background: #d6124f;
+}
+
+body[data-color-mode="blush"] .gold-pill-btn span,
+body[data-color-mode="blush"] .gold-pill-btn i,
+body[data-color-mode="blush"] .gold-pill-btn svg,
+body[data-color-mode="blush"] .ornate-action-btn span,
+body[data-color-mode="blush"] .ornate-action-btn i,
+body[data-color-mode="blush"] .ornate-action-btn svg {
+    color: #ffffff;
+}
+
+/* الإرسال: مطفأ = نفس اللون بشفافية، مفعل = كامل + توهج */
+body[data-color-mode="blush"] .send-highlight {
+    opacity: 0.7;
+}
+
 body[data-color-mode="blush"] .send-highlight.active {
-    background: linear-gradient(135deg, #f06292 0%, #e8527f 100%);
-    border-color: rgba(255, 255, 255, 0.65) !important;
-    color: #ffffff;
-    box-shadow:
-        0 6px 18px rgba(232, 82, 127, 0.40),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-body[data-color-mode="blush"] .gold-pill-btn:hover {
-    background: linear-gradient(135deg, #ec5a8a 0%, #e04575 100%);
-}
-
-body[data-color-mode="blush"] .send-highlight.active span,
-body[data-color-mode="blush"] .send-highlight.active i {
-    color: #ffffff;
+    opacity: 1;
+    box-shadow: 0 6px 18px rgba(232, 23, 93, 0.50);
 }
 
 /* الفقاعات الزجاجية */
@@ -3167,22 +3183,6 @@ body[data-color-mode="blush"] .image-preview {
     background: rgba(255, 255, 255, 0.55);
 }
 
-/* الأزرار السفلية: زجاجية بحدود بيضاء */
-body[data-color-mode="blush"] .ornate-action-btn {
-    background: rgba(255, 255, 255, 0.42);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    border-color: rgba(255, 255, 255, 0.95);
-    color: #4a2c33;
-    box-shadow: 0 4px 14px rgba(232, 82, 127, 0.15);
-}
-
-body[data-color-mode="blush"] .send-highlight,
-body[data-color-mode="blush"] .send-highlight span,
-body[data-color-mode="blush"] .send-highlight i {
-    color: #8e3a58;
-}
-
 /* نافذة الإعدادات */
 body[data-color-mode="blush"] .api-key-modal-overlay {
     background: rgba(92, 58, 66, 0.50);
@@ -3211,7 +3211,7 @@ body[data-color-mode="blush"] .color-option {
 
 body[data-color-mode="blush"] .lang-option.active,
 body[data-color-mode="blush"] .color-option.active {
-    background: linear-gradient(135deg, #f06292 0%, #e8527f 100%);
+    background: #e8175d;
     color: #ffffff;
     border-color: #ffffff;
 }
