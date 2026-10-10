@@ -2945,22 +2945,22 @@ body[data-color-mode="rose"] .color-option.active {
 
 /* ==========================================================================
    ثيم فاتح 3 — وردي أثيري (data-color-mode="blush")
-   نسخة بديلة للوردي: خلفية متدرجة، زر المعرض وردي ممتلئ بنص أبيض،
-   فقاعات بيضاء شفافة. للمقارنة مع "وردي أنيق" (rose) واختيار الأفضل.
+   خلفية حريرية متدرجة + موجات شفافة + بقع ضوء (bokeh) عائمة، أزرار توتي لامعة،
+   فقاعات زجاجية. ما كيتلمس حتى ثيم آخر. الحركات خفيفة (transform فقط).
    ========================================================================== */
 
 body[data-color-mode="blush"],
 body[data-color-mode="blush"][data-time-theme="day"],
 body[data-color-mode="blush"][data-time-theme="night"] {
-    --gold-bright: #ff758c;
+    --gold-bright: #f48fb1;
     --gold-dark: #d81b60;
-    --gold-border: rgba(255, 117, 140, 0.50);
-    --gold-box-glow: rgba(255, 117, 140, 0.25);
+    --gold-border: rgba(255, 255, 255, 0.85);
+    --gold-box-glow: rgba(255, 255, 255, 0.0);
     --text-gold-light: #4a2c33;
-    --app-bg-base-start: #fff5f7;
-    --app-bg-base-end: #ffdfe6;
-    --accent-glow: rgba(255, 117, 140, 0.10);
-    --bubble-bg-theme: rgba(255, 255, 255, 0.92);
+    --app-bg-base-start: #ffd9e6;
+    --app-bg-base-end: #f7a1c0;
+    --accent-glow: rgba(255, 255, 255, 0.18);
+    --bubble-bg-theme: rgba(255, 255, 255, 0.55);
 }
 
 body[data-color-mode="blush"] {
@@ -2970,37 +2970,102 @@ body[data-color-mode="blush"] {
 
 body[data-color-mode="blush"] .outer-gold-frame {
     background: rgba(255, 240, 243, 0.88);
-    border-color: rgba(255, 255, 255, 0.65);
+    border-color: rgba(255, 255, 255, 0.7);
     box-shadow:
         0 15px 35px rgba(255, 105, 135, 0.25),
-        inset 0 0 12px rgba(255, 255, 255, 0.4);
+        inset 0 0 12px rgba(255, 255, 255, 0.5);
 }
 
+/* الخلفية الحريرية */
 body[data-color-mode="blush"] .app-container {
+    background: linear-gradient(180deg, #ffe3ee 0%, #ffc7da 48%, #f8a8c4 100%);
+    border-color: rgba(255, 255, 255, 0.9);
+    isolation: isolate;
     box-shadow:
-        0 0 18px rgba(255, 117, 140, 0.22),
-        inset 0 0 40px var(--accent-glow);
+        0 0 22px rgba(240, 98, 146, 0.25),
+        inset 0 0 40px rgba(255, 255, 255, 0.25);
+}
+
+/* بقع الضوء العائمة (خلف المحتوى) */
+body[data-color-mode="blush"] .app-container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -300px;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.75) 0, rgba(255,255,255,0.28) 7px, transparent 16px),
+        radial-gradient(circle at 72% 12%, rgba(255,255,255,0.55) 0, rgba(255,255,255,0.20) 11px, transparent 24px),
+        radial-gradient(circle at 46% 48%, rgba(255,255,255,0.45) 0, rgba(255,255,255,0.15) 5px, transparent 12px),
+        radial-gradient(circle at 86% 66%, rgba(255,255,255,0.65) 0, rgba(255,255,255,0.22) 9px, transparent 20px),
+        radial-gradient(circle at 24% 82%, rgba(255,255,255,0.50) 0, rgba(255,255,255,0.18) 13px, transparent 28px),
+        radial-gradient(circle at 60% 90%, rgba(255,255,255,0.60) 0, rgba(255,255,255,0.20) 6px, transparent 14px);
+    background-size: 260px 300px;
+    animation: blush-float 60s linear infinite;
+    will-change: transform;
+}
+
+/* الموجات الشفافة فالأسفل */
+body[data-color-mode="blush"] .app-container::after {
+    content: "";
+    position: absolute;
+    left: -10%;
+    width: 120%;
+    bottom: 0;
+    height: 36%;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath fill='%23f06292' fill-opacity='0.30' d='M0 130 Q150 70 300 130 T600 130 T900 130 T1200 130 V200 H0 Z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath fill='white' fill-opacity='0.38' d='M0 100 Q150 20 300 100 T600 100 T900 100 T1200 100 V200 H0 Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 100%, 100% 82%;
+    background-position: 0 100%, 0 100%;
+    animation: blush-wave 11s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes blush-float {
+    from { transform: translateY(0); }
+    to   { transform: translateY(300px); }
+}
+
+@keyframes blush-wave {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-8%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="blush"] .app-container::before,
+    body[data-color-mode="blush"] .app-container::after {
+        animation: none;
+    }
 }
 
 /* الأزرار العلوية */
 body[data-color-mode="blush"] .ornate-btn {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.9);
     color: #5c3a42;
-    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.15);
+    box-shadow: 0 4px 12px rgba(232, 82, 127, 0.18);
 }
 
 body[data-color-mode="blush"] .ornate-btn-danger {
-    color: #ff5252;
-    border-color: #ff5252;
-    box-shadow: 0 4px 10px rgba(255, 82, 82, 0.18);
+    color: #e0364f;
+    border-color: #ff8a9a;
 }
 
-/* الصورة والاسم */
+/* الصورة: إطار أبيض رفيع + هالة وردية ناعمة */
 body[data-color-mode="blush"] .glowing-ring {
-    background: linear-gradient(135deg, #ffb3c6, #ff758c);
+    background: linear-gradient(135deg, #ffffff, #ffc2d6);
     box-shadow:
-        0 0 26px rgba(255, 117, 140, 0.45),
-        0 0 18px var(--accent-glow);
+        0 0 0 5px rgba(255, 255, 255, 0.35),
+        0 0 34px 8px rgba(240, 98, 146, 0.45);
 }
 
 body[data-color-mode="blush"] .bot-name {
@@ -3008,109 +3073,114 @@ body[data-color-mode="blush"] .bot-name {
 }
 
 body[data-color-mode="blush"] .neon-target-ring {
-    outline-color: #fff5f7;
+    outline-color: #ffe3ee;
 }
 
 body[data-color-mode="blush"] .tagline {
-    color: #d81b60;
+    color: #a3144a;
 }
 
 body[data-color-mode="blush"] .tagline-star {
-    color: #ff758c;
+    color: #ffffff;
 }
 
-/* زر "شوفي تصاوري ليوم" — وردي ممتلئ بنص أبيض */
-body[data-color-mode="blush"] .gold-pill-btn {
-    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-    border-color: transparent;
+/* الأزرار اللامعة (توتي): المعرض + الإرسال المفعل + حفظ */
+body[data-color-mode="blush"] .gold-pill-btn,
+body[data-color-mode="blush"] .send-highlight.active {
+    background: linear-gradient(135deg, #f06292 0%, #e8527f 100%);
+    border-color: rgba(255, 255, 255, 0.65) !important;
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.35);
+    box-shadow:
+        0 6px 18px rgba(232, 82, 127, 0.40),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 body[data-color-mode="blush"] .gold-pill-btn:hover {
-    background: linear-gradient(135deg, #ff6a83 0%, #ff6fa8 100%);
-}
-
-/* الفقاعات */
-body[data-color-mode="blush"] .bubble-dark-gold {
-    background: rgba(255, 255, 255, 0.92);
-    border-color: rgba(255, 117, 140, 0.40);
-    color: #4a2c33;
-    box-shadow: 0 6px 15px rgba(255, 117, 140, 0.15);
-}
-
-body[data-color-mode="blush"] .bubble-gold-border {
-    background: #ffe9ee;
-    border-color: rgba(255, 117, 140, 0.40);
-    color: #4a2c33;
-    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.12);
-}
-
-body[data-color-mode="blush"] .audio-message-bubble {
-    background: #ffe9ee;
-    border-color: rgba(255, 117, 140, 0.40);
-    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.12);
-}
-
-body[data-color-mode="blush"] .bubble-image-message {
-    background: #ffe3e8;
-    border-color: rgba(255, 117, 140, 0.40);
-    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.12);
-}
-
-body[data-color-mode="blush"] .bot-label {
-    color: #ad1457;
-}
-
-body[data-color-mode="blush"] .msg-time {
-    color: #c06a85;
-}
-
-/* منطقة الكتابة والأزرار السفلية */
-body[data-color-mode="blush"] .bottom-controls {
-    background: linear-gradient(0deg, #ffe3e8 80%, transparent 100%);
-}
-
-body[data-color-mode="blush"] .gold-input {
-    background: rgba(255, 255, 255, 0.92);
-    border-color: rgba(255, 117, 140, 0.55);
-    color: #4a2c33;
-    box-shadow:
-        inset 0 2px 5px rgba(0, 0, 0, 0.03),
-        0 0 8px rgba(255, 117, 140, 0.12);
-}
-
-body[data-color-mode="blush"] .gold-input::placeholder {
-    color: #d81b60;
-    opacity: 0.6;
-}
-
-body[data-color-mode="blush"] .image-preview {
-    background: #ffe3e8;
-}
-
-body[data-color-mode="blush"] .ornate-action-btn {
-    background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
-    border-color: rgba(255, 117, 140, 0.55);
-    color: #4a2c33;
-    box-shadow: 0 3px 10px rgba(255, 117, 140, 0.12);
-}
-
-body[data-color-mode="blush"] .send-highlight,
-body[data-color-mode="blush"] .send-highlight span,
-body[data-color-mode="blush"] .send-highlight i {
-    color: #a5707f;
-}
-
-body[data-color-mode="blush"] .send-highlight.active {
-    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-    border-color: #ff758c;
-    color: #ffffff;
+    background: linear-gradient(135deg, #ec5a8a 0%, #e04575 100%);
 }
 
 body[data-color-mode="blush"] .send-highlight.active span,
 body[data-color-mode="blush"] .send-highlight.active i {
     color: #ffffff;
+}
+
+/* الفقاعات الزجاجية */
+body[data-color-mode="blush"] .bubble-dark-gold {
+    background: rgba(255, 255, 255, 0.58);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #4a2c33;
+    box-shadow: 0 6px 18px rgba(232, 82, 127, 0.15);
+}
+
+/* فقاعتك: توتي + نص أبيض */
+body[data-color-mode="blush"] .bubble-gold-border {
+    background: linear-gradient(135deg, #f06292 0%, #e8527f 100%);
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(232, 82, 127, 0.35);
+}
+
+body[data-color-mode="blush"] .audio-message-bubble {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(232, 82, 127, 0.15);
+}
+
+body[data-color-mode="blush"] .bubble-image-message {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(232, 82, 127, 0.15);
+}
+
+body[data-color-mode="blush"] .bot-label {
+    color: #9c1348;
+}
+
+body[data-color-mode="blush"] .msg-time {
+    color: #8e3a58;
+}
+
+/* منطقة الكتابة (فوق الموجات، بلا خلفية صلبة) */
+body[data-color-mode="blush"] .bottom-controls {
+    background: transparent;
+}
+
+body[data-color-mode="blush"] .gold-input {
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.95);
+    color: #4a2c33;
+    box-shadow:
+        inset 0 2px 5px rgba(232, 82, 127, 0.06),
+        0 4px 14px rgba(232, 82, 127, 0.12);
+}
+
+body[data-color-mode="blush"] .gold-input::placeholder {
+    color: #a3305f;
+    opacity: 0.65;
+}
+
+body[data-color-mode="blush"] .image-preview {
+    background: rgba(255, 255, 255, 0.55);
+}
+
+/* الأزرار السفلية: زجاجية بحدود بيضاء */
+body[data-color-mode="blush"] .ornate-action-btn {
+    background: rgba(255, 255, 255, 0.42);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.95);
+    color: #4a2c33;
+    box-shadow: 0 4px 14px rgba(232, 82, 127, 0.15);
+}
+
+body[data-color-mode="blush"] .send-highlight,
+body[data-color-mode="blush"] .send-highlight span,
+body[data-color-mode="blush"] .send-highlight i {
+    color: #8e3a58;
 }
 
 /* نافذة الإعدادات */
@@ -3119,8 +3189,9 @@ body[data-color-mode="blush"] .api-key-modal-overlay {
 }
 
 body[data-color-mode="blush"] .api-key-modal-box {
-    background: linear-gradient(180deg, #fff8f9 0%, #ffe3e8 100%);
-    box-shadow: 0 10px 30px rgba(255, 117, 140, 0.35);
+    background: linear-gradient(180deg, #fff8f9 0%, #ffd9e6 100%);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(232, 82, 127, 0.35);
 }
 
 body[data-color-mode="blush"] .api-key-modal-box h2,
@@ -3140,7 +3211,7 @@ body[data-color-mode="blush"] .color-option {
 
 body[data-color-mode="blush"] .lang-option.active,
 body[data-color-mode="blush"] .color-option.active {
-    background: linear-gradient(135deg, #ffb3c6 0%, #ff758c 100%);
-    color: #3a1620;
-    border-color: #ff758c;
+    background: linear-gradient(135deg, #f06292 0%, #e8527f 100%);
+    color: #ffffff;
+    border-color: #ffffff;
 }
