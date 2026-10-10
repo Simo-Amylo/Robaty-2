@@ -2605,7 +2605,6 @@ body[data-color-mode="cream"] .ornate-btn-danger {
 
 /* الصورة والاسم */
 body[data-color-mode="cream"] .glowing-ring {
-    background: linear-gradient(135deg, #f0d98a, #b8902a);
     box-shadow:
         0 0 26px rgba(201, 162, 47, 0.38),
         0 0 18px var(--accent-glow);
@@ -2691,7 +2690,7 @@ body[data-color-mode="cream"] .image-preview {
 }
 
 body[data-color-mode="cream"] .ornate-action-btn {
-    background: #fdfbf7;
+    background: linear-gradient(135deg, #fdfbf7 0%, #f4ebd0 100%);
     border-color: #c9a22f;
     color: #5d4037;
 }
@@ -2699,7 +2698,7 @@ body[data-color-mode="cream"] .ornate-action-btn {
 body[data-color-mode="cream"] .send-highlight,
 body[data-color-mode="cream"] .send-highlight span,
 body[data-color-mode="cream"] .send-highlight i {
-    color: #7d6358;
+    color: #a1887f;
 }
 
 body[data-color-mode="cream"] .send-highlight.active,
