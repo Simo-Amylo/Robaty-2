@@ -2941,3 +2941,206 @@ body[data-color-mode="rose"] .color-option.active {
     color: #3a1f27;
     border-color: #d47a94;
 }
+
+
+/* ==========================================================================
+   ثيم فاتح 3 — وردي أثيري (data-color-mode="blush")
+   نسخة بديلة للوردي: خلفية متدرجة، زر المعرض وردي ممتلئ بنص أبيض،
+   فقاعات بيضاء شفافة. للمقارنة مع "وردي أنيق" (rose) واختيار الأفضل.
+   ========================================================================== */
+
+body[data-color-mode="blush"],
+body[data-color-mode="blush"][data-time-theme="day"],
+body[data-color-mode="blush"][data-time-theme="night"] {
+    --gold-bright: #ff758c;
+    --gold-dark: #d81b60;
+    --gold-border: rgba(255, 117, 140, 0.50);
+    --gold-box-glow: rgba(255, 117, 140, 0.25);
+    --text-gold-light: #4a2c33;
+    --app-bg-base-start: #fff5f7;
+    --app-bg-base-end: #ffdfe6;
+    --accent-glow: rgba(255, 117, 140, 0.10);
+    --bubble-bg-theme: rgba(255, 255, 255, 0.92);
+}
+
+body[data-color-mode="blush"] {
+    background: linear-gradient(135deg, #ffccd5 0%, #ff8fa3 50%, #ffb3c6 100%);
+    background-attachment: fixed;
+}
+
+body[data-color-mode="blush"] .outer-gold-frame {
+    background: rgba(255, 240, 243, 0.88);
+    border-color: rgba(255, 255, 255, 0.65);
+    box-shadow:
+        0 15px 35px rgba(255, 105, 135, 0.25),
+        inset 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+body[data-color-mode="blush"] .app-container {
+    box-shadow:
+        0 0 18px rgba(255, 117, 140, 0.22),
+        inset 0 0 40px var(--accent-glow);
+}
+
+/* الأزرار العلوية */
+body[data-color-mode="blush"] .ornate-btn {
+    background: rgba(255, 255, 255, 0.8);
+    color: #5c3a42;
+    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.15);
+}
+
+body[data-color-mode="blush"] .ornate-btn-danger {
+    color: #ff5252;
+    border-color: #ff5252;
+    box-shadow: 0 4px 10px rgba(255, 82, 82, 0.18);
+}
+
+/* الصورة والاسم */
+body[data-color-mode="blush"] .glowing-ring {
+    background: linear-gradient(135deg, #ffb3c6, #ff758c);
+    box-shadow:
+        0 0 26px rgba(255, 117, 140, 0.45),
+        0 0 18px var(--accent-glow);
+}
+
+body[data-color-mode="blush"] .bot-name {
+    color: #4a2c33;
+}
+
+body[data-color-mode="blush"] .neon-target-ring {
+    outline-color: #fff5f7;
+}
+
+body[data-color-mode="blush"] .tagline {
+    color: #d81b60;
+}
+
+body[data-color-mode="blush"] .tagline-star {
+    color: #ff758c;
+}
+
+/* زر "شوفي تصاوري ليوم" — وردي ممتلئ بنص أبيض */
+body[data-color-mode="blush"] .gold-pill-btn {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.35);
+}
+
+body[data-color-mode="blush"] .gold-pill-btn:hover {
+    background: linear-gradient(135deg, #ff6a83 0%, #ff6fa8 100%);
+}
+
+/* الفقاعات */
+body[data-color-mode="blush"] .bubble-dark-gold {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 117, 140, 0.40);
+    color: #4a2c33;
+    box-shadow: 0 6px 15px rgba(255, 117, 140, 0.15);
+}
+
+body[data-color-mode="blush"] .bubble-gold-border {
+    background: #ffe9ee;
+    border-color: rgba(255, 117, 140, 0.40);
+    color: #4a2c33;
+    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.12);
+}
+
+body[data-color-mode="blush"] .audio-message-bubble {
+    background: #ffe9ee;
+    border-color: rgba(255, 117, 140, 0.40);
+    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.12);
+}
+
+body[data-color-mode="blush"] .bubble-image-message {
+    background: #ffe3e8;
+    border-color: rgba(255, 117, 140, 0.40);
+    box-shadow: 0 4px 12px rgba(255, 117, 140, 0.12);
+}
+
+body[data-color-mode="blush"] .bot-label {
+    color: #ad1457;
+}
+
+body[data-color-mode="blush"] .msg-time {
+    color: #c06a85;
+}
+
+/* منطقة الكتابة والأزرار السفلية */
+body[data-color-mode="blush"] .bottom-controls {
+    background: linear-gradient(0deg, #ffe3e8 80%, transparent 100%);
+}
+
+body[data-color-mode="blush"] .gold-input {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 117, 140, 0.55);
+    color: #4a2c33;
+    box-shadow:
+        inset 0 2px 5px rgba(0, 0, 0, 0.03),
+        0 0 8px rgba(255, 117, 140, 0.12);
+}
+
+body[data-color-mode="blush"] .gold-input::placeholder {
+    color: #d81b60;
+    opacity: 0.6;
+}
+
+body[data-color-mode="blush"] .image-preview {
+    background: #ffe3e8;
+}
+
+body[data-color-mode="blush"] .ornate-action-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
+    border-color: rgba(255, 117, 140, 0.55);
+    color: #4a2c33;
+    box-shadow: 0 3px 10px rgba(255, 117, 140, 0.12);
+}
+
+body[data-color-mode="blush"] .send-highlight,
+body[data-color-mode="blush"] .send-highlight span,
+body[data-color-mode="blush"] .send-highlight i {
+    color: #a5707f;
+}
+
+body[data-color-mode="blush"] .send-highlight.active {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    border-color: #ff758c;
+    color: #ffffff;
+}
+
+body[data-color-mode="blush"] .send-highlight.active span,
+body[data-color-mode="blush"] .send-highlight.active i {
+    color: #ffffff;
+}
+
+/* نافذة الإعدادات */
+body[data-color-mode="blush"] .api-key-modal-overlay {
+    background: rgba(92, 58, 66, 0.50);
+}
+
+body[data-color-mode="blush"] .api-key-modal-box {
+    background: linear-gradient(180deg, #fff8f9 0%, #ffe3e8 100%);
+    box-shadow: 0 10px 30px rgba(255, 117, 140, 0.35);
+}
+
+body[data-color-mode="blush"] .api-key-modal-box h2,
+body[data-color-mode="blush"] .settings-section-title {
+    color: #ad1457;
+}
+
+body[data-color-mode="blush"] .api-key-modal-box p {
+    color: #4a2c33;
+}
+
+body[data-color-mode="blush"] .lang-option,
+body[data-color-mode="blush"] .color-option {
+    background: rgba(255, 255, 255, 0.7);
+    color: #4a2c33;
+}
+
+body[data-color-mode="blush"] .lang-option.active,
+body[data-color-mode="blush"] .color-option.active {
+    background: linear-gradient(135deg, #ffb3c6 0%, #ff758c 100%);
+    color: #3a1620;
+    border-color: #ff758c;
+}
