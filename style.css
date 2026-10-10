@@ -2745,3 +2745,199 @@ body[data-color-mode="cream"] .color-option.active {
     color: #2e2118;
     border-color: #c9a22f;
 }
+
+
+/* ==========================================================================
+   ثيم فاتح 2 — وردي أنيق (data-color-mode="rose")
+   كيبدل المتغيرات + الألوان الثابتة (نصوص بيضاء، خلفيات سوداء) اللي كانت
+   كتخلي الكتابة ما كتبانش على خلفية فاتحة. ماكيتبدلش مع الوقت (نهار/ليل).
+   ========================================================================== */
+
+body[data-color-mode="rose"],
+body[data-color-mode="rose"][data-time-theme="day"],
+body[data-color-mode="rose"][data-time-theme="night"] {
+    --gold-bright: #d47a94;
+    --gold-dark: #a8506a;
+    --gold-border: rgba(212, 122, 148, 0.60);
+    --gold-box-glow: rgba(212, 122, 148, 0.28);
+    --text-gold-light: #5c3a42;
+    --app-bg-base-start: #fffafb;
+    --app-bg-base-end: #fbe9ee;
+    --accent-glow: rgba(212, 122, 148, 0.10);
+    --bubble-bg-theme: rgba(252, 228, 236, 0.98);
+}
+
+/* إطار الصفحة */
+body[data-color-mode="rose"] {
+    background-color: #fdf5f7;
+}
+
+body[data-color-mode="rose"] .outer-gold-frame {
+    background: #fdf5f7;
+    box-shadow:
+        0 8px 28px rgba(212, 122, 148, 0.25),
+        inset 0 0 12px rgba(212, 122, 148, 0.15);
+}
+
+body[data-color-mode="rose"] .app-container {
+    box-shadow:
+        0 0 18px rgba(212, 122, 148, 0.22),
+        inset 0 0 40px var(--accent-glow);
+}
+
+/* الأزرار العلوية */
+body[data-color-mode="rose"] .ornate-btn {
+    background: #fdf5f7;
+    color: #5c3a42;
+    box-shadow: 0 2px 6px rgba(212, 122, 148, 0.2);
+}
+
+body[data-color-mode="rose"] .ornate-btn-danger {
+    color: #d84a4a;
+    border-color: #e57373;
+    box-shadow: 0 2px 6px rgba(229, 115, 115, 0.2);
+}
+
+/* الصورة والاسم */
+body[data-color-mode="rose"] .glowing-ring {
+    background: linear-gradient(135deg, #f4a9bd, #c0577a);
+    box-shadow:
+        0 0 26px rgba(212, 122, 148, 0.38),
+        0 0 18px var(--accent-glow);
+}
+
+body[data-color-mode="rose"] .bot-name {
+    color: #4a2c33;
+}
+
+body[data-color-mode="rose"] .neon-target-ring {
+    outline-color: #fdf5f7;
+}
+
+body[data-color-mode="rose"] .tagline {
+    color: #8a5a68;
+}
+
+body[data-color-mode="rose"] .tagline-star {
+    color: #c0577a;
+}
+
+/* زر "شوفي تصاوري ليوم" */
+body[data-color-mode="rose"] .gold-pill-btn {
+    background: linear-gradient(135deg, #fff5f7 0%, #f4d6dc 100%);
+    border-color: #d47a94;
+    color: #5c3a42;
+}
+
+body[data-color-mode="rose"] .gold-pill-btn:hover {
+    background: #f4d6dc;
+}
+
+/* الفقاعات */
+body[data-color-mode="rose"] .bubble-dark-gold {
+    background: linear-gradient(145deg, #fce4ec, #f8bbd0);
+    color: #4a2c33;
+    box-shadow: 0 4px 12px rgba(212, 122, 148, 0.18);
+}
+
+body[data-color-mode="rose"] .bubble-gold-border {
+    background: #fffdfd;
+    color: #5c3a42;
+    box-shadow: 0 2px 8px rgba(212, 122, 148, 0.15);
+}
+
+body[data-color-mode="rose"] .audio-message-bubble {
+    background: #fffdfd;
+    box-shadow: 0 2px 8px rgba(212, 122, 148, 0.15);
+}
+
+body[data-color-mode="rose"] .bubble-image-message {
+    background: #f6e3e8;
+    box-shadow: 0 2px 8px rgba(212, 122, 148, 0.15);
+}
+
+body[data-color-mode="rose"] .bot-label {
+    color: #a8456a;
+}
+
+body[data-color-mode="rose"] .msg-time {
+    color: #b08994;
+}
+
+/* منطقة الكتابة والأزرار السفلية */
+body[data-color-mode="rose"] .bottom-controls {
+    background: linear-gradient(0deg, #fbe9ee 80%, transparent 100%);
+}
+
+body[data-color-mode="rose"] .gold-input {
+    background: #fffdfd;
+    color: #5c3a42;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.04),
+        0 0 8px rgba(212, 122, 148, 0.15);
+}
+
+body[data-color-mode="rose"] .gold-input::placeholder {
+    color: #d1a3ad;
+}
+
+body[data-color-mode="rose"] .image-preview {
+    background: #f6e3e8;
+}
+
+body[data-color-mode="rose"] .ornate-action-btn {
+    background: linear-gradient(135deg, #fff5f7 0%, #f4d6dc 100%);
+    border-color: #d47a94;
+    color: #5c3a42;
+}
+
+body[data-color-mode="rose"] .send-highlight,
+body[data-color-mode="rose"] .send-highlight span,
+body[data-color-mode="rose"] .send-highlight i {
+    color: #b08994;
+}
+
+body[data-color-mode="rose"] .send-highlight.active,
+body[data-color-mode="rose"] .send-highlight.active span,
+body[data-color-mode="rose"] .send-highlight.active i {
+    background: #c0577a;
+    border-color: #c0577a;
+    color: #ffffff;
+}
+
+body[data-color-mode="rose"] .send-highlight.active span,
+body[data-color-mode="rose"] .send-highlight.active i {
+    background: transparent;
+}
+
+/* نافذة الإعدادات */
+body[data-color-mode="rose"] .api-key-modal-overlay {
+    background: rgba(92, 58, 66, 0.55);
+}
+
+body[data-color-mode="rose"] .api-key-modal-box {
+    background: linear-gradient(180deg, #fffafb 0%, #fbe9ee 100%);
+    box-shadow: 0 8px 30px rgba(212, 122, 148, 0.3);
+}
+
+body[data-color-mode="rose"] .api-key-modal-box h2,
+body[data-color-mode="rose"] .settings-section-title {
+    color: #a8456a;
+}
+
+body[data-color-mode="rose"] .api-key-modal-box p {
+    color: #5c3a42;
+}
+
+body[data-color-mode="rose"] .lang-option,
+body[data-color-mode="rose"] .color-option {
+    background: rgba(255, 255, 255, 0.65);
+    color: #5c3a42;
+}
+
+body[data-color-mode="rose"] .lang-option.active,
+body[data-color-mode="rose"] .color-option.active {
+    background: linear-gradient(135deg, #e8a0b5 0%, #c0577a 100%);
+    color: #3a1f27;
+    border-color: #d47a94;
+}
