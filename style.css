@@ -3507,7 +3507,7 @@ body[data-color-mode="cream"] .avatar-container.hint-pulse::after {
 /* الأزرار الأربعة */
 body[data-color-mode="cream"] .gold-pill-btn,
 body[data-color-mode="cream"] .ornate-action-btn {
-    background: #dbb789;
+    background: #e2c5a1;
     border-color: #cca171;
     color: #2e1b14;
     box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
@@ -3515,7 +3515,7 @@ body[data-color-mode="cream"] .ornate-action-btn {
 
 body[data-color-mode="cream"] .gold-pill-btn:hover,
 body[data-color-mode="cream"] .ornate-action-btn:hover {
-    background: #d2ae7d;
+    background: #dbbe97;
 }
 
 body[data-color-mode="cream"] .gold-pill-btn span,
@@ -3529,7 +3529,7 @@ body[data-color-mode="cream"] .ornate-action-btn svg {
 
 /* زرا الإعدادات والسهم (زر المسح الأحمر لا يتغير) */
 body[data-color-mode="cream"] .ornate-btn:not(.ornate-btn-danger) {
-    background: #dbb789;
+    background: #e2c5a1;
     border-color: #cca171;
     color: #2e1b14;
     box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
@@ -3551,7 +3551,7 @@ body[data-color-mode="cream"] .send-highlight i {
 body[data-color-mode="cream"] .send-highlight.active,
 body[data-color-mode="cream"] .send-highlight.active span,
 body[data-color-mode="cream"] .send-highlight.active i {
-    background: #c79b6e;
+    background: #d2af8b;
     border-color: #b88f66;
     color: #2e1b14;
 }
