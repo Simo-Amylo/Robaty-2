@@ -3429,3 +3429,56 @@ body[data-color-mode="sky"] .avatar-container.hint-pulse::after {
         animation: none;
     }
 }
+
+
+/* ===== كريمي فاتح: حلقة الصورة + توهجا "منشور جديد" بلون يلائم الخلفية ===== */
+
+/* حلقة صورة Robaty: ذهبي ناعم بدل البني الداكن */
+body[data-color-mode="cream"] .glowing-ring {
+    background: linear-gradient(135deg, #f0d98a, #b8902a);
+}
+
+/* زر "شوفي تصاوري ليوم": نبضتان بذهبي عميق (يظهر على العاجي) */
+@keyframes creamMomentsPulse {
+    0%, 18.75%, 37.5%, 100% {
+        box-shadow: 0 0 0 0 rgba(184, 144, 42, 0);
+        border-color: #c9a22f;
+    }
+    9.375%, 28.125% {
+        box-shadow:
+            0 0 0 3px rgba(184, 144, 42, 0.55),
+            0 0 18px 6px rgba(184, 144, 42, 0.55);
+        border-color: #b8902a;
+    }
+}
+
+body[data-color-mode="cream"] .gold-pill-btn.pulse {
+    animation: creamMomentsPulse 9.6s ease-in-out infinite;
+}
+
+body[data-color-mode="cream"] .gold-pill-btn.pulse:hover {
+    animation-play-state: paused;
+}
+
+/* حلقة نبض الصورة */
+@keyframes creamProfileHint {
+    0%   { transform: scale(1.02); opacity: 0; }
+    10%  { opacity: 1; }
+    45%  { transform: scale(1.12); opacity: 0; }
+    100% { transform: scale(1.12); opacity: 0; }
+}
+
+body[data-color-mode="cream"] .avatar-container.hint-pulse::after {
+    border: 3px solid #b8902a;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        0 0 20px 5px rgba(184, 144, 42, 0.50);
+    animation: creamProfileHint 5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="cream"] .gold-pill-btn.pulse,
+    body[data-color-mode="cream"] .avatar-container.hint-pulse::after {
+        animation: none;
+    }
+}
