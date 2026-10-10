@@ -2748,202 +2748,6 @@ body[data-color-mode="cream"] .color-option.active {
 
 
 /* ==========================================================================
-   ثيم فاتح 2 — وردي أنيق (data-color-mode="rose")
-   كيبدل المتغيرات + الألوان الثابتة (نصوص بيضاء، خلفيات سوداء) اللي كانت
-   كتخلي الكتابة ما كتبانش على خلفية فاتحة. ماكيتبدلش مع الوقت (نهار/ليل).
-   ========================================================================== */
-
-body[data-color-mode="rose"],
-body[data-color-mode="rose"][data-time-theme="day"],
-body[data-color-mode="rose"][data-time-theme="night"] {
-    --gold-bright: #d47a94;
-    --gold-dark: #a8506a;
-    --gold-border: rgba(212, 122, 148, 0.60);
-    --gold-box-glow: rgba(212, 122, 148, 0.28);
-    --text-gold-light: #5c3a42;
-    --app-bg-base-start: #fffafb;
-    --app-bg-base-end: #fbe9ee;
-    --accent-glow: rgba(212, 122, 148, 0.10);
-    --bubble-bg-theme: rgba(252, 228, 236, 0.98);
-}
-
-/* إطار الصفحة */
-body[data-color-mode="rose"] {
-    background-color: #fdf5f7;
-}
-
-body[data-color-mode="rose"] .outer-gold-frame {
-    background: #fdf5f7;
-    box-shadow:
-        0 8px 28px rgba(212, 122, 148, 0.25),
-        inset 0 0 12px rgba(212, 122, 148, 0.15);
-}
-
-body[data-color-mode="rose"] .app-container {
-    box-shadow:
-        0 0 18px rgba(212, 122, 148, 0.22),
-        inset 0 0 40px var(--accent-glow);
-}
-
-/* الأزرار العلوية */
-body[data-color-mode="rose"] .ornate-btn {
-    background: #fdf5f7;
-    color: #5c3a42;
-    box-shadow: 0 2px 6px rgba(212, 122, 148, 0.2);
-}
-
-body[data-color-mode="rose"] .ornate-btn-danger {
-    color: #d84a4a;
-    border-color: #e57373;
-    box-shadow: 0 2px 6px rgba(229, 115, 115, 0.2);
-}
-
-/* الصورة والاسم */
-body[data-color-mode="rose"] .glowing-ring {
-    background: linear-gradient(135deg, #f4a9bd, #c0577a);
-    box-shadow:
-        0 0 26px rgba(212, 122, 148, 0.38),
-        0 0 18px var(--accent-glow);
-}
-
-body[data-color-mode="rose"] .bot-name {
-    color: #4a2c33;
-}
-
-body[data-color-mode="rose"] .neon-target-ring {
-    outline-color: #fdf5f7;
-}
-
-body[data-color-mode="rose"] .tagline {
-    color: #8a5a68;
-}
-
-body[data-color-mode="rose"] .tagline-star {
-    color: #c0577a;
-}
-
-/* زر "شوفي تصاوري ليوم" */
-body[data-color-mode="rose"] .gold-pill-btn {
-    background: linear-gradient(135deg, #fff5f7 0%, #f4d6dc 100%);
-    border-color: #d47a94;
-    color: #5c3a42;
-}
-
-body[data-color-mode="rose"] .gold-pill-btn:hover {
-    background: #f4d6dc;
-}
-
-/* الفقاعات */
-body[data-color-mode="rose"] .bubble-dark-gold {
-    background: linear-gradient(145deg, #fce4ec, #f8bbd0);
-    color: #4a2c33;
-    box-shadow: 0 4px 12px rgba(212, 122, 148, 0.18);
-}
-
-body[data-color-mode="rose"] .bubble-gold-border {
-    background: #fffdfd;
-    color: #5c3a42;
-    box-shadow: 0 2px 8px rgba(212, 122, 148, 0.15);
-}
-
-body[data-color-mode="rose"] .audio-message-bubble {
-    background: #fffdfd;
-    box-shadow: 0 2px 8px rgba(212, 122, 148, 0.15);
-}
-
-body[data-color-mode="rose"] .bubble-image-message {
-    background: #f6e3e8;
-    box-shadow: 0 2px 8px rgba(212, 122, 148, 0.15);
-}
-
-body[data-color-mode="rose"] .bot-label {
-    color: #a8456a;
-}
-
-body[data-color-mode="rose"] .msg-time {
-    color: #b08994;
-}
-
-/* منطقة الكتابة والأزرار السفلية */
-body[data-color-mode="rose"] .bottom-controls {
-    background: linear-gradient(0deg, #fbe9ee 80%, transparent 100%);
-}
-
-body[data-color-mode="rose"] .gold-input {
-    background: #fffdfd;
-    color: #5c3a42;
-    box-shadow:
-        inset 0 2px 4px rgba(0, 0, 0, 0.04),
-        0 0 8px rgba(212, 122, 148, 0.15);
-}
-
-body[data-color-mode="rose"] .gold-input::placeholder {
-    color: #d1a3ad;
-}
-
-body[data-color-mode="rose"] .image-preview {
-    background: #f6e3e8;
-}
-
-body[data-color-mode="rose"] .ornate-action-btn {
-    background: linear-gradient(135deg, #fff5f7 0%, #f4d6dc 100%);
-    border-color: #d47a94;
-    color: #5c3a42;
-}
-
-body[data-color-mode="rose"] .send-highlight,
-body[data-color-mode="rose"] .send-highlight span,
-body[data-color-mode="rose"] .send-highlight i {
-    color: #b08994;
-}
-
-body[data-color-mode="rose"] .send-highlight.active,
-body[data-color-mode="rose"] .send-highlight.active span,
-body[data-color-mode="rose"] .send-highlight.active i {
-    background: #c0577a;
-    border-color: #c0577a;
-    color: #ffffff;
-}
-
-body[data-color-mode="rose"] .send-highlight.active span,
-body[data-color-mode="rose"] .send-highlight.active i {
-    background: transparent;
-}
-
-/* نافذة الإعدادات */
-body[data-color-mode="rose"] .api-key-modal-overlay {
-    background: rgba(92, 58, 66, 0.55);
-}
-
-body[data-color-mode="rose"] .api-key-modal-box {
-    background: linear-gradient(180deg, #fffafb 0%, #fbe9ee 100%);
-    box-shadow: 0 8px 30px rgba(212, 122, 148, 0.3);
-}
-
-body[data-color-mode="rose"] .api-key-modal-box h2,
-body[data-color-mode="rose"] .settings-section-title {
-    color: #a8456a;
-}
-
-body[data-color-mode="rose"] .api-key-modal-box p {
-    color: #5c3a42;
-}
-
-body[data-color-mode="rose"] .lang-option,
-body[data-color-mode="rose"] .color-option {
-    background: rgba(255, 255, 255, 0.65);
-    color: #5c3a42;
-}
-
-body[data-color-mode="rose"] .lang-option.active,
-body[data-color-mode="rose"] .color-option.active {
-    background: linear-gradient(135deg, #e8a0b5 0%, #c0577a 100%);
-    color: #3a1f27;
-    border-color: #d47a94;
-}
-
-
-/* ==========================================================================
    ثيم فاتح 3 — وردي أثيري (data-color-mode="blush")
    خلفية حريرية متدرجة + موجات شفافة + بقع ضوء (bokeh) عائمة، أزرار توتي لامعة،
    فقاعات زجاجية. ما كيتلمس حتى ثيم آخر. الحركات خفيفة (transform فقط).
@@ -3280,6 +3084,348 @@ body[data-color-mode="blush"] .avatar-container.hint-pulse::after {
 @media (prefers-reduced-motion: reduce) {
     body[data-color-mode="blush"] .gold-pill-btn.pulse,
     body[data-color-mode="blush"] .avatar-container.hint-pulse::after {
+        animation: none;
+    }
+}
+
+
+/* ==========================================================================
+   ثيم فاتح 2 — أزرق سماوي (data-color-mode="sky")
+   خلفية حريرية متدرجة + موجات شفافة + بقع ضوء (bokeh) عائمة، أزرار أزرق لامعة،
+   فقاعات زجاجية. ما كيتلمس حتى ثيم آخر. الحركات خفيفة (transform فقط).
+   ========================================================================== */
+
+body[data-color-mode="sky"],
+body[data-color-mode="sky"][data-time-theme="day"],
+body[data-color-mode="sky"][data-time-theme="night"] {
+    --gold-bright: #8fc2f4;
+    --gold-dark: #1b7fd8;
+    --gold-border: rgba(255, 255, 255, 0.85);
+    --gold-box-glow: rgba(255, 255, 255, 0.0);
+    --text-gold-light: #2c384a;
+    --app-bg-base-start: #d9ecff;
+    --app-bg-base-end: #a1cef7;
+    --accent-glow: rgba(255, 255, 255, 0.18);
+    --bubble-bg-theme: rgba(255, 255, 255, 0.55);
+}
+
+body[data-color-mode="sky"] {
+    background: linear-gradient(135deg, #ccddff 0%, #8fb6ff 50%, #b3d3ff 100%);
+    background-attachment: fixed;
+}
+
+body[data-color-mode="sky"] .outer-gold-frame {
+    background: rgba(240, 245, 255, 0.88);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow:
+        0 15px 35px rgba(105, 160, 255, 0.25),
+        inset 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+/* الخلفية الحريرية */
+body[data-color-mode="sky"] .app-container {
+    background: linear-gradient(180deg, #d4eaff 0%, #c3e1fe 50%, #a8d1f8 100%);
+    border-color: rgba(255, 255, 255, 0.9);
+    isolation: isolate;
+    box-shadow:
+        0 0 22px rgba(98, 170, 240, 0.25),
+        inset 0 0 40px rgba(255, 255, 255, 0.25);
+}
+
+/* بقع الضوء العائمة (خلف المحتوى) */
+body[data-color-mode="sky"] .app-container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -300px;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.75) 0, rgba(255, 255, 255, 0.28) 7px, transparent 16px),
+        radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.55) 0, rgba(255, 255, 255, 0.20) 11px, transparent 24px),
+        radial-gradient(circle at 46% 48%, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0.15) 5px, transparent 12px),
+        radial-gradient(circle at 86% 66%, rgba(255, 255, 255, 0.65) 0, rgba(255, 255, 255, 0.22) 9px, transparent 20px),
+        radial-gradient(circle at 24% 82%, rgba(255, 255, 255, 0.50) 0, rgba(255, 255, 255, 0.18) 13px, transparent 28px),
+        radial-gradient(circle at 60% 90%, rgba(255, 255, 255, 0.60) 0, rgba(255, 255, 255, 0.20) 6px, transparent 14px);
+    background-size: 260px 300px;
+    animation: sky-float 60s linear infinite;
+    will-change: transform;
+}
+
+/* الموجات الشفافة فالأسفل */
+body[data-color-mode="sky"] .app-container::after {
+    content: "";
+    position: absolute;
+    left: -10%;
+    width: 120%;
+    bottom: 0;
+    height: 36%;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath fill='%2362aaf0' fill-opacity='0.30' d='M0 130 Q150 70 300 130 T600 130 T900 130 T1200 130 V200 H0 Z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath fill='white' fill-opacity='0.38' d='M0 100 Q150 20 300 100 T600 100 T900 100 T1200 100 V200 H0 Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 100%, 100% 82%;
+    background-position: 0 100%, 0 100%;
+    animation: sky-wave 11s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes sky-float {
+    from { transform: translateY(0); }
+    to   { transform: translateY(300px); }
+}
+
+@keyframes sky-wave {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-8%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="sky"] .app-container::before,
+    body[data-color-mode="sky"] .app-container::after {
+        animation: none;
+    }
+}
+
+/* الأزرار العلوية (الإعدادات + السهم) بنفس لون الأزرار الأربعة */
+body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) {
+    background: #408de1;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(64, 141, 225, 0.30);
+}
+
+body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) i,
+body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) svg,
+body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) span {
+    color: #ffffff;
+}
+
+/* الزر الأحمر (المسح) يبقى كما كان */
+body[data-color-mode="sky"] .ornate-btn-danger {
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(82, 152, 232, 0.18);
+}
+
+body[data-color-mode="sky"] .ornate-btn-danger {
+    color: #e0364f;
+    border-color: #ff8a9a;
+}
+
+/* الصورة: إطار أبيض رفيع + هالة زرقاء ناعمة */
+body[data-color-mode="sky"] .glowing-ring {
+    background: linear-gradient(135deg, #ffffff, #c2e0ff);
+    box-shadow:
+        0 0 0 5px rgba(255, 255, 255, 0.35),
+        0 0 34px 8px rgba(98, 170, 240, 0.45);
+}
+
+body[data-color-mode="sky"] .bot-name {
+    color: #135f9c;
+}
+
+body[data-color-mode="sky"] .neon-target-ring {
+    outline-color: #e3f3ff;
+}
+
+body[data-color-mode="sky"] .tagline {
+    color: #1462a3;
+}
+
+body[data-color-mode="sky"] .tagline-star {
+    color: #ffffff;
+}
+
+/* الأزرار الأربعة (شوفي تصاوري ليوم + الثلاثة السفلية): أزرق مسطح، كبسولة، نص أبيض */
+body[data-color-mode="sky"] .gold-pill-btn,
+body[data-color-mode="sky"] .ornate-action-btn {
+    background: #408de1;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-color: transparent !important;
+    border-radius: 999px;
+    color: #ffffff;
+    box-shadow: 0 6px 14px rgba(64, 141, 225, 0.30);
+}
+
+body[data-color-mode="sky"] .gold-pill-btn:hover,
+body[data-color-mode="sky"] .ornate-action-btn:hover {
+    background: #3580cf;
+}
+
+/* الإرسال يبقى كما كان (#1780e8 + شفافية لما يكون مطفأ) */
+body[data-color-mode="sky"] .send-highlight {
+    background: #1780e8;
+}
+
+body[data-color-mode="sky"] .gold-pill-btn span,
+body[data-color-mode="sky"] .gold-pill-btn i,
+body[data-color-mode="sky"] .gold-pill-btn svg,
+body[data-color-mode="sky"] .ornate-action-btn span,
+body[data-color-mode="sky"] .ornate-action-btn i,
+body[data-color-mode="sky"] .ornate-action-btn svg {
+    color: #ffffff;
+}
+
+/* الإرسال: مطفأ = نفس اللون بشفافية، مفعل = كامل + توهج */
+body[data-color-mode="sky"] .send-highlight {
+    opacity: 0.7;
+}
+
+body[data-color-mode="sky"] .send-highlight.active {
+    opacity: 1;
+    box-shadow: 0 6px 18px rgba(23, 128, 232, 0.50);
+}
+
+/* الفقاعات الزجاجية */
+body[data-color-mode="sky"] .bubble-dark-gold {
+    background: rgba(255, 255, 255, 0.58);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #135f9c;
+    box-shadow: 0 6px 18px rgba(82, 152, 232, 0.15);
+}
+
+/* فقاعتك: أزرق + نص أبيض */
+body[data-color-mode="sky"] .bubble-gold-border {
+    background: linear-gradient(135deg, #62aaf0 0%, #5298e8 100%);
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(82, 152, 232, 0.35);
+}
+
+body[data-color-mode="sky"] .audio-message-bubble {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(82, 152, 232, 0.15);
+}
+
+body[data-color-mode="sky"] .bubble-image-message {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(82, 152, 232, 0.15);
+}
+
+body[data-color-mode="sky"] .bot-label {
+    color: #135f9c;
+}
+
+body[data-color-mode="sky"] .msg-time {
+    color: #3a668e;
+}
+
+/* منطقة الكتابة (فوق الموجات، بلا خلفية صلبة) */
+body[data-color-mode="sky"] .bottom-controls {
+    background: transparent;
+}
+
+body[data-color-mode="sky"] .gold-input {
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.95);
+    color: #2c384a;
+    box-shadow:
+        inset 0 2px 5px rgba(82, 152, 232, 0.06),
+        0 4px 14px rgba(82, 152, 232, 0.12);
+}
+
+body[data-color-mode="sky"] .gold-input::placeholder {
+    color: #3072a3;
+    opacity: 0.65;
+}
+
+body[data-color-mode="sky"] .image-preview {
+    background: rgba(255, 255, 255, 0.55);
+}
+
+/* نافذة الإعدادات */
+body[data-color-mode="sky"] .api-key-modal-overlay {
+    background: rgba(58, 72, 92, 0.50);
+}
+
+body[data-color-mode="sky"] .api-key-modal-box {
+    background: linear-gradient(180deg, #f8faff 0%, #d9ecff 100%);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(82, 152, 232, 0.35);
+}
+
+body[data-color-mode="sky"] .api-key-modal-box h2,
+body[data-color-mode="sky"] .settings-section-title {
+    color: #1471ad;
+}
+
+body[data-color-mode="sky"] .api-key-modal-box p {
+    color: #2c384a;
+}
+
+body[data-color-mode="sky"] .lang-option,
+body[data-color-mode="sky"] .color-option {
+    background: rgba(255, 255, 255, 0.7);
+    color: #2c384a;
+}
+
+body[data-color-mode="sky"] .lang-option.active,
+body[data-color-mode="sky"] .color-option.active {
+    background: #1780e8;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+
+/* ===== أزرق سماوي: توهجات "منشور جديد" (زر اللحظات + حلقة الصورة) ===== */
+
+/* زر "شوفي تصاوري ليوم": نبضتان بحلقة بيضاء + هالة زرقاء غامقة */
+@keyframes skyMomentsPulse {
+    0%, 18.75%, 37.5%, 100% {
+        box-shadow:
+            0 0 0 0 rgba(255, 255, 255, 0),
+            0 6px 14px rgba(64, 141, 225, 0.30);
+    }
+    9.375%, 28.125% {
+        box-shadow:
+            0 0 0 4px rgba(255, 255, 255, 0.95),
+            0 0 22px 8px rgba(64, 141, 225, 0.65);
+    }
+}
+
+body[data-color-mode="sky"] .gold-pill-btn.pulse {
+    animation: skyMomentsPulse 9.6s ease-in-out infinite;
+}
+
+body[data-color-mode="sky"] .gold-pill-btn.pulse:hover {
+    animation-play-state: paused;
+}
+
+/* حلقة صورة Robaty: موجة نابضة بلون أزرق + حد أبيض */
+@keyframes skyProfileHint {
+    0%   { transform: scale(1.02); opacity: 0; }
+    10%  { opacity: 1; }
+    45%  { transform: scale(1.12); opacity: 0; }
+    100% { transform: scale(1.12); opacity: 0; }
+}
+
+body[data-color-mode="sky"] .avatar-container.hint-pulse::after {
+    border: 3px solid #1780e8;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.85),
+        0 0 22px 6px rgba(23, 128, 232, 0.55);
+    animation: skyProfileHint 5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="sky"] .gold-pill-btn.pulse,
+    body[data-color-mode="sky"] .avatar-container.hint-pulse::after {
         animation: none;
     }
 }
