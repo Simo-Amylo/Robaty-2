@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v7'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v8'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -18,6 +18,8 @@ const CORE_FILES = [
   './profile-stats.js',
   './moments-data.js',
   './moments-button-glow.js',
+  './story-glow-fx.js',
+  './download-btn-fx.js',
   './profile.css',
   './style.css',
   './moments.css',
