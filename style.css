@@ -3045,13 +3045,28 @@ body[data-color-mode="blush"] .app-container::after {
     }
 }
 
-/* الأزرار العلوية */
-body[data-color-mode="blush"] .ornate-btn {
+/* الأزرار العلوية (الإعدادات + السهم) بنفس لون الأزرار الأربعة */
+body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) {
+    background: #e14072;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(225, 64, 114, 0.30);
+}
+
+body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) i,
+body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) svg,
+body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) span {
+    color: #ffffff;
+}
+
+/* الزر الأحمر (المسح) يبقى كما كان */
+body[data-color-mode="blush"] .ornate-btn-danger {
     background: rgba(255, 255, 255, 0.55);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border-color: rgba(255, 255, 255, 0.9);
-    color: #5c3a42;
     box-shadow: 0 4px 12px rgba(232, 82, 127, 0.18);
 }
 
@@ -3069,7 +3084,7 @@ body[data-color-mode="blush"] .glowing-ring {
 }
 
 body[data-color-mode="blush"] .bot-name {
-    color: #4a2c33;
+    color: #a3144a;
 }
 
 body[data-color-mode="blush"] .neon-target-ring {
@@ -3087,18 +3102,23 @@ body[data-color-mode="blush"] .tagline-star {
 /* الأزرار الأربعة (شوفي تصاوري ليوم + الثلاثة السفلية): وردي-أحمر مسطح، كبسولة، نص أبيض */
 body[data-color-mode="blush"] .gold-pill-btn,
 body[data-color-mode="blush"] .ornate-action-btn {
-    background: #e8175d;
+    background: #e14072;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
     border-color: transparent !important;
     border-radius: 999px;
     color: #ffffff;
-    box-shadow: 0 6px 14px rgba(232, 23, 93, 0.30);
+    box-shadow: 0 6px 14px rgba(225, 64, 114, 0.30);
 }
 
 body[data-color-mode="blush"] .gold-pill-btn:hover,
 body[data-color-mode="blush"] .ornate-action-btn:hover {
-    background: #d6124f;
+    background: #cf3566;
+}
+
+/* الإرسال يبقى كما كان (#e8175d + شفافية لما يكون مطفأ) */
+body[data-color-mode="blush"] .send-highlight {
+    background: #e8175d;
 }
 
 body[data-color-mode="blush"] .gold-pill-btn span,
