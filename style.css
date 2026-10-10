@@ -3438,17 +3438,17 @@ body[data-color-mode="cream"] .glowing-ring {
     background: linear-gradient(135deg, #f0d98a, #b8902a);
 }
 
-/* زر "شوفي تصاوري ليوم": نبضتان بذهبي عميق (يظهر على العاجي) */
+/* زر "شوفي تصاوري ليوم": نبضتان برملي-كراميل عميق (ينسجم مع لون الأزرار) */
 @keyframes creamMomentsPulse {
     0%, 18.75%, 37.5%, 100% {
-        box-shadow: 0 0 0 0 rgba(184, 144, 42, 0);
-        border-color: #c9a22f;
+        box-shadow: 0 3px 8px rgba(203, 162, 114, 0.30);
+        border-color: #cca171;
     }
     9.375%, 28.125% {
         box-shadow:
-            0 0 0 3px rgba(184, 144, 42, 0.55),
-            0 0 18px 6px rgba(184, 144, 42, 0.55);
-        border-color: #b8902a;
+            0 0 0 3px rgba(181, 131, 77, 0.50),
+            0 0 20px 6px rgba(181, 131, 77, 0.50);
+        border-color: #b5834d;
     }
 }
 
