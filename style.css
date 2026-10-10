@@ -3235,3 +3235,51 @@ body[data-color-mode="blush"] .color-option.active {
     color: #ffffff;
     border-color: #ffffff;
 }
+
+
+/* ===== وردي أثيري: توهجات "منشور جديد" (زر اللحظات + حلقة الصورة) ===== */
+
+/* زر "شوفي تصاوري ليوم": نبضتان بحلقة بيضاء + هالة وردية غامقة */
+@keyframes blushMomentsPulse {
+    0%, 18.75%, 37.5%, 100% {
+        box-shadow:
+            0 0 0 0 rgba(255, 255, 255, 0),
+            0 6px 14px rgba(225, 64, 114, 0.30);
+    }
+    9.375%, 28.125% {
+        box-shadow:
+            0 0 0 4px rgba(255, 255, 255, 0.95),
+            0 0 22px 8px rgba(225, 64, 114, 0.65);
+    }
+}
+
+body[data-color-mode="blush"] .gold-pill-btn.pulse {
+    animation: blushMomentsPulse 9.6s ease-in-out infinite;
+}
+
+body[data-color-mode="blush"] .gold-pill-btn.pulse:hover {
+    animation-play-state: paused;
+}
+
+/* حلقة صورة Robaty: موجة نابضة بلون وردي-أحمر + حد أبيض */
+@keyframes blushProfileHint {
+    0%   { transform: scale(1.02); opacity: 0; }
+    10%  { opacity: 1; }
+    45%  { transform: scale(1.12); opacity: 0; }
+    100% { transform: scale(1.12); opacity: 0; }
+}
+
+body[data-color-mode="blush"] .avatar-container.hint-pulse::after {
+    border: 3px solid #e8175d;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.85),
+        0 0 22px 6px rgba(232, 23, 93, 0.55);
+    animation: blushProfileHint 5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="blush"] .gold-pill-btn.pulse,
+    body[data-color-mode="blush"] .avatar-container.hint-pulse::after {
+        animation: none;
+    }
+}
