@@ -3560,3 +3560,9 @@ body[data-color-mode="cream"] .send-highlight.active span,
 body[data-color-mode="cream"] .send-highlight.active i {
     background: transparent;
 }
+
+
+/* ===== إخفاء الخطوط الذهبية الأربعة في زوايا الشاشة (corner-ornament) — كل الثيمات ===== */
+.corner-ornament {
+    display: none;
+}
