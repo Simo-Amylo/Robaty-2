@@ -2978,7 +2978,7 @@ body[data-color-mode="blush"] .outer-gold-frame {
 
 /* الخلفية الحريرية */
 body[data-color-mode="blush"] .app-container {
-    background: linear-gradient(180deg, #ffe3ee 0%, #ffc7da 48%, #f8a8c4 100%);
+    background: linear-gradient(180deg, #ffd4e3 0%, #fec3d7 50%, #f8a8c4 100%);
     border-color: rgba(255, 255, 255, 0.9);
     isolation: isolate;
     box-shadow:
@@ -3084,7 +3084,7 @@ body[data-color-mode="blush"] .glowing-ring {
 }
 
 body[data-color-mode="blush"] .bot-name {
-    color: #a3144a;
+    color: #9c1348;
 }
 
 body[data-color-mode="blush"] .neon-target-ring {
@@ -3146,7 +3146,7 @@ body[data-color-mode="blush"] .bubble-dark-gold {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-color: rgba(255, 255, 255, 0.9);
-    color: #4a2c33;
+    color: #9c1348;
     box-shadow: 0 6px 18px rgba(232, 82, 127, 0.15);
 }
 
