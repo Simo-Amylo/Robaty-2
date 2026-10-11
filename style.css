@@ -3052,7 +3052,7 @@ body[data-color-mode="blush"] .color-option.active {
     }
     9.375%, 28.125% {
         box-shadow:
-            0 0 0 3px rgba(255, 255, 255, 0.95),
+            0 0 0 2px rgba(255, 255, 255, 0.95),
             0 0 22px 8px rgba(225, 64, 114, 0.65);
     }
 }
@@ -3394,7 +3394,7 @@ body[data-color-mode="sky"] .color-option.active {
     }
     9.375%, 28.125% {
         box-shadow:
-            0 0 0 3px rgba(255, 255, 255, 0.95),
+            0 0 0 2px rgba(255, 255, 255, 0.95),
             0 0 22px 8px rgba(64, 141, 225, 0.65);
     }
 }
@@ -3600,12 +3600,12 @@ body[data-color-mode="cream"] .bubble-dark-gold {
 /* الأزرار الأربعة (شوفي تصاوري ليوم + 3 سفلية، الإرسال داخل فيهم) */
 body[data-color-mode="blush"] .gold-pill-btn,
 body[data-color-mode="blush"] .ornate-action-btn {
-    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid #ffffff !important;
 }
 
 /* زرا الإعدادات والسهم (زر المسح الأحمر ما كيتبدلش) */
 body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) {
-    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border: 2px solid #ffffff;
 }
 
 
@@ -3614,10 +3614,10 @@ body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) {
 /* الأزرار الأربعة (الإرسال داخل فيهم) */
 body[data-color-mode="sky"] .gold-pill-btn,
 body[data-color-mode="sky"] .ornate-action-btn {
-    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid #ffffff !important;
 }
 
 /* زرا الإعدادات والسهم (زر المسح الأحمر ما كيتبدلش) */
 body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) {
-    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border: 2px solid #ffffff;
 }
