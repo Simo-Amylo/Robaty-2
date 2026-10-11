@@ -3575,3 +3575,11 @@ body[data-color-mode="sky"] .bubble-dark-gold {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.60);
     -webkit-font-smoothing: antialiased;
 }
+
+
+/* ===== كريمي فاتح: نفس درجة وضوح نص فقاعة Robaty ===== */
+body[data-color-mode="cream"] .bubble-dark-gold {
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.60);
+    -webkit-font-smoothing: antialiased;
+}
