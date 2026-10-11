@@ -3591,3 +3591,19 @@ body[data-color-mode="cream"] .bubble-dark-gold {
     font-size: 14.4px;
     line-height: 18.6px;
 }
+
+
+/* ===== وردي أثيري: إطار أبيض على الأزرار =====
+   آخر الملف باش يغلب `border-color: transparent !important` القديم.
+   كيخدم غير فـ blush، الثيمات الأخرى ما كتتأثرش. */
+
+/* الأزرار الأربعة (شوفي تصاوري ليوم + 3 سفلية، الإرسال داخل فيهم) */
+body[data-color-mode="blush"] .gold-pill-btn,
+body[data-color-mode="blush"] .ornate-action-btn {
+    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+}
+
+/* زرا الإعدادات والسهم (زر المسح الأحمر ما كيتبدلش) */
+body[data-color-mode="blush"] .ornate-btn:not(.ornate-btn-danger) {
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+}
