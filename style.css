@@ -3566,3 +3566,12 @@ body[data-color-mode="cream"] .send-highlight.active i {
 .corner-ornament {
     display: none;
 }
+
+
+/* ===== وردي أثيري + أزرق سماوي: وضوح أكبر لنص فقاعة Robaty (بدون تغيير أي لون) ===== */
+body[data-color-mode="blush"] .bubble-dark-gold,
+body[data-color-mode="sky"] .bubble-dark-gold {
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.60);
+    -webkit-font-smoothing: antialiased;
+}
