@@ -3583,3 +3583,11 @@ body[data-color-mode="cream"] .bubble-dark-gold {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.60);
     -webkit-font-smoothing: antialiased;
 }
+
+
+/* ===== خانة كتابة الرسالة: حجم الخط = حجم خط الفقاعات (14.4px) — كل الثيمات =====
+   line-height بالبكسل (18.6px = 12px × 1.55 القديمة) باش حجم الخانة وارتفاعها ما يتبدلوش */
+#messageInput {
+    font-size: 14.4px;
+    line-height: 18.6px;
+}
