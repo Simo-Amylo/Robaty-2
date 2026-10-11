@@ -937,7 +937,19 @@ function updateSendButtonState() {
     sendButton.classList.toggle('active', hasText || hasImage);
 }
 
+// اتجاه خانة الكتابة كيتبع لغة اللي كتكتب (عربي ← يمين، لاتيني ← يسار)، وملي تفرغ كترجع لاتجاه الواجهة
+function updateInputDirection() {
+    const value = messageInput.value;
+    const strong = value.match(/[A-Za-z\u00C0-\u024F\u0400-\u04FF\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/);
+    if (!strong) {
+        messageInput.removeAttribute('dir');
+        return;
+    }
+    messageInput.dir = /[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/.test(strong[0]) ? 'rtl' : 'ltr';
+}
+
 messageInput.addEventListener('input', () => {
+    updateInputDirection();
     autoGrowMessageInput();
     updateSendButtonState();
 });
@@ -1010,6 +1022,7 @@ async function sendMessage() {
     chatArea.appendChild(message);
 
     messageInput.value = '';
+    updateInputDirection();
     autoGrowMessageInput();
     clearImagePreview();
     updateSendButtonState();
