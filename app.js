@@ -671,6 +671,7 @@ function appendUserTextMessage(text, time, animate) {
 
     const bubble = document.createElement('div');
     bubble.className = 'bubble-gold-border';
+    bubble.dir = 'auto'; // اتجاه الرسالة من لغتها هي
     bubble.textContent = text;
     message.appendChild(bubble);
 
@@ -718,6 +719,7 @@ function appendBotMessage(text, time) {
 
     const bubble = document.createElement('div');
     bubble.className = 'bubble-dark-gold';
+    bubble.dir = 'auto'; // اتجاه الرسالة من لغتها هي
     bubble.textContent = text;
     message.appendChild(bubble);
 
@@ -995,6 +997,7 @@ async function sendMessage() {
     if (text) {
         const bubble = document.createElement('div');
         bubble.className = 'bubble-gold-border';
+        bubble.dir = 'auto'; // اتجاه الرسالة من لغتها هي
         bubble.textContent = text;
         message.appendChild(bubble);
     }
