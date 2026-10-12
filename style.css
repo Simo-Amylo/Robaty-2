@@ -3667,3 +3667,45 @@ body[data-color-mode="vivid"] .bottom-controls {
     background: transparent;
 }
 
+
+
+/* ===== الثيمات الفاتحة الثلاثة: هالة "التنفس" خلف صورة Robaty بلون الثيم =====
+   الذهبي ما كيبانش على الخلفية الفاتحة، فكنستعملو لون غامق من الثيم وشفافية أقوى.
+   نفس إيقاع الأنيميشن الأصلي (8.8s). اللون كيجي من --halo-rgb. */
+@keyframes robaty-portrait-breath-light {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 34px 4px rgba(var(--halo-rgb), 0.60);
+    }
+    25%, 75% {
+        transform: scale(1.004);
+        box-shadow: 0 0 38px 5px rgba(var(--halo-rgb), 0.70);
+    }
+    50% {
+        transform: scale(1.009);
+        box-shadow: 0 0 46px 7px rgba(var(--halo-rgb), 0.85);
+    }
+}
+
+body[data-color-mode="blush"] .glowing-ring {
+    --halo-rgb: 232, 23, 93;
+    animation-name: robaty-portrait-breath-light;
+}
+
+body[data-color-mode="sky"] .glowing-ring {
+    --halo-rgb: 23, 128, 232;
+    animation-name: robaty-portrait-breath-light;
+}
+
+body[data-color-mode="cream"] .glowing-ring {
+    --halo-rgb: 176, 112, 40;
+    animation-name: robaty-portrait-breath-light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="blush"] .glowing-ring,
+    body[data-color-mode="sky"] .glowing-ring,
+    body[data-color-mode="cream"] .glowing-ring {
+        animation: none;
+    }
+}
