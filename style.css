@@ -3636,3 +3636,33 @@ body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) {
     font-size: 16.5px;
     line-height: 20px;
 }
+
+
+/* ===== أخضر ملكي + أزرق/بنفسجي (vivid): خانة الكتابة + زرا الإعدادات والسهم =====
+   ألوان غامقة تتناسب مع الثيم (زر المسح الأحمر ما كيتبدلش). */
+
+/* أخضر ملكي: أخضر غامق */
+body[data-color-mode="emerald"] .gold-input {
+    background: rgba(8, 48, 40, 0.95);
+}
+
+body[data-color-mode="emerald"] .ornate-btn:not(.ornate-btn-danger) {
+    background: rgba(8, 48, 40, 0.95);
+}
+
+/* أزرق/بنفسجي: بنفسجي غامق (نهار وليل) */
+body[data-color-mode="vivid"] .gold-input {
+    background: rgba(38, 20, 66, 0.95);
+}
+
+body[data-color-mode="vivid"] .ornate-btn:not(.ornate-btn-danger) {
+    background: rgba(38, 20, 66, 0.95);
+}
+
+
+/* ===== أخضر ملكي + أزرق/بنفسجي: الشريط السفلي (وراء الخانة والأزرار) يتبع لون الثيم =====
+   كيستعمل --app-bg-base-end (متغير نهار/ليل) باش يذوب مع خلفية الشاشة. */
+body[data-color-mode="emerald"] .bottom-controls,
+body[data-color-mode="vivid"] .bottom-controls {
+    background: linear-gradient(0deg, var(--app-bg-base-end) 80%, transparent 100%);
+}
