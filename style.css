@@ -3623,17 +3623,16 @@ body[data-color-mode="sky"] .ornate-btn:not(.ornate-btn-danger) {
 }
 
 
-/* ===== اللغات اللاتينية/السيريلية (fr, en, es, ru): خط أكبر شوية =====
-   الخط العربي ما تبدلش (14.4px). الحروف اللاتينية كتبان أصغر من العربية
-   بنفس الحجم، لهذا 16.5px فالفقاعات وخانة الكتابة.
+/* ===== اللغات اللاتينية/السيريلية (fr, en, es, ru): خط أكبر — كل الثيمات =====
+   الفقاعات + خانة الكتابة. العربية تبقى 14.4px بلا تغيير.
+   :lang() كيقرا lang من أي عنصر أب (html أو body...)، وdir="ltr" احتياط.
    line-height ديال الخانة 20px باش ارتفاعها يبقى نفسو (42px). */
-html:is([lang="fr"], [lang="en"], [lang="es"], [lang="ru"], [dir="ltr"]) .bubble-dark-gold,
-html:is([lang="fr"], [lang="en"], [lang="es"], [lang="ru"], [dir="ltr"]) .bubble-gold-border {
+:is(:lang(fr), :lang(en), :lang(es), :lang(ru), [dir="ltr"]) :is(.bubble-dark-gold, .bubble-gold-border) {
     font-size: 16.5px;
     line-height: 1.55;
 }
 
-html:is([lang="fr"], [lang="en"], [lang="es"], [lang="ru"], [dir="ltr"]) #messageInput {
+:is(:lang(fr), :lang(en), :lang(es), :lang(ru), [dir="ltr"]) #messageInput {
     font-size: 16.5px;
     line-height: 20px;
 }
