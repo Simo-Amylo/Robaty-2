@@ -3730,3 +3730,20 @@ body[data-color-mode="sky"] .gold-input {
     padding-top: 9px;
     padding-bottom: 9px;
 }
+
+
+/* ===== تأثير الضغط على الأزرار: أبيض + بنفس شكل الزر (دائري) =====
+   المستطيل الأزرق الفاتح هو تظليل اللمس الافتراضي ديال أندرويد
+   (tap highlight)، كنحيدوه ونعوضوه بطبقة بيضاء شفافة كتتبع border-radius
+   ديال الزر (كبسولة/دائرة). الأزرار: الأربعة + الإعدادات + السهم + المسح. */
+.ornate-btn,
+.ornate-action-btn,
+.gold-pill-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ornate-btn:active,
+.ornate-action-btn:active,
+.gold-pill-btn:active {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)) !important;
+}
