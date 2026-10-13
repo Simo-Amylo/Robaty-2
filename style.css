@@ -3742,11 +3742,11 @@ body[data-color-mode="sky"] .gold-input {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* الثيمات الغامقة (ذهبي، أخضر ملكي، أزرق/بنفسجي): 15% */
+/* الثيمات الغامقة (ذهبي، أخضر ملكي، أزرق/بنفسجي): 10% */
 .ornate-btn:active,
 .ornate-action-btn:active,
 .gold-pill-btn:active {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)) !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.10)) !important;
 }
 
 /* الثيمات الفاتحة (وردي أثيري، أزرق سماوي، كريمي): 20% */
