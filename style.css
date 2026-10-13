@@ -3709,3 +3709,14 @@ body[data-color-mode="cream"] .glowing-ring {
         animation: none;
     }
 }
+
+
+/* ===== وردي أثيري + أزرق سماوي: إطار خانة الكتابة (1px) بلون زر "إرسال" قبل الكتابة =====
+   زر الإرسال المطفأ = لون الزر بشفافية 0.7 (#e8175d وردي / #1780e8 أزرق). */
+body[data-color-mode="blush"] .gold-input {
+    border-color: rgba(232, 23, 93, 0.7);
+}
+
+body[data-color-mode="sky"] .gold-input {
+    border-color: rgba(23, 128, 232, 0.7);
+}
