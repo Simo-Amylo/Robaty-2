@@ -3688,7 +3688,7 @@ body[data-color-mode="vivid"] .bottom-controls {
 }
 
 body[data-color-mode="blush"] .glowing-ring {
-    --halo-rgb: 237, 69, 125;
+    --halo-rgb: 239, 88, 138;
     animation-name: robaty-portrait-breath-light;
 }
 
