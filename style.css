@@ -3742,8 +3742,16 @@ body[data-color-mode="sky"] .gold-input {
     -webkit-tap-highlight-color: transparent;
 }
 
+/* الثيمات الغامقة (ذهبي، أخضر ملكي، أزرق/بنفسجي): 15% */
 .ornate-btn:active,
 .ornate-action-btn:active,
 .gold-pill-btn:active {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)) !important;
+}
+
+/* الثيمات الفاتحة (وردي أثيري، أزرق سماوي، كريمي): 20% */
+:is(body[data-color-mode="blush"], body[data-color-mode="sky"], body[data-color-mode="cream"]) .ornate-btn:active,
+:is(body[data-color-mode="blush"], body[data-color-mode="sky"], body[data-color-mode="cream"]) .ornate-action-btn:active,
+:is(body[data-color-mode="blush"], body[data-color-mode="sky"], body[data-color-mode="cream"]) .gold-pill-btn:active {
     background-image: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.20)) !important;
 }
