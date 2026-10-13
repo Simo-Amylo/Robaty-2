@@ -3720,3 +3720,13 @@ body[data-color-mode="blush"] .gold-input {
 body[data-color-mode="sky"] .gold-input {
     border-color: rgba(23, 128, 232, 0.7);
 }
+
+
+/* ===== وردي أثيري + أزرق سماوي: إطار خانة الكتابة 2px =====
+   الحشو العمودي نقص بـ1px باش ارتفاع الخانة يبقى هو هو. */
+body[data-color-mode="blush"] .gold-input,
+body[data-color-mode="sky"] .gold-input {
+    border-width: 2px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
