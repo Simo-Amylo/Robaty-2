@@ -3745,5 +3745,5 @@ body[data-color-mode="sky"] .gold-input {
 .ornate-btn:active,
 .ornate-action-btn:active,
 .gold-pill-btn:active {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)) !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.84)) !important;
 }
