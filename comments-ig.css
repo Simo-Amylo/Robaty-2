@@ -36,7 +36,7 @@
     background: none;
     border: 0;
     padding: 6px 0 8px;
-    margin-inline-start: 48px;
+    margin-inline-start: 46px;
     font: inherit;
     font-size: 12px;
     font-weight: 600;
@@ -56,7 +56,7 @@
 }
 
 /* الردود: مزاحة وأصغر */
-.comment-replies { margin-inline-start: 48px; }
+.comment-replies { margin-inline-start: 46px; }
 
 .comment-item.is-reply .comment-avatar {
     width: 26px;
