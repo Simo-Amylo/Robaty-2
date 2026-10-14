@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Robaty — تعليقات بنمط إنستغرام (ردود متداخلة + شارة المؤلفة + شريط الرد)
+   ملف إضافي: كيتحمل بعد moments.css ولا كيبدل فيه والو
+   ========================================================================== */
+
+/* خيط التعليق */
+.comment-thread { display: block; }
+
+/* سطر الإجراءات تحت النص */
+.comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.comment-reply-btn {
+    background: none;
+    border: 0;
+    padding: 2px 0;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.comment-reply-btn:active { opacity: 1; }
+
+/* "—— عرض الردود (2)" */
+.comment-replies-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: 0;
+    padding: 6px 0 8px;
+    margin-inline-start: 48px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.comment-replies-toggle:active { opacity: 1; }
+
+.replies-line {
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+}
+
+/* الردود: مزاحة وأصغر */
+.comment-replies { margin-inline-start: 48px; }
+
+.comment-item.is-reply .comment-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+}
+
+/* شارة "المؤلفة" بجانب الوقت (بحال Auteur(ice)) */
+.comment-author-badge {
+    font-size: 11px;
+    opacity: 0.6;
+}
+.comment-author-badge::before { content: "\00b7\00a0"; }
+
+/* الإشارة @name */
+.reply-mention {
+    color: #e5b35c;
+    font-weight: 600;
+}
+
+/* شريط "الرد على ..." فوق خانة الكتابة */
+.replying-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 14px;
+    margin-bottom: 6px;
+    font-size: 12.5px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07);
+}
+.replying-bar[hidden] { display: none; }
+
+.replying-bar b { font-weight: 700; }
+
+.replying-bar button {
+    background: none;
+    border: 0;
+    padding: 2px 4px;
+    font-size: 14px;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+}
