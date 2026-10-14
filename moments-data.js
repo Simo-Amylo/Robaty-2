@@ -393,15 +393,6 @@ El reto y la votación están en los comentarios 👀☝️`,
 Вызов и голосование — в комментариях 👀☝️`
     },
 
-    // عبارة أعلى الـ Story لهاد المنشور (نفس الكتابة والأنيميشن، والإيموجي 👂 الافتراضي)
-    kicker: {
-        ar: 'حكمة\nاليوم',
-        en: 'Today’s\nwisdom',
-        fr: 'Sagesse\ndu jour',
-        es: 'Sabiduría\ndel día',
-        ru: 'Мудрость\nдня'
-    },
-
     story: {
         ar: 'راحة بالك وأناقتك هما سر قوتك... لا تنازلي عليهما لأي سبب! 👑✨',
         en: 'Your peace of mind and your elegance are the secret of your strength... never give them up for any reason! 👑✨',
@@ -1322,15 +1313,6 @@ El reto y la votación están en los comentarios 👀☝️`,
 Сегодня я решила полностью выйти за привычные рамки: шёлковая сахарская дарраа небесно-голубого цвета, настоящее серебро и белый тюрбан 👑✨
 Как вам этот утренний пустынный акцент, девушки? 😊
 Вызов и голосование — в комментариях 👀☝️`
-    },
-
-    // عبارة أعلى الـ Story لهاد المنشور (سطران)
-    kicker: {
-        ar: 'سمعيني مزيان\nأ صاحبتي',
-        en: 'Listen to me\nmy friend',
-        fr: 'Écoute-moi bien\nmon amie',
-        es: 'Escúchame bien\namiga mía',
-        ru: 'Послушай меня\nподруга'
     },
 
     story: {
