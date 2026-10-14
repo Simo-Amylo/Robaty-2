@@ -16,6 +16,12 @@
     var currentPostId = null;
     var unsubscribeComments = null;
 
+    // >>> THREADS STATE
+    var replyTarget = null;   // { parentId, name, mention }  ← الرد اللي كتكتبو المستخدمة دابا
+    var expanded = {};        // threadId -> true  (الردود المفتوحة)
+    var revealTimer = null;   // مؤقت ظهور ردود Robaty
+    // <<< THREADS STATE
+
     // >>> CONTACT-CHECK START
     // ---------------------------------------------------------------
     // منع أرقام الهواتف والروابط والحسابات (تحرش / سبام)
@@ -373,6 +379,8 @@
     // ---------------------------------------------------------------
     function openCommentsModal(postId) {
         currentPostId = postId;
+        replyTarget = null;
+        expanded = {};
 
         var modal = document.getElementById('simpleModal');
         var title = document.getElementById('simpleModalTitle');
@@ -394,6 +402,9 @@
         }
         currentPostId = null;
         lastItems = [];
+        replyTarget = null;
+        expanded = {};
+        if (revealTimer) { clearTimeout(revealTimer); revealTimer = null; }
 
         var sheet = document.querySelector('#simpleModal .simple-modal-content');
         if (sheet) sheet.classList.remove('comments-sheet');
@@ -497,30 +508,159 @@
                '</div>';
     }
 
-    function commentHTML(c) {
+    // ---------------------------------------------------------------
+    // نصوص الواجهة الجديدة (5 لغات) — محلية، ما كتحتاجش تعديل فـ i18n.js
+    // ---------------------------------------------------------------
+    var LT = {
+        reply:           { ar: 'رد', en: 'Reply', fr: 'Répondre', es: 'Responder', ru: 'Ответить' },
+        view_replies:    { ar: 'عرض الردود', en: 'View replies', fr: 'Voir les réponses', es: 'Ver respuestas', ru: 'Показать ответы' },
+        hide_replies:    { ar: 'إخفاء الردود', en: 'Hide replies', fr: 'Masquer les réponses', es: 'Ocultar respuestas', ru: 'Скрыть ответы' },
+        replying_to:     { ar: 'الرد على', en: 'Replying to', fr: 'Réponse à', es: 'Respondiendo a', ru: 'Ответ для' },
+        author:          { ar: 'المؤلفة', en: 'Author', fr: 'Auteure', es: 'Autora', ru: 'Автор' },
+        reply_placeholder: { ar: 'اكتبي ردك...', en: 'Add a reply...', fr: 'Ajoute une réponse...', es: 'Añade una respuesta...', ru: 'Напишите ответ...' }
+    };
+
+    function lt(key) {
+        var lang = 'ar';
+        try { lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar'; } catch (e) {}
+        var row = LT[key] || {};
+        return row[lang] || row.ar || '';
+    }
+
+    // >>> ROBATY-REPLIES START
+    // ---------------------------------------------------------------
+    // ردود Robaty المبرمجة (إيموجي + جمل قصيرة). ما كتخزنش فـ Firestore:
+    // كتتحسب وقت العرض من id التعليق، فكتبقى هي نفسها عند كل المستخدمات.
+    // الجمل أدناه مؤقتة (بالعربية فقط) — غادي نبدلوها باللائحة النهائية.
+    // ---------------------------------------------------------------
+    var ROBATY_REPLY_RATE = 80; // نسبة التعليقات اللي كتردّ عليها (%)
+
+    var ROBATY_REPLIES = {
+        thanks:   ['شكرا جزيلا 🤍', 'كتفرحيني بتعليقك 🌹', 'يعطيك الصحة ✨', 'الله يخليك 💛', 'تسلمي أ صاحبتي 🤍'],
+        question: ['دخلي عندي لشاشة المحادثات 💬']
+    };
+
+    function hashStr(str) {
+        var h = 5381;
+        for (var i = 0; i < str.length; i++) { h = ((h << 5) + h + str.charCodeAt(i)) | 0; }
+        return Math.abs(h);
+    }
+
+    function looksLikeQuestion(t) {
+        return /[?\u061f]/.test(t) ||
+               /(^|\s)(\u0634\u062d\u0627\u0644|\u0641\u064a\u0646|\u0643\u064a\u0641\u0627\u0634|\u0639\u0644\u0627\u0634|\u0648\u0627\u0634|\u0634\u0643\u0648\u0646|combien|comment|pourquoi|where|how|why|cu\u00e1nto|d\u00f3nde|c\u00f3mo|\u0441\u043a\u043e\u043b\u044c\u043a\u043e|\u0433\u0434\u0435|\u043a\u0430\u043a|\u043f\u043e\u0447\u0435\u043c\u0443)(\s|$)/i.test(t);
+    }
+
+    // كترجع رد افتراضي من Robaty (أو null) لتعليق من المستوى الأول
+    function robatyReplyFor(c, ms) {
+        if (!ms) return null;
+        var h = hashStr(c.id);
+        if (h % 100 >= ROBATY_REPLY_RATE) return null;
+
+        var pool = looksLikeQuestion(c.text || '') ? ROBATY_REPLIES.question : ROBATY_REPLIES.thanks;
+        var delay = (1 + (Math.floor(h / 100) % 9)) * 60000; // من 1 إلى 9 دقائق
+
+        return {
+            id: 'robaty-' + c.id,
+            parentId: c.id,
+            text: pool[Math.floor(h / 1000) % pool.length],
+            ms: ms + delay,
+            isRobaty: true
+        };
+    }
+    // <<< ROBATY-REPLIES END
+
+    function msOf(c) {
+        return c.createdAt && c.createdAt.toMillis ? c.createdAt.toMillis() : null;
+    }
+
+    // قلب محلي لردود Robaty المبرمجة (كيتحفظ فـ localStorage فهاد الجهاز فقط)
+    function getVirtualLikes() {
+        try { return JSON.parse(localStorage.getItem('robaty_virtual_likes') || '{}') || {}; } catch (e) { return {}; }
+    }
+
+    function toggleVirtualLike(id) {
+        var all = getVirtualLikes();
+        if (all[id]) { delete all[id]; } else { all[id] = 1; }
+        try { localStorage.setItem('robaty_virtual_likes', JSON.stringify(all)); } catch (e) {}
+        renderList();
+    }
+
+    // c.isRobaty = رد افتراضي من Robaty | isReply = كيتعرض داخل خيط الردود
+    function commentHTML(c, isReply) {
+        var virtual = !!c.isRobaty;
         var likedBy = c.likedBy || [];
         var liked = !!(currentUser && likedBy.indexOf(currentUser.uid) !== -1);
-        var ms = c.createdAt && c.createdAt.toMillis ? c.createdAt.toMillis() : null;
-        var name = c.authorName || ct('comments_anonymous', 'مستخدمة');
+        var ms = virtual ? c.ms : msOf(c);
+        var name = virtual ? 'robaty_ai' : (c.authorName || ct('comments_anonymous', 'مستخدمة'));
+        var threadId = c.parentId || c.id;
 
-        return '<div class="comment-item">' +
-                   avatarHTML(c.authorPhoto, name) +
+        var avatar = virtual
+            ? '<img src="robaty-profile.jpg" alt="" class="comment-avatar">'
+            : avatarHTML(c.authorPhoto, name);
+
+        var head =
+            '<span class="comment-author" dir="auto">' + escapeHtml(name) + '</span>' +
+            (virtual ? '<i class="fa-solid fa-circle-check comment-verify"></i>' : '') +
+            '<span class="comment-time">' + escapeHtml(timeAgo(ms)) + '</span>' +
+            (virtual ? '<span class="comment-author-badge">' + escapeHtml(lt('author')) + '</span>' : '');
+
+        var mention = (!virtual && c.replyToName)
+            ? '<span class="reply-mention" dir="auto">@' + escapeHtml(c.replyToName) + '</span> '
+            : '';
+
+        var vLiked = virtual && !!getVirtualLikes()[c.id];
+        var likeBtn = virtual ?
+            '<button type="button" class="comment-like' + (vLiked ? ' liked' : '') + '" data-virtual-id="' + escapeHtml(c.id) + '" aria-label="like">' +
+                '<i class="' + (vLiked ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i>' +
+                '<span>' + (vLiked ? 1 : '') + '</span>' +
+            '</button>' :
+            '<button type="button" class="comment-like' + (liked ? ' liked' : '') + '" data-comment-id="' + escapeHtml(c.id) + '" aria-label="like">' +
+                '<i class="' + (liked ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i>' +
+                '<span>' + (likedBy.length || '') + '</span>' +
+            '</button>';
+
+        return '<div class="comment-item' + (isReply ? ' is-reply' : '') + (virtual ? ' is-robaty' : '') + '">' +
+                   avatar +
                    '<div class="comment-main">' +
-                       '<div class="comment-head">' +
-                           '<span class="comment-author" dir="auto">' + escapeHtml(name) + '</span>' +
-                           '<span class="comment-time">' + escapeHtml(timeAgo(ms)) + '</span>' +
+                       '<div class="comment-head">' + head + '</div>' +
+                       '<div class="comment-text" dir="auto">' + mention + escapeHtml(c.text) + '</div>' +
+                       '<div class="comment-actions">' +
+                           '<button type="button" class="comment-reply-btn"' +
+                               ' data-reply-parent="' + escapeHtml(threadId) + '"' +
+                               ' data-reply-name="' + escapeHtml(name) + '"' +
+                               ' data-reply-mention="' + (isReply ? '1' : '0') + '">' +
+                               escapeHtml(lt('reply')) +
+                           '</button>' +
                        '</div>' +
-                       '<div class="comment-text" dir="auto">' + escapeHtml(c.text) + '</div>' +
                    '</div>' +
-                   '<button type="button" class="comment-like' + (liked ? ' liked' : '') + '" data-comment-id="' + escapeHtml(c.id) + '" aria-label="like">' +
-                       '<i class="' + (liked ? 'fa-solid' : 'fa-regular') + ' fa-heart"></i>' +
-                       '<span>' + (likedBy.length || '') + '</span>' +
-                   '</button>' +
+                   likeBtn +
                '</div>';
     }
 
+    // خيط كامل: التعليق + زر "عرض الردود" + الردود (بحال إنستغرام)
+    function threadHTML(c, replies) {
+        var open = !!expanded[c.id];
+        var html = '<div class="comment-thread">' + commentHTML(c, false);
+
+        if (replies.length) {
+            html += '<button type="button" class="comment-replies-toggle" data-thread-id="' + escapeHtml(c.id) + '">' +
+                        '<span class="replies-line"></span>' +
+                        escapeHtml(open ? lt('hide_replies') : lt('view_replies') + ' (' + replies.length + ')') +
+                    '</button>';
+
+            if (open) {
+                html += '<div class="comment-replies">' +
+                            replies.map(function (r) { return commentHTML(r, true); }).join('') +
+                        '</div>';
+            }
+        }
+
+        return html + '</div>';
+    }
+
     // ---------------------------------------------------------------
-    // رسم لائحة التعليقات (المثبّت + الأحدث أولا)
+    // رسم لائحة التعليقات (المثبّت + الأحدث أولا، والردود تحت كل تعليق)
     // ---------------------------------------------------------------
     var lastItems = [];
     var listLoaded = false;
@@ -532,17 +672,88 @@
         if (!listLoaded) return; // كنتسناو أول استجابة من Firestore
 
         var keepScroll = listEl.scrollTop;
+        if (revealTimer) { clearTimeout(revealTimer); revealTimer = null; }
+
+        var now = Date.now();
+        var tops = [], repliesBy = {};
+
+        lastItems.forEach(function (c) {
+            if (c.parentId) {
+                (repliesBy[c.parentId] = repliesBy[c.parentId] || []).push(c);
+            } else {
+                tops.push(c);
+            }
+        });
+
+        // ردود Robaty الافتراضية: كتبان غير من بعد التأخير ديالها (كتبان طبيعية)
+        var nextReveal = null;
+        tops.forEach(function (c) {
+            var rr = robatyReplyFor(c, msOf(c));
+            if (!rr) return;
+            if (rr.ms <= now) {
+                (repliesBy[c.id] = repliesBy[c.id] || []).push(rr);
+            } else if (nextReveal === null || rr.ms < nextReveal) {
+                nextReveal = rr.ms;
+            }
+        });
+
+        // الردود: الأقدم أولا (بحال إنستغرام)
+        function rms(r) { return r.isRobaty ? r.ms : (msOf(r) || now); }
+        Object.keys(repliesBy).forEach(function (k) {
+            repliesBy[k].sort(function (a, b) { return rms(a) - rms(b); });
+        });
 
         var html = pinnedHTML();
 
-        if (!lastItems.length) {
+        if (!tops.length) {
             html += '<div class="comments-empty">' + ct('comments_empty', 'مازال ماكاين تعليقات — كوني الأولى ✨') + '</div>';
         } else {
-            html += lastItems.map(commentHTML).join('');
+            html += tops.map(function (c) { return threadHTML(c, repliesBy[c.id] || []); }).join('');
         }
 
         listEl.innerHTML = html;
         listEl.scrollTop = keepScroll;
+
+        if (nextReveal !== null) {
+            revealTimer = setTimeout(renderList, Math.min(nextReveal - now + 500, 600000));
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // الرد على تعليق (شريط "الرد على ..." فوق خانة الكتابة)
+    // ---------------------------------------------------------------
+    function updateReplyBar() {
+        var bar = document.getElementById('replyingBar');
+        var input = document.getElementById('commentInput');
+        if (!bar) return;
+
+        if (replyTarget) {
+            bar.hidden = false;
+            bar.innerHTML =
+                '<span>' + escapeHtml(lt('replying_to')) + ' <b dir="auto">' + escapeHtml(replyTarget.name) + '</b></span>' +
+                '<button type="button" id="replyCancelBtn" aria-label="cancel"><i class="fa-solid fa-xmark"></i></button>';
+            document.getElementById('replyCancelBtn').addEventListener('click', function () {
+                replyTarget = null;
+                updateReplyBar();
+            });
+            if (input) input.placeholder = lt('reply_placeholder');
+        } else {
+            bar.hidden = true;
+            bar.innerHTML = '';
+            if (input) input.placeholder = ct('comments_placeholder', 'اكتبي تعليق...');
+        }
+    }
+
+    function startReply(parentId, name, mention) {
+        if (!currentUser) {
+            signInWithGoogle();
+            return;
+        }
+        replyTarget = { parentId: parentId, name: name, mention: !!mention };
+        updateReplyBar();
+
+        var input = document.getElementById('commentInput');
+        if (input) input.focus();
     }
 
     function toggleCommentLike(commentId) {
@@ -578,8 +789,32 @@
             '</div>';
 
         document.getElementById('commentsList').addEventListener('click', function (e) {
-            var btn = e.target.closest ? e.target.closest('.comment-like') : null;
-            if (btn) toggleCommentLike(btn.getAttribute('data-comment-id'));
+            if (!e.target.closest) return;
+
+            var likeBtn = e.target.closest('.comment-like');
+            if (likeBtn) {
+                var vid = likeBtn.getAttribute('data-virtual-id');
+                if (vid) { toggleVirtualLike(vid); return; }
+                toggleCommentLike(likeBtn.getAttribute('data-comment-id'));
+                return;
+            }
+
+            var replyBtn = e.target.closest('.comment-reply-btn');
+            if (replyBtn) {
+                startReply(
+                    replyBtn.getAttribute('data-reply-parent'),
+                    replyBtn.getAttribute('data-reply-name'),
+                    replyBtn.getAttribute('data-reply-mention') === '1'
+                );
+                return;
+            }
+
+            var toggleBtn = e.target.closest('.comment-replies-toggle');
+            if (toggleBtn) {
+                var id = toggleBtn.getAttribute('data-thread-id');
+                expanded[id] = !expanded[id];
+                renderList();
+            }
         });
 
         renderAuthUI();
@@ -595,6 +830,7 @@
         }
 
         if (!currentUser) {
+            replyTarget = null;
             composer.innerHTML =
                 '<button id="commentsSignInBtn" class="comments-signin-btn">' +
                     ct('comments_signin', 'سجلي الدخول بـ Google باش تكتبي تعليق') +
@@ -607,6 +843,7 @@
         var name = currentUser.displayName || ct('comments_anonymous', 'مستخدمة');
 
         composer.innerHTML =
+            '<div id="replyingBar" class="replying-bar" hidden></div>' +
             '<div class="comments-quick">' +
                 QUICK_EMOJIS.map(function (e) { return '<button type="button" class="quick-emoji">' + e + '</button>'; }).join('') +
             '</div>' +
@@ -627,6 +864,8 @@
             input.style.height = Math.min(input.scrollHeight, 90) + 'px';
             sendBtn.classList.toggle('active', input.value.trim().length > 0);
         }
+
+        updateReplyBar();
 
         input.addEventListener('input', refreshInput);
         sendBtn.addEventListener('click', handleSubmitComment);
@@ -712,16 +951,32 @@
 
         var postIdAtSend = currentPostId;
 
-        db.collection('comments').add({
+        var payload = {
             postId: postIdAtSend,
             text: text,
             uid: currentUser.uid,
             authorName: currentUser.displayName || '',
             authorPhoto: currentUser.photoURL || '',
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(function () {
+        };
+
+        // رد على تعليق: كنربطوه بالتعليق الأصلي (خيط واحد بحال إنستغرام)
+        var sentTarget = replyTarget;
+        if (sentTarget) {
+            payload.parentId = sentTarget.parentId;
+            if (sentTarget.mention) payload.replyToName = sentTarget.name;
+        }
+
+        db.collection('comments').add(payload).then(function () {
             input.value = '';
             input.style.height = 'auto';
+
+            if (sentTarget) {
+                expanded[sentTarget.parentId] = true; // نبينو الرد الجديد مباشرة
+                replyTarget = null;
+                updateReplyBar();
+                renderList();
+            }
 
             var sendBtn = document.getElementById('commentSendBtn');
             if (sendBtn) sendBtn.classList.remove('active');
