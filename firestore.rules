@@ -8,17 +8,35 @@ service cloud.firestore {
       // الجميع يقدر يقرا التعليقات (حتى بلا تسجيل دخول)
       allow read: if true;
 
-      // غير المستخدمة المسجلة الدخول تقدر تزيد تعليق، وبشروط:
+      // غير المستخدمة المسجلة الدخول تقدر تزيد تعليق أو رد، وبشروط:
       allow create:
         if request.auth != null
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() < 500
-        && request.resource.data.postId is string;
+        && request.resource.data.postId is string
+        // حقول الردود (اختيارية)
+        && (!('parentId' in request.resource.data)
+            || request.resource.data.parentId is string)
+        && (!('replyToName' in request.resource.data)
+            || (request.resource.data.replyToName is string
+                && request.resource.data.replyToName.size() < 100));
 
-      // ماكاين حتى تعديل ولا حذف من الواجهة (نديروه من Firebase Console غير)
-      allow update, delete: if false;
+      // الإعجاب (القلب): مسموح غير بتعديل likedBy، وغير بإضافة/حذف uid ديالها هي
+      allow update:
+        if request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likedBy'])
+        && request.resource.data.likedBy is list
+        && request.resource.data.likedBy.toSet()
+             .difference(resource.data.get('likedBy', []).toSet())
+             .union(
+               resource.data.get('likedBy', []).toSet()
+                 .difference(request.resource.data.likedBy.toSet())
+             ) == [request.auth.uid].toSet();
+
+      // الحذف من Firebase Console غير
+      allow delete: if false;
     }
   }
 }
