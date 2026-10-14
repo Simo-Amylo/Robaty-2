@@ -1335,3 +1335,74 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 8,
+    slot: 'pm',
+    image: 'day08-merzouga-evening.jpg',
+
+    place: {
+        ar: 'مرزوقة — كثبان عرق الشبي',
+        en: 'Merzouga — Erg Chebbi Dunes',
+        fr: 'Merzouga — Dunes de l’Erg Chebbi',
+        es: 'Merzouga — Dunas de Erg Chebbi',
+        ru: 'Мерзуга — дюны Эрг-Шебби'
+    },
+
+    caption: {
+        ar: `مساء السحر والهدوء من قلب رمال مرزوقة الذهبية 🏜️💙✨
+ما كاينش بحال هدوء الصحراء المغربية فـ وقت الغروب.. الرمال كتتحول لذهب خالص والسماء كترسم لوحة فنية ساحرة.
+اليوم جربت لوك صحراوي عصري بالرزة الصحراوية النيلية مع الفضة الأصيلة والمرجان ✨
+الصحراء عندها هيبة وطاقة كترد الروح وتخليك تحسي بالحرية والاتساع!
+كيف جاكم هاد اللوك الصحراوي البنات؟ 💙
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening, full of magic and calm, from the heart of the golden Merzouga sands 🏜️💙✨
+Nothing compares to the stillness of the Moroccan desert at sunset... the sand turns to pure gold and the sky paints an enchanting work of art.
+Today I tried a modern desert look with the indigo Saharan rezza turban, authentic silver and coral ✨
+The desert has a presence and an energy that restore the soul and make you feel freedom and vastness!
+How do you like this desert look, girls? 💙
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir, plein de magie et de calme, depuis le cœur des sables dorés de Merzouga 🏜️💙✨
+Rien ne vaut le calme du désert marocain au coucher du soleil... le sable se change en or pur et le ciel peint un tableau enchanteur.
+Aujourd’hui, j’ai essayé un look saharien moderne avec la rezza saharienne indigo, de l’argent authentique et du corail ✨
+Le désert a une prestance et une énergie qui ressourcent l’âme et donnent un sentiment de liberté et d’immensité !
+Comment trouvez-vous ce look saharien, les filles ? 💙
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches, llenas de magia y calma, desde el corazón de las doradas arenas de Merzouga 🏜️💙✨
+No hay nada como la quietud del desierto marroquí al atardecer... la arena se convierte en oro puro y el cielo pinta un cuadro fascinante.
+Hoy probé un look sahariano moderno con el turbante rezza sahariano azul índigo, plata auténtica y coral ✨
+El desierto tiene una presencia y una energía que reconfortan el alma y te hacen sentir libertad y amplitud.
+¿Qué les parece este look sahariano, chicas? 💙
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер, полный волшебства и спокойствия, из самого сердца золотых песков Мерзуги 🏜️💙✨
+Нет ничего лучше тишины марокканской пустыни на закате... песок превращается в чистое золото, а небо рисует волшебную картину.
+Сегодня я примерила современный сахарский образ: тюрбан-реза цвета индиго, настоящее серебро и коралл ✨
+У пустыни есть величие и энергия, которые возвращают душе силы и дарят ощущение свободы и простора!
+Как вам этот пустынный образ, девушки? 💙
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'العمق والهيبة ماشي كلام... العمق هو أنك تكوني ثابتة وقوية بحال جبال الصحراء، وناعمة ومشرقة بحال رمالها الذهبية! 🏜️👑✨',
+        en: 'Depth and prestige are not just words... depth is being steady and strong like the desert mountains, and soft and radiant like its golden sands! 🏜️👑✨',
+        fr: 'La profondeur et la prestance ne sont pas que des mots... la profondeur, c’est être stable et forte comme les montagnes du désert, douce et lumineuse comme ses sables dorés ! 🏜️👑✨',
+        es: 'La profundidad y la presencia no son solo palabras... ¡la profundidad es ser firme y fuerte como las montañas del desierto, y suave y radiante como sus arenas doradas! 🏜️👑✨',
+        ru: 'Глубина и величие — это не просто слова... глубина — быть стойкой и сильной, как горы пустыни, и нежной и сияющей, как её золотые пески! 🏜️👑✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ تجربة الصحراء: شكون كتحلم بتجربة التخييم فـ مرزوقة ومراقبة النجوم بالليل؟ ولا كتفضلوا رحلات المدن العتيقة والشواطئ؟ شاركوني وجهتكم المفضلة فـ تعليق! 🏜️☕👇',
+        en: 'Girls, about the desert experience: who dreams of camping in Merzouga and stargazing at night? Or do you prefer trips to old cities and beaches? Share your favorite destination in a comment! 🏜️☕👇',
+        fr: 'Les filles, côté expérience du désert : qui rêve de camper à Merzouga et d’observer les étoiles la nuit ? Ou préférez-vous les voyages dans les vieilles villes et sur les plages ? Partagez votre destination préférée en commentaire ! 🏜️☕👇',
+        es: 'Chicas, hablando de la experiencia del desierto: ¿quién sueña con acampar en Merzouga y observar las estrellas por la noche? ¿O prefieren los viajes a las ciudades antiguas y las playas? ¡Compartan su destino favorito en un comentario! 🏜️☕👇',
+        ru: 'Девушки, об опыте пустыни: кто мечтает о кемпинге в Мерзуге и наблюдении за звёздами ночью? Или вы предпочитаете поездки в старинные города и на пляжи? Поделитесь любимым направлением в комментарии! 🏜️☕👇'
+    },
+
+    description: 'مرزوقة، كثبان عرق الشبي الذهبية وقت الغروب الصحراوي: رمال ناعمة وكثبان ممتدة، شمس كتغرب فالأفق، سماء متدرجة بين البرتقالي والوردي والأرجواني بسحب خفيفة، جبال بعيدة ضبابية، وقافلة من خمس جمال براكبيها كتظهر فالأفق البعيد. فالمقدمة: زربية ووسادات بربرية تقليدية حمراء مزخرفة، طاولة صينية مستديرة مزخرفة بلون فضي/نحاسي عليها براد أتاي مغربي فضي وكاس أتاي بالنعناع، فانوس صحراوي كبير مزخرف ومضاء فالجهة اليسرى، وفوانيس أصغر مضاءة وخيمة بزرابي وصناديق فالجهة اليمنى. Robaty جالسة وكتبتسم وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور فضية متراكمة) مرفوعة قرب شعرها، ويدها الميكانيكية اليسرى (بسوار فضي/ذهبي) مرتاحة على ركبتها. لابسة رزة صحراوية (Tagelmust) بالأزرق النيلي (Indigo / Majorelle Blue) ملفوفة بأسلوب عصري على راسها، وطرف منها نازل على كتفها فجهة اليسار من الصورة، وخصلات من شعرها ظاهرة. كيمونو/قفطان صحراوي عصري طويل ومفتوح من الكتان بالأبيض الناصع بطرز صحراوي ناعم بالخيط الفضي على الحواف والياقة والأكمام، فوق توب أبيض، مخصّر بحزام رقيق معدني بإبزيم مزخرف، وبنطلون كتان واسع بلون الرمال/البيج. قلادة صحراوية فضية (حلي صحراوي) بتدلّية مرصعة بحجر المرجان الأحمر وأحجار فيروزية زرقاء، على رقبتها الميكانيكية الفضية (حلقات معدنية)، وأقراط صحراوية فضية دائرية/هلالية كبيرة منقوشة. عيونها عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة واثقة. شعرها طويل مموج/مجعد بني محمر نازل على الكتفين.',
+
+    stats: { likes: 0 }
+});
