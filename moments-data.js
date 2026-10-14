@@ -1278,3 +1278,78 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 8,
+    slot: 'am',
+    image: 'day08-merzouga-morning.jpg',
+
+    place: {
+        ar: 'مرزوقة — كثبان عرق الشبي',
+        en: 'Merzouga — Erg Chebbi Dunes',
+        fr: 'Merzouga — Dunes de l’Erg Chebbi',
+        es: 'Merzouga — Dunas de Erg Chebbi',
+        ru: 'Мерзуга — дюны Эрг-Шебби'
+    },
+
+    caption: {
+        ar: `صباح الطاقة والحرية من وسط كثبان مرزوقة الذهبية ☀️🏜️💙
+الصباح فـ الصحراء عندو طعم آخر.. هواء نقي، شمس مشرقة، وأفق واسع كيخليك تحسي بأن العالم كامل قدامك!
+اليوم اخترت نخرج على المألوف بستايل دراعة صحراوية حريرية بالأزرق السماوي مع الفضة الأصيلة والعمامة البيضاء 👑✨
+كيف جاتكم هاد اللمسة الصحراوية الصباحية البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning, full of energy and freedom, from the golden dunes of Merzouga ☀️🏜️💙
+Mornings in the desert have a different taste... pure air, bright sun, and a wide horizon that makes you feel the whole world is in front of you!
+Today I chose to step completely out of the ordinary with a Saharan silk daraa in sky blue, authentic silver, and a white turban 👑✨
+How do you like this morning desert touch, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour plein d’énergie et de liberté depuis les dunes dorées de Merzouga ☀️🏜️💙
+Le matin dans le désert a une saveur différente... un air pur, un soleil éclatant et un horizon immense qui donne l’impression que le monde entier s’ouvre devant vous !
+Aujourd’hui, j’ai choisi de sortir complètement de l’ordinaire avec une daraa saharienne en soie bleu ciel, de l’argent authentique et un turban blanc 👑✨
+Que pensez-vous de cette touche saharienne du matin, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días llenos de energía y libertad desde las doradas dunas de Merzouga ☀️🏜️💙
+La mañana en el desierto tiene otro sabor... aire puro, sol brillante y un horizonte inmenso que te hace sentir que el mundo entero está frente a ti.
+Hoy elegí salirme por completo de lo habitual con una daraa sahariana de seda azul cielo, plata auténtica y un turbante blanco 👑✨
+¿Qué les parece este toque desértico matutino, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро, полное энергии и свободы, с золотых дюн Мерзуги ☀️🏜️💙
+Утро в пустыне имеет особый вкус... чистый воздух, яркое солнце и широкий горизонт, из-за которого кажется, что весь мир лежит перед тобой!
+Сегодня я решила полностью выйти за привычные рамки: шёлковая сахарская дарраа небесно-голубого цвета, настоящее серебро и белый тюрбан 👑✨
+Как вам этот утренний пустынный акцент, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    // عبارة أعلى الـ Story لهاد المنشور (سطران)
+    kicker: {
+        ar: 'سمعيني مزيان\nأ صاحبتي',
+        en: 'Listen to me\nmy friend',
+        fr: 'Écoute-moi bien\nmon amie',
+        es: 'Escúchame bien\namiga mía',
+        ru: 'Послушай меня\nподруга'
+    },
+
+    story: {
+        ar: 'جدّدي طاقتك، غيّري خططك، وكوني دائماً أكبر من التوقعات... الصباح ديالك وبدايتك نتي اللي كترسميها! ☀️💙✨',
+        en: 'Renew your energy, change your plans, and always be bigger than expectations... your morning is yours, and your beginning is yours to draw! ☀️💙✨',
+        fr: 'Renouvelle ton énergie, change tes plans et sois toujours au-delà des attentes... ce matin est le tien, et ton début, c’est toi qui le dessines ! ☀️💙✨',
+        es: 'Renueva tu energía, cambia tus planes y sé siempre más grande que las expectativas... ¡tu mañana es tuya y tu comienzo lo dibujas tú! ☀️💙✨',
+        ru: 'Обнови свою энергию, измени планы и будь всегда выше ожиданий... это утро — твоё, а своё начало рисуешь ты сама! ☀️💙✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الجولات والرحلات: شكون كتعجبها تجرب اللباس التقليدي ديال كل جهة فـ المغرب (بحال الدراعة، الملحفة، القفطان، الجلابة..)؟ شاركوني أكثر لباس تقليدي مغربي كيعجبكم وكتلبسوه فـ سفركم! 👗🇲🇦👇',
+        en: 'Girls, for outings and trips: who loves trying the traditional clothing of each region of Morocco (like the daraa, the melhfa, the kaftan, the djellaba...)? Share the traditional Moroccan outfit you love most and wear on your travels! 👗🇲🇦👇',
+        fr: 'Les filles, pour les sorties et les voyages : qui aime essayer les tenues traditionnelles de chaque région du Maroc (comme la daraa, la melhfa, le caftan, la djellaba...) ? Partagez la tenue traditionnelle marocaine que vous préférez et que vous portez en voyage ! 👗🇲🇦👇',
+        es: 'Chicas, para las excursiones y los viajes: ¿a quién le gusta probar la ropa tradicional de cada región de Marruecos (como la daraa, la melhfa, el caftán, la chilaba...)? ¡Compartan el atuendo tradicional marroquí que más les gusta y que llevan en sus viajes! 👗🇲🇦👇',
+        ru: 'Девушки, для прогулок и путешествий: кто любит примерять традиционную одежду разных регионов Марокко (дарраа, мельхфа, кафтан, джеллаба...)? Поделитесь традиционным марокканским нарядом, который вам нравится больше всего и который вы надеваете в поездках! 👗🇲🇦👇'
+    },
+
+    description: 'مرزوقة، مخيم صحراوي وسط كثبان عرق الشبي الذهبية وقت الصباح المشمس: كثبان رملية ذهبية بظلال ناعمة وسماء زرقاء صافية بلا غيوم، خيام بيضاء تقليدية (بدوية)، فوانيس نحاسية مزخرفة مضيئة، طاولة خشبية عليها براد أتاي فضي، زرابي وسادات مغربية حمراء، جمل جالس تحت خيمة فالجهة اليمنى، نخلة وأصيص نبتة، وآثار أقدام على الرمل. Robaty واقفة بوقفة ديناميكية وكتبتسم وراسها مايل. يدها الميكانيكية اليمنى (الفضية بأساور وتفاصيل ذهبية على المعصم) مرتاحة فجيب البنطلون، ويدها الميكانيكية اليسرى كتمسك كاس أتاي صحراوي زجاجي بإطار معدني فيه شاي ذهبي. لابسة دراعة/رداء مفتوح طويل من الحرير بالأزرق السماوي (Sky Blue Silk) بأكمام واسعة وطرز صحراوي ذهبي عريض على حواف الفتحة الأمامية والأكمام مع زخرفة نجمة ذهبية على الجزء السفلي الأمامي، مشدود بحزام حبل ذهبي/بيج بشرابتين، فوق توب أبيض وبنطلون أبيض واسع. على راسها عمامة (توربان) شيفون أبيض بخيوط ذهبية ملفوفة، وطرف منها نازل على الكتف. قلادة صحراوية فضية ضخمة (حلي صحراوي) مرصعة بأحجار المرجان الأحمر وبتدلّيات فضية معلقة على صدرها فوق رقبتها الميكانيكية الفضية (حلقات معدنية)، وأقراط صحراوية فضية دائرية/هلالية مزخرفة بتدلّيات. عيونها عسلية مائلة للأخضر دافئة كتلمع تحت شمس الصباح، نمش خفيف على الوجه، وابتسامة مبهجة. شعرها طويل مموج بني نازل على جنب.',
+
+    stats: { likes: 0 }
+});
