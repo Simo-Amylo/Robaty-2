@@ -713,7 +713,7 @@
             repliesBy[k].sort(function (a, b) { return rms(a) - rms(b); });
         });
 
-        var html = '<div style="text-align:center;font-size:11px;color:#e5b35c;padding:2px 0">v3 ✅</div>' + pinnedHTML();
+        var html = pinnedHTML();
 
         if (!tops.length) {
             html += '<div class="comments-empty">' + ct('comments_empty', 'مازال ماكاين تعليقات — كوني الأولى ✨') + '</div>';
