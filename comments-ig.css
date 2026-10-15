@@ -21,12 +21,11 @@
     font: inherit;
     font-size: 12px;
     font-weight: 600;
-    color: inherit;
-    opacity: 0.6;
+    color: var(--muted, #a8a8a8);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
-.comment-reply-btn:active { opacity: 1; }
+.comment-reply-btn:active { color: #f2f2f2; }
 
 /* "—— عرض الردود (2)" */
 .comment-replies-toggle {
@@ -40,19 +39,17 @@
     font: inherit;
     font-size: 12px;
     font-weight: 600;
-    color: inherit;
-    opacity: 0.6;
+    color: var(--muted, #a8a8a8);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
-.comment-replies-toggle:active { opacity: 1; }
+.comment-replies-toggle:active { color: #f2f2f2; }
 
 .replies-line {
     display: inline-block;
     width: 24px;
     height: 1px;
-    background: currentColor;
-    opacity: 0.6;
+    background: var(--muted, #a8a8a8);
 }
 
 /* الردود: مزاحة وأصغر */
@@ -67,7 +64,7 @@
 /* شارة "المؤلفة" بجانب الوقت (بحال Auteur(ice)) */
 .comment-author-badge {
     font-size: 11px;
-    opacity: 0.6;
+    color: var(--muted, #a8a8a8);
 }
 .comment-author-badge::before { content: "\00b7\00a0"; }
 
@@ -88,6 +85,7 @@
     font-size: 12.5px;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.07);
+    color: #f2f2f2;
 }
 .replying-bar[hidden] { display: none; }
 
@@ -98,7 +96,6 @@
     border: 0;
     padding: 2px 4px;
     font-size: 14px;
-    color: inherit;
-    opacity: 0.7;
+    color: var(--muted, #a8a8a8);
     cursor: pointer;
 }
