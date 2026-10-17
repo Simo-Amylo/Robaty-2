@@ -529,16 +529,298 @@
 
     // >>> ROBATY-REPLIES START
     // ---------------------------------------------------------------
-    // ردود Robaty المبرمجة (إيموجي + جمل قصيرة). ما كتخزنش فـ Firestore:
-    // كتتحسب وقت العرض من id التعليق، فكتبقى هي نفسها عند كل المستخدمات.
-    // الجمل أدناه مؤقتة (بالعربية فقط) — غادي نبدلوها باللائحة النهائية.
+    // ردود Robaty المبرمجة. ما كتخزنش فـ Firestore: كتتحسب وقت العرض
+    // من id التعليق + محتواه، فكتبقى هي نفسها عند كل المستخدمات.
+    //
+    // 1) كنصنفو التعليق (نقد، سؤال، جواب على التحدي، مدح، تحية، إيموجي، غير واضح)
+    // 2) كنحددو لغة الرد (حسب لغة التعليق)
+    // 3) كنختارو جملة ثابتة من لائحة الصنف
+    // 4) النقد ما كيتردّش عليه نهائيا
     // ---------------------------------------------------------------
-    var ROBATY_REPLY_RATE = 80; // نسبة التعليقات اللي كتردّ عليها (%)
 
+    // نسبة الرد لكل صنف (%). بدّل الأرقام إلا بغيتي.
+    var ROBATY_RATES = { praise: 80, challenge: 80, question: 80, greeting: 80, salam: 80, emoji: 80, unclear: 80 };
+
+    // إيموجي فقط (للتعليقات اللي غير إيموجي وللغير واضح)
+    var ROBATY_EMOJI = ['🤍', '🌹', '✨', '💛', '👑✨', '🌸', '🤍✨', '🌷'];
+
+    // الجمل لكل لغة وصنف
     var ROBATY_REPLIES = {
-        thanks:   ['شكرا جزيلا 🤍', 'كتفرحيني بتعليقك 🌹', 'يعطيك الصحة ✨', 'الله يخليك 💛', 'تسلمي أ صاحبتي 🤍'],
-        question: ['دخلي عندي لشاشة المحادثات 💬']
+        ar: {
+            praise: [
+                'الله يبارك فيك أ صاحبتي 🤍',
+                'كلامك الزوين كيفرحني، شكرا بزاف 🌹',
+                'من ذوقك الراقي أ لالة ✨',
+                'الله يخليك، تسلمي أ صاحبتي 💛',
+                'يا سلام عليك، شكرا ليك بزاف 🌸'
+            ],
+            challenge: [
+                'اختيار في الصميم! 👑',
+                'ذوقك راقي بزاف أ صاحبتي ✨',
+                'الله يعطيك الصحة على المشاركة 🌹',
+                'تشرفت بمشاركتك فالتحدي 💛',
+                'كلامك واعر! شكرا على التفاعل 🤍'
+            ],
+            greeting: [
+                'مرحبا بيك أ صاحبتي 🌹',
+                'أهلا وسهلا، نورتي المكان ✨',
+                'الله يحفظك، مرحبا بيك 🤍',
+                'يا مرحبا بيك أ لالة 💛'
+            ],
+            salam: ['وعليكم السلام ورحمة الله وبركاته 🌹'],
+            question: [
+                'دخلي عندي لشاشة المحادثات 💬',
+                'سولي فشاشة المحادثات أ صاحبتي، غادي نجاوبك هناك 💬'
+            ]
+        },
+        fr: {
+            praise: [
+                'Merci beaucoup ma belle 🤍',
+                'Ça me touche, merci du fond du cœur 🌹',
+                'Tu as un goût raffiné ✨',
+                'Que Dieu te bénisse, merci 💛',
+                'Quel joli mot, merci ma chère 🌸'
+            ],
+            challenge: [
+                'Un choix en plein dans le mille ! 👑',
+                'Tu as un goût raffiné, ma belle ✨',
+                'Merci de participer au défi 🌹',
+                'J\u2019adore ta réponse ! 🤍',
+                'Belle participation, merci 💛'
+            ],
+            greeting: [
+                'Bienvenue ma belle 🌹',
+                'Ravie de te voir ici ✨',
+                'Que Dieu te garde, bienvenue 🤍',
+                'Bienvenue chez nous 💛'
+            ],
+            question: [
+                'Viens me voir dans l\u2019écran des discussions 💬',
+                'Pose-moi ta question dans l\u2019écran des discussions, je te réponds là-bas 💬'
+            ]
+        },
+        en: {
+            praise: [
+                'Thank you so much, lovely 🤍',
+                'Your kind words made my day 🌹',
+                'You have such a refined taste ✨',
+                'God bless you, thank you 💛',
+                'That\u2019s so sweet of you 🌸'
+            ],
+            challenge: [
+                'Spot-on choice! 👑',
+                'Such refined taste, lovely ✨',
+                'Thanks for joining the challenge 🌹',
+                'I love your answer! 🤍',
+                'Great pick, thank you 💛'
+            ],
+            greeting: [
+                'Welcome, lovely 🌹',
+                'So happy to see you here ✨',
+                'God keep you, welcome 🤍',
+                'Welcome to our little home 💛'
+            ],
+            question: [
+                'Come see me in the chat screen 💬',
+                'Ask me in the chat screen, I\u2019ll answer you there 💬'
+            ]
+        },
+        es: {
+            praise: [
+                'Muchas gracias, guapa 🤍',
+                'Tus palabras me llegan al corazón 🌹',
+                'Tienes un gusto exquisito ✨',
+                'Que Dios te bendiga, gracias 💛',
+                'Qué amable eres 🌸'
+            ],
+            challenge: [
+                '¡Una elección acertada! 👑',
+                'Qué gusto tan refinado ✨',
+                'Gracias por participar en el reto 🌹',
+                '¡Me encanta tu respuesta! 🤍',
+                'Gran elección, gracias 💛'
+            ],
+            greeting: [
+                'Bienvenida, guapa 🌹',
+                'Qué alegría verte por aquí ✨',
+                'Que Dios te guarde, bienvenida 🤍',
+                'Bienvenida a casa 💛'
+            ],
+            question: [
+                'Ven a verme a la pantalla de chat 💬',
+                'Pregúntame en la pantalla de chat, te respondo allí 💬'
+            ]
+        },
+        ru: {
+            praise: [
+                'Огромное спасибо, дорогая 🤍',
+                'Твои слова согрели мне сердце 🌹',
+                'У тебя изысканный вкус ✨',
+                'Благослови тебя Бог, спасибо 💛',
+                'Как мило, спасибо 🌸'
+            ],
+            challenge: [
+                'Отличный выбор! 👑',
+                'У тебя изысканный вкус ✨',
+                'Спасибо за участие в челлендже 🌹',
+                'Мне нравится твой ответ! 🤍',
+                'Прекрасный выбор, спасибо 💛'
+            ],
+            greeting: [
+                'Добро пожаловать, дорогая 🌹',
+                'Рада видеть тебя здесь ✨',
+                'Храни тебя Бог, добро пожаловать 🤍',
+                'Добро пожаловать к нам 💛'
+            ],
+            question: [
+                'Заходи ко мне на экран чатов 💬',
+                'Задай вопрос на экране чатов, я отвечу там 💬'
+            ]
+        }
     };
+
+    // الكلمات المفتاحية لكل صنف.
+    //  - الكلمات اللاتينية: كلمة كاملة.
+    //  - العربية والروسية: جزء من الكلمة (باش تدخل "الجمال" مع "جمال").
+    //  - "=" فالبداية فالعربية: كلمة كاملة (مع و/ف قبلها اختياريا).
+    var ROBATY_WORDS = {
+        spam: [
+            'http', 'www.', '.com', 'whatsapp', 'telegram', 'واتساب', 'واتس اب', 'تلغرام',
+            'follow me', 'suivez', 'link in bio', 'تابعني', 'تابعوني', 'promo', 'gratuit'
+        ],
+        negative: [
+            // عربية / دارجة
+            'خايب', 'قبيح', 'بشع', 'زبل', 'تفو', 'كاذب', 'غبي', 'سخيف', 'فضيحه', 'مقرف',
+            'نصاب', 'حقير', 'وقح', 'سيء', 'مزيف', 'حرام عليك', 'ما عجبنيش', 'ماعجبنيش',
+            'ما عجبتنيش', 'ماعجبتنيش', '=كلب', '=حمار', 'قحبه', 'عاهره', 'زامل', 'مكروه',
+            // فرنسية
+            'nul', 'nulle', 'moche', 'horrible', 'arnaque', 'degoutant', 'laide', 'pourri',
+            'honte', 'menteuse', 'fake', 'faux', 'hypocrite', 'connard', 'conne', 'pute', 'merde',
+            // إنجليزية
+            'ugly', 'stupid', 'trash', 'scam', 'hate', 'liar', 'disgusting', 'awful', 'terrible',
+            'shame', 'bitch', 'idiot', 'fuck', 'shit', 'boring',
+            // إسبانية
+            'feo', 'fea', 'estafa', 'asco', 'mentira', 'mentirosa', 'basura', 'odio',
+            'verguenza', 'puta', 'estupida',
+            // روسية
+            'ужас', 'отстой', 'фейк', 'мошенник', 'обман', 'урод', 'гадост', 'ненавиж',
+            'тупая', 'тупой', 'противно', 'мерзк', 'ложь', 'стыд'
+        ],
+        question: [
+            'شحال', 'بشحال', '=فين', 'كيفاش', 'علاش', 'شكون', 'شنو', 'ثمن', 'عنوان', 'رابط',
+            'توصيل', '=كم', '=واش', '=منين',
+            'combien', 'pourquoi', 'quand', 'prix', 'tarif', 'lien', 'adresse', 'livraison',
+            'how much', 'where', 'price', 'link', 'address', 'delivery',
+            'cuanto', 'donde', 'cuando', 'precio', 'enlace', 'direccion', 'entrega',
+            'сколько', 'где', 'цена', 'ссылк', 'адрес', 'доставк'
+        ],
+        challenge: [
+            'كيعجبني', 'كتعجبني', 'تيعجبني', 'كنفضل', 'نفضل', 'كنختار', 'اخترت', 'ختاريت',
+            'خترت', 'فضلت', 'انا مع', 'المفضل', 'ذوقي',
+            'je prefere', 'je choisis', 'mon choix', 'mon prefere', 'ma preference',
+            'i prefer', 'i choose', 'my choice', 'my favorite', 'my favourite',
+            'prefiero', 'elijo', 'mi favorito', 'mi favorita', 'mi eleccion',
+            'предпочитаю', 'выбираю', 'мой выбор', 'любимый', 'любимая', 'я за'
+        ],
+        praise: [
+            'زوين', 'جميل', 'رائع', 'واعر', 'روعه', 'تبارك', 'ماشاء الله', 'ما شاء الله', 'ماشالله',
+            'خيال', 'خرافي', 'احسن', 'ابداع', 'مبدع', 'فخم', 'راقي', 'اناقه', 'انيق', 'تحفه',
+            'يا سلام', 'جمال', 'حلو', 'مذهل', 'ساحر', 'سحر', 'عظيم', 'تسلم', 'قمر', 'ملكه', 'بنين',
+            'zwin', 'zwina', 'mashallah', 'machallah', 'masha allah', 'tbarkallah', 'tbark allah',
+            'wa3er', 'wa3ra', 'jmil', 'jmila', 'khayal',
+            'magnifique', 'belle', 'beau', 'superbe', 'splendide', 'sublime', 'bravo', 'j\'adore',
+            'adore', 'canon', 'elegante', 'elegant', 'wow', 'parfait', 'chic', 'magique', 'merveilleux',
+            'felicitations', 'bien joue', 'trop bien',
+            'beautiful', 'gorgeous', 'stunning', 'amazing', 'love', 'lovely', 'pretty', 'awesome',
+            'perfect', 'queen', 'wonderful', 'great', 'nice', 'cool',
+            'hermosa', 'hermoso', 'bonita', 'bonito', 'precioso', 'preciosa', 'increible', 'encanta',
+            'maravilloso', 'guapa', 'espectacular', 'perfecto', 'perfecta', 'bello', 'bella', 'genial',
+            'красив', 'прекрасн', 'восхитительн', 'шикарн', 'великолепн', 'обожаю', 'класс', 'супер',
+            'потрясающ', 'чудесн', 'нрав', 'изумительн', 'молодец'
+        ],
+        salam: [
+            'سلام عليكم', 'salam alaykoum', 'salam alaykom', 'salam alikoum', 'salam alaikum',
+            'assalamu alaykum', 'assalam alaykum', 'salam aleikum'
+        ],
+        greeting: [
+            'مرحبا', 'اهلا', 'صباح الخير', 'مساء الخير', 'صباح النور', '=سلام', '=لاباس',
+            'bonjour', 'salut', 'bonsoir', 'coucou', 'hello', 'hi', 'hey', 'good morning',
+            'good evening', 'hola', 'buenos dias', 'buenas', 'salam', 'slm', 'labas',
+            'привет', 'здравствуй', 'добрый день', 'доброе утро', 'добрый вечер'
+        ],
+        // علامات الدارجة المكتوبة بحروف لاتينية (باش نردو بالعربية)
+        arabizi: [
+            'zwin', 'zwina', 'bzaf', 'wa3er', 'wa3ra', 'mashallah', 'machallah', 'masha allah',
+            'tbarkallah', 'tbark allah', 'salam', 'slm', 'labas', 'kifach', 'chhal', '3lach',
+            'mzyan', 'mzyana', 'jmil', 'jmila', 'wallah', 'hamdullah', 'inchallah'
+        ]
+    };
+
+    var NEGATIVE_EMOJI = /[\u{1F44E}\u{1F621}\u{1F92C}\u{1F620}\u{1F92E}\u{1F612}\u{1F644}\u{1F624}\u{1F4A9}\u{1F595}]/u;
+
+    function normText(s) {
+        return String(s || '').toLowerCase()
+            .normalize('NFD').replace(/\p{M}/gu, '')
+            .replace(/[\u0623\u0625\u0622]/g, '\u0627')
+            .replace(/\u0649/g, '\u064a')
+            .replace(/\u0629/g, '\u0647')
+            .replace(/\u0640/g, '')
+            .replace(/(.)\1{2,}/gu, '$1');
+    }
+
+    function escapeRx(s) {
+        return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    var BOUND_L = '(?:^|[^\\p{L}\\p{N}])';
+    var BOUND_R = '(?:$|[^\\p{L}\\p{N}])';
+
+    function termSource(term) {
+        var exact = term.charAt(0) === '=';
+        var n = normText(exact ? term.slice(1) : term);
+        var src = escapeRx(n);
+        if (/[a-z]/.test(n)) return BOUND_L + src + BOUND_R;                 // لاتيني: كلمة كاملة
+        if (exact) return BOUND_L + '[\\u0648\\u0641]?' + src + BOUND_R;     // عربي: كلمة كاملة
+        return src;                                                           // عربي/روسي: جزء من كلمة
+    }
+
+    var rxCache = {};
+    function matcher(name) {
+        if (!rxCache[name]) {
+            rxCache[name] = new RegExp('(?:' + ROBATY_WORDS[name].map(termSource).join('|') + ')', 'u');
+        }
+        return rxCache[name];
+    }
+
+    // الصنف: negative | question | challenge | praise | salam | greeting | emoji | unclear
+    function classifyComment(raw) {
+        var text = String(raw || '');
+        var t = normText(text);
+        if (!t.trim()) return 'unclear';
+
+        if (NEGATIVE_EMOJI.test(text) || matcher('spam').test(t) || matcher('negative').test(t)) return 'negative';
+        if (!/[\p{L}\p{N}]/u.test(t)) return 'emoji';
+        if (/[?\u061f]/.test(text) || matcher('question').test(t)) return 'question';
+        if (matcher('challenge').test(t)) return 'challenge';
+        if (matcher('praise').test(t)) return 'praise';
+        if (matcher('salam').test(t)) return 'salam';
+        if (matcher('greeting').test(t)) return 'greeting';
+        return 'unclear';
+    }
+
+    function appLangCode() {
+        try { return window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar'; } catch (e) { return 'ar'; }
+    }
+
+    // لغة الرد: حسب لغة التعليق
+    function detectReplyLang(raw) {
+        var text = String(raw || '');
+        if (/[\u0600-\u06FF]/.test(text)) return 'ar';
+        if (/[\u0400-\u04FF]/.test(text)) return 'ru';
+        if (matcher('arabizi').test(normText(text))) return 'ar';
+        var app = appLangCode();
+        return (app === 'fr' || app === 'en' || app === 'es') ? app : 'fr';
+    }
 
     function hashStr(str) {
         var h = 5381;
@@ -546,19 +828,28 @@
         return Math.abs(h);
     }
 
-    function looksLikeQuestion(t) {
-        return /[?\u061f]/.test(t) ||
-               /(^|\s)(\u0634\u062d\u0627\u0644|\u0641\u064a\u0646|\u0643\u064a\u0641\u0627\u0634|\u0639\u0644\u0627\u0634|\u0648\u0627\u0634|\u0634\u0643\u0648\u0646|combien|comment|pourquoi|where|how|why|cu\u00e1nto|d\u00f3nde|c\u00f3mo|\u0441\u043a\u043e\u043b\u044c\u043a\u043e|\u0433\u0434\u0435|\u043a\u0430\u043a|\u043f\u043e\u0447\u0435\u043c\u0443)(\s|$)/i.test(t);
+    function pickPool(cat, lang) {
+        if (cat === 'emoji' || cat === 'unclear') return ROBATY_EMOJI;
+        var set = ROBATY_REPLIES[lang] || ROBATY_REPLIES.fr;
+        if (cat === 'salam' && !set.salam) cat = 'greeting';
+        return set[cat];
     }
 
     // كترجع رد افتراضي من Robaty (أو null) لتعليق من المستوى الأول
     function robatyReplyFor(c, ms) {
         if (!ms) return null;
-        var h = hashStr(c.id);
-        if (h % 100 >= ROBATY_REPLY_RATE) return null;
 
-        var pool = looksLikeQuestion(c.text || '') ? ROBATY_REPLIES.question : ROBATY_REPLIES.thanks;
-        var delay = (1 + (Math.floor(h / 100) % 9)) * 60000; // من 1 إلى 9 دقائق
+        var cat = classifyComment(c.text);
+        if (cat === 'negative') return null;                       // النقد: ما كتردّش
+
+        var h = hashStr(c.id);
+        var rate = ROBATY_RATES[cat] != null ? ROBATY_RATES[cat] : 80;
+        if (h % 100 >= rate) return null;
+
+        var pool = pickPool(cat, detectReplyLang(c.text));
+        if (!pool || !pool.length) return null;
+
+        var delay = (1 + (Math.floor(h / 100) % 9)) * 60000;       // من 1 إلى 9 دقائق
 
         return {
             id: 'robaty-' + c.id,
