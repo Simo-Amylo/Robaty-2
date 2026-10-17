@@ -1406,3 +1406,69 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 9,
+    slot: 'am',
+    image: 'day09-essaouira-morning.jpg',
+
+    place: {
+        ar: 'الصويرة — صقالة القصبة',
+        en: 'Essaouira — Sqala de la Kasbah',
+        fr: 'Essaouira — Sqala de la Kasbah',
+        es: 'Esauira — Sqala de la Kasbah',
+        ru: 'Эс-Сувейра — Скала-де-ла-Касба'
+    },
+
+    caption: {
+        ar: `صباح النسيم الموكادوري والنوارس المحلقة من الصويرة الساحرة! 🌊🕊️💙
+الصباح فـ أسوار الصقالة كيعطيك إحساس بأنك فـ فيلم تاريخي.. صوت أمواج المحيط، النسيم العليل، وجمال المعمار الأبيض والأزرق اللي كيريح العيون.
+اليوم اخترت لوك كتان خفيف بالأزرق الموكادوري مع لمسة إكسسوار من خشب العرعار الفاخر اللي كتشتهر بيه المدينة ✨
+كيف جاكم هاد الستايل الصباحي فـ مدينة الفن والموسيقى البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning, with the Mogador breeze and soaring seagulls, from enchanting Essaouira! 🌊🕊️💙
+Mornings on the Sqala ramparts make you feel like you're in a historic film... the sound of the ocean waves, the gentle breeze, and the white-and-blue architecture that rests the eyes.
+Today I chose a light linen look in Mogador blue, with an accessory touch of the fine thuya wood the city is famous for ✨
+How do you like this morning style in the city of art and music, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour, avec la brise de Mogador et les mouettes qui planent, depuis l’enchanteresse Essaouira ! 🌊🕊️💙
+Le matin sur les remparts de la Sqala, on a l’impression d’être dans un film historique... le bruit des vagues de l’océan, la brise douce et la beauté de l’architecture blanche et bleue qui repose les yeux.
+Aujourd’hui, j’ai choisi un look en lin léger bleu Mogador, avec une touche d’accessoire en précieux bois de thuya, dont la ville est réputée ✨
+Que pensez-vous de ce style matinal dans la ville de l’art et de la musique, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `¡Buenos días con la brisa de Mogador y las gaviotas en vuelo desde la encantadora Esauira! 🌊🕊️💙
+La mañana en las murallas de la Sqala te hace sentir dentro de una película histórica... el sonido de las olas del océano, la brisa suave y la belleza de la arquitectura blanca y azul que descansa la vista.
+Hoy elegí un look de lino ligero en azul Mogador, con un toque de accesorio de la fina madera de tuya por la que la ciudad es famosa ✨
+¿Qué les parece este estilo matutino en la ciudad del arte y la música, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро с могадорским бризом и парящими чайками из очаровательной Эс-Сувейры! 🌊🕊️💙
+Утро на стенах Скалы заставляет почувствовать себя героиней исторического фильма... шум океанских волн, нежный бриз и красота бело-синей архитектуры, которая дарит отдых глазам.
+Сегодня я выбрала лёгкий льняной образ могадорского синего цвета с аксессуаром из благородной древесины туи, которой славится город ✨
+Как вам этот утренний стиль в городе искусства и музыки, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'خلي إبداعك بحال أمواج البحر... ما عنده حدود، وكيفرض الجمال والتألق فـ كل بلاصة كيوصل ليها! 🌊🎨✨',
+        en: 'Let your creativity be like the waves of the sea... boundless, imposing beauty and brilliance everywhere it reaches! 🌊🎨✨',
+        fr: 'Que ta créativité soit comme les vagues de la mer... sans limites, imposant la beauté et l’éclat partout où elle arrive ! 🌊🎨✨',
+        es: 'Haz que tu creatividad sea como las olas del mar... ¡sin límites, imponiendo belleza y brillo dondequiera que llegue! 🌊🎨✨',
+        ru: 'Пусть твоё творчество будет как морские волны... без границ, приносящее красоту и блеск везде, куда оно доходит! 🌊🎨✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ جولات الصويرة: شكون كتعجبها القعدة فـ أسوار الصقالة والميناء وسماع موسيقى كناوة؟ ولا كتفضلوا التسوق فـ أزقة المدينة العتيقة والمنتجات ديال خشب العرعار وزيت أرغان؟ شاركوني أكثر حاجة كتعجبكم فـ موكادور فـ تعليق! 🌊🎨👇',
+        en: 'Girls, for Essaouira outings: who loves sitting on the Sqala ramparts and by the port, listening to Gnawa music? Or do you prefer shopping in the lanes of the old medina for thuya wood products and argan oil? Share what you love most about Mogador in a comment! 🌊🎨👇',
+        fr: 'Les filles, pour les balades à Essaouira : qui aime s’installer sur les remparts de la Sqala et près du port en écoutant de la musique gnaoua ? Ou préférez-vous faire du shopping dans les ruelles de la médina pour les produits en bois de thuya et l’huile d’argan ? Partagez ce que vous aimez le plus à Mogador en commentaire ! 🌊🎨👇',
+        es: 'Chicas, para los paseos por Esauira: ¿a quién le gusta sentarse en las murallas de la Sqala y junto al puerto escuchando música gnawa? ¿O prefieren ir de compras por los callejones de la medina en busca de productos de madera de tuya y aceite de argán? ¡Compartan lo que más les gusta de Mogador en un comentario! 🌊🎨👇',
+        ru: 'Девушки, для прогулок по Эс-Сувейре: кто любит посидеть на стенах Скалы и у порта, слушая музыку гнауа? Или вы предпочитаете шопинг в переулках старой медины — изделия из туи и арганное масло? Поделитесь, что вам больше всего нравится в Могадоре, в комментарии! 🌊🎨👇'
+    },
+
+    description: 'الصويرة، أسوار صقالة القصبة المطلة على المحيط الأطلسي وقت الصباح المشمس: سماء زرقاء صافية، محيط أزرق فيروزي وأمواج كتتكسر بالزبد على صخور ساحلية، برج حصن بحجر أصفر ذهبي بشرفات مسننة فالجهة اليسرى، أسوار المدينة وحيطان حجرية فالجهة اليمنى، بنايات بيضاء بنوافذ وأبواب زرقاء مع صومعة ونخلة فالأفق، ونوارس كتطير فالسما وفوق البحر. فالمقدمة مدفع أثري من البرونز بباتينا خضراء مستند على قاعدة خشبية داكنة بمسامير حديدية. Robaty واقفة وكتبتسم وراسها مايل بثقة، يدها الميكانيكية اليمنى (الفضية) مستقرة فوق المدفع بأناقة، ويدها اليسرى فجيب البنطلون. لابسة كيمونو/قفطان طويل ومفتوح من الكتان بالأزرق الموكادوري مع أكمام وجوانب سفلية بالأبيض العاجي، بطرز هندسي فضي/أبيض ناعم على الحواف والياقة والأكمام، فوق توب أبيض ناصع بياقة مرتفعة، وبنطلون كتان واسع بخصر مرتفع بلون البيج العاجي. قلادة خميسة فضية بتدلّيات مرصعة بحجر اللازورد الأزرق (Lapis Lazuli) على رقبتها الميكانيكية الفضية (حلقات معدنية)، أقراط فضية دائرية (Hoops)، وأساور بنية منقوشة من خشب العرعار الصويري على معصميها الميكانيكيين مع أساور فضية. عيونها عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة حيوية. شعرها طويل مموج بني بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
