@@ -1852,3 +1852,24 @@ html.dl-btn-calm .app-download-icon {
 
     box-shadow: none;
 }
+
+
+/* ===== زر السهم: تأثير الضغط (طبقة بيضاء 10% بنفس شكل الزر الدائري) =====
+   كنحيدو التظليل الأزرق الافتراضي ديال أندرويد ونعوضوه بطبقة بيضاء. */
+.back-btn-floating {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.back-btn-floating::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.10);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.back-btn-floating:active::after {
+    opacity: 1;
+}

@@ -617,3 +617,38 @@ body {
     margin-top: 10px;
     font-size: 13.5px;
 }
+
+
+/* ===== أزرار البروفايل: تأثير الضغط (طبقة بيضاء 10% بنفس شكل الزر) =====
+   السهم + "دردشي معايا" + "متابعة". كنحيدو التظليل الأزرق الافتراضي
+   ديال أندرويد ونعوضوه بطبقة بيضاء كتتبع border-radius ديال كل زر. */
+.back-btn-floating,
+.action-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-btn {
+    position: relative;
+}
+
+.back-btn-floating::after,
+.action-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.10);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* الأزرار اللي عندها إطار 1px: الطبقة كتغطي حتى الإطار */
+.back-btn-floating::after,
+.outline-btn::after {
+    inset: -1px;
+}
+
+.back-btn-floating:active::after,
+.action-btn:active::after {
+    opacity: 1;
+}
