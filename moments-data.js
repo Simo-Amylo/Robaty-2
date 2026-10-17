@@ -1472,3 +1472,135 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 9,
+    slot: 'pm',
+    image: 'day09-essaouira-evening.jpg',
+
+    place: {
+        ar: 'الصويرة — ميناء الصويرة',
+        en: 'Essaouira — The Port',
+        fr: 'Essaouira — Le Port',
+        es: 'Esauira — El Puerto',
+        ru: 'Эс-Сувейра — Порт'
+    },
+
+    caption: {
+        ar: `مساء الفن، الإيقاع، والروح العريقة من الصويرة.. عاصمة كناوة وموسيقى العالم! 🎶
+أجواء الغروب فـ موكادور عندها طعم تاني كيرجعنا لجذور التراث الأصيل ✨
+اليوم اخترت نكرم الفن الكناوي بستايل عصري وراقي مستوحى من الطاقية الكناوية المزخرفة بالودع والفضة مع لمسة مخملية سوداء 🖤
+كيف جاكم هاد اللوك الكناوي الراقي البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening of art, rhythm and ancient spirit from Essaouira... the capital of Gnawa and world music! 🎶
+The sunset atmosphere in Mogador has a different taste that takes us back to the roots of authentic heritage ✨
+Today I chose to honor Gnawa art with a modern, refined style inspired by the Gnawa cap decorated with cowrie shells and silver, with a touch of black velvet 🖤
+How do you like this elegant Gnawa look, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir d’art, de rythme et d’âme ancestrale depuis Essaouira... la capitale de la musique gnaoua et des musiques du monde ! 🎶
+L’ambiance du coucher de soleil à Mogador a une saveur différente qui nous ramène aux racines du patrimoine authentique ✨
+Aujourd’hui, j’ai choisi de rendre hommage à l’art gnaoua avec un style moderne et raffiné, inspiré du bonnet gnaoui orné de cauris et d’argent, avec une touche de velours noir 🖤
+Que pensez-vous de ce look gnaoua raffiné, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches de arte, ritmo y espíritu ancestral desde Esauira... ¡la capital de la música gnawa y de la música del mundo! 🎶
+El ambiente del atardecer en Mogador tiene un sabor distinto que nos devuelve a las raíces del patrimonio auténtico ✨
+Hoy elegí rendir homenaje al arte gnawa con un estilo moderno y refinado, inspirado en el gorro gnawa decorado con conchas de cauri y plata, con un toque de terciopelo negro 🖤
+¿Qué les parece este elegante look gnawa, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер искусства, ритма и древнего духа из Эс-Сувейры... столицы гнауа и музыки мира! 🎶
+Атмосфера заката в Могадоре имеет особый вкус и возвращает нас к корням подлинного наследия ✨
+Сегодня я решила воздать дань искусству гнауа современным изысканным образом, вдохновлённым шапочкой гнауа, украшенной раковинами каури и серебром, с акцентом из чёрного бархата 🖤
+Как вам этот изысканный образ в стиле гнауа, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'جذورك هي إيقاعك... مشي بثقة على نغمة قلبك، وخلي أصالتك تقول للعالم شكون نتي! 🎶🖤👑',
+        en: 'Your roots are your rhythm... walk with confidence to the beat of your heart, and let your authenticity tell the world who you are! 🎶🖤👑',
+        fr: 'Tes racines sont ton rythme... avance avec confiance au battement de ton cœur et laisse ton authenticité dire au monde qui tu es ! 🎶🖤👑',
+        es: 'Tus raíces son tu ritmo... ¡camina con confianza al compás de tu corazón y deja que tu autenticidad le diga al mundo quién eres! 🎶🖤👑',
+        ru: 'Твои корни — это твой ритм... иди уверенно в такт своему сердцу и пусть твоя подлинность расскажет миру, кто ты! 🎶🖤👑'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ المهرجانات والتراث: شكون كتعشق مهرجان كناوة ومقامات الموسيقى الروحية فـ الصويرة؟ ولا كتفضلوا المهرجانات السينمائية والثقافية الأخرى؟ شاركوني رأيكم فـ تعليق! 🎶🌊👇',
+        en: 'Girls, about festivals and heritage: who loves the Gnawa festival and the maqams of spiritual music in Essaouira? Or do you prefer other film and cultural festivals? Share your opinion in a comment! 🎶🌊👇',
+        fr: 'Les filles, côté festivals et patrimoine : qui adore le festival gnaoua et les mélodies de la musique spirituelle à Essaouira ? Ou préférez-vous les autres festivals de cinéma et de culture ? Partagez votre avis en commentaire ! 🎶🌊👇',
+        es: 'Chicas, hablando de festivales y patrimonio: ¿a quién le encanta el festival gnawa y los modos de la música espiritual en Esauira? ¿O prefieren otros festivales de cine y de cultura? ¡Compartan su opinión en un comentario! 🎶🌊👇',
+        ru: 'Девушки, о фестивалях и наследии: кто обожает фестиваль гнауа и мелодии духовной музыки в Эс-Сувейре? Или вы предпочитаете другие кинематографические и культурные фестивали? Поделитесь мнением в комментарии! 🎶🌊👇'
+    },
+
+    description: 'الصويرة، ميناء الصويرة وقت الغروب الذهبي: شمس كتغرب فالأفق على اليسار وسماء متدرجة بين البرتقالي والوردي والبنفسجي بسحب ملونة، انعكاس ذهبي على الما، نوارس كتطير، مراكب صيد خشبية زرقاء راسية فالجهة اليمنى والخلف، حصن/برج السقالة الحجري بشرفاته وأبراجه فالجهة اليمنى فوق الأسوار، فوانيس الشارع مضاءة والناس كيتمشاو فالممشى فالبعيد. فالمقدمة: حائط وممشى حجري، فانوس نحاسي مزخرف مضاء فالجهة اليسرى وحبل ملفوف. Robaty واقفة وكتبتسم وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية/نحاسية) مستقرة على خصرها، ويدها الميكانيكية اليسرى كتمسك بخفة قرصين نحاسيين مستديرين مزخرفين معلقين بحزام جلدي (شبه القراقب الكناوية). لابسة طاقية كناوية تقليدية مزخرفة بخيوط ملونة زاهية (أحمر، أزرق، أخضر، أصفر) وودع (Cowrie Shells) وشرّابات ملونة نازلة على جنب الراس. كاب/قفطان مسائي طويل ومفتوح من المخمل الأسود الفاخر بحواف ذهبية وطرز هندسي ملون (معينات حمراء وخضراء وزرقاء وصفراء) على الحواف والأكمام مع ودع، فوق توب أسود بياقة مرتفعة، مخصّر بحزام مزخرف بالودع والخرز والتدلّيات، وبنطلون أسود واسع. قلادة فضية/نحاسية صحراوية-أمازيغية كبيرة مرصعة بأحجار ملونة (أحمر وأخضر وأزرق) وتدلّيات من الودع، فوق طوق فضي على رقبتها الميكانيكية الفضية (حلقات معدنية)، وأقراط دائرية ذهبية (Hoops) وأساور ذهبية/نحاسية على المعصمين. عيونها عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة جذابة. شعرها طويل مموج بني بلمسات نحاسية منسدل على الكتفين.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 10,
+    slot: 'am',
+    image: 'day10-tangier5-morning.jpg',
+
+    place: {
+        ar: 'طنجة — قصبة طنجة، برج النعام',
+        en: 'Tangier — Tangier Kasbah, Borj Al-Naam',
+        fr: 'Tanger — Kasbah de Tanger, Borj Al-Naam',
+        es: 'Tánger — Kasbah de Tánger, Borj Al-Naam',
+        ru: 'Танжер — Касба Танжера, Бордж аль-Наам'
+    },
+
+    caption: {
+        ar: `طنجة، قصبة طنجة (Tangier Kasbah).. ومن برج النعام إطلالة على الميناء والخليج ☀️⚓💙
+من هنا كتشوف مدينة بيضاء كتنزل حتى للبحر، والميناء، والجبال البعيدة فـ الأفق.. طنجة بوابة بين قارتين وكل ركن فيها عندو حكاية.
+اليوم اخترت Look بحري أنيق: بلايزر بخطوط كحلية وبيضاء مع بنطلون أبيض واسع، ولمسة مغربية فـ الخميسة الفضية وحقيبة القش بخميسة ذهبية ✨
+كيف جاكم هاد الستايل البحري فـ صباح طنجة البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Tangier, the Tangier Kasbah... and from Borj Al-Naam, a view over the port and the bay ☀️⚓💙
+From here you see a white city sloping down to the sea, the harbor, and the distant mountains on the horizon... Tangier is a gateway between two continents, and every corner of it has a story.
+Today I chose an elegant nautical look: a navy-and-white striped blazer with wide white trousers, and a Moroccan touch in the silver khamsa and the straw bag with a golden khamsa charm ✨
+How do you like this nautical style on a Tangier morning, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Tanger, la Kasbah de Tanger... et depuis Borj Al-Naam, une vue sur le port et la baie ☀️⚓💙
+D’ici, on voit une ville blanche qui descend jusqu’à la mer, le port et les montagnes lointaines à l’horizon... Tanger est une porte entre deux continents, et chacun de ses recoins a une histoire.
+Aujourd’hui, j’ai choisi un look marin élégant : un blazer rayé bleu marine et blanc avec un pantalon blanc large, et une touche marocaine avec la khamsa en argent et le sac en paille orné d’une khamsa dorée ✨
+Que pensez-vous de ce style marin par un matin tangérois, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Tánger, la Kasbah de Tánger... y desde Borj Al-Naam, una vista del puerto y de la bahía ☀️⚓💙
+Desde aquí se ve una ciudad blanca que desciende hasta el mar, el puerto y las montañas lejanas en el horizonte... Tánger es una puerta entre dos continentes, y cada rincón tiene su historia.
+Hoy elegí un elegante look marinero: un blazer de rayas azul marino y blancas con pantalón blanco ancho, y un toque marroquí en la jamsa (mano de Fátima) de plata y el bolso de paja con un colgante de jamsa dorado ✨
+¿Qué les parece este estilo marinero en una mañana tangerina, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Танжер, Касба Танжера... и с Бордж аль-Наам — вид на порт и бухту ☀️⚓💙
+Отсюда видно белый город, спускающийся к морю, порт и далёкие горы на горизонте... Танжер — врата между двумя континентами, и у каждого его уголка есть своя история.
+Сегодня я выбрала элегантный морской образ: пиджак в тёмно-синюю и белую полоску, широкие белые брюки и марокканский акцент — серебряная хамса и соломенная сумка с золотым брелоком-хамсой ✨
+Как вам этот морской стиль в танжерское утро, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'كل رحلة كتبدا بخطوة واثقة... ارفعي شراعك وخلي ثقتك هي البوصلة ديالك! ⚓💙✨',
+        en: 'Every journey begins with a confident step... raise your sail and let your confidence be your compass! ⚓💙✨',
+        fr: 'Chaque voyage commence par un pas confiant... hisse ta voile et laisse ta confiance être ta boussole ! ⚓💙✨',
+        es: 'Todo viaje comienza con un paso seguro... ¡iza tu vela y deja que tu confianza sea tu brújula! ⚓💙✨',
+        ru: 'Каждое путешествие начинается с уверенного шага... поднимай паруса и пусть уверенность станет твоим компасом! ⚓💙✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون كتعشق الخطوط الكحلية والبيضاء ديال الستايل البحري؟ ولا كتفضلوا الألوان الدافئة والطرز المغربي؟ اختاري ستايلك المفضل وقولي ليا علاش فـ تعليق! ⚓🌊👇',
+        en: 'Girls, who loves the navy-and-white stripes of nautical style? Or do you prefer warm colors and Moroccan embroidery? Pick your favorite style and tell me why in a comment! ⚓🌊👇',
+        fr: 'Les filles, qui adore les rayures bleu marine et blanc du style marin ? Ou préférez-vous les couleurs chaudes et la broderie marocaine ? Choisissez votre style préféré et dites-moi pourquoi en commentaire ! ⚓🌊👇',
+        es: 'Chicas, ¿a quién le encantan las rayas azul marino y blancas del estilo marinero? ¿O prefieren los colores cálidos y el bordado marroquí? ¡Elijan su estilo favorito y cuéntenme por qué en un comentario! ⚓🌊👇',
+        ru: 'Девушки, кто обожает тёмно-синие и белые полоски морского стиля? Или вы предпочитаете тёплые цвета и марокканскую вышивку? Выберите любимый стиль и расскажите, почему, в комментарии! ⚓🌊👇'
+    },
+
+    description: 'طنجة، قصبة طنجة (Tangier Kasbah)، مطل برج النعام (Borj Al-Naam) وقت الصباح المشمس الصافي، إطلالة بانورامية من سور حجري على ميناء طنجة والخليج والمدينة العتيقة. الخلفية: سماء زرقاء صافية بسحب رقيقة جداً فالأفق، بحر أزرق عميق كيلمع تحت الشمس، جبال بعيدة ضبابية رمادية-زرقاء فالأفق، وساحل مدينة بعيد. الميناء: رصيف طويل (حاجز أمواج) كيمتد فالبحر بمنارة بيضاء فآخره وبرج صغير أبيض على رصيف ثاني، ومارينا فيها بزاف د اليخوت والمراكب البيضاء راسية فصفوف. الجهة اليسرى: أسوار وحصن قديم بحجر بلون الرمل بشرفات مسننة والعلم المغربي الأحمر بالنجمة الخضراء مرفوع فوق البرج، وخضرة وأشجار على المدرجات. الجهة اليمنى: بنايات بيضاء مسطحة السطوح د المدينة العتيقة، صومعة مربعة بسقف هرمي من الزليج الأخضر، نخيل، وفانوس شارع حديدي أسود قديم فالركن. المقدمة: سور حجري خشن بلون الرمل/الأوكر بنسيج مثقب، وأرضية مرصوفة بالحجر فالركن السفلي الأيسر. Robaty واقفة جنب السور، كتبتسم ابتسامة واسعة مبهجة وراسها مايل. يدها الميكانيكية اليمنى (الفضية بأصابع مفصلية وأساور ذهبية متراكمة على الساعد) مرفوعة وكتلمس شعرها، ويدها الميكانيكية اليسرى (فضية بأساور ذهبية متراكمة) نازلة قدام الخصر قرب الحقيبة. اللباس: بلايزر مزدوج الصدر من الكتان بخطوط طولية بالكحلي والأبيض (ستايل بحري) بياقة عريضة وأزرار ذهبية (على الصدر وعلى الأكمام)، فوق توب أبيض ناصع بياقة مرتفعة، وبنطلون أبيض واسع بخصر مرتفع. الحقيبة: حقيبة قش منسوجة صغيرة مستطيلة بحزام جلد بنية على الكتف، وإبزيم جلدي بنقط ذهبية وخميسة ذهبية معلقة. المجوهرات: قلادة خميسة فضية بحجر أحمر مرجاني فالوسط على سلسلة فضية رقيقة، فوق رقبتها الميكانيكية الفضية (حلقات معدنية بحواف ذهبية)، أقراط فضية طويلة متدلية بإطار مستطيل هندسي، وأساور ذهبية متراكمة على المعصمين. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
