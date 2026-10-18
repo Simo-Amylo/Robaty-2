@@ -1670,3 +1670,135 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 11,
+    slot: 'am',
+    image: 'day11-agadir1-morning.jpg',
+
+    place: {
+        ar: 'أكادير — تراس ساحلي مطل على المحيط',
+        en: 'Agadir — Seafront Terrace',
+        fr: 'Agadir — Terrasse face à l’océan',
+        es: 'Agadir — Terraza frente al océano',
+        ru: 'Агадир — терраса с видом на океан'
+    },
+
+    caption: {
+        ar: `صباح الشمس والبحر من تراس ساحلي فـ أكادير ☀️🌊💙
+من هنا المحيط الأطلسي أزرق ناصع، والشاطئ الذهبي، والنخيل، والبنايات البيضاء.. أكادير عندها طاقة صباحية كتعطيك الحيوية والراحة فـ نفس الوقت.
+اليوم اخترت لمسة سوسية أمازيغية فـ لوك عصري: قفطان كتان أزرق فاتح بطرز تقليدي، مع عصابة وقلادة وأقراط من الفضة الأمازيغية بالمينا الملونة ✨
+كيف جاكم هاد اللوك السوسي العصري فـ صباح أكادير البنات؟ ☕😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning, full of sun and sea, from a seafront terrace in Agadir ☀️🌊💙
+From here the Atlantic Ocean is a bright blue, with the golden beach, the palm trees and the white buildings... Agadir has a morning energy that gives you vitality and calm at the same time.
+Today I chose a Souss Amazigh touch in a modern look: a light-blue linen kaftan with traditional embroidery, with a headband, necklace and earrings in Amazigh silver and colorful enamel ✨
+How do you like this modern Souss look on an Agadir morning, girls? ☕😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour plein de soleil et de mer depuis une terrasse face à l’océan à Agadir ☀️🌊💙
+D’ici, l’océan Atlantique est d’un bleu éclatant, avec la plage dorée, les palmiers et les bâtiments blancs... Agadir a une énergie matinale qui donne à la fois de la vitalité et du calme.
+Aujourd’hui, j’ai choisi une touche amazighe du Souss dans un look moderne : un kaftan en lin bleu clair à la broderie traditionnelle, avec un bandeau, un collier et des boucles d’oreilles en argent amazigh et émail coloré ✨
+Que pensez-vous de ce look soussi moderne par un matin d’Agadir, les filles ? ☕😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días llenos de sol y mar desde una terraza frente al océano en Agadir ☀️🌊💙
+Desde aquí el océano Atlántico es de un azul intenso, con la playa dorada, las palmeras y los edificios blancos... Agadir tiene una energía matinal que te da vitalidad y calma a la vez.
+Hoy elegí un toque amazigh del Sus en un look moderno: un caftán de lino azul claro con bordado tradicional, con una diadema, un collar y unos pendientes de plata amazigh y esmalte de colores ✨
+¿Qué les parece este look susí moderno en una mañana de Agadir, chicas? ☕😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро, полное солнца и моря, с террасы у океана в Агадире ☀️🌊💙
+Отсюда Атлантический океан ослепительно синий, с золотым пляжем, пальмами и белыми зданиями... У Агадира утренняя энергия, которая дарит одновременно бодрость и спокойствие.
+Сегодня я выбрала амазигский акцент региона Сус в современном образе: светло-голубой льняной кафтан с традиционной вышивкой, а также обруч, колье и серьги из амазигского серебра с цветной эмалью ✨
+Как вам этот современный образ в стиле Сус в утро Агадира, девушки? ☕😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'هويتك كنز... لبسي أصلك بفخر، وخلي فضتك وألوانك يحكيو قصتك للعالم! 🌊💎✨',
+        en: 'Your identity is a treasure... wear your roots with pride, and let your silver and your colors tell your story to the world! 🌊💎✨',
+        fr: 'Ton identité est un trésor... porte tes origines avec fierté et laisse ton argent et tes couleurs raconter ton histoire au monde ! 🌊💎✨',
+        es: 'Tu identidad es un tesoro... ¡lleva tus raíces con orgullo y deja que tu plata y tus colores cuenten tu historia al mundo! 🌊💎✨',
+        ru: 'Твоя идентичность — сокровище... носи свои корни с гордостью и пусть твоё серебро и твои цвета расскажут миру твою историю! 🌊💎✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الحلي والإكسسوارات: شكون كتعشق الفضة الأمازيغية بالمينا الملونة؟ ولا كتفضلوا الذهب والمجوهرات العصرية؟ شاركوني ذوقكم فـ تعليق! 💎🌊👇',
+        en: 'Girls, about jewelry and accessories: who loves Amazigh silver with colorful enamel? Or do you prefer gold and modern jewelry? Share your taste in a comment! 💎🌊👇',
+        fr: 'Les filles, côté bijoux et accessoires : qui adore l’argent amazigh à l’émail coloré ? Ou préférez-vous l’or et les bijoux modernes ? Partagez vos goûts en commentaire ! 💎🌊👇',
+        es: 'Chicas, hablando de joyas y accesorios: ¿a quién le encanta la plata amazigh con esmalte de colores? ¿O prefieren el oro y las joyas modernas? ¡Compartan su gusto en un comentario! 💎🌊👇',
+        ru: 'Девушки, об украшениях и аксессуарах: кто обожает амазигское серебро с цветной эмалью? Или вы предпочитаете золото и современные украшения? Поделитесь вкусом в комментарии! 💎🌊👇'
+    },
+
+    description: 'أكادير، تراس ساحلي فاخر مطل على المحيط الأطلسي وشاطئ المدينة وقت الصباح المشرق، بسماء زرقاء صافية بلا غيوم ومحيط أزرق ناصع كتلمع فيه أشعة الشمس وأمواج بيضاء كتوصل للشاطئ الرملي الذهبي. الخلفية: نخيل متفرق، بنايات بيضاء مسطحة السقوف، رأس/تل بعيد فالجهة اليمنى فيه بنايات ومنطقة ساحلية، وحاجز أبيض منخفض. التراس: كنبة كريمية بوسادات أمازيغية بنقوش هندسية زرقاء وبيضاء، أصيص خزفي أزرق وأبيض فيه نبتة صبار/أغاف خضراء، طاولة خشبية دائرية قديمة عليها صينية وعلبة/براد صغير فضي مزخرف، فانوس نحاسي مزخرف ومضاء فالجهة اليمنى، وأرضية رملية/حصوية بلون ذهبي مع حافة زليج أزرق وأبيض. Robaty واقفة بوقفة واثقة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور) مستقرة على خصرها، ويدها الميكانيكية اليسرى كتمسك بخفة فنجان أبيض خزفي بنقش أزرق صغير. اللباس: قفطان/بلايزر طويل ومفتوح وخفيف من الكتان بالأزرق الفاتح (أزرق سماوي/كورن فلاور وليس الكحلي) بطرز تقليدي أمازيغي هندسي بالأبيض/الفضي على حواف الصدر والأطراف السفلية وعلى الأكمام الواسعة (معينات)، مخصّر بسلسلة فضية رقيقة كتنزل منها شرّابة فضية بحجر فالوسط، فوق توب أبيض وبنطلون أبيض واسع. الحلي الأمازيغي السوسي (فضة بمينا ملونة): عصابة/تاج فضي منقوش مرصع بمينا وأحجار خضراء وزرقاء وحمراء وتدلّيات فضية صغيرة موضوع فوق الشعر؛ قلادة فضية أمازيغية كبيرة (مثلثية الشكل) مرصعة بمينا أخضر وأصفر وأزرق وتدلّيات فضية طويلة، فوق رقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) مع سلاسل رقيقة؛ أقراط فضية دائرية كبيرة منقوشة بدقة؛ وأساور على المعصمين الميكانيكيين. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 11,
+    slot: 'pm',
+    image: 'day11-agadir2-evening.jpg',
+
+    place: {
+        ar: 'أكادير — تراس الغروب المطل على المحيط',
+        en: 'Agadir — Sunset Terrace over the Ocean',
+        fr: 'Agadir — Terrasse au coucher du soleil sur l’océan',
+        es: 'Agadir — Terraza al atardecer sobre el océano',
+        ru: 'Агадир — терраса на закате над океаном'
+    },
+
+    caption: {
+        ar: `مساء الغروب الذهبي والهدوء من تراس مطل على المحيط فـ أكادير 🌅🌊✨
+الشمس كتغيب وراء التل، والسماء كتلون بالبرتقالي والبنفسجي، وأضواء الفوانيس كتحيي التراس.. أكادير فـ المساء كتعطيك راحة وفخامة ما كاينش بحالها.
+اليوم نسقت Look ملكي فـ المخمل الأخضر الزمردي بطرز ذهبي، مع تاج فضي رقيق وحلي أمازيغية بالفيروز والعنبر ✨
+كيف جاكم هاد اللوك المسائي فـ غروب أكادير البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening, with a golden sunset and calm, from a terrace overlooking the ocean in Agadir 🌅🌊✨
+The sun sets behind the hill, the sky turns orange and purple, and the glow of the lanterns brings the terrace to life... Agadir in the evening gives you a comfort and luxury like no other.
+Today I styled a royal look in emerald-green velvet with gold embroidery, with a delicate silver tiara and Amazigh jewelry in turquoise and amber ✨
+How do you like this evening look at sunset in Agadir, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir, avec un coucher de soleil doré et le calme d’une terrasse face à l’océan à Agadir 🌅🌊✨
+Le soleil se couche derrière la colline, le ciel se teinte d’orange et de violet, et la lueur des lanternes anime la terrasse... Agadir le soir offre un confort et un raffinement incomparables.
+Aujourd’hui, j’ai composé un look royal en velours vert émeraude à la broderie dorée, avec un fin diadème en argent et des bijoux amazighs en turquoise et ambre ✨
+Que pensez-vous de ce look de soirée au coucher du soleil à Agadir, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches, con un atardecer dorado y la calma de una terraza frente al océano en Agadir 🌅🌊✨
+El sol se pone tras la colina, el cielo se tiñe de naranja y violeta, y la luz de los faroles da vida a la terraza... Agadir al atardecer te da una comodidad y un lujo sin igual.
+Hoy combiné un look real en terciopelo verde esmeralda con bordado dorado, con una fina diadema de plata y joyas amazigh de turquesa y ámbar ✨
+¿Qué les parece este look de noche en el atardecer de Agadir, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер, с золотым закатом и спокойствием, с террасы над океаном в Агадире 🌅🌊✨
+Солнце садится за холм, небо окрашивается в оранжевый и фиолетовый, а свет фонарей оживляет террасу... Агадир вечером дарит уют и роскошь, которым нет равных.
+Сегодня я собрала королевский образ из изумрудно-зелёного бархата с золотой вышивкой, с тонкой серебряной диадемой и амазигскими украшениями с бирюзой и янтарём ✨
+Как вам этот вечерний образ на закате в Агадире, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'كوني ملكة فـ عالمك... الهيبة كتبدا من ثقتك فـ نفسك، وحضورك كيضوي بحال الغروب! 👑🌅✨',
+        en: 'Be the queen of your own world... prestige begins with your confidence in yourself, and your presence shines like the sunset! 👑🌅✨',
+        fr: 'Sois la reine de ton monde... la prestance naît de la confiance en toi, et ta présence rayonne comme le coucher de soleil ! 👑🌅✨',
+        es: 'Sé la reina de tu propio mundo... la presencia nace de la confianza en ti misma, ¡y tu presencia brilla como el atardecer! 👑🌅✨',
+        ru: 'Будь королевой своего мира... величие начинается с уверенности в себе, а твоё присутствие сияет, как закат! 👑🌅✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ قفاطن الخريف والشتاء: شكون كتعشق المخمل بالطرز الذهبي؟ ولا كتفضلوا الحرير والساتان الخفيف؟ اختاري قماشك المفضل وقولي ليا علاش فـ تعليق! 👑🌅👇',
+        en: 'Girls, for autumn and winter kaftans: who loves velvet with gold embroidery? Or do you prefer light silk and satin? Pick your favorite fabric and tell me why in a comment! 👑🌅👇',
+        fr: 'Les filles, pour les caftans d’automne et d’hiver : qui adore le velours à la broderie dorée ? Ou préférez-vous la soie et le satin légers ? Choisissez votre tissu préféré et dites-moi pourquoi en commentaire ! 👑🌅👇',
+        es: 'Chicas, para los caftanes de otoño e invierno: ¿a quién le encanta el terciopelo con bordado dorado? ¿O prefieren la seda y el satén ligeros? ¡Elijan su tela favorita y cuéntenme por qué en un comentario! 👑🌅👇',
+        ru: 'Девушки, о кафтанах на осень и зиму: кто обожает бархат с золотой вышивкой? Или вы предпочитаете лёгкий шёлк и атлас? Выберите любимую ткань и расскажите, почему, в комментарии! 👑🌅👇'
+    },
+
+    description: 'أكادير، تراس فاخر مطل على المحيط الأطلسي والمدينة وقت الغروب الذهبي: شمس كتغرب وراء تل بعيد فالجهة اليمنى (فوقو برج صغير)، سماء متدرجة بين البرتقالي والوردي والبنفسجي بسحب خفيفة، محيط هادئ كيعكس الضو الذهبي، ساحل وبنايات ونخيل وأضواء كتبدا تشعل فالبعيد. التراس: حاجز زجاجي شفاف فالجهة اليسرى كيطل على مدرجات وحدائق مضاءة بفوانيس صغيرة، مسبح (إنفينيتي) فالجهة اليمنى كيعكس ضو الغروب، فوانيس نحاسية مزخرفة ومضاءة فالمقدمة اليمنى وفالخلف، كنبة حمراء بوسادات ملونة، طاولة مزخرفة بنباتات، ونخيل طويل فالركن اليمين، وأرضية رخامية لامعة. Robaty واقفة بوقفة ملكية مائلة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور) مستندة على الحاجز الزجاجي، ويدها الميكانيكية اليسرى (الفضية) مستقرة على خصرها. اللباس: قفطان/كاب طويل ومفتوح من المخمل بالأخضر الزمردي الغامق بطرز ذهبي هندسي (معينات ونجوم) على حواف الصدر والأطراف السفلية وبطرز نباتي/أرابيسك ذهبي على الأكمام الواسعة، فوق فستان طويل من الساتان بالأخضر الزمردي بياقة V وحافة داخلية كريمية، مخصّر بحبل ذهبي مجدول مربوط بشرّابات وخرزات ذهبية نازلة قدام الخصر. الحلي الأمازيغي: تاج فضي رقيق مرصع بأحجار فيروزية وبرتقالية/عنبرية فوق الشعر مع سلاسل فضية رقيقة، قلادة فضية أمازيغية بمينا أخضر وبرتقالي وتدلّيات فضية على سلاسل رقيقة فوق رقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية)، أقراط فضية طويلة متدلية بأحجار عنبرية/برتقالية، وأساور على المعصمين. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
