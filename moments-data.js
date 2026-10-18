@@ -1802,3 +1802,69 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 12,
+    slot: 'am',
+    image: 'day12-ouzoud1-morning.jpg',
+
+    place: {
+        ar: 'أزيلال — شلالات أوزود',
+        en: 'Azilal — Ouzoud Waterfalls',
+        fr: 'Azilal — Cascades d’Ouzoud',
+        es: 'Azilal — Cascadas de Ouzoud',
+        ru: 'Азилаль — водопады Узуд'
+    },
+
+    caption: {
+        ar: `صباح الطبيعة والطاقة من شلالات أوزود (Ouzoud Waterfalls) فـ إقليم أزيلال 💦🍂🌿
+معلومة صغيرة: شلالات أوزود كيوصل علوها لحوالي 110 متر، وكتعتبر من أعلى وأجمل الشلالات فـ شمال إفريقيا.. وكتعيش فيها حتى قرود المكاك البربري 🐒
+اليوم اخترت Look خريفي عصري لجولة الطبيعة: جاكيط بومبر زيتوني بطرز ذهبي أمازيغي، مع كنزة كريمية بياقة عالية وجينز واسع ✨
+كيف جاكم هاد الستايل الخريفي فـ أوزود البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning, full of nature and energy, from the Ouzoud Waterfalls in Azilal province 💦🍂🌿
+A little fact: the Ouzoud Waterfalls reach a height of about 110 meters and are considered among the highest and most beautiful waterfalls in North Africa... and Barbary macaques live here too 🐒
+Today I chose a modern autumn look for a nature walk: an olive bomber jacket with Amazigh gold embroidery, a cream turtleneck and wide-leg jeans ✨
+How do you like this autumn style at Ouzoud, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour plein de nature et d’énergie depuis les cascades d’Ouzoud, dans la province d’Azilal 💦🍂🌿
+Petit fait : les cascades d’Ouzoud atteignent environ 110 mètres de haut et comptent parmi les plus hautes et les plus belles d’Afrique du Nord... et des macaques de Barbarie y vivent aussi 🐒
+Aujourd’hui, j’ai choisi un look automnal moderne pour une balade nature : un bomber vert olive à la broderie dorée amazighe, un col roulé crème et un jean large ✨
+Que pensez-vous de ce style d’automne à Ouzoud, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días llenos de naturaleza y energía desde las cascadas de Ouzoud, en la provincia de Azilal 💦🍂🌿
+Un dato curioso: las cascadas de Ouzoud alcanzan unos 110 metros de altura y se cuentan entre las más altas y bonitas del norte de África... y allí viven también macacos de Berbería 🐒
+Hoy elegí un look otoñal moderno para un paseo por la naturaleza: una cazadora bomber verde oliva con bordado dorado amazigh, un jersey de cuello alto crema y unos vaqueros anchos ✨
+¿Qué les parece este estilo otoñal en Ouzoud, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро, полное природы и энергии, с водопадов Узуд в провинции Азилаль 💦🍂🌿
+Небольшой факт: высота водопадов Узуд — около 110 метров, и они считаются одними из самых высоких и красивых в Северной Африке... а ещё здесь живут берберийские макаки 🐒
+Сегодня я выбрала современный осенний образ для прогулки на природе: оливковый бомбер с золотой амазигской вышивкой, кремовый свитер с высоким воротом и широкие джинсы ✨
+Как вам этот осенний стиль в Узуде, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'كوني بحال الشلال... قوية، متدفقة، وكل مرة كتنزل فيها كتخلق جمال جديد! 💦🌿✨',
+        en: 'Be like the waterfall... strong, flowing, and every time you fall you create new beauty! 💦🌿✨',
+        fr: 'Sois comme la cascade... forte, vive, et chaque fois que tu tombes, tu crées une beauté nouvelle ! 💦🌿✨',
+        es: 'Sé como la cascada... fuerte, fluida, ¡y cada vez que caes creas una belleza nueva! 💦🌿✨',
+        ru: 'Будь как водопад... сильной, текучей, и каждое твоё падение создаёт новую красоту! 💦🌿✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون كتعشق الخروج للطبيعة فـ الخريف بألوانها الذهبية والبرتقالية؟ ولا كتفضلوا الصيف والبحر؟ شاركوني فصلكم المفضل فـ تعليق! 🍂💦👇',
+        en: 'Girls, who loves going out into nature in autumn with its golden and orange colors? Or do you prefer summer and the sea? Share your favorite season in a comment! 🍂💦👇',
+        fr: 'Les filles, qui adore sortir dans la nature en automne, avec ses couleurs dorées et orangées ? Ou préférez-vous l’été et la mer ? Partagez votre saison préférée en commentaire ! 🍂💦👇',
+        es: 'Chicas, ¿a quién le encanta salir a la naturaleza en otoño, con sus colores dorados y anaranjados? ¿O prefieren el verano y el mar? ¡Compartan su estación favorita en un comentario! 🍂💦👇',
+        ru: 'Девушки, кто любит выбираться на природу осенью с её золотыми и оранжевыми красками? Или вы предпочитаете лето и море? Поделитесь любимым временем года в комментарии! 🍂💦👇'
+    },
+
+    description: 'أزيلال، شلالات أوزود (Ouzoud Waterfalls) فالأطلس، وقت الصباح المشمس. المكان: شلالات متدرجة على عدة طبقات كتنزل من منحدرات صخرية حمراء/برتقالية (طين أحمر) مغطاة بالخضرة والأشجار، بحيرة/حوض أخضر مزرق تحت الشلالات، رذاذ ماء أبيض، مدرجات ومقاهي ومظلات للزوار على السفح فالجهة اليسرى مع سياح كيتمشاو، وأشجار بأوراق خريفية صفراء وبرتقالية فالمقدمة اليسرى، وسياج خشبي وسور حجري بلون الطين الأحمر فالمقدمة. الجو مشمس وساطع. Robaty واقفة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة وكتمسك بنظارة شمسية داكنة بإطار رقيق، ويدها الميكانيكية اليسرى (بأساور فضية/ذهبية) داخل جيب الجينز. اللباس (ستايل خريفي عصري لجولة الطبيعة): جاكيط بومبر (Bomber) مبطن بالأخضر الزيتوني بسحاب وجيب على الكم، بطرز ذهبي أمازيغي هندسي على حواف السحاب والياقة وعلى الأساور والحاشية السفلية، فوق كنزة صوفية كريمية/عاجية سميكة بياقة عالية (Turtleneck)، وبنطلون جينز واسع بخصر مرتفع بالأزرق المتوسط بنقش بارز خفيف. حقيبة ظهر/كتف سوداء جلدية بإبزيمات ذهبية وحزام على الكتف. أقراط ذهبية دائرية (Hoops) متوسطة، وأساور ذهبية متراكمة على المعصمين، ورقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) ظاهرة فوق ياقة الكنزة. بلا خميسة ولا قلادة ظاهرة هاد المرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وشعر طويل مموج بني بلمسات نحاسية، نصفو مرفوع وملموم من فوق بمشبك (نص ذيل حصان) ونصفو منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
