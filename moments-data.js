@@ -1604,3 +1604,69 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 10,
+    slot: 'pm',
+    image: 'day10-tangier6-evening.jpg',
+
+    place: {
+        ar: 'طنجة — تراس علوي بقصبة طنجة',
+        en: 'Tangier — Rooftop Terrace, Tangier Kasbah',
+        fr: 'Tanger — Terrasse sur les toits, Kasbah de Tanger',
+        es: 'Tánger — Azotea en la Kasbah de Tánger',
+        ru: 'Танжер — терраса на крыше в Касбе Танжера'
+    },
+
+    caption: {
+        ar: `مساء الأنوار من تراس علوي فـ قصبة طنجة (Tangier Kasbah) 🌙✨💙
+من هنا كتشوف المدينة القديمة بحيوطها البيضاء، وأضواء الميناء، ومضيق جبل طارق كيلمع فـ الأفق.. أتاي بالنعناع وفوانيس مضيئة وسماء بدات كتزين بالنجوم، ما كاينش أحلى من هاد الأجواء.
+اليوم اخترت Look مسائي أنيق: بلايزر مخملي بالكحلي الداكن بطرز ذهبي مغربي، مع خميسة ذهبية بحجر اللازورد الأزرق ✨
+كيف جاكم هاد اللوك المسائي فـ ليل طنجة البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening, with lights, from a rooftop terrace in the Tangier Kasbah 🌙✨💙
+From here you see the old medina with its white walls, the harbor lights, and the Strait of Gibraltar shimmering on the horizon... mint tea, glowing lanterns and a sky starting to fill with stars, nothing beats this atmosphere.
+Today I chose an elegant evening look: a dark navy velvet blazer with Moroccan gold embroidery, and a golden khamsa with a blue lapis lazuli stone ✨
+How do you like this evening look on a Tangier night, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir tout en lumières depuis une terrasse sur les toits de la Kasbah de Tanger (Tangier Kasbah) 🌙✨💙
+D’ici, on voit la vieille médina et ses murs blancs, les lumières du port et le détroit de Gibraltar qui scintille à l’horizon... thé à la menthe, lanternes allumées et un ciel qui commence à se parer d’étoiles, rien ne vaut cette ambiance.
+Aujourd’hui, j’ai choisi un look de soirée élégant : un blazer en velours bleu marine foncé avec une broderie dorée marocaine, et une khamsa dorée ornée d’un lapis-lazuli bleu ✨
+Que pensez-vous de ce look de soirée dans la nuit tangéroise, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches llenas de luces desde una azotea en la Kasbah de Tánger (Tangier Kasbah) 🌙✨💙
+Desde aquí se ve la antigua medina con sus muros blancos, las luces del puerto y el estrecho de Gibraltar brillando en el horizonte... té con menta, faroles encendidos y un cielo que empieza a llenarse de estrellas, nada supera este ambiente.
+Hoy elegí un elegante look de noche: un blazer de terciopelo azul marino oscuro con bordado dorado marroquí, y una jamsa (mano de Fátima) dorada con una piedra de lapislázuli azul ✨
+¿Qué les parece este look de noche en la noche tangerina, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер, полный огней, с террасы на крыше в Касбе Танжера (Tangier Kasbah) 🌙✨💙
+Отсюда видна старая медина с белыми стенами, огни порта и Гибралтарский пролив, мерцающий на горизонте... мятный чай, зажжённые фонари и небо, которое начинает украшаться звёздами — нет ничего лучше этой атмосферы.
+Сегодня я выбрала элегантный вечерний образ: бархатный пиджак тёмно-синего цвета с марокканской золотой вышивкой и золотая хамса с синим камнем лазурит ✨
+Как вам этот вечерний образ в танжерскую ночь, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'حتى فـ عز الليل... ضوء الثقة اللي فيك ما كينطفيش، خليه يضوي طريقك! 🌙💙✨',
+        en: 'Even in the depth of the night... the light of confidence inside you never goes out, let it light your way! 🌙💙✨',
+        fr: 'Même au cœur de la nuit... la lumière de la confiance en toi ne s’éteint jamais, laisse-la éclairer ton chemin ! 🌙💙✨',
+        es: 'Incluso en plena noche... ¡la luz de la confianza que hay en ti nunca se apaga, deja que ilumine tu camino! 🌙💙✨',
+        ru: 'Даже в глубокую ночь... свет уверенности внутри тебя не гаснет, пусть он освещает твой путь! 🌙💙✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون كتحب تزين دارها بالفوانيس المغربية والوسادات المطرزة؟ ولا كتفضلوا الديكور العصري البسيط؟ شاركوني ذوقكم فـ ديكور الدار فـ تعليق! 🏮🏠👇',
+        en: 'Girls, who loves decorating their home with Moroccan lanterns and embroidered cushions? Or do you prefer simple, modern decor? Share your taste in home decor in a comment! 🏮🏠👇',
+        fr: 'Les filles, qui aime décorer sa maison avec des lanternes marocaines et des coussins brodés ? Ou préférez-vous une décoration moderne et épurée ? Partagez vos goûts en matière de déco en commentaire ! 🏮🏠👇',
+        es: 'Chicas, ¿a quién le gusta decorar su casa con faroles marroquíes y cojines bordados? ¿O prefieren una decoración moderna y sencilla? ¡Compartan su gusto en decoración del hogar en un comentario! 🏮🏠👇',
+        ru: 'Девушки, кто любит украшать дом марокканскими фонарями и вышитыми подушками? Или вы предпочитаете простой современный декор? Поделитесь вкусом в декоре дома в комментарии! 🏮🏠👇'
+    },
+
+    description: 'طنجة، تراس علوي (Rooftop) فـ قصبة طنجة التاريخية (Tangier Kasbah)، مطل مباشرة على المدينة القديمة وميناء طنجة ومضيق جبل طارق، وقت بداية الليل (الساعة الزرقاء) بسماء زرقاء داكنة فيها نجوم خفيفة. الخلفية: أسطح بيضاء للمدينة القديمة مضاءة بأضواء دافئة صفراء، خليج بمياه هادئة كتعكس أضواء الميناء والساحل، جبال بعيدة داكنة فالأفق، صومعة مربعة مضاءة بالذهبي فالجهة اليمنى، نخيل وحاجز حديدي مزخرف. التراس: فانوس نحاسي مزخرف مضاء فالجهة اليسرى وفانوس كبير مضاء فالجهة اليمنى، نبتة خضراء كبيرة فالركن الأيسر، كنبة مغربية بوسادات مطرزة بالأزرق الكحلي والأحمر والذهبي، بوف جلد بني كبير فالمقدمة اليسرى، وطاولة مثمنة الشكل بنقش معدني فضي قديم فالجهة اليمنى عليها صينية فضية وكاس أتاي بالنعناع وفانوس صغير مضاء. Robaty جالسة بوضعية أنيقة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة وكتلمس شعرها، ويدها الميكانيكية اليسرى (الفضية بأساور ذهبية) مستقرة على فخدها. اللباس: بلايزر طويل من المخمل بالأزرق الكحلي الداكن (Navy) بطرز ذهبي مغربي على الياقة وحواف الصدر والأكمام، مخصّر بحزام ذهبي رقيق بإبزيم مزخرف، فوق توب أسود بياقة مرتفعة، وبنطلون أسود واسع. المجوهرات: قلادة خميسة ذهبية بحجر اللازورد الأزرق على سلسلتين ذهبيتين رقيقتين فوق رقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية)، أقراط ذهبية متدلية بحجر أزرق بيضاوي، وأساور ذهبية متراكمة على المعصمين. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
