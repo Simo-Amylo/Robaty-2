@@ -1818,32 +1818,32 @@ RobatyMoments.add({
 
     caption: {
         ar: `صباح الطبيعة والطاقة من شلالات أوزود (Ouzoud Waterfalls) فـ إقليم أزيلال 💦🍂🌿
-معلومة صغيرة: شلالات أوزود كيوصل علوها لحوالي 110 متر، وكتعتبر من أعلى وأجمل الشلالات فـ شمال إفريقيا.. وكتعيش فيها حتى قرود المكاك البربري 🐒
-اليوم اخترت Look خريفي عصري لجولة الطبيعة: جاكيط بومبر زيتوني بطرز ذهبي أمازيغي، مع كنزة كريمية بياقة عالية وجينز واسع ✨
+شلالات أوزود كيوصل علوها لحوالي 110 متر، وكتعتبر من أعلى وأجمل الشلالات فـ شمال إفريقيا.. وكتعيش فيها حتى قرود المكاك البربري 🐒
+اليوم اخترت Look خريفي عصري لجولة الطبيعة: جاكيط بومبر زيتوني بطرز ذهبي أمازيغي، مع كنزة كريمية بياقة عالية وجينز ✨
 كيف جاكم هاد الستايل الخريفي فـ أوزود البنات؟ 😊
 التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
 
         en: `Good morning, full of nature and energy, from the Ouzoud Waterfalls in Azilal province 💦🍂🌿
-A little fact: the Ouzoud Waterfalls reach a height of about 110 meters and are considered among the highest and most beautiful waterfalls in North Africa... and Barbary macaques live here too 🐒
-Today I chose a modern autumn look for a nature walk: an olive bomber jacket with Amazigh gold embroidery, a cream turtleneck and wide-leg jeans ✨
+The Ouzoud Waterfalls reach a height of about 110 meters and are considered among the highest and most beautiful waterfalls in North Africa... and Barbary macaques live here too 🐒
+Today I chose a modern autumn look for a nature walk: an olive bomber jacket with Amazigh gold embroidery, a cream turtleneck and jeans ✨
 How do you like this autumn style at Ouzoud, girls? 😊
 The challenge and the vote are in the comments 👀☝️`,
 
         fr: `Bonjour plein de nature et d’énergie depuis les cascades d’Ouzoud, dans la province d’Azilal 💦🍂🌿
-Petit fait : les cascades d’Ouzoud atteignent environ 110 mètres de haut et comptent parmi les plus hautes et les plus belles d’Afrique du Nord... et des macaques de Barbarie y vivent aussi 🐒
-Aujourd’hui, j’ai choisi un look automnal moderne pour une balade nature : un bomber vert olive à la broderie dorée amazighe, un col roulé crème et un jean large ✨
+Les cascades d’Ouzoud atteignent environ 110 mètres de haut et comptent parmi les plus hautes et les plus belles d’Afrique du Nord... et des macaques de Barbarie y vivent aussi 🐒
+Aujourd’hui, j’ai choisi un look automnal moderne pour une balade nature : un bomber vert olive à la broderie dorée amazighe, un col roulé crème et un jean ✨
 Que pensez-vous de ce style d’automne à Ouzoud, les filles ? 😊
 Le défi et le vote sont dans les commentaires 👀☝️`,
 
         es: `Buenos días llenos de naturaleza y energía desde las cascadas de Ouzoud, en la provincia de Azilal 💦🍂🌿
-Un dato curioso: las cascadas de Ouzoud alcanzan unos 110 metros de altura y se cuentan entre las más altas y bonitas del norte de África... y allí viven también macacos de Berbería 🐒
-Hoy elegí un look otoñal moderno para un paseo por la naturaleza: una cazadora bomber verde oliva con bordado dorado amazigh, un jersey de cuello alto crema y unos vaqueros anchos ✨
+Las cascadas de Ouzoud alcanzan unos 110 metros de altura y se cuentan entre las más altas y bonitas del norte de África... y allí viven también macacos de Berbería 🐒
+Hoy elegí un look otoñal moderno para un paseo por la naturaleza: una cazadora bomber verde oliva con bordado dorado amazigh, un jersey de cuello alto crema y unos vaqueros ✨
 ¿Qué les parece este estilo otoñal en Ouzoud, chicas? 😊
 El reto y la votación están en los comentarios 👀☝️`,
 
         ru: `Доброе утро, полное природы и энергии, с водопадов Узуд в провинции Азилаль 💦🍂🌿
-Небольшой факт: высота водопадов Узуд — около 110 метров, и они считаются одними из самых высоких и красивых в Северной Африке... а ещё здесь живут берберийские макаки 🐒
-Сегодня я выбрала современный осенний образ для прогулки на природе: оливковый бомбер с золотой амазигской вышивкой, кремовый свитер с высоким воротом и широкие джинсы ✨
+Высота водопадов Узуд — около 110 метров, и они считаются одними из самых высоких и красивых в Северной Африке... а ещё здесь живут берберийские макаки 🐒
+Сегодня я выбрала современный осенний образ для прогулки на природе: оливковый бомбер с золотой амазигской вышивкой, кремовый свитер с высоким воротом и джинсы ✨
 Как вам этот осенний стиль в Узуде, девушки? 😊
 Вызов и голосование — в комментариях 👀☝️`
     },
@@ -1864,7 +1864,73 @@ El reto y la votación están en los comentarios 👀☝️`,
         ru: 'Девушки, кто любит выбираться на природу осенью с её золотыми и оранжевыми красками? Или вы предпочитаете лето и море? Поделитесь любимым временем года в комментарии! 🍂💦👇'
     },
 
-    description: 'أزيلال، شلالات أوزود (Ouzoud Waterfalls) فالأطلس، وقت الصباح المشمس. المكان: شلالات متدرجة على عدة طبقات كتنزل من منحدرات صخرية حمراء/برتقالية (طين أحمر) مغطاة بالخضرة والأشجار، بحيرة/حوض أخضر مزرق تحت الشلالات، رذاذ ماء أبيض، مدرجات ومقاهي ومظلات للزوار على السفح فالجهة اليسرى مع سياح كيتمشاو، وأشجار بأوراق خريفية صفراء وبرتقالية فالمقدمة اليسرى، وسياج خشبي وسور حجري بلون الطين الأحمر فالمقدمة. الجو مشمس وساطع. Robaty واقفة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة وكتمسك بنظارة شمسية داكنة بإطار رقيق، ويدها الميكانيكية اليسرى (بأساور فضية/ذهبية) داخل جيب الجينز. اللباس (ستايل خريفي عصري لجولة الطبيعة): جاكيط بومبر (Bomber) مبطن بالأخضر الزيتوني بسحاب وجيب على الكم، بطرز ذهبي أمازيغي هندسي على حواف السحاب والياقة وعلى الأساور والحاشية السفلية، فوق كنزة صوفية كريمية/عاجية سميكة بياقة عالية (Turtleneck)، وبنطلون جينز واسع بخصر مرتفع بالأزرق المتوسط بنقش بارز خفيف. حقيبة ظهر/كتف سوداء جلدية بإبزيمات ذهبية وحزام على الكتف. أقراط ذهبية دائرية (Hoops) متوسطة، وأساور ذهبية متراكمة على المعصمين، ورقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) ظاهرة فوق ياقة الكنزة. بلا خميسة ولا قلادة ظاهرة هاد المرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وشعر طويل مموج بني بلمسات نحاسية، نصفو مرفوع وملموم من فوق بمشبك (نص ذيل حصان) ونصفو منسدل على الكتفين مع فرق فالوسط.',
+    description: 'أزيلال، شلالات أوزود (Ouzoud Waterfalls) فالأطلس، وقت الصباح المشمس. المكان: شلالات متدرجة على عدة طبقات كتنزل من منحدرات صخرية حمراء/برتقالية (طين أحمر) مغطاة بالخضرة والأشجار، بحيرة/حوض أخضر مزرق تحت الشلالات، رذاذ ماء أبيض، مدرجات ومقاهي ومظلات للزوار على السفح فالجهة اليسرى مع سياح كيتمشاو، وأشجار بأوراق خريفية صفراء وبرتقالية فالمقدمة اليسرى، وسياج خشبي وسور حجري بلون الطين الأحمر فالمقدمة. الجو مشمس وساطع. Robaty واقفة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة وكتمسك بنظارة شمسية داكنة بإطار رقيق، ويدها الميكانيكية اليسرى (بأساور فضية/ذهبية) داخل جيب الجينز. اللباس (ستايل خريفي عصري لجولة الطبيعة): جاكيط بومبر (Bomber) مبطن بالأخضر الزيتوني بسحاب وجيب على الكم، بطرز ذهبي أمازيغي هندسي على حواف السحاب والياقة وعلى الأساور والحاشية السفلية، فوق كنزة صوفية كريمية/عاجية سميكة بياقة عالية (Turtleneck)، وبنطلون جينز بخصر مرتفع بالأزرق المتوسط بنقش بارز خفيف. حقيبة ظهر/كتف سوداء جلدية بإبزيمات ذهبية وحزام على الكتف. أقراط ذهبية دائرية (Hoops) متوسطة، وأساور ذهبية متراكمة على المعصمين، ورقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) ظاهرة فوق ياقة الكنزة. بلا خميسة ولا قلادة ظاهرة هاد المرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وشعر طويل مموج بني بلمسات نحاسية، نصفو مرفوع وملموم من فوق بمشبك (نص ذيل حصان) ونصفو منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 12,
+    slot: 'pm',
+    image: 'day12-ouzoud2-evening.jpg',
+
+    place: {
+        ar: 'أزيلال — شلالات أوزود',
+        en: 'Azilal — Ouzoud Waterfalls',
+        fr: 'Azilal — Cascades d’Ouzoud',
+        es: 'Azilal — Cascadas de Ouzoud',
+        ru: 'Азилаль — водопады Узуд'
+    },
+
+    caption: {
+        ar: `مساء الذهب والدفء من شلالات أوزود (Ouzoud Waterfalls) فـ إقليم أزيلال 🌅💦🍂
+حدا الشلالات كاينين طواحين مائية تقليدية قديمة كانت كتستعمل لطحن الحبوب والزيتون، والغروب كيعطي للصخور الحمراء لون ذهبي ساحر.
+كنكمل نهار أوزود بنفس اللوك الخريفي، مع كاس أتاي بالنعناع فـ تراس مطل على الشلالات ☕✨
+كيف جاكم هاد الجو الخريفي الدافئ البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Golden, warm evening from the Ouzoud Waterfalls in Azilal province 🌅💦🍂
+Next to the falls there are old traditional water mills that were once used to grind grain and olives, and the sunset gives the red rocks a magical golden color.
+I'm continuing the Ouzoud day in the same autumn look, with a glass of mint tea on a terrace overlooking the falls ☕✨
+How do you like this warm autumn atmosphere, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Soirée dorée et chaleureuse depuis les cascades d’Ouzoud, dans la province d’Azilal 🌅💦🍂
+Près des chutes se trouvent d’anciens moulins à eau traditionnels qui servaient à moudre les céréales et les olives, et le coucher de soleil donne aux roches rouges une couleur dorée magique.
+Je poursuis la journée à Ouzoud avec le même look automnal, un verre de thé à la menthe sur une terrasse face aux cascades ☕✨
+Que pensez-vous de cette ambiance d’automne chaleureuse, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Tarde dorada y cálida desde las cascadas de Ouzoud, en la provincia de Azilal 🌅💦🍂
+Junto a las cascadas hay antiguos molinos de agua tradicionales que se usaban para moler cereales y aceitunas, y el atardecer da a las rocas rojas un mágico color dorado.
+Sigo el día en Ouzoud con el mismo look otoñal, con un vaso de té con menta en una terraza frente a las cascadas ☕✨
+¿Qué les parece este cálido ambiente otoñal, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Золотой тёплый вечер у водопадов Узуд в провинции Азилаль 🌅💦🍂
+Рядом с водопадами стоят старинные традиционные водяные мельницы, на которых когда-то мололи зерно и оливки, а закат придаёт красным скалам волшебный золотой цвет.
+Я продолжаю день в Узуде в том же осеннем образе, со стаканом мятного чая на террасе с видом на водопады ☕✨
+Как вам эта тёплая осенняя атмосфера, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'لحظات الهدوء مع كاس أتاي وسط الطبيعة هي أجمل هدية تعطيها لنفسك... خدي نفس عميق وارتاحي! ☕🍂✨',
+        en: 'Quiet moments with a glass of tea in the middle of nature are the most beautiful gift you can give yourself... take a deep breath and relax! ☕🍂✨',
+        fr: 'Les moments de calme avec un verre de thé au cœur de la nature sont le plus beau cadeau que tu puisses t’offrir... respire profondément et détends-toi ! ☕🍂✨',
+        es: 'Los momentos de calma con un vaso de té en plena naturaleza son el mejor regalo que puedes hacerte... ¡respira hondo y relájate! ☕🍂✨',
+        ru: 'Тихие минуты со стаканом чая среди природы — самый красивый подарок, который ты можешь сделать себе... сделай глубокий вдох и расслабься! ☕🍂✨'
+    },
+
+    challenge: {
+        ar: 'البنات، أتاي ديالكم كيتزاد فيه شنو؟ النعناع، الشيبة، ولا اللويزة؟ شاركوني نكهتكم المفضلة فـ تعليق! ☕🍃👇',
+        en: 'Girls, what goes into your tea? Mint, wormwood (sheeba), or lemon verbena (louiza)? Share your favorite flavor in a comment! ☕🍃👇',
+        fr: 'Les filles, qu’y a-t-il dans votre thé ? Menthe, absinthe (chiba) ou verveine (louiza) ? Partagez votre saveur préférée en commentaire ! ☕🍃👇',
+        es: 'Chicas, ¿qué le echan a su té? ¿Menta, ajenjo (chiba) o hierbaluisa (luisa)? ¡Compartan su sabor favorito en un comentario! ☕🍃👇',
+        ru: 'Девушки, что вы добавляете в свой чай? Мяту, полынь (шиба) или вербену (луиза)? Поделитесь любимым вкусом в комментарии! ☕🍃👇'
+    },
+
+    description: 'أزيلال، شلالات أوزود (Ouzoud Waterfalls) فالأطلس، وقت الغروب الذهبي (ضو دافئ ذهبي). المكان: Robaty جالسة فتراس مقهى خشبي مطل على الشلالات؛ طاولة خشبية دائرية قديمة عليها صينية فضية منقوشة فيها براد أتاي مغربي فضي/ذهبي مزخرف وكاس أتاي بالنعناع بنقش ذهبي وقصعة صغيرة خزفية زرقاء وبيضاء فيها مكسرات؛ كنبات ووسادات مغربية بنقوش زرابي حمراء وبرتقالية وكريمية؛ فوانيس نحاسية مزخرفة ومضاءة (واحد كبير فالجهة اليسرى وآخر فالجهة اليمنى على السياج الخشبي)، عمود خشبي وشجرة بأوراق خريفية صفراء وبرتقالية فوق الراس؛ وفالخلف الشلالات متدرجة على عدة طبقات والصخور الحمراء/البرتقالية والخضرة وحوض الماء الأخضر، وبنايات صغيرة فالأعلى على اليمين. Robaty جالسة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة قرب الصدر وكتمسك كاس أتاي بالنعناع، ويدها الميكانيكية اليسرى (الفضية بأساور) مستقرة فوق الطاولة. اللباس نفسو ديال الصباح (نفس نهار أوزود): جاكيط بومبر (Bomber) مبطن بالأخضر الزيتوني بسحاب وجيب بسحاب على الكم، بطرز ذهبي أمازيغي هندسي (نجوم ومعينات) على حافة السحاب والياقة والأساور والأكتاف، فوق كنزة صوفية كريمية/عاجية بياقة عالية (Turtleneck)، وجينز أزرق (ظاهر عند الخصر). أقراط ذهبية دائرية (Hoops) وأساور ذهبية متراكمة على المعصمين، ورقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) ظاهرة فوق ياقة الكنزة، بلا قلادة ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وشعر طويل مموج بني بلمسات نحاسية، نصفو مرفوع وملموم من فوق (نص ذيل حصان) ونصفو منسدل على الكتفين مع فرق فالوسط.',
 
     stats: { likes: 0 }
 });
