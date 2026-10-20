@@ -1883,51 +1883,51 @@ RobatyMoments.add({
     },
 
     caption: {
-        ar: `مساء الذهب والدفء من شلالات أوزود (Ouzoud Waterfalls) فـ إقليم أزيلال 🌅💦🍂
-حدا الشلالات كاينين طواحين مائية تقليدية قديمة كانت كتستعمل لطحن الحبوب والزيتون، والغروب كيعطي للصخور الحمراء لون ذهبي ساحر.
-كنكمل نهار أوزود بنفس اللوك الخريفي، مع كاس أتاي بالنعناع فـ تراس مطل على الشلالات ☕✨
-كيف جاكم هاد الجو الخريفي الدافئ البنات؟ 😊
+        ar: `مساء أوزود الدافي من شلالات أوزود (Ouzoud Waterfalls) فـ إقليم أزيلال، اللي حداها كاينين طواحين مائية تقليدية قديمة 🌅💦
+بعد جولة زوينة وممتعة بين الجبال والشلالات.. ما كاين أحسن من جلسة هادئة مع براد أتاي مغربي منعنع ومشحر على حقو وطريقو قدام هاد المنظر اللي كيرد الروح! ☕🍂
+البرد الخفيف ديال أوزود مع دفء الأتاي والجلسة المغربية.. إحساس ما كيتوصفش 😍✨
+كيفاش كتدوزوا أوقات الاستراحة ديالكم فـ الرحلات البنات؟
 التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
 
-        en: `Golden, warm evening from the Ouzoud Waterfalls in Azilal province 🌅💦🍂
-Next to the falls there are old traditional water mills that were once used to grind grain and olives, and the sunset gives the red rocks a magical golden color.
-I'm continuing the Ouzoud day in the same autumn look, with a glass of mint tea on a terrace overlooking the falls ☕✨
-How do you like this warm autumn atmosphere, girls? 😊
+        en: `Warm Ouzoud evening from the Ouzoud Waterfalls in Azilal province, where you'll find old traditional water mills nearby 🌅💦
+After a lovely, enjoyable tour among the mountains and waterfalls... there's nothing better than a quiet break with a properly brewed Moroccan mint tea in front of this soul-refreshing view! ☕🍂
+Ouzoud's light chill with the warmth of the tea and the Moroccan seating... an indescribable feeling 😍✨
+How do you spend your rest breaks on trips, girls?
 The challenge and the vote are in the comments 👀☝️`,
 
-        fr: `Soirée dorée et chaleureuse depuis les cascades d’Ouzoud, dans la province d’Azilal 🌅💦🍂
-Près des chutes se trouvent d’anciens moulins à eau traditionnels qui servaient à moudre les céréales et les olives, et le coucher de soleil donne aux roches rouges une couleur dorée magique.
-Je poursuis la journée à Ouzoud avec le même look automnal, un verre de thé à la menthe sur une terrasse face aux cascades ☕✨
-Que pensez-vous de cette ambiance d’automne chaleureuse, les filles ? 😊
+        fr: `Soirée chaleureuse à Ouzoud depuis les cascades d’Ouzoud, dans la province d’Azilal, où l’on trouve de vieux moulins à eau traditionnels 🌅💦
+Après une belle et agréable balade entre montagnes et cascades... rien de mieux qu’une pause tranquille avec un thé marocain à la menthe préparé dans les règles de l’art, face à cette vue qui ressource l’âme ! ☕🍂
+La fraîcheur légère d’Ouzoud, la chaleur du thé et le salon marocain... une sensation indescriptible 😍✨
+Comment passez-vous vos pauses pendant vos voyages, les filles ?
 Le défi et le vote sont dans les commentaires 👀☝️`,
 
-        es: `Tarde dorada y cálida desde las cascadas de Ouzoud, en la provincia de Azilal 🌅💦🍂
-Junto a las cascadas hay antiguos molinos de agua tradicionales que se usaban para moler cereales y aceitunas, y el atardecer da a las rocas rojas un mágico color dorado.
-Sigo el día en Ouzoud con el mismo look otoñal, con un vaso de té con menta en una terraza frente a las cascadas ☕✨
-¿Qué les parece este cálido ambiente otoñal, chicas? 😊
+        es: `Cálida tarde en Ouzoud desde las cascadas de Ouzoud, en la provincia de Azilal, donde hay antiguos molinos de agua tradicionales 🌅💦
+Después de un recorrido precioso y divertido entre montañas y cascadas... no hay nada mejor que una pausa tranquila con un auténtico té marroquí con menta, preparado como Dios manda, frente a esta vista que reconforta el alma. ☕🍂
+El fresquito ligero de Ouzoud con el calor del té y el rincón marroquí... una sensación indescriptible 😍✨
+¿Cómo pasan sus ratos de descanso en los viajes, chicas?
 El reto y la votación están en los comentarios 👀☝️`,
 
-        ru: `Золотой тёплый вечер у водопадов Узуд в провинции Азилаль 🌅💦🍂
-Рядом с водопадами стоят старинные традиционные водяные мельницы, на которых когда-то мололи зерно и оливки, а закат придаёт красным скалам волшебный золотой цвет.
-Я продолжаю день в Узуде в том же осеннем образе, со стаканом мятного чая на террасе с видом на водопады ☕✨
-Как вам эта тёплая осенняя атмосфера, девушки? 😊
+        ru: `Тёплый вечер в Узуде с водопадов Узуд в провинции Азилаль, рядом с которыми стоят старинные традиционные водяные мельницы 🌅💦
+После прекрасной и приятной прогулки среди гор и водопадов... нет ничего лучше спокойного отдыха с настоящим марокканским мятным чаем, заваренным как положено, на фоне этого вида, возвращающего душе силы! ☕🍂
+Лёгкая прохлада Узуда, тепло чая и марокканская посиделка... ощущение, которое не описать 😍✨
+Как вы проводите время отдыха в путешествиях, девушки?
 Вызов и голосование — в комментариях 👀☝️`
     },
 
     story: {
-        ar: 'لحظات الهدوء مع كاس أتاي وسط الطبيعة هي أجمل هدية تعطيها لنفسك... خدي نفس عميق وارتاحي! ☕🍂✨',
-        en: 'Quiet moments with a glass of tea in the middle of nature are the most beautiful gift you can give yourself... take a deep breath and relax! ☕🍂✨',
-        fr: 'Les moments de calme avec un verre de thé au cœur de la nature sont le plus beau cadeau que tu puisses t’offrir... respire profondément et détends-toi ! ☕🍂✨',
-        es: 'Los momentos de calma con un vaso de té en plena naturaleza son el mejor regalo que puedes hacerte... ¡respira hondo y relájate! ☕🍂✨',
-        ru: 'Тихие минуты со стаканом чая среди природы — самый красивый подарок, который ты можешь сделать себе... сделай глубокий вдох и расслабься! ☕🍂✨'
+        ar: 'راحة البال هي فاش كتعرفي تستمتعي باللحظة البسيطة... كاس أتاي دافي، منظر طبيعي كيريح العين، وراحة بال ما كتتشراش بالفلوس! ☕🍂✨',
+        en: 'Peace of mind is knowing how to enjoy the simple moment... a warm glass of tea, a natural view that rests the eyes, and a peace of mind that money can’t buy! ☕🍂✨',
+        fr: 'La tranquillité d’esprit, c’est savoir savourer l’instant simple... un verre de thé chaud, un paysage qui repose les yeux et une paix intérieure qui ne s’achète pas ! ☕🍂✨',
+        es: 'La paz mental es saber disfrutar del momento sencillo... ¡un vaso de té caliente, un paisaje que descansa la vista y una paz que el dinero no puede comprar! ☕🍂✨',
+        ru: 'Душевный покой — это умение наслаждаться простым мгновением... стакан горячего чая, пейзаж, который отдыхает взгляд, и покой, который не купишь за деньги! ☕🍂✨'
     },
 
     challenge: {
-        ar: 'البنات، أتاي ديالكم كيتزاد فيه شنو؟ النعناع، الشيبة، ولا اللويزة؟ شاركوني نكهتكم المفضلة فـ تعليق! ☕🍃👇',
-        en: 'Girls, what goes into your tea? Mint, wormwood (sheeba), or lemon verbena (louiza)? Share your favorite flavor in a comment! ☕🍃👇',
-        fr: 'Les filles, qu’y a-t-il dans votre thé ? Menthe, absinthe (chiba) ou verveine (louiza) ? Partagez votre saveur préférée en commentaire ! ☕🍃👇',
-        es: 'Chicas, ¿qué le echan a su té? ¿Menta, ajenjo (chiba) o hierbaluisa (luisa)? ¡Compartan su sabor favorito en un comentario! ☕🍃👇',
-        ru: 'Девушки, что вы добавляете в свой чай? Мяту, полынь (шиба) или вербену (луиза)? Поделитесь любимым вкусом в комментарии! ☕🍃👇'
+        ar: 'السؤال الأهم فـ كل رحلة مغربية 🇲🇦: شكون اللي ضروري عندها كاس أتاي منعنع فـ الطريق وفـ الاستراحة؟ ولا كاينين بيناتكم عاشقات القهوة حتى وسط الطبيعة؟ وريوني عاشقات أتاي فـ التعليقات! ☕🍃👇',
+        en: 'The most important question on every Moroccan trip 🇲🇦: who absolutely needs a glass of mint tea on the road and during breaks? Or are there coffee lovers among us, even in the middle of nature? Show me the tea lovers in the comments! ☕🍃👇',
+        fr: 'La question la plus importante de tout voyage marocain 🇲🇦 : qui ne peut pas se passer d’un verre de thé à la menthe sur la route et pendant les pauses ? Ou y a-t-il des amatrices de café parmi vous, même en pleine nature ? Montrez-moi les amatrices de thé en commentaire ! ☕🍃👇',
+        es: 'La pregunta más importante de todo viaje marroquí 🇲🇦: ¿quién necesita sí o sí un vaso de té con menta en el camino y en los descansos? ¿O hay amantes del café entre ustedes, incluso en plena naturaleza? ¡Muéstrenme a las fans del té en los comentarios! ☕🍃👇',
+        ru: 'Главный вопрос любого марокканского путешествия 🇲🇦: кому обязательно нужен стакан мятного чая в дороге и на привалах? Или среди вас есть любительницы кофе даже посреди природы? Покажите мне любительниц чая в комментариях! ☕🍃👇'
     },
 
     description: 'أزيلال، شلالات أوزود (Ouzoud Waterfalls) فالأطلس، وقت الغروب الذهبي (ضو دافئ ذهبي). المكان: Robaty جالسة فتراس مقهى خشبي مطل على الشلالات؛ طاولة خشبية دائرية قديمة عليها صينية فضية منقوشة فيها براد أتاي مغربي فضي/ذهبي مزخرف وكاس أتاي بالنعناع بنقش ذهبي وقصعة صغيرة خزفية زرقاء وبيضاء فيها مكسرات؛ كنبات ووسادات مغربية بنقوش زرابي حمراء وبرتقالية وكريمية؛ فوانيس نحاسية مزخرفة ومضاءة (واحد كبير فالجهة اليسرى وآخر فالجهة اليمنى على السياج الخشبي)، عمود خشبي وشجرة بأوراق خريفية صفراء وبرتقالية فوق الراس؛ وفالخلف الشلالات متدرجة على عدة طبقات والصخور الحمراء/البرتقالية والخضرة وحوض الماء الأخضر، وبنايات صغيرة فالأعلى على اليمين. Robaty جالسة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة قرب الصدر وكتمسك كاس أتاي بالنعناع، ويدها الميكانيكية اليسرى (الفضية بأساور) مستقرة فوق الطاولة. اللباس نفسو ديال الصباح (نفس نهار أوزود): جاكيط بومبر (Bomber) مبطن بالأخضر الزيتوني بسحاب وجيب بسحاب على الكم، بطرز ذهبي أمازيغي هندسي (نجوم ومعينات) على حافة السحاب والياقة والأساور والأكتاف، فوق كنزة صوفية كريمية/عاجية بياقة عالية (Turtleneck)، وجينز أزرق (ظاهر عند الخصر). أقراط ذهبية دائرية (Hoops) وأساور ذهبية متراكمة على المعصمين، ورقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) ظاهرة فوق ياقة الكنزة، بلا قلادة ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وشعر طويل مموج بني بلمسات نحاسية، نصفو مرفوع وملموم من فوق (نص ذيل حصان) ونصفو منسدل على الكتفين مع فرق فالوسط.',
