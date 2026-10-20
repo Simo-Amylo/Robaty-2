@@ -1883,32 +1883,27 @@ RobatyMoments.add({
     },
 
     caption: {
-        ar: `مساء أوزود الدافي من شلالات أوزود (Ouzoud Waterfalls) فـ إقليم أزيلال، اللي حداها كاينين طواحين مائية تقليدية قديمة 🌅💦
-بعد جولة زوينة وممتعة بين الجبال والشلالات.. ما كاين أحسن من جلسة هادئة مع براد أتاي مغربي منعنع ومشحر على حقو وطريقو قدام هاد المنظر اللي كيرد الروح! ☕🍂
+        ar: `بعد جولة زوينة وممتعة بين جبال وشلالات أوزود.. ما كاين ما أحسن من جلسة هادئة مع براد أتاي مغربي منعنع ومشحر على حقو وطريقو قدام هاد المنظر اللي كيرد الروح! ☕🍂
 البرد الخفيف ديال أوزود مع دفء الأتاي والجلسة المغربية.. إحساس ما كيتوصفش 😍✨
 كيفاش كتدوزوا أوقات الاستراحة ديالكم فـ الرحلات البنات؟
 التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
 
-        en: `Warm Ouzoud evening from the Ouzoud Waterfalls in Azilal province, where you'll find old traditional water mills nearby 🌅💦
-After a lovely, enjoyable tour among the mountains and waterfalls... there's nothing better than a quiet break with a properly brewed Moroccan mint tea in front of this soul-refreshing view! ☕🍂
+        en: `After a lovely, enjoyable tour among the mountains and waterfalls of Ouzoud... there's nothing better than a quiet break with a properly brewed Moroccan mint tea in front of this soul-refreshing view! ☕🍂
 Ouzoud's light chill with the warmth of the tea and the Moroccan seating... an indescribable feeling 😍✨
 How do you spend your rest breaks on trips, girls?
 The challenge and the vote are in the comments 👀☝️`,
 
-        fr: `Soirée chaleureuse à Ouzoud depuis les cascades d’Ouzoud, dans la province d’Azilal, où l’on trouve de vieux moulins à eau traditionnels 🌅💦
-Après une belle et agréable balade entre montagnes et cascades... rien de mieux qu’une pause tranquille avec un thé marocain à la menthe préparé dans les règles de l’art, face à cette vue qui ressource l’âme ! ☕🍂
+        fr: `Après une belle et agréable balade entre les montagnes et les cascades d’Ouzoud... rien de mieux qu’une pause tranquille avec un thé marocain à la menthe préparé dans les règles de l’art, face à cette vue qui ressource l’âme ! ☕🍂
 La fraîcheur légère d’Ouzoud, la chaleur du thé et le salon marocain... une sensation indescriptible 😍✨
 Comment passez-vous vos pauses pendant vos voyages, les filles ?
 Le défi et le vote sont dans les commentaires 👀☝️`,
 
-        es: `Cálida tarde en Ouzoud desde las cascadas de Ouzoud, en la provincia de Azilal, donde hay antiguos molinos de agua tradicionales 🌅💦
-Después de un recorrido precioso y divertido entre montañas y cascadas... no hay nada mejor que una pausa tranquila con un auténtico té marroquí con menta, preparado como Dios manda, frente a esta vista que reconforta el alma. ☕🍂
+        es: `Después de un recorrido precioso y divertido entre las montañas y las cascadas de Ouzoud... no hay nada mejor que una pausa tranquila con un auténtico té marroquí con menta, preparado como Dios manda, frente a esta vista que reconforta el alma. ☕🍂
 El fresquito ligero de Ouzoud con el calor del té y el rincón marroquí... una sensación indescriptible 😍✨
 ¿Cómo pasan sus ratos de descanso en los viajes, chicas?
 El reto y la votación están en los comentarios 👀☝️`,
 
-        ru: `Тёплый вечер в Узуде с водопадов Узуд в провинции Азилаль, рядом с которыми стоят старинные традиционные водяные мельницы 🌅💦
-После прекрасной и приятной прогулки среди гор и водопадов... нет ничего лучше спокойного отдыха с настоящим марокканским мятным чаем, заваренным как положено, на фоне этого вида, возвращающего душе силы! ☕🍂
+        ru: `После прекрасной и приятной прогулки среди гор и водопадов Узуда... нет ничего лучше спокойного отдыха с настоящим марокканским мятным чаем, заваренным как положено, на фоне этого вида, возвращающего душе силы! ☕🍂
 Лёгкая прохлада Узуда, тепло чая и марокканская посиделка... ощущение, которое не описать 😍✨
 Как вы проводите время отдыха в путешествиях, девушки?
 Вызов и голосование — в комментариях 👀☝️`
@@ -1931,6 +1926,72 @@ El reto y la votación están en los comentarios 👀☝️`,
     },
 
     description: 'أزيلال، شلالات أوزود (Ouzoud Waterfalls) فالأطلس، وقت الغروب الذهبي (ضو دافئ ذهبي). المكان: Robaty جالسة فتراس مقهى خشبي مطل على الشلالات؛ طاولة خشبية دائرية قديمة عليها صينية فضية منقوشة فيها براد أتاي مغربي فضي/ذهبي مزخرف وكاس أتاي بالنعناع بنقش ذهبي وقصعة صغيرة خزفية زرقاء وبيضاء فيها مكسرات؛ كنبات ووسادات مغربية بنقوش زرابي حمراء وبرتقالية وكريمية؛ فوانيس نحاسية مزخرفة ومضاءة (واحد كبير فالجهة اليسرى وآخر فالجهة اليمنى على السياج الخشبي)، عمود خشبي وشجرة بأوراق خريفية صفراء وبرتقالية فوق الراس؛ وفالخلف الشلالات متدرجة على عدة طبقات والصخور الحمراء/البرتقالية والخضرة وحوض الماء الأخضر، وبنايات صغيرة فالأعلى على اليمين. Robaty جالسة وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) مرفوعة قرب الصدر وكتمسك كاس أتاي بالنعناع، ويدها الميكانيكية اليسرى (الفضية بأساور) مستقرة فوق الطاولة. اللباس نفسو ديال الصباح (نفس نهار أوزود): جاكيط بومبر (Bomber) مبطن بالأخضر الزيتوني بسحاب وجيب بسحاب على الكم، بطرز ذهبي أمازيغي هندسي (نجوم ومعينات) على حافة السحاب والياقة والأساور والأكتاف، فوق كنزة صوفية كريمية/عاجية بياقة عالية (Turtleneck)، وجينز أزرق (ظاهر عند الخصر). أقراط ذهبية دائرية (Hoops) وأساور ذهبية متراكمة على المعصمين، ورقبتها الميكانيكية الفضية (حلقات معدنية بخطوط ذهبية) ظاهرة فوق ياقة الكنزة، بلا قلادة ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وشعر طويل مموج بني بلمسات نحاسية، نصفو مرفوع وملموم من فوق (نص ذيل حصان) ونصفو منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 13,
+    slot: 'am',
+    image: 'day13-safi1-morning.jpg',
+
+    place: {
+        ar: 'آسفي — ميناء الصيد وقصر البحر',
+        en: 'Safi — Fishing Port & Qasr al-Bahr',
+        fr: 'Safi — Port de pêche et Qasr al-Bahr',
+        es: 'Safi — Puerto pesquero y Qasr al-Bahr',
+        ru: 'Сафи — рыбный порт и Каср аль-Бахр'
+    },
+
+    caption: {
+        ar: `صباح البحر وروح الصيادين من ميناء آسفي ⚓🌊💙
+وراي قصر البحر الواقف فوق الصخرة قدام المحيط، اللي بناه البرتغاليون فـ القرن 16.. والمراكب الزرقاء والشباك كتحكي حكاية مدينة عاشت دايما مع البحر.
+اليوم اخترت Look أبيض وأزرق ملكي بطرز مغربي: قفطان أبيض بطرز أزرق، مع سروال أزرق واسع وحزام أزرق بإبزيم فضي، وشال بنقوش هندسية ✨
+كيف جاكم هاد التناسق بين الأبيض والأزرق الملكي فـ ميناء آسفي البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning, full of sea and fishermen's spirit, from the port of Safi ⚓🌊💙
+Behind me stands Qasr al-Bahr (the Sea Castle) on its rock facing the ocean, built by the Portuguese in the 16th century... and the blue boats and nets tell the story of a city that has always lived with the sea.
+Today I chose a white and royal-blue look with Moroccan embroidery: a white kaftan with blue embroidery, wide blue trousers and a blue belt with a silver buckle, and a shawl with geometric patterns ✨
+How do you like this white and royal-blue combination at Safi port, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour plein de mer et d’esprit de pêcheurs depuis le port de Safi ⚓🌊💙
+Derrière moi se dresse Qasr al-Bahr (le Château de la Mer) sur son rocher face à l’océan, bâti par les Portugais au XVIᵉ siècle... et les bateaux bleus et les filets racontent l’histoire d’une ville qui a toujours vécu avec la mer.
+Aujourd’hui, j’ai choisi un look blanc et bleu roi à la broderie marocaine : un kaftan blanc à la broderie bleue, un pantalon bleu large, une ceinture bleue à boucle en argent et un châle aux motifs géométriques ✨
+Que pensez-vous de cette harmonie de blanc et de bleu roi au port de Safi, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días llenos de mar y espíritu pescador desde el puerto de Safi ⚓🌊💙
+Detrás de mí se alza Qasr al-Bahr (el Castillo del Mar) sobre su roca frente al océano, construido por los portugueses en el siglo XVI... y los barcos azules y las redes cuentan la historia de una ciudad que siempre ha vivido con el mar.
+Hoy elegí un look blanco y azul real con bordado marroquí: un caftán blanco con bordado azul, un pantalón azul ancho, un cinturón azul con hebilla de plata y un chal de motivos geométricos ✨
+¿Qué les parece esta combinación de blanco y azul real en el puerto de Safi, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро, полное моря и духа рыбаков, из порта Сафи ⚓🌊💙
+Позади меня на скале над океаном возвышается Каср аль-Бахр («Морской замок»), построенный португальцами в XVI веке... а синие лодки и сети рассказывают историю города, который всегда жил рядом с морем.
+Сегодня я выбрала бело-синий образ с марокканской вышивкой: белый кафтан с синей вышивкой, широкие синие брюки, синий пояс с серебряной пряжкой и шаль с геометрическим узором ✨
+Как вам это сочетание белого и королевского синего в порту Сафи, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'قوتك بحال البحر... هادية فـ مظهرها، عميقة فـ جوهرها، وكل موجة كتحمل معاها بداية جديدة! 🌊⚓✨',
+        en: 'Your strength is like the sea... calm on the surface, deep at the core, and every wave carries a new beginning! 🌊⚓✨',
+        fr: 'Ta force est comme la mer... calme en surface, profonde en son cœur, et chaque vague porte un nouveau départ ! 🌊⚓✨',
+        es: 'Tu fuerza es como el mar... tranquila en la superficie, profunda en su esencia, ¡y cada ola trae un nuevo comienzo! 🌊⚓✨',
+        ru: 'Твоя сила как море... спокойная снаружи, глубокая внутри, и каждая волна несёт новое начало! 🌊⚓✨'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ موانئ المغرب: شكون كتعشق تاكل السردين المشوي فـ الميناء مع الخبز؟ ولا كتفضلوا الحوت المقلي؟ شاركوني طبقكم المفضل ديال الحوت فـ تعليق! 🐟🔥👇',
+        en: 'Girls, in Morocco’s ports: who loves eating grilled sardines at the harbor with bread? Or do you prefer fried fish? Share your favorite fish dish in a comment! 🐟🔥👇',
+        fr: 'Les filles, dans les ports du Maroc : qui adore manger des sardines grillées au port avec du pain ? Ou préférez-vous le poisson frit ? Partagez votre plat de poisson préféré en commentaire ! 🐟🔥👇',
+        es: 'Chicas, en los puertos de Marruecos: ¿a quién le encanta comer sardinas a la parrilla en el puerto con pan? ¿O prefieren el pescado frito? ¡Compartan su plato de pescado favorito en un comentario! 🐟🔥👇',
+        ru: 'Девушки, в портах Марокко: кто обожает есть жареные на гриле сардины прямо в порту с хлебом? Или вы предпочитаете жареную рыбу? Поделитесь любимым рыбным блюдом в комментарии! 🐟🔥👇'
+    },
+
+    description: 'آسفي، ميناء الصيد وقصر البحر (Qasr al-Bahr) وقت الصباح المشمس: سماء زرقاء صافية ونوارس كتطير (ثلاثة)، قصر البحر (حصن حجري بلون ذهبي بأبراج وشرفات مسننة) فوق صخرة ساحلية على اليمين وعليه العلم المغربي الأحمر بنجمة خضراء، بنايات بيضاء وزرقاء وبيوت المدينة مع نخلة فالجهة اليسرى، ميناء فيه مراكب صيد خشبية زرقاء وحمراء راسية على الما الأزرق. فالمقدمة: كومة شباك صيد خضراء بحبال وعوامات (فلوتات) برتقالية وبيضاء وزرقاء فالجهة اليسرى، صندوق خشبي أزرق مصبوغ عليه رسمة حوت (سمكة) فالركن السفلي الأيسر، وقفة منسوجة بحزام جلد بنية ونقوش زرقاء فالجهة اليمنى، وسور حجري ساحلي بلون رملي. Robaty جالسة على السور الحجري للميناء وكتبتسم ابتسامة عريضة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور ذهبية) مرتاحة على الحجر، ويدها الميكانيكية اليسرى (الفضية بتفاصيل برتقالية/مرجانية وسوار فضي بحجر مرجاني) مرتاحة على ركبتها. اللباس: قفطان/معطف طويل مفتوح بلون أبيض كريمي بنسيج بارز بطرز هندسي أزرق ملكي على الحواف والأكمام والحاشية، فوق قميص أبيض بياقة مندرين وأزرار، مع حزام عريض أزرق ملكي بصفيحة/إبزيم فضي مزخرف بحجر مرجاني وتدلّيات فضية بشرّابات، وسروال واسع بالأزرق الملكي (كوبالت) من الكتان بحاشية مطرزة. شال/فوطة بنقوش هندسية بالأزرق الملكي والأبيض بشرّابات كتنزل على الكتفين والجنب. الحلي: أقراط فضية طويلة متدلية بتدلّيات وجلاجل صغيرة (طراز تقليدي مغربي/أمازيغي)، سوار فضي بحجر مرجاني برتقالي فمعصمها الأيسر، ورقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة فوق ياقة القميص. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني محمر بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
 
     stats: { likes: 0 }
 });
