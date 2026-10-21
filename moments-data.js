@@ -1937,6 +1937,7 @@ RobatyMoments.add({
     day: 13,
     slot: 'am',
     image: 'day13-safi1-morning.jpg',
+    focus: '50% 27%',   // نزول الصورة 5% من ارتفاع الشاشة
 
     place: {
         ar: 'آسفي — ميناء الصيد وقصر البحر',
@@ -2003,6 +2004,7 @@ RobatyMoments.add({
     day: 13,
     slot: 'pm',
     image: 'day13-safi2-evening.jpg',
+    focus: '50% 27%',   // نزول الصورة 5% من ارتفاع الشاشة
 
     place: {
         ar: 'آسفي — سوق الفخار وقصر البحر',
