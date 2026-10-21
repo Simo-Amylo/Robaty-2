@@ -22,7 +22,8 @@ publishedPosts.forEach(post => {
         text: RM.t(post.story, storyLang),
         kicker: post.kicker,           // اختياري: نص خاص بهاد اليوم (سطرين بـ \n) ولا false لإخفاء العبارة
         kickerEmoji: post.kickerEmoji, // اختياري
-        kickerSide: post.kickerSide    // اختياري: 'right' (افتراضي) | 'left' | 'center'
+        kickerSide: post.kickerSide,   // اختياري: 'right' (افتراضي) | 'left' | 'center'
+        focus: post.focus              // اختياري: 'top' | 'center' | 'bottom' | '50% 15%' (باش الراس ما يتقطعش)
     };
 });
 
@@ -439,6 +440,24 @@ function refreshProfileRing() {
 
 }
 
+/* تحكم فتموضع الصورة فالـ Story (باش الراس ما يتقطعش)
+   focus: 'top' | 'center' | 'bottom' | '50% 15%'  (أفقي عمودي)
+   بلا focus: كيبقى الحال بحال قبل (وسط) */
+
+function applyStoryFocus(focus) {
+
+    if (!storyImageEl) return;
+
+    var map = { top: '50% 0%', center: '50% 50%', bottom: '50% 100%' };
+    var pos = focus ? (map[focus] || String(focus)) : '';
+
+    storyImageEl.style.objectPosition = pos;
+    /* التقريب (scale) كيبدا من نفس النقطة، وإلا غادي يقطع الراس من فوق */
+    storyImageEl.style.transformOrigin = pos;
+
+}
+
+
 /* فتح Story معينة بالـ id ديالها */
 
 function openStory(storyId) {
@@ -458,6 +477,7 @@ function openStory(storyId) {
     }
 
     storyImageEl.src = story.image;
+    applyStoryFocus(story.focus);
     storyTimeEl.textContent = story.place;
     storyTextEl.textContent = story.text;
 
