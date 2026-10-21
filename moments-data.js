@@ -2131,3 +2131,70 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 14,
+    slot: 'pm',
+    image: 'day14-imlil2-evening.jpg',
+    focus: '25% 0%',
+
+    place: {
+        ar: 'إمليل — الأطلس الكبير',
+        en: 'Imlil — High Atlas',
+        fr: 'Imlil — Haut Atlas',
+        es: 'Imlil — Alto Atlas',
+        ru: 'Имлиль — Высокий Атлас'
+    },
+
+    caption: {
+        ar: `مساء الهدوء والدفء من أجمل شرفات قرية "إمليل" الشامخة فـ قلب الأطلس الكبير! 🏔️🌅
+مع نزول نسيم المساء البارد، ما كاينش ما أحسن من ريحة الطاجين الأمازيغي الأصيل بالدجاج البلدي والخضروات الجبلية الطازجة، كيطبخ على مهلو ويملأ الجو بالدفء والبنّة المغربية التقليدية 🍲✨
+الطاجين سميتو من الإناء الطيني المخروطي اللي كيتطبخ فيه، والغطاء ديالو كيرجع البخار للأكلة ويخليها طرية 🏺
+جلسة هادئة، هواء نقي، وأصالة ما تملّش منها.
+كيف جاكم الجو المسائي فـ إمليل البنات؟ شكون بغات تدوق معانا هاد الطاجين الساخن وسط الجبال؟ شاركوني رأيكم فـ التعليقات 👇💛`,
+
+        en: `Good evening, full of calm and warmth, from one of the loveliest terraces of the proud village of “Imlil”, in the heart of the High Atlas! 🏔️🌅
+As the cool evening breeze settles in, nothing beats the smell of an authentic Amazigh tagine with free-range chicken and fresh mountain vegetables, simmering slowly and filling the air with warmth and traditional Moroccan flavor 🍲✨
+The tagine is named after the conical clay pot it cooks in, and its lid sends the steam back down to keep the food tender 🏺
+A quiet moment, fresh air, and an authenticity you never get tired of.
+How do you like the evening atmosphere in Imlil, girls? Who wants to taste this hot tagine with us in the middle of the mountains? Share your thoughts in the comments 👇💛`,
+
+        fr: `Bonsoir, plein de calme et de chaleur, depuis l’une des plus belles terrasses du village d’« Imlil », au cœur du Haut Atlas ! 🏔️🌅
+Quand la fraîcheur du soir descend, rien ne vaut l’odeur d’un authentique tajine amazigh au poulet fermier et aux légumes frais de la montagne, qui mijote doucement et remplit l’air de chaleur et de saveurs marocaines traditionnelles 🍲✨
+Le tajine tire son nom du plat en terre cuite conique dans lequel il cuit, et son couvercle ramène la vapeur vers les aliments pour les garder tendres 🏺
+Un moment tranquille, un air pur et une authenticité dont on ne se lasse jamais.
+Que pensez-vous de l’ambiance du soir à Imlil, les filles ? Qui veut goûter ce tajine bien chaud avec nous au milieu des montagnes ? Partagez votre avis en commentaire 👇💛`,
+
+        es: `Buenas noches, llenas de calma y calidez, desde una de las terrazas más bonitas del pueblo de «Imlil», en el corazón del Alto Atlas 🏔️🌅
+Cuando cae la brisa fresca de la tarde, no hay nada mejor que el aroma de un auténtico tajín amazigh con pollo de corral y verduras frescas de montaña, que se cocina a fuego lento y llena el ambiente de calidez y sabor marroquí tradicional 🍲✨
+El tajín debe su nombre a la olla de barro cónica en la que se cocina, y su tapa devuelve el vapor a la comida para mantenerla tierna 🏺
+Un momento tranquilo, aire puro y una autenticidad de la que nunca te cansas.
+¿Qué les parece el ambiente de la tarde en Imlil, chicas? ¿Quién quiere probar este tajín caliente con nosotras en medio de las montañas? Cuéntenme su opinión en los comentarios 👇💛`,
+
+        ru: `Добрый вечер, полный спокойствия и тепла, с одной из самых красивых террас гордой деревни «Имлиль» в сердце Высокого Атласа! 🏔️🌅
+Когда спускается прохладный вечерний ветерок, нет ничего лучше аромата настоящего амазигского тажина с домашней курицей и свежими горными овощами: он томится на медленном огне и наполняет воздух теплом и традиционным марокканским вкусом 🍲✨
+Тажин получил своё имя от конического глиняного горшка, в котором готовится, а его крышка возвращает пар обратно в блюдо, и оно остаётся нежным 🏺
+Тихий вечер, чистый воздух и подлинность, которая никогда не надоедает.
+Как вам вечерняя атмосфера в Имлиле, девушки? Кто хочет попробовать с нами этот горячий тажин среди гор? Поделитесь мнением в комментариях 👇💛`
+    },
+
+    story: {
+        ar: 'السعادة تُطبَخ بحب 👩‍🍳💕\nو الحب يُقدَّم على طبق 🍽️❤️',
+        en: 'Happiness is cooked with love 👩‍🍳💕\nand love is served on a plate 🍽️❤️',
+        fr: 'Le bonheur se cuisine avec amour 👩‍🍳💕\net l’amour se sert dans une assiette 🍽️❤️',
+        es: 'La felicidad se cocina con amor 👩‍🍳💕\ny el amor se sirve en un plato 🍽️❤️',
+        ru: 'Счастье готовится с любовью 👩‍🍳💕\nа любовь подаётся на тарелке 🍽️❤️'
+    },
+
+    challenge: {
+        ar: 'البنات، فـ الأجواء الباردة ديال الجبال 🏔️❄️: شكون كتعجبها الطاجين المغربي بالخضروات الجبلية والدجاج البلدي؟ ولا كتفضلوا أطباق أخرى دافئة؟ وريوني آراءكم فـ التعليقات! 🍲👇✨',
+        en: 'Girls, in the cold mountain air 🏔️❄️: who loves Moroccan tagine with mountain vegetables and free-range chicken? Or do you prefer other warm dishes? Tell me what you think in the comments! 🍲👇✨',
+        fr: 'Les filles, dans l’air frais de la montagne 🏔️❄️ : qui aime le tajine marocain aux légumes de montagne et au poulet fermier ? Ou préférez-vous d’autres plats chauds ? Dites-moi ce que vous en pensez en commentaire ! 🍲👇✨',
+        es: 'Chicas, con el aire frío de la montaña 🏔️❄️: ¿a quién le gusta el tajín marroquí con verduras de montaña y pollo de corral? ¿O prefieren otros platos calientes? ¡Cuéntenme su opinión en los comentarios! 🍲👇✨',
+        ru: 'Девушки, в прохладном горном воздухе 🏔️❄️: кто любит марокканский тажин с горными овощами и домашней курицей? Или вы предпочитаете другие тёплые блюда? Расскажите, что думаете, в комментариях! 🍲👇✨'
+    },
+
+    description: 'إمليل، شرفة تقليدية خشبية فقرية جبلية فالأطلس الكبير وقت الغسق/الغروب: قمم جبال مغطاة بالثلج فالخلفية، شمس كتغرب فالأفق على اليمين وسماء برتقالية-وردية، بيوت طينية متراصة فالسفح (يسار ويمين) بأضواء دافئة مضاءة، ومنارة مسجد مضاءة فالجهة اليمنى. حاجز خشبي من جذوع الأشجار، بنك ووسادات بزرابي أمازيغية حمراء بنقوش هندسية، فانوس معدني مزخرف بشمعة مضاءة فالجهة اليسرى، شمعدان صغير ذهبي مخرّم، أصيص فخاري فيه صبار صغير وجذع شجرة فالزاوية اليسرى. فالمقدمة طاولة خشبية مستديرة تقليدية بمفرش زربية، عليها طاجين مغربي فخاري مزخرف بغطاء مخروطي وبخار خفيف كيتصاعد منو (جزر وخضر صفراء بحال البطاطس/القرع وزيتون أخضر وأعشاب، مع قطع دجاج بلدي)، براد أتاي فضي مزخرف، ثلاثة كؤوس زجاجية مزخرفة فيها أتاي بالنعناع، وطبق صغير فيه مكسرات. Robaty جالسة بجلسة مريحة ودافئة وكتبتسم ابتسامة ناعمة وراسها مايل، يدها الميكانيكية اليمنى (الفضية) مرفوعة ومستقرة تحت ذقنها (الساعد المعدني ظاهر مع سوار ذهبي رقيق عند المعصم)، ويدها الميكانيكية اليسرى (الفضية بسوار مزخرف بحجر برتقالي/كهرماني عند المعصم) مرتاحة ونازلة قرب ركبتها. لابسة كارديغان محبوك طويل بلون كريمي دافئ (صوف بملمس مجعد) بطرز مغربي هندسي ملون (أحمر، أزرق مخضر، ذهبي) على حواف الفتحة الأمامية وعلى الأكمام الواسعة، فوق توب أبيض/كريمي بسيط بياقة دائرية، وبنطلون جينز كحلي داكن واسع بخصر عالي، وحذاء شتوي جبلي بني من الجلد بخيوط وياقة صوفية. أقراط ذهبية متدلية بأحجار حمراء، ورقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة، وما كاينة قلادة هاد المرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل بشكل طبيعي على الكتفين.',
+
+    stats: { likes: 0 }
+});

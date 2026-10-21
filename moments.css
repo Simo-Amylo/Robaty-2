@@ -1260,6 +1260,8 @@ html.dl-btn-calm .app-download-icon {
 }
 
 .story-text {
+    white-space: pre-line;   /* باش سطرين د النص فالـ Story يبقاو سطرين */
+
     color: #fff;
 
     font-size: 21px;
