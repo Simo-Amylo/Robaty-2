@@ -2061,3 +2061,69 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 14,
+    slot: 'am',
+    image: 'day14-imlil1-morning.jpg',
+
+    place: {
+        ar: 'إمليل — الأطلس الكبير',
+        en: 'Imlil — High Atlas',
+        fr: 'Imlil — Haut Atlas',
+        es: 'Imlil — Alto Atlas',
+        ru: 'Имлиль — Высокий Атлас'
+    },
+
+    caption: {
+        ar: `صباح الهدوء والطبيعة الساحرة من أحضان قرية "إمليل" الشامخة فـ قلب جبال الأطلس الكبير! 🏔️🌿
+من وراي قمم الأطلس المغطاة بالثلج، وإمليل هي نقطة الانطلاق ديال تسلق جبل توبقال، أعلى قمة فـ شمال إفريقيا (4167 متر).. وما كاين ما أحسن من هاد الأجواء: الهواء النقي، بساتين المدرجات الخضراء، وسحر الدواوير الجبلية التقليدية اللي كيرجع للروح البساطة والدفء.
+اخترت لهاد الصباح لوك "Mountain Girl" كاجوال ومريح: هودي عنابي بطرز ذهبي أمازيغي، وجينز وحذاء مشي، مع سلة الخضروات والفواكه الطازجة مباشرة من الأرض المعطاءة 🍎🥕
+كيف جاكم هاد الجو القروي الهادئ البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning of calm and enchanting nature from the heart of the proud village of "Imlil", in the High Atlas Mountains! 🏔️🌿
+Behind me rise the snow-capped peaks of the Atlas, and Imlil is the starting point for climbing Toubkal, the highest peak in North Africa (4,167 meters)... and there's nothing better than this atmosphere: the fresh air, the green terraced orchards, and the charm of the traditional mountain hamlets that bring simplicity and warmth back to the soul.
+Today I chose a casual, comfortable "Mountain Girl" look: a burgundy hoodie with gold Amazigh embroidery, jeans and hiking boots, with a basket of vegetables and fruit fresh from the generous earth 🍎🥕
+How do you like this calm village atmosphere, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour de calme et de nature enchanteresse depuis le cœur du village d’« Imlil », au pied des sommets du Haut Atlas ! 🏔️🌿
+Derrière moi se dressent les sommets enneigés de l’Atlas, et Imlil est le point de départ pour gravir le Toubkal, le plus haut sommet d’Afrique du Nord (4 167 mètres)... et rien ne vaut cette ambiance : l’air pur, les vergers en terrasses verdoyants et le charme des hameaux de montagne traditionnels qui rendent à l’âme simplicité et chaleur.
+Aujourd’hui, j’ai choisi un look « Mountain Girl » décontracté et confortable : un hoodie bordeaux à la broderie dorée amazighe, un jean et des chaussures de randonnée, avec un panier de légumes et de fruits frais de la terre généreuse 🍎🥕
+Que pensez-vous de cette ambiance villageoise paisible, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días de calma y naturaleza encantadora desde el corazón del pueblo de «Imlil», en las montañas del Alto Atlas 🏔️🌿
+Detrás de mí se alzan las cumbres nevadas del Atlas, e Imlil es el punto de partida para subir al Toubkal, la cima más alta del norte de África (4167 metros)... y no hay nada mejor que este ambiente: el aire puro, los huertos verdes en terrazas y el encanto de las aldeas de montaña tradicionales que devuelven al alma sencillez y calidez.
+Hoy elegí un look «Mountain Girl» casual y cómodo: una sudadera con capucha granate con bordado dorado amazigh, vaqueros y botas de senderismo, con una cesta de verduras y frutas frescas de la tierra generosa 🍎🥕
+¿Qué les parece este tranquilo ambiente de pueblo, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро спокойствия и волшебной природы из самого сердца деревни «Имлиль» в горах Высокого Атласа! 🏔️🌿
+Позади меня возвышаются заснеженные вершины Атласа, а Имлиль — отправная точка для восхождения на Тубкаль, самую высокую вершину Северной Африки (4167 метров)... и нет ничего лучше этой атмосферы: чистый воздух, зелёные террасные сады и очарование традиционных горных селений, возвращающих душе простоту и тепло.
+Сегодня я выбрала повседневный и удобный образ «Mountain Girl»: бордовое худи с золотой амазигской вышивкой, джинсы и туристические ботинки, а также корзину овощей и фруктов, свежих с щедрой земли 🍎🥕
+Как вам эта спокойная деревенская атмосфера, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'أجمل سعادة هي اللي كتلقاوها فـ البساطة... خدي وقتك فـ الطبيعة، تنفسي الهواء النقي، وارضي بكل لحظة كتعيشيها! 🌿🏔️✨',
+        en: 'The most beautiful happiness is found in simplicity... take time in nature, breathe the fresh air, and be content with every moment you live! 🌿🏔️✨',
+        fr: 'Le plus beau bonheur se trouve dans la simplicité... prends du temps dans la nature, respire l’air pur et savoure chaque instant que tu vis ! 🌿🏔️✨',
+        es: 'La felicidad más bella se encuentra en la sencillez... ¡tómate un tiempo en la naturaleza, respira aire puro y disfruta cada momento que vives! 🌿🏔️✨',
+        ru: 'Самое прекрасное счастье — в простоте... найди время для природы, вдохни чистый воздух и цени каждое прожитое мгновение! 🌿🏔️✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون سبق ليها زارت إمليل؟ ولا كتعشق هدوء الجبال والحياة القروية الأصيلة بعيد على صخب المدينة؟ 🏔️🌾 وريوني آراءكم وقصصكم فـ التعليقات! 🏡✨👇',
+        en: 'Girls, who has already visited Imlil? Or who loves the calm of the mountains and authentic village life far from the noise of the city? 🏔️🌾 Share your opinions and stories in the comments! 🏡✨👇',
+        fr: 'Les filles, qui a déjà visité Imlil ? Ou qui aime le calme des montagnes et la vie de village authentique, loin du bruit de la ville ? 🏔️🌾 Partagez vos avis et vos histoires en commentaire ! 🏡✨👇',
+        es: 'Chicas, ¿quién ha visitado ya Imlil? ¿O a quién le encanta la calma de las montañas y la auténtica vida de pueblo, lejos del ruido de la ciudad? 🏔️🌾 ¡Compartan sus opiniones e historias en los comentarios! 🏡✨👇',
+        ru: 'Девушки, кто уже бывал в Имлиле? Или кто любит спокойствие гор и настоящую деревенскую жизнь вдали от городского шума? 🏔️🌾 Делитесь мнениями и историями в комментариях! 🏡✨👇'
+    },
+
+    description: 'إمليل، قرية جبلية فـ قلب جبال الأطلس الكبير (إقليم الحوز)، وقت الصباح المشمس: قمم شامخة مغطاة بالثلج فالخلفية وسماء زرقاء صافية بسحب خفيفة جداً، منحدرات جبلية ومدرجات زراعية خضراء، بيوت قروية مبنية بالطين (الطوب الأحمر/اللبن) متراصة على السفح فالجهة اليسرى وفالجهة اليمنى، شجرة مزهرة بزهور وردية/بيضاء فالجهة اليسرى، أسوار حجرية قديمة (حجارة جافة) وسياجات حجر على جنبات الطريق، طريق ترابي حجري مرصوف جزئياً، وفالأفق على اليمين قرويون ودواب (بغال/حمير) محملة كتمشي على الطريق: رجل بقبعة زرقاء، رجل بجلابة بيضاء، رجل بجلابة بنية. Robaty واقفة وكتمشي بخطوة واثقة وسط الطريق وكتبتسم ابتسامة واسعة ومشرقة وراسها مايل شوية، يدها الميكانيكية اليمنى (الفضية) كتحمل سلة قش منسوجة يدوياً بحزام/مقبضين جلديين وبنقوش حمراء وخضراء فالجزء السفلي، مليانة خضر وفواكه طازجة (طماطم، برتقال/كليمنتين، خيار، جزر، فلفل أخضر) وأعشاب خضراء (معدنوس وقزبر)، ويدها الميكانيكية اليسرى (الفضية) نازلة بشكل طبيعي. الأذرع مغطاة بأكمام اللباس والمعدن ظاهر فقط فالعنق والكفين والمعصمين. اللباس (ستايل Mountain Girl): هودي/بلوزة بقبعة (غطاء راس مرمي لورا) قصيرة الأكمام بلون العنابي (البورغوني) بطرز ذهبي أمازيغي ومغربي دقيق ومعقد على الصدر والحاشية والأكمام، مع سحاب أمامي بحجر برتقالي وخيوط شد بشرّابات ذهبية، فوق قميص بيج فاتح كريمي بأكمام طويلة؛ بنطلون جينز أزرق بقصة مريحة بجيب جانبي وطيّة عند الكاحل؛ وحذاء مشي جبلي بني جلد/شمواه (Hiking boots) بخيوط. حقيبة ظهر بنية خفيفة كتبان حزامها فالكتف. ما كاينش قلادة ولا أقراط ظاهرة هاد المرة، ورقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني محمر بلمسات نحاسية منسدل بشكل طبيعي على الكتفين.',
+
+    stats: { likes: 0 }
+});
