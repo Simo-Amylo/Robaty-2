@@ -2136,7 +2136,7 @@ RobatyMoments.add({
     day: 14,
     slot: 'pm',
     image: 'day14-imlil2-evening.jpg',
-    focus: '25% 0%',
+    focus: 'top',
 
     place: {
         ar: 'إمليل — الأطلس الكبير',
