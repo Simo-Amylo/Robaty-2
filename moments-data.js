@@ -1995,3 +1995,69 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 13,
+    slot: 'pm',
+    image: 'day13-safi2-evening.jpg',
+
+    place: {
+        ar: 'آسفي — سوق الفخار وقصر البحر',
+        en: 'Safi — Pottery Market & Qasr al-Bahr',
+        fr: 'Safi — Marché de la poterie et Qasr al-Bahr',
+        es: 'Safi — Mercado de cerámica y Qasr al-Bahr',
+        ru: 'Сафи — рынок гончарных изделий и Каср аль-Бахр'
+    },
+
+    caption: {
+        ar: `مساء الفخار والألوان من آسفي.. مدينة الفخار المغربي 🏺🌅✨
+آسفي من أعرق وأشهر مدن الفخار فـ المغرب، وكل قطعة كتتصنع وكتتزين باليد بنقوش هندسية ملونة كتحكي تاريخ الحرفيين.. وقصر البحر مضوي من وراينا قدام المحيط.
+اليوم اخترت قطعة فخار مرسومة بالأزرق والبرتقالي كتعجبني بزاف، ولبست Look كاجوال بهودي كريمي بطرز أمازيغي وجينز واسع بنفس النقوش ✨
+أشنو رأيكم فـ هاد القطعة الفخارية البنات؟ نديروها ديكور فـ الدار؟ 😍
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Evening of pottery and colors from Safi... the city of Moroccan pottery 🏺🌅✨
+Safi is one of Morocco's oldest and most famous pottery cities, and every piece is made and decorated by hand with colorful geometric patterns that tell the story of the artisans... and Qasr al-Bahr glows behind us facing the ocean.
+Today I picked a hand-painted pottery piece in blue and orange that I really love, and wore a casual look: a cream hoodie with Amazigh embroidery and wide jeans with the same motifs ✨
+What do you think of this pottery piece, girls? Should I use it as home decor? 😍
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Soirée de poterie et de couleurs depuis Safi... la ville de la poterie marocaine 🏺🌅✨
+Safi est l’une des plus anciennes et des plus célèbres villes de poterie du Maroc, et chaque pièce est façonnée et décorée à la main avec des motifs géométriques colorés qui racontent l’histoire des artisans... et Qasr al-Bahr s’illumine derrière nous face à l’océan.
+Aujourd’hui, j’ai choisi une pièce de poterie peinte à la main en bleu et orange que j’adore, avec un look décontracté : un hoodie crème à la broderie amazighe et un jean large aux mêmes motifs ✨
+Que pensez-vous de cette pièce de poterie, les filles ? On en fait une déco pour la maison ? 😍
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Tarde de cerámica y colores desde Safi... la ciudad de la cerámica marroquí 🏺🌅✨
+Safi es una de las ciudades de cerámica más antiguas y famosas de Marruecos, y cada pieza se hace y se decora a mano con coloridos motivos geométricos que cuentan la historia de los artesanos... y Qasr al-Bahr brilla detrás de nosotras frente al océano.
+Hoy elegí una pieza de cerámica pintada a mano en azul y naranja que me encanta, con un look casual: una sudadera con capucha crema con bordado amazigh y unos vaqueros anchos con los mismos motivos ✨
+¿Qué les parece esta pieza de cerámica, chicas? ¿La ponemos de decoración en casa? 😍
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Вечер керамики и красок из Сафи... города марокканской керамики 🏺🌅✨
+Сафи — один из старейших и самых известных центров керамики в Марокко, и каждое изделие лепят и расписывают вручную яркими геометрическими узорами, рассказывающими историю мастеров... а Каср аль-Бахр светится позади нас на фоне океана.
+Сегодня я выбрала расписную керамику в синих и оранжевых тонах, которая мне очень нравится, и повседневный образ: кремовое худи с амазигской вышивкой и широкие джинсы с такими же узорами ✨
+Как вам это керамическое изделие, девушки? Поставим его дома как декор? 😍
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'كل قطعة مصنوعة باليد كتحكي قصة حرفي... ادعمي الحرفيين فـ كل بلاصة كتسافري ليها، وخلي دارك تعكس شخصيتك! 🏺💙✨',
+        en: 'Every handmade piece tells an artisan’s story... support artisans wherever you travel, and let your home reflect your personality! 🏺💙✨',
+        fr: 'Chaque pièce faite main raconte l’histoire d’un artisan... soutiens les artisans partout où tu voyages et fais de ta maison le reflet de ta personnalité ! 🏺💙✨',
+        es: 'Cada pieza hecha a mano cuenta la historia de un artesano... ¡apoya a los artesanos dondequiera que viajes y haz que tu casa refleje tu personalidad! 🏺💙✨',
+        ru: 'Каждое изделие ручной работы рассказывает историю мастера... поддерживай ремесленников, где бы ты ни путешествовала, и пусть твой дом отражает твою личность! 🏺💙✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون عندها فـ دارها شي قطعة فخار مغربي (طاجين، صحن، ولا مزهرية)؟ وريوني شنو هي قطعتكم المفضلة وعلاش فـ تعليق! 🏺🏠👇',
+        en: 'Girls, who has a piece of Moroccan pottery at home (a tagine, a plate, or a vase)? Show me your favorite piece and tell me why in a comment! 🏺🏠👇',
+        fr: 'Les filles, qui a chez elle une pièce de poterie marocaine (un tajine, une assiette ou un vase) ? Montrez-moi votre pièce préférée et dites-moi pourquoi en commentaire ! 🏺🏠👇',
+        es: 'Chicas, ¿quién tiene en casa alguna pieza de cerámica marroquí (un tajín, un plato o un jarrón)? ¡Muéstrenme su pieza favorita y cuéntenme por qué en un comentario! 🏺🏠👇',
+        ru: 'Девушки, у кого дома есть марокканская керамика (тажин, тарелка или ваза)? Покажите мне любимое изделие и расскажите, почему, в комментарии! 🏺🏠👇'
+    },
+
+    description: 'آسفي، سوق الفخار فممشى ساحلي قدام قصر البحر وقت الغروب وبداية الليل: سماء برتقالية وبنفسجية وسحب خفيفة، محيط هادئ فيه مراكب صغيرة زرقاء، قصر البحر (Qasr al-Bahr) حصن حجري بلون ذهبي مضاء بأضواء دافئة فوق صخرة ساحلية فالوسط/اليمين، فانوس شارع حديدي أسود قديم فالجهة اليمنى، ممشى مرصوف بالحجر ومارة كيتمشاو، وأكشاك أخرى مضاءة فالبعيد. السوق (جهة اليسار): سقيفة خشبية بفوانيس مضاءة وأطباق فخارية معلقة، وطاولات مغطاة بأقمشة مطرزة ملونة (أحمر وبنفسجي وذهبي) عليها فخار آسفي المصبوغ باليد بنقوش هندسية: أطباق كبيرة زرقاء وبيضاء، أواني بغطاء (شبه طاجين) زرقاء وبيضاء، مزهريات وأباريق خضراء وبرتقالية وزرقاء، وقصاع وأوعية متنوعة. Robaty واقفة بجانب الأكشاك وكتبتسم ابتسامة عريضة وراسها مايل، وكتحمل بين يديها مزهرية/إبريق فخاري كبير مرسوم باليد بنقوش هندسية بالأزرق والبرتقالي والأبيض (فخار آسفي): يدها الميكانيكية اليسرى (الفضية) ملفوفة على جنب المزهرية، ويدها الميكانيكية اليمنى (الفضية بأساور ذهبية متراكمة) كتسند أسفلها. اللباس (ستايل كاجوال عصري بلمسة أمازيغية): هودي كريمي بنسيج بارز وخيوط شد عند الرقبة بطرز أمازيغي هندسي (معينات حمراء وخضراء) على الصدر وشريط مطرز ملون (أحمر وأخضر وكريمي) على الأكمام، وجينز واسع بالأزرق المتوسط بنسيج بارز وبنفس المعينات المطرزة (أحمر وأزرق وأخضر) على أسفل الساق، وحزام جلد داكن بإبزيم كتعلق منو تعويذة/قلادة فضية بحجر أحمر مرجاني وشرّابات كريمية. حقيبة كروس جلد بنية بحزام على الكتف وجزء منسوج مطرز ملون (أحمر وأزرق وأخضر) بشرّابات حمراء. أقراط فضية طويلة متدلية (طراز شنديلييه) بأحجار حمراء، وأساور ذهبية متراكمة على المعصم، ورقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني محمر بلمسات نحاسية منسدل على الكتفين مع فرق فالوسط.',
+
+    stats: { likes: 0 }
+});
