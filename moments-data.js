@@ -2217,31 +2217,31 @@ RobatyMoments.add({
 
     caption: {
         ar: `صباح الأزرق والبهجة من شفشاون، اللؤلؤة الزرقاء فـ قلب جبال الريف! 💙🌸
-هاد الأزرق اللي مغطي الحيوط والدروج كيتقال بلي جا مع اللاجئين اليهود فـ الثلاثينات، وكيرمز للسما والسلام.. وكل ركن هنا كيصلح تصورو فيه 📸✨
+هاد الأزرق اللي مغطي الحيوط و الدروج كيرمز للسما و السلام.. وكل ركن هنا كيصلح تصورو فيه 📸✨
 اخترت لهاد الصباح Look بالأزرق والكريمي: جاكيت كريمي قصير بطرز أزرق ملوكي مغربي على الحواف والأكمام، مع سروال واسع بالأزرق السماوي كيتناغم مع حيوط المدينة، وحقيبة بيضاء بشرابات زرقاء 💙
 جاني خفيف ومريح لجولة بين الدروج والأزقة.. كيف جاكم التناسق البنات؟ 😊
 التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
 
         en: `Good morning of blue and joy from Chefchaouen, the Blue Pearl in the heart of the Rif Mountains! 💙🌸
-It is said that this blue covering the walls and steps came with Jewish refugees in the 1930s, and that it stands for the sky and for peace... and every corner here is worth a photo 📸✨
+This blue covering the walls and steps stands for the sky and for peace... and every corner here is worth a photo 📸✨
 For this morning I chose a blue-and-cream look: a short cream jacket with royal-blue Moroccan embroidery on the edges and sleeves, wide sky-blue trousers that blend with the walls of the city, and a white bag with blue tassels 💙
 It felt light and comfortable for a stroll through the steps and alleys... how do you like the coordination, girls? 😊
 The challenge and the vote are in the comments 👀☝️`,
 
         fr: `Bonjour tout en bleu et en joie depuis Chefchaouen, la Perle bleue au cœur des montagnes du Rif ! 💙🌸
-On dit que ce bleu qui couvre les murs et les escaliers est arrivé avec les réfugiés juifs dans les années 1930, et qu’il symbolise le ciel et la paix... et chaque recoin ici mérite une photo 📸✨
+Ce bleu qui couvre les murs et les escaliers symbolise le ciel et la paix... et chaque recoin ici mérite une photo 📸✨
 Pour ce matin, j’ai choisi un look bleu et crème : une veste courte crème à la broderie marocaine bleu roi sur les bords et les manches, un pantalon large bleu ciel qui s’accorde aux murs de la ville, et un sac blanc à pompons bleus 💙
 Léger et confortable pour une balade entre les escaliers et les ruelles... que pensez-vous de l’harmonie, les filles ? 😊
 Le défi et le vote sont dans les commentaires 👀☝️`,
 
         es: `Buenos días llenos de azul y alegría desde Chefchaouen, la Perla Azul en el corazón de las montañas del Rif 💙🌸
-Se dice que este azul que cubre las paredes y las escaleras llegó con los refugiados judíos en los años treinta, y que simboliza el cielo y la paz... y cada rincón de aquí merece una foto 📸✨
+Este azul que cubre las paredes y las escaleras simboliza el cielo y la paz... y cada rincón de aquí merece una foto 📸✨
 Para esta mañana elegí un look azul y crema: una chaqueta corta color crema con bordado marroquí azul real en los bordes y las mangas, unos pantalones anchos azul cielo que combinan con las paredes de la ciudad y un bolso blanco con borlas azules 💙
 Ligero y cómodo para pasear entre las escaleras y los callejones... ¿qué les parece la combinación, chicas? 😊
 El reto y la votación están en los comentarios 👀☝️`,
 
         ru: `Доброе утро, полное синевы и радости, из Шефшауэна — Голубой жемчужины в сердце гор Риф! 💙🌸
-Говорят, что эта синева на стенах и ступенях появилась вместе с еврейскими беженцами в 1930-х годах и символизирует небо и мир... и каждый уголок здесь достоин фотографии 📸✨
+Эта синева на стенах и ступенях символизирует небо и мир... и каждый уголок здесь достоин фотографии 📸✨
 На это утро я выбрала образ в синих и кремовых тонах: короткий кремовый жакет с марокканской вышивкой цвета королевского синего по краям и на рукавах, широкие небесно-голубые брюки, созвучные стенам города, и белая сумка с синими кисточками 💙
 Лёгкий и удобный образ для прогулки по ступеням и переулкам... как вам сочетание, девушки? 😊
 Вызов и голосование — в комментариях 👀☝️`
@@ -2264,6 +2264,73 @@ El reto y la votación están en los comentarios 👀☝️`,
     },
 
     description: 'شفشاون (المدينة الزرقاء)، درج وزقاق وقت الصباح المشمس بضوء قوي وظلال واضحة: حيوط مصبوغة بالأزرق بملمس خشن (كلس)، درج حجري أزرق طالع نحو باب كبير مقوّس بلون أزرق مخضر/تركوازي مسمّر بالنقط الحديدية وبمقرعة حديدية دائرية، محاط بنقش جبصي منحوت بالأزرق الفاتح، فانوس حديدي معلق فالأعلى، حافة سقف بالقرميد الأحمر، شباك بحديد مشغول فالأعلى على اليسار. فخارات زرقاء (أزرق ملكي) معلقة على الحيوط وعلى الدرج بنباتات وزهور وردية/فوشيا (بوغنفيليا وجيرانيوم)، وفالمقدمة على اليسار قدّة فخار زرقاء كبيرة قديمة فيها نبتة بزهور بيضاء صغيرة (مارغريت/ياسمين)، وأرضية مرصوفة بالحجر عليها بقع ضوء وظلال. Robaty واقفة وكتبتسم ابتسامة مشرقة وراسها مايل شوية، يدها الميكانيكية اليمنى (الفضية) مرفوعة ومسنودة على الحيط الأزرق وأصابعها مفتوحة، ويدها الميكانيكية اليسرى (الفضية) نازلة بشكل طبيعي. لابسة جاكيت قصير كريمي/عاجي بقصة مستقيمة وبطرز مغربي هندسي بالأزرق الملكي والأزرق الداكن على حواف الفتحة الأمامية والحاشية وعلى الأكمام، فوق قميص أبيض بياقة عالية (ياقة ماو)، وبنطلون واسع بخصر عالي بالأزرق السماوي (Powder Blue/دجين فاتح) مع حزام رقيق أزرق بإبزيم فضي مزخرف. معاها حقيبة صغيرة بيضاء/كريمية مطرزة بنقوش زرقاء على الكتف بسلسلة وشرّابات زرقاء، وصباط سنيكرز بيض. أقراط ذهبية طويلة متدلية، رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة فوق ياقة القميص، وما كاينة قلادة هاد المرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات كراميل منسدل على جنب الكتف.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 15,
+    slot: 'pm',
+    image: 'day15-chefchaouen2-evening.jpg',
+    focus: '50% 27%',
+
+    place: {
+        ar: 'شفشاون — إطلالة المدينة الزرقاء',
+        en: 'Chefchaouen — Blue City Overlook',
+        fr: 'Chefchaouen — Vue sur la ville bleue',
+        es: 'Chefchaouen — Mirador de la ciudad azul',
+        ru: 'Шефшауэн — Вид на Голубой город'
+    },
+
+    caption: {
+        ar: `مساء الأنوار الزرقاء من شفشاون، والمدينة كتتلألأ تحت سما بنفسجية 💙🌙
+سمية شفشاون مرتبطة بقمم جبال الريف اللي محيطة بالمدينة، بحال اللي كتشوفو فـ الأفق.. والفوانيس هنا كتزيد للمكان دفء وسحر 🏮✨
+نسقت هاد المساء معطف مخملي طويل بالأزرق الملكي وطرز ذهبي على الحواف والأكمام، فوق قميص أبيض وسروال واسع كريمي، مع قلادة خميسة ذهبية بحجر أزرق 💙👑
+جلسة أتاي بالنعناع وسط الدروج الزرقاء.. كيف جاكم هاد التنسيق البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening of blue lights from Chefchaouen, with the city sparkling under a violet sky 💙🌙
+The name Chefchaouen is linked to the peaks of the Rif Mountains surrounding the city, like the ones you see on the horizon... and the lanterns here add warmth and magic to the place 🏮✨
+This evening I styled a long royal-blue velvet coat with gold embroidery on the edges and sleeves, over a white blouse and wide cream trousers, with a golden khamsa necklace set with a blue stone 💙👑
+A mint tea moment among the blue steps... how do you like this coordination, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir tout en lumières bleues depuis Chefchaouen, la ville scintille sous un ciel violet 💙🌙
+Le nom de Chefchaouen est lié aux sommets des montagnes du Rif qui entourent la ville, comme ceux que l’on voit à l’horizon... et les lanternes ajoutent ici chaleur et magie au lieu 🏮✨
+Ce soir, j’ai composé un long manteau en velours bleu roi à la broderie dorée sur les bords et les manches, sur une chemise blanche et un pantalon large crème, avec un collier khamsa doré orné d’une pierre bleue 💙👑
+Un moment de thé à la menthe parmi les escaliers bleus... que pensez-vous de cette harmonie, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches de luces azules desde Chefchaouen, con la ciudad brillando bajo un cielo violeta 💙🌙
+El nombre de Chefchaouen está ligado a las cumbres de las montañas del Rif que rodean la ciudad, como las que ven en el horizonte... y los faroles añaden aquí calidez y magia al lugar 🏮✨
+Esta noche combiné un abrigo largo de terciopelo azul real con bordado dorado en los bordes y las mangas, sobre una blusa blanca y unos pantalones anchos color crema, con un collar de jamsa dorado con una piedra azul 💙👑
+Un momento de té con menta entre las escaleras azules... ¿qué les parece esta combinación, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер, полный голубых огней, из Шефшауэна — город сияет под фиолетовым небом 💙🌙
+Название Шефшауэна связано с вершинами гор Риф, окружающих город, — такими, как те, что виднеются на горизонте... а фонари добавляют этому месту тепла и волшебства 🏮✨
+Сегодня вечером я собрала образ: длинное бархатное пальто королевского синего цвета с золотой вышивкой по краям и на рукавах, белая блузка, широкие кремовые брюки и золотая подвеска-хамса с синим камнем 💙👑
+Мятный чай среди голубых ступеней... как вам такое сочетание, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'الضو الصغير كيبان كبير فـ الظلام... كوني نتي الضو ديالك! 🏮✨',
+        en: 'A small light shines bright in the dark... be your own light! 🏮✨',
+        fr: 'Une petite lumière brille fort dans l’obscurité... sois ta propre lumière ! 🏮✨',
+        es: 'Una pequeña luz brilla mucho en la oscuridad... ¡sé tu propia luz! 🏮✨',
+        ru: 'Маленький огонёк ярко сияет в темноте... будь собственным светом! 🏮✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شنو أكثر حاجة كتعطيكم إحساس الدفء فـ المساء؟ فانوس مضوي 🏮، كاس أتاي سخون ☕، ولا جلسة مع الصحابات 👭؟ شاركوني اختياركم فـ تعليق! 👇💙',
+        en: 'Girls, what gives you the most feeling of warmth in the evening? A glowing lantern 🏮, a hot glass of tea ☕, or time with friends 👭? Share your choice in a comment! 👇💙',
+        fr: 'Les filles, qu’est-ce qui vous donne le plus de chaleur le soir ? Une lanterne allumée 🏮, un verre de thé bien chaud ☕, ou un moment entre amies 👭 ? Partagez votre choix en commentaire ! 👇💙',
+        es: 'Chicas, ¿qué les da más sensación de calidez por la noche? ¿Un farol encendido 🏮, un vaso de té caliente ☕ o un rato con las amigas 👭? ¡Compartan su elección en un comentario! 👇💙',
+        ru: 'Девушки, что дарит вам больше всего ощущения тепла вечером? Горящий фонарь 🏮, стакан горячего чая ☕ или время с подругами 👭? Поделитесь выбором в комментарии! 👇💙'
+    },
+
+    description: 'شفشاون (المدينة الزرقاء)، تراس من الدرج الأزرق مطل على المدينة وقت الغسق (الساعة الزرقاء) والسماء بنفسجية-وردية: بيوت بيضاء وزرقاء متراصة فالسفح وأضواؤها مضاءة، منارة مسجد مضاءة بالذهبي فوسط الأفق على اليمين، وسلسلة جبال الريف كصورة ظلية داكنة فالخلفية. حيوط ودرج حجري أزرق، باب أزرق كبير مسمّر فالركن الأعلى على اليسار، بوغنفيليا فوشيا/وردية متدلية من الأعلى، فخارات زرقاء (أزرق ملكي) بنباتات خضراء على اليسار وعلى اليمين، وسادة زرقاء بنقوش بيضاء (بحال الزليج) وراء Robaty على اليسار. فوانيس نحاسية مزخرفة مضاءة بشموع: فانوس كبير فالمقدمة على اليسار، وفانوس ثاني فوقو شوية، وفانوس صغير مضاء على اليمين. وفالركن السفلي الأيسر طاولة صغيرة عليها صينية نحاسية فيها براد أتاي فضي وكاس زجاجي أتاي بالنعناع، وفانوس/شمعة. Robaty جالسة على الدرج بجلسة هادئة ودافئة وكتبتسم ابتسامة مشرقة وراسها مايل، يدها الميكانيكية اليمنى (الفضية) مرفوعة ومسنودة على خدها (الساعد المعدني ظاهر مع سوار ذهبي عريض مزخرف عند المعصم)، ويدها الميكانيكية اليسرى (الفضية بأطراف أصابع ذهبية وسوار ذهبي) مرتاحة على ركبتها. لابسة معطف/قفطان مفتوح طويل من المخمل بالأزرق الملكي (Navy/Royal Blue) بطرز ذهبي نباتي مغربي على حواف الفتحة الأمامية والأكمام العريضة والحاشية، مشدود عند الخصر بإبزيم/ميدالية ذهبية مزخرفة بحجر أزرق، فوق قميص أبيض/كريمي بياقة عالية (ياقة ماو)، وسروال واسع منساب بلون أبيض/كريمي. قلادة ذهبية رقيقة بتعليقة خميسة ذهبية بحجر أزرق على الصدر، أقراط ذهبية طويلة متدلية، ورقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل بشكل طبيعي على الكتفين والظهر.',
 
     stats: { likes: 0 }
 });
