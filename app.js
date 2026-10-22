@@ -829,6 +829,12 @@ async function requestGeminiOnce(userText, imageData, audioData) {
         fullInstruction += `\n\n[اللحظات اللي نشرتيها فعلاً فـ Moments]:\n${momentsCtx}\n\nهادي هي الصور اللي نشرتيها بنفسك، فإلا سألتك المستخدمة على لباسك، ألوانك، الإكسسوارات، المكان، ولا شي صورة معينة، جاوبيها بثقة وبشكل طبيعي كأنها لحظات عشتيها فعلاً، اعتماداً على هاد الوصف. ما تخترعيش تفاصيل ما كاينينش فيه (إلا ما كانتش التفصيلة مذكورة، قوليها بصراحة أنك ماشي متأكدة). إلا سألتك على صورة قديمة ما كتبانش فاللائحة، ما تخترعيش: قولي ليها بصراحة أنك ما مفكراش التفاصيل، وسوليها على اليوم ولا المكان. وما تتكلميش على أماكن أو صور ماشي فاللائحة، حيت ما نشرتيهاش بعد.`;
     }
 
+    // Story مفتوحة فالحوار: Robaty كتعرف النص المكتوب فيها حتى إلا واصلت المستخدمة الحديث عليه
+    const storyCtx = getActiveStoryContext();
+    if (storyCtx) {
+        fullInstruction += `\n\n[سياق Story مفتوح فالحوار]: ${storyCtx}\nإلا تكلمت معاك المستخدمة على النص المكتوب فالـ Story (معناه، النصيحة، الفكرة، شي كلمة فيه)، جاوبيها بثقة وبشكل طبيعي اعتماداً على هاد النص بالضبط، ووسّعي فيه إلا طلبت منك. ما تخترعيش كلام ماشي فالنص.`;
+    }
+
     const recentHistory = chatHistory.slice(-20).map(turn => ({
         role: turn.role === 'user' ? 'user' : 'model',
         parts: [{ text: turn.text }]
@@ -1033,10 +1039,38 @@ function buildStoryReplyCard(info) {
 
 }
 
+/* سياق الـ Story كيبقى مفتوح لعدة رسائل: المستخدمة ممكن تواصل الحديث على نص الـ Story
+   فالرسائل اللي من بعد، وRobaty خاصها تبقى عارفة النص */
+const STORY_CTX_KEY = 'robaty_story_ctx';
+const STORY_CTX_TURNS = 8;
+
+function saveActiveStoryContext(ctx) {
+    try { sessionStorage.setItem(STORY_CTX_KEY, JSON.stringify({ ctx: ctx, turns: STORY_CTX_TURNS })); } catch (e) {}
+}
+
+function getActiveStoryContext() {
+    try {
+        const data = JSON.parse(sessionStorage.getItem(STORY_CTX_KEY));
+        return data && data.turns > 0 ? data.ctx : '';
+    } catch (e) {
+        return '';
+    }
+}
+
+function consumeStoryContextTurn() {
+    try {
+        const data = JSON.parse(sessionStorage.getItem(STORY_CTX_KEY));
+        if (!data) return;
+        data.turns -= 1;
+        if (data.turns <= 0) sessionStorage.removeItem(STORY_CTX_KEY);
+        else sessionStorage.setItem(STORY_CTX_KEY, JSON.stringify(data));
+    } catch (e) {}
+}
+
 function buildStoryReplyContext(info) {
 
     const where = info.place ? ' ديال ' + info.place : '';
-    const said = info.storyText ? ' (النص اللي كان مكتوب فيها: «' + info.storyText + '»)' : '';
+    const said = info.storyText ? ' (النص المكتوب على الصورة فالـ Story: «' + info.storyText + '»)' : '';
 
     /* الوصف الكامل ديال هاد المنشور بالضبط (حتى إلا كان قديم) باش Robaty تجاوب بثقة على الصورة */
     let detail = '';
@@ -1077,6 +1111,8 @@ function handleIncomingStoryReply() {
     }
 
     pendingStoryReply = info;
+
+    saveActiveStoryContext(buildStoryReplyContext(info));
 
     sendMessage();
 
@@ -1174,6 +1210,8 @@ async function sendMessage() {
 
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
+
+        consumeStoryContextTurn();
 
         if (state) {
             setAvatarState(state);
@@ -1530,6 +1568,8 @@ async function sendVoiceOnlyMessage(audioBlob) {
 
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
+
+        consumeStoryContextTurn();
 
         if (state) {
             setAvatarState(state);

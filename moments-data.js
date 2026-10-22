@@ -154,9 +154,11 @@ Robaty — ملف اللحظات (Moments) الموحّد
     function postLine(p, withExtras) {
         var line = '- ' + slotLabelAr(p) + ' | ' + t(p.place, 'ar') + ' | ' + p.description;
 
+        /* جملة الـ Story قصيرة: كتمشي مع كل المنشورات (حتى القدام) باش Robaty تعرفها فكل الحالات */
+        if (p.story) line += '\n    جملة الـ Story: ' + t(p.story, 'ar').replace(/\n/g, ' ');
+
         if (withExtras) {
             line += '\n    النص اللي كتبتيه معها: ' + t(p.caption, 'ar').replace(/\n/g, ' ');
-            if (p.story) line += '\n    جملة الـ Story: ' + t(p.story, 'ar');
             if (p.challenge) line += '\n    سؤال التحدي: ' + t(p.challenge, 'ar');
         }
 
