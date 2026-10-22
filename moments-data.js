@@ -163,6 +163,12 @@ Robaty — ملف اللحظات (Moments) الموحّد
         return line;
     }
 
+    /* وصف منشور واحد بالـ id (كامل: لباس، مكان، نص، Story، تحدي) — كيتستعمل فرد Robaty على Story معينة */
+    function getPostContext(id) {
+        var p = getPost(id);
+        return p ? postLine(p, true) : '';
+    }
+
     function getChatContext(userText) {
         var list = getPublished();
         if (!list.length) return '';
@@ -232,6 +238,7 @@ Robaty — ملف اللحظات (Moments) الموحّد
         getPublished: getPublished,
         getPost: getPost,
         getChatContext: getChatContext,
+        getPostContext: getPostContext,
         launchDate: LAUNCH_DATE
     };
 

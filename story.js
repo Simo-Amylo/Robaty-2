@@ -458,6 +458,445 @@ function applyStoryFocus(focus) {
 }
 
 
+
+/* ==========================================================================
+   أزرار Story (بحال إنستغرام): إعجاب + مشاركة + إرسال رسالة لروباتي
+   - الإعجاب: نفس مفتاح localStorage ونفس عداد Firestore (postStats.likes) ديال Moments
+   - المشاركة: نفس الرابط والنص ونفس العداد (مرة وحدة لكل جهاز ولكل منشور)
+   - الرسالة: كتتحفظ فـ sessionStorage وكتنتقل المستخدمة لـ index.html فين Robaty كتجاوبها
+   كلشي كيتزاد تلقائيا (HTML + CSS) باش يخدم فـ moments.html و profile.html بلا تعديل
+   ========================================================================== */
+
+const STORY_LIKE_KEY = 'robaty_likes_v2';
+const STORY_COUNTED_KEY = 'robaty_counted';
+const STORY_REPLY_KEY = 'robaty_story_reply';
+
+const STORY_UI = {
+    ar: { placeholder: 'صيفطي رسالة لروباتي...', send: 'إرسال', like: 'إعجاب', share: 'مشاركة', copied: 'تم نسخ الرابط ✓' },
+    en: { placeholder: 'Send a message to Robaty...', send: 'Send', like: 'Like', share: 'Share', copied: 'Link copied ✓' },
+    fr: { placeholder: 'Envoyer un message à Robaty…', send: 'Envoyer', like: 'J’aime', share: 'Partager', copied: 'Lien copié ✓' },
+    es: { placeholder: 'Envía un mensaje a Robaty…', send: 'Enviar', like: 'Me gusta', share: 'Compartir', copied: 'Enlace copiado ✓' },
+    ru: { placeholder: 'Отправить сообщение Robaty…', send: 'Отправить', like: 'Нравится', share: 'Поделиться', copied: 'Ссылка скопирована ✓' }
+};
+
+function storyUi(key) {
+    return (STORY_UI[storyLang] || STORY_UI.ar)[key];
+}
+
+const STORY_ACTIONS_CSS = `
+.story-text-wrap {
+    margin-bottom: calc(86px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.story-actions {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index: 6;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.story-reply-input {
+    flex: 1;
+    min-width: 0;
+    height: 46px;
+    padding: 0 18px;
+
+    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.28);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+
+    outline: none;
+}
+
+.story-reply-input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.story-act-btn {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
+}
+
+.story-act-btn svg {
+    width: 28px;
+    height: 28px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.story-like-btn.liked svg {
+    fill: #ff3b5c;
+    stroke: #ff3b5c;
+    animation: storyLikePop 0.35s ease;
+}
+
+@keyframes storyLikePop {
+    0%   { transform: scale(0.6); }
+    60%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}
+
+.story-send-btn {
+    display: none;
+    flex: none;
+    height: 46px;
+    padding: 0 20px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: #f4d068;
+    color: #1a1208;
+
+    font: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.story-actions.typing .story-send-btn { display: block; }
+.story-actions.typing .story-act-btn  { display: none; }
+
+.story-toast {
+    position: absolute;
+    left: 50%;
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+    z-index: 7;
+
+    transform: translateX(-50%);
+
+    padding: 8px 16px;
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-size: 13px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+}
+
+.story-toast.show { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    .story-like-btn.liked svg { animation: none; }
+}
+`;
+
+const STORY_HEART_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+const STORY_PLANE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.2 2.8 10.4c-.7.3-.7 1.3.1 1.5l7.2 2.2 2.2 7.2c.3.8 1.3.8 1.5.1L21.5 3.2z"/><path d="M10.2 14.1 21.5 3.2"/></svg>';
+
+let storyActionsEl = null;
+let storyReplyInput = null;
+let storyLikeBtn = null;
+let storyToastEl = null;
+let storyToastTimer = null;
+
+function storyReadJson(key) {
+    try { return JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { return {}; }
+}
+
+function storyWriteJson(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+}
+
+/* +1 / -1 فـ postStats/{postId}.<field> (Firestore) */
+function storyBumpStat(postId, field, delta) {
+
+    try {
+
+        const db = firebase.firestore();
+
+        return db.collection('postStats').doc(postId)
+            .set({ [field]: firebase.firestore.FieldValue.increment(delta) }, { merge: true });
+
+    } catch (e) {
+
+        return Promise.reject(e);
+
+    }
+
+}
+
+function storyToast(message) {
+
+    if (!storyToastEl) return;
+
+    storyToastEl.textContent = message;
+    storyToastEl.classList.add('show');
+
+    clearTimeout(storyToastTimer);
+    storyToastTimer = setTimeout(() => storyToastEl.classList.remove('show'), 1800);
+
+}
+
+function refreshStoryLikeBtn() {
+
+    if (!storyLikeBtn) return;
+
+    const liked = !!(currentStoryId && storyReadJson(STORY_LIKE_KEY)[currentStoryId]);
+
+    storyLikeBtn.classList.toggle('liked', liked);
+    storyLikeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+
+}
+
+function toggleStoryLike() {
+
+    const postId = currentStoryId;
+
+    if (!postId) return;
+
+    const likes = storyReadJson(STORY_LIKE_KEY);
+    const liked = !likes[postId];
+
+    likes[postId] = liked;
+    storyWriteJson(STORY_LIKE_KEY, likes);
+
+    refreshStoryLikeBtn();
+
+    /* باش زر القلب فـ Moments يتحدّث بنفس الحالة */
+    window.dispatchEvent(new CustomEvent('robaty:like-changed', { detail: { postId: postId, liked: liked } }));
+
+    storyBumpStat(postId, 'likes', liked ? 1 : -1).catch(() => {
+
+        /* فشل الحفظ: كنرجعو الحالة السابقة */
+        const again = storyReadJson(STORY_LIKE_KEY);
+
+        again[postId] = !liked;
+        storyWriteJson(STORY_LIKE_KEY, again);
+
+        refreshStoryLikeBtn();
+
+        window.dispatchEvent(new CustomEvent('robaty:like-changed', { detail: { postId: postId, liked: !liked } }));
+
+    });
+
+}
+
+/* العداد الحقيقي ديال المشاركة: مرة وحدة لكل جهاز ولكل منشور (نفس منطق Moments) */
+function storyCountShareOnce(postId) {
+
+    const done = storyReadJson(STORY_COUNTED_KEY);
+    const key = postId + ':shares';
+
+    if (done[key]) return;
+
+    done[key] = 1;
+    storyWriteJson(STORY_COUNTED_KEY, done);
+
+    if (window.RobatyCounters && typeof window.RobatyCounters.bump === 'function') {
+        window.RobatyCounters.bump(postId, 'shares');
+    } else {
+        storyBumpStat(postId, 'shares', 1).catch(() => {});
+    }
+
+}
+
+function shareCurrentStory() {
+
+    const postId = currentStoryId;
+
+    if (!postId) return;
+
+    let intro = window.RobatyI18n ? window.RobatyI18n.t('share_intro') : '';
+
+    if (!intro || intro === 'share_intro') intro = 'مرحبا بيك عند روباتي شوفي تصاوري ليوم';
+
+    const url = location.origin + location.pathname.replace(/[^/]*$/, '') + 'moments.html#' + postId;
+
+    const data = { title: 'Robaty', text: intro + '\n\nRobaty:', url: url };
+
+    if (navigator.share) {
+
+        navigator.share(data).then(() => storyCountShareOnce(postId)).catch(() => {});
+
+        return;
+
+    }
+
+    /* بلا شاشة مشاركة (كمبيوتر مثلا): كننسخو الرابط */
+    if (navigator.clipboard) {
+
+        navigator.clipboard.writeText(data.text + '\n' + url).then(() => {
+            storyToast(storyUi('copied'));
+            storyCountShareOnce(postId);
+        }).catch(() => {});
+
+    }
+
+}
+
+/* إرسال الرسالة: كنحفظوها وكننقلو المستخدمة لشاشة المحادثة، فين Robaty كتجاوب */
+function sendStoryReply() {
+
+    const text = storyReplyInput ? storyReplyInput.value.trim() : '';
+
+    if (!text || !currentStoryId) return;
+
+    const story = storyData[currentStoryId];
+
+    try {
+
+        sessionStorage.setItem(STORY_REPLY_KEY, JSON.stringify({
+            postId: currentStoryId,
+            text: text.slice(0, 1000),
+            place: story ? story.place : '',
+            storyText: story ? story.text : '',
+            image: story ? story.image : '',
+            ts: Date.now()
+        }));
+
+    } catch (e) {}
+
+    window.location.href = 'index.html';
+
+}
+
+function syncStoryTypingState() {
+
+    if (!storyActionsEl || !storyReplyInput) return;
+
+    storyActionsEl.classList.toggle('typing', storyReplyInput.value.trim().length > 0);
+
+}
+
+function ensureStoryActions() {
+
+    if (storyActionsEl) return;
+
+    const host = document.querySelector('.story-content');
+
+    if (!host) return;
+
+    if (!document.getElementById('storyActionsStyles')) {
+        const style = document.createElement('style');
+        style.id = 'storyActionsStyles';
+        style.textContent = STORY_ACTIONS_CSS;
+        document.head.appendChild(style);
+    }
+
+    storyActionsEl = document.createElement('div');
+    storyActionsEl.className = 'story-actions';
+
+    storyReplyInput = document.createElement('input');
+    storyReplyInput.type = 'text';
+    storyReplyInput.className = 'story-reply-input';
+    storyReplyInput.dir = 'auto';
+    storyReplyInput.maxLength = 1000;
+    storyReplyInput.autocomplete = 'off';
+    storyReplyInput.placeholder = storyUi('placeholder');
+    storyReplyInput.setAttribute('aria-label', storyUi('placeholder'));
+
+    storyLikeBtn = document.createElement('button');
+    storyLikeBtn.type = 'button';
+    storyLikeBtn.className = 'story-act-btn story-like-btn';
+    storyLikeBtn.setAttribute('aria-label', storyUi('like'));
+    storyLikeBtn.innerHTML = STORY_HEART_ICON;
+
+    const shareBtn = document.createElement('button');
+    shareBtn.type = 'button';
+    shareBtn.className = 'story-act-btn story-share-btn';
+    shareBtn.setAttribute('aria-label', storyUi('share'));
+    shareBtn.innerHTML = STORY_PLANE_ICON;
+
+    const sendBtn = document.createElement('button');
+    sendBtn.type = 'button';
+    sendBtn.className = 'story-send-btn';
+    sendBtn.textContent = storyUi('send');
+
+    storyActionsEl.appendChild(storyReplyInput);
+    storyActionsEl.appendChild(storyLikeBtn);
+    storyActionsEl.appendChild(shareBtn);
+    storyActionsEl.appendChild(sendBtn);
+
+    storyToastEl = document.createElement('div');
+    storyToastEl.className = 'story-toast';
+
+    host.appendChild(storyActionsEl);
+    host.appendChild(storyToastEl);
+
+    storyLikeBtn.addEventListener('click', toggleStoryLike);
+    shareBtn.addEventListener('click', shareCurrentStory);
+    sendBtn.addEventListener('click', sendStoryReply);
+
+    storyReplyInput.addEventListener('input', syncStoryTypingState);
+
+    storyReplyInput.addEventListener('keydown', event => {
+
+        if (event.key === 'Enter' && !event.isComposing) {
+            event.preventDefault();
+            sendStoryReply();
+        }
+
+        /* Escape كيسد الكيبورد أولا، ماشي الـ Story */
+        if (event.key === 'Escape') {
+            event.stopPropagation();
+            storyReplyInput.blur();
+        }
+
+    });
+
+}
+
+function prepareStoryActions() {
+
+    ensureStoryActions();
+
+    if (!storyReplyInput) return;
+
+    storyReplyInput.value = '';
+    storyReplyInput.blur();
+
+    syncStoryTypingState();
+    refreshStoryLikeBtn();
+
+}
+
+function resetStoryActions() {
+
+    if (!storyReplyInput) return;
+
+    storyReplyInput.value = '';
+    storyReplyInput.blur();
+
+    syncStoryTypingState();
+
+}
+
+
 /* فتح Story معينة بالـ id ديالها */
 
 function openStory(storyId) {
@@ -486,6 +925,8 @@ function openStory(storyId) {
 
     playKicker(story);
 
+    prepareStoryActions();
+
 }
 
 
@@ -499,6 +940,8 @@ function closeStory() {
     modal.setAttribute('aria-hidden', 'true');
 
     stopKicker();
+
+    resetStoryActions();
 
     currentStoryId = null;
 

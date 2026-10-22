@@ -524,6 +524,21 @@
             });
         });
 
+        // مزامنة زر الإعجاب مع Story: ملي تعجب المستخدمة بالمنشور من الـ Story، كيتحدّث القلب هنا بنفس الحالة
+        window.addEventListener('robaty:like-changed', function (e) {
+            var d = e.detail || {};
+            var liked = !!d.liked;
+
+            likes[d.postId] = liked;
+
+            var card = document.getElementById(d.postId);
+            var likeBtn = card ? card.querySelector('.action-item[data-action="like"]') : null;
+
+            if (likeBtn) {
+                applyLikeState(likeBtn, liked);
+            }
+        });
+
         // زر الحفظ
         document.querySelectorAll('.action-item[data-action="save"]').forEach(function (btn) {
             btn.addEventListener('click', function () {

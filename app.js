@@ -965,6 +965,123 @@ messageInput.addEventListener('keydown', (event) => {
    SEND MESSAGE (نص + صورة اختيارية) — مربوط بـ Gemini
    ========================================================================== */
 
+/* ==========================================================================
+   رد على Story (جاي من story.js عبر sessionStorage):
+   كنعرضو بطاقة صغيرة (صورة Story + المكان) فوق رسالة المستخدمة وكنصيفطو الرسالة
+   أوتوماتيكيا، وكنعطيو Gemini سياق الـ Story باش Robaty تعرف على أي صورة كتهضر
+   ========================================================================== */
+
+let pendingStoryReply = null;
+
+if (!document.getElementById('storyReplyCardStyles')) {
+    const storyReplyStyle = document.createElement('style');
+    storyReplyStyle.id = 'storyReplyCardStyles';
+    storyReplyStyle.textContent = `
+.story-reply-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    max-width: 78%;
+    margin-bottom: 6px;
+    padding: 6px 12px 6px 6px;
+
+    border: 1px solid rgba(244, 208, 104, 0.55);
+    border-radius: 14px;
+
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.story-reply-card img {
+    flex: none;
+    width: 38px;
+    height: 56px;
+
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.story-reply-card .story-reply-label {
+    font-size: 12px;
+    opacity: 0.85;
+    line-height: 1.5;
+}
+`;
+    document.head.appendChild(storyReplyStyle);
+}
+
+function buildStoryReplyCard(info) {
+
+    const card = document.createElement('div');
+    card.className = 'story-reply-card';
+
+    if (info.image) {
+        const thumb = document.createElement('img');
+        thumb.src = info.image;
+        thumb.alt = '';
+        card.appendChild(thumb);
+    }
+
+    const label = document.createElement('div');
+    label.className = 'story-reply-label';
+    const labels = { ar: 'ردّ على Story', en: 'Replied to story', fr: 'Réponse à la story', es: 'Respuesta a la historia', ru: 'Ответ на историю' };
+    const lang = window.RobatyI18n && window.RobatyI18n.getCurrentLang ? window.RobatyI18n.getCurrentLang() : 'ar';
+    label.textContent = (labels[lang] || labels.ar) + (info.place ? ' · ' + info.place : '');
+    card.appendChild(label);
+
+    return card;
+
+}
+
+function buildStoryReplyContext(info) {
+
+    const where = info.place ? ' ديال ' + info.place : '';
+    const said = info.storyText ? ' (النص اللي كان مكتوب فيها: «' + info.storyText + '»)' : '';
+
+    /* الوصف الكامل ديال هاد المنشور بالضبط (حتى إلا كان قديم) باش Robaty تجاوب بثقة على الصورة */
+    let detail = '';
+    try {
+        detail = window.RobatyMoments && window.RobatyMoments.getPostContext
+            ? window.RobatyMoments.getPostContext(info.postId)
+            : '';
+    } catch (e) {}
+
+    return '[هاد الرسالة هي رد من المستخدمة على الـ Story' + where + ' اللي نشرتيها' + said + '. جاوبيها على أساس الصورة ديال داك المكان.'
+        + (detail ? '\nوصف الصورة بالضبط:\n' + detail : '') + ']';
+
+}
+
+function handleIncomingStoryReply() {
+
+    let info = null;
+
+    try {
+        const raw = sessionStorage.getItem('robaty_story_reply');
+        sessionStorage.removeItem('robaty_story_reply');
+        info = raw ? JSON.parse(raw) : null;
+    } catch (e) {}
+
+    if (!info || !info.text) return;
+
+    /* رسالة قديمة (أكثر من 5 دقايق): كنتجاهلوها */
+    if (info.ts && Date.now() - info.ts > 5 * 60 * 1000) return;
+
+    messageInput.value = info.text;
+
+    /* بلا مفتاح API: كنخليو النص فالخانة والمستخدمة تصيفطو من بعد */
+    if (!getKey()) {
+        updateInputDirection();
+        autoGrowMessageInput();
+        updateSendButtonState();
+        return;
+    }
+
+    pendingStoryReply = info;
+
+    sendMessage();
+
+}
+
 async function sendMessage() {
 
     const text = messageInput.value.trim();
@@ -980,6 +1097,9 @@ async function sendMessage() {
     }
 
     buttonPress(sendButton);
+
+    const storyReply = pendingStoryReply;
+    pendingStoryReply = null;
 
     const time = getCurrentTime();
 
@@ -1004,6 +1124,10 @@ async function sendMessage() {
         imageBubble.appendChild(image);
 
         message.appendChild(imageBubble);
+    }
+
+    if (storyReply) {
+        message.appendChild(buildStoryReplyCard(storyReply));
     }
 
     if (text) {
@@ -1044,7 +1168,7 @@ async function sendMessage() {
             imageData = await resizeImageToBase64(selectedImageFile);
         }
 
-        const { reply, state } = await fetchRobatyResponse(text, imageData);
+        const { reply, state } = await fetchRobatyResponse(storyReply ? buildStoryReplyContext(storyReply) + '\n' + text : text, imageData);
 
         removeTypingIndicator(typingId);
 
@@ -1580,6 +1704,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSavedChatHistory();
     autoGrowMessageInput();
     setAvatarState(DEFAULT_AVATAR_STATE);
+
+    /* رد جاي من Story: نتسناو الواجهة تتعمر شوية قبل ما نصيفطو */
+    setTimeout(handleIncomingStoryReply, 350);
 
     updateTimeBasedTheme();
     setInterval(updateTimeBasedTheme, 15 * 60 * 1000);
