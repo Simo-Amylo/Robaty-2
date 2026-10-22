@@ -2334,3 +2334,70 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 16,
+    slot: 'am',
+    image: 'day16-chegaga1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'المحاميد الغزلان — عرق الشقاقة',
+        en: 'M’Hamid El Ghizlane — Erg Chigaga',
+        fr: 'M’Hamid El Ghizlane — Erg Chigaga',
+        es: 'M’Hamid El Ghizlane — Erg Chigaga',
+        ru: 'М’Хамид-эль-Гизлан — Эрг-Шегага'
+    },
+
+    caption: {
+        ar: `صباح الشروق الذهبي من عرق الشقاقة، قلب الصحراء المغربية قرب المحاميد الغزلان! 🌅🏜️
+الشقاقة واحد من العرقين الكبار فـ المغرب مع عرق الشبي، وأبعد وأهدأ منو، ما كيوصل ليه غير 4x4 ولا الجمال 🐪✨
+لبست هاد الصباح معطف طويل مفتوح بلون رملي كريمي وطرز ذهبي هندسي على الحواف والأكمام، فوق قميص كريمي وسروال واسع منساب، مع حزام جلدي بإبزيم ذهبي وقلادة ذهبية بشرابة 🤍👑
+جلسة صباحية فـ مخيم صحراوي، براد أتاي بالنعناع وجمل كيستنى.. كيف جاكم هاد الستايل الصحراوي البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good morning of golden sunrise from Erg Chigaga, in the heart of the Moroccan Sahara near M’Hamid El Ghizlane! 🌅🏜️
+Chigaga is one of Morocco’s two major ergs, along with Erg Chebbi, and it is more remote and quieter, reached only by 4x4 or by camel 🐪✨
+This morning I wore a long open coat in creamy sand color with geometric gold embroidery on the edges and sleeves, over a cream blouse and flowing wide trousers, with a leather belt with a golden buckle and a golden necklace with a tassel 🤍👑
+A morning moment in a desert camp, a pot of mint tea and a camel waiting... how do you like this desert style, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonjour sous le lever de soleil doré depuis l’erg Chigaga, au cœur du Sahara marocain, près de M’Hamid El Ghizlane ! 🌅🏜️
+Chigaga est l’un des deux grands ergs du Maroc, avec l’erg Chebbi, et il est plus isolé et plus calme, accessible uniquement en 4x4 ou à dos de chameau 🐪✨
+Ce matin, j’ai porté un long manteau ouvert couleur sable crème, avec une broderie dorée géométrique sur les bords et les manches, sur une chemise crème et un pantalon large fluide, avec une ceinture en cuir à boucle dorée et un collier doré à pompon 🤍👑
+Un moment matinal dans un camp du désert, une théière de thé à la menthe et un chameau qui attend... que pensez-vous de ce style saharien, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenos días con el amanecer dorado desde Erg Chigaga, en el corazón del Sáhara marroquí, cerca de M’Hamid El Ghizlane 🌅🏜️
+Chigaga es uno de los dos grandes ergs de Marruecos, junto con Erg Chebbi, y es más remoto y tranquilo, al que solo se llega en 4x4 o en camello 🐪✨
+Esta mañana llevé un abrigo largo abierto en color arena crema, con bordado dorado geométrico en los bordes y las mangas, sobre una blusa crema y unos pantalones anchos fluidos, con un cinturón de cuero con hebilla dorada y un collar dorado con borla 🤍👑
+Un momento matutino en un campamento del desierto, una tetera de té con menta y un camello esperando... ¿qué les parece este estilo sahariano, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Доброе утро с золотым рассветом из Эрг-Шегаги — в сердце марокканской Сахары, рядом с М’Хамид-эль-Гизлан! 🌅🏜️
+Шегага — один из двух крупных эргов Марокко вместе с Эрг-Шебби, более удалённый и тихий: добраться сюда можно только на внедорожнике 4x4 или на верблюде 🐪✨
+Этим утром я надела длинное открытое пальто песочно-кремового цвета с золотой геометрической вышивкой по краям и на рукавах, кремовую блузку и свободные широкие брюки, кожаный ремень с золотой пряжкой и золотую подвеску с кисточкой 🤍👑
+Утро в пустынном лагере, чайник мятного чая и ждущий верблюд... как вам этот пустынный стиль, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'الكثبان الكبيرة بدات حبة حبة... وأحلامك كذلك، ما تستصغريش الخطوات الصغيرة! 🌅✨',
+        en: 'The great dunes began grain by grain... and so do your dreams, never underestimate small steps! 🌅✨',
+        fr: 'Les grandes dunes ont commencé grain par grain... tes rêves aussi, ne sous-estime jamais les petits pas ! 🌅✨',
+        es: 'Las grandes dunas empezaron grano a grano... y tus sueños también, ¡nunca subestimes los pequeños pasos! 🌅✨',
+        ru: 'Большие дюны начинались с песчинки... так и твои мечты, никогда не недооценивай маленькие шаги! 🌅✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون جربات تركب الجمل فـ الصحراء؟ 🐪 وفـ رأيكم أحسن لحظة فـ الصحراء: الشروق ولا الغروب؟ شاركوني اختياركم فـ تعليق! 🌅👇',
+        en: 'Girls, who has ever ridden a camel in the desert? 🐪 And in your opinion, what is the best moment in the desert: sunrise or sunset? Share your choice in a comment! 🌅👇',
+        fr: 'Les filles, qui a déjà fait un tour à dos de chameau dans le désert ? 🐪 Et selon vous, quel est le plus beau moment dans le désert : le lever ou le coucher du soleil ? Partagez votre choix en commentaire ! 🌅👇',
+        es: 'Chicas, ¿quién ha montado alguna vez en camello en el desierto? 🐪 Y en su opinión, ¿cuál es el mejor momento en el desierto: el amanecer o el atardecer? ¡Compartan su elección en un comentario! 🌅👇',
+        ru: 'Девушки, кто из вас катался на верблюде в пустыне? 🐪 И какой, по-вашему, самый лучший момент в пустыне: рассвет или закат? Поделитесь выбором в комментарии! 🌅👇'
+    },
+
+    description: 'المحاميد الغزلان، عرق الشقاقة (الصحراء المغربية) وقت الشروق الذهبي: كثبان رملية ذهبية ممتدة حتى الأفق بظلال ناعمة وآثار أقدام على الرمال، شمس منخفضة كتطلع فجهة اليمين بأشعة مضيئة، سماء متدرجة من الأزرق الفاتح للبرتقالي الذهبي بغيوم خفيفة، وسلسلة جبال بعيدة ضبابية فالأفق. على اليمين جمل جالس (باركٍ) بسرج وبطانية مزخرفة بخطوط ملونة (أحمر، وردي، أزرق) وحبل، وعلى اليسار خيمة صحراوية تقليدية (بدوية) سوداء بسقف مدبب وشرّابات وشراريب حمراء وذهبية، مفروشة بزرابي ووسادات حمراء بنقوش مغربية، وفانوس نحاسي ذهبي كبير مزخرف ومضاء، وطاولة/صينية نحاسية مستديرة مزخرفة عليها براد أتاي ذهبي وكأسين زجاجيين أتاي بالنعناع، وزربية حمراء على الرمل. Robaty واقفة بوقفة هادئة وكتبتسم ابتسامة مشرقة وراسها مايل شوية، شعرها طويل ومموج بني بلمسات نحاسية كيطير بخفة. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية) نازلة قرب الحقيبة على الجنب الأيسر من الصورة، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية وسوار ذهبي) نازلة قرب ذيل المعطف. لابسة معطف/قفطان طويل مفتوح بلون رملي كريمي (بيج ذهبي) بطرز ذهبي هندسي (معينات) بخرز وترصيع على حواف الفتحة الأمامية وعلى الأكمام الواسعة، فوق قميص/جمبسوت كريمي بياقة عالية (ياقة ماو)، وبنطلون واسع منساب بلون أبيض/كريمي بخصر عالي، مع حزام جلدي بيج بإبزيم ذهبي مزخرف على شكل ميدالية بحجر وشرّابة ذهبية متدلية. قلادة ذهبية طويلة بتعليقة هندسية ذهبية وشرّابة على الصدر، أقراط ذهبية طويلة متدلية، رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة، وحقيبة جلدية بيج صغيرة بحزام طويل على الكتف (كتبان على الجنب). الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة واثقة.',
+
+    stats: { likes: 0 }
+});
