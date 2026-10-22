@@ -2401,3 +2401,70 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 16,
+    slot: 'pm',
+    image: 'day16-chegaga2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'المحاميد الغزلان — عرق الشقاقة',
+        en: 'M’Hamid El Ghizlane — Erg Chigaga',
+        fr: 'M’Hamid El Ghizlane — Erg Chigaga',
+        es: 'M’Hamid El Ghizlane — Erg Chigaga',
+        ru: 'М’Хамид-эль-Гизлан — Эрг-Шегага'
+    },
+
+    caption: {
+        ar: `مساء الغروب الأحمر من عرق الشقاقة، والصحراء المغربية كتلبس ألوانها الدافئة! 🌅🔥
+ليالي عرق الشقاقة كتبرد حتى من بعد نهار سخون، وعلاش النار وكاس أتاي سخون هما أحسن رفيقين للغروب هنا ☕✨
+نسقت هاد المساء قفطان مخملي طويل بالأحمر العنابي وطرز ذهبي مغربي على الحواف والأكمام، فوق قميص كريمي، مع حزام جلدي بإبزيم ذهبي وقلادة ذهبية طويلة 🍷👑
+جلسة على الزرابي، أتاي بالنعناع وتمر والنار كتشعل.. كيف جاكم هاد الإطلالة المسائية البنات؟ 😊
+التحدي والتصويت كاينين فـ التعليقات 👀☝️`,
+
+        en: `Good evening of red sunset from Erg Chigaga, as the Moroccan Sahara puts on its warm colors! 🌅🔥
+The nights at Erg Chigaga turn cold even after a hot day, which is why a fire and a hot glass of tea are the best companions for the sunset here ☕✨
+This evening I styled a long burgundy velvet kaftan with Moroccan gold embroidery on the edges and sleeves, over a cream blouse, with a leather belt with a golden buckle and a long golden necklace 🍷👑
+Sitting on the rugs with mint tea, dates and a crackling fire... how do you like this evening view, girls? 😊
+The challenge and the vote are in the comments 👀☝️`,
+
+        fr: `Bonsoir sous le coucher de soleil rouge depuis l’erg Chigaga, quand le Sahara marocain se pare de ses couleurs chaudes ! 🌅🔥
+Les nuits à l’erg Chigaga sont froides même après une journée chaude, c’est pourquoi un feu et un verre de thé bien chaud sont les meilleurs compagnons du coucher de soleil ici ☕✨
+Ce soir, j’ai composé un long kaftan en velours bordeaux avec une broderie dorée marocaine sur les bords et les manches, sur une chemise crème, avec une ceinture en cuir à boucle dorée et un long collier doré 🍷👑
+Assise sur les tapis avec du thé à la menthe, des dattes et un feu qui crépite... que pensez-vous de cette vue du soir, les filles ? 😊
+Le défi et le vote sont dans les commentaires 👀☝️`,
+
+        es: `Buenas noches con el atardecer rojo desde Erg Chigaga, mientras el Sáhara marroquí se viste con sus colores cálidos 🌅🔥
+Las noches en Erg Chigaga se enfrían incluso después de un día caluroso, por eso un fuego y un vaso de té caliente son los mejores compañeros del atardecer aquí ☕✨
+Esta noche combiné un largo caftán de terciopelo color burdeos con bordado dorado marroquí en los bordes y las mangas, sobre una blusa crema, con un cinturón de cuero con hebilla dorada y un largo collar dorado 🍷👑
+Sentada sobre las alfombras con té con menta, dátiles y una hoguera encendida... ¿qué les parece esta vista nocturna, chicas? 😊
+El reto y la votación están en los comentarios 👀☝️`,
+
+        ru: `Добрый вечер с красным закатом из Эрг-Шегаги — марокканская Сахара надевает свои тёплые краски! 🌅🔥
+Ночи в Эрг-Шегаге холодные даже после жаркого дня, поэтому костёр и стакан горячего чая — лучшие спутники заката здесь ☕✨
+Сегодня вечером я выбрала длинный бархатный кафтан бордового цвета с марокканской золотой вышивкой по краям и на рукавах, кремовую блузку, кожаный ремень с золотой пряжкой и длинное золотое колье 🍷👑
+Сижу на коврах с мятным чаем, финиками и потрескивающим костром... как вам этот вечерний вид, девушки? 😊
+Вызов и голосование — в комментариях 👀☝️`
+    },
+
+    story: {
+        ar: 'ارتاحي من غير ما تحسي بالذنب... الغروب كيجي كل نهار باش يفكرنا بلي الراحة جزء من الجمال! 🌅🔥',
+        en: 'Rest without feeling guilty... sunset comes every day to remind us that rest is part of beauty! 🌅🔥',
+        fr: 'Repose-toi sans culpabiliser... le coucher de soleil revient chaque jour pour nous rappeler que le repos fait partie de la beauté ! 🌅🔥',
+        es: 'Descansa sin sentirte culpable... el atardecer llega cada día para recordarnos que el descanso es parte de la belleza. 🌅🔥',
+        ru: 'Отдыхай без чувства вины... закат приходит каждый день, чтобы напомнить: отдых — часть красоты! 🌅🔥'
+    },
+
+    challenge: {
+        ar: 'البنات، لو كنتو معايا فـ هاد المخيم دابا، شنو غادي ديرو؟ نحكيو حدا النار 🔥، نشوفو النجوم ✨، ولا ننعسو بكري 😴؟ شاركوني اختياركم فـ تعليق! 👇',
+        en: 'Girls, if you were with me at this camp right now, what would you do? Chat by the fire 🔥, watch the stars ✨, or sleep early 😴? Share your choice in a comment! 👇',
+        fr: 'Les filles, si vous étiez avec moi dans ce camp en ce moment, que feriez-vous ? Discuter autour du feu 🔥, regarder les étoiles ✨, ou aller se coucher tôt 😴 ? Partagez votre choix en commentaire ! 👇',
+        es: 'Chicas, si estuvieran conmigo en este campamento ahora mismo, ¿qué harían? ¿Charlar junto al fuego 🔥, mirar las estrellas ✨ o dormir temprano 😴? ¡Compartan su elección en un comentario! 👇',
+        ru: 'Девушки, если бы вы были со мной в этом лагере прямо сейчас, что бы вы делали? Болтали у костра 🔥, смотрели на звёзды ✨ или рано легли спать 😴? Поделитесь выбором в комментарии! 👇'
+    },
+
+    description: 'المحاميد الغزلان، عرق الشقاقة (الصحراء المغربية) وقت الغروب: شمس كتغرب فالأفق على اليمين بأشعة مضيئة، سماء متدرجة بين البنفسجي والوردي والبرتقالي بغيوم، كثبان رملية ذهبية وجبال بعيدة ضبابية. على اليسار خيمة صحراوية تقليدية (بدوية) بشراريب حمراء وبرتقالية وفوانيس نحاسية مضاءة معلقة فالداخل، مفروشة بزرابي ووسادات كبيرة بنقوش مغربية (أحمر، أسود، كريمي)، وعلى اليمين مجمرة/حوض نار كتشعل فيه النار وفانوس نحاسي طويل مضاء على عمود، ووسادات بنقوش مخططة. فالمقدمة على اليسار طاولة نحاسية مستديرة منقوشة وطبق ذهبي عليها براد أتاي ذهبي مزخرف، فانوس نحاسي بشمعة مضاءة، كاس زجاجي أتاي بالنعناع، وطبق صغير فيه تمر. Robaty جالسة على الزرابي والوسادات بجلسة مريحة وكتبتسم ابتسامة مشرقة وراسها مايل، يدها الميكانيكية اليمنى (الفضية بأساور فضية وذهبية متراكمة عند المعصم) مرفوعة وكتمسك كاس أتاي بالنعناع، ويدها الميكانيكية اليسرى (الفضية بسوار ذهبي عريض مزخرف) مرتاحة على ركبتها. لابسة قفطان/روب طويل مفتوح من المخمل بالأحمر العنابي (Burgundy) بطرز ذهبي مغربي هندسي ونباتي على حواف الفتحة الأمامية وعلى الأكمام الواسعة وعلى الحاشية، فوق قميص كريمي بياقة عالية (ياقة ماو)، مع حزام جلدي داكن بإبزيم ذهبي مزخرف على شكل ميدالية بحجر داكن. قلادة ذهبية طويلة بتعليقة هندسية على الصدر، أقراط ذهبية طويلة متدلية، ورقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل مموج بني بلمسات نحاسية منسدل على الكتفين.',
+
+    stats: { likes: 0 }
+});
