@@ -155,10 +155,10 @@ Robaty — ملف اللحظات (Moments) الموحّد
         var line = '- ' + slotLabelAr(p) + ' | ' + t(p.place, 'ar') + ' | ' + p.description;
 
         /* جملة الـ Story قصيرة: كتمشي مع كل المنشورات (حتى القدام) باش Robaty تعرفها فكل الحالات */
-        if (p.story) line += '\n    جملة الـ Story: ' + t(p.story, 'ar').replace(/\n/g, ' ');
+        if (p.story) line += '\n    نص الـ Story (الجملة القصيرة المكتوبة على الصورة فالـ Story — ماشي هو نص المنشور): ' + t(p.story, 'ar').replace(/\n/g, ' ');
 
         if (withExtras) {
-            line += '\n    النص اللي كتبتيه معها: ' + t(p.caption, 'ar').replace(/\n/g, ' ');
+            line += '\n    نص المنشور فـ Moments (الكابسيون الطويل المكتوب تحت الصورة — ماشي نص الـ Story): ' + t(p.caption, 'ar').replace(/\n/g, ' ');
             if (p.challenge) line += '\n    سؤال التحدي: ' + t(p.challenge, 'ar');
         }
 
