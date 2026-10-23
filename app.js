@@ -426,12 +426,18 @@ function getPeriodeFromHour(hour) {
 
 function getTimeContext() {
     const now = new Date();
-    const hour = now.getHours();
-    const dateStr = now.toLocaleDateString('ar-MA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-    const timeStr = now.toLocaleTimeString('ar-MA', { hour: '2-digit', minute: '2-digit', hour12: true });
+    // المنطقة الزمنية ديال جهاز المستخدمة (Africa/Casablanca، Europe/Paris، Asia/Riyadh...)
+    let tz = 'UTC';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) {}
+    const hour = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: tz }).format(now)) % 24;
+    const localeMap = { ar: 'ar-MA', en: 'en-US', fr: 'fr-FR', es: 'es-ES', ru: 'ru-RU' };
+    const lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
+    const locale = localeMap[lang] || 'ar-MA';
+    const dateStr = now.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: tz });
+    const timeStr = now.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: tz });
     const periode = getPeriodeFromHour(hour);
 
-    return { periode, dateStr, timeStr, gapText: sessionGapText, hour };
+    return { periode, dateStr, timeStr, gapText: sessionGapText, hour, tz };
 }
 
 /* ترجمة الرسائل الديناميكية — كتقرا اللغة الحالية فلحظة الاستعمال، وإلا ماكانش i18n.js كترجع للعربية */
@@ -808,7 +814,7 @@ async function requestGeminiOnce(userText, imageData, audioData) {
     const appLang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
     fullInstruction += `\n\n[لغة التطبيق المختارة فالإعدادات]: ${appLangNames[appLang] || 'العربية/الدارجة'}. اعتبري هاد اللغة هي الافتراضية إلا ماكانش فالرسالة الأخيرة ديال المستخدمة سياق واضح يدل على لغة أخرى.`;
 
-    fullInstruction += `\n\n[سياق زمني]: الساعة الحالية: ${timeCtx.timeStr}، فترة اليوم: ${timeCtx.periode}، التاريخ: ${timeCtx.dateStr}. إذا سألتك المستخدمة عن الوقت أو التاريخ مباشرة، جاوبيها بدقة من هاد المعلومة. خلاف ذلك، استعمليها فقط لضبط نبرة ردك بشكل طبيعي (مثلاً تحية "صباح الخير" فالصباح)، بلا ما تذكريها صراحة.`;
+    fullInstruction += `\n\n[سياق زمني]: الساعة الحالية عند المستخدمة: ${timeCtx.timeStr}، فترة اليوم: ${timeCtx.periode}، التاريخ: ${timeCtx.dateStr}، المنطقة الزمنية: ${timeCtx.tz}. إذا سألتك المستخدمة عن الوقت أو التاريخ مباشرة، جاوبيها بدقة من هاد المعلومة. خلاف ذلك، استعمليها لضبط نبرة ردك بشكل طبيعي (مثلاً تحية "صباح الخير" فالصباح)، بلا ما تذكريها صراحة. ممنوع تقولي أو تلمّحي لوقت يخالف هاد الفترة (مثلاً ما تقوليش "الليل" أو "السهر" فالنهار)، وما تعتمديش على الحوار القديم لتحديد الوقت الحالي.`;
 
     if (timeCtx.gapText) {
         fullInstruction += `\nملاحظة: ${timeCtx.gapText}. إذا كان الغياب طويلاً (أيام)، رحّبي بدفء واستفسري بلطف. إذا كان الفارق قصيراً، لا تعلّقي عليه إطلاقاً.`;
@@ -851,6 +857,11 @@ async function requestGeminiOnce(userText, imageData, audioData) {
     if (userText) {
         currentUserParts.push({ text: userText });
     }
+
+    // تذكير زمني ملتصق بآخر رسالة (أقوى من systemInstruction، ومهم حتى فالرسائل الصوتية/الصور)
+    currentUserParts.push({
+        text: `[ملاحظة نظام، ماشي من المستخدمة: دابا ${timeCtx.timeStr} (${timeCtx.periode}) حسب توقيتها. الحوار القديم فوق ممكن يكون وقع فوقت آخر، ما تعتمديش عليه لتحديد الوقت الحالي.]`
+    });
 
     const res = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
