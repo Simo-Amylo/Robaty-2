@@ -2477,3 +2477,65 @@ El reto y la votación están en los comentarios 👀☝️`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 17,
+    slot: 'am',
+    image: 'day17-tafraout1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'تافراوت — الأطلس الصغير',
+        en: 'Tafraout — Anti-Atlas',
+        fr: 'Tafraout — Anti-Atlas',
+        es: 'Tafraout — Antiatlas',
+        ru: 'Тафраут — Анти-Атлас'
+    },
+
+    caption: {
+        ar: `⛰️🌸 تافراوت، جوهرة الأطلس الصغير، فين الصخور الوردية والطبيعة الأمازيغية كيرسمو لوحات ما كتتشبعش منها العين! 🇲🇦✨
+اليوم اخترت ستايل Amazigh Chic Fusion: جاكيت عاجي قصير بتطريز أمازيغي هندسي بالوردي الداكن والأخضر، مع قميص بلون التيراكوتا وسروال واسع بلون البيج الرملي. 👗
+وزدت لمسات من الحلي الفضية الأمازيغية وقطعة فيروزية مميزة، باش نجمع بين الأصالة واللمسة العصرية. 💎👑
+كنحس أن ألوان هاد الإطلالة منسجمة مع سحر تافراوت… ولكن بغيت نعرف رأيكم أنتما! 💖شاركوني رأيكم فالتعليقات!☝️`,
+
+        en: `⛰️🌸 Tafraout, the jewel of the Anti-Atlas, where the pink rocks and Amazigh nature paint pictures the eye never tires of! 🇲🇦✨
+Today I chose an Amazigh Chic Fusion style: a short ivory jacket with geometric Amazigh embroidery in deep pink and green, with a terracotta shirt and wide sandy-beige trousers. 👗
+And I added touches of Amazigh silver jewelry and a distinctive turquoise piece, to combine authenticity with a modern touch. 💎👑
+I feel the colors of this look match the magic of Tafraout… but I want to know what you think! 💖 Share your opinion in the comments! ☝️`,
+
+        fr: `⛰️🌸 Tafraout, joyau de l’Anti-Atlas, où les rochers roses et la nature amazighe dessinent des tableaux dont l’œil ne se lasse jamais ! 🇲🇦✨
+Aujourd’hui, j’ai choisi un style Amazigh Chic Fusion : une veste courte ivoire avec une broderie amazighe géométrique rose foncé et verte, une chemise terracotta et un pantalon large beige sable. 👗
+Et j’ai ajouté des touches de bijoux en argent amazighs et une pièce turquoise remarquable, pour allier authenticité et touche moderne. 💎👑
+Je sens que les couleurs de cette tenue s’accordent avec la magie de Tafraout… mais je veux savoir ce que vous en pensez ! 💖 Partagez votre avis en commentaire ! ☝️`,
+
+        es: `⛰️🌸 Tafraout, joya del Antiatlas, donde las rocas rosadas y la naturaleza amazigh pintan cuadros que los ojos nunca se cansan de mirar 🇲🇦✨
+Hoy elegí un estilo Amazigh Chic Fusion: una chaqueta corta color marfil con bordado amazigh geométrico en rosa oscuro y verde, con una camisa color terracota y unos pantalones anchos beige arena. 👗
+Y añadí toques de joyería de plata amazigh y una pieza turquesa distintiva, para combinar autenticidad con un toque moderno. 💎👑
+Siento que los colores de este look armonizan con la magia de Tafraout… ¡pero quiero saber qué opinan ustedes! 💖 ¡Compartan su opinión en los comentarios! ☝️`,
+
+        ru: `⛰️🌸 Тафраут — жемчужина Анти-Атласа, где розовые скалы и берберская природа рисуют картины, на которые глаз не устаёт смотреть! 🇲🇦✨
+Сегодня я выбрала стиль Amazigh Chic Fusion: короткий жакет цвета слоновой кости с геометрической берберской вышивкой тёмно-розового и зелёного цветов, рубашку терракотового цвета и широкие брюки песочно-бежевого оттенка. 👗
+А ещё добавила штрихи берберских серебряных украшений и яркую бирюзовую деталь, чтобы соединить аутентичность и современный акцент. 💎👑
+Мне кажется, что цвета этого образа созвучны волшебству Тафраута… но мне хочется узнать ваше мнение! 💖 Поделитесь им в комментариях! ☝️`
+    },
+
+    story: {
+        ar: 'ما تخافيش تكوني مختلفة؛ مرات أكثر حاجة كتميزك هي بالضبط الحاجة اللي كتخليك ما تشبهي حتى لواحدة! 👑❤️',
+        en: 'Don’t be afraid to be different; sometimes the very thing that sets you apart is exactly what makes you unlike anyone else! 👑❤️',
+        fr: 'N’aie pas peur d’être différente ; parfois, ce qui te distingue le plus est exactement ce qui fait que tu ne ressembles à personne d’autre ! 👑❤️',
+        es: 'No temas ser diferente; a veces lo que más te distingue es justo lo que hace que no te parezcas a nadie. 👑❤️',
+        ru: 'Не бойся быть другой; порой то, что больше всего выделяет тебя, — это именно то, что делает тебя непохожей ни на кого! 👑❤️'
+    },
+
+    challenge: {
+        ar: 'البنات، شنو رأيكم فهاد المزج بين الأناقة العصرية والطرز الأمازيغي؟ 💗👑 واش تلبسو هاد الستايل، ولا تفضلو لمسات أمازيغية أخف؟ شاركوني رأيكم! 👇',
+        en: 'Girls, what do you think of this mix of modern elegance and Amazigh embroidery? 💗👑 Would you wear this style, or do you prefer lighter Amazigh touches? Share your opinion! 👇',
+        fr: 'Les filles, que pensez-vous de ce mélange entre élégance moderne et broderie amazighe ? 💗👑 Porteriez-vous ce style, ou préférez-vous des touches amazighes plus légères ? Partagez votre avis ! 👇',
+        es: 'Chicas, ¿qué opinan de esta mezcla entre elegancia moderna y bordado amazigh? 💗👑 ¿Llevarían este estilo, o prefieren toques amazigh más sutiles? ¡Compartan su opinión! 👇',
+        ru: 'Девушки, что вы думаете об этом сочетании современной элегантности и берберской вышивки? 💗👑 Вы бы носили такой стиль или предпочитаете более лёгкие берберские акценты? Поделитесь своим мнением! 👇'
+    },
+
+    description: 'تافراوت (الأطلس الصغير) فنهار مشمس بسماء زرقاء صافية بغيوم خفيفة: صخور وردية/برتقالية ضخمة وجبال الأطلس الصغير فالخلفية، وعلى صخرة بعيدة رسومات هندسية ملونة (مثلثات زرقاء وصفراء) هي الصخور المصبوغة الشهيرة ديال تافراوت. تحت الجبل كاين دوار/قرية بنايات طينية بلون وردي ترابي وصومعة صغيرة، وسط نخيل وخضرة كثيفة. على اليسار شجرة بوغنفيليا بزهور وردية فوشيا كثيفة، وعمود خشبي فيه لوحة خشبية مكتوب عليها بالعربية والحروف اللاتينية "تافراوت TAFRAOUT" مع قلب صغير مرسوم تحتها. فالمقدمة على اليسار سور حجري عليه زرابي أمازيغية مخططة وملونة (أحمر، أزرق، أصفر، كريمي) وفانوس معدني مزخرف مضاء بشمعة، وفالأسفل براد أتاي فضي وكيسان زجاجيين أتاي بالنعناع. Robaty واقفة بكامل جسمها فوق ممر صخري آمن، بوقفة مرتاحة وراسها مايل شوية، وكتبتسم للكاميرا ابتسامة مشرقة. شعرها طويل ومموج بني بلمسات نحاسية وكرامل منسدل على الكتفين. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية وأساور عند المعصم) مرفوعة وكتلمس شعرها وراسها، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية) نازلة بالجنب قرب السروال. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. لابسة جاكيت قصير بلون العاج (كريمي) بتطريز أمازيغي هندسي (معينات وصلبان) بالوردي الداكن (فوشيا) والأخضر على الحواف والأكمام الواسعة وعلى الصدر، بحاشية وردية داكنة وبطانة بلون الترابي، فوق قميص مغلق بلون التيراكوتا بياقة عالية (ياقة ماو)، وسروال واسع منساب بلون بيج رملي بخصر عالي. حزام جلدي بني أنيق بإبزيم فضي مزخرف على شكل ميدالية بحجر فيروزي وشرّابات متدلية بالأسود والأزرق والذهبي. قلادة فضية أمازيغية طويلة بتعليقة مستديرة مزخرفة بحجر فيروزي وشراريب فضية على الصدر، وأقراط فضية متدلية مستوحاة من الحلي الأمازيغية بحجر فيروزي. وحقيبة جلدية بنية بحزام طويل على الكتف (كتبان على الجنب الأيسر من الصورة) بتطريز ملون وميدالية فيروزية وشراريب حمراء. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة وواثقة.',
+
+    stats: { likes: 0 }
+});
