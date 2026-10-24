@@ -2539,3 +2539,65 @@ Siento que los colores de este look armonizan con la magia de Tafraout… ¡pero
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 17,
+    slot: 'pm',
+    image: 'day17-tafraout2-evening.jpg',
+    focus: '50% 51%',   // رفع الصورة 11% من ارتفاع الشاشة
+
+    place: {
+        ar: 'تافراوت — الأطلس الصغير',
+        en: 'Tafraout — Anti-Atlas',
+        fr: 'Tafraout — Anti-Atlas',
+        es: 'Tafraout — Antiatlas',
+        ru: 'Тафраут — Анти-Атлас'
+    },
+
+    caption: {
+        ar: `🌅💗 مساء الخير من تافراوت، جوهرة الأطلس الصغير! هنا الصخور الوردية والجبال الأمازيغية كيتحوّلو مع الغروب للوحة طبيعية ساحرة. 🇲🇦⛰️
+اختاريت اليوم قفطان بلون البرقوق، بتطريز هندسي مستوحى من الزخارف الأمازيغية، بتفاصيل متعددة الألوان كتزيدو تميّزاً. 👑✨
+ونسّقت معاه حزاماً أنيقاً وحلي فضية بلمسات فيروزية، ضمن الستايل ديالي Amazigh Chic Fusion، اللي كيجمع الأصالة بالموضة العصرية. 💎💜
+قولوا ليا البنات، كيف جاكم هاد المزيج بين لون القفطان والطرز الأمازيغي؟ 😍 جاوبوني ف التعليقات☝️`,
+
+        en: `🌅💗 Good evening from Tafraout, the jewel of the Anti-Atlas! Here the pink rocks and the Amazigh mountains turn, with the sunset, into an enchanting natural painting. 🇲🇦⛰️
+Today I chose a plum-colored kaftan with geometric embroidery inspired by Amazigh motifs, with multicolored details that make it even more distinctive. 👑✨
+And I paired it with an elegant belt and silver jewelry with turquoise touches, as part of my Amazigh Chic Fusion style, which combines authenticity with modern fashion. 💎💜
+Tell me, girls, how do you like this mix of the kaftan’s color and the Amazigh embroidery? 😍 Answer me in the comments ☝️`,
+
+        fr: `🌅💗 Bonsoir depuis Tafraout, joyau de l’Anti-Atlas ! Ici, les rochers roses et les montagnes amazighes se transforment, au coucher du soleil, en un tableau naturel enchanteur. 🇲🇦⛰️
+Aujourd’hui, j’ai choisi un caftan couleur prune, avec une broderie géométrique inspirée des motifs amazighs, aux détails multicolores qui le rendent encore plus unique. 👑✨
+Je l’ai associé à une ceinture élégante et à des bijoux en argent aux touches turquoise, dans mon style Amazigh Chic Fusion, qui allie authenticité et mode moderne. 💎💜
+Dites-moi, les filles, que pensez-vous de ce mélange entre la couleur du caftan et la broderie amazighe ? 😍 Répondez-moi en commentaire ☝️`,
+
+        es: `🌅💗 ¡Buenas noches desde Tafraout, joya del Antiatlas! Aquí las rocas rosadas y las montañas amazigh se transforman con el atardecer en un cuadro natural encantador. 🇲🇦⛰️
+Hoy elegí un caftán color ciruela, con bordado geométrico inspirado en los motivos amazigh, con detalles multicolores que lo hacen aún más distintivo. 👑✨
+Lo combiné con un cinturón elegante y joyas de plata con toques turquesa, dentro de mi estilo Amazigh Chic Fusion, que une autenticidad y moda moderna. 💎💜
+Díganme, chicas, ¿qué les parece esta mezcla entre el color del caftán y el bordado amazigh? 😍 Respóndanme en los comentarios ☝️`,
+
+        ru: `🌅💗 Добрый вечер из Тафраута — жемчужины Анти-Атласа! Здесь розовые скалы и берберские горы с закатом превращаются в волшебную картину природы. 🇲🇦⛰️
+Сегодня я выбрала кафтан сливового цвета с геометрической вышивкой, вдохновлённой берберскими орнаментами, и разноцветными деталями, которые делают его ещё особенным. 👑✨
+Я дополнила его элегантным поясом и серебряными украшениями с бирюзовыми акцентами — в моём стиле Amazigh Chic Fusion, который соединяет аутентичность и современную моду. 💎💜
+Скажите, девушки, как вам это сочетание цвета кафтана и берберской вышивки? 😍 Ответьте мне в комментариях ☝️`
+    },
+
+    story: {
+        ar: '👑 ما تستنايش العالم يعطيك الإذن باش تتألقي؛ آمني براسك، وخلي خطواتك هي اللي تبرهن على قوتك! ❤️✨',
+        en: '👑 Don’t wait for the world to give you permission to shine; believe in yourself, and let your steps prove your strength! ❤️✨',
+        fr: '👑 N’attends pas que le monde te donne la permission de briller ; crois en toi, et laisse tes pas prouver ta force ! ❤️✨',
+        es: '👑 No esperes a que el mundo te dé permiso para brillar; cree en ti misma y deja que tus pasos demuestren tu fuerza. ❤️✨',
+        ru: '👑 Не жди, что мир разрешит тебе сиять; верь в себя и пусть твои шаги докажут твою силу! ❤️✨'
+    },
+
+    challenge: {
+        ar: '💜 البنات، إلا كان خاصكم تختارو لون واحد لقفطان مميز، غادي تختارو البرقوقي، الأخضر الزمردي، ولا الأزرق الملكي؟ 👗👑',
+        en: '💜 Girls, if you had to choose one color for a special kaftan, would you pick plum, emerald green, or royal blue? 👗👑',
+        fr: '💜 Les filles, si vous deviez choisir une seule couleur pour un caftan d’exception, choisiriez-vous le prune, le vert émeraude ou le bleu roi ? 👗👑',
+        es: '💜 Chicas, si tuvieran que elegir un solo color para un caftán especial, ¿elegirían ciruela, verde esmeralda o azul real? 👗👑',
+        ru: '💜 Девушки, если бы вам нужно было выбрать один цвет для особенного кафтана, что бы вы выбрали: сливовый, изумрудно-зелёный или королевский синий? 👗👑'
+    },
+
+    description: 'تافراوت (الأطلس الصغير) وقت الغروب: شمس كتغرب فالأفق على اليمين بأشعة ذهبية، سماء متدرجة بين الأصفر والبرتقالي والوردي بغيوم خفيفة، وسلاسل جبال الأطلس الصغير متراصة فالخلفية بظلال بنفسجية. صخور وردية/برتقالية ضخمة، وعلى صخرة فاليمين رسومات هندسية ملونة (مثلثات زرقاء وصفراء وحمراء) هي الصخور المصبوغة الشهيرة ديال تافراوت. تحت الجبال دوار/قرية بنايات طينية بلون وردي ترابي وسط نخيل وخضرة كثيفة. على اليسار عمود خشبي فيه لوحة خشبية مكتوب عليها بالعربية والحروف اللاتينية "تافراوت TAFRAOUT" مع قلب صغير مرسوم تحتها، وشجرة بوغنفيليا بزهور وردية فوشيا، ومزهرية صغيرة فوق السور الحجري. Robaty جالسة بجلسة مرتاحة فوق سور حجري مفروش بزرابي ووسادات أمازيغية ملونة (أحمر، كحلي، برتقالي، ذهبي)، مسندة جسمها على الوسادة وراسها مايل وكتبتسم ابتسامة مشرقة وهادئة للكاميرا. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية وأساور فضية عند المعصم) مرفوعة وراسها مسند عليها قرب الخد والأذن، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية) مرتاحة على ركبتها فوق القفطان. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. لابسة قفطان/روب طويل مفتوح بلون البرقوق (بنفسجي عنابي داكن) من قماش مخملي ناعم بأكمام واسعة، بتطريز هندسي مستوحى من الزخارف الأمازيغية بألوان متعددة (ذهبي، أخضر، أحمر، فيروزي) على حواف الفتحة الأمامية وعلى الأكمام وعلى الحاشية، فوق قميص بلون التيراكوتا بياقة عالية (ياقة ماو). حزام جلدي بني أنيق بإبزيم فضي مزخرف على شكل ميدالية بحجر فيروزي. قلادة فضية أمازيغية طويلة بتعليقة مستديرة مزخرفة بحجر فيروزي وشراريب فضية على الصدر، وأقراط فضية متدلية مستوحاة من الحلي الأمازيغية بحجر فيروزي. فالمقدمة على اليسار طاولة/صينية نحاسية مستديرة منقوشة عليها براد أتاي فضي مزخرف، كاسان زجاجيان أتاي بالنعناع، وطبقين فيهم تمر، وفانوس نحاسي مضيء بشمعة، وفانوس نحاسي مزخرف مضيء فوق السور على اليمين. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، شعر طويل ومموج بني بلمسات نحاسية منسدل على الكتفين، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
