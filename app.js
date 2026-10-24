@@ -853,6 +853,10 @@ async function requestGeminiOnce(userText, imageData, audioData) {
     }
     if (audioData) {
         currentUserParts.push({ inlineData: { mimeType: audioData.mimeType, data: audioData.data } });
+        // تعليمة خاصة بالرسائل الصوتية: فهم الكلام + الانتباه للنبرة بدون تحليل صريح للصوت
+        currentUserParts.push({
+            text: '[ملاحظة نظام، ماشي من المستخدمة: هذه رسالة صوتية، افهمي الكلام وانتبهي لنبرة صاحبتها وردي بما يناسب حالتها، دون أن تذكري أنك حلّلتِ صوتها.]'
+        });
     }
     if (userText) {
         currentUserParts.push({ text: userText });
@@ -1256,40 +1260,35 @@ sendButton.addEventListener('click', sendMessage);
 
 
 /* ==========================================================================
-   MICROPHONE / LISTENING
+   MICROPHONE / LISTENING — نسخة موحّدة (v2)
+   - تقنية واحدة فقط: MediaRecorder (بلا SpeechRecognition)
+   - البابل دايما رسالة صوتية قابلة للتشغيل، والتسجيل كيتصيفط لـGemini
+   - الإرسال: بالضغط على الزر، أو تلقائيا بعد صمت حقيقي (قابل للتعديل)
    ========================================================================== */
 
+const VOICE_CONFIG = {
+    autoSendOnSilence: true,   // false = الإرسال بالضغط على الزر فقط
+    silenceMs: 1800,           // مدة الصمت بعد الكلام قبل الإرسال التلقائي
+    noSpeechTimeoutMs: 8000,   // إيلا ما تكلمتيش نهائيا: كنلغيو التسجيل
+    speechThreshold: 0.03,     // حساسية الكشف عن الكلام (RMS) — نقصيها إيلا كان كيقطع بزربة
+    minDurationMs: 700,        // أقصر تسجيل مقبول
+    maxDurationMs: 60000       // حد أقصى للتسجيل
+};
+
 let isRecording = false;
+let isStartingRecording = false;
 let mediaRecorder = null;
 let recordedChunks = [];
 let currentAudioStream = null;
 let audioContext = null;
-
-/* ==========================================================================
-   تفريغ صوتي (Speech-to-Text) — مربوط باللغة المختارة فالإعدادات
-   ========================================================================== */
-
-const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-const SPEECH_LANG_MAP = {
-    ar: 'ar-MA',
-    en: 'en-US',
-    fr: 'fr-FR',
-    es: 'es-ES',
-    ru: 'ru-RU'
-};
-
-function getSpeechLang() {
-    const lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
-    return SPEECH_LANG_MAP[lang] || 'ar-MA';
-}
-
-let speechRecognizer = null;
-let recognizedTranscript = '';
-let voiceInputFinalizing = false;
 let analyser = null;
 let microphoneSource = null;
 let voiceAnimationFrame = null;
+
+let recordStartedAt = 0;
+let lastSpeechAt = 0;
+let heardSpeech = false;
+let discardRecording = false;
 
 async function startVoiceAnalysis(stream) {
     try {
@@ -1319,8 +1318,25 @@ async function startVoiceAnalysis(stream) {
 
             const rms = Math.sqrt(sum / dataArray.length);
             const voiceLevel = Math.min(1, Math.max(0, (rms - 0.015) / 0.18));
-
             presenceIndicator.style.setProperty('--voice-level', voiceLevel.toFixed(3));
+
+            /* كشف الكلام والصمت (مبني على الصوت الحقيقي، ماشي على أحداث المتصفح) */
+            const now = performance.now();
+            if (rms > VOICE_CONFIG.speechThreshold) {
+                heardSpeech = true;
+                lastSpeechAt = now;
+            }
+
+            if (VOICE_CONFIG.autoSendOnSilence) {
+                if (heardSpeech && now - lastSpeechAt > VOICE_CONFIG.silenceMs) {
+                    stopRecording('silence');
+                    return;
+                }
+                if (!heardSpeech && now - recordStartedAt > VOICE_CONFIG.noSpeechTimeoutMs) {
+                    stopRecording('nospeech');
+                    return;
+                }
+            }
 
             voiceAnimationFrame = requestAnimationFrame(analyseVoice);
         }
@@ -1358,222 +1374,164 @@ function stopVoiceAnalysis() {
     presenceIndicator.style.setProperty('--voice-level', '0');
 }
 
+function pickRecorderMimeType() {
+    if (!window.MediaRecorder || typeof MediaRecorder.isTypeSupported !== 'function') return '';
+    const candidates = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg;codecs=opus'];
+    return candidates.find(type => MediaRecorder.isTypeSupported(type)) || '';
+}
+
+function setRecordButtonUI(active) {
+    const t = (key, fallback) => (window.RobatyI18n ? window.RobatyI18n.t(key) : fallback);
+    recordButton.classList.toggle('recording-active', active);
+    recordLabel.textContent = active ? t('recording_label', 'RECORDING') : t('record_btn', 'تسجيل صوتي');
+    recordButton.setAttribute('aria-label', active ? t('recording_label', 'جاري التسجيل') : t('record_btn', 'تسجيل صوتي'));
+}
+
 async function startRecording() {
-    if (isRecording) return;
-
-    recognizedTranscript = '';
-    voiceInputFinalizing = false;
-
-    if (SpeechRecognitionAPI) {
-        try {
-            speechRecognizer = new SpeechRecognitionAPI();
-            speechRecognizer.lang = getSpeechLang();
-            speechRecognizer.continuous = true;
-            speechRecognizer.interimResults = false;
-
-            speechRecognizer.onresult = (event) => {
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    if (event.results[i].isFinal) {
-                        recognizedTranscript += (recognizedTranscript ? ' ' : '') + event.results[i][0].transcript;
-                    }
-                }
-            };
-
-            speechRecognizer.onerror = () => {};
-
-            speechRecognizer.onend = () => {
-                // المتصفح كيقدر يوقف التعرف الصوتي من عندو (صمت طويل مثلاً)
-                // حتى مع continuous:true. إيلا وقع هادشي و isRecording مازال true
-                // (يعني ماشي توقيف يدوي بالزر)، خاصنا نديرو stopRecording() كامل
-                // باش الزر/الحالة يرجعو idle، عوض ما يبقى الزر مضوي 45 ثانية
-                // حتى يوصل الـ timer الأقصى.
-                const wasStillRecording = isRecording;
-                speechRecognizer = null;
-
-                if (wasStillRecording) {
-                    stopRecording();
-                } else {
-                    finalizeVoiceInput();
-                }
-            };
-
-            speechRecognizer.start();
-        } catch (error) {
-            speechRecognizer = null;
-        }
-    }
+    if (isRecording || isStartingRecording) return;
+    isStartingRecording = true;
 
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         currentAudioStream = stream;
         recordedChunks = [];
+        heardSpeech = false;
+        discardRecording = false;
 
-        mediaRecorder = new MediaRecorder(stream);
+        const mimeType = pickRecorderMimeType();
+        const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
+        mediaRecorder = recorder;
 
-        mediaRecorder.ondataavailable = (event) => {
+        recorder.ondataavailable = (event) => {
             if (event.data && event.data.size > 0) recordedChunks.push(event.data);
         };
+        recorder.onstop = () => finishRecording(recorder);
 
-        mediaRecorder.onstop = () => finishRecording();
-
-        mediaRecorder.start();
+        recorder.start();
+        recordStartedAt = performance.now();
+        lastSpeechAt = recordStartedAt;
         isRecording = true;
 
+        setRecordButtonUI(true);
         setPresenceState('listening');
+
+        window.clearTimeout(window.__robatyMaxRecordTimer);
+        window.__robatyMaxRecordTimer = window.setTimeout(() => {
+            if (isRecording) stopRecording('max');
+        }, VOICE_CONFIG.maxDurationMs);
+
         await startVoiceAnalysis(stream);
 
     } catch (error) {
-        // ماقدرناش نوصلو للميكروفون (رفض الصلاحية، أو ماكاينش دعم) —
-        // ماندوزوش isRecording لـ true، ونبينو خطأ واضح للمستخدمة بدل ما نبقاو
-        // فحالة "كنسجل" وهمية بلا أي تسجيل حقيقي.
-        mediaRecorder = null;
-        currentAudioStream = null;
-        isRecording = false;
-        setPresenceState('idle');
-
-        // إيلا كان التعرف الصوتي (Speech Recognition) بدا خدام بنجاح من قبل،
-        // خاصنا نوقفوه، حيت ماكاينش تسجيل حقيقي يواكبو.
-        if (speechRecognizer) {
-            try { speechRecognizer.stop(); } catch (e) {}
-            speechRecognizer = null;
+        console.error(error);
+        if (currentAudioStream) {
+            currentAudioStream.getTracks().forEach(track => track.stop());
+            currentAudioStream = null;
         }
+        mediaRecorder = null;
+        isRecording = false;
+        setRecordButtonUI(false);
+        setPresenceState('idle');
 
         appendBotMessage(
             '⚠️ ' + tr('err_mic', 'ماقدرتش نوصل للميكروفون ديالك. تأكدي من صلاحية الميكروفون فإعدادات المتصفح وعاودي المحاولة.'),
             getCurrentTime()
         );
+    } finally {
+        isStartingRecording = false;
     }
-
-    // هاد الجزء (تفعيل مظهر زر التسجيل + المؤقت الأقصى) خاصو يوقع
-    // غير إيلا التسجيل بدا فعلا بنجاح (isRecording === true).
-    if (!isRecording) return;
-
-    recordButton.classList.add('recording-active');
-    recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'RECORDING';
-    recordButton.setAttribute('aria-label', window.RobatyI18n ? window.RobatyI18n.t('recording_label') : 'جاري التسجيل');
-
-    // حماية إضافية: توقيف تلقائي بعد 45 ثانية إلا نسات المستخدمة الزر مفتوح
-    window.clearTimeout(window.__robatyMaxRecordTimer);
-    window.__robatyMaxRecordTimer = window.setTimeout(() => {
-        if (isRecording) stopRecording();
-    }, 45000);
 }
 
-function stopRecording() {
+/* reason: 'manual' | 'silence' | 'max' | 'nospeech' | 'cancel' */
+function stopRecording(reason = 'manual') {
     if (!isRecording) return;
 
     window.clearTimeout(window.__robatyMaxRecordTimer);
 
     isRecording = false;
+    discardRecording = (reason === 'nospeech' || reason === 'cancel');
+
     stopVoiceAnalysis();
-
-    if (speechRecognizer) {
-        try { speechRecognizer.stop(); } catch (error) {}
-    }
-
-    recordButton.classList.remove('recording-active');
-    recordLabel.textContent = window.RobatyI18n ? window.RobatyI18n.t('record_btn') : 'تسجيل صوتي';
-    recordButton.setAttribute('aria-label', window.RobatyI18n ? window.RobatyI18n.t('record_btn') : 'تسجيل صوتي');
+    setRecordButtonUI(false);
+    setPresenceState('processing');
 
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-        mediaRecorder.stop();
+        try { mediaRecorder.stop(); } catch (error) { finishRecording(mediaRecorder); }
     } else {
-        finishRecording();
+        finishRecording(mediaRecorder);
     }
 }
 
-function finishRecording() {
+function finishRecording(recorder) {
     if (currentAudioStream) {
         currentAudioStream.getTracks().forEach(track => track.stop());
         currentAudioStream = null;
     }
-
     mediaRecorder = null;
 
-    setPresenceState('processing');
+    const chunks = recordedChunks;
+    recordedChunks = [];
 
-    // إلا كان التعرف الصوتي شغال، كنتسناو onend ديالو (النتيجة النهائية) قبل ما نفينالايزيو
-    if (speechRecognizer) return;
+    const duration = performance.now() - recordStartedAt;
+    const type = (recorder && recorder.mimeType) || 'audio/webm';
+    const audioBlob = new Blob(chunks, { type });
 
-    finalizeVoiceInput();
-}
+    const tooShort = duration < VOICE_CONFIG.minDurationMs || audioBlob.size < 800;
 
-function finalizeVoiceInput() {
-
-    if (voiceInputFinalizing) return; // حماية: ماندوزوش finalize جوج مرات لنفس التسجيل
-    voiceInputFinalizing = true;
-
-    const transcript = recognizedTranscript.trim();
-    recognizedTranscript = ''; // مسح فوري باش أي استدعاء زايد يلقاها فارغة
-
-    /* تفريغ صوتي نجح: كنعاملوها بحال كتبت الرسالة وضغطات إرسال */
-    if (transcript) {
-        messageInput.value = transcript;
-        autoGrowMessageInput();
-        updateSendButtonState();
-        sendMessage();
-        recordedChunks = [];
-        voiceInputFinalizing = false;
-        return;
-    }
-
-    /* ماقدرناش نفهمو الصوت عبر Speech Recognition ديال المتصفح (أو ماكيدعمهاش):
-       نبينو البابل الصوتي القابل للتشغيل محليا، ومنبعد نصيفطو التسجيل مباشرة
-       لـGemini (audio understanding) باش المستخدمة توصلها دايما رد — ماشي
-       تبقى الرسالة الصوتية معلقة بلا جواب. */
-    if (recordedChunks.length) {
-        const audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
-        const audioUrl = URL.createObjectURL(audioBlob);
-
-        const message = document.createElement('div');
-        message.className = 'message user-msg new-user-message';
-
-        const audioBubble = document.createElement('div');
-        audioBubble.className = 'audio-message-bubble';
-
-        const audio = document.createElement('audio');
-        audio.controls = true;
-        audio.src = audioUrl;
-        audioBubble.appendChild(audio);
-
-        message.appendChild(audioBubble);
-
-        const time = document.createElement('span');
-        time.className = 'msg-time';
-        time.textContent = getCurrentTime();
-        message.appendChild(time);
-
-        chatArea.appendChild(message);
-
-        requestAnimationFrame(() => {
-            message.classList.add('message-enter-active');
-            scrollChatToBottom();
-        });
-
-        recordedChunks = [];
-
-        sendVoiceOnlyMessage(audioBlob);
-    } else {
+    if (discardRecording || !chunks.length || tooShort) {
+        discardRecording = false;
         window.clearTimeout(window.__robatyVoiceProcessingTimer);
         window.__robatyVoiceProcessingTimer = window.setTimeout(() => {
             if (currentPresenceState === 'processing') setPresenceState('idle');
-        }, 1400);
+        }, 400);
+        return;
     }
 
-    voiceInputFinalizing = false;
+    /* قرار واحد دايما: بابل صوتي قابل للتشغيل + إرسال لـGemini */
+    appendUserAudioBubble(audioBlob);
+    sendVoiceOnlyMessage(audioBlob);
 }
 
-/* رسالة صوتية بلا نص متعرف عليه محليا: كتصيفط التسجيل الخام لـGemini
-   (audio understanding)، بحال sendMessage بصح بلا نص/صورة. */
+function appendUserAudioBubble(audioBlob) {
+    const audioUrl = URL.createObjectURL(audioBlob);
+
+    const message = document.createElement('div');
+    message.className = 'message user-msg new-user-message';
+
+    const audioBubble = document.createElement('div');
+    audioBubble.className = 'audio-message-bubble';
+
+    const audio = document.createElement('audio');
+    audio.controls = true;
+    audio.preload = 'metadata';
+    audio.src = audioUrl;
+    audioBubble.appendChild(audio);
+    message.appendChild(audioBubble);
+
+    const time = document.createElement('span');
+    time.className = 'msg-time';
+    time.textContent = getCurrentTime();
+    message.appendChild(time);
+
+    chatArea.appendChild(message);
+
+    requestAnimationFrame(() => {
+        message.classList.add('message-enter-active');
+        scrollChatToBottom();
+    });
+}
+
+/* كتصيفط التسجيل الخام لـGemini (audio understanding) */
 async function sendVoiceOnlyMessage(audioBlob) {
-    if (!getKey()) return; // نادرة: ماكاينش مفتاح، ماكاينش داعي نبينو modal هنا
+    if (!getKey()) { setPresenceState('idle'); return; }
 
     setPresenceState('processing');
     const typingId = appendTypingIndicator();
 
     try {
         const audioData = await blobToBase64(audioBlob);
-        const { reply, state } = await fetchRobatyResponse('', null, { mimeType: 'audio/webm', data: audioData });
+        const mimeType = (audioBlob.type || 'audio/webm').split(';')[0];
+        const { reply, state } = await fetchRobatyResponse('', null, { mimeType, data: audioData });
 
         removeTypingIndicator(typingId);
 
@@ -1607,19 +1565,20 @@ async function sendVoiceOnlyMessage(audioBlob) {
     }
 }
 
-/* tap-to-toggle: ضغطة تبدا التسجيل، ضغطة ثانية توقفو.
-   بدّلنا هاد النمط من "استمر فالضغط" (pointerdown/pointerup) حيت هاد الأخير
-   كان كيسبب تسجيل عالق ("stuck") على بعض الهواتف كي ما يتسجلش pointerup
-   بشكل موثوق (فقدان لمسة، pointer capture...)، وهو اللي كان سبب الإرسال المكرر. */
-
+/* tap-to-toggle: ضغطة تبدا، ضغطة ثانية توقف وتصيفط */
 recordButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
     if (isRecording) {
-        stopRecording();
+        stopRecording('manual');
     } else {
         await startRecording();
     }
+});
+
+/* إيلا خرج المستخدم من الصفحة/التطبيق وهو كيسجل: كنوقفو ونصيفطو بدل ما يبقى عالق */
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isRecording) stopRecording('manual');
 });
 
 
