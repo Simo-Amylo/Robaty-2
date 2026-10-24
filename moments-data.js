@@ -2482,7 +2482,7 @@ RobatyMoments.add({
     day: 17,
     slot: 'am',
     image: 'day17-tafraout1-morning.jpg',
-    focus: 'top',
+    focus: '50% 51%',   // رفع الصورة 11% من ارتفاع الشاشة
 
     place: {
         ar: 'تافراوت — الأطلس الصغير',
