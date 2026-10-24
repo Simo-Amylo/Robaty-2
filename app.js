@@ -551,49 +551,115 @@ const STATE_SLUGS = [
     'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
 ];
 
-// نجربو .jpg ثم .png تلقائياً — هكاك الامتداد الحقيقي للصورة (JPG ولا PNG)
-// ماكيصدعش الرأس، كافي الاسم الأساسي (warmth, calm...) يكون صحيح.
-const IMAGE_EXTENSIONS = ['jpg', 'png'];
+// الصور عندك .png فالـrepo، كنجربو png الأول (بلا طلب 404 ضايع) ومن بعد jpg كاحتياط
+const IMAGE_EXTENSIONS = ['png', 'jpg'];
+const AVATAR_FADE_MS = 1200; // خاصو يساوي مدة transition فـ CSS (.avatar-img)
 
 let activeAvatarLayer = 'A';
-let currentAvatarState = null; // null = wla t7ml 7ta sora dyal 7ala b9a — n5liw l fallback robaty-profile.jpg
+let currentAvatarState = null; // null = باقا الصورة الأولى (robaty-profile.jpg)
+let avatarTransitioning = false;
+let pendingAvatarState = null;
 
+const avatarImageCache = {};    // slug -> رابط الصورة (محمّلة ومفكوكة)
+const avatarImagePending = {};  // slug -> promise جاري
+
+/* تحميل مسبق: الصورة كتوصل للمتصفح قبل ما نحتاجوها، هكاك التبديل كيوقع فنفس لحظة الرد */
+function loadAvatarImage(slug) {
+    if (avatarImageCache[slug]) return Promise.resolve(avatarImageCache[slug]);
+    if (avatarImagePending[slug]) return avatarImagePending[slug];
+
+    avatarImagePending[slug] = new Promise((resolve, reject) => {
+        let i = 0;
+        const tryNext = () => {
+            if (i >= IMAGE_EXTENSIONS.length) {
+                delete avatarImagePending[slug];
+                reject(new Error('avatar image missing: ' + slug));
+                return;
+            }
+            const url = `${slug}.${IMAGE_EXTENSIONS[i++]}`;
+            const probe = new Image();
+            probe.onload = () => {
+                const done = () => {
+                    avatarImageCache[slug] = url;
+                    delete avatarImagePending[slug];
+                    resolve(url);
+                };
+                if (probe.decode) probe.decode().then(done, done); else done();
+            };
+            probe.onerror = tryNext;
+            probe.src = url;
+        };
+        tryNext();
+    });
+
+    return avatarImagePending[slug];
+}
+
+function preloadAvatarStates() {
+    let idx = 0;
+    const next = () => {
+        if (idx >= STATE_SLUGS.length) return;
+        loadAvatarImage(STATE_SLUGS[idx++]).catch(() => {}).then(() => setTimeout(next, 150));
+    };
+    next();
+}
+
+window.addEventListener('load', () => {
+    if (window.requestIdleCallback) {
+        window.requestIdleCallback(preloadAvatarStates, { timeout: 3000 });
+    } else {
+        setTimeout(preloadAvatarStates, 1500);
+    }
+});
+
+/* crossfade ناعم: الصورة الجديدة كتظهر فوق القديمة، والقديمة كتبقى كاملة
+   (opacity 1) حتى تكمل الجديدة — ما كاين لا وميض لا فراغ بيناتهم */
 function setAvatarState(state) {
-
     if (!avatarImgA || !avatarImgB) return;
     if (!STATE_SLUGS.includes(state)) return;
+
+    if (avatarTransitioning) {
+        pendingAvatarState = state; // إيلا جات حالة جديدة وسط التبديل: كنسناو وكناخدو آخر وحدة
+        return;
+    }
     if (state === currentAvatarState) return;
+
+    avatarTransitioning = true;
 
     const showingA = activeAvatarLayer === 'A';
     const incomingImg = showingA ? avatarImgB : avatarImgA;
     const outgoingImg = showingA ? avatarImgA : avatarImgB;
 
-    let extensionIndex = 0;
-
-    function tryNextExtension() {
-        if (extensionIndex >= IMAGE_EXTENSIONS.length) {
-            // الصورة ماكاينش بأي امتداد — نبقاو فالحالة الحالية بلا كراش
-            incomingImg.onerror = null;
-            return;
-        }
-
-        const ext = IMAGE_EXTENSIONS[extensionIndex];
-        extensionIndex++;
-        incomingImg.src = `${state}.${ext}`;
-    }
-
-    incomingImg.onload = () => {
-        incomingImg.onload = null;
-        incomingImg.onerror = null;
-        incomingImg.classList.add('is-active');
-        outgoingImg.classList.remove('is-active');
-        activeAvatarLayer = showingA ? 'B' : 'A';
-        currentAvatarState = state;
+    const finish = () => {
+        avatarTransitioning = false;
+        const next = pendingAvatarState;
+        pendingAvatarState = null;
+        if (next && next !== currentAvatarState) setAvatarState(next);
     };
 
-    incomingImg.onerror = tryNextExtension;
+    loadAvatarImage(state)
+        .then(url => {
+            incomingImg.src = url;
+            return incomingImg.decode ? incomingImg.decode().catch(() => {}) : null;
+        })
+        .then(() => {
+            outgoingImg.classList.remove('is-active');
+            outgoingImg.classList.add('is-leaving');   // كتبقى ظاهرة تحت
+            void incomingImg.offsetWidth;              // reflow باش الـtransition تبدا من 0
+            incomingImg.classList.add('is-active');    // كتظهر فوقها بسلاسة
 
-    tryNextExtension();
+            activeAvatarLayer = showingA ? 'B' : 'A';
+            currentAvatarState = state;
+
+            setTimeout(() => {
+                outgoingImg.style.transition = 'none';
+                outgoingImg.classList.remove('is-leaving');
+                void outgoingImg.offsetWidth;
+                outgoingImg.style.transition = '';
+                finish();
+            }, AVATAR_FADE_MS + 80);
+        })
+        .catch(() => finish()); // الصورة ماكاينش: نبقاو فالحالة الحالية بلا كراش
 }
 
 window.RobatyAvatar = {
@@ -1223,15 +1289,16 @@ async function sendMessage() {
 
         removeTypingIndicator(typingId);
 
-        const replyTime = getCurrentTime();
-        appendBotMessage(reply, replyTime);
-
-        consumeStoryContextTurn();
-
+        // الصورة كتبدا تتبدل فنفس لحظة ظهور الرد (الصور محمّلة مسبقا)
         if (state) {
             setAvatarState(state);
             applyEmotionalTheme(state);
         }
+
+        const replyTime = getCurrentTime();
+        appendBotMessage(reply, replyTime);
+
+        consumeStoryContextTurn();
 
         // ماكاينش نص (صورة وحدها): كنسجلو placeholder فالـchatHistory باش
         // النص المصيفط لـGemini فالجولات الجايات (recentHistory) ما يبقاش فارغ.
@@ -1535,15 +1602,16 @@ async function sendVoiceOnlyMessage(audioBlob) {
 
         removeTypingIndicator(typingId);
 
-        const replyTime = getCurrentTime();
-        appendBotMessage(reply, replyTime);
-
-        consumeStoryContextTurn();
-
+        // الصورة كتبدا تتبدل فنفس لحظة ظهور الرد (الصور محمّلة مسبقا)
         if (state) {
             setAvatarState(state);
             applyEmotionalTheme(state);
         }
+
+        const replyTime = getCurrentTime();
+        appendBotMessage(reply, replyTime);
+
+        consumeStoryContextTurn();
 
         chatHistory.push({ role: 'user', text: '🎤 [رسالة صوتية]', time: getCurrentTime() });
         chatHistory.push({ role: 'model', text: reply, time: replyTime });

@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v12'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v13'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -28,12 +28,26 @@ const CORE_FILES = [
   './manifest.json'
 ];
 
+// صور الحالات العاطفية الاثنا عشر: كنخزنوها مسبقا باش التبديل بينها يكون فوري
+const AVATAR_STATES = [
+  'warmth', 'calm', 'touched', 'surprise', 'confidence', 'laugh',
+  'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
+];
+const AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
+const AVATAR_STATE_RE = new RegExp('/(' + AVATAR_STATES.join('|') + ')\\.(png|jpg)$');
+
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(CORE_FILES).catch(function () {
-        // إلا فشل شي ملف (اسم مختلف)، ما نوقفوش التسجيل كامل
+      // الصور كل وحدة بوحدها: إلا غابت وحدة ما تبطلش الباقي
+      var avatarJobs = AVATAR_STATE_FILES.map(function (url) {
+        return cache.add(url).catch(function () {});
       });
+      return Promise.all([
+        cache.addAll(CORE_FILES).catch(function () {
+          // إلا فشل شي ملف (اسم مختلف)، ما نوقفوش التسجيل كامل
+        })
+      ].concat(avatarJobs));
     })
   );
   self.skipWaiting();
@@ -53,14 +67,37 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
+  // غير طلبات GET كتدوز من هنا (POST ديال Firestore/API ما كيتخزنوش)
+  if (event.request.method !== 'GET') return;
+
+  var url = new URL(event.request.url);
+
+  // صور الحالات: كاش أولا (فوري) + تحديث فالخلفية للزيارة الجاية
+  if (url.origin === self.location.origin && AVATAR_STATE_RE.test(url.pathname)) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function (cache) {
+        return cache.match(event.request).then(function (cached) {
+          var refresh = fetch(event.request).then(function (res) {
+            if (res && res.ok) cache.put(event.request, res.clone());
+            return res;
+          }).catch(function () { return cached; });
+          return cached || refresh;
+        });
+      })
+    );
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then(function (networkResponse) {
         // خدام؟ نخزنو نسخة جديدة فالكاش (للاستعمال وقت offline)، ونرجعو النسخة الطرية
-        var copy = networkResponse.clone();
-        caches.open(CACHE_NAME).then(function (cache) {
-          cache.put(event.request, copy);
-        });
+        if (networkResponse && networkResponse.ok) {
+          var copy = networkResponse.clone();
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(event.request, copy);
+          });
+        }
         return networkResponse;
       })
       .catch(function () {
