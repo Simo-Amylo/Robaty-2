@@ -553,7 +553,7 @@ const STATE_SLUGS = [
 
 // الصور عندك .png فالـrepo، كنجربو png الأول (بلا طلب 404 ضايع) ومن بعد jpg كاحتياط
 const IMAGE_EXTENSIONS = ['png', 'jpg'];
-const AVATAR_FADE_MS = 1200; // خاصو يساوي مدة transition فـ CSS (.avatar-img)
+const AVATAR_FADE_MS = 2400; // خاصو يساوي مدة transition فـ CSS (.avatar-img)
 
 let activeAvatarLayer = 'A';
 let currentAvatarState = null; // null = باقا الصورة الأولى (robaty-profile.jpg)
