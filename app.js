@@ -553,7 +553,10 @@ const STATE_SLUGS = [
 
 // الصور عندك .png فالـrepo، كنجربو png الأول (بلا طلب 404 ضايع) ومن بعد jpg كاحتياط
 const IMAGE_EXTENSIONS = ['png', 'jpg'];
-const AVATAR_FADE_MS = 2400; // خاصو يساوي مدة transition فـ CSS (.avatar-img)
+// مدة الانتقال بين الصور. الصورتان متشابهتان، فالعين كتلاحظ التغيير غير فالوسط (30%–70%)،
+// ولهذا كنختارو 'linear' ومدة أطول باش التغيير يتوزع على كامل المدة. زيدي/نقصي الرقم بحرية.
+const AVATAR_FADE_MS = 4000;
+const AVATAR_FADE_EASING = 'linear';
 
 let activeAvatarLayer = 'A';
 let currentAvatarState = null; // null = باقا الصورة الأولى (robaty-profile.jpg)
@@ -646,7 +649,7 @@ function setAvatarState(state) {
             outgoingImg.classList.remove('is-active');
             outgoingImg.classList.add('is-leaving');   // كتبقى ظاهرة تحت
             // المدة والمنحنى كيتحددو هنا فـJS (ما كيتعلقوش بنسخة CSS)
-            incomingImg.style.transition = 'opacity ' + AVATAR_FADE_MS + 'ms cubic-bezier(0.37, 0, 0.63, 1)';
+            incomingImg.style.transition = 'opacity ' + AVATAR_FADE_MS + 'ms ' + AVATAR_FADE_EASING;
             void incomingImg.offsetWidth;              // reflow باش الـtransition تبدا من 0
             incomingImg.classList.add('is-active');    // كتظهر فوقها بسلاسة
 
