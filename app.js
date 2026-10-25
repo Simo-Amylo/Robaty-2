@@ -645,6 +645,8 @@ function setAvatarState(state) {
         .then(() => {
             outgoingImg.classList.remove('is-active');
             outgoingImg.classList.add('is-leaving');   // كتبقى ظاهرة تحت
+            // المدة والمنحنى كيتحددو هنا فـJS (ما كيتعلقوش بنسخة CSS)
+            incomingImg.style.transition = 'opacity ' + AVATAR_FADE_MS + 'ms cubic-bezier(0.37, 0, 0.63, 1)';
             void incomingImg.offsetWidth;              // reflow باش الـtransition تبدا من 0
             incomingImg.classList.add('is-active');    // كتظهر فوقها بسلاسة
 

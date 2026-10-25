@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v13'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v14'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -88,8 +88,13 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
+  // ملفات الموقع (css/js...): كنتأكدو من السيرفر فكل مرة، باش GitHub Pages ما يعطيناش نسخة قديمة من الكاش (10 دقايق)
+  var freshFetch = (url.origin === self.location.origin && event.request.mode !== 'navigate')
+    ? fetch(event.request, { cache: 'no-cache' })
+    : fetch(event.request);
+
   event.respondWith(
-    fetch(event.request)
+    freshFetch
       .then(function (networkResponse) {
         // خدام؟ نخزنو نسخة جديدة فالكاش (للاستعمال وقت offline)، ونرجعو النسخة الطرية
         if (networkResponse && networkResponse.ok) {
