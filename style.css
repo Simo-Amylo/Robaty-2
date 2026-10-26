@@ -3771,49 +3771,68 @@ body[data-color-mode="sky"] .gold-input {
 
 
 /* ==========================================================================
-   PORTRAIT INNER BACKGROUND — لون داخل دائرة Robaty حسب كل ثيم
-   الصورة شفافة: اللي كيبان وراها هو --portrait-bg. الحلقة الخارجية
-   (.glowing-ring) كتبقى كما هي، والتدرج كيتحط غير فـ.avatar-inner
-   (الحاوية)، باش يبقى ثابت أثناء التبديل بين الوضعيات.
-   داكنة: ذهبي (الافتراضي) / زمردي / زاهي (أزرق نهارا، بنفسجي ليلا)
-   فاتحة: وردي / سماوي / كريمي
+   PORTRAIT — صورة Robaty بدون خلفية (شفافة) فوق لون الشاشة نفسه
+   - الدائرة: كتبقى حلقة ذهبية/ملونة رقيقة، وداخلها شفاف (كيبان لون الشاشة
+     الحقيقي بالضبط، فلا تباين بين الصورة والشاشة، فكل الثيمات الستة).
+   - الحلقة كتترسم بـ::before (قناع)، بنفس تدرجات الثيمات القديمة.
+   - الصورة مكبّرة شوية (≈4.4%) باش الدائرة تلمس الخميسة من تحت، ويكبر
+     الوجه وينقص ظهور الأكتاف.
    ========================================================================== */
 
-body {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #6e4c1e 0%, #35210d 55%, #100a04 100%);
+.glowing-ring,
+body[data-color-mode] .glowing-ring {
+    background: none;
+    position: relative;
 }
 
-body[data-color-mode="emerald"] {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #12695a 0%, #0a4034 55%, #031712 100%);
+.glowing-ring {
+    --ring-gradient: linear-gradient(135deg, #ffc875, #805018);
 }
 
-body[data-color-mode="vivid"] {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #7a46a0 0%, #432460 55%, #140b1d 100%);
+body[data-color-mode="blush"] .glowing-ring {
+    --ring-gradient: linear-gradient(135deg, #ffffff, #ffc2d6);
 }
 
-body[data-color-mode="vivid"][data-time-theme="day"] {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #3a6ea6 0%, #21456d 55%, #0a1727 100%);
+body[data-color-mode="sky"] .glowing-ring {
+    --ring-gradient: linear-gradient(135deg, #ffffff, #c2e0ff);
 }
 
-body[data-color-mode="blush"] {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #fff7fa 0%, #ffd3e2 55%, #f6a6c3 100%);
+body[data-color-mode="cream"] .glowing-ring {
+    --ring-gradient: linear-gradient(135deg, #e8caa1 0%, #dbb789 55%, #c79d73 100%);
 }
 
-body[data-color-mode="sky"] {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #f6fbff 0%, #d2e8ff 55%, #9ccaf5 100%);
-}
-
-body[data-color-mode="cream"] {
-    --portrait-bg: radial-gradient(circle at 50% 38%, #fdf3df 0%, #efd6ae 55%, #d4ab7b 100%);
+.glowing-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 4px;
+    background: var(--ring-gradient);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 3;
 }
 
 .avatar-inner {
-    background: var(--portrait-bg);
+    background: none;
 }
 
-/* الصورة المصغّرة جنب اسم Robaty فالرسائل: مقصوصة على الوجه + نفس لون الثيم */
+.avatar-img {
+    transform: translateY(-1.96%) scale(1.044);
+    transform-origin: 50% 0;
+}
+
+/* الصورة المصغّرة جنب اسم Robaty: الوجه كامل (من الشعر حتى حلقات الرقبة)،
+   بدون خلفية */
 .mini-avatar {
     width: 26px;
     height: 26px;
-    background: var(--portrait-bg);
+    background: none;
 }
