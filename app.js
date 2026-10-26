@@ -777,7 +777,7 @@ function appendBotMessage(text, time) {
     header.className = 'msg-header';
 
     const avatar = document.createElement('img');
-    avatar.src = 'robaty-profile.jpg';
+    avatar.src = 'robaty-mini.png';
     avatar.className = 'mini-avatar';
     avatar.alt = 'Robaty';
     header.appendChild(avatar);
@@ -816,7 +816,7 @@ function appendTypingIndicator() {
     header.className = 'msg-header';
 
     const avatar = document.createElement('img');
-    avatar.src = 'robaty-profile.jpg';
+    avatar.src = 'robaty-mini.png';
     avatar.className = 'mini-avatar';
     avatar.alt = 'Robaty';
     header.appendChild(avatar);

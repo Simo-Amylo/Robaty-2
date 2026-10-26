@@ -3768,3 +3768,52 @@ body[data-color-mode="sky"] .gold-input {
 :is(body[data-color-mode="blush"], body[data-color-mode="sky"], body[data-color-mode="cream"]) .gold-pill-btn:active {
     background-image: linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.20)) !important;
 }
+
+
+/* ==========================================================================
+   PORTRAIT INNER BACKGROUND — لون داخل دائرة Robaty حسب كل ثيم
+   الصورة شفافة: اللي كيبان وراها هو --portrait-bg. الحلقة الخارجية
+   (.glowing-ring) كتبقى كما هي، والتدرج كيتحط غير فـ.avatar-inner
+   (الحاوية)، باش يبقى ثابت أثناء التبديل بين الوضعيات.
+   داكنة: ذهبي (الافتراضي) / زمردي / زاهي (أزرق نهارا، بنفسجي ليلا)
+   فاتحة: وردي / سماوي / كريمي
+   ========================================================================== */
+
+body {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #6e4c1e 0%, #35210d 55%, #100a04 100%);
+}
+
+body[data-color-mode="emerald"] {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #12695a 0%, #0a4034 55%, #031712 100%);
+}
+
+body[data-color-mode="vivid"] {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #7a46a0 0%, #432460 55%, #140b1d 100%);
+}
+
+body[data-color-mode="vivid"][data-time-theme="day"] {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #3a6ea6 0%, #21456d 55%, #0a1727 100%);
+}
+
+body[data-color-mode="blush"] {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #fff7fa 0%, #ffd3e2 55%, #f6a6c3 100%);
+}
+
+body[data-color-mode="sky"] {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #f6fbff 0%, #d2e8ff 55%, #9ccaf5 100%);
+}
+
+body[data-color-mode="cream"] {
+    --portrait-bg: radial-gradient(circle at 50% 38%, #fdf3df 0%, #efd6ae 55%, #d4ab7b 100%);
+}
+
+.avatar-inner {
+    background: var(--portrait-bg);
+}
+
+/* الصورة المصغّرة جنب اسم Robaty فالرسائل: مقصوصة على الوجه + نفس لون الثيم */
+.mini-avatar {
+    width: 26px;
+    height: 26px;
+    background: var(--portrait-bg);
+}
