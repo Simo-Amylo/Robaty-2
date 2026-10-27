@@ -742,6 +742,25 @@ function buttonPress(button) {
    MESSAGE RENDERING
    ========================================================================== */
 
+/* شارة "رسالة صوتية": أيقونة مايك + موجة صغيرة + نص (محتوى HTML ثابت، ماكيدخلوش نص المستخدمة) */
+function buildVoiceChip(bubble) {
+    bubble.classList.add('voice-chip');
+    bubble.innerHTML =
+        '<svg class="voice-chip-mic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">' +
+        '<path fill="currentColor" d="M12 14.5a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 1 0-7 0v5a3.5 3.5 0 0 0 3.5 3.5zm6-3.5a1 1 0 1 0-2 0 4 4 0 0 1-8 0 1 1 0 1 0-2 0 6 6 0 0 0 5 5.91V19H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-2.09A6 6 0 0 0 18 11z"/></svg>' +
+        '<svg class="voice-chip-wave" viewBox="0 0 44 20" width="44" height="20" aria-hidden="true"><g fill="currentColor">' +
+        '<rect x="1" y="7" width="3" height="6" rx="1.5"/><rect x="7" y="3" width="3" height="14" rx="1.5"/>' +
+        '<rect x="13" y="6" width="3" height="8" rx="1.5"/><rect x="19" y="1" width="3" height="18" rx="1.5"/>' +
+        '<rect x="25" y="5" width="3" height="10" rx="1.5"/><rect x="31" y="3" width="3" height="14" rx="1.5"/>' +
+        '<rect x="37" y="7" width="3" height="6" rx="1.5"/></g></svg>';
+    const label = document.createElement('span');
+    label.className = 'voice-chip-label';
+    const voiceLabels = { ar: 'رسالة صوتية', en: 'Voice message', fr: 'Message vocal', es: 'Mensaje de voz', ru: 'Голосовое сообщение' };
+    const uiLang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
+    label.textContent = voiceLabels[uiLang] || voiceLabels.ar;
+    bubble.appendChild(label);
+}
+
 function appendUserTextMessage(text, time, animate) {
     const message = document.createElement('div');
     message.className = 'message user-msg' + (animate ? ' new-user-message' : '');
@@ -749,7 +768,11 @@ function appendUserTextMessage(text, time, animate) {
     const bubble = document.createElement('div');
     bubble.className = 'bubble-gold-border';
     bubble.dir = 'auto'; // اتجاه الرسالة من لغتها هي
-    bubble.textContent = text;
+    if (typeof text === 'string' && text.startsWith('🎤')) {
+        buildVoiceChip(bubble); // رسالة صوتية قديمة (التسجيل ماكيتخزنش): شارة أنيقة بدل نص
+    } else {
+        bubble.textContent = text;
+    }
     message.appendChild(bubble);
 
     const timeEl = document.createElement('span');
@@ -926,7 +949,7 @@ async function requestGeminiOnce(userText, imageData, audioData) {
         currentUserParts.push({ inlineData: { mimeType: audioData.mimeType, data: audioData.data } });
         // تعليمة خاصة بالرسائل الصوتية: فهم الكلام + الانتباه للنبرة بدون تحليل صريح للصوت
         currentUserParts.push({
-            text: '[ملاحظة نظام، ماشي من المستخدمة: هذه رسالة صوتية، افهمي الكلام وانتبهي لنبرة صاحبتها وردي بما يناسب حالتها، دون أن تذكري أنك حلّلتِ صوتها.]'
+            text: '[ملاحظة نظام، ماشي من المستخدمة: هذه رسالة صوتية، افهمي الكلام وانتبهي لنبرة صاحبتها وردي بما يناسب حالتها، دون أن تذكري أنك حلّلتِ صوتها. ردّي على ما قالته فعلا في هذا التسجيل بالذات، ولا تكرري أبدا جوابك السابق. إن لم يكن الصوت واضحا، اطلبي منها بلطف أن تعيد كلامها. وأضيفي في الـJSON حقلا اسمه \"heard\" فيه تلخيص قصير جدا (جملة واحدة) لما قالته، بنفس لغتها.]'
         });
     }
     if (userText) {
@@ -990,7 +1013,8 @@ async function requestGeminiOnce(userText, imageData, audioData) {
 
     return {
         reply: parsed.reply || tr('reply_fallback', 'سمحيلي، مافهمتش مزيان.. عاودي قوليها ليا بطريقة أخرى 🤍'),
-        state: typeof parsed.state === 'string' ? parsed.state : null
+        state: typeof parsed.state === 'string' ? parsed.state : null,
+        heard: (audioData && typeof parsed.heard === 'string') ? parsed.heard.trim().slice(0, 200) : null
     };
 }
 
@@ -1603,7 +1627,7 @@ async function sendVoiceOnlyMessage(audioBlob) {
     try {
         const audioData = await blobToBase64(audioBlob);
         const mimeType = (audioBlob.type || 'audio/webm').split(';')[0];
-        const { reply, state } = await fetchRobatyResponse('', null, { mimeType, data: audioData });
+        const { reply, state, heard } = await fetchRobatyResponse('', null, { mimeType, data: audioData });
 
         removeTypingIndicator(typingId);
 
@@ -1618,7 +1642,9 @@ async function sendVoiceOnlyMessage(audioBlob) {
 
         consumeStoryContextTurn();
 
-        chatHistory.push({ role: 'user', text: '🎤 [رسالة صوتية]', time: getCurrentTime() });
+        // التسجيل ماكيتخزنش، كنخزنو غير تلخيص قصير لما قالته (باش Robaty تعرف السياق فالجولات الجايات)
+        const voiceHistoryText = heard ? `🎤 [رسالة صوتية: ${heard}]` : '🎤 [رسالة صوتية]';
+        chatHistory.push({ role: 'user', text: voiceHistoryText, time: getCurrentTime() });
         chatHistory.push({ role: 'model', text: reply, time: replyTime });
         if (chatHistory.length > 40) chatHistory = chatHistory.slice(-40);
         saveChatHistory();

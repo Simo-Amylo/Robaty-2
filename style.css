@@ -3825,7 +3825,10 @@ body[data-color-mode="cream"] .glowing-ring {
 }
 
 .avatar-img {
-    transform: translateY(-1.96%) scale(1.044);
+    /* قيس الخميسة: أسفلها عند ≈96% من ارتفاع الصورة، وقمة الشعر عند ≈2.9%.
+       scale(1.058) + translateY(-2.1%) → الدائرة تمر محاذية للخميسة من تحت
+       (≈99.5% من القطر) وقمة الشعر تبقى داخل الدائرة بدون قص. */
+    transform: translateY(-2.1%) scale(1.058);
     transform-origin: 50% 0;
 }
 
@@ -3835,4 +3838,33 @@ body[data-color-mode="cream"] .glowing-ring {
     width: 26px;
     height: 26px;
     background: none;
+}
+
+
+/* ==========================================================================
+   VOICE CHIP — شارة الرسالة الصوتية القديمة (بدل النص "[رسالة صوتية]")
+   ========================================================================== */
+
+.bubble-gold-border.voice-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+}
+
+.voice-chip-mic {
+    color: var(--gold-bright);
+    flex-shrink: 0;
+}
+
+.voice-chip-wave {
+    color: var(--gold-bright);
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.voice-chip-label {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
 }
