@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v14'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v15'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -33,8 +33,10 @@ const AVATAR_STATES = [
   'warmth', 'calm', 'touched', 'surprise', 'confidence', 'laugh',
   'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
 ];
-const AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
-const AVATAR_STATE_RE = new RegExp('/(' + AVATAR_STATES.join('|') + ')\\.(png|jpg)$');
+var AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
+// متغيّرات warmth (3 صور) — كتتخزن مسبقا بحال الباقي
+['warmth-1', 'warmth-2', 'warmth-3'].forEach(function (n) { AVATAR_STATE_FILES.push('./' + n + '.png'); });
+const AVATAR_STATE_RE = new RegExp('/(' + AVATAR_STATES.join('|') + ')(-\\d+)?\\.(png|jpg)$');
 
 self.addEventListener('install', function (event) {
   event.waitUntil(

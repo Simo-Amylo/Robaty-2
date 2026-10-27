@@ -551,6 +551,18 @@ const STATE_SLUGS = [
     'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
 ];
 
+/* متغيّرات الصور: حالات عندها أكثر من صورة (مثلا warmth-1 / warmth-2 / warmth-3).
+   الكود هو اللي كيختار (ماشي النموذج): ما كيعاودش نفس الصورة مرتين متتاليتين،
+   وأول ظهور للحالة كيكون الصورة رقم 1. إيلا ماكايناش ملفات المتغيّرات، كنرجعو للصورة القديمة (warmth.png). */
+const STATE_VARIANTS = { warmth: 3 };
+const MIN_VARIANT_ROTATION_MS = 8000;   // أقل مدة بين تبديلين لنفس الحالة (باش ما يبقاش وميض مع رسائل سريعة)
+
+function variantKeys(state) {
+    const n = STATE_VARIANTS[state] || 1;
+    if (n <= 1) return [state];
+    return Array.from({ length: n }, (_, i) => `${state}-${i + 1}`);
+}
+
 // الصور عندك .png فالـrepo، كنجربو png الأول (بلا طلب 404 ضايع) ومن بعد jpg كاحتياط
 const IMAGE_EXTENSIONS = ['png', 'jpg'];
 // مدة الانتقال بين الصور. الصورتان متشابهتان، فالعين كتلاحظ التغيير غير فالوسط (30%–70%)،
@@ -560,8 +572,12 @@ const AVATAR_FADE_EASING = 'linear';
 
 let activeAvatarLayer = 'A';
 let currentAvatarState = null; // null = باقا الصورة الأولى (robaty-profile.jpg)
+let currentAvatarKey = null;   // مثلا 'warmth-2'
 let avatarTransitioning = false;
 let pendingAvatarState = null;
+let lastAvatarChangeAt = 0;
+const lastAvatarKeyByState = {};  // state -> آخر متغيّر ظهر
+const avatarImageFailed = {};     // key -> true إيلا الملف ماكاينش
 
 const avatarImageCache = {};    // slug -> رابط الصورة (محمّلة ومفكوكة)
 const avatarImagePending = {};  // slug -> promise جاري
@@ -576,6 +592,7 @@ function loadAvatarImage(slug) {
         const tryNext = () => {
             if (i >= IMAGE_EXTENSIONS.length) {
                 delete avatarImagePending[slug];
+                avatarImageFailed[slug] = true;
                 reject(new Error('avatar image missing: ' + slug));
                 return;
             }
@@ -599,12 +616,27 @@ function loadAvatarImage(slug) {
 }
 
 function preloadAvatarStates() {
+    // أولا warmth (كتبان بزاف)، من بعد الباقي. كل المتغيّرات كتتحمّل.
+    const keys = [];
+    STATE_SLUGS.forEach(s => variantKeys(s).forEach(k => keys.push(k)));
     let idx = 0;
     const next = () => {
-        if (idx >= STATE_SLUGS.length) return;
-        loadAvatarImage(STATE_SLUGS[idx++]).catch(() => {}).then(() => setTimeout(next, 150));
+        if (idx >= keys.length) return;
+        loadAvatarImage(keys[idx++]).catch(() => {}).then(() => setTimeout(next, 150));
     };
     next();
+}
+
+/* اختيار الصورة المناسبة للحالة: null إيلا ماكاين والو */
+function pickAvatarKey(state) {
+    const keys = variantKeys(state).filter(k => !avatarImageFailed[k]);
+    if (!keys.length) return avatarImageFailed[state] ? null : state; // رجوع للصورة القديمة state.png
+    if (keys.length === 1) return keys[0];
+
+    const last = lastAvatarKeyByState[state];
+    if (!last) return keys[0];                       // أول ظهور: الصورة رقم 1
+    const candidates = keys.filter(k => k !== last); // ما نعاودوش نفس الصورة
+    return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
 window.addEventListener('load', () => {
@@ -625,7 +657,15 @@ function setAvatarState(state) {
         pendingAvatarState = state; // إيلا جات حالة جديدة وسط التبديل: كنسناو وكناخدو آخر وحدة
         return;
     }
-    if (state === currentAvatarState) return;
+
+    // نفس الحالة: كنبدلو المتغيّر (warmth-1 → warmth-2...) غير إيلا فات وقت كافي
+    if (state === currentAvatarState) {
+        if (variantKeys(state).length < 2) return;
+        if (Date.now() - lastAvatarChangeAt < MIN_VARIANT_ROTATION_MS) return;
+    }
+
+    const key = pickAvatarKey(state);
+    if (!key || key === currentAvatarKey) return;
 
     avatarTransitioning = true;
 
@@ -637,10 +677,10 @@ function setAvatarState(state) {
         avatarTransitioning = false;
         const next = pendingAvatarState;
         pendingAvatarState = null;
-        if (next && next !== currentAvatarState) setAvatarState(next);
+        if (next && (next !== currentAvatarState || variantKeys(next).length > 1)) setAvatarState(next);
     };
 
-    loadAvatarImage(state)
+    loadAvatarImage(key)
         .then(url => {
             incomingImg.src = url;
             return incomingImg.decode ? incomingImg.decode().catch(() => {}) : null;
@@ -655,6 +695,9 @@ function setAvatarState(state) {
 
             activeAvatarLayer = showingA ? 'B' : 'A';
             currentAvatarState = state;
+            currentAvatarKey = key;
+            lastAvatarKeyByState[state] = key;
+            lastAvatarChangeAt = Date.now();
 
             setTimeout(() => {
                 outgoingImg.style.transition = 'none';
@@ -664,7 +707,12 @@ function setAvatarState(state) {
                 finish();
             }, AVATAR_FADE_MS + 80);
         })
-        .catch(() => finish()); // الصورة ماكاينش: نبقاو فالحالة الحالية بلا كراش
+        .catch(() => {
+            // الصورة ماكاينش: كنحيدوها (avatarImageFailed) وكنعاودو بصورة أخرى من نفس الحالة، بلا كراش
+            avatarTransitioning = false;
+            if (pickAvatarKey(state) && pickAvatarKey(state) !== key) setAvatarState(state);
+            else finish();
+        });
 }
 
 window.RobatyAvatar = {
