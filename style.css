@@ -657,57 +657,25 @@ body {
 
 
 @keyframes robaty-portrait-breath {
-
-    0% {
-
+    /* الهالة كتمتد للداخل بنفس اللون والقوة (inset)، باش ما يبقاش فرق فاللون بين
+       داخل الدائرة (من وراء الصورة الشفافة) وبرا الحلقة */
+    0%, 100% {
         transform: scale(1);
-
         box-shadow:
-            0 0 34px
-            rgba(255, 170, 51, 0.48);
+            0 0 34px rgba(255, 170, 51, 0.48),
+            inset 0 0 34px rgba(255, 170, 51, 0.48);
     }
-
-
-    25% {
-
-        transform:
-            scale(1.004);
-
+    25%, 75% {
+        transform: scale(1.004);
         box-shadow:
-            0 0 38px
-            rgba(255, 170, 51, 0.53);
+            0 0 38px rgba(255, 170, 51, 0.53),
+            inset 0 0 38px rgba(255, 170, 51, 0.53);
     }
-
-
     50% {
-
-        transform:
-            scale(1.009);
-
+        transform: scale(1.009);
         box-shadow:
-            0 0 46px
-            rgba(255, 170, 51, 0.68);
-    }
-
-
-    75% {
-
-        transform:
-            scale(1.004);
-
-        box-shadow:
-            0 0 38px
-            rgba(255, 170, 51, 0.53);
-    }
-
-
-    100% {
-
-        transform: scale(1);
-
-        box-shadow:
-            0 0 34px
-            rgba(255, 170, 51, 0.48);
+            0 0 46px rgba(255, 170, 51, 0.68),
+            inset 0 0 46px rgba(255, 170, 51, 0.68);
     }
 }
 
@@ -3688,15 +3656,21 @@ body[data-color-mode="vivid"] .bottom-controls {
 @keyframes robaty-portrait-breath-light {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 0 34px 4px rgba(var(--halo-rgb), 0.60);
+        box-shadow:
+            0 0 34px 4px rgba(var(--halo-rgb), 0.60),
+            inset 0 0 34px 4px rgba(var(--halo-rgb), 0.60);
     }
     25%, 75% {
         transform: scale(1.004);
-        box-shadow: 0 0 38px 5px rgba(var(--halo-rgb), 0.70);
+        box-shadow:
+            0 0 38px 5px rgba(var(--halo-rgb), 0.70),
+            inset 0 0 38px 5px rgba(var(--halo-rgb), 0.70);
     }
     50% {
         transform: scale(1.009);
-        box-shadow: 0 0 46px 7px rgba(var(--halo-rgb), 0.85);
+        box-shadow:
+            0 0 46px 7px rgba(var(--halo-rgb), 0.85),
+            inset 0 0 46px 7px rgba(var(--halo-rgb), 0.85);
     }
 }
 
