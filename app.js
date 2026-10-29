@@ -94,19 +94,14 @@ const ROBATY_SYSTEM_PROMPT = `
 
 حقل "facts": سجلي فيه فقط المعلومات الشخصية الجديدة (لم تُذكر من قبل) من هذه القائمة فقط: name (الاسم), city (المدينة), occupation (العمل/الدراسة), hobby (الهواية), favorite_place (مكان مغربي مفضل), favorite_style (ستايل لباس مفضل), goal (هدف أو حلم), nickname (لقب تفضل أن تنادى به). لا تخمّني ولا تكرري معلومة مسجلة سابقاً؛ اتركي facts كائناً فارغاً {} إذا لم يُذكر شيء جديد.
 
-حقل "state": اختاري حالة عاطفية واحدة فقط من هاد اللائحة (12 حالة)، اللي كتعكس بصدق الطابع العاطفي لردك:
-warmth (دفء) — الترحيب، الدعم الحنون
-calm (هدوء) — الهدوء، الاسترخاء
-touched (تأثر) — التأثر، الامتنان العميق
-surprise (دهشة) — المفاجأة، الاستغراب
-confidence (ثقة) — التحفيز، تعزيز ثقة المستخدمة
-laugh (ضحك) — المرح، النكتة، الضحك
-joy (فرح) — الفرح، الاحتفال، الحماس الإيجابي
-curiosity (فضول) — السؤال، الاستكشاف، الاهتمام بمعرفة المزيد
-hope (أمل) — التفاؤل، التشجيع نحو المستقبل
-admiration (إعجاب) — الإعجاب، الثناء الصادق
-empathy (تعاطف) — التعاطف مع حزن أو صعوبة تعيشها المستخدمة
-serious (جدية) — الجدية الهادئة بلا ابتسامة، تُستعمل خصيصاً ملي كتوجّهي المستخدمة بلطف بعيداً عن محتوى رومانسي/حميمي، أو ملي كتشجعيها تتواصل مع مختص فحالة يأس أو إيذاء نفس — أي لحظة تتطلب حزم هادئ بلا مرح
+حقل "state": اختاري حالة عاطفية واحدة فقط من هاد اللائحة (6 حالات)، اللي كتعكس بصدق الطابع العاطفي لردك:
+warmth (دفء) — الحالة الأساسية: الترحيب، الدعم الحنون، التعاطف مع حزن أو صعوبة، الامتنان، واللحظات الهادئة
+joy (فرح) — الفرح، الاحتفال، الحماس الإيجابي، الإعجاب والثناء الصادق
+laugh (ضحك) — الضحك الصريح، النكتة، المرح العالي
+amused (تسلية) — ابتسامة هادئة فيها تسلية خفيفة: ملي كتلقاي شي حاجة طريفة أو لطيفة بلا ضحك صريح
+playful (مشاكسة) — المزاح اللطيف والتلميح المرح، بحال ملي كتشاركي نكتة خاصة مع صاحبتك (بلا أي غزل)
+confidence (ثقة) — التحفيز، تعزيز ثقة المستخدمة، التفاؤل والتشجيع نحو المستقبل
+ملي كتوجّهي المستخدمة بلطف بعيداً عن محتوى رومانسي/حميمي، أو ملي كتشجعيها تتواصل مع مختص فحالة يأس أو إيذاء نفس: اختاري warmth (بدفء هادئ وبلا مرح)، وماشي joy أو laugh أو playful.
 اختاري الحالة الأقرب لجو الرد فعلاً، بلا ما تكرري نفس الحالة فكل مرة.
 `;
 
@@ -471,7 +466,9 @@ function updateTimeBasedTheme() {
 
 function applyEmotionalTheme(state) {
     if (!state) return;
-    document.body.setAttribute('data-emotion', state);
+    // الحالات الجديدة كتستعمل نفس لمعان أقرب حالة قديمة (الـCSS ديال data-emotion كيعرفها)
+    const THEME_ALIAS = { amused: 'laugh', playful: 'joy' };
+    document.body.setAttribute('data-emotion', THEME_ALIAS[state] || state);
 }
 
 
@@ -538,7 +535,7 @@ window.RobatyPresence = {
 
 
 /* ==========================================================================
-   LAYER 04 — PORTRAIT STATE (12 حالة عاطفية، crossfade)
+   LAYER 04 — PORTRAIT STATE (6 حالات = 8 صور، crossfade)
    الأنيميشن ديال "الحياة" راكب على .avatar-inner (فـCSS)، هنا كنبدلو
    غير الصورة (src) ديال الطبقة الخفية، ثم نبدلو is-active باش يوقع
    crossfade سلس، بلا ما نمس الكود ديال الأنيميشن.
@@ -546,10 +543,15 @@ window.RobatyPresence = {
 
 const DEFAULT_AVATAR_STATE = 'warmth';
 
-const STATE_SLUGS = [
-    'warmth', 'calm', 'touched', 'surprise', 'confidence', 'laugh',
-    'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
-];
+// نسخة الاختبار: غير الوضعيات الجديدة (8 صور: warmth ×3 + joy + laugh + amused + playful + confidence)
+const STATE_SLUGS = ['warmth', 'joy', 'laugh', 'amused', 'playful', 'confidence'];
+
+// الوضعيات القديمة (للرجوع إليها): 'calm', 'touched', 'surprise', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
+// إيلا رجّع النموذج اسم قديم (مثلا من ذاكرة المحادثة)، كنحولوه لأقرب وضعية جديدة بدل ما نتجاهلوه
+const STATE_ALIASES = {
+    calm: 'warmth', touched: 'warmth', empathy: 'warmth', serious: 'warmth',
+    admiration: 'joy', surprise: 'joy', hope: 'confidence', curiosity: 'warmth'
+};
 
 /* متغيّرات الصور: حالات عندها أكثر من صورة (مثلا warmth-1 / warmth-2 / warmth-3).
    الكود هو اللي كيختار (ماشي النموذج): ما كيعاودش نفس الصورة مرتين متتاليتين،
@@ -651,6 +653,7 @@ window.addEventListener('load', () => {
    (opacity 1) حتى تكمل الجديدة — ما كاين لا وميض لا فراغ بيناتهم */
 function setAvatarState(state) {
     if (!avatarImgA || !avatarImgB) return;
+    state = STATE_ALIASES[state] || state;
     if (!STATE_SLUGS.includes(state)) return;
 
     if (avatarTransitioning) {

@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v15'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v16'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -28,10 +28,9 @@ const CORE_FILES = [
   './manifest.json'
 ];
 
-// صور الحالات العاطفية الاثنا عشر: كنخزنوها مسبقا باش التبديل بينها يكون فوري
+// صور الوضعيات (6 حالات = 8 صور): كنخزنوها مسبقا باش التبديل بينها يكون فوري
 const AVATAR_STATES = [
-  'warmth', 'calm', 'touched', 'surprise', 'confidence', 'laugh',
-  'joy', 'curiosity', 'hope', 'admiration', 'empathy', 'serious'
+  'warmth', 'joy', 'laugh', 'amused', 'playful', 'confidence'
 ];
 var AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
 // متغيّرات warmth (3 صور) — كتتخزن مسبقا بحال الباقي
