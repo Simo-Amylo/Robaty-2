@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v16'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v17'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -28,13 +28,12 @@ const CORE_FILES = [
   './manifest.json'
 ];
 
-// صور الوضعيات (6 حالات = 8 صور): كنخزنوها مسبقا باش التبديل بينها يكون فوري
+// صور الوضعيات (13 حالة، صورة لكل حالة): كنخزنوها مسبقا باش التبديل بينها يكون فوري
 const AVATAR_STATES = [
-  'warmth', 'joy', 'laugh', 'amused', 'playful', 'confidence'
+  'warmth', 'smile', 'calm', 'joy', 'laugh', 'amused', 'playful',
+  'confidence', 'hope', 'empathy', 'touched', 'serious', 'firm'
 ];
 var AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
-// متغيّرات warmth (3 صور) — كتتخزن مسبقا بحال الباقي
-['warmth-1', 'warmth-2', 'warmth-3'].forEach(function (n) { AVATAR_STATE_FILES.push('./' + n + '.png'); });
 const AVATAR_STATE_RE = new RegExp('/(' + AVATAR_STATES.join('|') + ')(-\\d+)?\\.(png|jpg)$');
 
 self.addEventListener('install', function (event) {
