@@ -4,7 +4,7 @@
 // ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
 // يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
 
-const CACHE_NAME = 'robaty-cache-v17'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v18'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
 
 const CORE_FILES = [
   './index.html',
@@ -28,9 +28,10 @@ const CORE_FILES = [
   './manifest.json'
 ];
 
-// صور الوضعيات (13 حالة، صورة لكل حالة): كنخزنوها مسبقا باش التبديل بينها يكون فوري
+// صور الوضعيات (16 حالة، صورة لكل حالة): كنخزنوها مسبقا باش التبديل بينها يكون فوري
 const AVATAR_STATES = [
   'warmth', 'smile', 'calm', 'joy', 'laugh', 'amused', 'playful',
+  'surprise', 'curiosity', 'admiration',
   'confidence', 'hope', 'empathy', 'touched', 'serious', 'firm'
 ];
 var AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
