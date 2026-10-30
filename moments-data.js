@@ -2844,3 +2844,127 @@ Compartan sus opiniones en los comentarios ☝️💖`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 20,
+    slot: 'am',
+    image: 'day20-el-jadida1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'الجديدة — مازاغان',
+        en: 'El Jadida — Mazagan',
+        fr: 'El Jadida — Mazagan',
+        es: 'El Jadida — Mazagán',
+        ru: 'Эль-Джадида — Мазаган'
+    },
+
+    caption: {
+        ar: `صباح الأنوار والتاريخ العريق من أسوار الجديدة الساحرة، حيث يلتقي عبق المعالم البرتغالية بزرقة الأطلسي المذهلة 🌊🏰
+اخترنا لهاد الصباح إطلالة راقية بلون رملي هادئ وأناقة مريحة 🤍👑
+واش كتعرفو بلي مدينة الجديدة كانت معروفة قديماً باسم "مازاغان" وكتضم واحد من أروع الأسوار التاريخية المسجلة عالمياً؟
+شاركوني آراءكم في التعليقات 👇✨`,
+
+        en: `Good morning, full of light and ancient history, from the enchanting ramparts of El Jadida, where the scent of Portuguese landmarks meets the stunning blue of the Atlantic 🌊🏰
+This morning we chose a refined look in a calm sandy color and comfortable elegance 🤍👑
+Did you know that the city of El Jadida was formerly known as “Mazagan” and is home to one of the most remarkable historic ramparts listed worldwide?
+Share your opinions in the comments 👇✨`,
+
+        fr: `Un matin lumineux et chargé d’histoire depuis les remparts enchanteurs d’El Jadida, où le parfum des monuments portugais rencontre le bleu éblouissant de l’Atlantique 🌊🏰
+Pour ce matin, nous avons choisi une tenue raffinée dans un sable apaisant et une élégance confortable 🤍👑
+Saviez-vous que la ville d’El Jadida était autrefois connue sous le nom de « Mazagan » et abrite l’un des plus beaux remparts historiques classés à l’échelle mondiale ?
+Partagez vos avis en commentaire 👇✨`,
+
+        es: `Buenos días llenos de luz e historia desde las encantadoras murallas de El Jadida, donde el aroma de los monumentos portugueses se encuentra con el azul asombroso del Atlántico 🌊🏰
+Para esta mañana elegimos un look refinado en un tono arena sereno y una elegancia cómoda 🤍👑
+¿Sabían que la ciudad de El Jadida se conocía antiguamente como «Mazagán» y alberga una de las murallas históricas más extraordinarias reconocidas a nivel mundial?
+Compartan sus opiniones en los comentarios 👇✨`,
+
+        ru: `Утро света и древней истории с очаровательных стен Эль-Джадиды, где дух португальских памятников встречается с поразительной синевой Атлантики 🌊🏰
+Этим утром мы выбрали утончённый образ спокойного песочного цвета и удобной элегантности 🤍👑
+Знаете ли вы, что город Эль-Джадида раньше назывался «Мазаган» и хранит одни из самых великолепных исторических крепостных стен, признанных во всём мире?
+Поделитесь мнением в комментариях 👇✨`
+    },
+
+    story: {
+        ar: 'ابدئي صباحك بثقة وثبات؛ تماماً كالأصالة التي تقاوم الزمن، أنتِ قادرة على ترك بصمتك الخاصة في كل مكان تطأه خطاك! ☀️👑',
+        en: 'Start your morning with confidence and steadiness; just like authenticity that withstands time, you are able to leave your own mark everywhere your steps take you! ☀️👑',
+        fr: 'Commence ta matinée avec confiance et fermeté ; comme l’authenticité qui défie le temps, tu es capable de laisser ta propre empreinte partout où tes pas te mènent ! ☀️👑',
+        es: 'Empieza tu mañana con confianza y firmeza; igual que la autenticidad que resiste al tiempo, eres capaz de dejar tu propia huella en cada lugar que pisen tus pasos. ☀️👑',
+        ru: 'Начни своё утро с уверенностью и стойкостью; как подлинность, что противостоит времени, ты способна оставить свой след везде, куда ступают твои шаги! ☀️👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون فيكم زارت مدينة الجديدة واستمتعت بجمال أسوارها التاريخية وشطآنها الرائعة 🌊؟ وشنو هي أكثر مدينة ساحلية مغربية عزيزة عليكم؟ وروني تفاعلاتكم في التعليقات! 👇💎✨',
+        en: 'Girls, which of you has visited El Jadida and enjoyed the beauty of its historic ramparts and wonderful beaches 🌊? And which Moroccan coastal city is dearest to you? Show me your reactions in the comments! 👇💎✨',
+        fr: 'Les filles, laquelle d’entre vous a visité El Jadida et profité de la beauté de ses remparts historiques et de ses magnifiques plages 🌊 ? Et quelle ville côtière marocaine vous est la plus chère ? Montrez-moi vos réactions en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿quién de ustedes ha visitado El Jadida y ha disfrutado de la belleza de sus murallas históricas y sus maravillosas playas 🌊? ¿Y cuál es la ciudad costera marroquí más querida para ustedes? ¡Muéstrenme sus reacciones en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто из вас бывал в Эль-Джадиде и наслаждался красотой её исторических стен и чудесных пляжей 🌊? И какой марокканский прибрежный город вам дороже всего? Покажите мне свои реакции в комментариях! 👇💎✨'
+    },
+
+    description: 'الجديدة (مازاغان) فنهار مشمس بسماء زرقاء صافية بغيوم خفيفة: فالخلفية على اليمين كنيسة/برج جرس برتغالي مزخرف بحجر ذهبي رملي مع بنايات بيضاء بسقف قرميد برتقالي ونخيل، وتحتها أسوار حجرية تاريخية، وميناء صغير فيه قوارب صيد زرقاء وبيضاء وحمراء على مياه فيروزية هادئة. على اليسار المحيط الأطلسي بأمواج زرقاء وبرج/سور حجري بعيد فيه ناس صغار. فالمقدمة على اليسار مدفع حديدي أسود قديم فوق عربة خشبية بحلقات حديدية، وعلى اليمين سور حجري برتقالي/رملي خشن. Robaty واقفة وكتتكئ على المدفع بوقفة مرتاحة، وجسمها وراسها مايلين شوية، وكتبتسم ابتسامة مشرقة ومرحة للكاميرا. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية وحجارة صغيرة برتقالية/حمراء) مرتاحة فوق المدفع على اليسار من الصورة، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية وحجارة برتقالية/حمراء) نازلة بالجنب على اليمين بسوار فضي مزخرف بحجر برتقالي عند المعصم. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. شعرها طويل ومموج بلون كستنائي محمر/نحاسي، منسدل على الكتفين وكيطيرو الريح شوية. لابسة بدلة بلون رملي هادئ (كريمي/بيج) من الكتان: بليزر/معطف طويل مفتوح فوق قميص كتان مغلق بياقة عالية وأزرار، وسروال واسع بخصر عالي، وحزام جلدي بني بإبزيم ذهبي عند الخصر. أقراط ذهبية دائرية (حلقات). الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 20,
+    slot: 'pm',
+    image: 'day20-el-jadida2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'الجديدة — مازاغان',
+        en: 'El Jadida — Mazagan',
+        fr: 'El Jadida — Mazagan',
+        es: 'El Jadida — Mazagán',
+        ru: 'Эль-Джадида — Мазаган'
+    },
+
+    caption: {
+        ar: `سحر الغروب وأضواء المساء من أسوار الجديدة التاريخية العريقة... حيث يرتدي التاريخ حلة من سحر وجمال 🌊🌙
+اخترنا لهاد المساء إطلالة "القفطان مانطو" المخملي الأزرق الملكي المرزّب بتفاصيل ذهبية دقيقة، مع الحلي الفضية الأمازيغية وجلسة دافئة مطلة على الميناء 💎👑
+واش كتعرفو بلي مدينة الجديدة كانت محطة تاريخية كبرى وميناءً استراتيجياً جمع بين الثقافات على مر العصور؟
+شاركوني آراءكم في التعليقات ☝️✨`,
+
+        en: `The magic of sunset and evening lights from the ancient historic ramparts of El Jadida... where history wears a garment of enchantment and beauty 🌊🌙
+This evening we chose a “kaftan-manteau” look in royal blue velvet with fine golden details, with Amazigh silver jewelry and a warm seat overlooking the harbor 💎👑
+Did you know that El Jadida was a major historic stop and a strategic port that brought cultures together throughout the ages?
+Share your opinions in the comments ☝️✨`,
+
+        fr: `La magie du coucher de soleil et des lumières du soir depuis les remparts historiques d’El Jadida... là où l’histoire se pare d’un voile de charme et de beauté 🌊🌙
+Pour ce soir, nous avons choisi un look « caftan-manteau » en velours bleu royal aux fins détails dorés, avec des bijoux amazighs en argent et une assise chaleureuse face au port 💎👑
+Saviez-vous qu’El Jadida était une grande étape historique et un port stratégique qui a rapproché les cultures au fil des siècles ?
+Partagez vos avis en commentaire ☝️✨`,
+
+        es: `La magia del atardecer y de las luces de la noche desde las históricas murallas de El Jadida... donde la historia se viste de encanto y belleza 🌊🌙
+Para esta noche elegimos un look «caftán-abrigo» de terciopelo azul real con delicados detalles dorados, con joyas de plata amazigh y un cálido rincón con vistas al puerto 💎👑
+¿Sabían que El Jadida fue una gran parada histórica y un puerto estratégico que unió culturas a lo largo de los siglos?
+Compartan sus opiniones en los comentarios ☝️✨`,
+
+        ru: `Магия заката и вечерних огней со стен исторической Эль-Джадиды... там, где история облачается в наряд очарования и красоты 🌊🌙
+Этим вечером мы выбрали образ «кафтан-манто» из королевского синего бархата с тонкими золотыми деталями, берберские серебряные украшения и тёплое место с видом на порт 💎👑
+Знаете ли вы, что Эль-Джадида была крупным историческим пунктом и стратегическим портом, соединявшим культуры на протяжении веков?
+Поделитесь мнением в комментариях ☝️✨`
+    },
+
+    story: {
+        ar: 'جمال المساء يكتمل بالهدوء والثقة؛ كوني دائماً واثقة من خطواتك، واجعلي حضورك يترك أثراً لا يمحى مهما تغيرت الأوقات! 🌅👑',
+        en: 'The beauty of the evening is completed by calm and confidence; always be sure of your steps, and let your presence leave an indelible mark however times change! 🌅👑',
+        fr: 'La beauté du soir se complète par le calme et la confiance ; sois toujours sûre de tes pas, et fais en sorte que ta présence laisse une trace indélébile, quels que soient les temps qui changent ! 🌅👑',
+        es: 'La belleza de la noche se completa con calma y confianza; confía siempre en tus pasos y haz que tu presencia deje una huella imborrable, por mucho que cambien los tiempos. 🌅👑',
+        ru: 'Красота вечера обретает полноту в спокойствии и уверенности; всегда будь уверена в своих шагах и пусть твоё присутствие оставляет неизгладимый след, как бы ни менялись времена! 🌅👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون كيعشق أجواء المدن العتيقة على البحر وقت الغروب 🌊🌅؟ وشنو هي مدينتكم المفضلة للسهرات المسائية الهادئة؟ وروني تفاعلاتكم الراقيّة في التعليقات! 👇💎✨',
+        en: 'Girls, who loves the atmosphere of ancient seaside cities at sunset 🌊🌅? And what is your favorite city for quiet evening outings? Show me your refined reactions in the comments! 👇💎✨',
+        fr: 'Les filles, qui aime l’ambiance des villes anciennes en bord de mer au coucher du soleil 🌊🌅 ? Et quelle est votre ville préférée pour des soirées calmes ? Montrez-moi vos réactions raffinées en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿a quién le encanta el ambiente de las ciudades antiguas junto al mar al atardecer 🌊🌅? ¿Y cuál es su ciudad favorita para veladas tranquilas? ¡Muéstrenme sus refinadas reacciones en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто обожает атмосферу старинных приморских городов на закате 🌊🌅? И какой город вам больше всего нравится для спокойных вечерних прогулок? Покажите мне свои утончённые реакции в комментариях! 👇💎✨'
+    },
+
+    description: 'الجديدة (مازاغان) وقت الغروب والمساء: سماء متدرجة بين البنفسجي والبرتقالي والوردي بغيوم كثيفة. فالخلفية على اليمين باب/سور حجري تاريخي ضخم بقوس كبير، حجره بلون ذهبي مضيء بأضواء دافئة، وفوقو علم المغرب الأحمر بالنجمة الخضراء فوق سارية، وعلى اليسار بنايات بيضاء ونخيل وأعمدة إنارة مضيئة. فالميناء على اليمين مياه هادئة كتعكس الأضواء الذهبية وقوارب صيد زرقاء وبيضاء، وكاين ممر حجري بدرجات وأضواء صغيرة على الرصيف. على اليسار فانوس نحاسي مزخرف مضاء فوق السور الحجري. Robaty جالسة بجنب فوق سور حجري عريض بجلسة مرتاحة، وراسها مايل وكتبتسم ابتسامة كبيرة ومشرقة للكاميرا. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية وسوار ذهبي عند المعصم) مرتاحة مفتوحة فوق الحجر على اليسار من الصورة، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية) مرتاحة فوق ركبتها على اليمين، بسوار فضي عريض مزخرف بحجر أزرق عند المعصم. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين والصدر. لابسة قفطان مانطو من المخمل الأزرق الملكي مفتوح وموضوع على الكتفين، بتطريز ذهبي دقيق (نجوم وزخارف هندسية وأمازيغية) على حواف الفتحة الأمامية وعلى الأكمام وعلى الحاشية السفلية، فوق قفطان/فستان طويل بلون عاجي (كريمي) خفيف بياقة عالية وأزرار وشريط ذهبي على الصدر. حزام عريض مطرز بالذهبي والأزرق بميدالية فضية بحجر أزرق وشراشيب ذهبية متدلية. حلي فضية أمازيغية: قلادة فضية طويلة بتعليقة مزخرفة بحجر أزرق وشراريب فضية، وأقراط فضية كبيرة متدلية بحجر أزرق. حقيبة صغيرة عاجية مزخرفة بتفاصيل ذهبية وحجر أزرق بسلسلة ذهبية كتبان على اليمين قرب الخصر. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
