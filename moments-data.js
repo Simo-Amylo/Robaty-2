@@ -2658,3 +2658,70 @@ Con las primeras brisas de la mañana y los cálidos rayos del sol sobre los cam
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 18,
+    slot: 'pm',
+    image: 'day18-kelaat-mgouna2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'قلعة مكونة — وادي الورود',
+        en: 'Kelaat M’Gouna — Valley of Roses',
+        fr: 'Kelâat M’Gouna — Vallée des Roses',
+        es: 'Kelaat M’Gouna — Valle de las Rosas',
+        ru: 'Келаа-М’Гуна — Долина роз'
+    },
+
+    caption: {
+        ar: `🌅🌹 مساء الورد من قلعة مكونة! مع غروب الشمس، كتتحول قصبات وادي دادس لأضواء ذهبية وسط الجبال، وكيولي المشهد بحال لوحة فنية مغربية. 🇲🇦✨
+اختاريت هاد المرة إطلالة Amazigh Chic Fusion بمعطف طويل من المخمل العنابي، مزين بتطريز هندسي أمازيغي بالأسود والفضي، فوق توب صوفي رمادي بياقة عالية. ❤️
+كمّلت اللوك بسروال مخملي واسع، وحلي أمازيغية فضية بقلادة كبيرة وأقراط منسجمة مع التطريز… إطلالة دافئة، جريئة ومختلفة! 👑💎
+
+كيف جاكم هاد الستايل المسائي الراقي البنات؟ شاركوني آراءكم في التعليقات ☝️💖`,
+
+        en: `🌅🌹 Good evening of roses from Kelaat M’Gouna! With the sunset, the kasbahs of the Dades Valley turn into golden lights among the mountains, and the scene becomes like a Moroccan work of art. 🇲🇦✨
+This time I chose an Amazigh Chic Fusion look with a long burgundy velvet coat, decorated with geometric Amazigh embroidery in black and silver, over a gray wool top with a high collar. ❤️
+I completed the look with wide velvet trousers, and silver Amazigh jewelry with a large necklace and earrings that match the embroidery… a warm, bold and different look! 👑💎
+
+How do you like this refined evening style, girls? Share your opinions in the comments ☝️💖`,
+
+        fr: `🌅🌹 Bonsoir de roses depuis Kelâat M’Gouna ! Au coucher du soleil, les kasbahs de la vallée du Dadès se transforment en lumières dorées au cœur des montagnes, et le paysage devient un véritable tableau d’art marocain. 🇲🇦✨
+Cette fois, j’ai choisi une tenue Amazigh Chic Fusion avec un long manteau en velours bordeaux, orné d’une broderie géométrique amazighe noire et argentée, sur un haut en laine gris à col haut. ❤️
+J’ai complété le look avec un pantalon large en velours, et des bijoux amazighs en argent avec un grand collier et des boucles d’oreilles assorties à la broderie… une tenue chaleureuse, audacieuse et différente ! 👑💎
+
+Comment trouvez-vous ce style de soirée raffiné, les filles ? Partagez vos avis en commentaire ☝️💖`,
+
+        es: `🌅🌹 ¡Buenas noches de rosas desde Kelaat M’Gouna! Con el atardecer, las kasbahs del valle del Dadés se convierten en luces doradas entre las montañas, y la escena parece un cuadro de arte marroquí. 🇲🇦✨
+Esta vez elegí un look Amazigh Chic Fusion con un abrigo largo de terciopelo burdeos, decorado con bordado geométrico amazigh en negro y plata, sobre un top de lana gris de cuello alto. ❤️
+Completé el look con un pantalón ancho de terciopelo y joyas amazigh de plata con un gran collar y pendientes a juego con el bordado… ¡un look cálido, atrevido y diferente! 👑💎
+
+¿Qué les parece este refinado estilo de noche, chicas? Compartan sus opiniones en los comentarios ☝️💖`,
+
+        ru: `🌅🌹 Розовый вечер из Келаа-М’Гуна! На закате касбы долины Дадес превращаются в золотые огни среди гор, и пейзаж становится похож на марокканскую картину. 🇲🇦✨
+В этот раз я выбрала образ Amazigh Chic Fusion с длинным бордовым бархатным пальто, украшенным геометрической берберской вышивкой в чёрном и серебряном цветах, поверх серого шерстяного топа с высоким воротом. ❤️
+Дополнила образ широкими бархатными брюками и серебряными берберскими украшениями с крупным колье и серьгами, созвучными вышивке… тёплый, смелый и непохожий образ! 👑💎
+
+Как вам этот изысканный вечерний стиль, девушки? Поделитесь мнением в комментариях ☝️💖`
+    },
+
+    story: {
+        ar: 'لا تقلقي من العتمة، ففي قلب الليل تظهر أجمل الأضواء؛ كوني دائماً النور الذي يضيء طريقه بنفسه مهما كانت الظروف! 🌟👑',
+        en: 'Don’t worry about the darkness, for in the heart of the night the most beautiful lights appear; always be the light that illuminates its own path, whatever the circumstances! 🌟👑',
+        fr: 'Ne t’inquiète pas de l’obscurité, car au cœur de la nuit apparaissent les plus belles lumières ; sois toujours la lumière qui éclaire son propre chemin, quelles que soient les circonstances ! 🌟👑',
+        es: 'No te preocupes por la oscuridad, pues en el corazón de la noche aparecen las luces más hermosas; sé siempre la luz que ilumina su propio camino, sean cuales sean las circunstancias. 🌟👑',
+        ru: 'Не бойся темноты: в сердце ночи появляются самые прекрасные огни; будь всегда светом, который освещает свой путь сам, несмотря ни на какие обстоятельства! 🌟👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون كيعشق أجواء الغروب والمساء في المناطق الجبلية المغربية ⛰️؟ وشنو هو لونكم المفضّل في الإطلالات الشتوية أو المسائية؟ وروني ذوقكم الراقي في التعليقات! 👇💎✨',
+        en: 'Girls, who loves the sunset and evening atmosphere in the Moroccan mountain regions ⛰️? And what is your favorite color in winter or evening looks? Show me your refined taste in the comments! 👇💎✨',
+        fr: 'Les filles, qui aime l’ambiance du coucher de soleil et du soir dans les régions montagneuses du Maroc ⛰️ ? Et quelle est votre couleur préférée pour les tenues d’hiver ou de soirée ? Montrez-moi votre goût raffiné en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿a quién le encantan los atardeceres y las noches en las zonas montañosas de Marruecos ⛰️? ¿Y cuál es su color favorito para los looks de invierno o de noche? ¡Muéstrenme su refinado gusto en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто обожает атмосферу заката и вечера в горных районах Марокко ⛰️? И какой ваш любимый цвет в зимних или вечерних образах? Покажите мне свой изысканный вкус в комментариях! 👇💎✨'
+    },
+
+    description: 'قلعة مكونة (وادي دادس / وادي الورود) وقت الغروب: سماء متدرجة بين البنفسجي والبرتقالي والذهبي بغيوم كثيفة، والشمس كتغرب على الحافة اليمنى للصورة، وسلاسل جبال بظلال بنفسجية فالخلفية. على اليمين قصر/قصبات تاريخية كبيرة من الطين بلون ترابي برتقالي مرصوصة فوق تلة بنوافذ مضيئة بضوء ذهبي دافئ، وتحتها نخيل وخضرة كثيفة. على الجنبين شجيرات ورد كثيفة بزهور وردية وفوشيا متفتحة، وفوق درجات وسور حجري فوانيس نحاسية مزخرفة مضاءة بالشمع (واحد على اليسار فوق السور، وآخرين على اليمين وسط الورود، وواحد كبير فالمقدمة)، وعلى اليسار جرة فخارية كبيرة بلون ترابي، وبتلات ورد متناثرة على الممر الحجري. Robaty واقفة بكامل جسمها (من الراس حتى الساقين تقريبا) فوق ممر حجري، بوقفة هادئة ومنتصبة وراسها مايل شوية، وكتبتسم ابتسامة مشرقة ودافئة للكاميرا. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية) على اليسار من الصورة كتحمل فانوس نحاسي مزخرف مضاء بشمعة متدلي حداها، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية) نازلة بشكل مرتاح قرب الخصر وأصابعها شوية مثنية. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين والظهر. لابسة معطف طويل مفتوح من المخمل العنابي (بلون النبيذ الداكن) بأكمام واسعة، بتطريز هندسي أمازيغي (معينات) بالأسود والفضي مع لمسات صغيرة حمراء وبيضاء على حواف الفتحة الأمامية وعلى الأكمام وعلى الحاشية السفلية، فوق توب صوفي رمادي (رمادي بيجي) بياقة عالية، وسروال مخملي واسع عنابي بخصر عالي بحزام مطرز بميدالية فضية وحجر أحمر. حلي أمازيغية فضية: قلادة فضية كبيرة وطويلة بتعليقة مستديرة مزخرفة بحجر أحمر وشراريب فضية على الصدر، وأقراط فضية متدلية بحجر فيروزي وشراريب فضية. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
