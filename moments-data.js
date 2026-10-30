@@ -2725,3 +2725,60 @@ Completé el look con un pantalón ancho de terciopelo y joyas amazigh de plata 
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 19,
+    slot: 'am',
+    image: 'day19-ait-ben-haddou1-morning.jpg',
+    focus: '50% 45%',   // رفع الصورة حوالي 10% من ارتفاع الشاشة
+
+    place: {
+        ar: 'آيت بن حدو — قرب ورزازات',
+        en: 'Aït Ben Haddou — near Ouarzazate',
+        fr: 'Aït Ben Haddou — près de Ouarzazate',
+        es: 'Ait Ben Haddou — cerca de Uarzazate',
+        ru: 'Айт-Бен-Хадду — близ Уарзазата'
+    },
+
+    caption: {
+        ar: `من قلب التاريخ وسحر السينما العريقة في آيت بن حدو (قرب ورزازات) الشامخة! 🏰✨
+المكان هنا كيفوح بعبق الماضي وأصالة الهندسة الطينية المغربية التي لا تضاهى. اخترنا لهاد الجولة إطلالة معطف بـ "المطرز الطويل" بلون رملي دافئ، مع السروال الجينز الواسع ولمسات الحلي الفضية الأمازيغية، في مزيج يجمع بين عراقة التراث وروعة الحاضر 🌿👑
+كيف جاكم هاد الستايل وسط هاد المناظر الأسطورية البنات؟ شاركوني آراءكم في التعليقات ☝️💖`,
+
+        en: `From the heart of history and the magic of legendary cinema in towering Aït Ben Haddou (near Ouarzazate)! 🏰✨
+The place here is filled with the scent of the past and the unmatched authenticity of Moroccan earthen architecture. For this outing we chose a long embroidered coat in a warm sandy color, with wide jeans and touches of Amazigh silver jewelry, in a mix that combines the depth of heritage with the splendor of the present 🌿👑
+How do you like this style amid these legendary scenes, girls? Share your opinions in the comments ☝️💖`,
+
+        fr: `Au cœur de l’histoire et de la magie du grand cinéma, à Aït Ben Haddou (près de Ouarzazate), majestueuse ! 🏰✨
+Ici, les lieux dégagent le parfum du passé et l’authenticité inégalée de l’architecture marocaine en terre crue. Pour cette balade, nous avons choisi un long manteau brodé d’un beau sable chaleureux, avec un jean large et des touches de bijoux amazighs en argent, dans un mélange qui allie la profondeur du patrimoine et la splendeur du présent 🌿👑
+Comment trouvez-vous ce style au milieu de ces paysages légendaires, les filles ? Partagez vos avis en commentaire ☝️💖`,
+
+        es: `¡Desde el corazón de la historia y la magia del gran cine, en la imponente Ait Ben Haddou (cerca de Uarzazate)! 🏰✨
+Aquí el lugar huele a pasado y a la inigualable autenticidad de la arquitectura marroquí de adobe. Para este paseo elegimos un abrigo largo bordado en un cálido tono arena, con vaqueros anchos y toques de joyería de plata amazigh, en una mezcla que une la profundidad del patrimonio con el esplendor del presente 🌿👑
+¿Qué les parece este estilo en medio de estos paisajes legendarios, chicas? Compartan sus opiniones en los comentarios ☝️💖`,
+
+        ru: `Из самого сердца истории и магии великого кино — величественный Айт-Бен-Хадду (близ Уарзазата)! 🏰✨
+Здесь всё дышит ароматом прошлого и непревзойдённой подлинностью марокканской глиняной архитектуры. Для этой прогулки мы выбрали длинное вышитое пальто тёплого песочного цвета, широкие джинсы и штрихи берберских серебряных украшений — сочетание, объединяющее глубину наследия и великолепие настоящего 🌿👑
+Как вам этот стиль среди легендарных пейзажей, девушки? Поделитесь мнением в комментариях ☝️💖`
+    },
+
+    story: {
+        ar: 'التاريخ يُبنى بالصبر والعراقة، وأنتِ تكتبين قصتك الخاصة بثبات وقوة؛ كوني دائماً فخورة بأصولك وماضيك مهما تطورت خطاك نحو المستقبل! 🌟👑',
+        en: 'History is built with patience and heritage, and you are writing your own story with steadiness and strength; always be proud of your roots and your past, however far your steps advance toward the future! 🌟👑',
+        fr: 'L’histoire se construit avec patience et authenticité, et tu écris ta propre histoire avec fermeté et force ; sois toujours fière de tes origines et de ton passé, même quand tes pas avancent vers l’avenir ! 🌟👑',
+        es: 'La historia se construye con paciencia y tradición, y tú escribes tu propia historia con firmeza y fuerza; ¡sé siempre orgullosa de tus raíces y tu pasado, por mucho que tus pasos avancen hacia el futuro! 🌟👑',
+        ru: 'История строится терпением и наследием, а ты пишешь свою собственную историю твёрдо и сильно; всегда гордись своими корнями и прошлым, как бы далеко ни шли твои шаги к будущему! 🌟👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون منكم زارت قصبة آيت بن حدو التاريخية وكتعشق الأجواء السينمائية ديالها 🎬؟ وشنو هي الوجهة التاريخية المفضلة عندكم في المغرب؟ وروني ذوقكم الراقي في التعليقات! 👇💎✨',
+        en: 'Girls, which of you has visited the historic Kasbah of Aït Ben Haddou and loves its cinematic atmosphere 🎬? And what is your favorite historic destination in Morocco? Show me your refined taste in the comments! 👇💎✨',
+        fr: 'Les filles, laquelle d’entre vous a visité la kasbah historique d’Aït Ben Haddou et adore son ambiance cinématographique 🎬 ? Et quelle est votre destination historique préférée au Maroc ? Montrez-moi votre goût raffiné en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿quién de ustedes ha visitado la histórica kasbah de Ait Ben Haddou y adora su ambiente cinematográfico 🎬? ¿Y cuál es su destino histórico favorito en Marruecos? ¡Muéstrenme su refinado gusto en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто из вас бывал в исторической касбе Айт-Бен-Хадду и обожает её кинематографическую атмосферу 🎬? И какое историческое место в Марокко вам нравится больше всего? Покажите мне свой изысканный вкус в комментариях! 👇💎✨'
+    },
+
+    description: 'آيت بن حدو (قرب ورزازات)، قصر/قصبة تاريخية من الطين بلون أحمر ترابي/برتقالي مبنية على تلة بشكل متدرج، بأبراج مربعة عالية بزخارف هندسية بسيطة ونوافذ صغيرة، وفالوسط باب كبير مقوس كيدخل للقصر، ومعاها أشخاص صغار بعيدين على الممر. على الجنبين نخيل عالي وأشجار خضراء كثيفة، وفالخلفية على اليمين جبال بعيدة، والسماء زرقاء صافية بغيوم رقيقة وشمس قوية كتخلق ظلال على الأرض. Robaty واقفة كتمشي بكامل جسمها فوسط جسر/ممر خشبي بسيط مبلط بحجارة ولبن، بأعمدة طينية وحواجز من جذوع خشب طبيعية على الجنبين، وكتجي نحو الكاميرا بخطوة هادئة، وراسها مايل شوية وكتبتسم ابتسامة لطيفة. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية وسوار عند المعصم) على اليسار من الصورة كتحمل نظارة شمسية سوداء متدلية من الأصابع، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية) نازلة بالجنب على اليمين. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين والصدر. لابسة معطف طويل مفتوح بلون رملي دافئ (بيج) بتطريز أمازيغي هندسي بألوان ترابية وذهبية وزرقاء على الأكمام وعلى الحاشية السفلية من الأمام، فوق توب مضلع/صوفي عاجي بياقة عالية مغلقة، وسروال جينز أزرق واسع بخصر عالي وقماش منقوش بخفة، وحذاء رياضي أبيض. حقيبة جلدية بنية صغيرة بحزام كيمر على الكتف كتبان قرب خصرها على اليسار من الصورة. حلي فضية أمازيغية: سلسلة فضية رقيقة بتعليقة فيروزية على شكل قطرة فوق التوب العاجي، وأقراط فضية متدلية بحجر فيروزي. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
