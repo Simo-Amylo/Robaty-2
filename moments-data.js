@@ -2601,3 +2601,60 @@ Díganme, chicas, ¿qué les parece esta mezcla entre el color del caftán y el 
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 18,
+    slot: 'am',
+    image: 'day18-kelaat-mgouna1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'قلعة مكونة — وادي الورود',
+        en: 'Kelaat M’Gouna — Valley of Roses',
+        fr: 'Kelâat M’Gouna — Vallée des Roses',
+        es: 'Kelaat M’Gouna — Valle de las Rosas',
+        ru: 'Келаа-М’Гуна — Долина роз'
+    },
+
+    caption: {
+        ar: `صباح الورد والجمال من عاصمة الورود الساحرة قلعة مكونة! 🌸✨
+مع نسمات الصباح الأولى وأشعة الشمس الدافئة فوق حقول الورود الممتدة وقصباتنا التاريخية العريقة، الطبيعة كتعطيك طاقة إيجابية لا تقدر بثمن. اخترنا لهاد الصباح إطلالة (Fusion) مميزة تجمع بين الفخامة والأصالة بياقة مغلقة و لمسات الأناقة العصرية 🌿👑
+كيف جاكم هاد الجو الصباحي الساحر؟ شاركوني طاقتكم اليوم في التعليقات ☝️💖`,
+
+        en: `Good morning, full of roses and beauty, from the enchanting capital of roses, Kelaat M’Gouna! 🌸✨
+With the first breezes of morning and the warm sunlight over the stretching rose fields and our ancient historic kasbahs, nature gives you priceless positive energy. This morning we chose a distinctive (Fusion) look that combines luxury and authenticity, with a closed collar and touches of modern elegance. 🌿👑
+How do you like this enchanting morning atmosphere? Share your energy today in the comments ☝️💖`,
+
+        fr: `Un matin de roses et de beauté depuis l’enchanteresse capitale des roses, Kelâat M’Gouna ! 🌸✨
+Avec les premières brises du matin et la chaleur du soleil sur les champs de roses à perte de vue et nos anciennes kasbahs historiques, la nature vous offre une énergie positive inestimable. Pour ce matin, nous avons choisi une tenue (Fusion) distinctive qui allie raffinement et authenticité, avec un col fermé et des touches d’élégance moderne. 🌿👑
+Comment trouvez-vous cette ambiance matinale enchanteresse ? Partagez votre énergie du jour en commentaire ☝️💖`,
+
+        es: `¡Buenos días llenos de rosas y belleza desde la encantadora capital de las rosas, Kelaat M’Gouna! 🌸✨
+Con las primeras brisas de la mañana y los cálidos rayos del sol sobre los campos de rosas que se extienden y nuestras antiguas kasbahs históricas, la naturaleza te regala una energía positiva que no tiene precio. Para esta mañana elegimos un look (Fusion) distintivo que combina elegancia y autenticidad, con cuello cerrado y toques de sofisticación moderna. 🌿👑
+¿Qué les parece este encantador ambiente matutino? Compartan su energía de hoy en los comentarios ☝️💖`,
+
+        ru: `Утро роз и красоты из волшебной столицы роз — Келаа-М’Гуна! 🌸✨
+С первыми утренними дуновениями и тёплыми лучами солнца над раскинувшимися розовыми полями и нашими древними историческими касбами природа дарит бесценную позитивную энергию. Этим утром мы выбрали особенный образ (Fusion), сочетающий роскошь и аутентичность, с закрытым воротом и штрихами современной элегантности. 🌿👑
+Как вам эта волшебная утренняя атмосфера? Поделитесь своей энергией сегодня в комментариях ☝️💖`
+    },
+
+    story: {
+        ar: 'مثل الورود، أنتِ قادرة على الإزهار وصنع الجمال حتى في أقسى الظروف؛ كوني دائماً مصدر إيجابية ونور لنفسك ولغيرك! 🌸✨',
+        en: 'Like roses, you are able to bloom and create beauty even in the harshest conditions; always be a source of positivity and light for yourself and for others! 🌸✨',
+        fr: 'Comme les roses, tu es capable de fleurir et de créer de la beauté même dans les conditions les plus rudes ; sois toujours une source de positivité et de lumière pour toi-même et pour les autres ! 🌸✨',
+        es: 'Como las rosas, eres capaz de florecer y crear belleza incluso en las condiciones más duras; ¡sé siempre una fuente de positividad y luz para ti misma y para los demás! 🌸✨',
+        ru: 'Как розы, ты способна цвести и создавать красоту даже в самых суровых условиях; будь всегда источником позитива и света для себя и для других! 🌸✨'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون سبقات ليها زارت قلعة مكونة وشمات ريحة الورود الطبيعية 🌹؟ وشنو هي أكثر بلاصة مغربية كتعطيكم إحساس بالسلام الداخلي؟ وروني آراءكم في التعليقات! 👇✨',
+        en: 'Girls, who has ever visited Kelaat M’Gouna and smelled the natural scent of roses 🌹? And what is the Moroccan place that gives you the most feeling of inner peace? Show me your opinions in the comments! 👇✨',
+        fr: 'Les filles, laquelle d’entre vous a déjà visité Kelâat M’Gouna et respiré le parfum naturel des roses 🌹 ? Et quel est l’endroit au Maroc qui vous procure le plus de paix intérieure ? Dites-moi ce que vous en pensez en commentaire ! 👇✨',
+        es: 'Chicas, ¿quién ha visitado alguna vez Kelaat M’Gouna y ha olido el aroma natural de las rosas 🌹? ¿Y cuál es el lugar de Marruecos que más paz interior les transmite? ¡Cuéntenme sus opiniones en los comentarios! 👇✨',
+        ru: 'Девушки, кто из вас бывал в Келаа-М’Гуна и вдыхал естественный аромат роз 🌹? И какое место в Марокко дарит вам больше всего внутреннего покоя? Расскажите мне своё мнение в комментариях! 👇✨'
+    },
+
+    description: 'قلعة مكونة (وادي الورود) فصباح مشمس بسماء زرقاء صافية بغيوم خفيفة: فالخلفية جبال الأطلس الكبير بقمم مغطاة بالثلج وسفوح بنفسجية/وردية، وعلى اليمين قصبة تاريخية كبيرة من الطين بلون ترابي برتقالي فوق تلة وسط نخيل وخضرة. حقول ورود وردية ممتدة بلا نهاية على الجنبين، بشجيرات ورد خضراء كثيفة وزهور وردية متفتحة بزاف فالمقدمة (على اليسار وتحت الصورة)، وعلى اليمين ممر ترابي مغطى بتلات الورد المتساقطة. Robaty واقفة وسط حقل الورد من الراس حتى الركبتين تقريبا، وراسها مايل شوية وكتبتسم ابتسامة مشرقة وواثقة للكاميرا. يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية) كتحمل وردة وردية كبيرة وكتلمسها بلطف على اليسار من الصورة، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية وسوار عند المعصم) ممدودة ومنخفضة قدام جسمها نحو الورود. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. فوق راسها تاج رقيق من ورد طبيعي وردي بأوراق خضراء. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين والظهر. لابسة تونيك/جاكيت طويل مفتوح بلون أخضر زمردي من القطن، بتطريز هندسي مستوحى من التراث الأمازيغي (معينات ومثلثات) بألوان الوردي والعاجي والذهبي على حواف الفتحة الأمامية وعلى الأكمام وعلى الحاشية السفلية اللي فيها شراريب صغيرة، فوق قميص عاجي مغلق بياقة عالية، وسروال جينز أزرق فاتح واسع منقوش بخفة، وحزام جلدي بني رقيق عند الخصر. حلي فضية مستوحاة من الحلي الأمازيغية: أقراط فضية متدلية بحجر فيروزي وشراريب فضية، وسلسلة رقيقة طويلة على القميص العاجي. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
