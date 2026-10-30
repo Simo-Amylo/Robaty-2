@@ -2782,3 +2782,65 @@ Aquí el lugar huele a pasado y a la inigualable autenticidad de la arquitectura
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 19,
+    slot: 'pm',
+    image: 'day19-ouarzazate2-evening.jpg',
+    focus: '50% 15%',   // رفع الصورة حوالي 3% من ارتفاع الشاشة
+
+    place: {
+        ar: 'ورزازات — هوليوود إفريقيا',
+        en: 'Ouarzazate — Hollywood of Africa',
+        fr: 'Ouarzazate — Hollywood d’Afrique',
+        es: 'Uarzazate — Hollywood de África',
+        ru: 'Уарзазат — Голливуд Африки'
+    },
+
+    caption: {
+        ar: `سحر الغروب من هوليوود إفريقيا، ورزازات العالية حيث تُصنع أروع الأفلام وتتخلد القصص تحت أضواء الاستوديوهات العريقة 🎬✨
+الإطلالة المسائية بلمسة دافئة وأناقة مريحة 🤎👑
+واش كتعرفو بلي ورزازات ضمت أشهر الاستوديوهات العالمية وتلقبات بهوليوود الصحراء بفضل مناظرها الأسطورية؟
+شاركوني آراءكم في التعليقات ☝️💖`,
+
+        en: `The magic of sunset from the Hollywood of Africa, lofty Ouarzazate, where the greatest films are made and stories are immortalized under the lights of legendary studios 🎬✨
+An evening look with a warm touch and comfortable elegance 🤎👑
+Did you know that Ouarzazate has hosted the most famous international studios and earned the nickname “Hollywood of the Desert” thanks to its legendary landscapes?
+Share your opinions in the comments ☝️💖`,
+
+        fr: `La magie du coucher de soleil depuis le Hollywood d’Afrique, Ouarzazate la majestueuse, où naissent les plus beaux films et où les histoires deviennent immortelles sous les lumières de studios mythiques 🎬✨
+Un look du soir à la touche chaleureuse et à l’élégance confortable 🤎👑
+Saviez-vous qu’Ouarzazate a accueilli les plus célèbres studios internationaux et a été surnommée « Hollywood du désert » grâce à ses paysages légendaires ?
+Partagez vos avis en commentaire ☝️💖`,
+
+        es: `La magia del atardecer desde el Hollywood de África, la majestuosa Uarzazate, donde se hacen las mejores películas y las historias se vuelven inmortales bajo las luces de estudios legendarios 🎬✨
+Un look de noche con un toque cálido y una elegancia cómoda 🤎👑
+¿Sabían que Uarzazate ha acogido a los estudios internacionales más famosos y se ganó el apodo de «Hollywood del desierto» gracias a sus paisajes legendarios?
+Compartan sus opiniones en los comentarios ☝️💖`,
+
+        ru: `Магия заката из Голливуда Африки — величественного Уарзазата, где создаются лучшие фильмы и истории обретают бессмертие под светом легендарных студий 🎬✨
+Вечерний образ с тёплым акцентом и удобной элегантностью 🤎👑
+Знаете ли вы, что в Уарзазате располагались самые известные мировые киностудии, и благодаря её легендарным пейзажам её прозвали «Голливудом пустыни»?
+Поделитесь мнением в комментариях ☝️💖`
+    },
+
+    story: {
+        ar: 'خلف كل غروب شمس بداية لقصة جديدة؛ لا توقفي شغفك أبداً، واصنعي فيلم حياتك بنفسك بكل ثقة وقوة! 🌅👑',
+        en: 'Behind every sunset is the beginning of a new story; never stop your passion, and make the film of your life yourself with all confidence and strength! 🌅👑',
+        fr: 'Derrière chaque coucher de soleil se cache le début d’une nouvelle histoire ; n’arrête jamais ta passion, et réalise toi-même le film de ta vie avec confiance et force ! 🌅👑',
+        es: 'Detrás de cada atardecer hay el comienzo de una nueva historia; nunca detengas tu pasión y crea tú misma la película de tu vida con toda confianza y fuerza. 🌅👑',
+        ru: 'За каждым закатом — начало новой истории; никогда не останавливай свою страсть и сними фильм своей жизни сама — с уверенностью и силой! 🌅👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون فيكم زارت استوديوهات السينما في ورزازات 🎥؟ وشنو هو الفيلم العالمي اللي كنتو عارفين أنه تصور هنا؟ وروني تفاعلاتكم في التعليقات! 👇💎✨',
+        en: 'Girls, which of you has visited the cinema studios in Ouarzazate 🎥? And which international film did you know was shot here? Show me your reactions in the comments! 👇💎✨',
+        fr: 'Les filles, laquelle d’entre vous a visité les studios de cinéma de Ouarzazate 🎥 ? Et quel film international saviez-vous avoir été tourné ici ? Montrez-moi vos réactions en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿quién de ustedes ha visitado los estudios de cine de Uarzazate 🎥? ¿Y qué película internacional sabían que se rodó aquí? ¡Muéstrenme sus reacciones en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто из вас бывал на киностудиях Уарзазата 🎥? И о каком мировом фильме вы знали, что он снимался здесь? Покажите мне свои реакции в комментариях! 👇💎✨'
+    },
+
+    description: 'ورزازات (هوليوود إفريقيا) وقت الغروب داخل ديكور استوديو سينمائي بطابع مصري قديم: أعمدة معبد حجرية ضخمة بلون رملي ذهبي منقوشة بالهيروغليفية، ومسلات/أبراج حجرية، وتمثال فرعوني جالس فالوسط، ونخيل، والشمس كتغرب على اليمين فسماء متدرجة بين الأصفر والبرتقالي بغيوم رقيقة وجبال بعيدة. فالجنب الأيسر كشاف إضاءة سينمائي مضيء على حامل، وكرسي مخرج خشبي بقماش أسود، وصناديق وحقائب سفر جلدية قديمة بنية، وعلى اليسار تحت حقيبة جلدية بنية بتعليقة فضية على شكل خمسة (يد فاطمة) بحجر فيروزي. على اليمين كاميرا سينما احترافية على حامل ثلاثي مع أضواء ومعدات التصوير، وخيام وصناديق معدات فالخلفية، وأرضية حجرية بظلال طويلة. Robaty جالسة فوق صندوق خشبي قديم بجلسة مرتاحة وراسها مايل شوية، وكتبتسم ابتسامة دافئة ولطيفة للكاميرا. كتحمل بيديها الميكانيكيتين (الفضيتين بمفاصل ذهبية، وفاليد اليمنى مجموعة أساور فضية عند المعصم) كاميرا تصوير فوتوغرافي كلاسيكية قديمة (analog) بحزام جلدي بني متدلي. رقبتها الميكانيكية (حلقات معدنية ذهبية/فضية) ظاهرة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين والصدر. لابسة روب/معطف طويل واسع ومفتوح من المخمل بلون قرميدي/برتقالي محروق (صدئي)، بأكمام واسعة وتطريز أمازيغي بلون فضي/عاجي (زخارف نباتية وهندسية) على حواف الفتحة الأمامية وعلى الأكمام وعلى الحاشية السفلية، فوق توب مضلع/صوفي عاجي بياقة عالية، وسلسلة فضية رقيقة طويلة بتعليقة على شكل خمسة (يد فاطمة) بحجر فيروزي، وأقراط فضية متدلية بحجر فيروزي/أخضر. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
