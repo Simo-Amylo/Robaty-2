@@ -53,6 +53,10 @@
   }
   #splash.leaving { opacity: 0; transform: scale(1.03); pointer-events: none; }
 
+  /* الواجهة اللي تحت السبلاش كتبقى مخبية (visibility) حتى يسالي، باش المتصفح ما يرسمش
+     أنيميشنات الإطار الذهبي والهالات وهي مغطية. هادشي هو اللي كان كيثقل ويقطع السبلاش. */
+  html.splash-on body > *:not(#splash):not(script) { visibility: hidden; }
+
   /* الهالة الذهبية (كما هي) */
   .splash-glow {
     position: absolute; width: 340px; height: 340px; border-radius: 50%;
@@ -157,8 +161,10 @@
   var splash = document.getElementById('splash');
   if (!splash) return;
   var started = false;
+  document.documentElement.classList.add('splash-on');
 
   function finish() {
+    document.documentElement.classList.remove('splash-on');   // الواجهة تبان تحت السبلاش وهو كيتمسح
     splash.classList.add('leaving');
     setTimeout(function () {
       splash.remove();
