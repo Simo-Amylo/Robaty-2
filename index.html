@@ -68,11 +68,23 @@
 
   /* 0 → 1s : الصورة (234px = 130 + 80%) */
   .splash-logo {
-    position: relative; width: 234px; height: 234px; object-fit: cover;
+    position: relative; width: 234px; height: 234px;
     border-radius: 50%;
     box-shadow: 0 0 36px rgba(229,150,60,.28);
     opacity: 0; transform: scale(.92);
   }
+  /* 3 صور متراكبة (نفس تقنية crossfade ديال المحادثات): الجديدة كتظهر فوق القديمة
+     والقديمة كتبقى كاملة تحتها، بلا وميض ولا فراغ */
+  .splash-face {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border-radius: 50%; object-fit: cover; display: block;
+    opacity: 0;
+    transition: opacity 1400ms linear;   /* linear بحال AVATAR_FADE_EASING فالمحادثات */
+  }
+  .splash-face.f1 { opacity: 1; transition: none; z-index: 1; }   /* calm */
+  .splash-face.f2 { z-index: 2; }                                  /* warmth */
+  .splash-face.f3 { z-index: 3; }                                  /* smile */
+  .splash-face.show { opacity: 1; }
   #splash.go .splash-logo { animation: logoIn 1s cubic-bezier(.2,.7,.2,1) 0s forwards; }
   @keyframes logoIn { to { opacity: 1; transform: scale(1); } }
 
@@ -115,7 +127,11 @@
 <!-- Splash screen -->
 <div id="splash" aria-hidden="true">
   <div class="splash-glow"></div>
-  <img class="splash-logo" src="calm.png" alt="">
+  <div class="splash-logo">
+    <img class="splash-face f1" src="calm.png" alt="">
+    <img class="splash-face f2" src="warmth.png" alt="">
+    <img class="splash-face f3" src="smile.png" alt="">
+  </div>
   <h1 class="splash-name">Ro<span>baty</span></h1>
   <p class="splash-tagline">
     <span data-i18n="splash_tagline">سفيرة التراث المغربي</span>
@@ -148,27 +164,23 @@
       requestAnimationFrame(function () {
         splash.classList.add('go');
         if (reduced) { setTimeout(finish, 600); return; }
-        // تسلسل الصور: calm 2.5s ← warmth 1.25s ← smile (من 3.75s حتى 5.3s) ثم تفتح الواجهة
-        setTimeout(function () { setFace('warmth.png'); }, 2500);
-        setTimeout(function () { setFace('smile.png'); }, 3750);
-        setTimeout(finish, 5300);   // smile تبقى ظاهرة حتى 5.3s
+        // calm ثابتة 1.8s ← crossfade 1.4s إلى warmth (تكمل 3.2s) ← 0.2s ثبات
+        // ← crossfade 1.4s إلى smile (من 3.4s تكمل 4.8s) ← smile ثابتة حتى 6.2s
+        setTimeout(function () { f2.classList.add('show'); }, 1800);
+        setTimeout(function () { f3.classList.add('show'); }, 3400);
+        setTimeout(finish, 6200);
       });
     });
   }
 
-  var img = splash.querySelector('.splash-logo');
-
-  // تحميل مسبق للصورتين باش يكون التبديل فوري بلا وميض
-  var preloaded = {};
-  ['warmth.png', 'smile.png'].forEach(function (src) {
-    var p = new Image();
-    p.src = src;
-    if (p.decode) p.decode().catch(function () {});
-    preloaded[src] = p;
+  var img = splash.querySelector('.f1');
+  var f2 = splash.querySelector('.f2');
+  var f3 = splash.querySelector('.f3');
+  // نفك ترميز الصور الثلاث قبل البداية باش الـfade يكون ناعم
+  var pending = [img, f2, f3].map(function (el) {
+    return (el && el.decode) ? el.decode().catch(function () {}) : Promise.resolve();
   });
-  function setFace(src) { if (img) img.src = src; }
-
-  if (img && img.decode) { img.decode().then(start, start); } else { start(); }
+  Promise.all(pending).then(start, start);
   setTimeout(start, 1500);  // احتياط
 })();
 </script>
