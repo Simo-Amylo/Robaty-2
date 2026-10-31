@@ -78,13 +78,16 @@
   .splash-face {
     position: absolute; inset: 0; width: 100%; height: 100%;
     border-radius: 50%; object-fit: cover; display: block;
-    opacity: 0;
-    transition: opacity 1400ms linear;   /* linear بحال AVATAR_FADE_EASING فالمحادثات */
+    opacity: 0; will-change: opacity;
   }
-  .splash-face.f1 { opacity: 1; transition: none; z-index: 1; }   /* calm */
-  .splash-face.f2 { z-index: 2; }                                  /* warmth */
-  .splash-face.f3 { z-index: 3; }                                  /* smile */
-  .splash-face.show { opacity: 1; }
+  .splash-face.f1 { opacity: 1; z-index: 1; }   /* calm */
+  .splash-face.f2 { z-index: 2; }                /* warmth */
+  .splash-face.f3 { z-index: 3; }                /* smile */
+  /* crossfade linear بحال المحادثات، كله فـCSS (opacity كتتنفذ على الـcompositor
+     يعني ما كتتأثرش إيلا الـmain thread كان مشغول بتحميل السكريبتات) */
+  #splash.go .splash-face.f2 { animation: faceIn 1.4s linear 1.8s forwards; }
+  #splash.go .splash-face.f3 { animation: faceIn 1.4s linear 3.4s forwards; }
+  @keyframes faceIn { from { opacity: 0; } to { opacity: 1; } }
   #splash.go .splash-logo { animation: logoIn 1s cubic-bezier(.2,.7,.2,1) 0s forwards; }
   @keyframes logoIn { to { opacity: 1; transform: scale(1); } }
 
@@ -104,17 +107,25 @@
     position: relative; margin: 12px 0 0; display: flex; align-items: center; gap: 10px;
     font: 400 20.4px/1.4 "Noto Naskh Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
     color: #f5ecdc;
-    clip-path: inset(0 0 0 100%);
   }
-  html[dir="ltr"] .splash-tagline { clip-path: inset(0 100% 0 0); }
-  #splash.go .splash-tagline { animation: reveal 2s steps(24, end) 2s forwards; }
-  @keyframes reveal { to { clip-path: inset(0 0 0 0); } }
+  /* "الكتابة": غطاء بنفس لون الخلفية كيتزحزح بـtransform (compositor) بخطوات،
+     بدل clip-path (main thread) اللي كان كيتوقف ويقفز */
+  .splash-tagline::after {
+    content: ''; position: absolute; inset: 0 -1px; background: #14100c;
+    will-change: transform; transform: translateX(0);
+  }
+  #splash.go .splash-tagline::after { animation: reveal-rtl 2s steps(24, end) 2s forwards; }
+  html[dir="ltr"] #splash.go .splash-tagline::after { animation-name: reveal-ltr; }
+  @keyframes reveal-rtl { to { transform: translateX(-101%); } }
+  @keyframes reveal-ltr { to { transform: translateX(101%); } }
   .splash-flag { width: 26px; height: 18px; border-radius: 2px; flex: none; }
 
   @media (prefers-reduced-motion: reduce) {
     #splash .splash-glow, #splash .splash-logo, #splash .splash-name, #splash .splash-tagline {
-      animation: none; opacity: 1; transform: none; clip-path: none;
+      animation: none; opacity: 1; transform: none;
     }
+    #splash .splash-face.f2, #splash .splash-face.f3 { animation: none; }
+    #splash .splash-tagline::after { display: none; }
     #splash { transition: opacity .2s ease; }
     #splash.leaving { transform: none; }
   }
@@ -164,24 +175,24 @@
       requestAnimationFrame(function () {
         splash.classList.add('go');
         if (reduced) { setTimeout(finish, 600); return; }
-        // calm ثابتة 1.8s ← crossfade 1.4s إلى warmth (تكمل 3.2s) ← 0.2s ثبات
-        // ← crossfade 1.4s إلى smile (من 3.4s تكمل 4.8s) ← smile ثابتة حتى 6.2s
-        setTimeout(function () { f2.classList.add('show'); }, 1800);
-        setTimeout(function () { f3.classList.add('show'); }, 3400);
+        // كل الأنيميشن فـCSS (.go). calm 0→1.8s ← crossfade لـwarmth ← crossfade لـsmile (3.4→4.8s)
         setTimeout(finish, 6200);
       });
     });
   }
 
-  var img = splash.querySelector('.f1');
-  var f2 = splash.querySelector('.f2');
-  var f3 = splash.querySelector('.f3');
-  // نفك ترميز الصور الثلاث قبل البداية باش الـfade يكون ناعم
-  var pending = [img, f2, f3].map(function (el) {
-    return (el && el.decode) ? el.decode().catch(function () {}) : Promise.resolve();
+  var faces = splash.querySelectorAll('.splash-face');
+  var decoded = Promise.all(Array.prototype.map.call(faces, function (el) {
+    return el.decode ? el.decode().catch(function () {}) : Promise.resolve();
+  }));
+  var domReady = new Promise(function (res) {
+    if (document.readyState !== 'loading') res();
+    else document.addEventListener('DOMContentLoaded', res);
   });
-  Promise.all(pending).then(start, start);
-  setTimeout(start, 1500);  // احتياط
+  // نبداو غير ملي السكريبتات الثقيلة (app.js...) تكمل التنفيذ وتتفك الصور،
+  // باش الأنيميشن ما يتقطعش ولا يقفز. احتياط: 3s
+  Promise.all([decoded, domReady]).then(start, start);
+  setTimeout(start, 3000);
 })();
 </script>
 
