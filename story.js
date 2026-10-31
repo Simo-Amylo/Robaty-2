@@ -1090,6 +1090,9 @@ window.addEventListener('pageshow', refreshProfileRing);
             openStory(storyOrder[0]);
         }
 
+        // الـ Story تفتحات: نحيدو التغطية السودة (شوف profile.html)
+        document.documentElement.classList.remove('story-direct');
+
         params.delete('story');
 
         const rest = params.toString();

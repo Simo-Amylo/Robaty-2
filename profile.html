@@ -25,6 +25,26 @@
         })();
     </script>
 
+    <!-- جاي من صورة Robaty فالمحادثة (?story=latest): كنغطيو الصفحة بالأسود حتى يتفتح الـ Story،
+         باش البروفايل ما يبانش ثانية قبل منو. حماية: كيتحيد التغطية بعد 3 ثواني فأسوأ الأحوال -->
+    <style>
+        html.story-direct::before {
+            content: ''; position: fixed; inset: 0; z-index: 2147483000; background: #000;
+        }
+    </style>
+    <script>
+        (function () {
+            try {
+                if (new URLSearchParams(window.location.search).get('story') === 'latest') {
+                    document.documentElement.classList.add('story-direct');
+                    setTimeout(function () {
+                        document.documentElement.classList.remove('story-direct');
+                    }, 3000);
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <title>Robaty - Profile</title>
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet"
