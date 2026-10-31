@@ -423,6 +423,8 @@
             a.className = 'grid-item';
 
             var img = document.createElement('img');
+            img.loading = 'lazy';      // الصور اللي ما باينينش ما كيتحملوش دغية، باش ما يزاحمو صورة الـ Story
+            img.decoding = 'async';
             img.src = p.image;
             img.alt = RM.t(p.place, lang);
 
