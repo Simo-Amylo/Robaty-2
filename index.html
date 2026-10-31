@@ -71,11 +71,20 @@
   }
 
   /* 0 → 1s : الصورة (234px = 130 + 80%) */
+  /* إطار ذهبي بنفس .glowing-ring ديال شاشة المحادثات: padding 4px + gradient 135deg + هالة
+     (242px = 234 للصورة + 4px من كل جهة، باش الصورة تبقى بنفس الحجم) */
   .splash-logo {
-    position: relative; width: 234px; height: 234px;
-    border-radius: 50%;
-    box-shadow: 0 0 36px rgba(229,150,60,.28);
+    position: relative; width: 242px; height: 242px; box-sizing: border-box;
+    border-radius: 50%; padding: 4px;
+    background: linear-gradient(135deg, #ffc875, #805018);
+    box-shadow:
+      0 0 34px rgba(255,170,51,.48),
+      inset 0 0 34px rgba(255,170,51,.48);
     opacity: 0; transform: scale(.92);
+  }
+  .splash-face-wrap {
+    position: relative; width: 100%; height: 100%;
+    border-radius: 50%; overflow: hidden;
   }
   /* 3 صور متراكبة (نفس تقنية crossfade ديال المحادثات): الجديدة كتظهر فوق القديمة
      والقديمة كتبقى كاملة تحتها، بلا وميض ولا فراغ */
@@ -112,24 +121,19 @@
     font: 400 20.4px/1.4 "Noto Naskh Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
     color: #f5ecdc;
   }
-  /* "الكتابة": غطاء بنفس لون الخلفية كيتزحزح بـtransform (compositor) بخطوات،
-     بدل clip-path (main thread) اللي كان كيتوقف ويقفز */
-  .splash-tagline::after {
-    content: ''; position: absolute; inset: 0 -1px; background: #14100c;
-    will-change: transform; transform: translateX(0);
-  }
-  #splash.go .splash-tagline::after { animation: reveal-rtl 2s steps(24, end) 2s forwards; }
-  html[dir="ltr"] #splash.go .splash-tagline::after { animation-name: reveal-ltr; }
-  @keyframes reveal-rtl { to { transform: translateX(-101%); } }
-  @keyframes reveal-ltr { to { transform: translateX(101%); } }
+  /* "الكتابة": clip-path بهوامش عمودية سالبة، باش النقاط اللي كتخرج على سطر النص العربي
+     (ي، ق، ن...) تبقى مخبية حتى يوصلها الكشف، وما تبانش بوحدها */
+  .splash-tagline { clip-path: inset(-24px 0 -24px 100%); }
+  html[dir="ltr"] .splash-tagline { clip-path: inset(-24px 100% -24px 0); }
+  #splash.go .splash-tagline { animation: reveal 2s steps(24, end) 2s forwards; }
+  @keyframes reveal { to { clip-path: inset(-24px 0 -24px 0); } }
   .splash-flag { width: 26px; height: 18px; border-radius: 2px; flex: none; }
 
   @media (prefers-reduced-motion: reduce) {
     #splash .splash-glow, #splash .splash-logo, #splash .splash-name, #splash .splash-tagline {
-      animation: none; opacity: 1; transform: none;
+      animation: none; opacity: 1; transform: none; clip-path: none;
     }
     #splash .splash-face.f2, #splash .splash-face.f3 { animation: none; }
-    #splash .splash-tagline::after { display: none; }
     #splash { transition: opacity .2s ease; }
     #splash.leaving { transform: none; }
   }
@@ -143,9 +147,11 @@
 <div id="splash" aria-hidden="true">
   <div class="splash-glow"></div>
   <div class="splash-logo">
-    <img class="splash-face f1" src="calm.png" alt="">
-    <img class="splash-face f2" src="warmth.png" alt="">
-    <img class="splash-face f3" src="smile.png" alt="">
+    <div class="splash-face-wrap">
+      <img class="splash-face f1" src="calm.png" alt="">
+      <img class="splash-face f2" src="warmth.png" alt="">
+      <img class="splash-face f3" src="smile.png" alt="">
+    </div>
   </div>
   <h1 class="splash-name">Ro<span>baty</span></h1>
   <p class="splash-tagline">
