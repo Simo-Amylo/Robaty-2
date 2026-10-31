@@ -147,12 +147,27 @@
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
         splash.classList.add('go');
-        setTimeout(finish, reduced ? 600 : 5300);   // 1s صورة + 1s اسم + 2s جملة + 1.3s انتظار
+        if (reduced) { setTimeout(finish, 600); return; }
+        // تسلسل الصور: calm 2.5s ← warmth 1.25s ← smile (من 3.75s حتى 5.3s) ثم تفتح الواجهة
+        setTimeout(function () { setFace('warmth.png'); }, 2500);
+        setTimeout(function () { setFace('smile.png'); }, 3750);
+        setTimeout(finish, 5300);   // smile تبقى ظاهرة حتى 5.3s
       });
     });
   }
 
   var img = splash.querySelector('.splash-logo');
+
+  // تحميل مسبق للصورتين باش يكون التبديل فوري بلا وميض
+  var preloaded = {};
+  ['warmth.png', 'smile.png'].forEach(function (src) {
+    var p = new Image();
+    p.src = src;
+    if (p.decode) p.decode().catch(function () {});
+    preloaded[src] = p;
+  });
+  function setFace(src) { if (img) img.src = src; }
+
   if (img && img.decode) { img.decode().then(start, start); } else { start(); }
   setTimeout(start, 1500);  // احتياط
 })();
