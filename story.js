@@ -1086,44 +1086,8 @@ window.addEventListener('pageshow', refreshProfileRing);
 
         if (params.get('story') !== 'latest') return;
 
-        /* كنحمّلو صورة الـ Story وهي مغطية بالأسود (شوف profile.html)، وملي تكون واجدة (مفكوكة
-           الترميز) كنفتحو الـ Story دغية بلا fade: كتبان كاملة مرة وحدة عوض ما تبان بالتدريج. */
-        const coverOff = () => document.documentElement.classList.remove('story-direct');
-        let revealed = false;
-
-        const reveal = () => {
-            if (revealed) return;
-            revealed = true;
-
-            if (storyOrder.length > 0) {
-                const content = document.querySelector('.story-content');
-                const prevModalTr = modal ? modal.style.transition : '';
-                const prevContentTr = content ? content.style.transition : '';
-                if (modal) modal.style.transition = 'none';
-                if (content) content.style.transition = 'none';
-
-                openStory(storyOrder[0]);
-
-                requestAnimationFrame(() => requestAnimationFrame(() => {
-                    if (modal) modal.style.transition = prevModalTr;
-                    if (content) content.style.transition = prevContentTr;
-                    coverOff();
-                }));
-            } else {
-                coverOff();
-            }
-        };
-
-        const first = storyOrder.length > 0 ? storyData[storyOrder[0]] : null;
-
-        if (first && first.image) {
-            const probe = new Image();
-            try { probe.fetchPriority = 'high'; } catch (e) {}
-            probe.src = first.image;
-            (probe.decode ? probe.decode() : Promise.reject()).then(reveal, reveal);
-            setTimeout(reveal, 2500);   // حماية: ما نبقاوش نتسناو بلا نهاية
-        } else {
-            reveal();
+        if (storyOrder.length > 0) {
+            openStory(storyOrder[0]);
         }
 
         params.delete('story');
