@@ -2968,3 +2968,70 @@ Compartan sus opiniones en los comentarios ☝️✨`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 21,
+    slot: 'am',
+    image: 'day21-dakhla1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'الداخلة — وادي الذهب',
+        en: 'Dakhla — Oued Eddahab',
+        fr: 'Dakhla — Oued Ed-Dahab',
+        es: 'Dajla — Río de Oro',
+        ru: 'Дахла — Уэд-эд-Дахаб'
+    },
+
+    caption: {
+        ar: `💙 اليوم جيتكم من مدينة الداخلة، فين الصحراء كتلاقى مع المحيط، والمياه الفيروزية كترسم واحد من أجمل المناظر فالمغرب! 🌊🇲🇦
+شوفو هاد الجمال! الداخلة كتعتبر وجهة عالمية فريدة لعشاق الرياضات المائية وكتجمع بين سحر الصحراء وروعة المحيط.
+اختاريت اليوم إطلالة جاكيت عاجي بتطريز أزرق مستوحى من الزخارف المغربية، مع قميص مغلق وسروال واسع بالأزرق الملكي، وزدت لمسات فضية وحزام بقطعة فيروزية. 💎
+البنات، شنو عجبكم أكثر: جمال الداخلة ولا اللوك ديالي اليوم؟ 😍
+شاركوني آراءكم في التعليقات ☝️✨`,
+
+        en: `💙 Today I’m coming to you from the city of Dakhla, where the desert meets the ocean, and the turquoise waters paint one of the most beautiful scenes in Morocco! 🌊🇲🇦
+Look at this beauty! Dakhla is considered a unique world-class destination for water-sports lovers, combining the magic of the desert with the splendor of the ocean.
+Today I chose an ivory jacket with blue embroidery inspired by Moroccan motifs, with a closed shirt and wide royal-blue trousers, and I added silver touches and a belt with a turquoise piece. 💎
+Girls, what did you like more: the beauty of Dakhla or my look today? 😍
+Share your opinions in the comments ☝️✨`,
+
+        fr: `💙 Aujourd’hui, je vous retrouve depuis la ville de Dakhla, où le désert rencontre l’océan, et où les eaux turquoise dessinent l’un des plus beaux paysages du Maroc ! 🌊🇲🇦
+Regardez cette beauté ! Dakhla est considérée comme une destination mondiale unique pour les passionnés de sports nautiques, alliant la magie du désert à la splendeur de l’océan.
+Aujourd’hui, j’ai choisi une veste ivoire à la broderie bleue inspirée des motifs marocains, avec une chemise fermée et un pantalon large bleu roi, et j’ai ajouté des touches d’argent et une ceinture ornée d’une pièce turquoise. 💎
+Les filles, qu’est-ce qui vous a le plus plu : la beauté de Dakhla ou mon look du jour ? 😍
+Partagez vos avis en commentaire ☝️✨`,
+
+        es: `💙 ¡Hoy les escribo desde la ciudad de Dajla, donde el desierto se encuentra con el océano y las aguas turquesa pintan uno de los paisajes más bellos de Marruecos! 🌊🇲🇦
+¡Miren qué belleza! Dajla se considera un destino mundial único para los amantes de los deportes acuáticos, que une la magia del desierto con la grandeza del océano.
+Hoy elegí una chaqueta color marfil con bordado azul inspirado en los motivos marroquíes, con una camisa cerrada y un pantalón ancho azul real, y añadí toques de plata y un cinturón con una pieza turquesa. 💎
+Chicas, ¿qué les gustó más: la belleza de Dajla o mi look de hoy? 😍
+Compartan sus opiniones en los comentarios ☝️✨`,
+
+        ru: `💙 Сегодня я пишу вам из города Дахла, где пустыня встречается с океаном, а бирюзовые воды рисуют одну из самых красивых картин Марокко! 🌊🇲🇦
+Посмотрите, какая красота! Дахла считается уникальным мировым направлением для любителей водных видов спорта, соединяя магию пустыни и великолепие океана.
+Сегодня я выбрала жакет цвета слоновой кости с синей вышивкой, вдохновлённой марокканскими орнаментами, закрытую рубашку и широкие брюки королевского синего цвета, а также добавила серебряные акценты и пояс с бирюзовой деталью. 💎
+Девушки, что вам понравилось больше: красота Дахлы или мой сегодняшний образ? 😍
+Поделитесь мнением в комментариях ☝️✨`
+    },
+
+    story: {
+        ar: 'ما تخليش الخوف من البداية يسرق منك فرصة اكتشاف أجمل نسخة من راسك. كوني جريئة، وبداي! 💙👑',
+        en: 'Don’t let the fear of beginning steal from you the chance to discover the most beautiful version of yourself. Be bold, and start! 💙👑',
+        fr: 'Ne laisse pas la peur du commencement te voler l’occasion de découvrir la plus belle version de toi-même. Sois audacieuse, et commence ! 💙👑',
+        es: 'No dejes que el miedo a empezar te robe la oportunidad de descubrir la mejor versión de ti misma. Sé valiente, ¡y empieza! 💙👑',
+        ru: 'Не позволяй страху перед началом лишить тебя шанса открыть самую прекрасную версию себя. Будь смелой — и начинай! 💙👑'
+    },
+
+    challenge: {
+        ar: 'البنات، إلا خيروكوم بين نهار وسط زرقة البحر ومغامرة الـKitesurf، ولا نهار هادئ وسط الجبال… شنو غتختارو؟ 🌊⛰️😍',
+        en: 'Girls, if you had to choose between a day amid the blue of the sea and the adventure of kitesurfing, or a quiet day in the mountains… what would you choose? 🌊⛰️😍',
+        fr: 'Les filles, si on vous proposait le choix entre une journée au cœur du bleu de la mer avec l’aventure du kitesurf, ou une journée tranquille au milieu des montagnes… que choisiriez-vous ? 🌊⛰️😍',
+        es: 'Chicas, si les dieran a elegir entre un día en medio del azul del mar con la aventura del kitesurf, o un día tranquilo entre montañas… ¿qué elegirían? 🌊⛰️😍',
+        ru: 'Девушки, если бы вам предложили выбрать между днём среди синевы моря с приключением кайтсерфинга и спокойным днём среди гор… что бы вы выбрали? 🌊⛰️😍'
+    },
+
+    description: 'الداخلة (وادي الذهب) فنهار مشمس بسماء زرقاء صافية بغيوم خفيفة: بحيرة/خليج بمياه فيروزية وزرقاء صافية كتلاقى مع الصحراء، وفالخلفية على اليمين تلال وكثبان رملية صحراوية، وفالماء ممارسين ديال الكايت سورف (kitesurf) وفالسماء طائرات شراعية ملونة (برتقالية وزرقاء وخضراء). على اليسار لوحة خشبية مكتوب عليها بالعربية "الداخلة" وبالحروف اللاتينية "Dakhla" مع رمز موجات زرقاء، وجنبها نخلة صغيرة، وجرة كبيرة زرقاء فيها نبتة صبار/أغاف. Robaty واقفة بكامل جسمها فوق ممر خشبي (رصيف) مطل على البحر، متكئة على سياج خشبي مربوط بحبال، وراء السياج شجيرات بوغنفيليا فوشيا بزهور وردية، وكتبتسم ابتسامة مشرقة ومرحة للكاميرا وراسها مايل. يدها الميكانيكية اليمنى (الفضية بمفاصل وأساور فضية عند المعصم) على اليسار من الصورة مرفوعة وكتلمس شعرها وأذنها، ويدها الميكانيكية اليسرى (الفضية) مرتاحة فوق السياج على اليمين. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. شعرها طويل ومموج بلون كستنائي نحاسي كيطيرو الريح شوية. لابسة جاكيت قصير بلون عاجي (كريمي) بتطريز أزرق ملكي هندسي مستوحى من الزخارف المغربية على الصدر والأكمام وبحاشية زرقاء، فوق قميص كريمي مغلق بياقة عالية وأزرار ذهبية، وسروال واسع منساب بالأزرق الملكي بخصر عالي، وحزام رقيق بقطعة ذهبية فيروزية/زرقاء بشراريب زرقاء متدلية، وحذاء رياضي أبيض. حقيبة صغيرة بيضاء بتطريز أزرق مشابه لتطريز الجاكيت وسلسلة ذهبية على الكتف كتبان على اليسار من الصورة. حلي: أقراط متدلية ذهبية بحجر أزرق، ولمسات فضية. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
