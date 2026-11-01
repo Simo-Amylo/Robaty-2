@@ -3035,3 +3035,70 @@ Compartan sus opiniones en los comentarios ☝️✨`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 21,
+    slot: 'pm',
+    image: 'day21-dakhla2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'الداخلة — وادي الذهب',
+        en: 'Dakhla — Oued Eddahab',
+        fr: 'Dakhla — Oued Ed-Dahab',
+        es: 'Dajla — Río de Oro',
+        ru: 'Дахла — Уэд-эд-Дахаб'
+    },
+
+    caption: {
+        ar: `من شواطئ الداخلة الساحرة، فين زرقة المحيط كتلاقى مع الرمال الذهبية، والرياح كتعطي للمكان روح المغامرة! 🪁🇲🇦
+هنا حتى الفرجة على عشاق الـKitesurf عندها متعة خاصة… منظر كيخليك تبغي تبقاي ساعات! 💙
+أما اللوك ديالي اليوم فهو Amazigh Chic Fusion بلمسة شبابية: معطف وردي أنيق بتطريز أمازيغي هندسي بالأزرق والبرتقالي، قميص عاجي مغلق وجينز واسع بالأزرق الملكي، مع إكسسوارات فيروزية وحقيبة مطرزة منسجمة مع الإطلالة. 💗💎
+عجبني كيفاش الوردي والأزرق تجمعو فهاد الإطلالة، شنو رأيكم البنات؟ واش نلبسو هاد الستايل مرة أخرى بألوان مختلفة؟ 😍
+شاركوني آراءكم في التعليقات ☝️✨`,
+
+        en: `From the enchanting beaches of Dakhla, where the blue of the ocean meets the golden sands, and the wind gives the place a spirit of adventure! 🪁🇲🇦
+Here even watching the kitesurfers has a special pleasure… a view that makes you want to stay for hours! 💙
+As for my look today, it’s Amazigh Chic Fusion with a youthful touch: an elegant pink coat with geometric Amazigh embroidery in blue and orange, a closed ivory shirt and wide royal-blue jeans, with turquoise accessories and an embroidered bag that matches the outfit. 💗💎
+I loved how pink and blue came together in this look. What do you think, girls? Should we wear this style again in different colors? 😍
+Share your opinions in the comments ☝️✨`,
+
+        fr: `Depuis les plages enchanteresses de Dakhla, où le bleu de l’océan rencontre le sable doré, et où le vent donne au lieu un esprit d’aventure ! 🪁🇲🇦
+Ici, même regarder les adeptes de kitesurf procure un plaisir particulier… une vue qui donne envie de rester des heures ! 💙
+Quant à mon look du jour, c’est un Amazigh Chic Fusion avec une touche jeune : un élégant manteau rose à la broderie amazighe géométrique bleue et orange, une chemise ivoire fermée et un jean large bleu roi, avec des accessoires turquoise et un sac brodé assorti à la tenue. 💗💎
+J’ai adoré l’union du rose et du bleu dans cette tenue. Qu’en pensez-vous, les filles ? Doit-on porter à nouveau ce style dans d’autres couleurs ? 😍
+Partagez vos avis en commentaire ☝️✨`,
+
+        es: `¡Desde las encantadoras playas de Dajla, donde el azul del océano se encuentra con las arenas doradas y el viento da al lugar un espíritu de aventura! 🪁🇲🇦
+Aquí hasta mirar a los aficionados al kitesurf tiene un placer especial… ¡una vista que te hace querer quedarte horas! 💙
+En cuanto a mi look de hoy, es un Amazigh Chic Fusion con un toque juvenil: un elegante abrigo rosa con bordado amazigh geométrico en azul y naranja, una camisa marfil cerrada y vaqueros anchos azul real, con accesorios turquesa y un bolso bordado a juego. 💗💎
+Me encantó cómo el rosa y el azul se unen en este look. ¿Qué opinan, chicas? ¿Volvemos a llevar este estilo en otros colores? 😍
+Compartan sus opiniones en los comentarios ☝️✨`,
+
+        ru: `С очаровательных пляжей Дахлы, где синева океана встречается с золотым песком, а ветер дарит этому месту дух приключений! 🪁🇲🇦
+Здесь даже наблюдать за любителями кайтсерфинга — особое удовольствие… вид, от которого хочется остаться на часы! 💙
+А мой образ сегодня — Amazigh Chic Fusion с молодёжным акцентом: элегантное розовое пальто с геометрической берберской вышивкой в синем и оранжевом, закрытая рубашка цвета слоновой кости и широкие джинсы королевского синего цвета, бирюзовые аксессуары и вышитая сумка в тон образу. 💗💎
+Мне понравилось, как розовый и синий сочетаются в этом образе. Что скажете, девушки? Стоит ли носить такой стиль снова в других цветах? 😍
+Поделитесь мнением в комментариях ☝️✨`
+    },
+
+    story: {
+        ar: 'ما تنقصيش من قيمتك باش تناسبي توقعات الآخرين… كوني أنتِ، فاختلافك هو سر تميزك! 👑💗',
+        en: 'Don’t diminish your worth to fit other people’s expectations… be yourself, for your difference is the secret of your distinction! 👑💗',
+        fr: 'Ne te rabaisse pas pour répondre aux attentes des autres… sois toi-même, car ta différence est le secret de ton éclat ! 👑💗',
+        es: 'No te restes valor para encajar en las expectativas de los demás… sé tú misma, porque tu diferencia es el secreto de tu brillo. 👑💗',
+        ru: 'Не умаляй свою ценность, чтобы соответствовать ожиданиям других… будь собой, ведь твоя непохожесть — секрет твоей особенности! 👑💗'
+    },
+
+    challenge: {
+        ar: 'البنات، شنو اللون اللي تختارو مع الوردي: الأزرق الملكي ولا الأبيض العاجي؟ 💗💙🤍',
+        en: 'Girls, which color would you choose to go with pink: royal blue or ivory white? 💗💙🤍',
+        fr: 'Les filles, quelle couleur choisiriez-vous avec le rose : le bleu roi ou le blanc ivoire ? 💗💙🤍',
+        es: 'Chicas, ¿qué color elegirían para combinar con el rosa: azul real o blanco marfil? 💗💙🤍',
+        ru: 'Девушки, какой цвет вы бы выбрали к розовому: королевский синий или белый цвета слоновой кости? 💗💙🤍'
+    },
+
+    description: 'الداخلة (وادي الذهب) فنهار مشمس بسماء زرقاء صافية بغيمة خفيفة: شاطئ رملي ومحيط أزرق فيروزي بأمواج بيضاء، وعلى اليسار كثبان وتلال رملية ذهبية، وفالماء ممارسين ديال الكايت سورف (kitesurf) وفالسماء طائرات شراعية ملونة (برتقالية وزرقاء وخضراء وحمراء). على اليسار شجيرة بوغنفيليا فوشيا بزهور وردية. Robaty جالسة فوق صخور رملية بلون ذهبي، بجلسة مرتاحة وركبتها مرفوعة، وراسها مايل ومسند على يدها، وكتبتسم ابتسامة مشرقة ودافئة للكاميرا. يدها الميكانيكية اليمنى (الفضية بمفاصل وأساور فضية) على اليسار من الصورة مرفوعة وخدها مسند عليها، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية وسوار عند المعصم) مرتاحة فوق ركبتها. رقبتها الميكانيكية الفضية (حلقات معدنية) ظاهرة. شعرها طويل ومموج بلون كستنائي نحاسي كيطيرو الريح شوية. لابسة معطف طويل مفتوح بلون وردي أنيق بتطريز أمازيغي هندسي (معينات) بالأزرق والبرتقالي والعاجي مع نقط ذهبية صغيرة على حواف الفتحة الأمامية وعلى الأكمام وعلى الحاشية السفلية، فوق قميص/توب عاجي مغلق بياقة عالية، وسروال واسع بالأزرق الملكي (جينز)، وحزام جلدي بني رقيق بإبزيم ذهبي، وحذاء رياضي أبيض. إكسسوارات فيروزية: قلادة كبيرة بتعليقة مزخرفة بحجر فيروزي وقطرات فيروزية متدلية على التوب العاجي، وأقراط متدلية بحجر فيروزي. وعلى اليمين فوق الصخرة حقيبة عاجية مستطيلة مطرزة بمعينات زرقاء وبرتقالية ووردية بسلسلة ذهبية وقفل ذهبي. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
