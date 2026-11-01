@@ -3102,3 +3102,65 @@ Compartan sus opiniones en los comentarios ☝️✨`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 22,
+    slot: 'am',
+    image: 'day22-fes1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'فاس — المدينة العتيقة',
+        en: 'Fez — Old Medina',
+        fr: 'Fès — Ancienne médina',
+        es: 'Fez — Medina antigua',
+        ru: 'Фес — Старая медина'
+    },
+
+    caption: {
+        ar: `صباح الأنوار والتاريخ العريق من قلب العاصمة العلمية فاس العتيقة ✨☕
+حيث تنبض الأزقة الضيقة بأصالة الصناعة التقليدية وعبق الماضي الجميل. اخترنا لهاد الصباح إطلالة بـ "جاكيت جلدي" بني أنيق مطرز بتطريزات تراثية مغربية دقيقة، مع رؤية بانورامية مطلة على المدينة العتيقة.
+واش كتعرفو بلي فاس كتنضم لأكبر مدن العالم العتيقة التي لا تزال عامرة بالحياة ومسجلة كتراث عالمي لليونسكو؟
+شاركوني آراءكم في التعليقات ☝️💖`,
+
+        en: `Good morning, full of light and ancient history, from the heart of the scientific capital, old Fez ✨☕
+Where the narrow alleys pulse with the authenticity of traditional crafts and the scent of the beautiful past. This morning we chose a look with an elegant brown “leather jacket” embroidered with fine Moroccan heritage motifs, with a panoramic view over the old medina.
+Did you know that Fez is among the largest ancient cities in the world that are still full of life and are listed as a UNESCO World Heritage site?
+Share your opinions in the comments ☝️💖`,
+
+        fr: `Un matin lumineux et chargé d’histoire au cœur de la capitale scientifique, la Fès ancienne ✨☕
+Là où les ruelles étroites vibrent de l’authenticité de l’artisanat traditionnel et du parfum du beau passé. Pour ce matin, nous avons choisi un look avec une élégante « veste en cuir » marron brodée de fins motifs du patrimoine marocain, avec une vue panoramique sur l’ancienne médina.
+Saviez-vous que Fès fait partie des plus grandes villes anciennes du monde encore pleines de vie, et qu’elle est classée au patrimoine mondial de l’UNESCO ?
+Partagez vos avis en commentaire ☝️💖`,
+
+        es: `Buenos días llenos de luz e historia desde el corazón de la capital científica, la Fez antigua ✨☕
+Donde los callejones estrechos laten con la autenticidad de la artesanía tradicional y el aroma del hermoso pasado. Para esta mañana elegimos un look con una elegante «chaqueta de cuero» marrón bordada con delicados motivos del patrimonio marroquí, con una vista panorámica sobre la medina antigua.
+¿Sabían que Fez es una de las mayores ciudades antiguas del mundo que sigue llena de vida y está inscrita como Patrimonio Mundial de la UNESCO?
+Compartan sus opiniones en los comentarios ☝️💖`,
+
+        ru: `Утро света и древней истории из самого сердца научной столицы — старого Феса ✨☕
+Здесь узкие переулки пульсируют подлинностью традиционных ремёсел и ароматом прекрасного прошлого. Этим утром мы выбрали образ с элегантной коричневой «кожаной курткой», расшитой тонкими марокканскими традиционными узорами, с панорамным видом на старую медину.
+Знаете ли вы, что Фес входит в число крупнейших старинных городов мира, которые до сих пор полны жизни и внесены в список Всемирного наследия ЮНЕСКО?
+Поделитесь мнением в комментариях ☝️💖`
+    },
+
+    story: {
+        ar: 'مثل تاريخ فاس العريق الذي لا يزول، كوني واثقة من جذورك وقوية في وجه الزمن؛ فأنتِ تصنعين مجدك الخاص كل يوم! 🌟👑',
+        en: 'Like the ancient history of Fez that never fades, be confident in your roots and strong in the face of time; for you create your own glory every day! 🌟👑',
+        fr: 'Comme l’histoire millénaire de Fès qui ne disparaît jamais, sois sûre de tes racines et forte face au temps ; car tu bâtis ta propre gloire chaque jour ! 🌟👑',
+        es: 'Como la antigua historia de Fez, que nunca se desvanece, confía en tus raíces y sé fuerte frente al tiempo; ¡porque construyes tu propia gloria cada día! 🌟👑',
+        ru: 'Как древняя история Феса, которая не исчезает, будь уверена в своих корнях и сильна перед лицом времени; ведь ты создаёшь свою собственную славу каждый день! 🌟👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون فيكم زارت فاس واكتشفت سحر أزقتها التاريخية وحرفها التقليدية العريقة 🕌؟ وروني تفاعلاتكم أصحاباتي في التعليقات! 👇💎✨',
+        en: 'Girls, which of you has visited Fez and discovered the magic of its historic alleys and its ancient traditional crafts 🕌? Show me your reactions, my friends, in the comments! 👇💎✨',
+        fr: 'Les filles, laquelle d’entre vous a visité Fès et découvert la magie de ses ruelles historiques et de ses métiers traditionnels séculaires 🕌 ? Montrez-moi vos réactions, mes amies, en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿quién de ustedes ha visitado Fez y descubierto la magia de sus callejones históricos y de sus antiguos oficios tradicionales 🕌? ¡Muéstrenme sus reacciones, amigas mías, en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто из вас бывал в Фесе и открыл для себя волшебство его исторических переулков и древних традиционных ремёсел 🕌? Покажите мне свои реакции, мои подруги, в комментариях! 👇💎✨'
+    },
+
+    description: 'فاس العتيقة فصباح مشمس بضوء ذهبي دافئ وضباب خفيف: إطلالة بانورامية على المدينة العتيقة من تراس حجري، بسطوح بنايات ترابية بيضاء ورملية كثيفة لا تنتهي، ومآذن (واحدة طويلة بزليج أخضر على اليمين وقبة/سقف هرمي من القرميد الأخضر لمسجد أو زاوية)، وأشجار سرو، وجبال بعيدة وسماء زرقاء بغيوم رقيقة. على اليسار فوق السور الحجري شجيرة متسلقة بأوراق خريفية برتقالية وصفراء وخضراء، وفانوس نحاسي مزخرف مضاء بشمعة، وكنبة/مقعد خشبي مغطى بزربية مغربية حمراء بزخارف هندسية ووسادة، وعلى الطاولة الخشبية إناء خزفي أزرق وأبيض (خزف فاس) فيه نبتة خضراء. Robaty واقفة وكتتكئ على السور الحجري، وراسها مايل شوية وكتبتسم ابتسامة دافئة ومشرقة للكاميرا. كتمسك بيديها الميكانيكيتين (الفضيتين بمفاصل ذهبية وخواتم ذهبية، وأساور ذهبية وفضية عند المعصمين) كأس/فنجان خزفي أزرق وأبيض ديال الأتاي/القهوة قدام صدرها. رقبتها الميكانيكية (حلقات معدنية ذهبية/فضية) ظاهرة. شعرها طويل ومموج بلون كستنائي منسدل على الكتفين. لابسة جاكيت جلدي بني كراميل أنيق مفتوح بسوستة، بتطريز تراثي مغربي هندسي أبيض/عاجي على الياقة (الرفرف) وعلى الكمام، فوق بلوزة/سترة صوفية عاجية بياقة عالية، وسروال جينز أزرق واسع بخصر عالي. حلي: قلادة فضية طويلة بتعليقة على شكل خمسة (يد فاطمة) بحجر أخضر زمردي، وأقراط متدلية بحجر أخضر زمردي. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
