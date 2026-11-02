@@ -3164,3 +3164,70 @@ Compartan sus opiniones en los comentarios ☝️💖`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 22,
+    slot: 'pm',
+    image: 'day22-fes2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'فاس — المدينة العتيقة',
+        en: 'Fez — Old Medina',
+        fr: 'Fès — Ancienne médina',
+        es: 'Fez — Medina antigua',
+        ru: 'Фес — Старая медина'
+    },
+
+    caption: {
+        ar: `حين يهدأ الليل في أزقة فاس العتيقة، وينطق العود بأنغام الطرب الأندلسي الأصيل... ✨🎶
+السهرات هنا عندها طعم آخر وروح كتسافر بينا لعبق التاريخ!
+اخترنا لهاد المساء إطلالة بقفطان مسائي طويل من المخمل الفاخر بلون بورجوندي دافئ، مزين بتطريزات فضية تقليدية دقيقة على الصدر والأطراف.
+واش كتعرفو بلي تاريخ الموسيقى الأندلسية (الآلة) بمدينة فاس كيرجع للقرن 15؟
+شاركوني آراءكم في التعليقات 👇💖`,
+
+        en: `When the night grows calm in the alleys of old Fez, and the oud speaks in the melodies of authentic Andalusian tarab... ✨🎶
+Evenings here have a different taste and a spirit that carries us to the scent of history!
+This evening we chose a look with a long evening kaftan in luxurious velvet of a warm burgundy color, adorned with fine traditional silver embroidery on the chest and edges.
+Did you know that the history of Andalusian music (Al-Ala) in the city of Fez goes back to the 15th century?
+Share your opinions in the comments 👇💖`,
+
+        fr: `Quand la nuit s’apaise dans les ruelles de la vieille Fès, et que le oud s’exprime dans les mélodies du tarab andalou authentique... ✨🎶
+Les soirées ici ont une saveur différente et une âme qui nous emporte vers le parfum de l’histoire !
+Pour ce soir, nous avons choisi un long caftan de soirée en velours somptueux d’un bordeaux chaleureux, orné de fines broderies argentées traditionnelles sur la poitrine et les bords.
+Saviez-vous que l’histoire de la musique andalouse (Al-Ala) dans la ville de Fès remonte au XVe siècle ?
+Partagez vos avis en commentaire 👇💖`,
+
+        es: `Cuando la noche se calma en los callejones de la antigua Fez y el laúd habla con las melodías del auténtico tarab andalusí... ✨🎶
+¡Las veladas aquí tienen otro sabor y un alma que nos lleva al aroma de la historia!
+Para esta noche elegimos un look con un largo caftán de noche en terciopelo de lujo en un cálido tono burdeos, adornado con delicados bordados tradicionales de plata en el pecho y los bordes.
+¿Sabían que la historia de la música andalusí (Al-Ala) en la ciudad de Fez se remonta al siglo XV?
+Compartan sus opiniones en los comentarios 👇💖`,
+
+        ru: `Когда ночь затихает в переулках старого Феса, а уд говорит мелодиями подлинного андалусского тараба... ✨🎶
+Вечера здесь имеют особый вкус и душу, которая уносит нас к аромату истории!
+Этим вечером мы выбрали образ с длинным вечерним кафтаном из роскошного бархата тёплого бордового цвета, украшенным тонкой традиционной серебряной вышивкой на груди и по краям.
+Знаете ли вы, что история андалусской музыки (аль-Ала) в городе Фес восходит к XV веку?
+Поделитесь мнением в комментариях 👇💖`
+    },
+
+    story: {
+        ar: 'مثل النغمات الأصيلة التي لا تموت مع الزمن، كوني واثقة أن إيقاع حياتك الخاص سيصنع أجمل لحن مهما كانت الظروف! 🎵👑',
+        en: 'Like authentic melodies that never die with time, be sure that the rhythm of your own life will create the most beautiful tune, whatever the circumstances! 🎵👑',
+        fr: 'Comme les mélodies authentiques qui ne meurent pas avec le temps, sois certaine que le rythme de ta propre vie créera la plus belle mélodie, quelles que soient les circonstances ! 🎵👑',
+        es: 'Como las melodías auténticas que no mueren con el tiempo, ten la certeza de que el ritmo de tu propia vida creará la melodía más hermosa, sean cuales sean las circunstancias. 🎵👑',
+        ru: 'Как подлинные мелодии, которые не умирают со временем, будь уверена: ритм твоей собственной жизни создаст самую прекрасную мелодию, какими бы ни были обстоятельства! 🎵👑'
+    },
+
+    challenge: {
+        ar: 'البنات، شكون فيكم كيعشق الاستماع للطرب الأندلسي والسهرات الفاسية التقليدية 🎻؟ وشنو هي النوبة أو المقطوعة اللي كتاخدكم لعالم آخر؟ وروني تفاعلاتكم الراقيّة في التعليقات! 👇💎✨',
+        en: 'Girls, which of you loves listening to Andalusian tarab and traditional Fassi evenings 🎻? And which nouba or piece takes you to another world? Show me your refined reactions in the comments! 👇💎✨',
+        fr: 'Les filles, laquelle d’entre vous adore écouter le tarab andalou et les soirées fassies traditionnelles 🎻 ? Et quelle nouba ou quel morceau vous emmène dans un autre monde ? Montrez-moi vos réactions raffinées en commentaire ! 👇💎✨',
+        es: 'Chicas, ¿a quién le encanta escuchar el tarab andalusí y las veladas fasíes tradicionales 🎻? ¿Y qué nouba o pieza las lleva a otro mundo? ¡Muéstrenme sus refinadas reacciones en los comentarios! 👇💎✨',
+        ru: 'Девушки, кто из вас любит слушать андалусский тараб и традиционные фесские вечера 🎻? И какая нуба или мелодия уносит вас в другой мир? Покажите мне свои утончённые реакции в комментариях! 👇💎✨'
+    },
+
+    description: 'فاس العتيقة فسهرة ليلية دافئة داخل رياض/صالون مغربي تقليدي بإضاءة ذهبية: حيطان مكسوة بالزليج المغربي (فسيفساء هندسية بالأزرق والأخضر والأصفر والأبيض)، وجبس منحوت بزخارف دقيقة وأقواس، وفوانيس نحاسية مزخرفة مضاءة بالشمع معلقة وموضوعة، وشموع صغيرة فالخلفية. Robaty جالسة فوق أريكة/صالون مغربي واطئ مفروش بوسائد مخمل عنابي ووسائد مطرزة بزخارف مغربية، متكئة بجلسة مرتاحة وراسها مايل شوية وكتبتسم ابتسامة دافئة ومشرقة للكاميرا. كتعزف على آلة العود (آلة وترية خشبية بجسم على شكل إجاصة وثلاث وردات/فتحات صوت منقوشة وأوتار ووجه خشبي ورأس بملاوي خشبية على اليمين من الصورة): يدها الميكانيكية اليمنى (الفضية بمفاصل ذهبية، وأساور فضية وذهبية متعددة عند المعصم) على اليسار من الصورة فوق وجه العود كتنقر الأوتار، ويدها الميكانيكية اليسرى (الفضية بمفاصل ذهبية وأساور فضية) ماسكة عنق العود على اليمين. رقبتها الميكانيكية (حلقات معدنية ذهبية/فضية) ظاهرة. شعرها طويل ومموج بلون كستنائي منسدل على الكتفين. لابسة قفطان مسائي طويل واسع من المخمل الفاخر بلون بورجوندي/عنابي دافئ بأكمام واسعة، بتطريز فضي/عاجي تقليدي دقيق على الصدر (شريط عمودي) وعلى الأكمام وعلى الحاشية الأمامية، وياقة داخلية عاجية. حلي: قلادة فضية بتعليقة على شكل خمسة (يد فاطمة) بحجر فيروزي، وأقراط فضية متدلية بحجر فيروزي. فالمقدمة على اليسار طاولة/صينية دائرية نحاسية مزخرفة بفسيفساء عليها كاسان أتاي بلون عنبري، وفانوس نحاسي مضاء، وشمعة فكأس زجاجي، وإناء خزفي أزرق وأبيض بغطاء (خزف فاس)، وكتاب قديم مزخرف، وطبق تمر. الملامح: عيون عسلية مائلة للأخضر دافئة، نمش خفيف على الوجه، وابتسامة مشرقة.',
+
+    stats: { likes: 0 }
+});
