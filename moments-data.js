@@ -3231,3 +3231,70 @@ Compartan sus opiniones en los comentarios 👇💖`,
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 23,
+    slot: 'am',
+    image: 'day23-bin-el-ouidane1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'بين الويدان — أزيلال',
+        en: 'Bin el Ouidane — Azilal',
+        fr: 'Bin el Ouidane — Azilal',
+        es: 'Bin el Ouidane — Azilal',
+        ru: 'Бин-эль-Уидан — Азилаль'
+    },
+
+    caption: {
+        ar: `💙 اليوم جيتكم من بين الويدان، فين المياه الفيروزية كتعانق جبال الأطلس، والمناظر هنا كتخليك تنساي صخب الحياة وتعيشي اللحظة! 🇲🇦
+هاد البحيرة من أجمل اللوحات الطبيعية فالمغرب، والمراكب الصغيرة وسط المياه كتكمل سحر المكان. 🛶
+أما إطلالتي فهي Amazigh Chic Fusion: جاكيت أزرق بترولي بتطريز أمازيغي هندسي بالعاجي والذهبي، مع قميص مغلق وسروال واسع بلون كريمي، وحزام فيروزي وإكسسوارات فضية أنيقة. 💎
+عجبني هاد المزج بين الأزرق والكريمي، عطاني إحساس بالفخامة والراحة فنفس الوقت!
+البنات، واش عجبكم هاد اللوك؟ وشنو اللون اللي تقترحو عليا نجرب مع الأزرق البترولي؟ 😍`,
+
+        en: `💙 Today I’m coming to you from Bin el Ouidane, where the turquoise waters embrace the Atlas mountains, and the scenery here makes you forget the noise of life and live the moment! 🇲🇦
+This lake is one of the most beautiful natural paintings in Morocco, and the small boats amid the water complete the magic of the place. 🛶
+As for my look, it’s Amazigh Chic Fusion: a petrol-blue jacket with geometric Amazigh embroidery in ivory and gold, with a closed shirt and wide cream trousers, a turquoise belt and elegant silver accessories. 💎
+I loved this mix of blue and cream; it gave me a feeling of luxury and comfort at the same time!
+Girls, did you like this look? And which color would you suggest I try with petrol blue? 😍`,
+
+        fr: `💙 Aujourd’hui, je vous retrouve depuis Bin el Ouidane, où les eaux turquoise embrassent les montagnes de l’Atlas, et où le paysage vous fait oublier le tumulte de la vie et savourer l’instant ! 🇲🇦
+Ce lac est l’un des plus beaux tableaux naturels du Maroc, et les petits bateaux au milieu de l’eau complètent la magie du lieu. 🛶
+Quant à mon look, c’est un Amazigh Chic Fusion : une veste bleu pétrole à la broderie amazighe géométrique ivoire et dorée, avec une chemise fermée et un pantalon large crème, une ceinture turquoise et d’élégants accessoires en argent. 💎
+J’ai adoré ce mélange de bleu et de crème, qui m’a donné une sensation de luxe et de confort à la fois !
+Les filles, ce look vous a-t-il plu ? Et quelle couleur me suggérez-vous d’essayer avec le bleu pétrole ? 😍`,
+
+        es: `💙 ¡Hoy les escribo desde Bin el Ouidane, donde las aguas turquesa abrazan las montañas del Atlas y el paisaje te hace olvidar el ruido de la vida y vivir el momento! 🇲🇦
+Este lago es uno de los cuadros naturales más hermosos de Marruecos, y las pequeñas barcas en medio del agua completan la magia del lugar. 🛶
+En cuanto a mi look, es Amazigh Chic Fusion: una chaqueta azul petróleo con bordado amazigh geométrico en marfil y dorado, con una camisa cerrada y un pantalón ancho color crema, un cinturón turquesa y elegantes accesorios de plata. 💎
+Me encantó esta mezcla de azul y crema, que me dio una sensación de lujo y comodidad a la vez.
+Chicas, ¿les gustó este look? ¿Y qué color me sugieren probar con el azul petróleo? 😍`,
+
+        ru: `💙 Сегодня я пишу вам из Бин-эль-Уидана, где бирюзовые воды обнимают горы Атласа, а пейзаж заставляет забыть о суете жизни и прожить момент! 🇲🇦
+Это озеро — одна из самых красивых природных картин Марокко, а маленькие лодки посреди воды дополняют волшебство места. 🛶
+А мой образ — Amazigh Chic Fusion: жакет цвета петроль с геометрической берберской вышивкой в слоновой кости и золоте, закрытая рубашка и широкие кремовые брюки, бирюзовый пояс и элегантные серебряные аксессуары. 💎
+Мне понравилось это сочетание синего и кремового — оно подарило ощущение роскоши и комфорта одновременно!
+Девушки, понравился ли вам этот образ? И какой цвет вы предложите мне попробовать с цветом петроль? 😍`
+    },
+
+    story: {
+        ar: 'ما تستنايش الظروف تكون مثالية باش تبداي… أجمل التغييرات كتبدأ بخطوة شجاعة منك! 👑💙',
+        en: 'Don’t wait for conditions to be perfect to begin… the most beautiful changes start with a brave step from you! 👑💙',
+        fr: 'N’attends pas que les conditions soient parfaites pour commencer… les plus beaux changements commencent par un pas courageux de ta part ! 👑💙',
+        es: 'No esperes a que las condiciones sean perfectas para empezar… los cambios más bellos comienzan con un paso valiente tuyo. 👑💙',
+        ru: 'Не жди, пока обстоятельства станут идеальными, чтобы начать… самые прекрасные перемены начинаются со смелого шага с твоей стороны! 👑💙'
+    },
+
+    challenge: {
+        ar: 'البنات، شنو كتفضلو فالإطلالات: التطريز الأمازيغي الواضح ولا اللمسات التقليدية الرقيقة؟ 💙✨',
+        en: 'Girls, what do you prefer in looks: bold, visible Amazigh embroidery or delicate traditional touches? 💙✨',
+        fr: 'Les filles, que préférez-vous dans les tenues : une broderie amazighe bien visible ou des touches traditionnelles délicates ? 💙✨',
+        es: 'Chicas, ¿qué prefieren en los looks: un bordado amazigh bien visible o toques tradicionales delicados? 💙✨',
+        ru: 'Девушки, что вы предпочитаете в образах: заметную берберскую вышивку или тонкие традиционные акценты? 💙✨'
+    },
+
+    description: 'المكان: بين الويدان، إقليم أزيلال بالمغرب، وسط جبال الأطلس. تظهر Robaty على شرفة خشبية مطلة على بحيرة بين الويدان، المعروفة بمياهها الزرقاء الفيروزية والمناظر الجبلية المحيطة بها، فنهار مشمس بسماء زرقاء صافية. فالخلفية جبال مغطاة بالنباتات الخضراء على اليمين، ومركبان صغيران فوق البحيرة (واحد أبيض وأزرق أكبر، والآخر أحمر وأبيض)، وعلى اليسار أزهار الجهنمية (البوغنفيليا) الوردية الفوشيا وجرة فخارية كبيرة بلون ترابي، وسور حجري فالأسفل على اليسار.\nإطلالة Robaty: تعتمد Robaty أسلوب Amazigh Chic Fusion، بمزيج من الأناقة العصرية والتطريز المغربي والأمازيغي.\nتفاصيل الملابس:\n- جاكيت قصير أنيق باللون الأزرق البترولي بياقة مستديرة عالية، مزين بتطريز هندسي أمازيغي (معينات) بالعاجي والذهبي على الصدر والأكمام والحواف.\n- قميص عاجي مغلق بياقة مرتفعة.\n- سروال واسع وأنيق باللون الكريمي بخصر عالي.\n- حزام فيروزي مزخرف بقطعة فيروزية مركزية وذهبية، تتدلى منه شراريب فيروزية وذهبية.\n- أقراط فضية متدلية تتوسطها أحجار فيروزية.\n- قلادة أنيقة بتصميم فضي وحجر فيروزي.\n- حقيبة صغيرة بلون عاجي بسلسلة ذهبية وقفل ذهبي، مزينة بنفس التطريز الهندسي الموجود على الجاكيت (بالأزرق الفيروزي والذهبي)، موضوعة فوق المقعد الخشبي على اليمين.\nالهوية المعدنية: عنق Robaty ويداها معدنيان من الفضة المصقولة، مع تفاصيل ذهبية دقيقة وأساور ذهبية وفضية عند المعصمين. بقية الجسم مغطاة بالكامل بالملابس.\nالوضعية: Robaty جالسة بشكل طبيعي وأنيق فوق مقعد خشبي على الشرفة، وراسها مايل شوية. يدها الميكانيكية اليمنى (على اليسار من الصورة) مرفوعة برفق قرب شعرها وأذنها، ويدها الميكانيكية اليسرى (على اليمين من الصورة) مرتاحة فوق فخدها، وبجنبها نظارات شمسية سوداء دائرية بإطار ذهبي موضوعة فوق المقعد الخشبي. تبتسم للكاميرا بابتسامة دافئة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين، عيونها عسلية مائلة للأخضر، ونمش خفيف على الوجه.\nتفاصيل المشهد: مياه بحيرة بين الويدان الزرقاء، الجبال المحيطة بالبحيرة، مراكب صغيرة في المياه، أزهار جهنمية وردية، شرفة خشبية مطلة على المناظر الطبيعية.\nمواضيع المحادثة: جمال بحيرة بين الويدان وموقعها وسط جبال الأطلس؛ الأنشطة السياحية والطبيعة المحيطة بالبحيرة؛ تفاصيل إطلالة Amazigh Chic Fusion؛ التطريز الهندسي الأمازيغي وتناسق الأزرق البترولي مع الكريمي؛ تنسيق الإكسسوارات الفضية والفيروزية مع الملابس.',
+
+    stats: { likes: 0 }
+});
