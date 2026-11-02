@@ -3145,11 +3145,11 @@ Compartan sus opiniones en los comentarios ☝️💖`,
     },
 
     story: {
-        ar: 'مثل تاريخ فاس العريق الذي لا يزول، كوني واثقة من جذورك وقوية في وجه الزمن؛ فأنتِ تصنعين مجدك الخاص كل يوم! 🌟👑',
-        en: 'Like the ancient history of Fez that never fades, be confident in your roots and strong in the face of time; for you create your own glory every day! 🌟👑',
-        fr: 'Comme l’histoire millénaire de Fès qui ne disparaît jamais, sois sûre de tes racines et forte face au temps ; car tu bâtis ta propre gloire chaque jour ! 🌟👑',
-        es: 'Como la antigua historia de Fez, que nunca se desvanece, confía en tus raíces y sé fuerte frente al tiempo; ¡porque construyes tu propia gloria cada día! 🌟👑',
-        ru: 'Как древняя история Феса, которая не исчезает, будь уверена в своих корнях и сильна перед лицом времени; ведь ты создаёшь свою собственную славу каждый день! 🌟👑'
+        ar: 'مثل تاريخ فاس العريق الذي لا يزول، كوني واثقة من جذورك وقوية في وجه الزمن! 🌟👑',
+        en: 'Like the ancient history of Fez that never fades, be confident in your roots and strong in the face of time! 🌟👑',
+        fr: 'Comme l’histoire millénaire de Fès qui ne disparaît jamais, sois sûre de tes racines et forte face au temps ! 🌟👑',
+        es: 'Como la antigua historia de Fez, que nunca se desvanece, confía en tus raíces y sé fuerte frente al tiempo. 🌟👑',
+        ru: 'Как древняя история Феса, которая не исчезает, будь уверена в своих корнях и сильна перед лицом времени! 🌟👑'
     },
 
     challenge: {
