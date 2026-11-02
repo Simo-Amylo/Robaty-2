@@ -271,6 +271,17 @@
                     <i class="fa-solid fa-gear"></i>
                 </button>
 
+                <button
+                    type="button"
+                    class="ornate-btn"
+                    id="installButton"
+                    aria-label="تثبيت التطبيق"
+                    data-i18n-aria="download_now_btn"
+                    style="display:none"
+                >
+                    <i class="fa-solid fa-download"></i>
+                </button>
+
             </div>
 
         </header>
@@ -558,6 +569,97 @@
 <script src="moments-button-glow.js"></script>
 <script src="button-haptics.js"></script>
 <script src="app.js"></script>
+
+<!-- زر تثبيت التطبيق (فالهيدر): كيتخبى ملي يكون التطبيق مثبت -->
+<script>
+(function () {
+    var btn = document.getElementById('installButton');
+    if (!btn) return;
+
+    var isInstalled =
+        (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+        window.navigator.standalone === true;
+    if (isInstalled) return;
+
+    function tr(key, fallback) {
+        try {
+            if (window.RobatyI18n) {
+                var v = window.RobatyI18n.t(key);
+                if (v && v !== key) return v;
+            }
+        } catch (e) {}
+        return fallback;
+    }
+
+    btn.style.display = '';
+
+    var deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        deferredPrompt = e;
+    });
+
+    window.addEventListener('appinstalled', function () {
+        btn.style.display = 'none';
+    });
+
+    function showSteps() {
+        var overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,0.72);';
+
+        var card = document.createElement('div');
+        card.setAttribute('role', 'dialog');
+        card.setAttribute('aria-modal', 'true');
+        card.style.cssText = 'width:100%;max-width:320px;padding:20px 18px;border-radius:20px;background:#1e1712;border:1px solid rgba(229,179,92,0.55);color:#f2f2f2;font-size:14px;line-height:2;box-shadow:0 10px 40px rgba(0,0,0,0.6);';
+
+        var title = document.createElement('div');
+        title.style.cssText = 'font-weight:700;font-size:16px;color:#e5b35c;margin-bottom:10px;text-align:center;';
+        title.textContent = tr('install_title', '📲 تثبيت التطبيق');
+        card.appendChild(title);
+
+        var steps = [
+            tr('install_step1', 'حلي قائمة المتصفح ⋮'),
+            tr('install_step2', 'اختاري «إضافة إلى الشاشة الرئيسية»'),
+            tr('install_step3', 'أكدي التثبيت')
+        ];
+        steps.forEach(function (s, i) {
+            var line = document.createElement('div');
+            line.textContent = (i + 1) + '. ' + s;
+            card.appendChild(line);
+        });
+
+        function close() {
+            if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        }
+
+        var ok = document.createElement('button');
+        ok.type = 'button';
+        ok.textContent = 'OK';
+        ok.style.cssText = 'display:block;margin:14px auto 0;padding:8px 28px;border-radius:18px;border:1px solid rgba(229,179,92,0.6);background:transparent;color:#e5b35c;font-weight:700;font-size:14px;';
+        ok.addEventListener('click', close);
+        card.appendChild(ok);
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) close();
+        });
+
+        overlay.appendChild(card);
+        document.body.appendChild(overlay);
+    }
+
+    btn.addEventListener('click', function () {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(function () {
+                deferredPrompt = null;
+            });
+        } else {
+            showSteps();
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
