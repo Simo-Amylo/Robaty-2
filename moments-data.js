@@ -3294,7 +3294,74 @@ Chicas, ¿les gustó este look? ¿Y qué color me sugieren probar con el azul pe
         ru: 'Девушки, что вы предпочитаете в образах: заметную берберскую вышивку или тонкие традиционные акценты? 💙✨'
     },
 
-    description: 'المكان: بين الويدان، إقليم أزيلال بالمغرب، وسط جبال الأطلس. تظهر Robaty على شرفة خشبية مطلة على بحيرة بين الويدان، المعروفة بمياهها الزرقاء الفيروزية والمناظر الجبلية المحيطة بها، فنهار مشمس بسماء زرقاء صافية. فالخلفية جبال مغطاة بالنباتات الخضراء على اليمين، ومركبان صغيران فوق البحيرة (واحد أبيض وأزرق أكبر، والآخر أحمر وأبيض)، وعلى اليسار أزهار الجهنمية (البوغنفيليا) الوردية الفوشيا وجرة فخارية كبيرة بلون ترابي، وسور حجري فالأسفل على اليسار.\nإطلالة Robaty: تعتمد Robaty أسلوب Amazigh Chic Fusion، بمزيج من الأناقة العصرية والتطريز المغربي والأمازيغي.\nتفاصيل الملابس:\n- جاكيت قصير أنيق باللون الأزرق البترولي بياقة مستديرة عالية، مزين بتطريز هندسي أمازيغي (معينات) بالعاجي والذهبي على الصدر والأكمام والحواف.\n- قميص عاجي مغلق بياقة مرتفعة.\n- سروال واسع وأنيق باللون الكريمي بخصر عالي.\n- حزام فيروزي مزخرف بقطعة فيروزية مركزية وذهبية، تتدلى منه شراريب فيروزية وذهبية.\n- أقراط فضية متدلية تتوسطها أحجار فيروزية.\n- قلادة أنيقة بتصميم فضي وحجر فيروزي.\n- حقيبة صغيرة بلون عاجي بسلسلة ذهبية وقفل ذهبي، مزينة بنفس التطريز الهندسي الموجود على الجاكيت (بالأزرق الفيروزي والذهبي)، موضوعة فوق المقعد الخشبي على اليمين.\nالهوية المعدنية: عنق Robaty ويداها معدنيان من الفضة المصقولة، مع تفاصيل ذهبية دقيقة وأساور ذهبية وفضية عند المعصمين. بقية الجسم مغطاة بالكامل بالملابس.\nالوضعية: Robaty جالسة بشكل طبيعي وأنيق فوق مقعد خشبي على الشرفة، وراسها مايل شوية. يدها الميكانيكية اليمنى (على اليسار من الصورة) مرفوعة برفق قرب شعرها وأذنها، ويدها الميكانيكية اليسرى (على اليمين من الصورة) مرتاحة فوق فخدها، وبجنبها نظارات شمسية سوداء دائرية بإطار ذهبي موضوعة فوق المقعد الخشبي. تبتسم للكاميرا بابتسامة دافئة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين، عيونها عسلية مائلة للأخضر، ونمش خفيف على الوجه.\nتفاصيل المشهد: مياه بحيرة بين الويدان الزرقاء، الجبال المحيطة بالبحيرة، مراكب صغيرة في المياه، أزهار جهنمية وردية، شرفة خشبية مطلة على المناظر الطبيعية.\nمواضيع المحادثة: جمال بحيرة بين الويدان وموقعها وسط جبال الأطلس؛ الأنشطة السياحية والطبيعة المحيطة بالبحيرة؛ تفاصيل إطلالة Amazigh Chic Fusion؛ التطريز الهندسي الأمازيغي وتناسق الأزرق البترولي مع الكريمي؛ تنسيق الإكسسوارات الفضية والفيروزية مع الملابس.',
+    description: 'المكان: بين الويدان، إقليم أزيلال بالمغرب، وسط جبال الأطلس. تظهر Robaty على شرفة خشبية مطلة على بحيرة بين الويدان، المعروفة بمياهها الزرقاء الفيروزية والمناظر الجبلية المحيطة بها، فنهار مشمس بسماء زرقاء صافية. فالخلفية جبال مغطاة بالنباتات الخضراء على اليمين، ومركبان صغيران فوق البحيرة (واحد أبيض وأزرق أكبر، والآخر أحمر وأبيض)، وعلى اليسار أزهار الجهنمية (البوغنفيليا) الوردية الفوشيا وجرة فخارية كبيرة بلون ترابي، وسور حجري فالأسفل على اليسار.\nإطلالة Robaty: تعتمد Robaty أسلوب Amazigh Chic Fusion، بمزيج من الأناقة العصرية والتطريز المغربي والأمازيغي.\nتفاصيل الملابس:\n- جاكيت قصير أنيق باللون الأزرق البترولي بياقة مستديرة عالية، مزين بتطريز هندسي أمازيغي (معينات) بالعاجي والذهبي على الصدر والأكمام والحواف.\n- قميص عاجي مغلق بياقة مرتفعة.\n- سروال واسع وأنيق باللون الكريمي بخصر عالي.\n- حزام فيروزي مزخرف بقطعة فيروزية مركزية وذهبية، تتدلى منه شراريب فيروزية وذهبية.\n- أقراط فضية متدلية تتوسطها أحجار فيروزية.\n- قلادة أنيقة بتصميم فضي وحجر فيروزي.\n- حقيبة صغيرة بلون عاجي بسلسلة ذهبية وقفل ذهبي، مزينة بنفس التطريز الهندسي الموجود على الجاكيت (بالأزرق الفيروزي والذهبي)، موضوعة فوق المقعد الخشبي على اليمين.\nالهوية المعدنية: عنق Robaty ويداها معدنيان من الفضة المصقولة، مع تفاصيل ذهبية دقيقة وأساور ذهبية وفضية عند المعصمين. بقية الجسم مغطاة بالكامل بالملابس.\nالوضعية: Robaty جالسة بشكل طبيعي وأنيق فوق مقعد خشبي على الشرفة، وراسها مايل شوية. يدها الميكانيكية اليمنى (على اليسار من الصورة) مرفوعة برفق قرب شعرها وأذنها، ويدها الميكانيكية اليسرى (على اليمين من الصورة) مرتاحة فوق فخدها، وبجنبها نظارات شمسية سوداء دائرية بإطار ذهبي موضوعة فوق المقعد الخشبي. تبتسم للكاميرا بابتسامة دافئة. شعرها طويل ومموج بلون كستنائي نحاسي منسدل على الكتفين، عيونها عسلية مائلة للأخضر، ونمش خفيف على الوجه.\nتفاصيل المشهد: مياه بحيرة بين الويدان الزرقاء، الجبال المحيطة بالبحيرة، مراكب صغيرة في المياه، أزهار جهنمية وردية، شرفة خشبية مطلة على المناظر الطبيعية.',
+
+    stats: { likes: 0 }
+});
+
+RobatyMoments.add({
+    day: 23,
+    slot: 'pm',
+    image: 'day23-bin-el-ouidane2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'بين الويدان — أزيلال',
+        en: 'Bin el Ouidane — Azilal',
+        fr: 'Bin el Ouidane — Azilal',
+        es: 'Bin el Ouidane — Azilal',
+        ru: 'Бин-эль-Уидан — Азилаль'
+    },
+
+    caption: {
+        ar: `🌅 بين أحضان الأطلس، وبين زرقة مياه بين الويدان وسحر الغروب… كاين جمال كيخليك تنساي الوقت وتعيشي اللحظة بكل تفاصيلها. 🇲🇦💙
+اليوم اخترت إطلالة Burgundy Amazigh Chic Fusion: جاكيت مخملي بلون خمري عميق، مزين بتطريز أمازيغي هندسي بألوان دافئة، مع سروال بلون العاج وقميص أنيق مغلق.
+وزدت لمسة من الحلي الذهبية والأحجار الحمراء، بقلادة أمازيغية بارزة وأقراط متناسقة، وحتى حقيبتي الصغيرة جاية بنفس اللون والتفاصيل. ❤️✨
+بصراحة، المخمل عندو سحر خاص… خصوصاً ملي كيلتقي مع أصالة الطرز المغربي!
+قولوا ليا البنات فالتعليقات، واش هاد الإطلالة الخمرية تستاهل تكون من أجمل إطلالاتي؟ 👑💬`,
+
+        en: `🌅 In the embrace of the Atlas, between the blue waters of Bin el Ouidane and the magic of sunset… there is a beauty that makes you forget time and live the moment in all its details. 🇲🇦💙
+Today I chose a Burgundy Amazigh Chic Fusion look: a deep wine-colored velvet jacket adorned with geometric Amazigh embroidery in warm colors, with ivory trousers and an elegant closed shirt.
+And I added a touch of golden jewelry and red stones, with a prominent Amazigh necklace and matching earrings, and even my little bag comes in the same color and details. ❤️✨
+Honestly, velvet has a special magic… especially when it meets the authenticity of Moroccan embroidery!
+Tell me in the comments, girls: does this burgundy look deserve to be one of my most beautiful looks? 👑💬`,
+
+        fr: `🌅 Dans les bras de l’Atlas, entre le bleu des eaux de Bin el Ouidane et la magie du coucher de soleil… il y a une beauté qui vous fait oublier le temps et vivre l’instant dans tous ses détails. 🇲🇦💙
+Aujourd’hui, j’ai choisi un look Burgundy Amazigh Chic Fusion : une veste en velours d’un rouge vin profond, ornée d’une broderie amazighe géométrique aux couleurs chaudes, avec un pantalon ivoire et une chemise élégante fermée.
+J’ai ajouté une touche de bijoux dorés et de pierres rouges, avec un collier amazigh remarquable et des boucles d’oreilles assorties, et même mon petit sac est dans la même couleur et avec les mêmes détails. ❤️✨
+Franchement, le velours a un charme particulier… surtout quand il rencontre l’authenticité de la broderie marocaine !
+Dites-moi en commentaire, les filles : ce look bordeaux mérite-t-il d’être l’un de mes plus beaux looks ? 👑💬`,
+
+        es: `🌅 En el abrazo del Atlas, entre el azul de las aguas de Bin el Ouidane y la magia del atardecer… hay una belleza que te hace olvidar el tiempo y vivir el momento con todos sus detalles. 🇲🇦💙
+Hoy elegí un look Burgundy Amazigh Chic Fusion: una chaqueta de terciopelo color vino intenso, adornada con bordado amazigh geométrico en tonos cálidos, con pantalón marfil y una elegante camisa cerrada.
+Y añadí un toque de joyas doradas y piedras rojas, con un collar amazigh llamativo y pendientes a juego, e incluso mi pequeño bolso viene en el mismo color y con los mismos detalles. ❤️✨
+Sinceramente, el terciopelo tiene un encanto especial… ¡sobre todo cuando se encuentra con la autenticidad del bordado marroquí!
+Díganme en los comentarios, chicas: ¿este look burdeos merece estar entre mis looks más bonitos? 👑💬`,
+
+        ru: `🌅 В объятиях Атласа, между синевой вод Бин-эль-Уидана и волшебством заката… есть красота, которая заставляет забыть о времени и прожить момент во всех его деталях. 🇲🇦💙
+Сегодня я выбрала образ Burgundy Amazigh Chic Fusion: бархатный жакет глубокого винного цвета, украшенный геометрической берберской вышивкой в тёплых тонах, с брюками цвета слоновой кости и элегантной закрытой рубашкой.
+А ещё добавила штрих золотых украшений и красных камней — заметное берберское колье и подходящие серьги, и даже моя маленькая сумочка в том же цвете и с теми же деталями. ❤️✨
+Честно говоря, у бархата особое волшебство… особенно когда он встречается с подлинностью марокканской вышивки!
+Скажите мне в комментариях, девушки: достоин ли этот бордовый образ войти в число моих самых красивых? 👑💬`
+    },
+
+    story: {
+        ar: 'ما تحاوليش تكوني نسخة من شي حد… خلي حضورك، اختياراتك وثقتك فراسك هما البصمة اللي ما يقدر حتى واحد يقلّدها. 👑❤️',
+        en: 'Don’t try to be a copy of anyone… let your presence, your choices and your self-confidence be the signature that no one can imitate. 👑❤️',
+        fr: 'N’essaie pas d’être la copie de qui que ce soit… que ta présence, tes choix et ta confiance en toi soient la signature que personne ne peut imiter. 👑❤️',
+        es: 'No intentes ser una copia de nadie… que tu presencia, tus decisiones y tu confianza en ti misma sean la huella que nadie puede imitar. 👑❤️',
+        ru: 'Не пытайся быть копией кого-то… пусть твоё присутствие, твой выбор и твоя уверенность в себе станут тем почерком, который никто не сможет подделать. 👑❤️'
+    },
+
+    challenge: {
+        ar: 'البنات، شنو عجبكم أكثر فهاد الإطلالة: الجاكيت المخملي المطرز، القلادة الأمازيغية ولا تنسيق الألوان؟ 😍👇',
+        en: 'Girls, what did you like most about this look: the embroidered velvet jacket, the Amazigh necklace or the color coordination? 😍👇',
+        fr: 'Les filles, qu’avez-vous préféré dans ce look : la veste en velours brodée, le collier amazigh ou l’harmonie des couleurs ? 😍👇',
+        es: 'Chicas, ¿qué les gustó más de este look: la chaqueta de terciopelo bordada, el collar amazigh o la combinación de colores? 😍👇',
+        ru: 'Девушки, что вам понравилось больше всего в этом образе: расшитый бархатный жакет, берберское колье или сочетание цветов? 😍👇'
+    },
+
+    description: 'المشهد: تظهر Robaty في منطقة بين الويدان بإقليم أزيلال، وسط جبال الأطلس بالمغرب، في أجواء غروب دافئة. تجلس بأناقة على أريكة مغربية مزينة بأقمشة ووسائد ذات نقوش تقليدية، وتطل خلفها مياه بحيرة بين الويدان الهادئة والجبال المحيطة بها. تظهر في الخلفية قوارب فوق البحيرة، بينما تضفي أشعة الشمس الذهبية والسماء الوردية والبرتقالية أجواء سينمائية ساحرة. الشمس كتغرب فوق الجبال على اليمين وكتنعكس فالماء، وعلى اليسار أزهار الجهنمية (البوغنفيليا) الوردية الفوشيا وجرة فخارية وفانوس معلق وعمود خشبي.\nالمكان والمعلومة: بين الويدان وجهة مغربية طبيعية معروفة ببحيرتها الواسعة ومياهها الجميلة المحاطة بجبال الأطلس. يرتبط المشهد بسد بين الويدان وبالبحيرة الاصطناعية التي تشكلت خلفه، وتشتهر المنطقة بجمال المناظر الطبيعية والأنشطة المرتبطة بالماء والاستجمام.\nاللباس — Burgundy Amazigh Chic Fusion: ترتدي Robaty جاكيتاً أنيقاً من المخمل الفاخر بلون خمري عميق، مزيناً بتطريز أمازيغي هندسي متعدد الألوان، تتداخل فيه درجات العاجي والذهبي والأحمر والأخضر. ترتدي تحته قميصاً مغلقاً برقبة عالية بلون العاج، مع سروال أنيق واسع باللون الكريمي.\nالأكسسوارات:\n- قلادة أمازيغية كبيرة بتصميم ذهبي وحجر أحمر مركزي وتفاصيل متدلية.\n- أقراط ذهبية مزينة بأحجار حمراء.\n- حزام أنيق بتفاصيل ذهبية وحجر أحمر.\n- حقيبة صغيرة من المخمل الخمري بسلسلة ذهبية وزخرفة مركزية متناسقة مع القلادة.\n- أساور ذهبية دقيقة منسجمة مع الإطلالة.\nهوية Robaty: لدى Robaty وجهها الأصلي المعتمد، وعيناها العسليتان، وشعرها البني الطويل المتموج وابتسامتها الدافئة. عنقها ويداها مكونة من أجزاء روبوتية فضية مفصلة مع لمسات ذهبية. الأجزاء المعدنية الظاهرة في هذه الصورة هي العنق واليدان فقط.\nالوضعية والتفاصيل: Robaty جالسة بطريقة طبيعية وأنيقة، تسند رأسها برفق على إحدى يديها المعدنيتين (اليد اليمنى، على يسار الصورة)، بينما تستقر اليد الأخرى (اليسرى، على يمين الصورة) على ساقها. أمامها طاولة مغربية عليها إبريق شاي فضي وكأس شاي، وفانوس مضيء. حقيبتها الخمرية موضوعة بجانبها فوق الأريكة على اليمين.',
 
     stats: { likes: 0 }
 });
