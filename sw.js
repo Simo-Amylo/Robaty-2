@@ -1,54 +1,33 @@
-// service worker بسيط لـ Robaty — كافي باش يخدم شرط "قابلة للتثبيت"
-// + كاش بسيط لبعض الملفات الأساسية (offline بسيط)
+// service worker خفيف لـ Robaty (بلا وضع offline)
 //
-// ملاحظة: network-first (ماشي cache-first) باش أي تعديل نديروه فالملفات
-// يبان مباشرة فالزيارة الجاية، بلا ما يبقى محجوب بنسخة قديمة مخزنة
+// شنو كيدير:
+// 1) كيخلي التطبيق "قابل للتثبيت" (service worker + fetch handler)
+// 2) كيجيب الملفات دايما من السيرفر بـ no-cache، باش أي تعديل يبان مباشرة (بلا ما نتسناو cache ديال GitHub Pages)
+// 3) كيخزن مسبقا صور الوضعيات (16 صورة) باش التبديل بين التعابير يكون فوري
+//
+// شنو ما كيديرش: ما كيخزنش باقي الملفات، وما كاينش تشغيل بلا إنترنت.
+// ملاحظة: بدل رقم CACHE_NAME ملي تعدل هاد الملف.
 
-const CACHE_NAME = 'robaty-cache-v18'; // بدلنا الرقم باش يمسح الكاش القديم أوتوماتيكيا
+const CACHE_NAME = 'robaty-cache-v19'; // الرقم الجديد كيمسح الكاش القديم (v18) أوتوماتيكيا
 
-const CORE_FILES = [
-  './index.html',
-  './moments.html',
-  './profile.html',
-  './app.js',
-  './i18n.js',
-  './story.js',
-  './comments.js',
-  './firebase-config.js',
-  './profile-stats.js',
-  './moments-data.js',
-  './moments-button-glow.js',
-  './button-haptics.js',
-  './story-glow-fx.js',
-  './download-btn-fx.js',
-  './profile.css',
-  './style.css',
-  './moments.css',
-  './comments-ig.css',
-  './manifest.json'
-];
-
-// صور الوضعيات (16 حالة، صورة لكل حالة): كنخزنوها مسبقا باش التبديل بينها يكون فوري
+// صور الوضعيات (16 حالة، صورة لكل حالة): عدد ثابت، ما كيكبرش مع الوقت
 const AVATAR_STATES = [
   'warmth', 'smile', 'calm', 'joy', 'laugh', 'amused', 'playful',
   'surprise', 'curiosity', 'admiration',
   'confidence', 'hope', 'empathy', 'touched', 'serious', 'firm'
 ];
-var AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
+const AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
 const AVATAR_STATE_RE = new RegExp('/(' + AVATAR_STATES.join('|') + ')(-\\d+)?\\.(png|jpg)$');
 
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      // الصور كل وحدة بوحدها: إلا غابت وحدة ما تبطلش الباقي
-      var avatarJobs = AVATAR_STATE_FILES.map(function (url) {
-        return cache.add(url).catch(function () {});
-      });
-      return Promise.all([
-        cache.addAll(CORE_FILES).catch(function () {
-          // إلا فشل شي ملف (اسم مختلف)، ما نوقفوش التسجيل كامل
+      // كل صورة بوحدها: إلا غابت وحدة ما تبطلش الباقي
+      return Promise.all(
+        AVATAR_STATE_FILES.map(function (url) {
+          return cache.add(url).catch(function () {});
         })
-      ].concat(avatarJobs));
+      );
     })
   );
   self.skipWaiting();
@@ -57,6 +36,7 @@ self.addEventListener('install', function (event) {
 self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (keys) {
+      // كنمسحو أي كاش قديم (بحال robaty-cache-v18 اللي كان فيه ملفات الموقع كاملة)
       return Promise.all(
         keys
           .filter(function (key) { return key !== CACHE_NAME; })
@@ -68,13 +48,16 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-  // غير طلبات GET كتدوز من هنا (POST ديال Firestore/API ما كيتخزنوش)
+  // غير طلبات GET (POST ديال Firestore/Gemini ما كيتدخلش فيهم)
   if (event.request.method !== 'GET') return;
 
   var url = new URL(event.request.url);
 
-  // صور الحالات: كاش أولا (فوري) + تحديث فالخلفية للزيارة الجاية
-  if (url.origin === self.location.origin && AVATAR_STATE_RE.test(url.pathname)) {
+  // الطلبات الخارجية (Firebase, Google Fonts, CDN...): المتصفح كيتكلف بيها بوحدو
+  if (url.origin !== self.location.origin) return;
+
+  // صور الوضعيات: من الكاش أولا (فوري) + تحديث فالخلفية للمرة الجاية
+  if (AVATAR_STATE_RE.test(url.pathname)) {
     event.respondWith(
       caches.open(CACHE_NAME).then(function (cache) {
         return cache.match(event.request).then(function (cached) {
@@ -89,26 +72,11 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  // ملفات الموقع (css/js...): كنتأكدو من السيرفر فكل مرة، باش GitHub Pages ما يعطيناش نسخة قديمة من الكاش (10 دقايق)
-  var freshFetch = (url.origin === self.location.origin && event.request.mode !== 'navigate')
-    ? fetch(event.request, { cache: 'no-cache' })
-    : fetch(event.request);
-
+  // باقي ملفات الموقع (js/css/صور/بيانات): كنتأكدو من السيرفر فكل مرة، بلا تخزين
+  // (الصفحات نفسها "navigate" كتدوز عادي)
   event.respondWith(
-    freshFetch
-      .then(function (networkResponse) {
-        // خدام؟ نخزنو نسخة جديدة فالكاش (للاستعمال وقت offline)، ونرجعو النسخة الطرية
-        if (networkResponse && networkResponse.ok) {
-          var copy = networkResponse.clone();
-          caches.open(CACHE_NAME).then(function (cache) {
-            cache.put(event.request, copy);
-          });
-        }
-        return networkResponse;
-      })
-      .catch(function () {
-        // ماكاينش أنترنت؟ نرجعو للنسخة المخزنة (offline fallback)
-        return caches.match(event.request, { ignoreSearch: true });
-      })
+    event.request.mode === 'navigate'
+      ? fetch(event.request)
+      : fetch(event.request, { cache: 'no-cache' })
   );
 });
