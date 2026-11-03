@@ -236,6 +236,8 @@
 
         <header class="top-bar">
 
+            <div style="display:flex;align-items:center;gap:8px;">
+
             <button
                 type="button"
                 class="ornate-btn"
@@ -245,9 +247,6 @@
             >
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
-
-
-            <div class="top-bar-right-group">
 
                 <button
                     type="button"
@@ -260,6 +259,11 @@
                 >
                     <i class="fa-solid fa-trash"></i>
                 </button>
+
+            </div>
+
+
+            <div class="top-bar-right-group">
 
                 <button
                     type="button"
@@ -277,9 +281,14 @@
                     id="installButton"
                     aria-label="تثبيت التطبيق"
                     data-i18n-aria="download_now_btn"
-                    style="display:none"
+                    style="display:none;position:relative"
                 >
                     <i class="fa-solid fa-download"></i>
+                    <svg class="install-ring" viewBox="0 0 36 36" aria-hidden="true"
+                         style="position:absolute;inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px);transform:rotate(-90deg);pointer-events:none;opacity:0;transition:opacity .25s;">
+                        <circle cx="18" cy="18" r="16.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-dasharray="103.67" stroke-dashoffset="103.67"></circle>
+                    </svg>
                 </button>
 
             </div>
@@ -570,7 +579,7 @@
 <script src="button-haptics.js"></script>
 <script src="app.js"></script>
 
-<!-- زر تثبيت التطبيق (فالهيدر): كيتخبى ملي يكون التطبيق مثبت -->
+<!-- زر تثبيت التطبيق (فالهيدر): كيبين تقدم "التحميل" وكيتخبى ملي يتثبت التطبيق -->
 <script>
 (function () {
     var btn = document.getElementById('installButton');
@@ -580,6 +589,18 @@
         (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
         window.navigator.standalone === true;
     if (isInstalled) return;
+
+    var icon = btn.querySelector('i');
+    var ring = btn.querySelector('.install-ring');
+    var circle = btn.querySelector('.install-ring circle');
+    var CIRC = 103.67;
+    var PROGRESS_MS = 12000;   // مدة الحلقة (التثبيت كيدوز تقريبا 10 ثواني)
+    var GIVE_UP_MS = 45000;    // إلا ما وصل حتى حدث تثبيت، نرجعو الزر لحالتو الأولى
+    var IDLE_ICON = 'fa-solid fa-download';
+
+    var busy = false;
+    var giveUpTimer = null;
+    var deferredPrompt = null;
 
     function tr(key, fallback) {
         try {
@@ -593,16 +614,51 @@
 
     btn.style.display = '';
 
-    var deferredPrompt = null;
+    function startProgress() {
+        busy = true;
+        btn.style.pointerEvents = 'none';
+        btn.setAttribute('aria-busy', 'true');
+        icon.className = 'fa-solid fa-circle-notch fa-spin';
+        ring.style.opacity = '1';
+
+        circle.style.transition = 'none';
+        circle.style.strokeDashoffset = CIRC;
+        void circle.getBoundingClientRect();
+        circle.style.transition = 'stroke-dashoffset ' + PROGRESS_MS + 'ms linear';
+        circle.style.strokeDashoffset = '0';
+
+        clearTimeout(giveUpTimer);
+        giveUpTimer = setTimeout(resetButton, GIVE_UP_MS);
+    }
+
+    function resetButton() {
+        busy = false;
+        clearTimeout(giveUpTimer);
+        btn.style.pointerEvents = '';
+        btn.removeAttribute('aria-busy');
+        icon.className = IDLE_ICON;
+        ring.style.opacity = '0';
+        circle.style.transition = 'none';
+        circle.style.strokeDashoffset = CIRC;
+    }
+
+    function finishInstall() {
+        clearTimeout(giveUpTimer);
+        busy = false;
+        btn.style.pointerEvents = 'none';
+        ring.style.opacity = '1';
+        circle.style.transition = 'stroke-dashoffset .35s ease-out';
+        circle.style.strokeDashoffset = '0';
+        icon.className = 'fa-solid fa-check';
+        setTimeout(function () { btn.style.display = 'none'; }, 2200);
+    }
 
     window.addEventListener('beforeinstallprompt', function (e) {
         e.preventDefault();
         deferredPrompt = e;
     });
 
-    window.addEventListener('appinstalled', function () {
-        btn.style.display = 'none';
-    });
+    window.addEventListener('appinstalled', finishInstall);
 
     function showSteps() {
         var overlay = document.createElement('div');
@@ -623,9 +679,9 @@
             tr('install_step2', 'اختاري «إضافة إلى الشاشة الرئيسية»'),
             tr('install_step3', 'أكدي التثبيت')
         ];
-        steps.forEach(function (s, i) {
+        steps.forEach(function (st, i) {
             var line = document.createElement('div');
-            line.textContent = (i + 1) + '. ' + s;
+            line.textContent = (i + 1) + '. ' + st;
             card.appendChild(line);
         });
 
@@ -649,10 +705,16 @@
     }
 
     btn.addEventListener('click', function () {
+        if (busy) return;
+
         if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function () {
-                deferredPrompt = null;
+            var promptEvent = deferredPrompt;
+            deferredPrompt = null;
+            promptEvent.prompt();
+            promptEvent.userChoice.then(function (choice) {
+                if (choice && choice.outcome === 'accepted') {
+                    startProgress();
+                }
             });
         } else {
             showSteps();
