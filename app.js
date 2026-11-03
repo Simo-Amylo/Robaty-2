@@ -400,6 +400,33 @@ ${conversationText}
 
 
 /* ==========================================================================
+   توقيت الجهاز — المنطقة الزمنية ديال هاتف المستخدمة
+   ملاحظة: المغرب رجع لـGMT (UTC+0) نهائيا فـ 20 شتنبر 2026، وبعض المتصفحات
+   (Chrome القديم) باقي عندها قاعدة المغرب القديمة (GMT+1) فكتزيد ساعة.
+   هاد الدوال كتصحح هاد الحالة فقط، وباقي الدول كتبقى تابعة لتوقيت الجهاز.
+   ========================================================================== */
+const MOROCCO_GMT_SWITCH_UTC_MS = Date.UTC(2026, 8, 20, 1, 0, 0); // 20 شتنبر 2026، 02:00 GMT+1 = 01:00 UTC
+
+function getDeviceTimeZone(date) {
+    let tz = 'UTC';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) {}
+    const d = date || new Date();
+    if ((tz === 'Africa/Casablanca' || tz === 'Africa/El_Aaiun') && d.getTime() >= MOROCCO_GMT_SWITCH_UTC_MS) {
+        return 'UTC';
+    }
+    return tz;
+}
+
+function getDeviceHour(date) {
+    const d = date || new Date();
+    try {
+        return Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: getDeviceTimeZone(d) }).format(d)) % 24;
+    } catch (e) {
+        return d.getHours();
+    }
+}
+
+/* ==========================================================================
    الإدراك الزمني (Time Awareness)
    ========================================================================== */
 
@@ -432,9 +459,8 @@ function getPeriodeFromHour(hour) {
 function getTimeContext() {
     const now = new Date();
     // المنطقة الزمنية ديال جهاز المستخدمة (Africa/Casablanca، Europe/Paris، Asia/Riyadh...)
-    let tz = 'UTC';
-    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) {}
-    const hour = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: tz }).format(now)) % 24;
+    const tz = getDeviceTimeZone(now);
+    const hour = getDeviceHour(now);
     const localeMap = { ar: 'ar-MA', en: 'en-US', fr: 'fr-FR', es: 'es-ES', ru: 'ru-RU' };
     const lang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
     const locale = localeMap[lang] || 'ar-MA';
@@ -451,7 +477,7 @@ function tr(key, fallback) {
 }
 
 function getDynamicGreeting() {
-    const periode = getPeriodeFromHour(new Date().getHours());
+    const periode = getPeriodeFromHour(getDeviceHour());
     const keys = {
         'الصباح': 'greeting_morning',
         'الظهيرة': 'greeting_noon',
@@ -468,7 +494,7 @@ function getDynamicGreeting() {
    ========================================================================== */
 
 function updateTimeBasedTheme() {
-    const hour = new Date().getHours();
+    const hour = getDeviceHour();
     // من 6 صباحا حتى 6 مساء كنعتبروه نهار
     const isDayTime = hour >= 6 && hour < 18;
     document.body.setAttribute('data-time-theme', isDayTime ? 'day' : 'night');
@@ -739,7 +765,8 @@ window.RobatyAvatar = {
    ========================================================================== */
 
 function getCurrentTime() {
-    return new Date().toLocaleTimeString('ar-MA', { hour: '2-digit', minute: '2-digit' });
+    const now = new Date();
+    return now.toLocaleTimeString('ar-MA', { hour: '2-digit', minute: '2-digit', timeZone: getDeviceTimeZone(now) });
 }
 
 // كنصغرو الصورة (أقصى بعد 1024px) ونحولوها لـJPEG قبل ما نصيفطوها لـGemini —
