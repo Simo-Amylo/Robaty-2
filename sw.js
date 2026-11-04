@@ -6,7 +6,8 @@
 // 3) كيخزن مسبقا صور الوضعيات (16 صورة) باش التبديل بين التعابير يكون فوري
 //
 // شنو ما كيديرش: ما كيخزنش باقي الملفات، وما كاينش تشغيل بلا إنترنت.
-// ملاحظة: بدل رقم CACHE_NAME ملي تعدل هاد الملف.
+// وإلا ما كاينش إنترنت: كتبان صفحة بسيطة وأنيقة (بدل صفحة مكسورة بلا ألوان).
+// ملاحظة: بدل رقم CACHE_NAME غير ملي تبدل لائحة صور الوضعيات.
 
 const CACHE_NAME = 'robaty-cache-v19'; // الرقم الجديد كيمسح الكاش القديم (v18) أوتوماتيكيا
 
@@ -17,6 +18,33 @@ const AVATAR_STATES = [
   'confidence', 'hope', 'empathy', 'touched', 'serious', 'firm'
 ];
 const AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
+// صفحة "ما كاينش إنترنت" (مدمجة هنا، ما كتحتاج حتى ملف)
+const OFFLINE_HTML =
+  '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">' +
+  '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+  '<meta name="theme-color" content="#14100c"><title>Robaty</title>' +
+  '<style>' +
+  'html,body{height:100%;margin:0}' +
+  'body{background:#14100c;color:#f2f2f2;font-family:Tahoma,"Segoe UI",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}' +
+  '.av{width:150px;height:150px;border-radius:50%;border:3px solid #e5b35c;box-shadow:0 0 40px rgba(229,179,92,.25);object-fit:cover;background:#1e1712}' +
+  'h1{margin:18px 0 6px;font-size:28px;color:#e5b35c}' +
+  'p{margin:4px 0;font-size:16px;line-height:1.9;color:#ddd}' +
+  'button{margin-top:22px;padding:11px 34px;border-radius:22px;border:1px solid #e5b35c;background:transparent;color:#e5b35c;font-size:15px;font-weight:700}' +
+  '</style></head><body>' +
+  '<img class="av" src="./calm.png" alt="" onerror="this.style.display=\'none\'">' +
+  '<h1>Robaty</h1>' +
+  '<p>ما كاين حتى إنترنت دابا 🌙</p>' +
+  '<p>رجعي الاتصال وحاولي مرة أخرى.</p>' +
+  '<button type="button" onclick="location.reload()">إعادة المحاولة</button>' +
+  '</body></html>';
+
+function offlineResponse() {
+  return new Response(OFFLINE_HTML, {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' }
+  });
+}
+
 const AVATAR_STATE_RE = new RegExp('/(' + AVATAR_STATES.join('|') + ')(-\\d+)?\\.(png|jpg)$');
 
 self.addEventListener('install', function (event) {
@@ -72,11 +100,16 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
+  // الصفحات نفسها: إلا ما كاينش إنترنت كنبينو صفحة offline أنيقة
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      self.navigator.onLine === false
+        ? offlineResponse()
+        : fetch(event.request).catch(function () { return offlineResponse(); })
+    );
+    return;
+  }
+
   // باقي ملفات الموقع (js/css/صور/بيانات): كنتأكدو من السيرفر فكل مرة، بلا تخزين
-  // (الصفحات نفسها "navigate" كتدوز عادي)
-  event.respondWith(
-    event.request.mode === 'navigate'
-      ? fetch(event.request)
-      : fetch(event.request, { cache: 'no-cache' })
-  );
+  event.respondWith(fetch(event.request, { cache: 'no-cache' }));
 });
