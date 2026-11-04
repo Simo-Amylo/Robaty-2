@@ -19,24 +19,56 @@ const AVATAR_STATES = [
 ];
 const AVATAR_STATE_FILES = AVATAR_STATES.map(function (s) { return './' + s + '.png'; });
 // صفحة "ما كاينش إنترنت" (مدمجة هنا، ما كتحتاج حتى ملف)
-const OFFLINE_HTML =
-  '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">' +
-  '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-  '<meta name="theme-color" content="#14100c"><title>Robaty</title>' +
-  '<style>' +
-  'html,body{height:100%;margin:0}' +
-  'body{background:#14100c;color:#f2f2f2;font-family:Tahoma,"Segoe UI",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}' +
-  '.av{width:150px;height:150px;border-radius:50%;border:3px solid #e5b35c;box-shadow:0 0 40px rgba(229,179,92,.25);object-fit:cover;background:#1e1712}' +
-  'h1{margin:18px 0 6px;font-size:28px;color:#e5b35c}' +
-  'p{margin:4px 0;font-size:16px;line-height:1.9;color:#ddd}' +
-  'button{margin-top:22px;padding:11px 34px;border-radius:22px;border:1px solid #e5b35c;background:transparent;color:#e5b35c;font-size:15px;font-weight:700}' +
-  '</style></head><body>' +
-  '<img class="av" src="./calm.png" alt="" onerror="this.style.display=\'none\'">' +
-  '<h1>Robaty</h1>' +
-  '<p>ما كاين حتى إنترنت دابا 🌙</p>' +
-  '<p>رجعي الاتصال وحاولي مرة أخرى.</p>' +
-  '<button type="button" onclick="location.reload()">إعادة المحاولة</button>' +
-  '</body></html>';
+// اللغة: كتتقرا من اللغة المحفوظة فالتطبيق (robaty_lang) وإلا من لغة الهاتف، بحال التطبيق بالضبط.
+// النص العربي هو الافتراضي (إلا ما خدمش الـ JS).
+const OFFLINE_HTML = `<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14100c"><title>Robaty</title>
+<style>
+html,body{height:100%;margin:0}
+body{background:#14100c;color:#f2f2f2;font-family:Tahoma,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}
+.av{width:150px;height:150px;border-radius:50%;border:3px solid #e5b35c;box-shadow:0 0 40px rgba(229,179,92,.25);object-fit:cover;background:#1e1712}
+h1{margin:18px 0 6px;font-size:28px;color:#e5b35c}
+p{margin:4px 0;font-size:16px;line-height:1.9;color:#ddd}
+button{margin-top:22px;padding:11px 34px;border-radius:22px;border:1px solid #e5b35c;background:transparent;color:#e5b35c;font-size:15px;font-weight:700}
+</style></head><body>
+<img class="av" src="./calm.png" alt="" onerror="this.style.display='none'">
+<h1>Robaty</h1>
+<p id="t">ما كاين حتى إنترنت دابا 🌙</p>
+<p id="s">رجعي الاتصال وحاولي مرة أخرى.</p>
+<button type="button" id="b" onclick="location.reload()">إعادة المحاولة</button>
+<script>
+(function () {
+  var T = {
+    ar: ['ما كاين حتى إنترنت دابا 🌙', 'رجعي الاتصال وحاولي مرة أخرى.', 'إعادة المحاولة'],
+    en: ['No internet connection right now 🌙', 'Check your connection and try again.', 'Try again'],
+    fr: ['Pas de connexion internet pour le moment 🌙', 'Vérifie ta connexion et réessaie.', 'Réessayer'],
+    es: ['Ahora mismo no hay conexión a internet 🌙', 'Revisa tu conexión e inténtalo de nuevo.', 'Reintentar'],
+    ru: ['Сейчас нет подключения к интернету 🌙', 'Проверь соединение и попробуй ещё раз.', 'Повторить']
+  };
+  var lang = 'ar';
+  try {
+    var saved = null;
+    try { saved = localStorage.getItem('robaty_lang'); } catch (e) {}
+    if (saved && T[saved]) {
+      lang = saved;
+    } else {
+      var langs = navigator.languages || [navigator.language || 'ar'];
+      for (var i = 0; i < langs.length; i++) {
+        var code = String(langs[i]).slice(0, 2).toLowerCase();
+        if (T[code]) { lang = code; break; }
+      }
+    }
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.getElementById('t').textContent = T[lang][0];
+    document.getElementById('s').textContent = T[lang][1];
+    document.getElementById('b').textContent = T[lang][2];
+  } catch (e) {}
+})();
+</script>
+</body></html>`;
 
 function offlineResponse() {
   return new Response(OFFLINE_HTML, {
