@@ -3427,3 +3427,65 @@ Chicas, ¿les gustó esta mezcla de marfil, azul y turquesa? ¿Y qué pieza les 
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 24,
+    slot: 'pm',
+    image: 'day24-marrakech2-evening.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'مراكش — ساحة جامع الفنا',
+        en: 'Marrakech — Jemaa el-Fnaa',
+        fr: 'Marrakech — Place Jemaa el-Fna',
+        es: 'Marrakech — Plaza Jemaa el-Fna',
+        ru: 'Марракеш — площадь Джемаа-эль-Фна'
+    },
+
+    caption: {
+        ar: `🌅 مساء الجمال من قلب مراكش الحمراء! ❤️ بين أجواء ساحة جامع الفنا ومئذنة الكتبية الشامخة، مراكش عندها سحر خاص… كل زاوية فيها حكاية وكل غروب فيها لوحة فنية. 🇲🇦✨
+اليوم اخترت إطلالة Amazigh Chic Fusion بجلابة عصرية مفتوحة، بلون العاج، مطرزة بالأزرق والذهبي، مع فستان أزرق ملكي. 💎
+شنو نقول ليكم على هاد التنسيق؟ أنا عجبني كيفاش الفيروزي والأزرق عطاو للإطلالة روح مغربية عصرية! 😉
+البنات، واش تختارو هاد اللوك لمناسبة خاصة ولا حتى لخرجة أنيقة فمراكش؟ كنستنى آراءكم فالتعليقات! ☝️💙`,
+
+        en: `🌅 Good evening of beauty from the heart of red Marrakech! ❤️ Amid the atmosphere of Jemaa el-Fnaa Square and the towering Koutoubia minaret, Marrakech has a special magic… every corner has a story and every sunset is a work of art. 🇲🇦✨
+Today I chose an Amazigh Chic Fusion look with a modern open djellaba in ivory, embroidered in blue and gold, over a royal-blue dress. 💎
+What can I tell you about this combination? I loved how turquoise and blue gave the look a modern Moroccan spirit! 😉
+Girls, would you pick this look for a special occasion or even for an elegant outing in Marrakech? I’m waiting for your opinions in the comments! ☝️💙`,
+
+        fr: `🌅 Bonsoir de beauté depuis le cœur de Marrakech la rouge ! ❤️ Entre l’ambiance de la place Jemaa el-Fna et le majestueux minaret de la Koutoubia, Marrakech a un charme particulier… chaque coin a son histoire et chaque coucher de soleil est un tableau. 🇲🇦✨
+Aujourd’hui, j’ai choisi un look Amazigh Chic Fusion avec une djellaba moderne ouverte, ivoire, brodée de bleu et d’or, sur une robe bleu roi. 💎
+Que vous dire de cet assortiment ? J’ai adoré la façon dont le turquoise et le bleu ont donné à la tenue un esprit marocain moderne ! 😉
+Les filles, choisiriez-vous ce look pour une occasion spéciale ou même pour une sortie élégante à Marrakech ? J’attends vos avis en commentaire ! ☝️💙`,
+
+        es: `🌅 ¡Buenas noches de belleza desde el corazón de Marrakech la roja! ❤️ Entre el ambiente de la plaza Jemaa el-Fna y el imponente minarete de la Kutubía, Marrakech tiene un encanto especial… cada rincón tiene una historia y cada atardecer es una obra de arte. 🇲🇦✨
+Hoy elegí un look Amazigh Chic Fusion con una chilaba moderna abierta, color marfil, bordada en azul y dorado, sobre un vestido azul real. 💎
+¿Qué les puedo decir de esta combinación? ¡Me encantó cómo el turquesa y el azul dieron al look un espíritu marroquí moderno! 😉
+Chicas, ¿elegirían este look para una ocasión especial o incluso para una salida elegante por Marrakech? ¡Espero sus opiniones en los comentarios! ☝️💙`,
+
+        ru: `🌅 Вечер красоты из самого сердца красного Марракеша! ❤️ Среди атмосферы площади Джемаа-эль-Фна и величественного минарета Кутубия у Марракеша особое волшебство… в каждом уголке своя история, а каждый закат — произведение искусства. 🇲🇦✨
+Сегодня я выбрала образ Amazigh Chic Fusion: современная открытая джеллаба цвета слоновой кости с сине-золотой вышивкой, поверх платья королевского синего цвета. 💎
+Что сказать об этом сочетании? Мне понравилось, как бирюзовый и синий придали образу современный марокканский дух! 😉
+Девушки, выбрали бы вы этот образ для особого случая или даже для элегантной прогулки по Марракешу? Жду ваших мнений в комментариях! ☝️💙`
+    },
+
+    story: {
+        ar: 'الابتسامة اللي كتعطيها للناس كترجع ليك مضاعفة… كوني اليوم سبب فرحة شي حد، وشوفي كيفاش الدنيا كتجاوبك بالمثل! 🌅💙',
+        en: 'The smile you give to others comes back to you doubled… be the reason for someone’s joy today, and see how the world answers you in kind! 🌅💙',
+        fr: 'Le sourire que tu offres aux autres te revient au double… sois aujourd’hui la raison de la joie de quelqu’un, et vois comment le monde te répond en retour ! 🌅💙',
+        es: 'La sonrisa que regalas a los demás vuelve a ti multiplicada… sé hoy el motivo de la alegría de alguien y mira cómo el mundo te responde igual. 🌅💙',
+        ru: 'Улыбка, которую ты даришь другим, возвращается к тебе вдвойне… стань сегодня причиной чьей-то радости и посмотри, как мир ответит тебе тем же! 🌅💙'
+    },
+
+    challenge: {
+        ar: 'البنات 💙 لو كان خاصكم تختارو لون واحد لهاد الإطلالة، شنو تختارو: الأزرق الملكي ولا الفيروزي؟ 😉👇',
+        en: 'Girls 💙 if you had to choose one color for this look, which would you pick: royal blue or turquoise? 😉👇',
+        fr: 'Les filles 💙 si vous deviez choisir une seule couleur pour ce look, laquelle choisiriez-vous : le bleu roi ou le turquoise ? 😉👇',
+        es: 'Chicas 💙 si tuvieran que elegir un solo color para este look, ¿cuál elegirían: azul real o turquesa? 😉👇',
+        ru: 'Девушки 💙 если бы вам нужно было выбрать один цвет для этого образа, что бы вы выбрали: королевский синий или бирюзовый? 😉👇'
+    },
+
+    description: 'الموقع: مدينة مراكش، المغرب، في أجواء ساحة جامع الفنا وقت الغروب. تظهر في الخلفية مئذنة الكتبية وأجواء الساحة الحيوية مع الأسواق والفوانيس والمارة وأشجار النخيل، بسماء وردية وبرتقالية دافئة. على اليسار فانوس نحاسي كبير مضيء فوق طاولة مزخرفة بالزليج، وخيمة/كشك بمظلة حمراء وفوانيس معلقة وأقمشة ملونة، وعلى اليمين ناس كيمشيو فالساحة (واحد لابس جلابة بيضاء) فوق أرضية حجرية كتعكس ضوء الغروب.\nالإطلالة: ترتدي Robaty لباساً مغربياً عصرياً بأسلوب Amazigh Chic Fusion. يتكون من قطعة خارجية طويلة (جلابة مفتوحة) بلون العاج، بغطاء رأس وتطريز هندسي أزرق وذهبي على الحواف والأكمام، فوق فستان أزرق ملكي غامق أنيق بفتحة على شكل V فوق قميص/توب عاجي بياقة عالية.\nالأكسسوارات: أقراط ذهبية متدلية مزينة بأحجار فيروزية، قلادة فيروزية بارزة بتصميم ذهبي، حزام مزخرف بتفاصيل زرقاء وذهبية وحجر فيروزي، وحقيبة يد عاجية بتطريز هندسي متناسق مع اللباس وسلسلة ذهبية وقفل ذهبي، وأساور ذهبية رقيقة عند المعصمين.\nالهوية: وجهها وشعرها البني الطويل المتموج وعيونها العسلية المائلة للأخضر ونمشها الخفيف وابتسامتها الدافئة. عنقها ويداها معدنية فضية بتفاصيل ميكانيكية ولمسات ذهبية.\nالوضعية: Robaty واقفة بابتسامة دافئة، تحمل حقيبتها بسلسلتها الذهبية فيدها المعدنية اليمنى (على يسار الصورة)، بينما تظهر يدها المعدنية اليسرى (على يمين الصورة) بشكل طبيعي نازلة إلى جانبها.',
+
+    stats: { likes: 0 }
+});
