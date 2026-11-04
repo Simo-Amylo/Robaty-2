@@ -25,7 +25,9 @@ const avatarImgB = document.getElementById('avatarImgB');
 const settingsButton = document.getElementById('settingsButton');
 const backButton = document.getElementById('backButton');
 const resetMemoryButton = document.getElementById('resetMemoryButton');
-const apiKeyModal = document.getElementById('apiKeyModal');
+const settingsModal = document.getElementById('settingsModal');
+const tempKeyButton = document.getElementById('tempKeyButton'); // TEMP-KEY
+const apiKeyModal = document.getElementById('apiKeyModal'); // TEMP-KEY
 const apiKeyInput = document.getElementById('apiKeyInput');
 const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
 const colorModeOptions = document.getElementById('colorModeOptions');
@@ -156,9 +158,20 @@ function highlightActiveColorOption() {
     });
 }
 
+function openSettingsModal() {
+    highlightActiveColorOption();
+    settingsModal.classList.add('active');
+    settingsModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeSettingsModal() {
+    settingsModal.classList.remove('active');
+    settingsModal.setAttribute('aria-hidden', 'true');
+}
+
+/* TEMP-KEY — مفتاح API المؤقت (يُحذف قبل الإطلاق) */
 function openApiKeyModal() {
     apiKeyInput.value = getKey();
-    highlightActiveColorOption();
     apiKeyModal.classList.add('active');
     apiKeyModal.setAttribute('aria-hidden', 'false');
 }
@@ -178,7 +191,12 @@ function saveKey() {
     closeApiKeyModal();
 }
 
-settingsButton?.addEventListener('click', openApiKeyModal);
+settingsButton?.addEventListener('click', openSettingsModal);
+tempKeyButton?.addEventListener('click', openApiKeyModal); // TEMP-KEY
+
+settingsModal?.addEventListener('click', (event) => {
+    if (event.target === settingsModal) closeSettingsModal();
+});
 
 colorModeOptions?.querySelectorAll('.color-option').forEach((btn) => {
     btn.addEventListener('click', () => {

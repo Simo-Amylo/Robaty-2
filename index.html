@@ -265,6 +265,17 @@
 
             <div class="top-bar-right-group">
 
+                <!-- TEMP-KEY: زر مفتاح API مؤقت للاختبار — يُحذف قبل الإطلاق -->
+                <button
+                    type="button"
+                    class="ornate-btn"
+                    id="tempKeyButton"
+                    aria-label="مفتاح API (مؤقت)"
+                    title="مفتاح API (مؤقت)"
+                >
+                    <i class="fa-solid fa-key"></i>
+                </button>
+
                 <button
                     type="button"
                     class="ornate-btn"
@@ -504,11 +515,11 @@
         </footer>
 
 
-        <!-- SETTINGS MODAL (لغة + مفتاح API) -->
+        <!-- SETTINGS MODAL (لغة + ألوان) -->
 
         <div
             class="api-key-modal-overlay"
-            id="apiKeyModal"
+            id="settingsModal"
             aria-hidden="true"
         >
 
@@ -535,7 +546,20 @@
                     </div>
                 </div>
 
-                <!-- قسم مفتاح API -->
+            </div>
+
+        </div>
+
+        <!-- TEMP-KEY: نافذة مفتاح API المؤقتة — تُحذف قبل الإطلاق -->
+
+        <div
+            class="api-key-modal-overlay"
+            id="apiKeyModal"
+            aria-hidden="true"
+        >
+
+            <div class="api-key-modal-box">
+
                 <div class="settings-section">
                     <p class="settings-section-title" data-i18n="api_key_title">🔑 مفتاح Gemini API</p>
                     <p data-i18n="api_key_desc">
