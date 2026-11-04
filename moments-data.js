@@ -3365,3 +3365,65 @@ Díganme en los comentarios, chicas: ¿este look burdeos merece estar entre mis 
 
     stats: { likes: 0 }
 });
+
+RobatyMoments.add({
+    day: 24,
+    slot: 'am',
+    image: 'day24-marrakech1-morning.jpg',
+    focus: 'top',
+
+    place: {
+        ar: 'مراكش',
+        en: 'Marrakech',
+        fr: 'Marrakech',
+        es: 'Marrakech',
+        ru: 'Марракеш'
+    },
+
+    caption: {
+        ar: `💙 اليوم خديتكم معايا لواحد الرياض مغربي ساحر بمدينة مراكش، فين الزليج الأزرق، الأقواس التقليدية ونافورة الماء كيعطيو للمكان روح مغربية أصيلة! 🇲🇦✨
+اخترت إطلالة Amazigh Chic Fusion، بعباية عصرية بلون العاج، مزينة بتطريز هندسي أزرق وذهبي، مع لباس أزرق بترولي وحلي فيروزية مستوحاة من الزخرفة المغربية. 💎
+وما قدرتش نقاوم هاد الحقيبة الصغيرة المنسجمة مع الإطلالة، بتطريز هندسي ولمسات ذهبية أنيقة! 😍
+البنات، واش عجبكم هاد المزج بين العاجي والأزرق والفيروزي؟ وشنو أكثر قطعة شدت انتباهكم؟ كنستنى آراءكم فالتعليقات! 💙☝️`,
+
+        en: `💙 Today I took you with me to an enchanting Moroccan riad in the city of Marrakech, where the blue zellige, the traditional arches and the water fountain give the place an authentic Moroccan spirit! 🇲🇦✨
+I chose an Amazigh Chic Fusion look, with a modern ivory abaya adorned with geometric blue and gold embroidery, over a petrol-blue dress and turquoise jewelry inspired by Moroccan ornamentation. 💎
+And I couldn’t resist this little bag that matches the look, with geometric embroidery and elegant golden touches! 😍
+Girls, did you like this mix of ivory, blue and turquoise? And which piece caught your attention the most? I’m waiting for your opinions in the comments! 💙☝️`,
+
+        fr: `💙 Aujourd’hui, je vous ai emmenés avec moi dans un riad marocain enchanteur à Marrakech, où le zellige bleu, les arcs traditionnels et la fontaine donnent au lieu une âme marocaine authentique ! 🇲🇦✨
+J’ai choisi un look Amazigh Chic Fusion, avec une abaya moderne ivoire ornée d’une broderie géométrique bleue et dorée, sur une robe bleu pétrole et des bijoux turquoise inspirés de l’ornementation marocaine. 💎
+Et je n’ai pas pu résister à ce petit sac assorti à la tenue, avec sa broderie géométrique et ses élégantes touches dorées ! 😍
+Les filles, ce mélange d’ivoire, de bleu et de turquoise vous a-t-il plu ? Et quelle pièce a le plus retenu votre attention ? J’attends vos avis en commentaire ! 💙☝️`,
+
+        es: `💙 ¡Hoy los llevé conmigo a un encantador riad marroquí en la ciudad de Marrakech, donde el zellige azul, los arcos tradicionales y la fuente de agua dan al lugar un auténtico espíritu marroquí! 🇲🇦✨
+Elegí un look Amazigh Chic Fusion, con una abaya moderna color marfil adornada con bordado geométrico azul y dorado, sobre un vestido azul petróleo y joyas turquesa inspiradas en la ornamentación marroquí. 💎
+¡Y no pude resistirme a este pequeño bolso a juego con el look, con bordado geométrico y elegantes toques dorados! 😍
+Chicas, ¿les gustó esta mezcla de marfil, azul y turquesa? ¿Y qué pieza les llamó más la atención? ¡Espero sus opiniones en los comentarios! 💙☝️`,
+
+        ru: `💙 Сегодня я взяла вас с собой в очаровательный марокканский риад в городе Марракеш, где синяя зеллиж-мозаика, традиционные арки и фонтан придают месту подлинный марокканский дух! 🇲🇦✨
+Я выбрала образ Amazigh Chic Fusion: современная абайя цвета слоновой кости с геометрической сине-золотой вышивкой, поверх платья цвета петроль, и бирюзовые украшения, вдохновлённые марокканским орнаментом. 💎
+И я не смогла устоять перед этой маленькой сумочкой в тон образу, с геометрической вышивкой и элегантными золотыми штрихами! 😍
+Девушки, понравилось ли вам это сочетание слоновой кости, синего и бирюзового? И какая деталь привлекла ваше внимание больше всего? Жду ваших мнений в комментариях! 💙☝️`
+    },
+
+    story: {
+        ar: 'ما تنتظريش مناسبة باش تبرزي جمالك… خلي كل نهار مناسبة تكتشفي فيها أجمل نسخة من نفسك. 👑💙',
+        en: 'Don’t wait for an occasion to show off your beauty… make every day an occasion to discover the most beautiful version of yourself. 👑💙',
+        fr: 'N’attends pas une occasion pour faire rayonner ta beauté… fais de chaque jour une occasion de découvrir la plus belle version de toi-même. 👑💙',
+        es: 'No esperes una ocasión para mostrar tu belleza… haz de cada día una ocasión para descubrir la mejor versión de ti misma. 👑💙',
+        ru: 'Не жди повода, чтобы показать свою красоту… сделай каждый день поводом открыть самую прекрасную версию себя. 👑💙'
+    },
+
+    challenge: {
+        ar: 'البنات، شنو تختارو: التطريز الأزرق والذهبي، الحلي الفيروزية، ولا الحقيبة المنسجمة مع الإطلالة؟ 😍💎',
+        en: 'Girls, what would you choose: the blue and gold embroidery, the turquoise jewelry, or the bag that matches the look? 😍💎',
+        fr: 'Les filles, que choisiriez-vous : la broderie bleue et dorée, les bijoux turquoise ou le sac assorti à la tenue ? 😍💎',
+        es: 'Chicas, ¿qué elegirían: el bordado azul y dorado, las joyas turquesa o el bolso a juego con el look? 😍💎',
+        ru: 'Девушки, что бы вы выбрали: сине-золотую вышивку, бирюзовые украшения или сумочку в тон образу? 😍💎'
+    },
+
+    description: 'المدينة: مراكش.\nالمشهد: تظهر Robaty جالسة داخل رياض مغربي أنيق بمدينة مراكش، يتميز بأقواس معمارية مغربية وزليج تقليدي باللونين الأزرق والأبيض، ونافورة ماء حجرية فالخلفية على اليمين وحوض ماء أزرق مزين بالزليج، مع فوانيس نحاسية (واحد معلق تحت القوس فالخلفية وواحد مضيء على اليسار) ونقوش هندسية مغربية. الأجواء دافئة وهادئة وفنهار مشمس.\nالمظهر: تحافظ Robaty على وجهها وشعرها البني الطويل المتموج (منسدل من تحت غطاء الراس) وعيونها العسلية المائلة للأخضر وابتسامتها الطبيعية ونمشها الخفيف. يظهر عنقها المعدني الفضي بتفاصيل ميكانيكية ولمسات ذهبية، وكذلك يداها المعدنيتان.\nاللباس: ترتدي Robaty إطلالة Amazigh Chic Fusion تتكون من عباءة عصرية بغطاء رأس (سلهام) بلون عاجي، مزينة بتطريز هندسي أمازيغي الطابع بالأزرق الداكن والذهبي على الحواف والأكمام. تحتها لباس (لبسة مغربية) باللون الأزرق البترولي بأكمام مطرزة، وفوق الصدر قميص/توب عاجي بياقة عالية.\nالإكسسوارات: أقراط ذهبية متدلية مزينة بأحجار فيروزية، قلادة ذهبية بارزة بمركز فيروزي، حزام مزخرف بالذهبي والفيروزي متناسق مع الإطلالة، أساور ذهبية رقيقة عند المعصم، وحقيبة يد صغيرة بلون عاجي بسلسلة ذهبية وقفل ذهبي تحمل نقوشاً هندسية زرقاء ولمسات ذهبية.\nالوضعية: Robaty جالسة بأناقة، تسند رأسها برفق على يدها المعدنية اليمنى (على يسار الصورة)، بينما ترتاح يدها اليسرى (على يمين الصورة) فوق ساقها، وتنظر إلى الكاميرا بابتسامة ودودة. بجانبها على اليسار طاولة مستديرة مزخرفة بالزليج عليها فانوس نحاسي مضيء والحقيبة العاجية.',
+
+    stats: { likes: 0 }
+});
