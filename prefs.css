@@ -260,7 +260,7 @@ body[data-color-mode="whatsapp"] {
     --wa-green-deep: #1f7a5c;   /* أيقونات ونصوص الأزرار */
     --wa-green-soft: #d9fdd3;   /* لون فقاعات المستخدمة */
     --wa-screen-bg: #f5f2eb;    /* لون خلفية واتساب (مقيس من الصورة) */
-    --wa-doodle: #e4dacb;       /* لون رسومات واتساب → لون نقاط خلفيتنا */
+    --wa-doodle: #e7dfd1;       /* لون نقاط الخلفية: 80% من لون رسومات واتساب (#e4dacb) فوق #f5f2eb */
 }
 
 body[data-color-mode="whatsapp"],
