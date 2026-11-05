@@ -225,12 +225,12 @@ body[data-color-mode="whatsapp"] .color-option.active {
 body[data-color-mode="whatsapp"],
 body[data-color-mode="whatsapp"][data-time-theme="day"],
 body[data-color-mode="whatsapp"][data-time-theme="night"] {
-    --app-bg-base-start: #ffffff;
-    --app-bg-base-end: #f6f1e7;
+    --app-bg-base-start: #f5f2eb;
+    --app-bg-base-end: #f5f2eb;
     --bubble-bg-theme: #ffffff;
 }
 
-body[data-color-mode="whatsapp"] .chat-area { background: #efeae2; }
+body[data-color-mode="whatsapp"] .chat-area { background: transparent; }
 
 /* بوت (روباتي): أبيض */
 body[data-color-mode="whatsapp"] .bubble-dark-gold {
@@ -259,7 +259,8 @@ body[data-color-mode="whatsapp"] {
     --wa-green: #4fbf7a;        /* حدود الأزرار */
     --wa-green-deep: #1f7a5c;   /* أيقونات ونصوص الأزرار */
     --wa-green-soft: #d9fdd3;   /* لون فقاعات المستخدمة */
-    --wa-chat-bg: #efeae2;      /* لون شاشة المحادثة */
+    --wa-screen-bg: #f5f2eb;    /* لون خلفية واتساب (مقيس من الصورة) */
+    --wa-doodle: #e4dacb;       /* لون رسومات واتساب → لون نقاط خلفيتنا */
 }
 
 body[data-color-mode="whatsapp"],
@@ -335,9 +336,9 @@ body[data-color-mode="whatsapp"] .gold-input::placeholder {
     color: #8fa89b;
 }
 
-/* خلفية الأزرار السفلية: امتداد للون الشاشة */
+/* خلفية الأزرار السفلية: شفافة (امتداد لخلفية الشاشة) */
 body[data-color-mode="whatsapp"] .bottom-controls {
-    background: var(--wa-chat-bg);
+    background: transparent;
 }
 
 /* تأثير الضغط */
@@ -396,4 +397,26 @@ body[data-color-mode="whatsapp"] .avatar-container.hint-pulse::after {
     body[data-color-mode="whatsapp"] .avatar-container.hint-pulse::after {
         animation: none;
     }
+}
+
+/* ==========================================================================
+   أبيض/كريمي (واتساب) — خلفية موحّدة للشاشة كلها بلون خلفية واتساب،
+   والنقاط (بدل الذهبية) بلون رسومات واتساب. شاشة المحادثة والأزرار السفلية
+   شفافة، فتظهر نفس الخلفية والنقاط في كل مكان.
+   ========================================================================== */
+body[data-color-mode="whatsapp"],
+body[data-color-mode="whatsapp"][data-time-theme="day"],
+body[data-color-mode="whatsapp"][data-time-theme="night"] {
+    --accent-glow: rgba(79, 191, 122, 0);   /* بلا هالة ملوّنة على حواف الشاشة */
+}
+
+body[data-color-mode="whatsapp"] { background-color: var(--wa-screen-bg); }
+
+body[data-color-mode="whatsapp"] .outer-gold-frame { background: var(--wa-screen-bg); }
+
+body[data-color-mode="whatsapp"] .app-container {
+    background:
+        radial-gradient(var(--wa-doodle) 2px, transparent 2.6px),
+        linear-gradient(var(--wa-screen-bg), var(--wa-screen-bg));
+    background-size: 24px 24px, cover;
 }
