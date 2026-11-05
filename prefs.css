@@ -1,0 +1,34 @@
+/* ==========================================================================
+   prefs.css — تأثير تفضيلات المستخدمة على شاشة المحادثة (حجم الخط + شكل الشاشة)
+   يتحمّل بعد style.css. الانتقاء بـ "html[...] body" باش يغلب أنماط الثيمات.
+   ========================================================================== */
+
+/* ---- حجم الخط (الافتراضي = 14.4px = متوسط) ---- */
+html[data-font-size="small"] body .bubble-gold-border,
+html[data-font-size="small"] body .bubble-dark-gold { font-size: 12.8px; }
+
+html[data-font-size="large"] body .bubble-gold-border,
+html[data-font-size="large"] body .bubble-dark-gold { font-size: 17px; }
+
+/* ---- شاشة المحادثة: أسود ---- */
+html[data-chat-look="dark"] body .chat-area { background: #000; }
+
+/* ---- شاشة المحادثة: بألوان واتساب ---- */
+html[data-chat-look="whatsapp"] body .chat-area { background: #efeae2; }
+
+html[data-chat-look="whatsapp"] body .bubble-gold-border {
+    background: #d9fdd3;
+    color: #111b21;
+    border-color: #bfe6b8;
+    box-shadow: 0 1px 1px rgba(11, 20, 26, 0.13);
+}
+
+html[data-chat-look="whatsapp"] body .bubble-dark-gold {
+    background: #ffffff;
+    color: #111b21;
+    border-color: #e1d9cf;
+    box-shadow: 0 1px 1px rgba(11, 20, 26, 0.13);
+}
+
+html[data-chat-look="whatsapp"] body .chat-area .bot-label { color: #1f7a5c; }
+html[data-chat-look="whatsapp"] body .chat-area .msg-time { color: #667781; }

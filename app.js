@@ -191,7 +191,9 @@ function saveKey() {
     closeApiKeyModal();
 }
 
-settingsButton?.addEventListener('click', openSettingsModal);
+settingsButton?.addEventListener('click', () => {
+    window.location.href = 'settings.html';
+});
 tempKeyButton?.addEventListener('click', openApiKeyModal); // TEMP-KEY
 
 settingsModal?.addEventListener('click', (event) => {

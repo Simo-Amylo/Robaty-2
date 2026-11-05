@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- اللغة/الاتجاه المحفوظين (نفس منطق index.html) -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="prefs.js"></script>
+
+    <title>Robaty - الإعدادات</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e5b35c">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prefs.css">
+    <link rel="stylesheet" href="settings.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet" media="print" onload="this.media='all'">
+</head>
+<body class="settings-page">
+
+<div class="outer-gold-frame">
+    <div class="golden-ambient-glow" aria-hidden="true"></div>
+
+    <div class="app-container">
+
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+
+        <header class="s-header">
+            <button type="button" class="ornate-btn" id="settingsBack" aria-label="رجوع">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <h1 class="s-title">⚙️ الإعدادات</h1>
+        </header>
+
+        <main class="s-scroll">
+
+            <!-- مشاركة التطبيق -->
+            <button type="button" class="s-share" id="shareButton">
+                <i class="fa-solid fa-share-nodes"></i>
+                <span>مشاركة التطبيق</span>
+            </button>
+
+            <!-- 1) اللغة -->
+            <section class="s-card">
+                <p class="s-card-title">🌐 اختاري لغتك المفضلة</p>
+                <div class="lang-options" id="languageOptions"></div>
+            </section>
+
+            <!-- 2) الألوان -->
+            <section class="s-card">
+                <p class="s-card-title">🎨 اختاري لون الشاشة المفضلة إليك</p>
+
+                <p class="s-sub">أجواء التطبيق</p>
+                <div class="color-options" id="colorModeOptions">
+                    <button type="button" class="color-option" data-color-value="default">🟤 الافتراضي (بني/ذهبي)</button>
+                    <button type="button" class="color-option" data-color-value="vivid">🔵 أزرق/بنفسجي</button>
+                    <button type="button" class="color-option" data-color-value="emerald">🟢 أخضر ملكي</button>
+                    <button type="button" class="color-option" data-color-value="cream">🤍 كريمي فاتح</button>
+                    <button type="button" class="color-option" data-color-value="sky">🩵 أزرق سماوي</button>
+                    <button type="button" class="color-option" data-color-value="blush">💖 وردي أثيري</button>
+                </div>
+
+                <p class="s-sub">شاشة المحادثة</p>
+                <div class="color-options" id="chatLookOptions">
+                    <button type="button" class="color-option" data-look="default">الافتراضية</button>
+                    <button type="button" class="color-option" data-look="dark">⚫ أسود</button>
+                    <button type="button" class="color-option" data-look="whatsapp">💬 واتساب</button>
+                </div>
+            </section>
+
+            <!-- 3) حجم الخط -->
+            <section class="s-card">
+                <p class="s-card-title">🔠 حجم الخط</p>
+                <div class="color-options" id="fontSizeOptions">
+                    <button type="button" class="color-option" data-font="small">صغير</button>
+                    <button type="button" class="color-option" data-font="medium">متوسط</button>
+                    <button type="button" class="color-option" data-font="large">كبير</button>
+                </div>
+                <p id="fontPreview">هذا مثال على حجم الخط في المحادثة ✨</p>
+            </section>
+
+            <!-- 4) التنبيهات + 5) الاهتزاز -->
+            <section class="s-card">
+                <div class="s-row">
+                    <span>🔔 التنبيهات والرسائل <span class="s-soon">قريباً</span></span>
+                    <button type="button" class="s-toggle" role="switch" aria-checked="false"
+                            aria-label="التنبيهات" disabled></button>
+                </div>
+                <div class="s-row" id="vibrationRow">
+                    <span>📳 الاهتزاز</span>
+                    <button type="button" class="s-toggle" id="vibrationToggle" role="switch"
+                            aria-checked="true" aria-label="الاهتزاز"></button>
+                </div>
+            </section>
+
+            <!-- الشفافية والمصداقية -->
+            <p class="s-trust-title">الشفافية والمصداقية</p>
+
+            <details class="s-acc">
+                <summary>✉️ اتصلي بنا</summary>
+                <div class="s-acc-body">
+                    <p>رأيك يهمّنا: ملاحظة، اقتراح، أو مشكلة؟ راسلينا وسنقرأ رسالتك.</p>
+                    <a class="s-btn" id="contactLink" href="mailto:robaty.support@gmail.com">فتح البريد</a>
+                </div>
+            </details>
+
+            <details class="s-acc">
+                <summary>🔒 سياسة الخصوصية</summary>
+                <div class="s-acc-body">
+                    <ul>
+                        <li>محادثاتك وما تتذكره روباتي عنك تُحفظ على جهازك.</li>
+                        <li>الرسائل التي ترسلينها تُرسل إلى خدمة ذكاء اصطناعي (Google Gemini) لتوليد الرد.</li>
+                        <li>يمكنك مسح ذاكرتك في أي وقت من قسم «حذف الذاكرة».</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="s-acc">
+                <summary>📜 شروط الاستخدام</summary>
+                <div class="s-acc-body">
+                    <ul>
+                        <li>روباتي للتعارف والترفيه والثقافة، وردودها من الذكاء الاصطناعي وقد تحتوي أخطاء.</li>
+                        <li>لا تغني عن رأي مختص في الصحة أو القانون أو المال.</li>
+                        <li>يرجى عدم إدخال معلومات شديدة الحساسية في المحادثة.</li>
+                        <li>باستعمالك التطبيق فأنتِ توافقين على هذه الشروط.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="s-acc">
+                <summary>✨ حول روباتي</summary>
+                <div class="s-acc-body">
+                    <p>روباتي سفيرة رقمية للتراث المغربي: الأزياء والأماكن والمطبخ والثقافة.</p>
+                    <p>هي ذكاء اصطناعي وليست إنساناً، وقد تخطئ، فتحققي من المعلومات المهمة.</p>
+                </div>
+            </details>
+
+            <details class="s-acc">
+                <summary>🗑️ حذف الذاكرة</summary>
+                <div class="s-acc-body">
+                    <p>يمسح المحادثات وكل ما تعرفه روباتي عنك على هذا الجهاز، وتبدأ من جديد. لا يمكن التراجع.</p>
+                    <button type="button" class="s-btn s-danger" id="deleteMemoryBtn">حذف الذاكرة</button>
+                </div>
+            </details>
+
+            <details class="s-acc">
+                <summary>👤 حساب Google وتسجيل الخروج <span class="s-soon">قريباً</span></summary>
+                <div class="s-acc-body">
+                    <p>قريباً: ربط ذاكرتك بحساب Google لتبقى معك على أي جهاز.</p>
+                </div>
+            </details>
+
+            <details class="s-acc">
+                <summary>❌ حذف حسابي وبياناتي <span class="s-soon">قريباً</span></summary>
+                <div class="s-acc-body">
+                    <p>سيتوفر مع ربط الحساب. أما حذف التطبيق من هاتفك: اضغطي مطولاً على أيقونته ثم اختاري «إزالة» أو «إلغاء التثبيت».</p>
+                </div>
+            </details>
+
+            <p class="s-version" id="appVersion"></p>
+
+        </main>
+
+        <div class="s-toast" id="toast" role="status" aria-live="polite"></div>
+
+    </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="button-haptics.js"></script>
+<script src="settings.js"></script>
+
+</body>
+</html>
