@@ -8,10 +8,100 @@ Robaty — محرك اللغات الموحّد (i18n)
 const SUPPORTED_LANGS = ['ru', 'en', 'fr', 'es', 'ar'];
 const RTL_LANGS = ['ar'];
 const LANG_STORAGE = 'robaty_lang';
+/* العربية فيها نسختين: 'ma' = الدارجة المغربية (الأصل)، 'fus' = العربية الفصحى.
+   كلاهما كيستعملو نفس كود اللغة 'ar' (باش ما نكسرو باقي الصفحات)، والفرق فـ:
+   - القاموس: translations.ar (مغربية) / translations.ar_fus (فصحى)
+   - تعليمة الذكاء الاصطناعي (app.js) */
+const ARABIC_VARIANT_STORAGE = 'robaty_ar_variant';
+
+/* لغة جواب الذكاء الاصطناعي إلا اختارتها المستخدمة من "جميع اللغات":
+   الواجهة كتبقى بالإنجليزية (لأن ما عندناش ترجمة)، و Robaty كتجاوب بهاد اللغة. */
+const REPLY_LANG_STORAGE = 'robaty_reply_lang';
+
+/* قائمة "جميع اللغات" (اسم اللغة بحروفها + بالإنجليزية للبحث) */
+const ALL_LANGUAGES = [
+    { code: 'af', native: 'Afrikaans', en: 'Afrikaans' },
+    { code: 'sq', native: 'Shqip', en: 'Albanian' },
+    { code: 'am', native: 'አማርኛ', en: 'Amharic' },
+    { code: 'hy', native: 'Հայերեն', en: 'Armenian' },
+    { code: 'az', native: 'Azərbaycanca', en: 'Azerbaijani' },
+    { code: 'eu', native: 'Euskara', en: 'Basque' },
+    { code: 'be', native: 'Беларуская', en: 'Belarusian' },
+    { code: 'bn', native: 'বাংলা', en: 'Bengali' },
+    { code: 'bs', native: 'Bosanski', en: 'Bosnian' },
+    { code: 'bg', native: 'Български', en: 'Bulgarian' },
+    { code: 'my', native: 'မြန်မာ', en: 'Burmese' },
+    { code: 'ca', native: 'Català', en: 'Catalan' },
+    { code: 'zh-CN', native: '中文（简体）', en: 'Chinese (Simplified)' },
+    { code: 'zh-TW', native: '中文（繁體）', en: 'Chinese (Traditional)' },
+    { code: 'hr', native: 'Hrvatski', en: 'Croatian' },
+    { code: 'cs', native: 'Čeština', en: 'Czech' },
+    { code: 'da', native: 'Dansk', en: 'Danish' },
+    { code: 'nl', native: 'Nederlands', en: 'Dutch' },
+    { code: 'et', native: 'Eesti', en: 'Estonian' },
+    { code: 'fil', native: 'Filipino', en: 'Filipino' },
+    { code: 'fi', native: 'Suomi', en: 'Finnish' },
+    { code: 'gl', native: 'Galego', en: 'Galician' },
+    { code: 'ka', native: 'ქართული', en: 'Georgian' },
+    { code: 'de', native: 'Deutsch', en: 'German' },
+    { code: 'el', native: 'Ελληνικά', en: 'Greek' },
+    { code: 'gu', native: 'ગુજરાતી', en: 'Gujarati' },
+    { code: 'ha', native: 'Hausa', en: 'Hausa' },
+    { code: 'he', native: 'עברית', en: 'Hebrew' },
+    { code: 'hi', native: 'हिन्दी', en: 'Hindi' },
+    { code: 'hu', native: 'Magyar', en: 'Hungarian' },
+    { code: 'is', native: 'Íslenska', en: 'Icelandic' },
+    { code: 'id', native: 'Bahasa Indonesia', en: 'Indonesian' },
+    { code: 'it', native: 'Italiano', en: 'Italian' },
+    { code: 'ja', native: '日本語', en: 'Japanese' },
+    { code: 'kn', native: 'ಕನ್ನಡ', en: 'Kannada' },
+    { code: 'kk', native: 'Қазақша', en: 'Kazakh' },
+    { code: 'km', native: 'ខ្មែរ', en: 'Khmer' },
+    { code: 'ko', native: '한국어', en: 'Korean' },
+    { code: 'ku', native: 'Kurdî', en: 'Kurdish' },
+    { code: 'ky', native: 'Кыргызча', en: 'Kyrgyz' },
+    { code: 'lo', native: 'ລາວ', en: 'Lao' },
+    { code: 'lv', native: 'Latviešu', en: 'Latvian' },
+    { code: 'lt', native: 'Lietuvių', en: 'Lithuanian' },
+    { code: 'mk', native: 'Македонски', en: 'Macedonian' },
+    { code: 'ms', native: 'Bahasa Melayu', en: 'Malay' },
+    { code: 'ml', native: 'മലയാളം', en: 'Malayalam' },
+    { code: 'mr', native: 'मराठी', en: 'Marathi' },
+    { code: 'mn', native: 'Монгол', en: 'Mongolian' },
+    { code: 'ne', native: 'नेपाली', en: 'Nepali' },
+    { code: 'no', native: 'Norsk', en: 'Norwegian' },
+    { code: 'ps', native: 'پښتو', en: 'Pashto' },
+    { code: 'fa', native: 'فارسی', en: 'Persian' },
+    { code: 'pl', native: 'Polski', en: 'Polish' },
+    { code: 'pt', native: 'Português', en: 'Portuguese' },
+    { code: 'pa', native: 'ਪੰਜਾਬੀ', en: 'Punjabi' },
+    { code: 'ro', native: 'Română', en: 'Romanian' },
+    { code: 'sr', native: 'Српски', en: 'Serbian' },
+    { code: 'si', native: 'සිංහල', en: 'Sinhala' },
+    { code: 'sk', native: 'Slovenčina', en: 'Slovak' },
+    { code: 'sl', native: 'Slovenščina', en: 'Slovenian' },
+    { code: 'so', native: 'Soomaali', en: 'Somali' },
+    { code: 'sw', native: 'Kiswahili', en: 'Swahili' },
+    { code: 'sv', native: 'Svenska', en: 'Swedish' },
+    { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh)' },
+    { code: 'ta', native: 'தமிழ்', en: 'Tamil' },
+    { code: 'te', native: 'తెలుగు', en: 'Telugu' },
+    { code: 'th', native: 'ไทย', en: 'Thai' },
+    { code: 'tr', native: 'Türkçe', en: 'Turkish' },
+    { code: 'uk', native: 'Українська', en: 'Ukrainian' },
+    { code: 'ur', native: 'اردو', en: 'Urdu' },
+    { code: 'uz', native: 'Oʻzbekcha', en: 'Uzbek' },
+    { code: 'vi', native: 'Tiếng Việt', en: 'Vietnamese' },
+    { code: 'cy', native: 'Cymraeg', en: 'Welsh' },
+    { code: 'yo', native: 'Yorùbá', en: 'Yoruba' },
+    { code: 'zu', native: 'isiZulu', en: 'Zulu' }
+];
+
 
 /* الاسم ديال كل لغة بلغتها هي (ما كيتترجمش) */
 const LANG_NATIVE_NAMES = {
-    ar: 'العربية',
+    ar: 'المغربية',
+    ar_fus: 'العربية',
     en: 'English',
     fr: 'Français',
     es: 'Español',
@@ -123,7 +213,125 @@ const translations = {
         story_kicker_friend: 'أ صاحبتي',
         moments_empty: 'قريبا... أول لحظة ديال Robaty 🌙',
         challenge_label: 'تحدي اليوم 👑',
-        moments_tab: 'اللحظات'
+        moments_tab: 'اللحظات',
+
+        /* اللغات (قائمة جميع اللغات) */
+        all_languages_btn: 'جميع اللغات',
+        all_languages_title: 'اختاري لغتك',
+        search_language_placeholder: 'قلبي على لغة...',
+        no_language_found: 'ما لقيت حتى لغة'
+    },
+
+    /* العربية الفصحى — نفس المفاتيح ديال القاموس المغربي (ar) بالضبط */
+    ar_fus: {
+        page_title: 'Robaty - Moroccan Luxury UI',
+        back_button_aria: 'رجوع',
+        reset_memory_aria: 'مسح الذاكرة (مؤقت، للاختبار)',
+        settings_aria: 'الإعدادات',
+        tagline: '🇲🇦 مغربية وأفتخر',
+        view_moments_btn: 'شاهدي صوري لهذا اليوم',
+        selected_image_alt: 'الصورة المختارة',
+        remove_image_aria: 'حذف الصورة',
+        message_placeholder: 'اكتبي رسالتك إلى Robaty هنا...',
+        send_btn: 'إرسال',
+        record_btn: 'تسجيل صوتي',
+        recording_label: 'جارٍ التسجيل...',
+        send_image_btn: 'إرسال الصور',
+        settings_title: '⚙️ الإعدادات',
+        language_section_title: '🌐 اللغة',
+        api_key_title: '🔑 مفتاح API',
+        api_key_desc: 'لكي تعمل Robaty، عليكِ إدخال مفتاح API الخاص بكِ.',
+        api_key_placeholder: 'الصقي المفتاح هنا...',
+        save_btn: 'حفظ',
+
+        /* رسائل ديناميكية (app.js) */
+        greeting_morning: "صباح الخير والنور! 🤍 كيف حالكِ اليوم؟ أنا هنا لأستمع إليكِ وأرافقكِ طوال يومكِ.",
+        greeting_noon: "طاب يومكِ! 🤍 كيف مرّ نهاركِ حتى الآن؟ أنا هنا لأستمع إليكِ.",
+        greeting_evening: "مساء النور! 🤍 كيف كان يومكِ؟ أنا هنا لأستمع إليكِ وأرافقكِ.",
+        greeting_night: "مساء الخير 🤍 هل ما زلتِ مستيقظة؟ أنا هنا معكِ إن أردتِ أن تتحدثي عن أي شيء.",
+        err_overload: "لديها ضغط كبير الآن، أعيدي المحاولة بعد قليل 🙏",
+        err_quota: "لقد بلغتِ الحد اليومي المجاني للمفتاح.",
+        err_request: "خطأ في الطلب",
+        err_unknown: "مشكلة غير معروفة، حاولي مرة أخرى.",
+        err_mic: "لم أستطع الوصول إلى الميكروفون. تأكدي من صلاحية الميكروفون في إعدادات المتصفح ثم أعيدي المحاولة.",
+        reply_fallback: "عذراً، لم أفهم جيداً.. أعيدي قولها لي بطريقة أخرى 🤍",
+        confirm_reset: "هل أنتِ متأكدة؟ ستُمسح المحادثة والحقائق المحفوظة عنكِ والذاكرة السردية، ولا يمكن التراجع عن ذلك.",
+        sent_image_alt: "الصورة المرسلة",
+
+        /* نصوص إضافية: Moments / الإعدادات / التثبيت / المشاركة */
+        caption_more: "... المزيد",
+        download_now_btn: "📲 حمّلي التطبيق الآن",
+        color_mood_title: "🎨 أجواء الألوان",
+        color_default_label: "🟤 بني/ذهبي",
+        color_vivid_label: "🔵 أزرق/بنفسجي",
+        color_emerald_label: "🟢 أخضر ملكي",
+        color_cream_label: "🤍 كريمي فاتح",
+        color_sky_label: "🩵 أزرق سماوي",
+        color_blush_label: "💖 وردي أثيري",
+        splash_tagline: "سفيرة التراث المغربي",
+        install_title: "📲 تثبيت التطبيق",
+        install_step1: "اضغطي على <b style=\"color:#e5b35c;\">⋮</b> (النقاط الثلاث) أعلى شريط Chrome",
+        install_step2: "اختاري <b style=\"color:#e5b35c;\">\"Install app\"</b> أو <b style=\"color:#e5b35c;\">\"Add to Home screen\"</b>",
+        install_step3: "أكّدي التثبيت",
+        share_intro: "مرحباً بكِ عند روباتي، شاهدي صوري لهذا اليوم",
+        share_intro_repost: "شاهدوا هذه اللحظة من Robaty 👇",
+        share_whatsapp: "واتساب",
+        share_copy_link: "نسخ الرابط",
+        share_copied: "تم النسخ ✓",
+        coming_soon: "قريباً... 🚧",
+
+        /* التعليقات (comments.js) */
+        comments_title: "💬 التعليقات",
+        comments_loading: "جارٍ تحميل التعليقات...",
+        comments_anonymous: "مستخدمة",
+        comments_signout: "خروج",
+        comments_placeholder: "اكتبي تعليقاً...",
+        comments_signin: "سجّلي الدخول عبر Google لتكتبي تعليقاً",
+        comments_empty: "لا توجد تعليقات بعد — كوني الأولى ✨",
+        comments_load_error: "تعذّر تحميل التعليقات",
+        comments_banned: "التعليق يحتوي على كلمة ممنوعة، من فضلك عدّليه",
+        comments_too_long: "التعليق طويل جداً (الحد الأقصى 500 حرف)",
+        comments_send_error: "تعذّر إرسال التعليق",
+        comments_no_phone: "يُمنع وضع أرقام الهواتف في التعليقات.",
+        comments_no_links: "يُمنع وضع الروابط في التعليقات.",
+        comments_no_handles: "يُمنع وضع حسابات التواصل في التعليقات.",
+
+        /* Moments */
+        back_to_chat_aria: 'العودة إلى المحادثة',
+        ad_tag: 'إعلان',
+        more_aria: 'المزيد',
+        like_aria: 'إعجاب',
+        comment_aria: 'تعليق',
+        repost_aria: 'إعادة نشر',
+        share_aria: 'مشاركة',
+        save_post_aria: 'حفظ',
+
+        /* Story */
+        open_story_aria: 'فتح Story الخاصة بـ Robaty',
+        close_story_aria: 'إغلاق',
+        prev_story_aria: 'القصة السابقة',
+        next_story_aria: 'القصة التالية',
+
+        /* Profile */
+        back_aria: 'رجوع',
+        profile_tagline: '🇲🇦 أول رفيقة ذكاء اصطناعي مغربية',
+        chat_with_me_btn: 'تحدّثي معي',
+        follow_btn: 'متابعة',
+        stat_moments: 'لحظة',
+        stat_followers: 'متابع',
+        stat_engagement: 'تفاعل',
+        profile_bio: '✨ تجمع بين أصالة التراث المغربي وتكنولوجيا المستقبل.<br>☕ محبّة للثقافة والموضة والدردشة الدافئة.<br>📍 مراكش / المغرب 🇲🇦',
+        story_kicker: 'أصغي إليّ\nجيداً',
+        story_kicker_friend: 'يا صديقتي',
+        moments_empty: 'قريباً... أول لحظة من Robaty 🌙',
+        challenge_label: 'تحدي اليوم 👑',
+        moments_tab: 'اللحظات',
+
+        /* اللغات (قائمة جميع اللغات) */
+        all_languages_btn: 'جميع اللغات',
+        all_languages_title: 'اختاري لغتك',
+        search_language_placeholder: 'ابحثي عن لغة...',
+        no_language_found: 'لم أجد أي لغة'
     },
 
     en: {
@@ -228,7 +436,13 @@ const translations = {
         story_kicker_friend: 'my friend',
         moments_empty: 'Coming soon… Robaty\u2019s first moment 🌙',
         challenge_label: 'Today\u2019s challenge 👑',
-        moments_tab: 'Moments'
+        moments_tab: 'Moments',
+
+        /* اللغات (قائمة جميع اللغات) */
+        all_languages_btn: 'All languages',
+        all_languages_title: 'Choose your language',
+        search_language_placeholder: 'Search a language...',
+        no_language_found: 'No language found'
     },
 
     fr: {
@@ -333,7 +547,13 @@ const translations = {
         story_kicker_friend: 'mon amie',
         moments_empty: 'Bientôt… le premier moment de Robaty 🌙',
         challenge_label: 'Défi du jour 👑',
-        moments_tab: 'Moments'
+        moments_tab: 'Moments',
+
+        /* اللغات (قائمة جميع اللغات) */
+        all_languages_btn: 'Toutes les langues',
+        all_languages_title: 'Choisis ta langue',
+        search_language_placeholder: 'Rechercher une langue...',
+        no_language_found: 'Aucune langue trouvée'
     },
 
     es: {
@@ -438,7 +658,13 @@ const translations = {
         story_kicker_friend: 'amiga mía',
         moments_empty: 'Pronto… el primer momento de Robaty 🌙',
         challenge_label: 'Reto del día 👑',
-        moments_tab: 'Momentos'
+        moments_tab: 'Momentos',
+
+        /* اللغات (قائمة جميع اللغات) */
+        all_languages_btn: 'Todos los idiomas',
+        all_languages_title: 'Elige tu idioma',
+        search_language_placeholder: 'Buscar un idioma...',
+        no_language_found: 'No se encontró ningún idioma'
     },
 
     ru: {
@@ -543,7 +769,13 @@ const translations = {
         story_kicker_friend: 'подруга',
         moments_empty: 'Скоро… первый момент Robaty 🌙',
         challenge_label: 'Вызов дня 👑',
-        moments_tab: 'Моменты'
+        moments_tab: 'Моменты',
+
+        /* اللغات (قائمة جميع اللغات) */
+        all_languages_btn: 'Все языки',
+        all_languages_title: 'Выбери свой язык',
+        search_language_placeholder: 'Найти язык...',
+        no_language_found: 'Язык не найден'
     }
 
 };
@@ -600,11 +832,89 @@ function applyDirection(lang) {
 }
 
 
+/* ===== نسخة العربية (مغربية / فصحى) ===== */
+
+function readArabicVariant() {
+    try {
+        const v = localStorage.getItem(ARABIC_VARIANT_STORAGE);
+        return (v === 'ma' || v === 'fus') ? v : null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function saveArabicVariant(variant) {
+    try {
+        localStorage.setItem(ARABIC_VARIANT_STORAGE, variant);
+    } catch (error) {}
+}
+
+/* المحفوظة، وإلا من لغة الجهاز: ar-MA (أو ar بوحدها) ← مغربية، أي منطقة عربية أخرى ← فصحى */
+function getArabicVariant() {
+
+    const saved = readArabicVariant();
+    if (saved) return saved;
+
+    const browserLangs = navigator.languages || [navigator.language || ''];
+
+    for (const raw of browserLangs) {
+        const parts = String(raw).split('-');
+        if (parts[0].toLowerCase() === 'ar') {
+            const region = (parts[1] || '').toUpperCase();
+            return (region && region !== 'MA') ? 'fus' : 'ma';
+        }
+    }
+
+    return 'ma';
+}
+
+/* المستخدمات القدام اللي عندهم لغة محفوظة بلا نسخة: كيبقاو على المغربية (اللي كانو كيشوفو) */
+if (getSavedLang() && !readArabicVariant()) saveArabicVariant('ma');
+
+
+/* ===== لغة جواب الذكاء الاصطناعي (من "جميع اللغات") ===== */
+
+function getReplyLanguage() {
+    try {
+        const raw = localStorage.getItem(REPLY_LANG_STORAGE);
+        if (!raw) return null;
+        const obj = JSON.parse(raw);
+        return (obj && obj.code && obj.name) ? obj : null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function saveReplyLanguage(obj) {
+    try {
+        if (obj) localStorage.setItem(REPLY_LANG_STORAGE, JSON.stringify(obj));
+        else localStorage.removeItem(REPLY_LANG_STORAGE);
+    } catch (error) {}
+}
+
+
+/* ===== القاموس الحالي ===== */
+
+function getDictionary(lang) {
+    if (lang === 'ar' && getArabicVariant() === 'fus') {
+        return Object.assign({}, translations.ar, translations.ar_fus);
+    }
+    return translations[lang] || translations.ar;
+}
+
+function translate(key) {
+    const dict = getDictionary(getCurrentLang());
+    if (dict[key] !== undefined) return dict[key];
+    if (translations.ar[key] !== undefined) return translations.ar[key];
+    return key;
+}
+
+
 /* تطبيق النصوص المترجمة على كل عنصر فيه data-i18n-* */
 
 function applyTranslations(lang) {
 
-    const dict = translations[lang] || translations.ar;
+    const dict = getDictionary(lang);
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -641,7 +951,18 @@ function applyTranslations(lang) {
 }
 
 
-/* رسم أزرار اختيار اللغة جوا الإعدادات (إلا كان الحاوية موجودة فالصفحة) */
+/* أزرار اللغات: ru / en / fr / es / المغربية / العربية + "جميع اللغات" */
+
+const LANG_BUTTONS = [
+    { lang: 'ru', label: LANG_NATIVE_NAMES.ru },
+    { lang: 'en', label: LANG_NATIVE_NAMES.en },
+    { lang: 'fr', label: LANG_NATIVE_NAMES.fr },
+    { lang: 'es', label: LANG_NATIVE_NAMES.es },
+    { lang: 'ar', variant: 'ma', label: LANG_NATIVE_NAMES.ar },
+    { lang: 'ar', variant: 'fus', label: LANG_NATIVE_NAMES.ar_fus }
+];
+
+/* رسم أزرار اختيار اللغة (إلا كانت الحاوية #languageOptions موجودة فالصفحة) */
 
 function renderLanguageOptions(activeLang) {
 
@@ -650,49 +971,87 @@ function renderLanguageOptions(activeLang) {
 
     container.innerHTML = '';
 
-    SUPPORTED_LANGS.forEach(code => {
+    const reply = getReplyLanguage();
+    const variant = getArabicVariant();
+
+    LANG_BUTTONS.forEach(item => {
 
         const btn = document.createElement('button');
+        const isActive = !reply && item.lang === activeLang &&
+            (!item.variant || item.variant === variant);
 
         btn.type = 'button';
-        btn.className = 'lang-option' + (code === activeLang ? ' active' : '');
-        btn.textContent = LANG_NATIVE_NAMES[code];
-        btn.setAttribute('data-lang', code);
+        btn.className = 'lang-option' + (isActive ? ' active' : '');
+        btn.textContent = item.label;
+        btn.setAttribute('data-lang', item.lang);
+        if (item.variant) btn.setAttribute('data-variant', item.variant);
 
-        btn.addEventListener('click', () => setLanguage(code));
+        btn.addEventListener('click', () => setLanguage(item.lang, { variant: item.variant }));
 
         container.appendChild(btn);
 
     });
 
+    const allBtn = document.createElement('button');
+
+    allBtn.type = 'button';
+    allBtn.className = 'lang-option lang-option-all' + (reply ? ' active' : '');
+    allBtn.setAttribute('data-all-langs', '1');
+    allBtn.textContent = '🌍 ' + translate('all_languages_btn') + (reply ? ' · ' + reply.native : '');
+
+    /* القائمة كتتعرّف فصفحة الإعدادات (settings.js) */
+    allBtn.addEventListener('click', () => {
+        if (window.RobatyLangPicker) window.RobatyLangPicker.open();
+    });
+
+    container.appendChild(allBtn);
+
 }
 
 
-/* تبديل اللغة: حفظ + تطبيق اتجاه + تطبيق ترجمات + تحديث الأزرار */
+/* تبديل اللغة: حفظ + اتجاه + ترجمات + أزرار.
+   options.variant: 'ma' | 'fus' (للعربية فقط)
+   options.keepReply: ما نمسحوش لغة جواب الذكاء الاصطناعي (كتستعمل غير من setReplyLanguage) */
 
-function setLanguage(lang) {
+function setLanguage(lang, options) {
+
+    const opts = options || {};
 
     if (!SUPPORTED_LANGS.includes(lang)) return;
 
     saveLang(lang);
+    if (lang === 'ar' && opts.variant) saveArabicVariant(opts.variant);
+    if (!opts.keepReply) saveReplyLanguage(null);
+
     applyDirection(lang);
     applyTranslations(lang);
     renderLanguageOptions(lang);
 
 }
 
+/* لغة من "جميع اللغات": الواجهة بالإنجليزية، و Robaty كتجاوب بهاد اللغة */
 
-/* API بسيط لباقي الملفات (app.js، story.js) */
+function setReplyLanguage(code) {
+
+    const item = ALL_LANGUAGES.find(l => l.code === code);
+    if (!item) return;
+
+    saveReplyLanguage({ code: item.code, name: item.en, native: item.native });
+    setLanguage('en', { keepReply: true });
+
+}
+
+
+/* API بسيط لباقي الملفات (app.js، story.js، settings.js) */
 
 window.RobatyI18n = {
-    t: function (key) {
-        const lang = getCurrentLang();
-        const dict = translations[lang] || translations.ar;
-        if (dict[key] !== undefined) return dict[key];
-        if (translations.ar[key] !== undefined) return translations.ar[key];
-        return key;
-    },
-    getCurrentLang: getCurrentLang
+    t: translate,
+    getCurrentLang: getCurrentLang,
+    getArabicVariant: getArabicVariant,
+    getReplyLanguage: getReplyLanguage,
+    getAllLanguages: function () { return ALL_LANGUAGES.slice(); },
+    setLanguage: setLanguage,
+    setReplyLanguage: setReplyLanguage
 };
 
 
@@ -706,6 +1065,9 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTranslations(lang);
     renderLanguageOptions(lang);
 
-    if (!getSavedLang()) saveLang(lang);
+    if (!getSavedLang()) {
+        saveLang(lang);
+        saveArabicVariant(getArabicVariant());
+    }
 
 });

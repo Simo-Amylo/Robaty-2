@@ -49,6 +49,77 @@
         }
     });
 
+    /* ---- قائمة "جميع اللغات" ---- */
+    (function () {
+        var i18n = window.RobatyI18n;
+        if (!i18n) return;
+
+        var overlay = document.createElement('div');
+        overlay.className = 'api-key-modal-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML =
+            '<div class="api-key-modal-box s-picker-box">' +
+                '<h2 id="pickerTitle"></h2>' +
+                '<input type="search" class="gold-input s-picker-search" id="pickerSearch" autocomplete="off">' +
+                '<div class="s-picker-list" id="pickerList"></div>' +
+            '</div>';
+        document.querySelector('.app-container').appendChild(overlay);
+
+        var title = overlay.querySelector('#pickerTitle');
+        var search = overlay.querySelector('#pickerSearch');
+        var list = overlay.querySelector('#pickerList');
+
+        function render(filter) {
+            var q = (filter || '').trim().toLowerCase();
+            var reply = i18n.getReplyLanguage();
+            var items = i18n.getAllLanguages().filter(function (l) {
+                return !q || l.native.toLowerCase().indexOf(q) > -1 || l.en.toLowerCase().indexOf(q) > -1;
+            });
+
+            list.innerHTML = '';
+
+            if (!items.length) {
+                var empty = document.createElement('p');
+                empty.className = 's-note';
+                empty.textContent = i18n.t('no_language_found');
+                list.appendChild(empty);
+                return;
+            }
+
+            items.forEach(function (l) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'lang-option' + (reply && reply.code === l.code ? ' active' : '');
+                btn.textContent = l.native + (l.native.toLowerCase() === l.en.toLowerCase() ? '' : ' · ' + l.en);
+                btn.addEventListener('click', function () {
+                    i18n.setReplyLanguage(l.code);
+                    close();
+                    toast('✓ ' + l.native);
+                });
+                list.appendChild(btn);
+            });
+        }
+
+        function open() {
+            title.textContent = '🌍 ' + i18n.t('all_languages_title');
+            search.setAttribute('placeholder', i18n.t('search_language_placeholder'));
+            search.value = '';
+            render('');
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
+        }
+
+        function close() {
+            overlay.classList.remove('active');
+            overlay.setAttribute('aria-hidden', 'true');
+        }
+
+        search.addEventListener('input', function () { render(search.value); });
+        overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+        window.RobatyLangPicker = { open: open, close: close };
+    })();
+
     /* ---- مجموعة أزرار اختيار واحد ---- */
     function bindGroup(containerId, attr, getCurrent, onPick) {
         var box = $(containerId);

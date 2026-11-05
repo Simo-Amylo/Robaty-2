@@ -326,3 +326,38 @@ body[data-color-mode="sky"] .s-toast,
 body[data-color-mode="whatsapp"] .s-toast {
     background: rgba(255, 255, 255, 0.97);
 }
+
+/* ---- أزرار اللغات: "جميع اللغات" بعرض كامل ---- */
+.s-card .lang-option-all {
+    flex: 1 1 100%;
+}
+
+/* ---- قائمة جميع اللغات ---- */
+.s-picker-box {
+    max-width: 320px;
+}
+
+.s-picker-search {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.s-picker-list {
+    margin-top: 10px;
+    max-height: 46vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.s-picker-list .lang-option {
+    flex: none;
+    width: 100%;
+    text-align: start;
+}

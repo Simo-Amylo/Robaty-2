@@ -1013,8 +1013,22 @@ async function requestGeminiOnce(userText, imageData, audioData) {
     let fullInstruction = ROBATY_SYSTEM_PROMPT;
 
     const appLangNames = { ar: 'العربية/الدارجة', en: 'الإنجليزية', fr: 'الفرنسية', es: 'الإسبانية', ru: 'الروسية' };
-    const appLang = window.RobatyI18n ? window.RobatyI18n.getCurrentLang() : 'ar';
-    fullInstruction += `\n\n[لغة التطبيق المختارة فالإعدادات]: ${appLangNames[appLang] || 'العربية/الدارجة'}. اعتبري هاد اللغة هي الافتراضية إلا ماكانش فالرسالة الأخيرة ديال المستخدمة سياق واضح يدل على لغة أخرى.`;
+    const i18n = window.RobatyI18n;
+    const appLang = i18n ? i18n.getCurrentLang() : 'ar';
+    const replyLang = (i18n && i18n.getReplyLanguage) ? i18n.getReplyLanguage() : null;
+    let appLangName = appLangNames[appLang] || 'العربية/الدارجة';
+
+    if (appLang === 'ar' && i18n && i18n.getArabicVariant && i18n.getArabicVariant() === 'fus') {
+        // اختارت "العربية": فصحى بسيطة ومفهومة عند كل الناطقين بالعربية، ماشي الدارجة المغربية
+        appLangName = 'العربية الفصحى البسيطة والواضحة (مفهومة عند كل الناطقين بالعربية، ماشي الدارجة المغربية)';
+    }
+
+    if (replyLang) {
+        // اختارت لغة من "جميع اللغات": جاوبي بيها بدقة (الواجهة بالإنجليزية فقط)
+        appLangName = `${replyLang.name} (${replyLang.native})`;
+    }
+
+    fullInstruction += `\n\n[لغة التطبيق المختارة فالإعدادات]: ${appLangName}. اعتبري هاد اللغة هي الافتراضية إلا ماكانش فالرسالة الأخيرة ديال المستخدمة سياق واضح يدل على لغة أخرى.`;
 
     fullInstruction += `\n\n[سياق زمني]: الساعة الحالية عند المستخدمة: ${timeCtx.timeStr}، فترة اليوم: ${timeCtx.periode}، التاريخ: ${timeCtx.dateStr}، المنطقة الزمنية: ${timeCtx.tz}. إذا سألتك المستخدمة عن الوقت أو التاريخ مباشرة، جاوبيها بدقة من هاد المعلومة. خلاف ذلك، استعمليها لضبط نبرة ردك بشكل طبيعي (مثلاً تحية "صباح الخير" فالصباح)، بلا ما تذكريها صراحة. ممنوع تقولي أو تلمّحي لوقت يخالف هاد الفترة (مثلاً ما تقوليش "الليل" أو "السهر" فالنهار)، وما تعتمديش على الحوار القديم لتحديد الوقت الحالي.`;
 
