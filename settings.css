@@ -32,23 +32,23 @@ body.settings-page .app-container {
     z-index: 2;
 }
 
-/* زر المشاركة */
+/* زر المشاركة (صغير، فالهيدر) */
 .s-share {
+    margin-inline-start: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 13px 16px;
+    gap: 7px;
+    padding: 8px 12px;
     border-radius: 999px;
     border: 1px solid var(--gold-bright);
     background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-dark) 100%);
     color: #050302;
     font-family: inherit;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
+    white-space: nowrap;
     cursor: pointer;
-    box-shadow: 0 0 16px var(--gold-box-glow);
+    box-shadow: 0 0 10px var(--gold-box-glow);
 }
 
 /* البطاقات */
@@ -81,10 +81,6 @@ body.settings-page .app-container {
 .s-card .lang-option,
 .s-card .color-option {
     flex: 1 1 calc(33% - 8px);
-}
-
-.s-card .color-options.two-cols .color-option {
-    flex: 1 1 calc(50% - 8px);
 }
 
 .s-note {
@@ -273,3 +269,60 @@ html[data-font-size="large"] #fontPreview { font-size: 17px; }
 }
 
 .s-toast.show { opacity: 1; }
+
+/* ---- الثيمات الفاتحة: بطاقات وأقسام فاتحة بدل الشفافية السوداء ---- */
+body[data-color-mode="cream"] .s-card,
+body[data-color-mode="blush"] .s-card,
+body[data-color-mode="sky"] .s-card,
+body[data-color-mode="whatsapp"] .s-card {
+    background: rgba(255, 255, 255, 0.55);
+}
+
+body[data-color-mode="cream"] .s-acc,
+body[data-color-mode="blush"] .s-acc,
+body[data-color-mode="sky"] .s-acc,
+body[data-color-mode="whatsapp"] .s-acc {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+body[data-color-mode="cream"] .s-toggle,
+body[data-color-mode="blush"] .s-toggle,
+body[data-color-mode="sky"] .s-toggle,
+body[data-color-mode="whatsapp"] .s-toggle {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+body[data-color-mode="cream"] .s-toggle[aria-checked="true"],
+body[data-color-mode="blush"] .s-toggle[aria-checked="true"],
+body[data-color-mode="sky"] .s-toggle[aria-checked="true"],
+body[data-color-mode="whatsapp"] .s-toggle[aria-checked="true"] {
+    background: var(--gold-bright);
+}
+
+body[data-color-mode="cream"] .s-toggle::after,
+body[data-color-mode="blush"] .s-toggle::after,
+body[data-color-mode="sky"] .s-toggle::after,
+body[data-color-mode="whatsapp"] .s-toggle::after {
+    background: var(--gold-dark);
+}
+
+body[data-color-mode="cream"] .s-toggle[aria-checked="true"]::after,
+body[data-color-mode="blush"] .s-toggle[aria-checked="true"]::after,
+body[data-color-mode="sky"] .s-toggle[aria-checked="true"]::after,
+body[data-color-mode="whatsapp"] .s-toggle[aria-checked="true"]::after {
+    background: #fff;
+}
+
+body[data-color-mode="cream"] .s-danger,
+body[data-color-mode="blush"] .s-danger,
+body[data-color-mode="sky"] .s-danger,
+body[data-color-mode="whatsapp"] .s-danger {
+    color: #c0392b;
+}
+
+body[data-color-mode="cream"] .s-toast,
+body[data-color-mode="blush"] .s-toast,
+body[data-color-mode="sky"] .s-toast,
+body[data-color-mode="whatsapp"] .s-toast {
+    background: rgba(255, 255, 255, 0.97);
+}

@@ -70,7 +70,6 @@
     }
 
     bindGroup('colorModeOptions', 'color-value', prefs.getColor, function (v) { prefs.setColor(v); });
-    bindGroup('chatLookOptions', 'look', prefs.getLook, function (v) { prefs.setLook(v); });
     bindGroup('fontSizeOptions', 'font', prefs.getFont, function (v) { prefs.setFont(v); });
 
     /* ---- الاهتزاز (مخفي فالأجهزة اللي ما كتدعمهوش، بحال iPhone) ---- */

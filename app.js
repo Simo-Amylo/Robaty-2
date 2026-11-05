@@ -135,7 +135,7 @@ function getKey() {
    ========================================================================== */
 
 const COLOR_MODE_STORAGE = 'robaty_color_mode';
-const VALID_COLOR_MODES = ['default', 'vivid', 'emerald', 'cream', 'sky', 'blush'];
+const VALID_COLOR_MODES = ['default', 'vivid', 'emerald', 'cream', 'sky', 'blush', 'black', 'whatsapp'];
 
 function getColorMode() {
     const saved = localStorage.getItem(COLOR_MODE_STORAGE);
