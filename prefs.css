@@ -250,3 +250,150 @@ body[data-color-mode="whatsapp"] .bubble-gold-border {
 
 body[data-color-mode="whatsapp"] .bot-label { color: #1f7a5c; }
 body[data-color-mode="whatsapp"] .msg-time { color: #667781; }
+
+/* ==========================================================================
+   أبيض/كريمي (واتساب) — لمسة خضراء: إطار الصورة + الأزرار + خانة الكتابة،
+   وخلفية الأزرار السفلية امتداد للون شاشة المحادثة.
+   ========================================================================== */
+body[data-color-mode="whatsapp"] {
+    --wa-green: #4fbf7a;        /* حدود الأزرار */
+    --wa-green-deep: #1f7a5c;   /* أيقونات ونصوص الأزرار */
+    --wa-green-soft: #d9fdd3;   /* لون فقاعات المستخدمة */
+    --wa-chat-bg: #efeae2;      /* لون شاشة المحادثة */
+}
+
+body[data-color-mode="whatsapp"],
+body[data-color-mode="whatsapp"][data-time-theme="day"],
+body[data-color-mode="whatsapp"][data-time-theme="night"] {
+    --accent-glow: rgba(79, 191, 122, 0.12);
+}
+
+/* إطار صورة Robaty: أخضر فقاعات المستخدمات */
+body[data-color-mode="whatsapp"] .glowing-ring {
+    --ring-gradient: linear-gradient(135deg, #e6fee2 0%, #d9fdd3 40%, #b4eaa9 100%);
+    box-shadow:
+        0 0 26px rgba(79, 191, 122, 0.34),
+        0 0 18px var(--accent-glow);
+}
+
+/* الأزرار الأربعة فوق + زر الإعدادات/المفتاح */
+body[data-color-mode="whatsapp"] .ornate-btn {
+    background: #ffffff;
+    border-color: var(--wa-green);
+    color: var(--wa-green-deep);
+    box-shadow: 0 2px 6px rgba(79, 191, 122, 0.22);
+}
+
+body[data-color-mode="whatsapp"] .ornate-btn-danger {
+    border-color: var(--wa-green);
+    color: #d84a4a;
+    box-shadow: 0 2px 6px rgba(79, 191, 122, 0.22);
+}
+
+/* "شوفي تصاوري ليوم" + الأزرار الثلاثة تحت */
+body[data-color-mode="whatsapp"] .gold-pill-btn,
+body[data-color-mode="whatsapp"] .ornate-action-btn {
+    background: #ffffff;
+    border-color: var(--wa-green);
+    color: var(--wa-green-deep);
+}
+
+body[data-color-mode="whatsapp"] .gold-pill-btn:hover {
+    background: #f0fbee;
+}
+
+body[data-color-mode="whatsapp"] .send-highlight,
+body[data-color-mode="whatsapp"] .send-highlight span,
+body[data-color-mode="whatsapp"] .send-highlight i {
+    color: #8fa89b;
+}
+
+body[data-color-mode="whatsapp"] .send-highlight.active,
+body[data-color-mode="whatsapp"] .send-highlight.active span,
+body[data-color-mode="whatsapp"] .send-highlight.active i {
+    background: var(--wa-green);
+    border-color: var(--wa-green);
+    color: #ffffff;
+}
+
+body[data-color-mode="whatsapp"] .send-highlight.active span,
+body[data-color-mode="whatsapp"] .send-highlight.active i {
+    background: transparent;
+}
+
+/* خانة كتابة الرسالة */
+body[data-color-mode="whatsapp"] .gold-input {
+    background: #ffffff;
+    border-color: var(--wa-green);
+    color: #111b21;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.03),
+        0 0 8px rgba(79, 191, 122, 0.18);
+}
+
+body[data-color-mode="whatsapp"] .gold-input::placeholder {
+    color: #8fa89b;
+}
+
+/* خلفية الأزرار السفلية: امتداد للون الشاشة */
+body[data-color-mode="whatsapp"] .bottom-controls {
+    background: var(--wa-chat-bg);
+}
+
+/* تأثير الضغط */
+body[data-color-mode="whatsapp"] .ornate-btn:active,
+body[data-color-mode="whatsapp"] .ornate-action-btn:active,
+body[data-color-mode="whatsapp"] .gold-pill-btn:active {
+    background-image: linear-gradient(rgba(79, 191, 122, 0.14), rgba(79, 191, 122, 0.14)) !important;
+}
+
+body[data-color-mode="whatsapp"] .button-pressed {
+    box-shadow:
+        0 0 14px rgba(79, 191, 122, 0.45),
+        inset 0 0 8px rgba(79, 191, 122, 0.12);
+}
+
+/* زر "شوفي تصاوري ليوم": نبضتان خضراوان بدل الذهبي */
+@keyframes waMomentsPulse {
+    0%, 18.75%, 37.5%, 100% {
+        box-shadow: 0 3px 8px rgba(79, 191, 122, 0.25);
+        border-color: #4fbf7a;
+    }
+    9.375%, 28.125% {
+        box-shadow:
+            0 0 0 3px rgba(79, 191, 122, 0.40),
+            0 0 20px 6px rgba(79, 191, 122, 0.40);
+        border-color: #4fbf7a;
+    }
+}
+
+body[data-color-mode="whatsapp"] .gold-pill-btn.pulse {
+    animation: waMomentsPulse 9.6s ease-in-out infinite;
+}
+
+body[data-color-mode="whatsapp"] .gold-pill-btn.pulse:hover {
+    animation-play-state: paused;
+}
+
+/* موجة نبض حول الصورة: خضراء */
+@keyframes waProfileHint {
+    0%   { transform: scale(1.02); opacity: 0; }
+    10%  { opacity: 1; }
+    45%  { transform: scale(1.12); opacity: 0; }
+    100% { transform: scale(1.12); opacity: 0; }
+}
+
+body[data-color-mode="whatsapp"] .avatar-container.hint-pulse::after {
+    border: 3px solid #4fbf7a;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        0 0 20px 5px rgba(79, 191, 122, 0.45);
+    animation: waProfileHint 5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-color-mode="whatsapp"] .gold-pill-btn.pulse,
+    body[data-color-mode="whatsapp"] .avatar-container.hint-pulse::after {
+        animation: none;
+    }
+}
