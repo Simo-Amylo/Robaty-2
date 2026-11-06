@@ -65,7 +65,7 @@
         if (!i18n) return;
 
         var overlay = document.createElement('div');
-        overlay.className = 'api-key-modal-overlay';
+        overlay.className = 'api-key-modal-overlay s-picker-overlay';
         overlay.setAttribute('aria-hidden', 'true');
         overlay.innerHTML =
             '<div class="api-key-modal-box s-picker-box">' +
@@ -83,7 +83,8 @@
             var q = (filter || '').trim().toLowerCase();
             var reply = i18n.getReplyLanguage();
             var items = i18n.getAllLanguages().filter(function (l) {
-                return !q || l.native.toLowerCase().indexOf(q) > -1 || l.en.toLowerCase().indexOf(q) > -1;
+                return !q || l.native.toLowerCase().indexOf(q) > -1 || l.en.toLowerCase().indexOf(q) > -1 ||
+                    (l.label || '').toLowerCase().indexOf(q) > -1;
             });
 
             list.innerHTML = '';
@@ -100,7 +101,8 @@
                 var btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'lang-option' + (reply && reply.code === l.code ? ' active' : '');
-                btn.textContent = (l.flag ? l.flag + '  ' : '') + l.native + (l.native.toLowerCase() === l.en.toLowerCase() ? '' : ' · ' + l.en);
+                var second = l.label || l.en;
+                btn.textContent = (l.flag ? l.flag + '  ' : '') + l.native + (l.native.toLowerCase() === second.toLowerCase() ? '' : ' · ' + second);
                 btn.addEventListener('click', function () {
                     i18n.setReplyLanguage(l.code);
                     close();

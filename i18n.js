@@ -27,6 +27,9 @@ const TRANSLATION_KEY_STORAGE = 'robaty_gemini_key';
 const TRANSLATION_MODEL = 'gemini-3.1-flash-lite';
 
 /* قائمة "جميع اللغات" (اسم اللغة بحروفها + بالإنجليزية للبحث) */
+/* الأمازيغية: دايما أول عنصر فالقائمة. label = الاسم اللي كيبان فالقائمة، و en = اسم اللغة اللي كيمشي للذكاء الاصطناعي */
+const AMAZIGH_LANGUAGE = { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh, Tifinagh script)', label: 'الأمازيغية', flag: '🇲🇦' };
+
 /* اللهجات العربية: الواجهة كتبقى بالفصحى، و Robaty كتجاوب بلهجة البلد من أول رد.
    الحقل ai هو التعليمة اللي كتمشي للذكاء الاصطناعي (app.js). */
 const ARABIC_DIALECTS = [
@@ -49,7 +52,13 @@ const ARABIC_DIALECTS = [
     { code: 'ar-LB', native: 'اللهجة اللبنانية', en: 'Lebanese Arabic', flag: '🇱🇧', dialect: true,
       ai: 'اللهجة اللبنانية (Lebanese Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
     { code: 'ar-JO', native: 'اللهجة الأردنية', en: 'Jordanian Arabic', flag: '🇯🇴', dialect: true,
-      ai: 'اللهجة الأردنية (Jordanian Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' }
+      ai: 'اللهجة الأردنية (Jordanian Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-SD', native: 'اللهجة السودانية', en: 'Sudanese Arabic', flag: '🇸🇩', dialect: true,
+      ai: 'اللهجة السودانية (Sudanese Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-YE', native: 'اللهجة اليمنية', en: 'Yemeni Arabic', flag: '🇾🇪', dialect: true,
+      ai: 'اللهجة اليمنية (Yemeni Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-PS', native: 'اللهجة الفلسطينية', en: 'Palestinian Arabic', flag: '🇵🇸', dialect: true,
+      ai: 'اللهجة الفلسطينية الشامية (Palestinian/Levantine Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' }
 ];
 
 const ALL_LANGUAGES = [
@@ -116,7 +125,6 @@ const ALL_LANGUAGES = [
     { code: 'so', native: 'Soomaali', en: 'Somali', flag: '🇸🇴' },
     { code: 'sw', native: 'Kiswahili', en: 'Swahili', flag: '🇰🇪' },
     { code: 'sv', native: 'Svenska', en: 'Swedish', flag: '🇸🇪' },
-    { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh)', flag: '🇲🇦' },
     { code: 'ta', native: 'தமிழ்', en: 'Tamil', flag: '🇮🇳' },
     { code: 'te', native: 'తెలుగు', en: 'Telugu', flag: '🇮🇳' },
     { code: 'th', native: 'ไทย', en: 'Thai', flag: '🇹🇭' },
@@ -130,8 +138,8 @@ const ALL_LANGUAGES = [
     { code: 'zu', native: 'isiZulu', en: 'Zulu', flag: '🇿🇦' }
 ];
 
-/* القائمة الكاملة كما كتبان للمستخدمة: اللهجات العربية أولاً، ثم باقي اللغات */
-const LANGUAGE_LIST = ARABIC_DIALECTS.concat(ALL_LANGUAGES);
+/* القائمة الكاملة كما كتبان للمستخدمة: الأمازيغية، ثم اللهجات العربية، ثم باقي اللغات */
+const LANGUAGE_LIST = [AMAZIGH_LANGUAGE].concat(ARABIC_DIALECTS, ALL_LANGUAGES);
 
 
 /* الاسم ديال كل لغة بلغتها هي (ما كيتترجمش) */
@@ -1552,6 +1560,7 @@ function setReplyLanguage(code) {
         code: item.code,
         name: item.en,
         native: item.native,
+        label: item.label || '',
         flag: item.flag || '',
         rtl: !!item.rtl,
         dialect: !!item.dialect,

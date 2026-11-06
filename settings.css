@@ -333,8 +333,17 @@ body[data-color-mode="whatsapp"] .s-toast {
 }
 
 /* ---- قائمة جميع اللغات ---- */
+/* اللوحة كتمتد على الشاشة (بقي غير هامش صغير فوق وتحت) باش تبان لوائح أكثر */
+.s-picker-overlay {
+    padding: 52px 24px;
+}
+
 .s-picker-box {
     max-width: 320px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 .s-picker-search {
@@ -348,7 +357,8 @@ body[data-color-mode="whatsapp"] .s-toast {
 
 .s-picker-list {
     margin-top: 10px;
-    max-height: 46vh;
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     display: flex;
