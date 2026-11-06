@@ -1025,7 +1025,7 @@ async function requestGeminiOnce(userText, imageData, audioData) {
 
     if (replyLang) {
         // اختارت لغة من "جميع اللغات": جاوبي بيها بدقة (الواجهة بالإنجليزية فقط)
-        appLangName = `${replyLang.name} (${replyLang.native})`;
+        appLangName = replyLang.ai || `${replyLang.name} (${replyLang.native})`;
     }
 
     fullInstruction += `\n\n[لغة التطبيق المختارة فالإعدادات]: ${appLangName}. اعتبري هاد اللغة هي الافتراضية إلا ماكانش فالرسالة الأخيرة ديال المستخدمة سياق واضح يدل على لغة أخرى.`;

@@ -18,84 +18,120 @@ const ARABIC_VARIANT_STORAGE = 'robaty_ar_variant';
    الواجهة كتبقى بالإنجليزية (لأن ما عندناش ترجمة)، و Robaty كتجاوب بهاد اللغة. */
 const REPLY_LANG_STORAGE = 'robaty_reply_lang';
 
+/* كاش ترجمة الواجهة بالذكاء الاصطناعي (لكل لغة) */
+const UI_TRANSLATION_PREFIX = 'robaty_ui_tr_';
+
+/* TODO قبل الإطلاق: مفتاح Gemini المؤقت كيتقرا من نفس المكان ديال app.js (robaty_gemini_key).
+   ملي ننقلو الاتصال للـ Worker، نبدلو غير دالة requestTranslationChunk هنا و fetch فـ app.js. */
+const TRANSLATION_KEY_STORAGE = 'robaty_gemini_key';
+const TRANSLATION_MODEL = 'gemini-3.1-flash-lite';
+
 /* قائمة "جميع اللغات" (اسم اللغة بحروفها + بالإنجليزية للبحث) */
-const ALL_LANGUAGES = [
-    { code: 'af', native: 'Afrikaans', en: 'Afrikaans' },
-    { code: 'sq', native: 'Shqip', en: 'Albanian' },
-    { code: 'am', native: 'አማርኛ', en: 'Amharic' },
-    { code: 'hy', native: 'Հայերեն', en: 'Armenian' },
-    { code: 'az', native: 'Azərbaycanca', en: 'Azerbaijani' },
-    { code: 'eu', native: 'Euskara', en: 'Basque' },
-    { code: 'be', native: 'Беларуская', en: 'Belarusian' },
-    { code: 'bn', native: 'বাংলা', en: 'Bengali' },
-    { code: 'bs', native: 'Bosanski', en: 'Bosnian' },
-    { code: 'bg', native: 'Български', en: 'Bulgarian' },
-    { code: 'my', native: 'မြန်မာ', en: 'Burmese' },
-    { code: 'ca', native: 'Català', en: 'Catalan' },
-    { code: 'zh-CN', native: '中文（简体）', en: 'Chinese (Simplified)' },
-    { code: 'zh-TW', native: '中文（繁體）', en: 'Chinese (Traditional)' },
-    { code: 'hr', native: 'Hrvatski', en: 'Croatian' },
-    { code: 'cs', native: 'Čeština', en: 'Czech' },
-    { code: 'da', native: 'Dansk', en: 'Danish' },
-    { code: 'nl', native: 'Nederlands', en: 'Dutch' },
-    { code: 'et', native: 'Eesti', en: 'Estonian' },
-    { code: 'fil', native: 'Filipino', en: 'Filipino' },
-    { code: 'fi', native: 'Suomi', en: 'Finnish' },
-    { code: 'gl', native: 'Galego', en: 'Galician' },
-    { code: 'ka', native: 'ქართული', en: 'Georgian' },
-    { code: 'de', native: 'Deutsch', en: 'German' },
-    { code: 'el', native: 'Ελληνικά', en: 'Greek' },
-    { code: 'gu', native: 'ગુજરાતી', en: 'Gujarati' },
-    { code: 'ha', native: 'Hausa', en: 'Hausa' },
-    { code: 'he', native: 'עברית', en: 'Hebrew' },
-    { code: 'hi', native: 'हिन्दी', en: 'Hindi' },
-    { code: 'hu', native: 'Magyar', en: 'Hungarian' },
-    { code: 'is', native: 'Íslenska', en: 'Icelandic' },
-    { code: 'id', native: 'Bahasa Indonesia', en: 'Indonesian' },
-    { code: 'it', native: 'Italiano', en: 'Italian' },
-    { code: 'ja', native: '日本語', en: 'Japanese' },
-    { code: 'kn', native: 'ಕನ್ನಡ', en: 'Kannada' },
-    { code: 'kk', native: 'Қазақша', en: 'Kazakh' },
-    { code: 'km', native: 'ខ្មែរ', en: 'Khmer' },
-    { code: 'ko', native: '한국어', en: 'Korean' },
-    { code: 'ku', native: 'Kurdî', en: 'Kurdish' },
-    { code: 'ky', native: 'Кыргызча', en: 'Kyrgyz' },
-    { code: 'lo', native: 'ລາວ', en: 'Lao' },
-    { code: 'lv', native: 'Latviešu', en: 'Latvian' },
-    { code: 'lt', native: 'Lietuvių', en: 'Lithuanian' },
-    { code: 'mk', native: 'Македонски', en: 'Macedonian' },
-    { code: 'ms', native: 'Bahasa Melayu', en: 'Malay' },
-    { code: 'ml', native: 'മലയാളം', en: 'Malayalam' },
-    { code: 'mr', native: 'मराठी', en: 'Marathi' },
-    { code: 'mn', native: 'Монгол', en: 'Mongolian' },
-    { code: 'ne', native: 'नेपाली', en: 'Nepali' },
-    { code: 'no', native: 'Norsk', en: 'Norwegian' },
-    { code: 'ps', native: 'پښتو', en: 'Pashto' },
-    { code: 'fa', native: 'فارسی', en: 'Persian' },
-    { code: 'pl', native: 'Polski', en: 'Polish' },
-    { code: 'pt', native: 'Português', en: 'Portuguese' },
-    { code: 'pa', native: 'ਪੰਜਾਬੀ', en: 'Punjabi' },
-    { code: 'ro', native: 'Română', en: 'Romanian' },
-    { code: 'sr', native: 'Српски', en: 'Serbian' },
-    { code: 'si', native: 'සිංහල', en: 'Sinhala' },
-    { code: 'sk', native: 'Slovenčina', en: 'Slovak' },
-    { code: 'sl', native: 'Slovenščina', en: 'Slovenian' },
-    { code: 'so', native: 'Soomaali', en: 'Somali' },
-    { code: 'sw', native: 'Kiswahili', en: 'Swahili' },
-    { code: 'sv', native: 'Svenska', en: 'Swedish' },
-    { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh)' },
-    { code: 'ta', native: 'தமிழ்', en: 'Tamil' },
-    { code: 'te', native: 'తెలుగు', en: 'Telugu' },
-    { code: 'th', native: 'ไทย', en: 'Thai' },
-    { code: 'tr', native: 'Türkçe', en: 'Turkish' },
-    { code: 'uk', native: 'Українська', en: 'Ukrainian' },
-    { code: 'ur', native: 'اردو', en: 'Urdu' },
-    { code: 'uz', native: 'Oʻzbekcha', en: 'Uzbek' },
-    { code: 'vi', native: 'Tiếng Việt', en: 'Vietnamese' },
-    { code: 'cy', native: 'Cymraeg', en: 'Welsh' },
-    { code: 'yo', native: 'Yorùbá', en: 'Yoruba' },
-    { code: 'zu', native: 'isiZulu', en: 'Zulu' }
+/* اللهجات العربية: الواجهة كتبقى بالفصحى، و Robaty كتجاوب بلهجة البلد من أول رد.
+   الحقل ai هو التعليمة اللي كتمشي للذكاء الاصطناعي (app.js). */
+const ARABIC_DIALECTS = [
+    { code: 'ar-EG', native: 'اللهجة المصرية', en: 'Egyptian Arabic', flag: '🇪🇬', dialect: true,
+      ai: 'اللهجة المصرية (Egyptian Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-SA', native: 'اللهجة السعودية', en: 'Saudi Arabic', flag: '🇸🇦', dialect: true,
+      ai: 'اللهجة السعودية الخليجية (Saudi/Gulf Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-AE', native: 'اللهجة الإماراتية', en: 'Emirati Arabic', flag: '🇦🇪', dialect: true,
+      ai: 'اللهجة الإماراتية الخليجية (Emirati/Gulf Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-DZ', native: 'اللهجة الجزائرية', en: 'Algerian Arabic', flag: '🇩🇿', dialect: true,
+      ai: 'اللهجة الجزائرية (Algerian Arabic / Darja): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-TN', native: 'اللهجة التونسية', en: 'Tunisian Arabic', flag: '🇹🇳', dialect: true,
+      ai: 'اللهجة التونسية (Tunisian Arabic / Derja): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-LY', native: 'اللهجة الليبية', en: 'Libyan Arabic', flag: '🇱🇾', dialect: true,
+      ai: 'اللهجة الليبية (Libyan Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-IQ', native: 'اللهجة العراقية', en: 'Iraqi Arabic', flag: '🇮🇶', dialect: true,
+      ai: 'اللهجة العراقية (Iraqi Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-SY', native: 'اللهجة السورية', en: 'Syrian Arabic', flag: '🇸🇾', dialect: true,
+      ai: 'اللهجة السورية الشامية (Syrian/Levantine Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-LB', native: 'اللهجة اللبنانية', en: 'Lebanese Arabic', flag: '🇱🇧', dialect: true,
+      ai: 'اللهجة اللبنانية (Lebanese Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' },
+    { code: 'ar-JO', native: 'اللهجة الأردنية', en: 'Jordanian Arabic', flag: '🇯🇴', dialect: true,
+      ai: 'اللهجة الأردنية (Jordanian Arabic): تكلمي بلهجة بنات هاد البلد بشكل طبيعي وعفوي ومن أول رد، مكتوبة بالحروف العربية، بلا فصحى متكلفة' }
 ];
+
+const ALL_LANGUAGES = [
+    { code: 'af', native: 'Afrikaans', en: 'Afrikaans', flag: '🇿🇦' },
+    { code: 'sq', native: 'Shqip', en: 'Albanian', flag: '🇦🇱' },
+    { code: 'am', native: 'አማርኛ', en: 'Amharic', flag: '🇪🇹' },
+    { code: 'hy', native: 'Հայերեն', en: 'Armenian', flag: '🇦🇲' },
+    { code: 'az', native: 'Azərbaycanca', en: 'Azerbaijani', flag: '🇦🇿' },
+    { code: 'eu', native: 'Euskara', en: 'Basque', flag: '🇪🇸' },
+    { code: 'be', native: 'Беларуская', en: 'Belarusian', flag: '🇧🇾' },
+    { code: 'bn', native: 'বাংলা', en: 'Bengali', flag: '🇧🇩' },
+    { code: 'bs', native: 'Bosanski', en: 'Bosnian', flag: '🇧🇦' },
+    { code: 'bg', native: 'Български', en: 'Bulgarian', flag: '🇧🇬' },
+    { code: 'my', native: 'မြန်မာ', en: 'Burmese', flag: '🇲🇲' },
+    { code: 'ca', native: 'Català', en: 'Catalan', flag: '🇪🇸' },
+    { code: 'zh-CN', native: '中文（简体）', en: 'Chinese (Simplified)', flag: '🇨🇳' },
+    { code: 'zh-TW', native: '中文（繁體）', en: 'Chinese (Traditional)', flag: '🇹🇼' },
+    { code: 'hr', native: 'Hrvatski', en: 'Croatian', flag: '🇭🇷' },
+    { code: 'cs', native: 'Čeština', en: 'Czech', flag: '🇨🇿' },
+    { code: 'da', native: 'Dansk', en: 'Danish', flag: '🇩🇰' },
+    { code: 'nl', native: 'Nederlands', en: 'Dutch', flag: '🇳🇱' },
+    { code: 'et', native: 'Eesti', en: 'Estonian', flag: '🇪🇪' },
+    { code: 'fil', native: 'Filipino', en: 'Filipino', flag: '🇵🇭' },
+    { code: 'fi', native: 'Suomi', en: 'Finnish', flag: '🇫🇮' },
+    { code: 'gl', native: 'Galego', en: 'Galician', flag: '🇪🇸' },
+    { code: 'ka', native: 'ქართული', en: 'Georgian', flag: '🇬🇪' },
+    { code: 'de', native: 'Deutsch', en: 'German', flag: '🇩🇪' },
+    { code: 'el', native: 'Ελληνικά', en: 'Greek', flag: '🇬🇷' },
+    { code: 'gu', native: 'ગુજરાતી', en: 'Gujarati', flag: '🇮🇳' },
+    { code: 'ha', native: 'Hausa', en: 'Hausa', flag: '🇳🇬' },
+    { code: 'he', native: 'עברית', en: 'Hebrew', flag: '🇮🇱', rtl: true },
+    { code: 'hi', native: 'हिन्दी', en: 'Hindi', flag: '🇮🇳' },
+    { code: 'hu', native: 'Magyar', en: 'Hungarian', flag: '🇭🇺' },
+    { code: 'is', native: 'Íslenska', en: 'Icelandic', flag: '🇮🇸' },
+    { code: 'id', native: 'Bahasa Indonesia', en: 'Indonesian', flag: '🇮🇩' },
+    { code: 'it', native: 'Italiano', en: 'Italian', flag: '🇮🇹' },
+    { code: 'ja', native: '日本語', en: 'Japanese', flag: '🇯🇵' },
+    { code: 'kn', native: 'ಕನ್ನಡ', en: 'Kannada', flag: '🇮🇳' },
+    { code: 'kk', native: 'Қазақша', en: 'Kazakh', flag: '🇰🇿' },
+    { code: 'km', native: 'ខ្មែរ', en: 'Khmer', flag: '🇰🇭' },
+    { code: 'ko', native: '한국어', en: 'Korean', flag: '🇰🇷' },
+    { code: 'ku', native: 'Kurdî', en: 'Kurdish', flag: '🌍' },
+    { code: 'ky', native: 'Кыргызча', en: 'Kyrgyz', flag: '🇰🇬' },
+    { code: 'lo', native: 'ລາວ', en: 'Lao', flag: '🇱🇦' },
+    { code: 'lv', native: 'Latviešu', en: 'Latvian', flag: '🇱🇻' },
+    { code: 'lt', native: 'Lietuvių', en: 'Lithuanian', flag: '🇱🇹' },
+    { code: 'mk', native: 'Македонски', en: 'Macedonian', flag: '🇲🇰' },
+    { code: 'ms', native: 'Bahasa Melayu', en: 'Malay', flag: '🇲🇾' },
+    { code: 'ml', native: 'മലയാളം', en: 'Malayalam', flag: '🇮🇳' },
+    { code: 'mr', native: 'मराठी', en: 'Marathi', flag: '🇮🇳' },
+    { code: 'mn', native: 'Монгол', en: 'Mongolian', flag: '🇲🇳' },
+    { code: 'ne', native: 'नेपाली', en: 'Nepali', flag: '🇳🇵' },
+    { code: 'no', native: 'Norsk', en: 'Norwegian', flag: '🇳🇴' },
+    { code: 'ps', native: 'پښتو', en: 'Pashto', flag: '🇦🇫', rtl: true },
+    { code: 'fa', native: 'فارسی', en: 'Persian', flag: '🇮🇷', rtl: true },
+    { code: 'pl', native: 'Polski', en: 'Polish', flag: '🇵🇱' },
+    { code: 'pt', native: 'Português', en: 'Portuguese', flag: '🇵🇹' },
+    { code: 'pa', native: 'ਪੰਜਾਬੀ', en: 'Punjabi', flag: '🇮🇳' },
+    { code: 'ro', native: 'Română', en: 'Romanian', flag: '🇷🇴' },
+    { code: 'sr', native: 'Српски', en: 'Serbian', flag: '🇷🇸' },
+    { code: 'si', native: 'සිංහල', en: 'Sinhala', flag: '🇱🇰' },
+    { code: 'sk', native: 'Slovenčina', en: 'Slovak', flag: '🇸🇰' },
+    { code: 'sl', native: 'Slovenščina', en: 'Slovenian', flag: '🇸🇮' },
+    { code: 'so', native: 'Soomaali', en: 'Somali', flag: '🇸🇴' },
+    { code: 'sw', native: 'Kiswahili', en: 'Swahili', flag: '🇰🇪' },
+    { code: 'sv', native: 'Svenska', en: 'Swedish', flag: '🇸🇪' },
+    { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh)', flag: '🇲🇦' },
+    { code: 'ta', native: 'தமிழ்', en: 'Tamil', flag: '🇮🇳' },
+    { code: 'te', native: 'తెలుగు', en: 'Telugu', flag: '🇮🇳' },
+    { code: 'th', native: 'ไทย', en: 'Thai', flag: '🇹🇭' },
+    { code: 'tr', native: 'Türkçe', en: 'Turkish', flag: '🇹🇷' },
+    { code: 'uk', native: 'Українська', en: 'Ukrainian', flag: '🇺🇦' },
+    { code: 'ur', native: 'اردو', en: 'Urdu', flag: '🇵🇰', rtl: true },
+    { code: 'uz', native: 'Oʻzbekcha', en: 'Uzbek', flag: '🇺🇿' },
+    { code: 'vi', native: 'Tiếng Việt', en: 'Vietnamese', flag: '🇻🇳' },
+    { code: 'cy', native: 'Cymraeg', en: 'Welsh', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿' },
+    { code: 'yo', native: 'Yorùbá', en: 'Yoruba', flag: '🇳🇬' },
+    { code: 'zu', native: 'isiZulu', en: 'Zulu', flag: '🇿🇦' }
+];
+
+/* القائمة الكاملة كما كتبان للمستخدمة: اللهجات العربية أولاً، ثم باقي اللغات */
+const LANGUAGE_LIST = ARABIC_DIALECTS.concat(ALL_LANGUAGES);
 
 
 /* الاسم ديال كل لغة بلغتها هي (ما كيتترجمش) */
@@ -219,7 +255,58 @@ const translations = {
         all_languages_btn: 'جميع اللغات',
         all_languages_title: 'اختاري لغتك',
         search_language_placeholder: 'قلبي على لغة...',
-        no_language_found: 'ما لقيت حتى لغة'
+        no_language_found: 'ما لقيت حتى لغة',
+
+        /* صفحة الإعدادات */
+        st_share: 'شاركي التطبيق',
+        st_lang_title: '🌐 اختاري لغتك المفضلة',
+        st_color_title: '🎨 اختاري لون الشاشة لي كتعجبك',
+        st_c_default: '🟤 بني/ذهبي',
+        st_c_emerald: '🟢 أخضر/ذهبي',
+        st_c_vivid: '🔵 أزرق/ذهبي',
+        st_c_blush: '💖 وردي/فاتح',
+        st_c_cream: '🤍 كريمي/فاتح',
+        st_c_sky: '🩵 أزرق/فاتح',
+        st_c_black: '⚫ أسود/ذهبي',
+        st_c_whatsapp: '💬 أبيض/كريمي',
+        st_font_title: '🔠 حجم الخط',
+        st_f_small: 'صغير',
+        st_f_medium: 'متوسط',
+        st_f_large: 'كبير',
+        st_f_preview: 'هادا مثال على حجم الخط فالمحادثة ✨',
+        st_notif: '🔔 التنبيهات والرسائل',
+        st_soon: 'قريباً',
+        st_vibration: '📳 الاهتزاز',
+        st_trust: 'الشفافية والمصداقية',
+        st_contact: '✉️ اتصلي بنا',
+        st_contact_body: 'رأيك كيهمنا: ملاحظة، اقتراح، ولا مشكل؟ كتبي لينا وغادي نقراو رسالتك.',
+        st_contact_btn: 'فتح البريد',
+        st_privacy: '🔒 سياسة الخصوصية',
+        st_privacy_1: 'المحادثات وما كتتذكرو روباتي عليك كيتحفظو فجهازك.',
+        st_privacy_2: 'الرسائل لي كتصيفطي كتمشي لخدمة ذكاء اصطناعي (Google Gemini) باش تولد الجواب.',
+        st_privacy_3: 'تقدري تمسحي الذاكرة ديالك فأي وقت من قسم «حذف الذاكرة».',
+        st_terms: '📜 شروط الاستخدام',
+        st_terms_1: 'روباتي للتعارف والترفيه والثقافة، وأجوبتها من الذكاء الاصطناعي وممكن يكون فيها غلط.',
+        st_terms_2: 'ما كتعوضش رأي مختص فالصحة ولا القانون ولا الفلوس.',
+        st_terms_3: 'من فضلك ما تدخليش معلومات حساسة بزاف فالمحادثة.',
+        st_terms_4: 'ملي كتستعملي التطبيق معناها موافقة على هاد الشروط.',
+        st_about: '✨ حول روباتي',
+        st_about_1: 'روباتي سفيرة رقمية ديال التراث المغربي: الأزياء والأماكن والمطبخ والثقافة.',
+        st_about_2: 'هي ذكاء اصطناعي ماشي إنسانة، وممكن تغلط، تأكدي من المعلومات المهمة.',
+        st_mem: '🗑️ حذف الذاكرة',
+        st_mem_body: 'كيمسح المحادثات وكلشي لي كتعرف روباتي عليك فهاد الجهاز، وكتبدا من جديد. ما كاينش رجوع.',
+        st_mem_btn: 'حذف الذاكرة',
+        st_mem_confirm: 'ضغطي مرة أخرى باش تأكدي',
+        st_mem_done: 'تمسحات الذاكرة ✓',
+        st_account: '👤 حساب Google وتسجيل الخروج',
+        st_account_body: 'قريباً: ربط الذاكرة ديالك بحساب Google باش تبقى معاك فأي جهاز.',
+        st_delacc: '❌ حذف حسابي وبياناتي',
+        st_delacc_body: 'غادي تكون متاحة مع ربط الحساب. أما حذف التطبيق من الهاتف: ضغطي بزاف على الأيقونة ديالو وختاري «إزالة» ولا «إلغاء التثبيت».',
+        st_copied: 'تنسخ الرابط ✓',
+        st_share_text: 'اكتشفي روباتي، سفيرة التراث المغربي ✨',
+        ui_translating: 'كنترجمو الواجهة...',
+        ui_translated: 'تترجمات الواجهة ✓',
+        ui_translate_failed: 'ما قدرناش نترجمو الواجهة، بقات بالإنجليزية.'
     },
 
     /* العربية الفصحى — نفس المفاتيح ديال القاموس المغربي (ar) بالضبط */
@@ -331,7 +418,58 @@ const translations = {
         all_languages_btn: 'جميع اللغات',
         all_languages_title: 'اختاري لغتك',
         search_language_placeholder: 'ابحثي عن لغة...',
-        no_language_found: 'لم أجد أي لغة'
+        no_language_found: 'لم أجد أي لغة',
+
+        /* صفحة الإعدادات */
+        st_share: 'مشاركة التطبيق',
+        st_lang_title: '🌐 اختاري لغتك المفضلة',
+        st_color_title: '🎨 اختاري لون الشاشة المفضّل لديكِ',
+        st_c_default: '🟤 بني/ذهبي',
+        st_c_emerald: '🟢 أخضر/ذهبي',
+        st_c_vivid: '🔵 أزرق/ذهبي',
+        st_c_blush: '💖 وردي/فاتح',
+        st_c_cream: '🤍 كريمي/فاتح',
+        st_c_sky: '🩵 أزرق/فاتح',
+        st_c_black: '⚫ أسود/ذهبي',
+        st_c_whatsapp: '💬 أبيض/كريمي',
+        st_font_title: '🔠 حجم الخط',
+        st_f_small: 'صغير',
+        st_f_medium: 'متوسط',
+        st_f_large: 'كبير',
+        st_f_preview: 'هذا مثال على حجم الخط في المحادثة ✨',
+        st_notif: '🔔 التنبيهات والرسائل',
+        st_soon: 'قريباً',
+        st_vibration: '📳 الاهتزاز',
+        st_trust: 'الشفافية والمصداقية',
+        st_contact: '✉️ اتصلي بنا',
+        st_contact_body: 'رأيكِ يهمّنا: ملاحظة، اقتراح، أو مشكلة؟ راسلينا وسنقرأ رسالتكِ.',
+        st_contact_btn: 'فتح البريد',
+        st_privacy: '🔒 سياسة الخصوصية',
+        st_privacy_1: 'محادثاتكِ وما تتذكره روباتي عنكِ يُحفظ على جهازكِ.',
+        st_privacy_2: 'الرسائل التي ترسلينها تُرسل إلى خدمة ذكاء اصطناعي (Google Gemini) لتوليد الرد.',
+        st_privacy_3: 'يمكنكِ مسح ذاكرتكِ في أي وقت من قسم «حذف الذاكرة».',
+        st_terms: '📜 شروط الاستخدام',
+        st_terms_1: 'روباتي للتعارف والترفيه والثقافة، وردودها من الذكاء الاصطناعي وقد تحتوي أخطاء.',
+        st_terms_2: 'لا تغني عن رأي مختص في الصحة أو القانون أو المال.',
+        st_terms_3: 'يرجى عدم إدخال معلومات شديدة الحساسية في المحادثة.',
+        st_terms_4: 'باستعمالكِ التطبيق فأنتِ توافقين على هذه الشروط.',
+        st_about: '✨ حول روباتي',
+        st_about_1: 'روباتي سفيرة رقمية للتراث المغربي: الأزياء والأماكن والمطبخ والثقافة.',
+        st_about_2: 'هي ذكاء اصطناعي وليست إنساناً، وقد تخطئ، فتحققي من المعلومات المهمة.',
+        st_mem: '🗑️ حذف الذاكرة',
+        st_mem_body: 'يمسح المحادثات وكل ما تعرفه روباتي عنكِ على هذا الجهاز، وتبدأ من جديد. لا يمكن التراجع.',
+        st_mem_btn: 'حذف الذاكرة',
+        st_mem_confirm: 'اضغطي مرة أخرى للتأكيد',
+        st_mem_done: 'تم حذف الذاكرة ✓',
+        st_account: '👤 حساب Google وتسجيل الخروج',
+        st_account_body: 'قريباً: ربط ذاكرتكِ بحساب Google لتبقى معكِ على أي جهاز.',
+        st_delacc: '❌ حذف حسابي وبياناتي',
+        st_delacc_body: 'سيتوفر مع ربط الحساب. أما حذف التطبيق من هاتفكِ: اضغطي مطولاً على أيقونته ثم اختاري «إزالة» أو «إلغاء التثبيت».',
+        st_copied: 'تم نسخ الرابط ✓',
+        st_share_text: 'اكتشفي روباتي، سفيرة التراث المغربي ✨',
+        ui_translating: 'جارٍ ترجمة الواجهة...',
+        ui_translated: 'تمت الترجمة ✓',
+        ui_translate_failed: 'تعذّرت ترجمة الواجهة، وبقيت بالإنجليزية.'
     },
 
     en: {
@@ -442,7 +580,58 @@ const translations = {
         all_languages_btn: 'All languages',
         all_languages_title: 'Choose your language',
         search_language_placeholder: 'Search a language...',
-        no_language_found: 'No language found'
+        no_language_found: 'No language found',
+
+        /* صفحة الإعدادات */
+        st_share: 'Share the app',
+        st_lang_title: '🌐 Choose your preferred language',
+        st_color_title: '🎨 Choose your favorite screen color',
+        st_c_default: '🟤 Brown/Gold',
+        st_c_emerald: '🟢 Green/Gold',
+        st_c_vivid: '🔵 Blue/Gold',
+        st_c_blush: '💖 Pink/Light',
+        st_c_cream: '🤍 Cream/Light',
+        st_c_sky: '🩵 Blue/Light',
+        st_c_black: '⚫ Black/Gold',
+        st_c_whatsapp: '💬 White/Cream',
+        st_font_title: '🔠 Font size',
+        st_f_small: 'Small',
+        st_f_medium: 'Medium',
+        st_f_large: 'Large',
+        st_f_preview: 'This is a preview of the text size in the chat ✨',
+        st_notif: '🔔 Notifications & messages',
+        st_soon: 'Soon',
+        st_vibration: '📳 Vibration',
+        st_trust: 'Transparency & trust',
+        st_contact: '✉️ Contact us',
+        st_contact_body: 'Your opinion matters: a comment, a suggestion, or a problem? Write to us and we will read your message.',
+        st_contact_btn: 'Open email',
+        st_privacy: '🔒 Privacy policy',
+        st_privacy_1: 'Your conversations and what Robaty remembers about you are stored on your device.',
+        st_privacy_2: 'The messages you send go to an AI service (Google Gemini) to generate the reply.',
+        st_privacy_3: 'You can clear your memory at any time from the “Delete memory” section.',
+        st_terms: '📜 Terms of use',
+        st_terms_1: 'Robaty is for companionship, entertainment and culture. Her replies come from AI and may contain mistakes.',
+        st_terms_2: 'She does not replace the advice of a professional in health, law or finance.',
+        st_terms_3: 'Please do not share highly sensitive information in the chat.',
+        st_terms_4: 'By using the app, you agree to these terms.',
+        st_about: '✨ About Robaty',
+        st_about_1: 'Robaty is a digital ambassador of Moroccan heritage: fashion, places, cuisine and culture.',
+        st_about_2: 'She is an AI, not a human, and she can make mistakes, so please double-check important information.',
+        st_mem: '🗑️ Delete memory',
+        st_mem_body: 'This erases the chats and everything Robaty knows about you on this device, and she starts fresh. This cannot be undone.',
+        st_mem_btn: 'Delete memory',
+        st_mem_confirm: 'Tap again to confirm',
+        st_mem_done: 'Memory deleted ✓',
+        st_account: '👤 Google account & sign out',
+        st_account_body: 'Coming soon: link your memory to a Google account so it follows you on any device.',
+        st_delacc: '❌ Delete my account and data',
+        st_delacc_body: 'This will be available once accounts are linked. To remove the app from your phone: long-press its icon, then choose “Remove” or “Uninstall”.',
+        st_copied: 'Link copied ✓',
+        st_share_text: 'Discover Robaty, ambassador of Moroccan heritage ✨',
+        ui_translating: 'Translating the app…',
+        ui_translated: 'Translation ready ✓',
+        ui_translate_failed: 'Could not translate the app; it stays in English.'
     },
 
     fr: {
@@ -553,7 +742,58 @@ const translations = {
         all_languages_btn: 'Toutes les langues',
         all_languages_title: 'Choisis ta langue',
         search_language_placeholder: 'Rechercher une langue...',
-        no_language_found: 'Aucune langue trouvée'
+        no_language_found: 'Aucune langue trouvée',
+
+        /* صفحة الإعدادات */
+        st_share: 'Partager l\'app',
+        st_lang_title: '🌐 Choisis ta langue préférée',
+        st_color_title: '🎨 Choisis la couleur d\'écran que tu préfères',
+        st_c_default: '🟤 Brun/Or',
+        st_c_emerald: '🟢 Vert/Or',
+        st_c_vivid: '🔵 Bleu/Or',
+        st_c_blush: '💖 Rose/Clair',
+        st_c_cream: '🤍 Crème/Clair',
+        st_c_sky: '🩵 Bleu/Clair',
+        st_c_black: '⚫ Noir/Or',
+        st_c_whatsapp: '💬 Blanc/Crème',
+        st_font_title: '🔠 Taille du texte',
+        st_f_small: 'Petit',
+        st_f_medium: 'Moyen',
+        st_f_large: 'Grand',
+        st_f_preview: 'Voici un aperçu de la taille du texte dans le chat ✨',
+        st_notif: '🔔 Notifications et messages',
+        st_soon: 'Bientôt',
+        st_vibration: '📳 Vibrations',
+        st_trust: 'Transparence et confiance',
+        st_contact: '✉️ Nous contacter',
+        st_contact_body: 'Ton avis compte : une remarque, une suggestion ou un souci ? Écris-nous, nous lirons ton message.',
+        st_contact_btn: 'Ouvrir l\'e-mail',
+        st_privacy: '🔒 Politique de confidentialité',
+        st_privacy_1: 'Tes conversations et ce que Robaty retient de toi sont enregistrés sur ton appareil.',
+        st_privacy_2: 'Les messages que tu envoies sont transmis à un service d\'IA (Google Gemini) pour générer la réponse.',
+        st_privacy_3: 'Tu peux effacer ta mémoire à tout moment dans la section « Effacer la mémoire ».',
+        st_terms: '📜 Conditions d\'utilisation',
+        st_terms_1: 'Robaty est là pour la compagnie, le divertissement et la culture. Ses réponses viennent d\'une IA et peuvent contenir des erreurs.',
+        st_terms_2: 'Elle ne remplace pas l\'avis d\'un professionnel de la santé, du droit ou de la finance.',
+        st_terms_3: 'Merci de ne pas partager d\'informations très sensibles dans la conversation.',
+        st_terms_4: 'En utilisant l\'application, tu acceptes ces conditions.',
+        st_about: '✨ À propos de Robaty',
+        st_about_1: 'Robaty est une ambassadrice numérique du patrimoine marocain : mode, lieux, cuisine et culture.',
+        st_about_2: 'C\'est une IA, pas une humaine, et elle peut se tromper : vérifie les informations importantes.',
+        st_mem: '🗑️ Effacer la mémoire',
+        st_mem_body: 'Cela efface les conversations et tout ce que Robaty sait de toi sur cet appareil, et elle repart de zéro. Action irréversible.',
+        st_mem_btn: 'Effacer la mémoire',
+        st_mem_confirm: 'Appuie encore pour confirmer',
+        st_mem_done: 'Mémoire effacée ✓',
+        st_account: '👤 Compte Google et déconnexion',
+        st_account_body: 'Bientôt : lie ta mémoire à un compte Google pour la retrouver sur n\'importe quel appareil.',
+        st_delacc: '❌ Supprimer mon compte et mes données',
+        st_delacc_body: 'Disponible bientôt avec la liaison du compte. Pour retirer l\'app de ton téléphone : appuie longuement sur son icône puis choisis « Supprimer » ou « Désinstaller ».',
+        st_copied: 'Lien copié ✓',
+        st_share_text: 'Découvre Robaty, ambassadrice du patrimoine marocain ✨',
+        ui_translating: 'Traduction de l\'app en cours…',
+        ui_translated: 'Traduction terminée ✓',
+        ui_translate_failed: 'Impossible de traduire l\'app ; elle reste en anglais.'
     },
 
     es: {
@@ -664,7 +904,58 @@ const translations = {
         all_languages_btn: 'Todos los idiomas',
         all_languages_title: 'Elige tu idioma',
         search_language_placeholder: 'Buscar un idioma...',
-        no_language_found: 'No se encontró ningún idioma'
+        no_language_found: 'No se encontró ningún idioma',
+
+        /* صفحة الإعدادات */
+        st_share: 'Compartir la app',
+        st_lang_title: '🌐 Elige tu idioma preferido',
+        st_color_title: '🎨 Elige el color de pantalla que más te guste',
+        st_c_default: '🟤 Marrón/Dorado',
+        st_c_emerald: '🟢 Verde/Dorado',
+        st_c_vivid: '🔵 Azul/Dorado',
+        st_c_blush: '💖 Rosa/Claro',
+        st_c_cream: '🤍 Crema/Claro',
+        st_c_sky: '🩵 Azul/Claro',
+        st_c_black: '⚫ Negro/Dorado',
+        st_c_whatsapp: '💬 Blanco/Crema',
+        st_font_title: '🔠 Tamaño de letra',
+        st_f_small: 'Pequeño',
+        st_f_medium: 'Mediano',
+        st_f_large: 'Grande',
+        st_f_preview: 'Esta es una vista previa del tamaño de letra en el chat ✨',
+        st_notif: '🔔 Notificaciones y mensajes',
+        st_soon: 'Pronto',
+        st_vibration: '📳 Vibración',
+        st_trust: 'Transparencia y confianza',
+        st_contact: '✉️ Contáctanos',
+        st_contact_body: 'Tu opinión nos importa: ¿un comentario, una sugerencia o un problema? Escríbenos y leeremos tu mensaje.',
+        st_contact_btn: 'Abrir correo',
+        st_privacy: '🔒 Política de privacidad',
+        st_privacy_1: 'Tus conversaciones y lo que Robaty recuerda de ti se guardan en tu dispositivo.',
+        st_privacy_2: 'Los mensajes que envías se transmiten a un servicio de IA (Google Gemini) para generar la respuesta.',
+        st_privacy_3: 'Puedes borrar tu memoria en cualquier momento desde la sección «Borrar memoria».',
+        st_terms: '📜 Términos de uso',
+        st_terms_1: 'Robaty es para compañía, entretenimiento y cultura. Sus respuestas provienen de una IA y pueden contener errores.',
+        st_terms_2: 'No sustituye el consejo de un profesional de la salud, el derecho o las finanzas.',
+        st_terms_3: 'Por favor, no compartas información muy sensible en el chat.',
+        st_terms_4: 'Al usar la aplicación, aceptas estos términos.',
+        st_about: '✨ Acerca de Robaty',
+        st_about_1: 'Robaty es una embajadora digital del patrimonio marroquí: moda, lugares, cocina y cultura.',
+        st_about_2: 'Es una IA, no una persona, y puede equivocarse: verifica la información importante.',
+        st_mem: '🗑️ Borrar memoria',
+        st_mem_body: 'Esto borra los chats y todo lo que Robaty sabe de ti en este dispositivo, y empieza de cero. No se puede deshacer.',
+        st_mem_btn: 'Borrar memoria',
+        st_mem_confirm: 'Toca de nuevo para confirmar',
+        st_mem_done: 'Memoria borrada ✓',
+        st_account: '👤 Cuenta de Google y cerrar sesión',
+        st_account_body: 'Próximamente: vincula tu memoria a una cuenta de Google para tenerla en cualquier dispositivo.',
+        st_delacc: '❌ Eliminar mi cuenta y mis datos',
+        st_delacc_body: 'Estará disponible al vincular la cuenta. Para quitar la app del teléfono: mantén pulsado su icono y elige «Quitar» o «Desinstalar».',
+        st_copied: 'Enlace copiado ✓',
+        st_share_text: 'Descubre a Robaty, embajadora del patrimonio marroquí ✨',
+        ui_translating: 'Traduciendo la app…',
+        ui_translated: 'Traducción lista ✓',
+        ui_translate_failed: 'No se pudo traducir la app; se queda en inglés.'
     },
 
     ru: {
@@ -775,7 +1066,58 @@ const translations = {
         all_languages_btn: 'Все языки',
         all_languages_title: 'Выбери свой язык',
         search_language_placeholder: 'Найти язык...',
-        no_language_found: 'Язык не найден'
+        no_language_found: 'Язык не найден',
+
+        /* صفحة الإعدادات */
+        st_share: 'Поделиться приложением',
+        st_lang_title: '🌐 Выбери любимый язык',
+        st_color_title: '🎨 Выбери любимый цвет экрана',
+        st_c_default: '🟤 Коричневый/золотой',
+        st_c_emerald: '🟢 Зелёный/золотой',
+        st_c_vivid: '🔵 Синий/золотой',
+        st_c_blush: '💖 Розовый/светлый',
+        st_c_cream: '🤍 Кремовый/светлый',
+        st_c_sky: '🩵 Голубой/светлый',
+        st_c_black: '⚫ Чёрный/золотой',
+        st_c_whatsapp: '💬 Белый/кремовый',
+        st_font_title: '🔠 Размер шрифта',
+        st_f_small: 'Маленький',
+        st_f_medium: 'Средний',
+        st_f_large: 'Большой',
+        st_f_preview: 'Так будет выглядеть размер шрифта в чате ✨',
+        st_notif: '🔔 Уведомления и сообщения',
+        st_soon: 'Скоро',
+        st_vibration: '📳 Вибрация',
+        st_trust: 'Прозрачность и доверие',
+        st_contact: '✉️ Связаться с нами',
+        st_contact_body: 'Твоё мнение важно: замечание, предложение или проблема? Напиши нам, и мы прочитаем твоё сообщение.',
+        st_contact_btn: 'Открыть почту',
+        st_privacy: '🔒 Политика конфиденциальности',
+        st_privacy_1: 'Твои разговоры и то, что Robaty помнит о тебе, хранятся на твоём устройстве.',
+        st_privacy_2: 'Сообщения, которые ты отправляешь, передаются сервису ИИ (Google Gemini) для создания ответа.',
+        st_privacy_3: 'Ты можешь в любой момент очистить память в разделе «Удалить память».',
+        st_terms: '📜 Условия использования',
+        st_terms_1: 'Robaty создана для общения, развлечения и знакомства с культурой. Её ответы генерирует ИИ, и в них могут быть ошибки.',
+        st_terms_2: 'Она не заменяет совет специалиста в области здоровья, права или финансов.',
+        st_terms_3: 'Пожалуйста, не делись в чате очень конфиденциальной информацией.',
+        st_terms_4: 'Используя приложение, ты соглашаешься с этими условиями.',
+        st_about: '✨ О Robaty',
+        st_about_1: 'Robaty — цифровой посол марокканского наследия: мода, места, кухня и культура.',
+        st_about_2: 'Она — ИИ, а не человек, и может ошибаться, поэтому проверяй важную информацию.',
+        st_mem: '🗑️ Удалить память',
+        st_mem_body: 'Это удалит чаты и всё, что Robaty знает о тебе на этом устройстве, и она начнёт с чистого листа. Действие необратимо.',
+        st_mem_btn: 'Удалить память',
+        st_mem_confirm: 'Нажми ещё раз для подтверждения',
+        st_mem_done: 'Память удалена ✓',
+        st_account: '👤 Аккаунт Google и выход',
+        st_account_body: 'Скоро: привяжи память к аккаунту Google, чтобы она была с тобой на любом устройстве.',
+        st_delacc: '❌ Удалить аккаунт и данные',
+        st_delacc_body: 'Появится после привязки аккаунта. Чтобы удалить приложение с телефона, нажми и удерживай его значок и выбери «Удалить».',
+        st_copied: 'Ссылка скопирована ✓',
+        st_share_text: 'Знакомься: Robaty, посол марокканского наследия ✨',
+        ui_translating: 'Переводим приложение…',
+        ui_translated: 'Перевод готов ✓',
+        ui_translate_failed: 'Не удалось перевести приложение, оно осталось на английском.'
     }
 
 };
@@ -827,8 +1169,20 @@ function getCurrentLang() {
 /* تطبيق الاتجاه (RTL/LTR) واللغة على <html> */
 
 function applyDirection(lang) {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
+
+    let htmlLang = lang;
+    let rtl = RTL_LANGS.includes(lang);
+
+    /* لغة مترجمة من "جميع اللغات" (عبرية، فارسية، أردية...) */
+    const reply = (lang === 'en') ? getReplyLanguage() : null;
+    if (reply && !reply.dialect && readUiTranslation(reply.code)) {
+        htmlLang = reply.code;
+        rtl = !!reply.rtl;
+    }
+
+    document.documentElement.lang = htmlLang;
+    document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+
 }
 
 
@@ -872,6 +1226,123 @@ function getArabicVariant() {
 if (getSavedLang() && !readArabicVariant()) saveArabicVariant('ma');
 
 
+/* ===== ترجمة الواجهة بالذكاء الاصطناعي (لغات "جميع اللغات") ===== */
+
+let translatingCode = null;
+
+function emitTranslation(status, code) {
+    try {
+        window.dispatchEvent(new CustomEvent('robaty-ui-translation', { detail: { status: status, code: code } }));
+    } catch (error) {}
+}
+
+/* كنخليو غير <b> و <br> فالنصوص اللي فيها HTML، ونحيدو أي حدث (onclick...) */
+function cleanTranslation(value) {
+    return String(value)
+        .replace(/<(?!\/?(b|br)\b)[^>]*>/gi, '')
+        .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '')
+        .trim();
+}
+
+async function requestTranslationChunk(item, chunk) {
+
+    const apiKey = localStorage.getItem(TRANSLATION_KEY_STORAGE) || '';
+    if (!apiKey) throw new Error('no key');
+
+    const prompt =
+        'You are a professional app localizer. Translate the VALUES of the following JSON object from English into ' +
+        item.en + ' (' + item.native + '). Keep every KEY exactly unchanged. ' +
+        'Keep emojis, HTML tags (<b>, <br>), line breaks (\\n) and brand names (Robaty, Google, Gemini, Chrome, WhatsApp, API) as they are. ' +
+        'The app speaks warmly to women: use feminine forms where the language distinguishes gender. ' +
+        'Return ONLY the translated JSON object.\n\n' + JSON.stringify(chunk);
+
+    const res = await fetch(
+        'https://generativelanguage.googleapis.com/v1beta/models/' + TRANSLATION_MODEL + ':generateContent?key=' + apiKey,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ role: 'user', parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.2, maxOutputTokens: 8192, responseMimeType: 'application/json' }
+            })
+        }
+    );
+
+    const data = await res.json();
+    if (!res.ok) throw new Error('api ' + res.status);
+
+    const text = data && data.candidates && data.candidates[0] && data.candidates[0].content &&
+        data.candidates[0].content.parts && data.candidates[0].content.parts[0].text || '';
+
+    return JSON.parse(text.replace(/```json|```/g, '').trim());
+
+}
+
+function refreshUi() {
+    const lang = getCurrentLang();
+    applyDirection(lang);
+    applyTranslations(lang);
+    renderLanguageOptions(lang);
+}
+
+async function ensureUiTranslation() {
+
+    const reply = getReplyLanguage();
+    if (!reply || reply.dialect) return;
+
+    const cached = readUiTranslation(reply.code);
+    if (cached && cached.hash === sourceHash()) return;
+    if (translatingCode === reply.code) return;
+
+    translatingCode = reply.code;
+    emitTranslation('start', reply.code);
+
+    try {
+
+        const en = translations.en;
+        const keys = Object.keys(en).filter(k => typeof en[k] === 'string');
+        const chunks = [];
+
+        for (let i = 0; i < keys.length; i += 40) chunks.push(keys.slice(i, i + 40));
+
+        const parts = await Promise.all(chunks.map(ch => {
+            const obj = {};
+            ch.forEach(k => { obj[k] = en[k]; });
+            return requestTranslationChunk(reply, obj);
+        }));
+
+        const dict = {};
+
+        parts.forEach(part => {
+            Object.keys(part || {}).forEach(k => {
+                if (typeof part[k] === 'string' && typeof en[k] === 'string') dict[k] = cleanTranslation(part[k]);
+            });
+        });
+
+        if (Object.keys(dict).length < keys.length * 0.6) throw new Error('incomplete');
+
+        saveUiTranslation(reply.code, dict);
+
+        /* إلا بدلات اللغة فالوقت هاد المدة، ما نطبقوش ترجمة قديمة */
+        const now = getReplyLanguage();
+        if (now && now.code === reply.code) refreshUi();
+
+        emitTranslation('done', reply.code);
+
+    } catch (error) {
+
+        console.log('تعذرت ترجمة الواجهة:', error.message);
+        emitTranslation('error', reply.code);
+
+    } finally {
+
+        translatingCode = null;
+
+    }
+
+}
+
+
 /* ===== لغة جواب الذكاء الاصطناعي (من "جميع اللغات") ===== */
 
 function getReplyLanguage() {
@@ -895,10 +1366,51 @@ function saveReplyLanguage(obj) {
 
 /* ===== القاموس الحالي ===== */
 
+let uiTranslationCache = { code: null, entry: null };
+
+function readUiTranslation(code) {
+    if (uiTranslationCache.code === code) return uiTranslationCache.entry;
+    let entry = null;
+    try {
+        const raw = localStorage.getItem(UI_TRANSLATION_PREFIX + code);
+        const obj = raw ? JSON.parse(raw) : null;
+        if (obj && obj.dict) entry = obj;
+    } catch (error) {}
+    uiTranslationCache = { code: code, entry: entry };
+    return entry;
+}
+
+function saveUiTranslation(code, dict) {
+    try {
+        localStorage.setItem(UI_TRANSLATION_PREFIX + code, JSON.stringify({ hash: sourceHash(), dict: dict }));
+    } catch (error) {}
+    uiTranslationCache = { code: null, entry: null };
+}
+
+/* بصمة بسيطة للنصوص الإنجليزية: إلا زدنا/بدلنا نصوص كنعاودو الترجمة */
+function sourceHash() {
+    const str = JSON.stringify(translations.en);
+    let h = 5381;
+    for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+    return (h >>> 0).toString(36);
+}
+
 function getDictionary(lang) {
+
     if (lang === 'ar' && getArabicVariant() === 'fus') {
         return Object.assign({}, translations.ar, translations.ar_fus);
     }
+
+    /* لغة من "جميع اللغات": الإنجليزية + الترجمة المحفوظة (إلا كانت) */
+    if (lang === 'en') {
+        const reply = getReplyLanguage();
+        if (reply && !reply.dialect) {
+            const entry = readUiTranslation(reply.code);
+            if (entry) return Object.assign({}, translations.en, entry.dict);
+        }
+        return translations.en;
+    }
+
     return translations[lang] || translations.ar;
 }
 
@@ -997,7 +1509,7 @@ function renderLanguageOptions(activeLang) {
     allBtn.type = 'button';
     allBtn.className = 'lang-option lang-option-all' + (reply ? ' active' : '');
     allBtn.setAttribute('data-all-langs', '1');
-    allBtn.textContent = '🌍 ' + translate('all_languages_btn') + (reply ? ' · ' + reply.native : '');
+    allBtn.textContent = '🌍 ' + translate('all_languages_btn') + (reply ? ' · ' + (reply.flag ? reply.flag + ' ' : '') + reply.native : '');
 
     /* القائمة كتتعرّف فصفحة الإعدادات (settings.js) */
     allBtn.addEventListener('click', () => {
@@ -1033,11 +1545,27 @@ function setLanguage(lang, options) {
 
 function setReplyLanguage(code) {
 
-    const item = ALL_LANGUAGES.find(l => l.code === code);
+    const item = LANGUAGE_LIST.find(l => l.code === code);
     if (!item) return;
 
-    saveReplyLanguage({ code: item.code, name: item.en, native: item.native });
-    setLanguage('en', { keepReply: true });
+    saveReplyLanguage({
+        code: item.code,
+        name: item.en,
+        native: item.native,
+        flag: item.flag || '',
+        rtl: !!item.rtl,
+        dialect: !!item.dialect,
+        ai: item.ai || null
+    });
+
+    if (item.dialect) {
+        /* لهجة عربية: الواجهة بالفصحى، و Robaty كتجاوب بلهجة البلد */
+        setLanguage('ar', { variant: 'fus', keepReply: true });
+    } else {
+        /* باقي اللغات: الواجهة بالإنجليزية فورا، ثم كتترجم بالذكاء الاصطناعي */
+        setLanguage('en', { keepReply: true });
+        ensureUiTranslation();
+    }
 
 }
 
@@ -1049,7 +1577,7 @@ window.RobatyI18n = {
     getCurrentLang: getCurrentLang,
     getArabicVariant: getArabicVariant,
     getReplyLanguage: getReplyLanguage,
-    getAllLanguages: function () { return ALL_LANGUAGES.slice(); },
+    getAllLanguages: function () { return LANGUAGE_LIST.slice(); },
     setLanguage: setLanguage,
     setReplyLanguage: setReplyLanguage
 };
@@ -1064,6 +1592,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyDirection(lang);
     applyTranslations(lang);
     renderLanguageOptions(lang);
+    ensureUiTranslation();
 
     if (!getSavedLang()) {
         saveLang(lang);

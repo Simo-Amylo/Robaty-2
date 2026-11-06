@@ -23,26 +23,36 @@
 
     /* ---- إشعار صغير ---- */
     var toastTimer = null;
-    function toast(msg) {
+    function toast(msg, ms) {
         var t = $('toast');
         t.textContent = msg;
         t.classList.add('show');
         clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+        if (ms !== 0) toastTimer = setTimeout(function () { t.classList.remove('show'); }, ms || 2200);
     }
+
+    var tt = function (key) { return window.RobatyI18n ? window.RobatyI18n.t(key) : key; };
+
+    /* ترجمة الواجهة بالذكاء الاصطناعي: بداية / نهاية / فشل */
+    window.addEventListener('robaty-ui-translation', function (e) {
+        var st = e.detail && e.detail.status;
+        if (st === 'start') toast(tt('ui_translating'), 0);
+        else if (st === 'done') toast(tt('ui_translated'));
+        else if (st === 'error') toast(tt('ui_translate_failed'), 4000);
+    });
 
     /* ---- مشاركة التطبيق ---- */
     $('shareButton').addEventListener('click', function () {
         var data = {
             title: 'Robaty',
-            text: 'اكتشفي روباتي، سفيرة التراث المغربي ✨',
+            text: tt('st_share_text'),
             url: APP_URL
         };
         if (navigator.share) {
             navigator.share(data).catch(function () {});
         } else if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(APP_URL).then(function () {
-                toast('تم نسخ الرابط ✓');
+                toast(tt('st_copied'));
             }, function () { toast(APP_URL); });
         } else {
             toast(APP_URL);
@@ -90,11 +100,11 @@
                 var btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'lang-option' + (reply && reply.code === l.code ? ' active' : '');
-                btn.textContent = l.native + (l.native.toLowerCase() === l.en.toLowerCase() ? '' : ' · ' + l.en);
+                btn.textContent = (l.flag ? l.flag + '  ' : '') + l.native + (l.native.toLowerCase() === l.en.toLowerCase() ? '' : ' · ' + l.en);
                 btn.addEventListener('click', function () {
                     i18n.setReplyLanguage(l.code);
                     close();
-                    toast('✓ ' + l.native);
+                    toast('✓ ' + (l.flag ? l.flag + ' ' : '') + l.native, 1500);
                 });
                 list.appendChild(btn);
             });
@@ -182,17 +192,16 @@
     var delBtn = $('deleteMemoryBtn');
     var delTimer = null;
     var armed = false;
-    var delLabel = delBtn.textContent;
 
     function disarm() {
         armed = false;
-        delBtn.textContent = delLabel;
+        delBtn.textContent = tt('st_mem_btn');
     }
 
     delBtn.addEventListener('click', function () {
         if (!armed) {
             armed = true;
-            delBtn.textContent = 'اضغطي مرة أخرى للتأكيد';
+            delBtn.textContent = tt('st_mem_confirm');
             clearTimeout(delTimer);
             delTimer = setTimeout(disarm, 4000);
             return;
@@ -202,12 +211,12 @@
             MEMORY_KEYS.forEach(function (k) { localStorage.removeItem(k); });
         } catch (e) {}
         disarm();
-        toast('تم حذف الذاكرة ✓');
+        toast(tt('st_mem_done'));
     });
 
     /* ---- عنوان الصفحة: i18n.js كيبدلو بعنوان التطبيق، كنرجعوه بعد ما يكمل ---- */
     document.addEventListener('DOMContentLoaded', function () {
-        document.title = 'Robaty - الإعدادات';
+        document.title = 'Robaty - ' + tt('settings_title').replace(/^[^\w\u0600-\u06FF\u0400-\u04FF]+/, '');
     });
 
     /* ---- رقم الإصدار ---- */

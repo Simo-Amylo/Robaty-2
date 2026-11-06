@@ -360,4 +360,6 @@ body[data-color-mode="whatsapp"] .s-toast {
     flex: none;
     width: 100%;
     text-align: start;
+    font-size: 14.4px;      /* 12px + 20% */
+    padding: 10px 12px;
 }

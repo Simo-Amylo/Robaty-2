@@ -47,13 +47,13 @@
         <div class="corner-ornament bottom-right"></div>
 
         <header class="s-header">
-            <button type="button" class="ornate-btn" id="settingsBack" aria-label="رجوع">
+            <button type="button" class="ornate-btn" id="settingsBack" aria-label="رجوع" data-i18n-aria="back_aria">
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
-            <h1 class="s-title">⚙️ الإعدادات</h1>
+            <h1 class="s-title" data-i18n="settings_title">⚙️ الإعدادات</h1>
             <button type="button" class="s-share" id="shareButton">
                 <i class="fa-solid fa-share-nodes"></i>
-                <span>مشاركة التطبيق</span>
+                <span data-i18n="st_share">مشاركة التطبيق</span>
             </button>
         </header>
 
@@ -61,111 +61,111 @@
 
             <!-- 1) اللغة -->
             <section class="s-card">
-                <p class="s-card-title">🌐 اختاري لغتك المفضلة</p>
+                <p class="s-card-title" data-i18n="st_lang_title">🌐 اختاري لغتك المفضلة</p>
                 <div class="lang-options" id="languageOptions"></div>
             </section>
 
             <!-- 2) الألوان -->
             <section class="s-card">
-                <p class="s-card-title">🎨 اختاري لون الشاشة المفضلة إليك</p>
+                <p class="s-card-title" data-i18n="st_color_title">🎨 اختاري لون الشاشة المفضلة إليك</p>
                 <div class="color-options" id="colorModeOptions">
-                    <button type="button" class="color-option" data-color-value="default">🟤 بني/ذهبي</button>
-                    <button type="button" class="color-option" data-color-value="emerald">🟢 أخضر/ذهبي</button>
-                    <button type="button" class="color-option" data-color-value="vivid">🔵 أزرق/ذهبي</button>
-                    <button type="button" class="color-option" data-color-value="blush">💖 وردي/فاتح</button>
-                    <button type="button" class="color-option" data-color-value="cream">🤍 كريمي/فاتح</button>
-                    <button type="button" class="color-option" data-color-value="sky">🩵 أزرق/فاتح</button>
-                    <button type="button" class="color-option" data-color-value="black">⚫ أسود/ذهبي</button>
-                    <button type="button" class="color-option" data-color-value="whatsapp">💬 أبيض/كريمي</button>
+                    <button type="button" class="color-option" data-color-value="default" data-i18n="st_c_default">🟤 بني/ذهبي</button>
+                    <button type="button" class="color-option" data-color-value="emerald" data-i18n="st_c_emerald">🟢 أخضر/ذهبي</button>
+                    <button type="button" class="color-option" data-color-value="vivid" data-i18n="st_c_vivid">🔵 أزرق/ذهبي</button>
+                    <button type="button" class="color-option" data-color-value="blush" data-i18n="st_c_blush">💖 وردي/فاتح</button>
+                    <button type="button" class="color-option" data-color-value="cream" data-i18n="st_c_cream">🤍 كريمي/فاتح</button>
+                    <button type="button" class="color-option" data-color-value="sky" data-i18n="st_c_sky">🩵 أزرق/فاتح</button>
+                    <button type="button" class="color-option" data-color-value="black" data-i18n="st_c_black">⚫ أسود/ذهبي</button>
+                    <button type="button" class="color-option" data-color-value="whatsapp" data-i18n="st_c_whatsapp">💬 أبيض/كريمي</button>
                 </div>
             </section>
 
             <!-- 3) حجم الخط -->
             <section class="s-card">
-                <p class="s-card-title">🔠 حجم الخط</p>
+                <p class="s-card-title" data-i18n="st_font_title">🔠 حجم الخط</p>
                 <div class="color-options" id="fontSizeOptions">
-                    <button type="button" class="color-option" data-font="small">صغير</button>
-                    <button type="button" class="color-option" data-font="medium">متوسط</button>
-                    <button type="button" class="color-option" data-font="large">كبير</button>
+                    <button type="button" class="color-option" data-font="small" data-i18n="st_f_small">صغير</button>
+                    <button type="button" class="color-option" data-font="medium" data-i18n="st_f_medium">متوسط</button>
+                    <button type="button" class="color-option" data-font="large" data-i18n="st_f_large">كبير</button>
                 </div>
-                <p id="fontPreview">هذا مثال على حجم الخط في المحادثة ✨</p>
+                <p id="fontPreview" data-i18n="st_f_preview">هذا مثال على حجم الخط في المحادثة ✨</p>
             </section>
 
             <!-- 4) التنبيهات + 5) الاهتزاز -->
             <section class="s-card">
                 <div class="s-row">
-                    <span>🔔 التنبيهات والرسائل <span class="s-soon">قريباً</span></span>
+                    <span><span data-i18n="st_notif">🔔 التنبيهات والرسائل</span> <span class="s-soon" data-i18n="st_soon">قريباً</span></span>
                     <button type="button" class="s-toggle" role="switch" aria-checked="false"
-                            aria-label="التنبيهات" disabled></button>
+                            aria-label="Notifications" disabled></button>
                 </div>
                 <div class="s-row" id="vibrationRow">
-                    <span>📳 الاهتزاز</span>
+                    <span data-i18n="st_vibration">📳 الاهتزاز</span>
                     <button type="button" class="s-toggle" id="vibrationToggle" role="switch"
-                            aria-checked="true" aria-label="الاهتزاز"></button>
+                            aria-checked="true" aria-label="Vibration"></button>
                 </div>
             </section>
 
             <!-- الشفافية والمصداقية -->
-            <p class="s-trust-title">الشفافية والمصداقية</p>
+            <p class="s-trust-title" data-i18n="st_trust">الشفافية والمصداقية</p>
 
             <details class="s-acc">
-                <summary>✉️ اتصلي بنا</summary>
+                <summary><span data-i18n="st_contact">✉️ اتصلي بنا</span></summary>
                 <div class="s-acc-body">
-                    <p>رأيك يهمّنا: ملاحظة، اقتراح، أو مشكلة؟ راسلينا وسنقرأ رسالتك.</p>
-                    <a class="s-btn" id="contactLink" href="mailto:robaty.support@gmail.com">فتح البريد</a>
+                    <p data-i18n="st_contact_body">رأيك يهمّنا: ملاحظة، اقتراح، أو مشكلة؟ راسلينا وسنقرأ رسالتك.</p>
+                    <a class="s-btn" id="contactLink" href="mailto:robaty.support@gmail.com" data-i18n="st_contact_btn">فتح البريد</a>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary>🔒 سياسة الخصوصية</summary>
+                <summary><span data-i18n="st_privacy">🔒 سياسة الخصوصية</span></summary>
                 <div class="s-acc-body">
                     <ul>
-                        <li>محادثاتك وما تتذكره روباتي عنك تُحفظ على جهازك.</li>
-                        <li>الرسائل التي ترسلينها تُرسل إلى خدمة ذكاء اصطناعي (Google Gemini) لتوليد الرد.</li>
-                        <li>يمكنك مسح ذاكرتك في أي وقت من قسم «حذف الذاكرة».</li>
+                        <li data-i18n="st_privacy_1">محادثاتك وما تتذكره روباتي عنك تُحفظ على جهازك.</li>
+                        <li data-i18n="st_privacy_2">الرسائل التي ترسلينها تُرسل إلى خدمة ذكاء اصطناعي (Google Gemini) لتوليد الرد.</li>
+                        <li data-i18n="st_privacy_3">يمكنك مسح ذاكرتك في أي وقت من قسم «حذف الذاكرة».</li>
                     </ul>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary>📜 شروط الاستخدام</summary>
+                <summary><span data-i18n="st_terms">📜 شروط الاستخدام</span></summary>
                 <div class="s-acc-body">
                     <ul>
-                        <li>روباتي للتعارف والترفيه والثقافة، وردودها من الذكاء الاصطناعي وقد تحتوي أخطاء.</li>
-                        <li>لا تغني عن رأي مختص في الصحة أو القانون أو المال.</li>
-                        <li>يرجى عدم إدخال معلومات شديدة الحساسية في المحادثة.</li>
-                        <li>باستعمالك التطبيق فأنتِ توافقين على هذه الشروط.</li>
+                        <li data-i18n="st_terms_1">روباتي للتعارف والترفيه والثقافة، وردودها من الذكاء الاصطناعي وقد تحتوي أخطاء.</li>
+                        <li data-i18n="st_terms_2">لا تغني عن رأي مختص في الصحة أو القانون أو المال.</li>
+                        <li data-i18n="st_terms_3">يرجى عدم إدخال معلومات شديدة الحساسية في المحادثة.</li>
+                        <li data-i18n="st_terms_4">باستعمالك التطبيق فأنتِ توافقين على هذه الشروط.</li>
                     </ul>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary>✨ حول روباتي</summary>
+                <summary><span data-i18n="st_about">✨ حول روباتي</span></summary>
                 <div class="s-acc-body">
-                    <p>روباتي سفيرة رقمية للتراث المغربي: الأزياء والأماكن والمطبخ والثقافة.</p>
-                    <p>هي ذكاء اصطناعي وليست إنساناً، وقد تخطئ، فتحققي من المعلومات المهمة.</p>
+                    <p data-i18n="st_about_1">روباتي سفيرة رقمية للتراث المغربي: الأزياء والأماكن والمطبخ والثقافة.</p>
+                    <p data-i18n="st_about_2">هي ذكاء اصطناعي وليست إنساناً، وقد تخطئ، فتحققي من المعلومات المهمة.</p>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary>🗑️ حذف الذاكرة</summary>
+                <summary><span data-i18n="st_mem">🗑️ حذف الذاكرة</span></summary>
                 <div class="s-acc-body">
-                    <p>يمسح المحادثات وكل ما تعرفه روباتي عنك على هذا الجهاز، وتبدأ من جديد. لا يمكن التراجع.</p>
-                    <button type="button" class="s-btn s-danger" id="deleteMemoryBtn">حذف الذاكرة</button>
+                    <p data-i18n="st_mem_body">يمسح المحادثات وكل ما تعرفه روباتي عنك على هذا الجهاز، وتبدأ من جديد. لا يمكن التراجع.</p>
+                    <button type="button" class="s-btn s-danger" id="deleteMemoryBtn" data-i18n="st_mem_btn">حذف الذاكرة</button>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary>👤 حساب Google وتسجيل الخروج <span class="s-soon">قريباً</span></summary>
+                <summary><span data-i18n="st_account">👤 حساب Google وتسجيل الخروج</span> <span class="s-soon" data-i18n="st_soon">قريباً</span></summary>
                 <div class="s-acc-body">
-                    <p>قريباً: ربط ذاكرتك بحساب Google لتبقى معك على أي جهاز.</p>
+                    <p data-i18n="st_account_body">قريباً: ربط ذاكرتك بحساب Google لتبقى معك على أي جهاز.</p>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary>❌ حذف حسابي وبياناتي <span class="s-soon">قريباً</span></summary>
+                <summary><span data-i18n="st_delacc">❌ حذف حسابي وبياناتي</span> <span class="s-soon" data-i18n="st_soon">قريباً</span></summary>
                 <div class="s-acc-body">
-                    <p>سيتوفر مع ربط الحساب. أما حذف التطبيق من هاتفك: اضغطي مطولاً على أيقونته ثم اختاري «إزالة» أو «إلغاء التثبيت».</p>
+                    <p data-i18n="st_delacc_body">سيتوفر مع ربط الحساب. أما حذف التطبيق من هاتفك: اضغطي مطولاً على أيقونته ثم اختاري «إزالة» أو «إلغاء التثبيت».</p>
                 </div>
             </details>
 
