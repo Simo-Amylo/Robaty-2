@@ -373,3 +373,37 @@ body[data-color-mode="whatsapp"] .s-toast {
     font-size: 14.4px;      /* 12px + 20% */
     padding: 10px 12px;
 }
+
+/* ---- الحساب وحذف الحساب ---- */
+.s-acc-body [hidden] { display: none !important; }
+
+.s-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.s-avatar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-border);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    color: var(--gold-bright);
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.s-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.s-user-info { display: flex; flex-direction: column; min-width: 0; }
+.s-user-info strong { color: var(--gold-bright); font-size: 13px; }
+.s-user-info small { opacity: 0.7; font-size: 11px; overflow: hidden; text-overflow: ellipsis; }
+
+.s-warn { color: #ff8a7a; font-weight: 700; margin-top: 10px; }
+
+#delAccConfirm .s-btn { margin-inline-end: 8px; }

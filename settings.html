@@ -121,8 +121,9 @@
                 <div class="s-acc-body">
                     <ul>
                         <li data-i18n="st_privacy_1">محادثاتك وما تتذكره روباتي عنك تُحفظ على جهازك.</li>
-                        <li data-i18n="st_privacy_2">الرسائل التي ترسلينها تُرسل إلى خدمة ذكاء اصطناعي (Google Gemini) لتوليد الرد.</li>
+                        <li data-i18n="st_privacy_2">الرسائل التي ترسلينها تُرسل إلى خدمة ذكاء اصطناعي من Google لتوليد الرد.</li>
                         <li data-i18n="st_privacy_3">يمكنك مسح ذاكرتك في أي وقت من قسم «حذف الذاكرة».</li>
+                        <li data-i18n="st_privacy_4">يُستخدم تسجيل الدخول بـ Google فقط للتعليق والإعجاب والمتابعة. تظهر التعليقات للجميع باسمك وصورتك من حساب Google، وتُحذف كلها عند حذف الحساب.</li>
                     </ul>
                 </div>
             </details>
@@ -156,16 +157,34 @@
             </details>
 
             <details class="s-acc">
-                <summary><span data-i18n="st_account">👤 حساب Google وتسجيل الخروج</span> <span class="s-soon" data-i18n="st_soon">قريباً</span></summary>
+                <summary><span data-i18n="st_account">👤 حساب Google وتسجيل الخروج</span></summary>
                 <div class="s-acc-body">
-                    <p data-i18n="st_account_body">قريباً: ربط ذاكرتك بحساب Google لتبقى معك على أي جهاز.</p>
+                    <p data-i18n="st_account_body">يُستخدم الحساب فقط للتعليق والإعجاب والمتابعة.</p>
+                    <div id="accSignedOut">
+                        <button type="button" class="s-btn" id="accSignInBtn" data-i18n="st_acc_signin">تسجيل الدخول بـ Google</button>
+                    </div>
+                    <div id="accSignedIn" hidden>
+                        <div class="s-user">
+                            <span class="s-avatar"><img id="accAvatar" alt="" referrerpolicy="no-referrer" hidden><span id="accInitial"></span></span>
+                            <span class="s-user-info"><strong id="accName"></strong><small id="accEmail" dir="ltr"></small></span>
+                        </div>
+                        <button type="button" class="s-btn" id="accSignOutBtn" data-i18n="st_acc_signout">تسجيل الخروج</button>
+                    </div>
                 </div>
             </details>
 
             <details class="s-acc">
-                <summary><span data-i18n="st_delacc">❌ حذف حسابي وبياناتي</span> <span class="s-soon" data-i18n="st_soon">قريباً</span></summary>
+                <summary><span data-i18n="st_delacc">❌ حذف حسابي وبياناتي</span></summary>
                 <div class="s-acc-body">
-                    <p data-i18n="st_delacc_body">سيتوفر مع ربط الحساب. أما حذف التطبيق من هاتفك: اضغطي مطولاً على أيقونته ثم اختاري «إزالة» أو «إلغاء التثبيت».</p>
+                    <p id="delaccBodyIn" data-i18n="st_delacc_body_in" hidden>سنحذف تعليقاتك وإعجاباتك وحسابك وكل ما على هذا الجهاز. لا يمكن التراجع.</p>
+                    <p id="delaccBodyOut" data-i18n="st_delacc_body_out">سنمسح كل ما على هذا الجهاز. لا يمكن التراجع.</p>
+                    <button type="button" class="s-btn s-danger" id="delAccBtn" data-i18n="st_delacc_btn">حذف حسابي وبياناتي</button>
+                    <div id="delAccConfirm" hidden>
+                        <p class="s-warn" data-i18n="st_delacc_confirm_text">هل أنتِ متأكدة؟ هذه العملية نهائية.</p>
+                        <button type="button" class="s-btn s-danger" id="delAccOk" data-i18n="st_delacc_confirm_btn">نعم، احذفي نهائياً</button>
+                        <button type="button" class="s-btn" id="delAccCancel" data-i18n="st_delacc_cancel">إلغاء</button>
+                    </div>
+                    <p class="s-note" data-i18n="st_delacc_body">لحذف التطبيق من هاتفك: اضغطي مطولاً على أيقونته ثم اختاري «إزالة» أو «إلغاء التثبيت».</p>
                 </div>
             </details>
 
@@ -180,7 +199,12 @@
 
 <script src="i18n.js"></script>
 <script src="button-haptics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
 <script src="settings.js"></script>
+<script src="settings-account.js"></script>
 
 </body>
 </html>

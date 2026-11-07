@@ -35,7 +35,43 @@ service cloud.firestore {
                  .difference(request.resource.data.likedBy.toSet())
              ) == [request.auth.uid].toSet();
 
-      // الحذف من Firebase Console غير
+      // الحذف: كل مستخدمة تقدر تحذف غير التعليقات ديالها هي (كيخدم مع «حذف حسابي»)
+      allow delete: if request.auth != null
+        && resource.data.uid == request.auth.uid;
+    }
+
+    // عدادات المنشورات (القواعد الأصلية بلا تغيير)
+    match /postStats/{postId} {
+      function delta(f) {
+        return request.resource.data.get(f, 0) - resource.data.get(f, 0);
+      }
+      allow read: if true;
+      allow create:
+        if request.resource.data.keys().size() == 1
+        && request.resource.data.keys().hasOnly(['comments','shares','reposts','likes'])
+        && request.resource.data.values()[0] == 1;
+      allow update:
+        if request.resource.data.keys().hasOnly(['comments','shares','reposts','likes'])
+        && delta('comments') in [0, 1]
+        && delta('shares') in [0, 1]
+        && delta('reposts') in [0, 1]
+        && delta('likes') in [-1, 0, 1]
+        && request.resource.data.get('likes', 0) >= 0;
+      allow delete: if false;
+    }
+
+    // متابعو الحساب (القواعد الأصلية بلا تغيير)
+    match /profileStats/{docId} {
+      allow read: if true;
+      allow create:
+        if docId == 'robaty_ai'
+        && request.resource.data.keys().hasOnly(['followers'])
+        && request.resource.data.followers == 1;
+      allow update:
+        if docId == 'robaty_ai'
+        && request.resource.data.keys().hasOnly(['followers'])
+        && request.resource.data.followers >= 0
+        && (request.resource.data.followers - resource.data.followers) in [-1, 1];
       allow delete: if false;
     }
   }
