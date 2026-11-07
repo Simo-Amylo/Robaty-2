@@ -356,9 +356,15 @@
     function signInWithGoogle() {
         var provider = new firebase.auth.GoogleAuthProvider();
         return auth.signInWithPopup(provider).catch(function (err) {
-            // بعض متصفحات الهاتف كتحجب popup — نجربو redirect كبديل
-            if (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request') {
-                return auth.signInWithRedirect(provider);
+            var code = err && err.code;
+            // ما بقيناش كنستعملو redirect: مع دومين مخصص (GitHub Pages) كيعطي
+            // "The requested action is invalid" فمتصفحات الهاتف. popup غير هو.
+            if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return;
+            if (code === 'auth/popup-blocked') {
+                try {
+                    window.alert(ct('comments_signin_blocked', 'المتصفح حجب نافذة تسجيل الدخول. سمحي بالنوافذ المنبثقة لهاد الموقع وعاودي المحاولة.'));
+                } catch (e) {}
+                return;
             }
             console.error(err);
         });

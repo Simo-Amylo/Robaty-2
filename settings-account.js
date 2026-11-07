@@ -69,10 +69,9 @@
         var provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider).catch(function (err) {
             var code = err && err.code;
-            if (code === 'auth/popup-blocked' || code === 'auth/cancelled-popup-request') {
-                return auth.signInWithRedirect(provider);
-            }
-            if (code !== 'auth/popup-closed-by-user') toast(tt('st_acc_fail'));
+            // popup فقط (redirect كيعطي "requested action is invalid" على الدومين المخصص)
+            if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return;
+            toast(tt('st_acc_fail'));
         });
     });
 
