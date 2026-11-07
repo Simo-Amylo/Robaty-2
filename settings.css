@@ -407,3 +407,6 @@ body[data-color-mode="whatsapp"] .s-toast {
 .s-warn { color: #ff8a7a; font-weight: 700; margin-top: 10px; }
 
 #delAccConfirm .s-btn { margin-inline-end: 8px; }
+
+/* إصلاح: المربعات (overflow:hidden) كانت كتنكمش حتى تولي خط بوحدو ملي المحتوى كيفوق الشاشة */
+.s-scroll > * { flex-shrink: 0; }
