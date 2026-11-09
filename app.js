@@ -26,10 +26,12 @@ const settingsButton = document.getElementById('settingsButton');
 const backButton = document.getElementById('backButton');
 const resetMemoryButton = document.getElementById('resetMemoryButton');
 const settingsModal = document.getElementById('settingsModal');
-const tempKeyButton = document.getElementById('tempKeyButton'); // TEMP-KEY
-const apiKeyModal = document.getElementById('apiKeyModal'); // TEMP-KEY
-const apiKeyInput = document.getElementById('apiKeyInput');
-const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+const quotaBadge = document.getElementById('quotaBadge');
+const quotaText = document.getElementById('quotaText');
+const loginModal = document.getElementById('loginModal');
+const loginGoogleBtn = document.getElementById('loginGoogleBtn');
+const loginCancelBtn = document.getElementById('loginCancelBtn');
+const loginError = document.getElementById('loginError');
 const colorModeOptions = document.getElementById('colorModeOptions');
 
 
@@ -122,11 +124,11 @@ firm (حزم) — فرض الاحترام: ملي المستخدمة كتهين 
    API KEY (محلي فقط)
    ========================================================================== */
 
-const KEY_STORAGE = 'robaty_gemini_key';
-const GEMINI_MODEL = 'gemini-3.1-flash-lite';
+const RA = window.RobatyAuth;          // robaty-auth.js: Google + الخادم الوسيط
+let pendingLoginSend = false;          // كنتسناو تسجيل الدخول باش نصيفطو الرسالة اللي كانت كتتكتب
 
-function getKey() {
-    return localStorage.getItem(KEY_STORAGE) || '';
+function isSignedIn() {
+    return !!(RA && RA.isSignedIn());
 }
 
 /* ==========================================================================
@@ -169,32 +171,66 @@ function closeSettingsModal() {
     settingsModal.setAttribute('aria-hidden', 'true');
 }
 
-/* TEMP-KEY — مفتاح API المؤقت (يُحذف قبل الإطلاق) */
-function openApiKeyModal() {
-    apiKeyInput.value = getKey();
-    apiKeyModal.classList.add('active');
-    apiKeyModal.setAttribute('aria-hidden', 'false');
+/* نافذة تسجيل الدخول بـ Google (كتبان عند أول رسالة) */
+function openLoginModal() {
+    if (!loginModal) return;
+    if (loginError) { loginError.style.display = 'none'; loginError.textContent = ''; }
+    loginModal.classList.add('active');
+    loginModal.setAttribute('aria-hidden', 'false');
 }
 
-function closeApiKeyModal() {
-    apiKeyModal.classList.remove('active');
-    apiKeyModal.setAttribute('aria-hidden', 'true');
+function closeLoginModal() {
+    if (!loginModal) return;
+    loginModal.classList.remove('active');
+    loginModal.setAttribute('aria-hidden', 'true');
 }
 
-function saveKey() {
-    const val = apiKeyInput.value.trim();
-    if (!val) {
-        apiKeyInput.focus();
-        return;
+async function startGoogleLogin() {
+    if (!RA) return;
+    if (loginGoogleBtn) loginGoogleBtn.disabled = true;
+    try {
+        await RA.signIn();
+    } catch (e) {
+        const silent = e && (e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request');
+        if (!silent && loginError) {
+            loginError.textContent = tr('login_error', 'ما قدرناش نسجلو الدخول. عاودي المحاولة.');
+            loginError.style.display = 'block';
+        }
+        console.error('login:', e && e.code);
+    } finally {
+        if (loginGoogleBtn) loginGoogleBtn.disabled = false;
     }
-    localStorage.setItem(KEY_STORAGE, val);
-    closeApiKeyModal();
+}
+
+/* عداد الرسائل المجانية (الرقم المتبقي فالهيدر) */
+function renderQuota(q) {
+    if (!quotaBadge) return;
+    if (!q) { quotaBadge.style.display = 'none'; return; }
+    quotaBadge.style.display = '';
+    quotaText.textContent = String(q.remaining);
+    quotaBadge.classList.toggle('quota-empty', q.remaining <= 0);
+    const tip = tr('quota_tip', 'الرسائل المجانية لليوم: {n} / {total}')
+        .replace('{n}', q.remaining).replace('{total}', q.limit);
+    quotaBadge.title = tip;
+    quotaBadge.setAttribute('aria-label', tip);
+}
+
+if (RA) {
+    RA.onQuotaChange(renderQuota);
+    RA.onAuthChange((user) => {
+        if (!user) return;
+        closeLoginModal();
+        if (pendingLoginSend) {
+            pendingLoginSend = false;
+            sendMessage();
+        }
+    });
 }
 
 settingsButton?.addEventListener('click', () => {
     window.location.href = 'settings.html';
 });
-tempKeyButton?.addEventListener('click', openApiKeyModal); // TEMP-KEY
+quotaBadge?.addEventListener('click', () => { if (quotaBadge.title) alert(quotaBadge.title); });
 
 settingsModal?.addEventListener('click', (event) => {
     if (event.target === settingsModal) closeSettingsModal();
@@ -298,12 +334,10 @@ resetMemoryButton?.addEventListener('click', () => {
         window.clearRobatyMemory();
     }
 });
-saveApiKeyBtn?.addEventListener('click', saveKey);
-
-apiKeyModal?.addEventListener('click', (event) => {
-    if (event.target === apiKeyModal && getKey()) {
-        closeApiKeyModal();
-    }
+loginGoogleBtn?.addEventListener('click', startGoogleLogin);
+loginCancelBtn?.addEventListener('click', () => { pendingLoginSend = false; closeLoginModal(); });
+loginModal?.addEventListener('click', (event) => {
+    if (event.target === loginModal) { pendingLoginSend = false; closeLoginModal(); }
 });
 
 
@@ -382,8 +416,7 @@ async function maybeUpdateNarrativeMemory() {
     const turnsCount = chatHistory.length / 2;
     if (turnsCount === 0 || turnsCount % NARRATIVE_UPDATE_EVERY !== 0) return;
 
-    const apiKey = getKey();
-    if (!apiKey) return;
+    if (!isSignedIn()) return;
 
     const oldMemory = getNarrativeMemory();
     const recentTurns = chatHistory.slice(-NARRATIVE_UPDATE_EVERY * 2);
@@ -399,22 +432,18 @@ ${conversationText}
 أعيدي كتابة ملخص سردي جديد وموجز (سطرين لثلاثة أسطر كحد أقصى)، بأسلوب طبيعي (مثلاً: "آخر مرة كانت المستخدمة متحمسة لـ...")، يدمج أهم شيء فالملخص القديم (إن وجد) مع أهم لحظة/موضوع جديد من هاد المحادثة. لا تراكمي التفاصيل فوق بعضها — إذا الملخص طويل، احذفي أقل التفاصيل أهمية واحتفظي فقط بالأحدث والأهم. لا تكرري حقائق ثابتة بسيطة (اسم، مدينة)، ركزي على السياق العاطفي والأحداث المشتركة. أجيبي فقط بالملخص النهائي، بدون أي مقدمة.`;
 
     try {
-        const res = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ role: 'user', parts: [{ text: summaryPrompt }] }],
-                    generationConfig: { maxOutputTokens: 250 }
-                })
-            }
-        );
-        const data = await res.json();
+        const data = await RA.apiFetch('/summary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ role: 'user', parts: [{ text: summaryPrompt }] }],
+                generationConfig: { maxOutputTokens: 250 }
+            })
+        });
         const newSummary = data.candidates?.[0]?.content?.parts?.[0]?.text;
         if (newSummary) saveNarrativeMemory(newSummary.trim());
     } catch (e) {
-        console.log('تعذر تحديث الذاكرة السردية:', e.message);
+        console.log('تعذر تحديث الذاكرة السردية:', e.code || e.message);
     }
 }
 
@@ -1005,8 +1034,36 @@ function makeOverloadError() {
     return err;
 }
 
+function mapApiError(err) {
+    switch (err && err.code) {
+        case 'USER_LIMIT': {
+            if (RA) RA.refreshQuota();
+            return new Error(err.welcome
+                ? tr('err_limit_welcome', 'سالات ليك الرسائل المجانية ديال اليوم. غادي ترجعي ليك غدا 🤍')
+                : tr('err_limit_daily', 'سالات ليك الرسائل المجانية ديال اليوم. غادي ترجعي ليك غدا 🤍'));
+        }
+        case 'GLOBAL_CAP':
+            return new Error(tr('err_capacity', 'راه الخدمة وصلات للحد اليومي. عاودي غدا 🙏'));
+        case 'UPSTREAM_BUSY':
+        case 'AUTH_UNAVAILABLE':
+            return makeOverloadError();
+        case 'AUTH':
+        case 'PROVIDER': {
+            const e = new Error(tr('err_auth', 'خاصك تسجلي الدخول بـ Google باش نكملو.'));
+            e.needLogin = true;
+            return e;
+        }
+        case 'NETWORK':
+            return new Error(tr('err_network', 'ما كاينش الإنترنت. تأكدي من الاتصال وعاودي.'));
+        case 'TOO_LARGE':
+            return new Error(tr('err_too_large', 'الملف كبير بزاف. جربي بصورة ولا تسجيل أصغر.'));
+        default:
+            console.error('API error:', err && err.code, err && err.status);
+            return new Error(tr('err_request', 'خطأ فالطلب'));
+    }
+}
+
 async function requestGeminiOnce(userText, imageData, audioData) {
-    const apiKey = getKey();
     const timeCtx = getTimeContext();
     const profileFacts = getProfileFacts();
 
@@ -1083,9 +1140,9 @@ async function requestGeminiOnce(userText, imageData, audioData) {
         text: `[ملاحظة نظام، ماشي من المستخدمة: دابا ${timeCtx.timeStr} (${timeCtx.periode}) حسب توقيتها. الحوار القديم فوق ممكن يكون وقع فوقت آخر، ما تعتمديش عليه لتحديد الوقت الحالي.]`
     });
 
-    const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
-        {
+    let data;
+    try {
+        data = await RA.apiFetch('/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -1093,23 +1150,9 @@ async function requestGeminiOnce(userText, imageData, audioData) {
                 contents: [...recentHistory, { role: 'user', parts: currentUserParts }],
                 generationConfig: { temperature: 0.9, maxOutputTokens: 500, responseMimeType: 'application/json' }
             })
-        }
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) {
-        const rawMsg = data?.error?.message || '';
-
-        if (res.status === 429 || /quota/i.test(rawMsg)) {
-            throw new Error(tr('err_quota', 'وصلتي للحد اليومي المجاني ديال المفتاح.'));
-        }
-        if (res.status === 503 || /overload|unavailable|high demand/i.test(rawMsg)) {
-            throw makeOverloadError();
-        }
-        // الرسالة الخام ديال المزود كتبقى غير فالـconsole (ما كتبانش للمستخدمة)
-        console.error('API error:', rawMsg);
-        throw new Error(tr('err_request', 'خطأ فالطلب'));
+        });
+    } catch (err) {
+        throw mapApiError(err);
     }
 
     const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || '';
@@ -1334,8 +1377,8 @@ function handleIncomingStoryReply() {
 
     messageInput.value = info.text;
 
-    /* بلا مفتاح API: كنخليو النص فالخانة والمستخدمة تصيفطو من بعد */
-    if (!getKey()) {
+    /* بلا تسجيل دخول: كنخليو النص فالخانة والمستخدمة تصيفطو من بعد */
+    if (!isSignedIn()) {
         updateInputDirection();
         autoGrowMessageInput();
         updateSendButtonState();
@@ -1359,8 +1402,9 @@ async function sendMessage() {
         return;
     }
 
-    if (!getKey()) {
-        openApiKeyModal();
+    if (!isSignedIn()) {
+        pendingLoginSend = true;
+        openLoginModal();
         return;
     }
 
@@ -1448,6 +1492,7 @@ async function sendMessage() {
 
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
+        if (RA) RA.noteMessageUsed();
 
         consumeStoryContextTurn();
 
@@ -1469,6 +1514,7 @@ async function sendMessage() {
     } catch (error) {
         removeTypingIndicator(typingId);
         appendBotMessage('⚠️ ' + (error.message || tr('err_unknown', 'مشكل غير معروف، جربي مرة أخرى.')), getCurrentTime());
+        if (error.needLogin) openLoginModal();
         setPresenceState('idle');
         console.error(error);
     }
@@ -1607,6 +1653,7 @@ function setRecordButtonUI(active) {
 
 async function startRecording() {
     if (isRecording || isStartingRecording) return;
+    if (!isSignedIn()) { openLoginModal(); return; }
     isStartingRecording = true;
 
     try {
@@ -1741,7 +1788,7 @@ function appendUserAudioBubble(audioBlob) {
 
 /* كتصيفط التسجيل الخام لـGemini (audio understanding) */
 async function sendVoiceOnlyMessage(audioBlob) {
-    if (!getKey()) { setPresenceState('idle'); return; }
+    if (!isSignedIn()) { setPresenceState('idle'); openLoginModal(); return; }
 
     setPresenceState('processing');
     const typingId = appendTypingIndicator();
@@ -1761,6 +1808,7 @@ async function sendVoiceOnlyMessage(audioBlob) {
 
         const replyTime = getCurrentTime();
         appendBotMessage(reply, replyTime);
+        if (RA) RA.noteMessageUsed();
 
         consumeStoryContextTurn();
 
@@ -1781,6 +1829,7 @@ async function sendVoiceOnlyMessage(audioBlob) {
     } catch (error) {
         removeTypingIndicator(typingId);
         appendBotMessage('⚠️ ' + (error.message || tr('err_unknown', 'مشكل غير معروف، جربي مرة أخرى.')), getCurrentTime());
+        if (error.needLogin) openLoginModal();
         setPresenceState('idle');
         console.error(error);
     }
@@ -1942,10 +1991,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimeBasedTheme();
     setInterval(updateTimeBasedTheme, 15 * 60 * 1000);
     applyColorMode();
-
-    if (!getKey()) {
-        openApiKeyModal();
-    }
 });
 
 })();
