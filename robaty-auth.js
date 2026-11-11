@@ -21,9 +21,15 @@
     const authListeners = [];
     const quotaListeners = [];
 
+    // كيتحل ملي Firebase كيرجع حالة الدخول المحفوظة (أو بعد 4 ثواني احتياطا)
+    let readyResolve;
+    const readyPromise = new Promise((resolve) => { readyResolve = resolve; });
+    setTimeout(() => readyResolve(), 4000);
+
     function init() {
         if (typeof firebase === 'undefined') {
             console.error('Firebase SDK ما تحمّلاتش');
+            readyResolve();
             return;
         }
         if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
@@ -33,6 +39,7 @@
         auth.getRedirectResult().catch((e) => console.log('redirect:', e && e.code));
 
         auth.onAuthStateChanged((user) => {
+            readyResolve();
             if (!user) quota = null;
             authListeners.forEach((fn) => { try { fn(user); } catch (e) {} });
             if (user) refreshQuota();
@@ -122,6 +129,7 @@
 
     window.RobatyAuth = {
         init,
+        whenReady: () => readyPromise,
         isSignedIn,
         signIn,
         signOut: () => (auth ? auth.signOut() : Promise.resolve()),
