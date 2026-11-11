@@ -1059,7 +1059,7 @@ function mapApiError(err) {
             return new Error(tr('err_too_large', 'الملف كبير بزاف. جربي بصورة ولا تسجيل أصغر.'));
         default:
             console.error('API error:', err && err.code, err && err.status);
-            return new Error(tr('err_request', 'خطأ فالطلب'));
+            return new Error(tr('err_request', 'خطأ فالطلب') + ' [' + ((err && err.code) || '?') + ']');
     }
 }
 
@@ -1360,7 +1360,7 @@ function buildStoryReplyContext(info) {
 
 }
 
-function handleIncomingStoryReply() {
+async function handleIncomingStoryReply() {
 
     let info = null;
 
@@ -1376,6 +1376,9 @@ function handleIncomingStoryReply() {
     if (info.ts && Date.now() - info.ts > 5 * 60 * 1000) return;
 
     messageInput.value = info.text;
+
+    /* كنتسناو Firebase يرجع حالة الدخول المحفوظة (كتتأخر شوية ملي كتحل الصفحة) */
+    if (RA && RA.whenReady) await RA.whenReady();
 
     /* بلا تسجيل دخول: كنخليو النص فالخانة والمستخدمة تصيفطو من بعد */
     if (!isSignedIn()) {
