@@ -32,7 +32,7 @@ const UI_AI_TRANSLATION = false;
 
 /* قائمة "جميع اللغات" (اسم اللغة بحروفها + بالإنجليزية للبحث) */
 /* الأمازيغية: دايما أول عنصر فالقائمة. label = الاسم اللي كيبان فالقائمة، و en = اسم اللغة اللي كيمشي للذكاء الاصطناعي */
-const AMAZIGH_LANGUAGE = { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh, Tifinagh script)', label: 'الأمازيغية', flag: '🇲🇦' };
+const AMAZIGH_LANGUAGE = { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh, Tifinagh script)', label: 'الأمازيغية', flag: '🇲🇦', uiArabic: true };
 
 /* اللهجات العربية: الواجهة كتبقى بالفصحى، و Robaty كتجاوب بلهجة البلد من أول رد.
    الحقل ai هو التعليمة اللي كتمشي للذكاء الاصطناعي (app.js). */
@@ -1355,7 +1355,7 @@ function applyDirection(lang) {
 
     /* لغة مترجمة من "جميع اللغات" (عبرية، فارسية، أردية...) */
     const reply = (lang === 'en') ? getReplyLanguage() : null;
-    if (reply && !reply.dialect && readUiTranslation(reply.code)) {
+    if (reply && !reply.dialect && !reply.uiArabic && readUiTranslation(reply.code)) {
         htmlLang = reply.code;
         rtl = !!reply.rtl;
     }
@@ -1467,7 +1467,7 @@ async function ensureUiTranslation() {
     if (!UI_AI_TRANSLATION) return;
 
     const reply = getReplyLanguage();
-    if (!reply || reply.dialect) return;
+    if (!reply || reply.dialect || reply.uiArabic) return;
 
     const cached = readUiTranslation(reply.code);
     if (cached && cached.hash === sourceHash()) return;
@@ -1577,7 +1577,7 @@ function getDictionary(lang) {
     /* لغة من "جميع اللغات": الإنجليزية + الترجمة المحفوظة (إلا كانت) */
     if (lang === 'en') {
         const reply = getReplyLanguage();
-        if (UI_AI_TRANSLATION && reply && !reply.dialect) {
+        if (UI_AI_TRANSLATION && reply && !reply.dialect && !reply.uiArabic) {
             const entry = readUiTranslation(reply.code);
             if (entry) return Object.assign({}, translations.en, entry.dict);
         }
@@ -1729,11 +1729,12 @@ function setReplyLanguage(code) {
         flag: item.flag || '',
         rtl: !!item.rtl,
         dialect: !!item.dialect,
+        uiArabic: !!item.uiArabic,
         ai: item.ai || null
     });
 
-    if (item.dialect) {
-        /* لهجة عربية: الواجهة بالفصحى، و Robaty كتجاوب بلهجة البلد */
+    if (item.dialect || item.uiArabic) {
+        /* لهجة عربية ولا الأمازيغية: الواجهة بالعربية الفصحى، و Robaty كتجاوب بلهجة البلد ولا بالأمازيغية */
         setLanguage('ar', { variant: 'fus', keepReply: true });
     } else {
         /* باقي اللغات: الواجهة بالإنجليزية فورا، ثم كتترجم بالذكاء الاصطناعي */
