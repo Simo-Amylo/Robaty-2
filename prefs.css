@@ -215,7 +215,8 @@ body[data-color-mode="whatsapp"] .color-option {
 body[data-color-mode="whatsapp"] .lang-option.active,
 body[data-color-mode="whatsapp"] .color-option.active {
     background: linear-gradient(135deg, #e5c35c 0%, #b8902a 100%);
-    color: #2e2118;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     border-color: #c9a22f;
 }
 
