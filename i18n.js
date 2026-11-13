@@ -21,14 +21,18 @@ const REPLY_LANG_STORAGE = 'robaty_reply_lang';
 /* كاش ترجمة الواجهة بالذكاء الاصطناعي (لكل لغة) */
 const UI_TRANSLATION_PREFIX = 'robaty_ui_tr_';
 
-/* TODO قبل الإطلاق: مفتاح Gemini المؤقت كيتقرا من نفس المكان ديال app.js (robaty_gemini_key).
-   ملي ننقلو الاتصال للـ Worker، نبدلو غير دالة requestTranslationChunk هنا و fetch فـ app.js. */
-const TRANSLATION_KEY_STORAGE = 'robaty_gemini_key';
-const TRANSLATION_MODEL = 'gemini-3.1-flash-lite';
+/* الترجمة كتدوز عبر الـ Worker (/translate): كل لغة كتترجم مرة وحدة وكتتحفظ فالسيرفر وكتتوزع على الكل.
+   ما كاينش مفتاح فالتطبيق. نفس عنوان الـ Worker ديال robaty-auth.js */
+const TRANSLATE_API = 'https://robaty-api.businessdeveloper1999.workers.dev/translate';
+
+/* ترجمة نصوص الواجهة بالذكاء الاصطناعي للغات "جميع اللغات".
+   false = الواجهة كتبقى بالإنجليزية، و Robaty كتجاوب باللغة المختارة (القرار الحالي).
+   true  = كتفعل الترجمة عبر الـ Worker (/translate)، خاص الـ Worker يكون فيه هاد المسار. */
+const UI_AI_TRANSLATION = false;
 
 /* قائمة "جميع اللغات" (اسم اللغة بحروفها + بالإنجليزية للبحث) */
 /* الأمازيغية: دايما أول عنصر فالقائمة. label = الاسم اللي كيبان فالقائمة، و en = اسم اللغة اللي كيمشي للذكاء الاصطناعي */
-const AMAZIGH_LANGUAGE = { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh, Tifinagh script)', label: 'الأمازيغية', flag: '🇲🇦' };
+const AMAZIGH_LANGUAGE = { code: 'tzm', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', en: 'Tamazight (Amazigh, Tifinagh script)', label: 'الأمازيغية', flag: '🇲🇦', uiArabic: true };
 
 /* اللهجات العربية: الواجهة كتبقى بالفصحى، و Robaty كتجاوب بلهجة البلد من أول رد.
    الحقل ai هو التعليمة اللي كتمشي للذكاء الاصطناعي (app.js). */
@@ -1351,7 +1355,7 @@ function applyDirection(lang) {
 
     /* لغة مترجمة من "جميع اللغات" (عبرية، فارسية، أردية...) */
     const reply = (lang === 'en') ? getReplyLanguage() : null;
-    if (reply && !reply.dialect && readUiTranslation(reply.code)) {
+    if (reply && !reply.dialect && !reply.uiArabic && readUiTranslation(reply.code)) {
         htmlLang = reply.code;
         rtl = !!reply.rtl;
     }
@@ -1420,37 +1424,34 @@ function cleanTranslation(value) {
         .trim();
 }
 
-async function requestTranslationChunk(item, chunk) {
+async function requestUiTranslation(code, source) {
 
-    const apiKey = localStorage.getItem(TRANSLATION_KEY_STORAGE) || '';
-    if (!apiKey) throw new Error('no key');
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 90000);
 
-    const prompt =
-        'You are a professional app localizer. Translate the VALUES of the following JSON object from English into ' +
-        item.en + ' (' + item.native + '). Keep every KEY exactly unchanged. ' +
-        'Keep emojis, HTML tags (<b>, <br>), line breaks (\\n) and brand names (Robaty, Google, Gemini, Chrome, WhatsApp, API) as they are. ' +
-        'The app speaks warmly to women: use feminine forms where the language distinguishes gender. ' +
-        'Return ONLY the translated JSON object.\n\n' + JSON.stringify(chunk);
+    try {
 
-    const res = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/models/' + TRANSLATION_MODEL + ':generateContent?key=' + apiKey,
-        {
+        const res = await fetch(TRANSLATE_API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{ role: 'user', parts: [{ text: prompt }] }],
-                generationConfig: { temperature: 0.2, maxOutputTokens: 8192, responseMimeType: 'application/json' }
-            })
+            body: JSON.stringify({ code: code, source: source }),
+            signal: controller.signal
+        });
+
+        let data = null;
+        try { data = await res.json(); } catch (error) {}
+
+        if (!res.ok || !data || !data.dict || typeof data.dict !== 'object') {
+            throw new Error('api ' + res.status + ((data && data.error && data.error.code) ? ' ' + data.error.code : ''));
         }
-    );
 
-    const data = await res.json();
-    if (!res.ok) throw new Error('api ' + res.status);
+        return data.dict;
 
-    const text = data && data.candidates && data.candidates[0] && data.candidates[0].content &&
-        data.candidates[0].content.parts && data.candidates[0].content.parts[0].text || '';
+    } finally {
 
-    return JSON.parse(text.replace(/```json|```/g, '').trim());
+        clearTimeout(timer);
+
+    }
 
 }
 
@@ -1463,8 +1464,10 @@ function refreshUi() {
 
 async function ensureUiTranslation() {
 
+    if (!UI_AI_TRANSLATION) return;
+
     const reply = getReplyLanguage();
-    if (!reply || reply.dialect) return;
+    if (!reply || reply.dialect || reply.uiArabic) return;
 
     const cached = readUiTranslation(reply.code);
     if (cached && cached.hash === sourceHash()) return;
@@ -1477,22 +1480,16 @@ async function ensureUiTranslation() {
 
         const en = translations.en;
         const keys = Object.keys(en).filter(k => typeof en[k] === 'string');
-        const chunks = [];
 
-        for (let i = 0; i < keys.length; i += 40) chunks.push(keys.slice(i, i + 40));
+        const source = {};
+        keys.forEach(k => { source[k] = en[k]; });
 
-        const parts = await Promise.all(chunks.map(ch => {
-            const obj = {};
-            ch.forEach(k => { obj[k] = en[k]; });
-            return requestTranslationChunk(reply, obj);
-        }));
+        const part = await requestUiTranslation(reply.code, source);
 
         const dict = {};
 
-        parts.forEach(part => {
-            Object.keys(part || {}).forEach(k => {
-                if (typeof part[k] === 'string' && typeof en[k] === 'string') dict[k] = cleanTranslation(part[k]);
-            });
+        Object.keys(part || {}).forEach(k => {
+            if (typeof part[k] === 'string' && typeof en[k] === 'string') dict[k] = cleanTranslation(part[k]);
         });
 
         if (Object.keys(dict).length < keys.length * 0.6) throw new Error('incomplete');
@@ -1580,7 +1577,7 @@ function getDictionary(lang) {
     /* لغة من "جميع اللغات": الإنجليزية + الترجمة المحفوظة (إلا كانت) */
     if (lang === 'en') {
         const reply = getReplyLanguage();
-        if (reply && !reply.dialect) {
+        if (UI_AI_TRANSLATION && reply && !reply.dialect && !reply.uiArabic) {
             const entry = readUiTranslation(reply.code);
             if (entry) return Object.assign({}, translations.en, entry.dict);
         }
@@ -1732,11 +1729,12 @@ function setReplyLanguage(code) {
         flag: item.flag || '',
         rtl: !!item.rtl,
         dialect: !!item.dialect,
+        uiArabic: !!item.uiArabic,
         ai: item.ai || null
     });
 
-    if (item.dialect) {
-        /* لهجة عربية: الواجهة بالفصحى، و Robaty كتجاوب بلهجة البلد */
+    if (item.dialect || item.uiArabic) {
+        /* لهجة عربية ولا الأمازيغية: الواجهة بالعربية الفصحى، و Robaty كتجاوب بلهجة البلد ولا بالأمازيغية */
         setLanguage('ar', { variant: 'fus', keepReply: true });
     } else {
         /* باقي اللغات: الواجهة بالإنجليزية فورا، ثم كتترجم بالذكاء الاصطناعي */
