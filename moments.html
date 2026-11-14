@@ -43,6 +43,7 @@
     <title>Robaty - Moments</title>
 
     <link rel="stylesheet" href="moments.css">
+    <link rel="stylesheet" href="contest-btn.css">
     <link rel="stylesheet" href="comments-ig.css?v=3">
 
     <link rel="stylesheet"
@@ -72,6 +73,21 @@
         <!-- البانر الإعلاني -->
         <div class="ad-banner">
             <span class="ad-tag" data-i18n="ad_tag">إعلان</span>
+
+            <!-- شريط الأزرار: مسابقة اليوم (الوسط) + الإعدادات (أقصى الجهة المقابلة لزر الرجوع) -->
+            <div class="moments-topbar">
+                <div class="contest-cta-wrap">
+                    <a class="contest-cta" id="contestCta" href="concours.html" aria-label="مسابقة اليوم">
+                        <span class="contest-dot" aria-hidden="true"></span>
+                        <span class="contest-ico" aria-hidden="true">🏆</span>
+                        <span class="contest-txt">مسابقة اليوم</span>
+                        <span class="contest-star" aria-hidden="true">✦</span>
+                    </a>
+                </div>
+                <a class="moments-settings-btn" href="settings.html" aria-label="الإعدادات">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+            </div>
         </div>
 
 
@@ -245,6 +261,7 @@
 <script src="i18n.js"></script>
 <script src="moments-data.js"></script>
 <script src="moments-button-glow.js"></script>
+<script src="contest-btn.js"></script>
 <script>
     // رسم المنشورات من moments-data.js (الأحدث أولا) — خاصو يتنفذ قبل story.js و comments.js
     (function () {

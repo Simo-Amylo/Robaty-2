@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="prefs.js"></script>
+
+    <title>Robaty - تحدي اليوم</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e5b35c">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prefs.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="concours.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet" media="print" onload="this.media='all'">
+</head>
+<body class="settings-page concours-page">
+
+<div class="outer-gold-frame">
+    <div class="golden-ambient-glow" aria-hidden="true"></div>
+    <div class="app-container">
+
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+
+        <header class="s-header">
+            <button type="button" class="ornate-btn" id="cBack" aria-label="رجوع">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <h1 class="s-title">🎯 تحدي اليوم</h1>
+            <span class="c-streak" id="cStreak" title="أيام متتالية">🔥 0</span>
+        </header>
+
+        <main class="s-scroll">
+
+            <div class="c-robaty" aria-live="polite">
+                <span class="c-face" id="cFace">✨</span>
+                <p class="c-bubble" id="cSay">مرحبا! تحدي اليوم جاهز، واش نبداو؟</p>
+            </div>
+
+            <p class="c-steps" id="cSteps" aria-hidden="true"><i></i><i></i><i></i></p>
+
+            <!-- 1) السؤال -->
+            <section class="s-card" id="pQ" hidden>
+                <p class="c-topic" id="cTopic"></p>
+                <h2 class="c-q" id="cQ"></h2>
+                <div class="c-opts" id="cOpts"></div>
+                <p class="c-fact" id="cFact" hidden></p>
+                <button type="button" class="s-btn c-next" id="cToGame" hidden>إلى اللعبة</button>
+            </section>
+
+            <!-- 2) اللعبة -->
+            <section class="s-card" id="pG" hidden>
+                <p class="c-topic">🎮 خمّني الجواب</p>
+                <h2 class="c-q" id="cClue"></h2>
+                <p class="c-hint" id="cHint" hidden></p>
+                <div class="c-guess" id="cGuessBox">
+                    <input type="text" id="cGuess" class="c-input" autocomplete="off" placeholder="اكتبي جوابك" aria-label="جوابك">
+                    <button type="button" class="s-btn" id="cSend">تأكيد</button>
+                </div>
+                <p class="c-left" id="cLeft"></p>
+                <button type="button" class="s-btn c-next" id="cToResult" hidden>شوفي نتيجتي</button>
+            </section>
+
+            <!-- 3) النتيجة -->
+            <section class="s-card c-result" id="pR" hidden>
+                <p class="c-badge" id="cBadge"></p>
+                <p class="c-score"><strong id="cScore">0</strong><span> / 30</span></p>
+                <p class="c-line" id="cDetail"></p>
+                <p class="c-line">🔥 <span id="cStreak2">0</span> أيام متتالية · ⭐ المجموع <span id="cTotal">0</span></p>
+                <button type="button" class="s-btn" id="cShare"><i class="fa-solid fa-share-nodes"></i> شاركي نتيجتك</button>
+                <p class="c-next-in">التحدي الجاي بعد <b id="cCount" dir="ltr">--:--:--</b></p>
+            </section>
+
+            <p class="s-note" id="cErr" hidden>تعذّر تحميل تحدي اليوم. تحققي من الاتصال وأعيدي المحاولة.</p>
+
+        </main>
+
+        <div class="c-toast" id="cToast" role="status" aria-live="polite"></div>
+    </div>
+</div>
+
+<script src="button-haptics.js"></script>
+<script src="concours.js"></script>
+</body>
+</html>

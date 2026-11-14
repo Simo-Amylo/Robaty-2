@@ -1,0 +1,33 @@
+/* شريط أزرار Moments: مسابقة اليوم + الإعدادات (داخل .ad-banner، يستبدل مساحة الإعلان) */
+.app-container .ad-banner{display:flex;align-items:center;min-height:60px;padding:8px 56px 8px 14px}
+.app-container .ad-banner .ad-tag{display:none}
+.moments-topbar{flex:1;min-width:0;display:flex;align-items:center;gap:8px;direction:rtl}
+.contest-cta-wrap{flex:1;min-width:0;height:44px;filter:drop-shadow(0 0 7px rgba(229,179,92,.55))}
+.moments-settings-btn{flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;
+    background:rgba(15,10,6,.88);border:1px solid var(--gold,#e5b35c);color:var(--gold,#e5b35c);text-decoration:none;font-size:14px;
+    -webkit-tap-highlight-color:transparent}
+.moments-settings-btn:active{background:rgba(255,255,255,.10)}
+.moments-settings-btn:focus-visible{outline:2px solid var(--gold,#e5b35c);outline-offset:2px}
+
+.contest-cta{
+    position:relative;display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;height:100%;min-height:34px;padding:0 12px;overflow:hidden;cursor:pointer;text-decoration:none;
+    font-family:'Cairo',sans-serif;font-weight:800;font-size:clamp(1rem,4.8vw,1.3rem);line-height:1;white-space:nowrap;color:#3a2200;
+    text-shadow:0 1px 0 rgba(255,255,255,.55);
+    background:linear-gradient(135deg,#fff3c4 0%,#f4cf6a 35%,#e5b35c 65%,#b9822a 100%);
+    border-radius:12px;
+    outline:1.5px dashed rgba(90,50,0,.55);outline-offset:-4px;
+    -webkit-mask:radial-gradient(circle 7px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;
+    mask:radial-gradient(circle 7px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;
+    transition:transform .12s ease;
+}
+.contest-cta:active{transform:scale(.97)}
+.contest-cta:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+.contest-ico{font-size:1.2em}
+.contest-star{font-size:.9em;opacity:.7}
+.contest-dot{position:absolute;top:6px;inset-inline-start:12px;width:8px;height:8px;border-radius:50%;background:#e0312d;box-shadow:0 0 0 2px rgba(255,255,255,.7);animation:contestPulse 1.4s ease-in-out infinite}
+.contest-cta.is-done .contest-dot{background:#2ea05a;animation:none}
+.contest-cta::after{content:"";position:absolute;top:0;bottom:0;width:36%;left:-50%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-20deg);animation:contestShine 4.5s ease-in-out infinite}
+@keyframes contestShine{0%,60%{left:-50%}100%{left:130%}}
+@keyframes contestPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+@media (prefers-reduced-motion:reduce){.contest-cta::after,.contest-dot{animation:none}}

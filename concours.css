@@ -1,0 +1,34 @@
+/* تحدي اليوم — يعتمد على style.css و settings.css (نفس الإطار الذهبي والألوان) */
+.concours-page .c-streak{min-width:64px;text-align:center;font-weight:700;padding:6px 10px;border-radius:999px;border:1px solid var(--gold,#e5b35c);background:rgba(229,179,92,.14)}
+.c-robaty{display:flex;align-items:center;gap:10px;margin:4px 0 12px}
+.c-face{font-size:2rem;line-height:1;flex:none}
+.c-bubble{margin:0;padding:10px 14px;border-radius:16px;border:1px solid var(--gold,#e5b35c);background:rgba(229,179,92,.10);font-size:.95rem;line-height:1.6}
+.c-steps{display:flex;gap:6px;justify-content:center;margin:0 0 12px}
+.c-steps i{width:34px;height:5px;border-radius:3px;background:rgba(229,179,92,.28)}
+.c-steps i.on{background:var(--gold,#e5b35c)}
+.c-topic{margin:0 0 6px;font-weight:700;opacity:.85}
+.c-q{margin:0 0 14px;font-size:1.15rem;line-height:1.7;font-weight:700}
+.c-opts{display:grid;gap:10px}
+.c-opts .color-option{width:100%;text-align:start;padding:12px 14px}
+.c-opts .color-option:disabled{opacity:1}
+.c-ok{background:rgba(46,160,90,.30)!important;border-color:#2ea05a!important}
+.c-bad{background:rgba(217,83,79,.28)!important;border-color:#d9534f!important}
+.c-fact{margin:12px 0 0;font-size:.9rem;line-height:1.7;opacity:.9}
+.c-hint{margin:0 0 10px;font-size:.9rem;opacity:.9}
+.c-guess{display:flex;gap:8px}
+.c-input{flex:1;min-width:0;padding:11px 12px;font:inherit;color:inherit;border-radius:12px;border:1px solid var(--gold,#e5b35c);background:rgba(255,255,255,.08)}
+.c-input:focus-visible,.c-opts .color-option:focus-visible{outline:2px solid var(--gold,#e5b35c);outline-offset:2px}
+.c-left{margin:10px 0 0;font-size:.9rem}
+.c-next{display:block;width:100%;margin-top:14px}
+.c-result{text-align:center}
+.c-badge{margin:0 0 4px;font-size:1.3rem;font-weight:700}
+.c-score{margin:0 0 8px}
+.c-score strong{font-size:3rem;line-height:1}
+.c-line{margin:6px 0;line-height:1.7}
+.c-result .s-btn{margin-top:12px}
+.c-next-in{margin:14px 0 0;font-size:.9rem;opacity:.9}
+.c-toast{position:fixed;inset-inline:16px;bottom:24px;margin:auto;max-width:340px;padding:10px 14px;text-align:center;border-radius:12px;background:rgba(0,0,0,.82);color:#fff;opacity:0;pointer-events:none;transition:opacity .2s}
+.c-toast.show{opacity:1}
+.c-pop{animation:cPop .45s ease-out}
+@keyframes cPop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.c-pop{animation:none}.c-toast{transition:none}}
