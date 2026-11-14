@@ -5,6 +5,15 @@
     var Q_PTS = 10, G_PTS = [20, 15, 10], MAX = 30;
     var $ = function (id) { return document.getElementById(id); };
 
+    /* نص أبيض افتراضياً؛ إذا كان ثيم الشاشة فاتحاً (كريمي/وردي/...) نستعمل نصاً داكناً */
+    try {
+        var bgc = getComputedStyle(document.querySelector('.app-container') || document.body).backgroundColor;
+        var m = bgc.match(/[\d.]+/g);
+        if (m && (m[3] === undefined || +m[3] > 0.5) && (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255 > 0.6) {
+            document.body.style.setProperty('--c-text', '#2b1a08');
+        }
+    } catch (e) {}
+
     /* ---------- التاريخ والتخزين ---------- */
     function pad(n) { return String(n).padStart(2, '0'); }
     function dkey(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }

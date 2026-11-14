@@ -32,3 +32,13 @@
 .c-pop{animation:cPop .45s ease-out}
 @keyframes cPop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.c-pop{animation:none}.c-toast{transition:none}}
+
+/* ===== تصحيح: النصوص بيضاء على الخلفية الداكنة + احترام خاصية hidden ===== */
+.concours-page{--c-text:#fff}
+.concours-page [hidden]{display:none!important}
+.concours-page .c-streak,
+.concours-page .c-bubble,
+.concours-page .s-card :is(p,h2,span,b,strong,small,label,li){color:var(--c-text)}
+.concours-page .c-input{color:var(--c-text)}
+.concours-page .c-input::placeholder{color:var(--c-text);opacity:.55}
+.concours-page .color-option{color:var(--c-text)}
