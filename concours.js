@@ -39,11 +39,13 @@
         var t = $('cToast'); t.textContent = msg; t.classList.add('show');
         setTimeout(function () { t.classList.remove('show'); }, 2200);
     }
-    function say(face, text) { $('cSay').textContent = text; }
+    function say(pose, text) { $('cSay').textContent = text; if (pose) { introOn = false; setPose(pose); } }
 
     /* صورة Robaty: تنتقل بين ثلاث وضعيات عند فتح الشاشة (calm → warmth → smile) */
-    var POSES = ['calm', 'warmth', 'smile'], poseLayer = 0;
+    var POSES = ['calm', 'warmth', 'smile'], poseLayer = 0, poseName = '', introOn = true;
     function setPose(name) {
+        if (name === poseName) return;
+        poseName = name;
         var L = [$('cPoseA'), $('cPoseB')], cur = L[poseLayer], next = L[1 - poseLayer];
         next.onload = function () { next.classList.add('on'); cur.classList.remove('on'); poseLayer = 1 - poseLayer; };
         next.src = name + '.png';
@@ -52,8 +54,8 @@
         var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (calm) { setPose('smile'); return; }
         setPose(POSES[0]);
-        setTimeout(function () { setPose(POSES[1]); }, 1500);
-        setTimeout(function () { setPose(POSES[2]); }, 3000);
+        setTimeout(function () { if (introOn) setPose(POSES[1]); }, 1500);
+        setTimeout(function () { if (introOn) setPose(POSES[2]); }, 3000);
     }
     function show(step) {
         ['pQ', 'pG', 'pR'].forEach(function (id) { $(id).hidden = true; });
@@ -76,7 +78,7 @@
             b.addEventListener('click', function () { answerQuestion(ch, i); });
             box.appendChild(b);
         });
-        show('q'); say('', 'مرحبا! نبداو بالسؤال 🧠');
+        show('q'); say('', 'مرحبا! تحدي اليوم جاهز. نبداو بالسؤال 🧠');
     }
     function answerQuestion(ch, i) {
         if (D.q !== null) return;
@@ -92,7 +94,7 @@
             else if (+bs[k].dataset.i === picked) bs[k].classList.add('c-bad');
         }
         var ok = D.q > 0;
-        say('', ok ? 'برافو عليك! 👏' : 'ماشي مشكل، تعلمنا 💛');
+        say(ok ? 'joy' : 'empathy', ok ? 'برافو عليك! جواب صحيح 👏' : 'ماشي مشكل، المهم تعرفي الجواب دابا 💛');
         $('cFact').textContent = '💡 ' + ch.fact; $('cFact').hidden = false;
         $('cToGame').hidden = false;
     }
@@ -102,7 +104,7 @@
         var g = ch.game;
         $('cClue').textContent = g.clue;
         show('g'); updateGameUI(ch);
-        if (D.g === null) say('', 'دابا اللعبة! 3 محاولات 🧐');
+        if (D.g === null) say('curiosity', 'دابا اللعبة! عندك 3 محاولات، وكل ما كان الجواب بكري كل ما زادت النقط.');
     }
     function updateGameUI(ch) {
         var g = ch.game, left = 3 - D.tries, over = D.g !== null;
@@ -118,9 +120,9 @@
         if (!v) { toast('اكتبي جوابك أولاً'); return; }
         D.tries++;
         var ok = ch.game.accept.some(function (a) { return norm(a) === v; });
-        if (ok) { D.g = G_PTS[D.tries - 1]; say('', 'عرفتيها فالمحاولة ' + D.tries + ' 🔥'); vibrate(30); }
-        else if (D.tries >= 3) { D.g = 0; say('', 'غدا فرصة جديدة 💛'); vibrate([40, 40, 40]); }
-        else { say('', 'قريبة! جرّبي مرة أخرى 🤔'); vibrate([40, 40, 40]); }
+        if (ok) { D.g = G_PTS[D.tries - 1]; say('joy', 'ياااه! عرفتيها فالمحاولة ' + D.tries + ' 🔥'); vibrate(30); }
+        else if (D.tries >= 3) { D.g = 0; say('empathy', 'هاد المرة ما نجحتيش، ولكن غدا تحدي جديد 💛'); vibrate([40, 40, 40]); }
+        else { say('hope', 'قريبة! جرّبي مرة أخرى، عطيتك تلميح.'); vibrate([40, 40, 40]); }
         $('cGuess').value = ''; save(); updateGameUI(ch);
     }
 
@@ -146,7 +148,8 @@
         $('cStreak').textContent = '🔥 ' + S.streak;
         if (anim) $('cBadge').classList.add('c-pop');
         show('r');
-        say('', s >= 30 ? 'أنتِ سفيرة التراث! 👑' : s >= 20 ? 'نتيجة رائعة! ⭐' : s >= 10 ? 'بداية زوينة، غدا نعاودو 💪' : 'المهم شاركتي! 🌱');
+        say(s >= 30 ? 'laugh' : s >= 20 ? 'admiration' : s >= 10 ? 'smile' : 'hope',
+            s >= 30 ? 'نتيجة كاملة! أنتِ سفيرة حقيقية للتراث المغربي 👑' : s >= 20 ? 'نتيجة رائعة! بقات ليك شوية وتوصلي للقمة ⭐' : s >= 10 ? 'بداية زوينة، وغدا نعاودو 💪' : 'المهم شاركتي! غدا فرصة جديدة 🌱');
         startCountdown();
     }
     function startCountdown() {
