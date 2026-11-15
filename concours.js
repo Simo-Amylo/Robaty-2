@@ -1,7 +1,7 @@
 /* تحدي سفيرة التراث: أسئلة متتالية بعدّاد 10 ثوانٍ ونقاط دائمة (+100 / −50) */
 (function () {
     'use strict';
-    var KEY = 'robaty_contest_v2', WIN = 100, LOSS = 50, SECS = 25;
+    var KEY = 'robaty_contest_v2', WIN = 100, LOSS = 50, SECS = 15;
     var $ = function (id) { return document.getElementById(id); };
     var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -85,17 +85,18 @@
     /* ---------- النقاط ---------- */
     /* عدّاد سريع: الرقم يتغيّر بالتسلسل (يزيد أو ينقص) */
     var cntRaf = 0, shown = 0;
-    function countTo(to) {
+    function countTo(to, onDone) {
         cancelAnimationFrame(cntRaf);
         var from = shown, span = Math.abs(to - from), nEl = $('cPtsN');
-        if (REDUCED || !span) { shown = to; nEl.textContent = to; return; }
-        var dur = Math.min(1100, 450 + span * 3), t0 = null;
+        if (REDUCED || !span) { shown = to; nEl.textContent = to; if (onDone) onDone(); return; }
+        /* 30ms لكل نقطة: +50 ← 1.5 ث، +100 ← 3 ث، +200 ← 6 ث (بإيقاع ثابت، كل رقم يظهر) */
+        var dur = Math.min(8000, span * 30), t0 = null;
         function step(ts) {
             if (t0 === null) t0 = ts;
-            var k = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - k, 2);
-            shown = k >= 1 ? to : Math.round(from + (to - from) * e);
+            var k = Math.min(1, (ts - t0) / dur);
+            shown = k >= 1 ? to : Math.round(from + (to - from) * k);
             nEl.textContent = shown;
-            if (k < 1) cntRaf = requestAnimationFrame(step);
+            if (k < 1) cntRaf = requestAnimationFrame(step); else if (onDone) onDone();
         }
         cntRaf = requestAnimationFrame(step);
     }
@@ -116,8 +117,7 @@
     function showPoints(delta) {
         setMult(mult() >= 2);
         if (!delta) { shown = S.points; $('cPtsN').textContent = S.points; return; }
-        countTo(S.points);
-        if (delta > 0) wiggleStar();                 /* النجمة تتحرك عند الربح فقط */
+        countTo(S.points, delta > 0 ? wiggleStar : null);   /* النجمة تتحرك عند نهاية العدّ، وعند الربح فقط */
         var pill = $('cPts'), d = document.createElement('span');
         d.className = 'c-delta ' + (delta > 0 ? 'up' : 'down'); d.textContent = (delta > 0 ? '+' : '−') + Math.abs(delta);
         pill.appendChild(d); setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 1200);
