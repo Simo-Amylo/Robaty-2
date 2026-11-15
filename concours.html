@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('robaty_lang');
+                if (saved) {
+                    document.documentElement.lang = saved;
+                    document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="prefs.js"></script>
+
+    <title>Robaty - تحدي سفيرة التراث</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e5b35c">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prefs.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="concours.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet" media="print" onload="this.media='all'">
+</head>
+<body class="settings-page concours-page">
+
+<div class="outer-gold-frame">
+    <div class="golden-ambient-glow" aria-hidden="true"></div>
+    <div class="app-container">
+
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+
+        <header class="s-header">
+            <button type="button" class="ornate-btn" id="cBack" aria-label="رجوع">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <h1 class="s-title">🎯 تحدي سفيرة التراث</h1>
+            <div class="c-hud">
+                <span class="c-pill" id="cPts" title="نقاطي">⭐ <b id="cPtsN">0</b></span>
+                <span class="c-pill" id="cTimer" title="الوقت">⏱ <b id="cTimeN">10</b></span>
+            </div>
+        </header>
+
+        <main class="s-scroll">
+
+            <div class="c-robaty">
+                <div class="c-avatar" aria-hidden="true"><img id="cPoseA" alt=""><img id="cPoseB" alt=""></div>
+                <p class="c-bubble" id="cSay"></p>
+                <span class="c-sr" id="cSr" role="status" aria-live="polite"></span>
+            </div>
+
+            <button type="button" class="s-btn c-main" id="cMain" disabled>نعم جاهزة لأبدأ</button>
+
+            <div class="c-stage" id="cStage" aria-live="polite"></div>
+
+            <div class="c-opts" id="cOpts">
+                <button type="button" class="color-option"></button>
+                <button type="button" class="color-option"></button>
+                <button type="button" class="color-option"></button>
+                <button type="button" class="color-option"></button>
+            </div>
+
+            <p class="s-note" id="cErr" hidden>تعذّر تحميل الأسئلة. تحققي من الاتصال وأعيدي المحاولة.</p>
+
+        </main>
+    </div>
+</div>
+
+<script src="button-haptics.js"></script>
+<script src="concours.js"></script>
+</body>
+</html>
