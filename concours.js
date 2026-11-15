@@ -11,6 +11,8 @@
         var m = bgc.match(/[\d.]+/g);
         if (m && (m[3] === undefined || +m[3] > 0.5) && (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255 > 0.6) {
             document.body.style.setProperty('--c-text', '#2b1a08');
+            document.body.style.setProperty('--c-bubble-bg', 'linear-gradient(135deg,rgba(229,179,92,.28),rgba(255,255,255,.65))');
+            document.body.style.setProperty('--c-tail', '#f4ead7');
         }
     } catch (e) {}
 
