@@ -18,7 +18,9 @@
     function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
     function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
     var S = load();
-    S.points = S.points || 0; S.ci = S.ci || 0; S.qi = S.qi || {};
+    S.points = S.points || 0; S.ci = S.ci || 0; S.qi = S.qi || {}; S.streak = S.streak || 0;
+    /* بعد 10 إجابات صحيحة متتالية تتضاعف نقاط الربح (×2) إلى أن تخطئ أو ينتهي الوقت */
+    function mult() { return S.streak >= 10 ? 2 : 1; }
 
     function userName() {
         try {
@@ -80,7 +82,7 @@
 
     /* ---------- النقاط ---------- */
     function showPoints(delta) {
-        $('cPtsN').textContent = S.points;
+        $('cPtsN').textContent = S.points; $('cMult').hidden = mult() < 2;
         if (!delta) return;
         var pill = $('cPts'), d = document.createElement('span');
         d.className = 'c-delta ' + (delta > 0 ? 'up' : 'down'); d.textContent = (delta > 0 ? '+' : '−') + Math.abs(delta);
@@ -91,6 +93,24 @@
     /* ---------- الشاشة 16/9 ---------- */
     var stage = $('cStage');
     function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+    function morph() {
+        if (REDUCED) return;
+        stage.classList.remove('morph'); void stage.offsetWidth; stage.classList.add('morph');
+    }
+    /* نجوم تتناثر حول صورة Robaty (تُضاف إلى الحاوية لأن الصورة نفسها تقصّ ما يخرج عنها) */
+    function avatarSparkles(n) {
+        if (REDUCED) return;
+        var av = document.querySelector('.c-avatar'), box = av && av.parentNode;
+        if (!box) return;
+        var cx = av.offsetLeft + av.offsetWidth / 2, cy = av.offsetTop + av.offsetHeight / 2, S4 = ['⭐', '✨', '🌟', '💫'];
+        for (var i = 0; i < n; i++) {
+            var sp = el('span', 'avatar-sparkle', S4[Math.floor(Math.random() * S4.length)]);
+            var ang = Math.random() * Math.PI * 2, dist = 56 + Math.random() * 40;
+            sp.style.setProperty('--tx', Math.cos(ang) * dist + 'px'); sp.style.setProperty('--ty', Math.sin(ang) * dist + 'px');
+            sp.style.left = cx + 'px'; sp.style.top = cy + 'px';
+            box.appendChild(sp); (function (nd) { setTimeout(function () { if (nd.parentNode) nd.parentNode.removeChild(nd); }, 1300); })(sp);
+        }
+    }
     function stageClear() { stage.innerHTML = ''; stage.style.backgroundImage = ''; }
     function stageIdle() {
         stageClear();
@@ -99,12 +119,12 @@
         stage.appendChild(el('p', 'c-hint', 'اضغطي على الزر للبدء'));
     }
     function stageQuestion(it) {
-        stageClear();
+        stageClear(); morph();
         if (it.img) { stage.style.backgroundImage = 'url("' + it.img + '")'; stage.appendChild(el('div', 'c-qtop', it.q)); }
         else { stage.appendChild(el('p', 'c-q', it.q)); }
     }
     function stageResult(head, it) {
-        stageClear();
+        stageClear(); morph();
         stage.appendChild(el('p', 'c-res-h', head));
         stage.appendChild(el('p', 'c-res-i', it.info));
     }
@@ -130,7 +150,7 @@
     var tEnd = 0, tInt = null;
     function tick() {
         var now = Date.now(), left = Math.max(0, Math.ceil((tEnd - now) / 1000));
-        $('cTimeN').textContent = left; $('cTimer').classList.toggle('low', left > 0 && left <= 3);
+        $('cTimeN').textContent = left; $('cTimer').classList.toggle('low', left > 0 && left <= 5);
         if (now >= tEnd) { clearInterval(tInt); endQuestion(); }
     }
     function startTimer() { tEnd = Date.now() + SECS * 1000; clearInterval(tInt); tick(); tInt = setInterval(tick, 200); }
@@ -157,17 +177,18 @@
         vibrate(20);
     }
     function endQuestion() {
-        var ok = selected >= 0 && optBtns[selected].textContent === correctText, before = S.points;
-        S.points = ok ? S.points + WIN : Math.max(0, S.points - LOSS); save();
-        showPoints(S.points - before);
+        var ok = selected >= 0 && optBtns[selected].textContent === correctText, before = S.points, m = mult();
+        if (ok) { S.points += WIN * m; S.streak++; } else { S.points = Math.max(0, S.points - LOSS); S.streak = 0; }
+        save(); showPoints(S.points - before);
         optBtns.forEach(function (b, k) {
             b.disabled = true; b.classList.remove('c-sel');
             if (b.textContent === correctText) b.classList.add('c-ok');
             else if (k === selected) b.classList.add('c-bad');
         });
         if (ok) {
-            stageResult('✅ الجواب صحيح!', cur); confetti();
-            say('joy', 'برافو عليك! جواب صحيح 👏'); vibrate(30);
+            stageResult('✅ الجواب صحيح!', cur); confetti(); avatarSparkles(S.streak === 10 ? 12 : 6);
+            say('joy', S.streak === 10 ? 'أسطورة! 10 إجابات متتالية، نقاطك دابا ×2 🔥' : (m > 1 ? 'برافو عليك! ×2 مازال شغال 🔥' : 'برافو عليك! جواب صحيح 👏'));
+            vibrate(S.streak === 10 ? [30, 40, 30, 40, 60] : 30);
         } else if (selected < 0) {
             stageResult('⏰ انتهى الوقت · الجواب: ' + correctText, cur);
             say('empathy', 'انتهى الوقت! خليك مركّزة فالسؤال الجاي 💛'); vibrate([40, 40, 40]);
