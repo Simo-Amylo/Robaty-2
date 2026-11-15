@@ -83,9 +83,41 @@
     }
 
     /* ---------- النقاط ---------- */
+    /* عدّاد سريع: الرقم يتغيّر بالتسلسل (يزيد أو ينقص) */
+    var cntRaf = 0, shown = 0;
+    function countTo(to) {
+        cancelAnimationFrame(cntRaf);
+        var from = shown, span = Math.abs(to - from), nEl = $('cPtsN');
+        if (REDUCED || !span) { shown = to; nEl.textContent = to; return; }
+        var dur = Math.min(1100, 450 + span * 3), t0 = null;
+        function step(ts) {
+            if (t0 === null) t0 = ts;
+            var k = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - k, 2);
+            shown = k >= 1 ? to : Math.round(from + (to - from) * e);
+            nEl.textContent = shown;
+            if (k < 1) cntRaf = requestAnimationFrame(step);
+        }
+        cntRaf = requestAnimationFrame(step);
+    }
+    /* شارة ×2: تظهر بنعومة وتتلاشى بنعومة عند كسر السلسلة */
+    var multTok = 0;
+    function setMult(on) {
+        var m = $('cMult'), tok = ++multTok;
+        if (on) { if (m.hidden) { m.hidden = false; m.classList.add('out'); void m.offsetWidth; } m.classList.remove('out'); return; }
+        if (m.hidden) return;
+        if (REDUCED) { m.hidden = true; return; }
+        m.classList.add('out');
+        setTimeout(function () { if (tok === multTok) m.hidden = true; }, 900);
+    }
+    function wiggleStar() {
+        if (REDUCED) return;
+        var st = $('cStar'); st.classList.remove('wiggle'); void st.offsetWidth; st.classList.add('wiggle');
+    }
     function showPoints(delta) {
-        $('cPtsN').textContent = S.points; $('cMult').hidden = mult() < 2;
-        if (!delta) return;
+        setMult(mult() >= 2);
+        if (!delta) { shown = S.points; $('cPtsN').textContent = S.points; return; }
+        countTo(S.points);
+        if (delta > 0) wiggleStar();                 /* النجمة تتحرك عند الربح فقط */
         var pill = $('cPts'), d = document.createElement('span');
         d.className = 'c-delta ' + (delta > 0 ? 'up' : 'down'); d.textContent = (delta > 0 ? '+' : '−') + Math.abs(delta);
         pill.appendChild(d); setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 1200);
