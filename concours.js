@@ -1,7 +1,7 @@
 /* تحدي سفيرة التراث: أسئلة متتالية بعدّاد 10 ثوانٍ ونقاط دائمة (+100 / −50) */
 (function () {
     'use strict';
-    var KEY = 'robaty_contest_v2', WIN = 100, LOSS = 50, SECS = 10;
+    var KEY = 'robaty_contest_v2', WIN = 100, LOSS = 50, SECS = 25;
     var $ = function (id) { return document.getElementById(id); };
     var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -136,40 +136,45 @@
     function startTimer() { tEnd = Date.now() + SECS * 1000; clearInterval(tInt); tick(); tInt = setInterval(tick, 200); }
 
     /* ---------- سير التحدي ---------- */
-    var CATS = [], mode = 'intro', cur = null, correctText = '', answered = false;
+    var CATS = [], mode = 'intro', cur = null, correctText = '', selected = -1;
 
     function startQuestion() {
         var cat = CATS[S.ci % CATS.length], idx = (S.qi[cat.id] || 0) % cat.items.length;
-        cur = cat.items[idx]; correctText = cur.a;
+        cur = cat.items[idx]; correctText = cur.a; selected = -1;
         S.qi[cat.id] = idx + 1; S.ci = (S.ci + 1) % CATS.length; save();
-        mode = 'question'; answered = false;
+        mode = 'question';
         mainBtn.textContent = cat.label; mainBtn.classList.add('wait');
         stageQuestion(cur);
         setOpts(shuffle([cur.a].concat(cur.w)), true);
-        say('curiosity', 'ركّزي! عندك ' + SECS + ' ثوانٍ ⏱️');
+        say('curiosity', 'ركّزي! عندك ' + SECS + ' ثانية ⏱️');
         startTimer();
     }
+    /* الضغط على جواب يلوّن الزر المختار فقط؛ النتيجة تظهر عند انتهاء الوقت */
     function answer(i) {
-        if (mode !== 'question' || answered) return;
-        answered = true;
-        var ok = optBtns[i].textContent === correctText, before = S.points;
-        S.points = ok ? S.points + WIN : Math.max(0, S.points - LOSS); save();
-        showPoints(S.points - before);
-        optBtns.forEach(function (b) {
-            b.disabled = true;
-            if (b.textContent === correctText) b.classList.add('c-ok');
-            else if (b === optBtns[i]) b.classList.add('c-bad');
-        });
-        if (ok) { stageResult('✅ الجواب صحيح!', cur); confetti(); say('joy', 'برافو عليك! جواب صحيح 👏'); vibrate(30); }
-        else { stageResult('❌ الجواب الصحيح: ' + correctText, cur); say('empathy', 'ماشي مشكل، المهم تعرفي الجواب دابا 💛'); vibrate([40, 40, 40]); }
+        if (mode !== 'question') return;
+        selected = i;
+        optBtns.forEach(function (b, k) { b.classList.toggle('c-sel', k === i); });
+        vibrate(20);
     }
     function endQuestion() {
-        if (!answered) {
-            answered = true;
+        var ok = selected >= 0 && optBtns[selected].textContent === correctText, before = S.points;
+        S.points = ok ? S.points + WIN : Math.max(0, S.points - LOSS); save();
+        showPoints(S.points - before);
+        optBtns.forEach(function (b, k) {
+            b.disabled = true; b.classList.remove('c-sel');
+            if (b.textContent === correctText) b.classList.add('c-ok');
+            else if (k === selected) b.classList.add('c-bad');
+        });
+        if (ok) {
+            stageResult('✅ الجواب صحيح!', cur); confetti();
+            say('joy', 'برافو عليك! جواب صحيح 👏'); vibrate(30);
+        } else if (selected < 0) {
             stageResult('⏰ انتهى الوقت · الجواب: ' + correctText, cur);
-            say('empathy', 'انتهى الوقت! خليك مركّزة فالسؤال الجاي 💛');
+            say('empathy', 'انتهى الوقت! خليك مركّزة فالسؤال الجاي 💛'); vibrate([40, 40, 40]);
+        } else {
+            stageResult('❌ الجواب الصحيح: ' + correctText, cur);
+            say('empathy', 'ماشي مشكل، المهم تعرفي الجواب دابا 💛'); vibrate([40, 40, 40]);
         }
-        setOpts(null, false);           /* تختفي الكلمات على الأزرار */
         mode = 'review';
         mainBtn.textContent = 'المرور إلى السؤال التالي'; mainBtn.classList.remove('wait');
     }

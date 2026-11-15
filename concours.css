@@ -26,17 +26,17 @@
 .c-main.wait{pointer-events:none}
 
 /* الشاشة 16/9 */
-.c-stage{position:relative;aspect-ratio:16/9;width:min(100%,228px);margin:0 auto 8px;box-sizing:border-box;padding:8px 10px;overflow:hidden;
+.c-stage{position:relative;aspect-ratio:16/9;width:calc(100% - 24px);max-width:420px;margin:0 auto 8px;box-sizing:border-box;padding:8px 10px;overflow:hidden;
     display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     border:1.5px solid var(--gold,#e5b35c);border-radius:14px;
     background:radial-gradient(circle at 50% 0%,rgba(229,179,92,.18),rgba(0,0,0,.35)) #14100c;
     box-shadow:0 0 16px rgba(229,179,92,.25),inset 0 0 18px rgba(0,0,0,.5);background-size:cover;background-position:center}
-.c-q{margin:0;font-size:.95rem;font-weight:700;line-height:1.55}
-.c-qtop{position:absolute;top:0;inset-inline:0;padding:6px 8px;background:linear-gradient(rgba(0,0,0,.75),transparent);font-size:.85rem;font-weight:700}
-.c-ico{font-size:1.7rem;line-height:1.2}
-.c-res-h{margin:0 0 3px;font-size:.95rem;font-weight:800;line-height:1.4}
-.c-res-i{margin:0;font-size:.72rem;line-height:1.5;opacity:.92}
-.c-hint{margin:2px 0 0;font-size:.75rem;opacity:.8}
+.c-q{margin:0;font-size:1.2rem;font-weight:700;line-height:1.55}
+.c-qtop{position:absolute;top:0;inset-inline:0;padding:8px 10px;background:linear-gradient(rgba(0,0,0,.75),transparent);font-size:1rem;font-weight:700}
+.c-ico{font-size:2.2rem;line-height:1.2}
+.c-res-h{margin:0 0 5px;font-size:1.1rem;font-weight:800;line-height:1.4}
+.c-res-i{margin:0;font-size:.85rem;line-height:1.5;opacity:.92}
+.c-hint{margin:2px 0 0;font-size:.85rem;opacity:.8}
 .c-conf{position:absolute;top:-16px;font-size:15px;pointer-events:none;animation:cFall 1.8s ease-in forwards}
 @keyframes cFall{to{transform:translateY(170px) rotate(300deg);opacity:0}}
 
@@ -45,6 +45,7 @@
 .c-opts .color-option{width:100%;height:36px;min-height:0;padding:0 6px;text-align:center;font-size:.88rem;line-height:1.1;overflow:hidden}
 .c-opts .color-option:disabled{opacity:1}
 .c-opts .color-option:focus-visible{outline:2px solid var(--gold,#e5b35c);outline-offset:2px}
+.c-sel{background:rgba(229,179,92,.38)!important;border-color:var(--gold,#e5b35c)!important}
 .c-ok{background:rgba(46,160,90,.30)!important;border-color:#2ea05a!important}
 .c-bad{background:rgba(217,83,79,.28)!important;border-color:#d9534f!important}
 
