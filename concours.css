@@ -5,9 +5,9 @@
 .c-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* الرأس: العنوان + النقاط + العدّاد */
-.concours-page .s-title{font-size:clamp(.9rem,4.3vw,1.05rem)}
-.c-hud{display:flex;gap:6px;flex:none}
-.c-pill{position:relative;display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;border:1px solid var(--gold,#e5b35c);background:rgba(229,179,92,.14);font-weight:700;font-size:.85rem;white-space:nowrap;transition:color .2s,border-color .2s}
+.concours-page .s-title{font-size:clamp(.8rem,3.9vw,1.02rem);white-space:nowrap;min-width:0}
+.c-hud{display:flex;gap:5px;flex:none}
+.c-pill{position:relative;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:999px;border:1px solid var(--gold,#e5b35c);background:rgba(229,179,92,.14);font-weight:700;font-size:.85rem;white-space:nowrap;transition:color .2s,border-color .2s}
 .c-pill.low{color:#ff8a7a!important;border-color:#ff8a7a;animation:urgentPulse .7s infinite ease-in-out}
 .c-pill.pop{animation:cPop .4s ease-out}
 .c-delta{position:absolute;top:100%;inset-inline:0;text-align:center;font-weight:800;pointer-events:none;animation:cFloat 1.1s ease-out forwards}
@@ -38,7 +38,7 @@
 .c-qtop{position:absolute;top:0;inset-inline:0;padding:8px 10px;background:linear-gradient(rgba(0,0,0,.75),transparent);font-size:1rem;font-weight:700}
 .c-ico{font-size:2.2rem;line-height:1.2}
 .c-res-h{margin:0 0 5px;font-size:1.1rem;font-weight:800;line-height:1.4}
-.c-res-i{margin:0;font-size:.85rem;line-height:1.5;opacity:.92}
+.c-res-i{margin:0;font-size:.935rem;line-height:1.5;opacity:.92}
 .c-hint{margin:2px 0 0;font-size:.85rem;opacity:.8}
 .c-conf{position:absolute;top:-16px;font-size:15px;pointer-events:none;animation:cFall 1.8s ease-in forwards}
 @keyframes cFall{to{transform:translateY(170px) rotate(300deg);opacity:0}}
@@ -56,13 +56,13 @@
     0%,100%{transform:scale(1);border-color:#ff8a7a;box-shadow:0 0 4px rgba(255,138,122,.4)}
     50%{transform:scale(1.06);border-color:#ff3b30;box-shadow:0 0 14px rgba(255,59,48,.8)}
 }
-.c-stage.morph{animation:stageMorph .4s ease-out}
+.c-stage.morph{animation:stageMorph 1s ease-out}
 @keyframes stageMorph{0%{opacity:.3;transform:scale(.95) translateY(4px)}100%{opacity:1;transform:none}}
 .avatar-sparkle{position:absolute;font-size:16px;line-height:1;pointer-events:none;z-index:10;animation:floatSparkle 1.2s ease-out forwards}
 @keyframes floatSparkle{0%{transform:translate(-50%,-50%) scale(.4);opacity:1}100%{transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(1.3);opacity:0}}
 .concours-page .c-pill .c-multiplier{transition:opacity .8s ease,transform .8s ease;position:absolute;top:-9px;inset-inline-start:-6px;padding:1px 6px;border-radius:999px;background:var(--gold,#e5b35c);color:#2b1a08;font-size:.7rem;font-weight:800;line-height:1.4}
 .concours-page .c-pill .c-multiplier.out{opacity:0;transform:scale(.6)}
-.c-crown{display:inline-block;margin-inline-end:6px;transform-origin:50% 85%;animation:crownWiggle 30s ease-in-out 1s infinite}
+.c-crown{display:inline-block;margin-inline-end:2px;transform-origin:50% 85%;animation:crownWiggle 30s ease-in-out 1s infinite}
 @keyframes crownWiggle{
     0%{transform:rotate(0)} 1.04%{transform:rotate(14deg)} 3.12%{transform:rotate(-14deg)} 4.17%{transform:rotate(0)}
     5.21%{transform:rotate(14deg)} 7.29%{transform:rotate(-14deg)} 8.33%,100%{transform:rotate(0)}
