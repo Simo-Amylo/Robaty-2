@@ -24,14 +24,19 @@
     /* بعد 10 إجابات صحيحة متتالية تتضاعف نقاط الربح (×2) إلى أن تخطئ أو ينتهي الوقت */
     function mult() { return S.streak >= 10 ? 2 : 1; }
 
+    /* الاسم الشخصي: يُحفظ فمفتاحين: robaty_user_name (التحدي والإعدادات) و robaty_profile_facts.name (ذاكرة المحادثة) */
+    function readFacts() { try { return JSON.parse(localStorage.getItem('robaty_profile_facts') || '{}') || {}; } catch (e) { return {}; } }
+    function saveName(n) {
+        try { localStorage.setItem('robaty_user_name', n); } catch (e) {}
+        try { var f = readFacts(); f.name = n; localStorage.setItem('robaty_profile_facts', JSON.stringify(f)); } catch (e) {}
+    }
     function userName() {
         try {
+            var v = localStorage.getItem('robaty_user_name');
+            if (v && v.trim()) return v.trim();
+            var f = readFacts();                                   /* اسم عرفته Robaty فالمحادثة */
+            if (typeof f.name === 'string' && f.name.trim()) return f.name.trim().slice(0, 20);
             if (window.ROBATY_USER_NAME) return String(window.ROBATY_USER_NAME).split(' ')[0];
-            var keys = ['robaty_user_name', 'robaty_name', 'ghita_user_name', 'ghita_name', 'userName'];
-            for (var i = 0; i < keys.length; i++) {
-                var v = localStorage.getItem(keys[i]);
-                if (v) return String(v).split(' ')[0];
-            }
         } catch (e) {}
         return '';
     }
@@ -138,7 +143,11 @@
         used.push(t); if (used.length > 3) used.shift();
         return t;
     }
-    function speak(group, pose, extra) { say(pose, phrase(group) + (extra || '')); }
+    function withName(t) {
+        var nm = userName();
+        return (!nm || Math.random() > 0.3 || t.indexOf(nm) >= 0) ? t : nm + '، ' + t;
+    }
+    function speak(group, pose, extra) { say(pose, withName(phrase(group)) + (extra || '')); }
 
     /* ---------- النقاط ---------- */
     /* عدّاد سريع: الرقم يتغيّر بالتسلسل (يزيد أو ينقص) */
@@ -248,7 +257,7 @@
     function startTimer() { tEnd = Date.now() + SECS * 1000; clearInterval(tInt); tick(); tInt = setInterval(tick, 200); }
 
     /* ---------- سير التحدي ---------- */
-    var CATS = [], mode = 'intro', cur = null, correctText = '', selected = -1, firstQ = true;
+    var CATS = [], mode = 'intro', cur = null, correctText = '', selected = -1, firstQ = true, justNamed = false;
 
     function startQuestion() {
         var cat = CATS[S.ci % CATS.length], idx = (S.qi[cat.id] || 0) % cat.items.length;
@@ -258,7 +267,11 @@
         mainBtn.textContent = cat.label; mainBtn.classList.add('wait');
         stageQuestion(cur);
         setOpts(shuffle([cur.a].concat(cur.w)), true);
-        if (firstQ) { firstQ = false; speak('ready', 'smile'); }
+        if (firstQ) {
+            firstQ = false;
+            if (justNamed) { justNamed = false; say('joy', 'تشرفنا يا ' + userName() + '! ' + phrase('ready')); }
+            else { speak('ready', 'smile'); }
+        }
         else if (Math.random() < 0.15) { say('calm', '…'); }          /* لحظة صمت طبيعية */
         else { speak('question', 'curiosity'); }
         startTimer();
@@ -298,15 +311,54 @@
         mainBtn.textContent = 'المرور إلى السؤال التالي'; mainBtn.classList.remove('wait');
     }
 
+    /* ---------- مرحلة الاسم الشخصي (مرة واحدة فقط) ---------- */
+    function moderated(n) {
+        try { var M = window.RobatyModeration; if (M && typeof M.isBlocked === 'function') return !!M.isBlocked(n); } catch (e) {}
+        return false;
+    }
+    function nameError(n) {
+        if (n.length < 2) return 'اكتبي اسمك (حرفان على الأقل)';
+        if (n.length > 20) return 'الاسم طويل شوية (20 حرفاً كحد أقصى)';
+        if (!/^[\p{L}\p{M}][\p{L}\p{M} '’\-]*$/u.test(n)) return 'استعملي الحروف فقط من فضلك';
+        if (moderated(n)) return 'هاد الاسم ما يمكنش نستعملوه، جربي اسم آخر';
+        return '';
+    }
+    function stageName() {
+        stageClear();
+        stage.appendChild(el('p', 'c-hint', 'اسمك الشخصي'));
+        var inp = el('input', 'c-name'); inp.type = 'text'; inp.id = 'cName'; inp.maxLength = 20;
+        inp.autocomplete = 'given-name'; inp.setAttribute('enterkeyhint', 'done'); inp.setAttribute('aria-label', 'اسمك الشخصي');
+        var err = el('p', 'c-name-err'); err.id = 'cNameErr'; err.setAttribute('role', 'alert');
+        var go = el('button', 's-btn c-enter', 'الدخول إلى التحدي'); go.type = 'button';
+        function submit() {
+            var n = inp.value.replace(/\s+/g, ' ').trim(), e = nameError(n);
+            if (e) { err.textContent = e; vibrate([40, 40, 40]); return; }
+            saveName(n);
+            justNamed = true; mode = 'intro'; startQuestion();
+        }
+        go.addEventListener('click', submit);
+        inp.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); submit(); } });
+        inp.addEventListener('input', function () { err.textContent = ''; });
+        stage.appendChild(inp); stage.appendChild(go); stage.appendChild(err);
+    }
+    function startNameStep() {
+        mode = 'name'; mainBtn.textContent = 'خطوة أخيرة قبل الانطلاق ✨'; mainBtn.classList.add('wait');
+        stageName();
+        say('warmth', 'شرفيني باسمك يا صاحبتي 🤍', true);
+    }
+
     /* ---------- التشغيل ---------- */
     $('cBack').addEventListener('click', function () { if (history.length > 1) history.back(); else location.href = 'index.html'; });
     optBtns.forEach(function (b, i) { b.addEventListener('click', function () { answer(i); }); });
-    mainBtn.addEventListener('click', function () { if (mode === 'intro' || mode === 'review') startQuestion(); });
+    mainBtn.addEventListener('click', function () {
+        if (mode === 'intro') { if (userName()) startQuestion(); else startNameStep(); }
+        else if (mode === 'review') startQuestion();
+    });
 
     showPoints(0); $('cTimeN').textContent = SECS;
     setOpts(null, false); stageIdle(); playIntro();
     var nm = userName();
-    say('', 'مرحبا بك ' + (nm ? nm + ' ' : '') + 'في «تحدي سفيرة التراث». هل أنتِ جاهزة لبدء التحدي؟', true);
+    say('', 'مرحبا بك ' + (nm ? nm + ' ' : '') + 'في «تحدي سفيرة التراث». واش جاهزة تفوزي ببطاقة سفيرة التراث المغربي؟', true);
 
     fetch('questions.json').then(function (r) { return r.json(); }).then(function (d) {
         CATS = d.cats; mainBtn.disabled = false;

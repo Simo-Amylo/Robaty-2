@@ -33,6 +33,7 @@
           media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet" media="print" onload="this.media='all'">
+    <style>.s-name-row{display:flex;gap:8px;align-items:stretch}.s-name-row .gold-input{flex:1;min-width:0}</style>
 </head>
 <body class="settings-page">
 
@@ -63,6 +64,16 @@
             <section class="s-card">
                 <p class="s-card-title" data-i18n="st_lang_title">🌐 اختاري لغتك المفضلة</p>
                 <div class="lang-options" id="languageOptions"></div>
+            </section>
+
+            <!-- الاسم الشخصي (تستعمله روباتي فالمحادثة والتحدي) -->
+            <section class="s-card" id="nameCard">
+                <p class="s-card-title" id="nameTitle">👤 اسمك الشخصي</p>
+                <div class="s-name-row">
+                    <input type="text" class="gold-input" id="nameInput" maxlength="20" autocomplete="given-name" aria-labelledby="nameTitle">
+                    <button type="button" class="s-btn" id="nameSave">حفظ</button>
+                </div>
+                <p class="s-note" id="nameNote"></p>
             </section>
 
             <!-- 2) الألوان -->
@@ -203,6 +214,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="firebase-config.js"></script>
+<script src="moderation.js"></script>
 <script src="settings.js"></script>
 <script src="settings-account.js"></script>
 

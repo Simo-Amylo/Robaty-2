@@ -77,3 +77,10 @@
 @keyframes starWiggle{0%{transform:rotate(0) scale(1)}20%{transform:rotate(-22deg) scale(1.2)}45%{transform:rotate(22deg) scale(1.2)}70%{transform:rotate(-12deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}
 @keyframes cPop{0%{transform:scale(.8)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.c-halo,.c-crown,.c-star.wiggle,.c-pill.pop,.c-pill.low,.c-stage.morph,.avatar-sparkle,.c-delta,.c-conf{animation:none}.c-delta{display:none}.c-conf{display:none}}
+
+/* مرحلة الاسم الشخصي داخل الشاشة 16/9 */
+.c-name{width:100%;box-sizing:border-box;margin:6px 0 8px;padding:9px 10px;text-align:center;font:inherit;font-size:1rem;border-radius:12px;border:1px solid var(--gold,#e5b35c);background:rgba(255,255,255,.08)}
+.concours-page .c-name{color:var(--c-text)}
+.c-name:focus-visible{outline:2px solid var(--gold,#e5b35c);outline-offset:2px}
+.c-enter{display:block;width:100%;height:38px;padding:0 10px;font-weight:700;font-size:.95rem}
+.c-name-err{margin:6px 0 0;min-height:1.2em;font-size:.8rem;color:#ff8a7a!important}

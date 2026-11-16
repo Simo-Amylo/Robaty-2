@@ -186,6 +186,7 @@
     var MEMORY_KEYS = [
         'robaty_chat_history',
         'robaty_profile_facts',
+        'robaty_user_name',
         'robaty_narrative_memory',
         'robaty_last_visit',
         'robatyMomentsSeen',
@@ -213,8 +214,59 @@
             MEMORY_KEYS.forEach(function (k) { localStorage.removeItem(k); });
         } catch (e) {}
         disarm();
+        var ni = $('nameInput'); if (ni) ni.value = '';
         toast(tt('st_mem_done'));
     });
+
+    /* ---- الاسم الشخصي: التحدي + المحادثة (robaty_user_name و robaty_profile_facts.name) ---- */
+    (function () {
+        var T = {
+            ar: { title: '👤 اسمك الشخصي', save: 'حفظ', saved: 'تم حفظ اسمك ✓', invalid: 'هاد الاسم ما صالحش. اكتبي اسماً من حرفين إلى 20 حرفاً (حروف فقط).', note: 'تناديك به روباتي، ويُحفظ على جهازك فقط.' },
+            en: { title: '👤 Your first name', save: 'Save', saved: 'Name saved ✓', invalid: 'Invalid name. Use 2 to 20 letters only.', note: 'Robaty uses it to call you by name. Stored on your device only.' },
+            fr: { title: '👤 Ton prénom', save: 'Enregistrer', saved: 'Prénom enregistré ✓', invalid: 'Prénom invalide. Utilise de 2 à 20 lettres uniquement.', note: 'Robaty l\u2019utilise pour t\u2019appeler. Il reste sur ton appareil.' },
+            es: { title: '👤 Tu nombre', save: 'Guardar', saved: 'Nombre guardado ✓', invalid: 'Nombre no válido. Usa de 2 a 20 letras.', note: 'Robaty lo usa para llamarte por tu nombre. Solo se guarda en tu dispositivo.' },
+            ru: { title: '👤 Ваше имя', save: 'Сохранить', saved: 'Имя сохранено ✓', invalid: 'Недопустимое имя. Используйте от 2 до 20 букв.', note: 'Robaty обращается к вам по имени. Хранится только на вашем устройстве.' }
+        };
+        function L() {
+            var l = 'ar';
+            try { l = (window.RobatyI18n && window.RobatyI18n.getCurrentLang && window.RobatyI18n.getCurrentLang()) || document.documentElement.lang || 'ar'; } catch (e) {}
+            return T[l] || T.en;
+        }
+        var input = $('nameInput'), saveBtn = $('nameSave');
+        if (!input || !saveBtn) return;
+        function readFacts() { try { return JSON.parse(localStorage.getItem('robaty_profile_facts') || '{}') || {}; } catch (e) { return {}; } }
+        function paint() {
+            var t = L();
+            $('nameTitle').textContent = t.title; saveBtn.textContent = t.save; $('nameNote').textContent = t.note;
+            input.setAttribute('aria-label', t.title.replace(/^[^\p{L}]+/u, ''));
+        }
+        function current() {
+            try {
+                var v = localStorage.getItem('robaty_user_name');
+                if (v && v.trim()) return v.trim();
+                var f = readFacts();
+                if (typeof f.name === 'string') return f.name.trim().slice(0, 20);
+            } catch (e) {}
+            return '';
+        }
+        function valid(n) {
+            if (n.length < 2 || n.length > 20) return false;
+            if (!/^[\p{L}\p{M}][\p{L}\p{M} '\u2019\-]*$/u.test(n)) return false;
+            try { var M = window.RobatyModeration; if (M && M.isBlocked(n)) return false; } catch (e) {}
+            return true;
+        }
+        function save() {
+            var n = input.value.replace(/\s+/g, ' ').trim();
+            if (!valid(n)) { toast(L().invalid, 3500); return; }
+            try { localStorage.setItem('robaty_user_name', n); } catch (e) {}
+            try { var f = readFacts(); f.name = n; localStorage.setItem('robaty_profile_facts', JSON.stringify(f)); } catch (e) {}
+            input.value = n;
+            toast(L().saved);
+        }
+        paint(); input.value = current();
+        saveBtn.addEventListener('click', save);
+        input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); save(); } });
+    })();
 
     /* ---- عنوان الصفحة: i18n.js كيبدلو بعنوان التطبيق، كنرجعوه بعد ما يكمل ---- */
     document.addEventListener('DOMContentLoaded', function () {
