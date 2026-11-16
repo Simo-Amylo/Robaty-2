@@ -69,11 +69,18 @@
 
     /* ---------- فقاعة Robaty (كتابة حرفاً بحرف عند الترحيب) ---------- */
     var typeTok = 0;
+    /* الفقاعة بارتفاع ثابت: إذا طالت الجملة يصغر الخط قليلاً بدل أن تتحرك بقية الشاشة */
+    function fitBubble() {
+        var b = $('cSay'); b.style.fontSize = '';
+        var s = parseFloat(getComputedStyle(b).fontSize);
+        while (b.scrollHeight > b.clientHeight + 1 && s > 11) { s -= 1; b.style.fontSize = s + 'px'; }
+    }
     function say(pose, text, typed) {
         var el = $('cSay'), tok = ++typeTok;
         $('cSr').textContent = text;
         if (pose) { introOn = false; setPose(pose); }
-        if (!typed || REDUCED) { el.textContent = text; return; }
+        el.textContent = text; fitBubble();
+        if (!typed || REDUCED) return;
         var ch = Array.from(text), i = 0; el.textContent = '';
         (function step() {
             if (tok !== typeTok) return;
@@ -81,6 +88,57 @@
             if (i < ch.length) setTimeout(step, 40);
         })();
     }
+
+    /* ---------- حوار Robaty: عدة عبارات لكل حالة، بدون تكرار آخر 3 ---------- */
+    var DIALOGUES = {
+        ready: [
+            'يلا نشوفو شكون غادي تكون بطلة اليوم! 😍', 'ركزي معايا مزيان، بعض الأسئلة فيها مفاجآت!', 'واجدة؟ خدي نفس عميق وانطلقي بثقة!',
+            'ما تخافيش من الغلط، المهم تتعلمي معلومة جديدة!', 'ورّيني شنو عندك! التحدي بينك وبين الأسئلة!', 'استعدي، كل سؤال عندو مفاجأتو! 🔥',
+            'يلا بينا! خلي الذكاء ديالك يهضر! 👑', 'أنا متحمسة بزاف، ها هو السؤال الأول! 😉'],
+        question: [
+            'ها هو السؤال! شنو رأيك؟ 😉', 'ركزي مزيان، الجواب يمكن يكون أقرب مما كتتصوري!', 'سؤال جديد! واش عندك الجواب؟', 'فكري مزيان قبل ما تختاري!',
+            'هنا غادي نشوفو قوة الملاحظة ديالك! 🧐', 'واش هادي معلومة عارفاها من قبل؟', 'انتبهي للتفاصيل، فيها مفتاح الجواب!', 'سؤال آخر، ورّيني شطارتك!',
+            'هاد المرة بغيت نشوف واش غادي تفاجئيني! 😄', 'ركزي معايا، ما بغيناش نضيعو نقطة سهلة! 🎯'],
+        correct: [
+            'واااو! جواب صحيح! كنت عارفة أنك قدّها! 😍', 'برافووو عليك! هادي نقطة مستحقة! 👏', 'واعر عليك! باين المعلومات حاضرة عندك!', 'جواب فالمستوى! فخورة بصاحبتي! 👑',
+            'هي هادي! جواب صحيح وبكل ثقة! 🔥', 'كتفاجئيني سؤال من بعد سؤال! 😍', 'ممتاز! ذكاء وتركيز، تركيبة رابحة! 😉', 'صحّ! هاد السؤال ما فلتش منك!',
+            'أحسنتِ! النقاط كيتجمعو والحماس كيزيد!', 'واش هاد المستوى غادي يبقى حتى للنهاية؟ أنا معجبة! 😄'],
+        streak3: [
+            'ثلاثة صحيحة متتابعة! واعر عليك! 🔥', 'هادي هي البداية اللي بغيت نشوف! 👏', 'ثلاثة على التوالي! باين عليك مركزة اليوم!',
+            'مستوى زوين بزاف! كملي بنفس الثقة!', 'ثلاث مرات والجواب صحيح! راكي داخلة بقوة! 😍', 'عجبني التركيز ديالك اليوم! ❤️'],
+        streak5: [
+            'خمسة أجوبة صحيحة! هادشي مستوى عالي! 👑', 'واااو! اليوم راكي متألقة بصح!', 'خمسة على التوالي! شكون يقدر يوقفك؟ 😍',
+            'بديت كنشك أنك حافظة الأسئلة! 😂', 'تستاهلي تصفيقة كبيرة! 👏', 'كملي! بغيت نشوف واش غادي توصلي للقمة! 🔥'],
+        champion: [
+            'عشرة أجوبة صحيحة متتالية! أنتِ أسطورة بصح! 👑', 'ما لقيتش ما نقول ليك! مستوى فوق الممتاز! 😍', 'عشرة على عشرة! واش نتي خبيرة متنكرة ولا شنو؟ 😂',
+            'دابا نتي ملكة التحدي بلا منازع!', 'كنعلنها رسمياً: عندنا بطلة حقيقية هنا! 🏆', 'كل هاد الأسئلة وجاوبتي عليهم؟ فخورة بيك! ❤️',
+            'تستاهلي لقب سفيرة التراث بجدارة!', 'ارفعي راسك وافتخري بنفسك! 👏👑'],
+        multiplier: [
+            '×2 مازال شغال! كملي يا بطلة! 🔥', 'كل جواب صحيح دابا عندو قيمة مضاعفة! 😉', 'حتى النقاط ولات كتجري معاك! 😂',
+            'مستوى استثنائي! حافظي على هاد التركيز!', 'برافو! التحدي ولى أكثر إثارة! 👑'],
+        wrong: [
+            'ماشي مشكل صاحبتي، المرة الجاية نجيبوها! ❤️', 'أوووه! هادي فاتتك، ولكن باقي التحدي! 😉', 'ما تستسلميش، السؤال الجاي فرصتك!', 'المهم نتعلمو معلومة جديدة! ❤️',
+            'ولا يهمك! باقي عندك فرص باش تورّيني شطارتك!', 'هاد المرة ربحتي معلومة جديدة! 😍', 'ما جاتش هادي، ولكن واثقة أنك تقدري تعوضيها!',
+            'أوووه! هاد السؤال كان فيه شوية ديال المكر! 😂', 'ابتسمي صاحبتي، المسابقة للمتعة والتعلم!', 'عادي جداً! كل سؤال فرصة باش نتعلمو شي حاجة جديدة!'],
+        afterStreak: [
+            'حتى الأبطال كيوقعو ليهم أخطاء! كملي بثقة! ❤️', 'السلسلة وقفات، ولكن مستواك باقي زوين!', 'ماشي مشكل! عجبني التركيز اللي وصلتي ليه!',
+            'غلطة وحدة ما كتمحيش النجاح اللي حققتي!', 'نعاودو نركزو ونبداو سلسلة جديدة! 😉', 'ما تخليش سؤال واحد ينقص من حماسك!',
+            'باقي عندك الفرصة ترجعي بقوة!', 'أنا معاك، والطريق باقي مفتوح! ❤️'],
+        timeout: [
+            'أوووه! الوقت سالى بسرعة! السؤال الجاي فرصتك!', 'ما لحقتيش هاد المرة! واجدة للسؤال الجاي؟ 😉', 'خاصنا شوية ديال السرعة مع التركيز!',
+            'حتى الوقت دار لينا مفاجأة! 😂', 'ماشي مشكل، التحدي مازال مستمر!', 'السؤال الجاي نعطيوه حقو!', 'السرعة مهمة، ولكن الأهم هو الاستمتاع!',
+            'يلا نكملو! عندنا أسئلة زوينة!']
+    };
+    var usedPh = {};
+    function phrase(group) {
+        var list = DIALOGUES[group], used = usedPh[group] || (usedPh[group] = []);
+        var free = list.filter(function (t) { return used.indexOf(t) < 0; });
+        if (!free.length) { free = list.slice(); used.length = 0; }
+        var t = free[Math.floor(Math.random() * free.length)];
+        used.push(t); if (used.length > 3) used.shift();
+        return t;
+    }
+    function speak(group, pose, extra) { say(pose, phrase(group) + (extra || '')); }
 
     /* ---------- النقاط ---------- */
     /* عدّاد سريع: الرقم يتغيّر بالتسلسل (يزيد أو ينقص) */
@@ -190,7 +248,7 @@
     function startTimer() { tEnd = Date.now() + SECS * 1000; clearInterval(tInt); tick(); tInt = setInterval(tick, 200); }
 
     /* ---------- سير التحدي ---------- */
-    var CATS = [], mode = 'intro', cur = null, correctText = '', selected = -1;
+    var CATS = [], mode = 'intro', cur = null, correctText = '', selected = -1, firstQ = true;
 
     function startQuestion() {
         var cat = CATS[S.ci % CATS.length], idx = (S.qi[cat.id] || 0) % cat.items.length;
@@ -200,7 +258,9 @@
         mainBtn.textContent = cat.label; mainBtn.classList.add('wait');
         stageQuestion(cur);
         setOpts(shuffle([cur.a].concat(cur.w)), true);
-        say('curiosity', 'ركّزي! عندك ' + SECS + ' ثانية ⏱️');
+        if (firstQ) { firstQ = false; speak('ready', 'smile'); }
+        else if (Math.random() < 0.15) { say('calm', '…'); }          /* لحظة صمت طبيعية */
+        else { speak('question', 'curiosity'); }
         startTimer();
     }
     /* الضغط على جواب يلوّن الزر المختار فقط؛ النتيجة تظهر عند انتهاء الوقت */
@@ -211,7 +271,7 @@
         vibrate(20);
     }
     function endQuestion() {
-        var ok = selected >= 0 && optBtns[selected].textContent === correctText, before = S.points, m = mult();
+        var ok = selected >= 0 && optBtns[selected].textContent === correctText, before = S.points, m = mult(), prev = S.streak;
         if (ok) { S.points += WIN * m; S.streak++; } else { S.points = Math.max(0, S.points - LOSS); S.streak = 0; }
         save(); showPoints(S.points - before);
         optBtns.forEach(function (b, k) {
@@ -220,15 +280,19 @@
             else if (k === selected) b.classList.add('c-bad');
         });
         if (ok) {
-            stageResult('✅ الجواب صحيح!', cur); confetti(); avatarSparkles(S.streak === 10 ? 12 : 6);
-            say('joy', S.streak === 10 ? 'أسطورة! 10 إجابات متتالية، نقاطك دابا ×2 🔥' : (m > 1 ? 'برافو عليك! ×2 مازال شغال 🔥' : 'برافو عليك! جواب صحيح 👏'));
+            stageResult(S.streak === 10 ? '🏆 أسطورة التحدي!' : '✅ الجواب صحيح!', cur); confetti(); avatarSparkles(S.streak === 10 ? 12 : 6);
+            if (S.streak === 10) speak('champion', 'laugh', ' ×2 مفعّل 🔥');
+            else if (S.streak > 10) speak('multiplier', 'confidence');
+            else if (S.streak >= 5) speak('streak5', 'admiration');
+            else if (S.streak >= 3) speak('streak3', 'laugh');
+            else speak('correct', 'joy');
             vibrate(S.streak === 10 ? [30, 40, 30, 40, 60] : 30);
         } else if (selected < 0) {
             stageResult('⏰ انتهى الوقت · الجواب: ' + correctText, cur);
-            say('empathy', 'انتهى الوقت! خليك مركّزة فالسؤال الجاي 💛'); vibrate([40, 40, 40]);
+            speak('timeout', 'surprise'); vibrate([40, 40, 40]);
         } else {
             stageResult('❌ الجواب الصحيح: ' + correctText, cur);
-            say('empathy', 'ماشي مشكل، المهم تعرفي الجواب دابا 💛'); vibrate([40, 40, 40]);
+            speak(prev >= 3 ? 'afterStreak' : 'wrong', 'empathy'); vibrate([40, 40, 40]);
         }
         mode = 'review';
         mainBtn.textContent = 'المرور إلى السؤال التالي'; mainBtn.classList.remove('wait');
