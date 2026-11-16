@@ -17,9 +17,14 @@
 
 /* Robaty: الصورة والفقاعة */
 .c-robaty{position:relative;display:flex;align-items:center;gap:14px;margin:4px 0 10px}
+.c-say{display:block;flex:1;min-width:0;max-height:100%;overflow:hidden}
+/* هالة التنفس حول صورة Robaty (نبضة هادئة كل 5 ثوانٍ) */
+.c-halo{position:absolute;top:0;inset-inline-start:0;width:112px;height:112px;box-sizing:border-box;border-radius:50%;border:2px solid var(--gold,#e5b35c);
+    box-shadow:0 0 18px rgba(229,179,92,.6);opacity:.3;pointer-events:none;animation:haloBreath 5s ease-in-out infinite}
+@keyframes haloBreath{0%,100%{transform:scale(1);opacity:.25}50%{transform:scale(1.12);opacity:.65}}
 .c-avatar{position:relative;flex:none;width:112px;height:112px;box-sizing:border-box;border-radius:50%;overflow:hidden;background:#14100c;border:3px solid var(--gold,#e5b35c);box-shadow:0 0 22px rgba(229,179,92,.45)}
 .c-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transform:scale(1.4);transform-origin:50% 6.5%;opacity:0}
-.c-bubble{position:relative;box-sizing:border-box;flex:1;min-width:0;height:112px;overflow:hidden;display:flex;align-items:center;margin:0;padding:10px 16px;border-radius:20px;background:var(--c-bubble-bg);border:1px solid var(--gold,#e5b35c);box-shadow:0 4px 18px rgba(0,0,0,.35),0 0 14px rgba(229,179,92,.15),inset 0 1px 0 rgba(229,179,92,.25);line-height:1.65}
+.c-bubble{position:relative;box-sizing:border-box;flex:1;min-width:0;height:112px;display:flex;align-items:center;margin:0;padding:10px 16px;border-radius:20px;background:var(--c-bubble-bg);border:1px solid var(--gold,#e5b35c);box-shadow:0 4px 18px rgba(0,0,0,.35),0 0 14px rgba(229,179,92,.15),inset 0 1px 0 rgba(229,179,92,.25);line-height:1.65}
 /* ذيل الفقاعة: يشير نحو صورة Robaty (يمين في RTL، يسار في LTR) */
 .c-bubble::before{content:"";position:absolute;top:50%;inset-inline-start:-7px;width:12px;height:12px;margin-top:-6px;transform:rotate(45deg);background:var(--c-tail);border-top:1px solid var(--gold,#e5b35c);border-right:1px solid var(--gold,#e5b35c)}
 [dir="ltr"] .c-bubble::before{border:0;border-left:1px solid var(--gold,#e5b35c);border-bottom:1px solid var(--gold,#e5b35c)}
@@ -71,4 +76,4 @@
 .c-star.wiggle{animation:starWiggle .9s ease-in-out}
 @keyframes starWiggle{0%{transform:rotate(0) scale(1)}20%{transform:rotate(-22deg) scale(1.2)}45%{transform:rotate(22deg) scale(1.2)}70%{transform:rotate(-12deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}
 @keyframes cPop{0%{transform:scale(.8)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){.c-crown,.c-star.wiggle,.c-pill.pop,.c-pill.low,.c-stage.morph,.avatar-sparkle,.c-delta,.c-conf{animation:none}.c-delta{display:none}.c-conf{display:none}}
+@media (prefers-reduced-motion:reduce){.c-halo,.c-crown,.c-star.wiggle,.c-pill.pop,.c-pill.low,.c-stage.morph,.avatar-sparkle,.c-delta,.c-conf{animation:none}.c-delta{display:none}.c-conf{display:none}}
