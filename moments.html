@@ -42,7 +42,7 @@
 
     <title>Robaty - Moments</title>
 
-    <link rel="stylesheet" href="moments.css">
+    <link rel="stylesheet" href="moments.css?v=reel1">
     <link rel="stylesheet" href="contest-btn.css">
     <link rel="stylesheet" href="comments-ig.css?v=3">
 
@@ -339,6 +339,15 @@
 
         feed.innerHTML = list.map(postHTML).join('');
 
+        // كل منشور = ارتفاع منطقة المنشورات بالضبط (Reel-style snap)
+        function fitPosts() {
+            var h = feed.clientHeight;
+            if (h) feed.style.setProperty('--post-h', h + 'px');
+        }
+        fitPosts();
+        window.addEventListener('resize', fitPosts);
+        if (window.ResizeObserver) new ResizeObserver(fitPosts).observe(feed);
+
         // فتح منشور معين من رابط (مثلا من شبكة البروفايل): moments.html#post-day01-am
         if (location.hash) {
             setTimeout(function () {
@@ -431,15 +440,54 @@
     })();
 
 
-    // زر "المزيد" (فالهيدر أو تحت النص): يبين/يخبي السطر الخامس والسادس من التعليق
-    document.querySelectorAll('.post-header .icon-btn, .caption-more-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var card = btn.closest('.post-card');
-            if (card) {
-                card.classList.toggle('caption-expanded');
-            }
+    // زر "المزيد" (فالهيدر أو تحت النص): كيفتح ورقة من تحت فيها النص الكامل
+    (function () {
+        var appEl = document.querySelector('.app-container');
+        if (!appEl) return;
+
+        var sheet = document.createElement('div');
+        sheet.className = 'caption-sheet';
+        sheet.setAttribute('aria-hidden', 'true');
+        sheet.innerHTML =
+            '<div class="caption-sheet-backdrop" data-close-sheet></div>' +
+            '<div class="caption-sheet-panel" role="dialog" aria-modal="true">' +
+                '<div class="caption-sheet-grab"></div>' +
+                '<div class="caption-sheet-head">' +
+                    '<span>robaty_ai <i class="fa-solid fa-circle-check verify-icon"></i></span>' +
+                    '<button class="caption-sheet-close" data-close-sheet aria-label="close">' +
+                        '<i class="fa-solid fa-xmark"></i>' +
+                    '</button>' +
+                '</div>' +
+                '<div class="caption-sheet-body"></div>' +
+            '</div>';
+        appEl.appendChild(sheet);
+
+        var body = sheet.querySelector('.caption-sheet-body');
+
+        function closeSheet() {
+            sheet.classList.remove('active');
+            sheet.setAttribute('aria-hidden', 'true');
+        }
+
+        sheet.addEventListener('click', function (e) {
+            if (e.target.closest('[data-close-sheet]')) closeSheet();
         });
-    });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeSheet();
+        });
+
+        document.querySelectorAll('.post-header .icon-btn, .caption-more-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var card = btn.closest('.post-card');
+                var cap = card && card.querySelector('.six-line-caption');
+                if (!cap) return;
+                body.innerHTML = cap.innerHTML;
+                body.scrollTop = 0;
+                sheet.classList.add('active');
+                sheet.setAttribute('aria-hidden', 'false');
+            });
+        });
+    })();
 
 
     // أزرار التفاعل: إعجاب + حفظ (محفوظين فـ localStorage) وتعليق/ريبوست/مشاركة (نافذة فارغة)

@@ -1875,3 +1875,147 @@ html.dl-btn-calm .app-download-icon {
 .back-btn-floating:active::after {
     opacity: 1;
 }
+
+
+/* ==========================================================================
+   Reel-style: كل منشور كيعمر الشاشة بين الشريط العلوي والإطار السفلي
+   الصورة 4:5 + أول النص (3 سطور) + "المزيد" ؛ النص الكامل فورقة من تحت
+   ========================================================================== */
+
+.moments-scroll-area {
+    min-height: 0;
+    scroll-behavior: auto;
+    scroll-snap-type: y mandatory;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.post-card {
+    height: var(--post-h, 100%);
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.post-header,
+.post-actions-bar,
+.post-caption-section {
+    flex: 0 0 auto;
+}
+
+/* الصورة تبقى 4:5، وفالهواتف القصيرة تنقص شوية من الارتفاع (قص بسيط) */
+.post-image-container {
+    flex: 0 1 auto;
+    min-height: 50%;
+}
+
+.post-caption-section {
+    padding: 0 14px 10px;
+}
+
+.six-line-caption {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+
+    max-height: none;
+    overflow: hidden;
+}
+
+.caption-more-btn {
+    margin-top: 2px;
+}
+
+/* ورقة النص الكامل (Bottom sheet) */
+
+.caption-sheet {
+    position: absolute;
+    inset: 0;
+    z-index: 90;
+    display: none;
+}
+
+.caption-sheet.active {
+    display: block;
+}
+
+.caption-sheet-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.caption-sheet-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    max-height: 72%;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--surface);
+    border-top: 1.5px solid var(--gold);
+    border-radius: 26px 26px 0 0;
+
+    animation: caption-sheet-up 0.25s ease-out;
+}
+
+.caption-sheet-grab {
+    width: 42px;
+    height: 4px;
+    margin: 10px auto 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.caption-sheet-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    direction: ltr;
+
+    padding: 2px 12px 6px 16px;
+
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.caption-sheet-close {
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+    background: transparent;
+
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.caption-sheet-body {
+    overflow-y: auto;
+
+    padding: 0 16px 24px;
+
+    color: #fff;
+    font-size: 14.5px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+@keyframes caption-sheet-up {
+    from { transform: translateY(100%); }
+    to   { transform: none; }
+}
