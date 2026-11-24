@@ -507,7 +507,7 @@
                        '<div class="comment-head">' +
                            '<span class="comment-author">robaty_ai</span>' +
                            '<i class="fa-solid fa-circle-check comment-verify"></i>' +
-                           '<span class="comment-time"><i class="fa-solid fa-thumbtack"></i> ' + escapeHtml(ct('challenge_label', 'تحدي اليوم 👑')) + '</span>' +
+                           '<span class="comment-time"><i class="fa-solid fa-thumbtack"></i> ' + escapeHtml(ct('challenge_label', 'يوميات روباتي 👑')) + '</span>' +
                        '</div>' +
                        '<div class="comment-text" dir="auto">' + escapeHtml(question) + '</div>' +
                    '</div>' +

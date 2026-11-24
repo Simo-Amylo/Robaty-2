@@ -272,7 +272,7 @@ const translations = {
         story_kicker: 'سمعيني\nمزيان',
         story_kicker_friend: 'أ صاحبتي',
         moments_empty: 'قريبا... أول لحظة ديال Robaty 🌙',
-        challenge_label: 'تحدي اليوم 👑',
+        challenge_label: 'يوميات روباتي 👑',
         moments_tab: 'اللحظات',
 
         /* اللغات (قائمة جميع اللغات) */
@@ -463,7 +463,7 @@ const translations = {
         story_kicker: 'أصغي إليّ\nجيداً',
         story_kicker_friend: 'يا صديقتي',
         moments_empty: 'قريباً... أول لحظة من Robaty 🌙',
-        challenge_label: 'تحدي اليوم 👑',
+        challenge_label: 'يوميات روباتي 👑',
         moments_tab: 'اللحظات',
 
         /* اللغات (قائمة جميع اللغات) */
@@ -653,7 +653,7 @@ const translations = {
         story_kicker: 'Hear me\nout',
         story_kicker_friend: 'my friend',
         moments_empty: 'Coming soon… Robaty\u2019s first moment 🌙',
-        challenge_label: 'Today\u2019s challenge 👑',
+        challenge_label: 'Robaty\u2019s Diaries 👑',
         moments_tab: 'Moments',
 
         /* اللغات (قائمة جميع اللغات) */
@@ -843,7 +843,7 @@ const translations = {
         story_kicker: 'Écoute-moi\nbien',
         story_kicker_friend: 'mon amie',
         moments_empty: 'Bientôt… le premier moment de Robaty 🌙',
-        challenge_label: 'Défi du jour 👑',
+        challenge_label: 'Le journal de Robaty 👑',
         moments_tab: 'Moments',
 
         /* اللغات (قائمة جميع اللغات) */
@@ -1033,7 +1033,7 @@ const translations = {
         story_kicker: 'Escúchame\nbien',
         story_kicker_friend: 'amiga mía',
         moments_empty: 'Pronto… el primer momento de Robaty 🌙',
-        challenge_label: 'Reto del día 👑',
+        challenge_label: 'El diario de Robaty 👑',
         moments_tab: 'Momentos',
 
         /* اللغات (قائمة جميع اللغات) */
@@ -1223,7 +1223,7 @@ const translations = {
         story_kicker: 'Слушай\nхорошо',
         story_kicker_friend: 'подруга',
         moments_empty: 'Скоро… первый момент Robaty 🌙',
-        challenge_label: 'Вызов дня 👑',
+        challenge_label: 'Дневник Робати 👑',
         moments_tab: 'Моменты',
 
         /* اللغات (قائمة جميع اللغات) */
