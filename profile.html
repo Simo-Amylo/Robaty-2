@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة -->
     <script>
@@ -21,6 +21,26 @@
                 }
                 document.documentElement.lang = saved;
                 document.documentElement.dir = (saved === 'ar') ? 'rtl' : 'ltr';
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- جاي من صورة Robaty فالمحادثة (?story=latest): كنغطيو الصفحة بالأسود حتى يتفتح الـ Story،
+         باش البروفايل ما يبانش ثانية قبل منو. حماية: كيتحيد التغطية بعد 3 ثواني فأسوأ الأحوال -->
+    <style>
+        html.story-direct::before {
+            content: ''; position: fixed; inset: 0; z-index: 2147483000; background: #000;
+        }
+    </style>
+    <script>
+        (function () {
+            try {
+                if (new URLSearchParams(window.location.search).get('story') === 'latest') {
+                    document.documentElement.classList.add('story-direct');
+                    setTimeout(function () {
+                        document.documentElement.classList.remove('story-direct');
+                    }, 3000);
+                }
             } catch (e) {}
         })();
     </script>
@@ -210,6 +230,10 @@
 
             filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.75));
         }
+    </style>
+    <!-- الشاشة ثابتة: بلا تكبير بالأصبعين ولا بالنقر المزدوج (التمرير يبقى خدام) -->
+    <style>
+        html, body { touch-action: pan-x pan-y; }
     </style>
 </head>
 <body>
@@ -403,6 +427,8 @@
             a.className = 'grid-item';
 
             var img = document.createElement('img');
+            img.loading = 'lazy';      // الصور اللي ما باينينش ما كيتحملوش دغية، باش ما يزاحمو صورة الـ Story
+            img.decoding = 'async';
             img.src = p.image;
             img.alt = RM.t(p.place, lang);
 

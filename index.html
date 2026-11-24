@@ -6,7 +6,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
     <!-- تطبيق اللغة/الاتجاه المحفوظين بكري، قبل ما تبان الصفحة (يمنع فلاش الاتجاه الغالط) -->
@@ -148,6 +148,10 @@
   }
 </style>
 
+    <!-- الشاشة ثابتة: بلا تكبير بالأصبعين ولا بالنقر المزدوج (التمرير يبقى خدام) -->
+    <style>
+        html, body { touch-action: pan-x pan-y; }
+    </style>
 </head>
 
 <body>

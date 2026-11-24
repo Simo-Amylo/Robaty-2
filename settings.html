@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- اللغة/الاتجاه المحفوظين (نفس منطق index.html) -->
     <script>
@@ -34,6 +34,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet" media="print" onload="this.media='all'">
     <style>.s-name-row{display:flex;gap:8px;align-items:stretch}.s-name-row .gold-input{flex:1;min-width:0}</style>
+    <!-- الشاشة ثابتة: بلا تكبير بالأصبعين ولا بالنقر المزدوج (التمرير يبقى خدام) -->
+    <style>
+        html, body { touch-action: pan-x pan-y; }
+    </style>
 </head>
 <body class="settings-page">
 
