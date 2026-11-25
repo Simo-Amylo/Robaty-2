@@ -62,6 +62,11 @@
 .heritage-live-btn .ticker-item.is-fade,
 .heritage-live-btn .ticker-item.is-fade.is-exit{transform:translateY(0)}
 .heritage-live-btn .ticker-item.is-fade.is-active{transition-delay:var(--fade-delay,.7s)} /* تبدأ بعد ما تتلاشى السابقة */
+/* جمل بيضاء */
+.heritage-live-btn .phrase.is-white{background:none;color:#fff;-webkit-text-fill-color:#fff}
+/* جمل مكتوبة: تظهر بسرعة ثم تُكتب حرفا حرفا؛ الجزء غير المكتوب مخفي بدون ما يفقد مكانه */
+.heritage-live-btn .phrase .rest{visibility:hidden}
+.heritage-live-btn .ticker-item.is-type.is-active{transition-duration:.4s}
 @keyframes heritagePulse{
     0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(255,255,255,.85)}
     70%{transform:scale(1.1);box-shadow:0 0 0 5px rgba(255,255,255,0)}
