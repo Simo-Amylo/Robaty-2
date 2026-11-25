@@ -357,15 +357,16 @@ const translations = {
         contest_s5: 'الثقافة الشعبية المغربية',
         contest_s6: 'سفيرة التراث المغربي',
         contest_s7: 'واش عارفا المغرب مزيان؟',
-        contest_s8: 'مرحبا و ألف مرحبا',
-        contest_s9: 'شاركي و استفيدي',
+        contest_s8: 'مرحبا بك في المغرب',
+        contest_s9: 'شاركي و فوزي',
         contest_s10: 'فوزي بالبطاقة الذهبية',
         contest_s11: 'المدن و المعالم المغربية',
         contest_s12: 'التاريخ و الحضارة المغربية',
         contest_s13: 'التراث و عادات المغاربة',
         contest_s14: 'تحديات التمغربيت',
         contest_s15: 'الطبيعة و المنتجات المغربية',
-        contest_s16: 'الشخصيات المغربية'
+        contest_s16: 'الشخصيات المغربية',
+        contest_s17: 'زخارف مغربية'
     },
 
     /* العربية الفصحى — نفس المفاتيح ديال القاموس المغربي (ar) بالضبط */
@@ -567,15 +568,16 @@ const translations = {
         contest_s5: 'الثقافة الشعبية المغربية',
         contest_s6: 'سفيرة التراث المغربي',
         contest_s7: 'هل تعرفين المغرب جيدا؟',
-        contest_s8: 'مرحبا و ألف مرحبا',
-        contest_s9: 'شاركي و استفيدي',
+        contest_s8: 'مرحبا بك في المغرب',
+        contest_s9: 'شاركي و فوزي',
         contest_s10: 'فوزي بالبطاقة الذهبية',
         contest_s11: 'المدن و المعالم المغربية',
         contest_s12: 'التاريخ و الحضارة المغربية',
         contest_s13: 'التراث و عادات المغاربة',
         contest_s14: 'تحديات التمغربيت',
         contest_s15: 'الطبيعة و المنتجات المغربية',
-        contest_s16: 'الشخصيات المغربية'
+        contest_s16: 'الشخصيات المغربية',
+        contest_s17: 'زخارف مغربية'
     },
 
     en: {
@@ -776,15 +778,16 @@ const translations = {
         contest_s5: 'Moroccan Folk Culture',
         contest_s6: 'Moroccan Heritage Ambassador',
         contest_s7: 'How well do you know Morocco?',
-        contest_s8: 'Welcome',
-        contest_s9: 'Join in and benefit',
+        contest_s8: 'Welcome to Morocco',
+        contest_s9: 'Join in and win',
         contest_s10: 'Win the Golden Card',
         contest_s11: 'Moroccan Cities & Landmarks',
         contest_s12: 'Moroccan History & Civilization',
         contest_s13: 'Heritage & Moroccan Customs',
         contest_s14: 'Moroccan Identity Challenges',
         contest_s15: 'Moroccan Nature & Products',
-        contest_s16: 'Moroccan Personalities'
+        contest_s16: 'Moroccan Personalities',
+        contest_s17: 'Moroccan Ornaments'
     },
 
     fr: {
@@ -985,15 +988,16 @@ const translations = {
         contest_s5: 'Culture populaire marocaine',
         contest_s6: 'Ambassadrice du patrimoine',
         contest_s7: 'Tu connais bien le Maroc ?',
-        contest_s8: 'Bienvenue',
-        contest_s9: 'Participe et profite',
+        contest_s8: 'Bienvenue au Maroc',
+        contest_s9: 'Participe et gagne',
         contest_s10: 'Gagne la carte dorée',
         contest_s11: 'Villes et monuments du Maroc',
         contest_s12: 'Histoire et civilisation marocaines',
         contest_s13: 'Patrimoine et coutumes marocaines',
         contest_s14: 'Défis de la marocanité',
         contest_s15: 'Nature et produits du Maroc',
-        contest_s16: 'Personnalités marocaines'
+        contest_s16: 'Personnalités marocaines',
+        contest_s17: 'Ornements marocains'
     },
 
     es: {
@@ -1194,15 +1198,16 @@ const translations = {
         contest_s5: 'Cultura popular marroquí',
         contest_s6: 'Embajadora del patrimonio',
         contest_s7: '¿Conoces bien Marruecos?',
-        contest_s8: 'Bienvenida',
-        contest_s9: 'Participa y aprovecha',
+        contest_s8: 'Bienvenida a Marruecos',
+        contest_s9: 'Participa y gana',
         contest_s10: 'Gana la tarjeta dorada',
         contest_s11: 'Ciudades y monumentos marroquíes',
         contest_s12: 'Historia y civilización marroquí',
         contest_s13: 'Patrimonio y costumbres marroquíes',
         contest_s14: 'Retos de la marroquinidad',
         contest_s15: 'Naturaleza y productos marroquíes',
-        contest_s16: 'Personajes marroquíes'
+        contest_s16: 'Personajes marroquíes',
+        contest_s17: 'Ornamentos marroquíes'
     },
 
     ru: {
@@ -1403,15 +1408,16 @@ const translations = {
         contest_s5: 'Марокканская народная культура',
         contest_s6: 'Посол марокканского наследия',
         contest_s7: 'Хорошо ли ты знаешь Марокко?',
-        contest_s8: 'Добро пожаловать',
-        contest_s9: 'Участвуй и получай выгоду',
+        contest_s8: 'Добро пожаловать в Марокко',
+        contest_s9: 'Участвуй и выигрывай',
         contest_s10: 'Выиграй золотую карту',
         contest_s11: 'Города и места Марокко',
         contest_s12: 'История и цивилизация Марокко',
         contest_s13: 'Наследие и обычаи марокканцев',
         contest_s14: 'Вызовы марокканской идентичности',
         contest_s15: 'Природа и продукты Марокко',
-        contest_s16: 'Известные марокканцы'
+        contest_s16: 'Известные марокканцы',
+        contest_s17: 'Марокканские орнаменты'
     }
 
 };

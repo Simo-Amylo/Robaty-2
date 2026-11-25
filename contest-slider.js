@@ -22,17 +22,18 @@
     { key: "contest_s5",  ar: "الثقافة الشعبية المغربية" },
     { key: "contest_s6",  ar: "سفيرة التراث المغربي", ms: TIMING.holdMs * TIMING.longFactor, fade: true, type: true, white: true },
     { key: "contest_s7",  ar: "واش عارفا المغرب مزيان؟", fade: true, white: true },
-    { key: "contest_s8",  ar: "مرحبا و ألف مرحبا", fade: true, white: true },
-    { key: "contest_s9",  ar: "شاركي و استفيدي", white: true },
+    { key: "contest_s8",  ar: "مرحبا بك في المغرب", fade: true, white: true },
+    { key: "contest_s9",  ar: "شاركي و فوزي", white: true },
     { key: "contest_s10", ar: "فوزي بالبطاقة الذهبية", fade: true },
     { key: "contest_s11", ar: "المدن و المعالم المغربية" },
+    { key: "contest_s17", ar: "زخارف مغربية", img: "heritage-ornaments.webp", banner: true, fade: true, white: true },
     { key: "contest_s12", ar: "التاريخ و الحضارة المغربية" },
     { key: "contest_s13", ar: "التراث و عادات المغاربة" },
     { key: "contest_s6",  ar: "سفيرة التراث المغربي", ms: TIMING.holdMs * TIMING.longFactor, fade: true, type: true, white: true },
     { key: "contest_s14", ar: "تحديات التمغربيت", fade: true },
     { key: "contest_s15", ar: "الطبيعة و المنتجات المغربية" },
     { key: "contest_s16", ar: "الشخصيات المغربية" },
-    { key: "contest_s8",  ar: "مرحبا و ألف مرحبا", fade: true, white: true }
+    { key: "contest_s8",  ar: "مرحبا بك في المغرب", fade: true, white: true }
   ];
   var DEFAULT_MS = TIMING.holdMs;
 
@@ -59,7 +60,7 @@
 
   var els = slides.map(function (s, i) {
     var item = document.createElement("span");
-    item.className = "ticker-item" + (s.fade ? " is-fade" : "") + (s.type ? " is-type" : "") + (i === 0 ? " is-active" : "");
+    item.className = "ticker-item" + (s.fade ? " is-fade" : "") + (s.type ? " is-type" : "") + (s.banner ? " is-banner" : "") + (i === 0 ? " is-active" : "");
     var img = document.createElement("img");
     img.className = "thumb"; img.src = ROBATY_IMG; img.alt = ""; img.decoding = "async";
     var ph = document.createElement("span");
@@ -76,7 +77,16 @@
     } else {
       ph.textContent = txt;
     }
-    item.appendChild(img); item.appendChild(ph);
+    if (!s.banner) item.appendChild(img);
+    item.appendChild(ph);
+    if (s.banner) {
+      // صورة عريضة تغطي الزر كامل (طبقة خلف النص)
+      s.bannerEl = document.createElement("span");
+      s.bannerEl.className = "banner";
+      s.bannerEl.style.backgroundImage = 'url("' + s.img + '")';
+      btn.insertBefore(s.bannerEl, viewport);
+      new Image().src = s.img;   // تحميل مسبق باش ما تبانش متأخرة
+    }
     viewport.appendChild(item);
     return item;
   });
@@ -122,6 +132,8 @@
     var prev = els[cur]; cur = next; var nxt = els[cur];
     prev.classList.remove("is-active"); prev.classList.add("is-exit");
     nxt.classList.remove("is-exit"); nxt.classList.add("is-active");
+    if (slides[prevIdx].bannerEl) slides[prevIdx].bannerEl.classList.remove("is-active");
+    if (slides[cur].bannerEl) slides[cur].bannerEl.classList.add("is-active");
     startTyping(cur, TIMING.fadeDelayMs);   // تبدأ الكتابة بعد ما تتلاشى الجملة السابقة
     setTimeout(function () {
       prev.classList.remove("is-exit");
