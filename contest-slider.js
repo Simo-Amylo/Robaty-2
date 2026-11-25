@@ -2,10 +2,18 @@
 (function () {
   var ROBATY_IMG = "robaty-thumb.webp";
 
+  // ===== ضبط التوقيت (كل الأرقام هنا) =====
+  var TIMING = {
+    firstMs: 6500,       // مدة الجملة الأولى (بالميلي ثانية)
+    holdMs: 5000,        // المدة بين جملة وأخرى
+    transitionMs: 1400,  // سرعة الظهور والاختفاء
+    fadeDelayMs: 700,    // تأخير الجمل ذات التلاشي (باش تختفي السابقة قبل)
+    slidePx: 8           // مسافة الانزلاق بالبكسل
+  };
+
   // التسلسل (التكرار مقصود). key = مفتاح الترجمة فـ i18n.js، و ar = النص الاحتياطي
-  // الشريحة الأولى أطول (5 ثوان)، والباقي 3.5 ثانية
   var slides = [
-    { key: "contest_s1",  ar: "تحدي سفيرة التراث المغربي", ms: 5000, fade: true },
+    { key: "contest_s1",  ar: "تحدي سفيرة التراث المغربي", ms: TIMING.firstMs, fade: true },
     { key: "contest_s2",  ar: "الفوز بالبطاقة الذهبية", fade: true },
     { key: "contest_s3",  ar: "تحدي الطبخ المغربي" },
     { key: "contest_s4",  ar: "تحدي الأمثال المغربية" },
@@ -24,11 +32,15 @@
     { key: "contest_s16", ar: "الشخصيات المغربية" },
     { key: "contest_s8",  ar: "مرحبا و ألف مرحبا", fade: true }
   ];
-  var DEFAULT_MS = 3500;
+  var DEFAULT_MS = TIMING.holdMs;
 
   var btn = document.getElementById("contestCta");
   var viewport = document.getElementById("tickerViewport");
   if (!btn || !viewport || !slides.length) return;
+
+  btn.style.setProperty("--ticker-dur", (TIMING.transitionMs / 1000) + "s");
+  btn.style.setProperty("--fade-delay", (TIMING.fadeDelayMs / 1000) + "s");
+  btn.style.setProperty("--slide-px", TIMING.slidePx + "px");
 
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -75,7 +87,7 @@
     var prev = els[cur]; cur = next; var nxt = els[cur];
     prev.classList.remove("is-active"); prev.classList.add("is-exit");
     nxt.classList.remove("is-exit"); nxt.classList.add("is-active");
-    setTimeout(function () { prev.classList.remove("is-exit"); }, 1100);
+    setTimeout(function () { prev.classList.remove("is-exit"); }, TIMING.transitionMs + 200);
   }
   function schedule() {
     clearTimeout(timer);

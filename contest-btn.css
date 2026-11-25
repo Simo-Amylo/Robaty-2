@@ -25,18 +25,18 @@
 
 /* الشارة: نقطة حمراء نابضة + "تحدي جديد" */
 .heritage-live-btn .top-live-badge{
-    position:absolute;top:-7px;right:12px;display:inline-flex;align-items:stretch;height:17px;
+    position:absolute;top:-7px;right:12px;display:inline-flex;align-items:stretch;height:17px;direction:rtl;gap:0;
     border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,.18);
     box-shadow:0 3px 8px rgba(0,0,0,.65);z-index:4;
 }
-.heritage-live-btn .live-part{display:inline-flex;align-items:center;background:#e11d2a;padding:0 6px}
+.heritage-live-btn .live-part{display:inline-flex;align-items:center;background:#e11d2a;padding-inline:7px 0}
 .heritage-live-btn.is-done .live-part,
 .heritage-live-btn.is-done .count-part{background:#2ea05a}
 .heritage-live-btn .live-dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:heritagePulse 1.5s infinite}
 .heritage-live-btn.is-done .live-dot{animation:none}
 .heritage-live-btn .count-part{
     display:inline-flex;align-items:center;justify-content:center;background:#e11d2a;color:#fff;
-    padding:0 8px;font-size:10.5px;font-weight:700;line-height:1;
+    padding-inline:5px 8px;font-size:10.5px;font-weight:700;line-height:1;unicode-bidi:plaintext;
 }
 
 /* نافذة العرض المتحركة */
@@ -44,10 +44,10 @@
 .heritage-live-btn .ticker-item{
     position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:9px;
     direction:ltr; /* الصورة دائما على اليسار (بعيدة عن الشارة) في كل اللغات */
-    opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease;pointer-events:none;
+    opacity:0;transform:translateY(var(--slide-px,8px));transition:opacity var(--ticker-dur,1.4s) ease-in-out,transform var(--ticker-dur,1.4s) ease-in-out;pointer-events:none;
 }
 .heritage-live-btn .ticker-item.is-active{opacity:1;transform:translateY(0)}
-.heritage-live-btn .ticker-item.is-exit{opacity:0;transform:translateY(-14px)}
+.heritage-live-btn .ticker-item.is-exit{opacity:0;transform:translateY(calc(var(--slide-px,8px) * -1))}
 .heritage-live-btn .thumb{
     width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none;
     border:1px solid rgba(224,184,83,.8);background:#1a1308;
@@ -61,7 +61,7 @@
 /* جمل تظهر تدريجيا من مكانها وتتلاشى (بلا انزلاق) */
 .heritage-live-btn .ticker-item.is-fade,
 .heritage-live-btn .ticker-item.is-fade.is-exit{transform:translateY(0)}
-.heritage-live-btn .ticker-item.is-fade.is-active{transition-delay:.45s} /* تبدأ بعد ما تتلاشى السابقة */
+.heritage-live-btn .ticker-item.is-fade.is-active{transition-delay:var(--fade-delay,.7s)} /* تبدأ بعد ما تتلاشى السابقة */
 @keyframes heritagePulse{
     0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(255,255,255,.85)}
     70%{transform:scale(1.1);box-shadow:0 0 0 5px rgba(255,255,255,0)}
