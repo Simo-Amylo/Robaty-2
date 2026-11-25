@@ -74,14 +74,16 @@
         <div class="ad-banner">
             <span class="ad-tag" data-i18n="ad_tag">إعلان</span>
 
-            <!-- شريط الأزرار: مسابقة اليوم (الوسط) + الإعدادات (أقصى الجهة المقابلة لزر الرجوع) -->
+            <!-- شريط الأزرار: تحدي سفيرة التراث (الوسط) + الإعدادات (أقصى الجهة المقابلة لزر الرجوع) -->
             <div class="moments-topbar">
                 <div class="contest-cta-wrap">
-                    <a class="contest-cta" id="contestCta" href="concours.html" aria-label="مسابقة اليوم">
-                        <span class="contest-dot" aria-hidden="true"></span>
-                        <span class="contest-ico" aria-hidden="true">🏆</span>
-                        <span class="contest-txt">مسابقة اليوم</span>
-                        <span class="contest-star" aria-hidden="true">✦</span>
+                    <a class="heritage-live-btn" id="contestCta" href="concours.html" aria-label="تحدي سفيرة التراث المغربي: ادخلي إلى شاشة التحديات">
+                        <span class="top-live-badge">
+                            <span class="live-part"><span class="live-dot"></span></span>
+                            <!-- لاحقا: عوّضي النص بعدد المتصفحين الحقيقي -->
+                            <span class="count-part" id="live-users-count">تحدي جديد</span>
+                        </span>
+                        <span class="ticker-viewport" id="tickerViewport" aria-hidden="true"></span>
                     </a>
                 </div>
                 <a class="moments-settings-btn" href="settings.html" aria-label="الإعدادات">
@@ -262,6 +264,7 @@
 <script src="moments-data.js"></script>
 <script src="moments-button-glow.js"></script>
 <script src="contest-btn.js"></script>
+<script src="contest-slider.js"></script>
 <script>
     // رسم المنشورات من moments-data.js (الأحدث أولا) — خاصو يتنفذ قبل story.js و comments.js
     (function () {
