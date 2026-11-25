@@ -25,13 +25,12 @@
     { key: "contest_s8",  ar: "مرحبا بك في المغرب", fade: true, white: true },
     { key: "contest_s9",  ar: "شاركي و فوزي", white: true },
     { key: "contest_s10", ar: "فوزي بالبطاقة الذهبية", fade: true },
-    { key: "contest_s11", ar: "المدن و المعالم المغربية" },
-    { key: "contest_s17", ar: "زخارف مغربية", img: "heritage-ornaments.webp", banner: true, fade: true, white: true },
+    { key: "contest_s11", ar: "المدن و المعالم المغربية", img: "heritage-ornaments.webp", banner: true, fade: true, white: true },
     { key: "contest_s12", ar: "التاريخ و الحضارة المغربية" },
     { key: "contest_s13", ar: "التراث و عادات المغاربة" },
     { key: "contest_s6",  ar: "سفيرة التراث المغربي", ms: TIMING.holdMs * TIMING.longFactor, fade: true, type: true, white: true },
     { key: "contest_s14", ar: "تحديات التمغربيت", fade: true },
-    { key: "contest_s15", ar: "الطبيعة و المنتجات المغربية" },
+    { key: "contest_s15", ar: "الطبيعة و المنتجات المغربية", img: "heritage-carpet.webp", banner: true, fade: true, white: true },
     { key: "contest_s16", ar: "الشخصيات المغربية" },
     { key: "contest_s8",  ar: "مرحبا بك في المغرب", fade: true, white: true }
   ];

@@ -366,7 +366,6 @@ const translations = {
         contest_s14: 'تحديات التمغربيت',
         contest_s15: 'الطبيعة و المنتجات المغربية',
         contest_s16: 'الشخصيات المغربية',
-        contest_s17: 'زخارف مغربية'
     },
 
     /* العربية الفصحى — نفس المفاتيح ديال القاموس المغربي (ar) بالضبط */
@@ -577,7 +576,6 @@ const translations = {
         contest_s14: 'تحديات التمغربيت',
         contest_s15: 'الطبيعة و المنتجات المغربية',
         contest_s16: 'الشخصيات المغربية',
-        contest_s17: 'زخارف مغربية'
     },
 
     en: {
@@ -787,7 +785,6 @@ const translations = {
         contest_s14: 'Moroccan Identity Challenges',
         contest_s15: 'Moroccan Nature & Products',
         contest_s16: 'Moroccan Personalities',
-        contest_s17: 'Moroccan Ornaments'
     },
 
     fr: {
@@ -997,7 +994,6 @@ const translations = {
         contest_s14: 'Défis de la marocanité',
         contest_s15: 'Nature et produits du Maroc',
         contest_s16: 'Personnalités marocaines',
-        contest_s17: 'Ornements marocains'
     },
 
     es: {
@@ -1207,7 +1203,6 @@ const translations = {
         contest_s14: 'Retos de la marroquinidad',
         contest_s15: 'Naturaleza y productos marroquíes',
         contest_s16: 'Personajes marroquíes',
-        contest_s17: 'Ornamentos marroquíes'
     },
 
     ru: {
@@ -1417,7 +1412,6 @@ const translations = {
         contest_s14: 'Вызовы марокканской идентичности',
         contest_s15: 'Природа и продукты Марокко',
         contest_s16: 'Известные марокканцы',
-        contest_s17: 'Марокканские орнаменты'
     }
 
 };
