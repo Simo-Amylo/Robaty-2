@@ -74,7 +74,7 @@ body {
 .profile-banner {
     width: 100%;
     height: 120px;
-    background: url('day01-essaouira-evening.jpg') center/cover no-repeat;
+    background: url('profile-cover.webp') center 35%/cover no-repeat;
     position: relative;
 }
 .banner-overlay {
